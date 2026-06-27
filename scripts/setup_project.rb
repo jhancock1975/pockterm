@@ -47,7 +47,7 @@ test_target.build_configurations.each do |c|
   c.build_settings['BUNDLE_LOADER'] = '$(TEST_HOST)'
   c.build_settings['SWIFT_VERSION'] = '5.0'
   c.build_settings['DEVELOPMENT_TEAM'] = '5H22F8M69N'
-  c.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '26.0'
+  c.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '26.5'
 end
 
 # Test group + (idempotent) explicit source references for every test file on disk.
