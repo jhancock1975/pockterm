@@ -26,15 +26,39 @@ build/
 timeline.xctimeline
 playground.xcworkspace
 
+# Legacy Xcode user files (Apple Global template)
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+
 # Swift Package Manager
 .swiftpm/
 Packages/
-Package.resolved
+Package.pins
 .netrc
+# NOTE: For an app (not a library) you should COMMIT Package.resolved so
+# everyone builds against identical dependency versions. Uncomment only if
+# this becomes a reusable library:
+# Package.resolved
 
 # CocoaPods / Carthage (if ever added)
 Pods/
 Carthage/Build/
+Carthage/Checkouts
+
+# fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/**/*.png
+fastlane/test_output
+
+# Code injection (InjectionIII hot reload)
+iOSInjectionProject/
 
 # ---------------------------------------------------------------------------
 # Secrets & signing material  (NEVER commit these)
