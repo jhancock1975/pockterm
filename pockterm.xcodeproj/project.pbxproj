@@ -6,13 +6,35 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		31A6CFFB7C9D5DCC2F6BE51C /* PlaceholderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F506163220C8FBDCD103A3 /* PlaceholderTests.swift */; };
+		45085A69102CC6B2045BEC4B /* SwiftTerm in Frameworks */ = {isa = PBXBuildFile; productRef = CDC95F7F3E51993B3B834AE0 /* SwiftTerm */; };
+		CD5F7FFA74943CF74F12447B /* Citadel in Frameworks */ = {isa = PBXBuildFile; productRef = 8931F71DF5C8B8E8AD2108FB /* Citadel */; };
+		F0766092A11161CB69BFDFAB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28FABE07D2973397E786A537 /* Foundation.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4D70DBC24D9D1306720E4843 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 52A0DDC42FF01A30003F2522 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 52A0DDCB2FF01A30003F2522;
+			remoteInfo = pockterm;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		28FABE07D2973397E786A537 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		52A0DDCC2FF01A30003F2522 /* pockterm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pockterm.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C76CBC9F7A224157FCBEC5AD /* pocktermTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = pocktermTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E6F506163220C8FBDCD103A3 /* PlaceholderTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PlaceholderTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		52A0DDCE2FF01A30003F2522 /* pockterm */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = pockterm;
 			sourceTree = "<group>";
 		};
@@ -23,6 +45,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				45085A69102CC6B2045BEC4B /* SwiftTerm in Frameworks */,
+				CD5F7FFA74943CF74F12447B /* Citadel in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7433695F977620B60E45552C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F0766092A11161CB69BFDFAB /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -34,6 +66,8 @@
 			children = (
 				52A0DDCE2FF01A30003F2522 /* pockterm */,
 				52A0DDCD2FF01A30003F2522 /* Products */,
+				FD7B372E9C3EB487405B8E2A /* Frameworks */,
+				7DC7DEB8AD64C95B6E970736 /* pocktermTests */,
 			);
 			sourceTree = "<group>";
 		};
@@ -41,8 +75,34 @@
 			isa = PBXGroup;
 			children = (
 				52A0DDCC2FF01A30003F2522 /* pockterm.app */,
+				C76CBC9F7A224157FCBEC5AD /* pocktermTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		6EC52AB80ECFCDC5AFF39F1F /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				28FABE07D2973397E786A537 /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		7DC7DEB8AD64C95B6E970736 /* pocktermTests */ = {
+			isa = PBXGroup;
+			children = (
+				E6F506163220C8FBDCD103A3 /* PlaceholderTests.swift */,
+			);
+			name = pocktermTests;
+			path = pocktermTests;
+			sourceTree = "<group>";
+		};
+		FD7B372E9C3EB487405B8E2A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6EC52AB80ECFCDC5AFF39F1F /* iOS */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -65,10 +125,30 @@
 			);
 			name = pockterm;
 			packageProductDependencies = (
+				CDC95F7F3E51993B3B834AE0 /* SwiftTerm */,
+				8931F71DF5C8B8E8AD2108FB /* Citadel */,
 			);
 			productName = pockterm;
 			productReference = 52A0DDCC2FF01A30003F2522 /* pockterm.app */;
 			productType = "com.apple.product-type.application";
+		};
+		939E02897B6B532076F3691C /* pocktermTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BD6FED924A872AC2A48F0FA2 /* Build configuration list for PBXNativeTarget "pocktermTests" */;
+			buildPhases = (
+				DD4A0309630A49F50BFCC2D9 /* Sources */,
+				7433695F977620B60E45552C /* Frameworks */,
+				0225752538534B44A724CE21 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B7021BC1B380E76910D142AC /* PBXTargetDependency */,
+			);
+			name = pocktermTests;
+			productName = pocktermTests;
+			productReference = C76CBC9F7A224157FCBEC5AD /* pocktermTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -94,17 +174,29 @@
 			);
 			mainGroup = 52A0DDC32FF01A30003F2522;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				B5742933639B85271BF5F2F1 /* XCRemoteSwiftPackageReference "SwiftTerm" */,
+				B96B7F11E546632E230E92A1 /* XCRemoteSwiftPackageReference "Citadel" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 52A0DDCD2FF01A30003F2522 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				52A0DDCB2FF01A30003F2522 /* pockterm */,
+				939E02897B6B532076F3691C /* pocktermTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		0225752538534B44A724CE21 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		52A0DDCA2FF01A30003F2522 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -122,7 +214,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		DD4A0309630A49F50BFCC2D9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				31A6CFFB7C9D5DCC2F6BE51C /* PlaceholderTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B7021BC1B380E76910D142AC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = pockterm;
+			target = 52A0DDCB2FF01A30003F2522 /* pockterm */;
+			targetProxy = 4D70DBC24D9D1306720E4843 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		52A0DDD52FF01A31003F2522 /* Debug */ = {
@@ -310,6 +419,39 @@
 			};
 			name = Release;
 		};
+		6AC3CE783D8490C5979F83EC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				DEVELOPMENT_TEAM = 5H22F8M69N;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "John-Hancock.pocktermTests";
+				PRODUCT_NAME = pocktermTests;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/pockterm.app/pockterm";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E37D118890B08C16680E98C3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				DEVELOPMENT_TEAM = 5H22F8M69N;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "John-Hancock.pocktermTests";
+				PRODUCT_NAME = pocktermTests;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/pockterm.app/pockterm";
+			};
+			name = Debug;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -331,7 +473,48 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		BD6FED924A872AC2A48F0FA2 /* Build configuration list for PBXNativeTarget "pocktermTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6AC3CE783D8490C5979F83EC /* Release */,
+				E37D118890B08C16680E98C3 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B5742933639B85271BF5F2F1 /* XCRemoteSwiftPackageReference "SwiftTerm" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/migueldeicaza/SwiftTerm.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.0;
+			};
+		};
+		B96B7F11E546632E230E92A1 /* XCRemoteSwiftPackageReference "Citadel" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/orlandos-nl/Citadel.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.8.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8931F71DF5C8B8E8AD2108FB /* Citadel */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B96B7F11E546632E230E92A1 /* XCRemoteSwiftPackageReference "Citadel" */;
+			productName = Citadel;
+		};
+		CDC95F7F3E51993B3B834AE0 /* SwiftTerm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B5742933639B85271BF5F2F1 /* XCRemoteSwiftPackageReference "SwiftTerm" */;
+			productName = SwiftTerm;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 52A0DDC42FF01A30003F2522 /* Project object */;
 }
