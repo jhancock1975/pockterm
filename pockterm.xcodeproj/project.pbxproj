@@ -10,6 +10,7 @@
 		0073731D3B118E146274D836 /* ModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F04BEA86184EFB2FA84445 /* ModelTests.swift */; };
 		31A6CFFB7C9D5DCC2F6BE51C /* PlaceholderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F506163220C8FBDCD103A3 /* PlaceholderTests.swift */; };
 		45085A69102CC6B2045BEC4B /* SwiftTerm in Frameworks */ = {isa = PBXBuildFile; productRef = CDC95F7F3E51993B3B834AE0 /* SwiftTerm */; };
+		48802C0C5DF54ED611CEC84F /* SecretStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53305856679F3A11464DF689 /* SecretStoreTests.swift */; };
 		CD5F7FFA74943CF74F12447B /* Citadel in Frameworks */ = {isa = PBXBuildFile; productRef = 8931F71DF5C8B8E8AD2108FB /* Citadel */; };
 		F0766092A11161CB69BFDFAB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28FABE07D2973397E786A537 /* Foundation.framework */; };
 /* End PBXBuildFile section */
@@ -28,6 +29,7 @@
 		28FABE07D2973397E786A537 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		45F04BEA86184EFB2FA84445 /* ModelTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ModelTests.swift; sourceTree = "<group>"; };
 		52A0DDCC2FF01A30003F2522 /* pockterm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pockterm.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		53305856679F3A11464DF689 /* SecretStoreTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SecretStoreTests.swift; sourceTree = "<group>"; };
 		C76CBC9F7A224157FCBEC5AD /* pocktermTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = pocktermTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6F506163220C8FBDCD103A3 /* PlaceholderTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PlaceholderTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -95,6 +97,7 @@
 			children = (
 				E6F506163220C8FBDCD103A3 /* PlaceholderTests.swift */,
 				45F04BEA86184EFB2FA84445 /* ModelTests.swift */,
+				53305856679F3A11464DF689 /* SecretStoreTests.swift */,
 			);
 			path = pocktermTests;
 			sourceTree = "<group>";
@@ -222,6 +225,7 @@
 			files = (
 				31A6CFFB7C9D5DCC2F6BE51C /* PlaceholderTests.swift in Sources */,
 				0073731D3B118E146274D836 /* ModelTests.swift in Sources */,
+				48802C0C5DF54ED611CEC84F /* SecretStoreTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
