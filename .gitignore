@@ -1,0 +1,90 @@
+# ---------------------------------------------------------------------------
+# macOS
+# ---------------------------------------------------------------------------
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+._*
+
+# ---------------------------------------------------------------------------
+# Xcode - user-specific / generated
+# ---------------------------------------------------------------------------
+xcuserdata/
+*.xcuserstate
+*.xcuserdatad
+*.xcscmblueprint
+*.xccheckout
+*.moved-aside
+DerivedData/
+build/
+.build/
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+timeline.xctimeline
+playground.xcworkspace
+
+# Swift Package Manager
+.swiftpm/
+Packages/
+Package.resolved
+.netrc
+
+# CocoaPods / Carthage (if ever added)
+Pods/
+Carthage/Build/
+
+# ---------------------------------------------------------------------------
+# Secrets & signing material  (NEVER commit these)
+# ---------------------------------------------------------------------------
+*.pem
+*.key
+*.p12
+*.pfx
+*.cer
+*.certSigningRequest
+*.mobileprovision
+*.provisionprofile
+id_rsa*
+id_ed25519*
+id_ecdsa*
+*_rsa
+*_ed25519
+known_hosts
+.env
+.env.*
+secrets.*
+*.secret
+GoogleService-Info.plist
+
+# ---------------------------------------------------------------------------
+# Backup / editor / temp files
+# ---------------------------------------------------------------------------
+*~
+*.bak
+*.backup
+*.orig
+*.swp
+*.swo
+*.tmp
+*.temp
+.#*
+\#*#
+
+# ---------------------------------------------------------------------------
+# Large binaries / archives
+# ---------------------------------------------------------------------------
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.gz
+*.rar
+*.7z
+*.app
+*.dmg
+*.pkg
+*.bin
+*.iso
