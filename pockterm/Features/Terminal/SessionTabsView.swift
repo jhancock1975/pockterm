@@ -17,78 +17,83 @@ struct SessionTabsView: View {
     @Query(sort: \Snippet.label) private var snippets: [Snippet]
 
     var body: some View {
-        NavigationStack {
-            ZStack {
-                Color.black.ignoresSafeArea()
-                VStack(spacing: 0) {
-                    tabStrip
-                    if let session = manager.active {
-                        sessionContent(session)
-                    } else {
-                        Spacer()
-                    }
+        ZStack {
+            Color.black.ignoresSafeArea()
+            VStack(spacing: 0) {
+                topBar
+                if let session = manager.active {
+                    sessionContent(session)
+                } else {
+                    Spacer()
                 }
             }
-            .navigationTitle(manager.active?.title ?? "Terminal")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
-                    if !snippets.isEmpty, let session = manager.active {
-                        Menu {
-                            ForEach(snippets) { snippet in
-                                Button(snippet.label) { session.run(snippet) }
-                            }
-                        } label: {
-                            Image(systemName: "text.badge.plus")
-                        }
-                        .disabled(session.status != .connected)
-                    }
-                }
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button("Done") { manager.closeAll(); dismiss() }
-                }
+        }
+        .alert("Verify Host Key", isPresented: hostKeyPresented,
+               presenting: manager.active?.pendingHostKey) { pending in
+            Button(pending.storedFingerprint == nil ? "Accept" : "Accept Changed Key",
+                   role: pending.storedFingerprint == nil ? nil : .destructive) {
+                pending.resume(true)
+                manager.active?.pendingHostKey = nil
             }
-            .alert("Verify Host Key", isPresented: hostKeyPresented,
-                   presenting: manager.active?.pendingHostKey) { pending in
-                Button(pending.storedFingerprint == nil ? "Accept" : "Accept Changed Key",
-                       role: pending.storedFingerprint == nil ? nil : .destructive) {
-                    pending.resume(true)
-                    manager.active?.pendingHostKey = nil
-                }
-                Button("Reject", role: .cancel) {
-                    pending.resume(false)
-                    manager.active?.pendingHostKey = nil
-                }
-            } message: { pending in
-                Text(hostKeyMessage(pending))
+            Button("Reject", role: .cancel) {
+                pending.resume(false)
+                manager.active?.pendingHostKey = nil
             }
+        } message: { pending in
+            Text(hostKeyMessage(pending))
         }
     }
 
-    private var tabStrip: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: 6) {
-                ForEach(manager.sessions) { session in
-                    HStack(spacing: 6) {
-                        statusDot(session.status)
-                        Text(session.title).font(.callout)
-                        Button { manager.close(session) } label: {
-                            Image(systemName: "xmark.circle.fill").font(.caption)
-                        }
-                        .buttonStyle(.plain)
+    /// Compact single-row header: tab pills (× to close on the left + truncated
+    /// name), the snippet runner, and an exit button — no oversized title bar.
+    private var topBar: some View {
+        HStack(spacing: 8) {
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 6) {
+                    ForEach(manager.sessions) { session in
+                        tabPill(session)
                     }
-                    .padding(.horizontal, 10)
-                    .padding(.vertical, 6)
-                    .background(session.id == manager.activeID ? Color.gray.opacity(0.4) : Color.gray.opacity(0.15),
-                                in: Capsule())
-                    .foregroundStyle(.white)
-                    .onTapGesture { manager.activeID = session.id }
                 }
             }
-            .padding(.horizontal, 12)
-            .padding(.vertical, 6)
+            if !snippets.isEmpty, let session = manager.active {
+                Menu {
+                    ForEach(snippets) { snippet in
+                        Button(snippet.label) { session.run(snippet) }
+                    }
+                } label: {
+                    Image(systemName: "text.badge.plus")
+                }
+                .disabled(session.status != .connected)
+            }
+            Button { manager.closeAll(); dismiss() } label: {
+                Image(systemName: "chevron.down")
+            }
         }
+        .tint(.white)
+        .padding(.horizontal, 12)
+        .padding(.vertical, 6)
         .background(.black)
+    }
+
+    private func tabPill(_ session: TerminalSession) -> some View {
+        let isActive = session.id == manager.activeID
+        return HStack(spacing: 6) {
+            Button { manager.close(session) } label: {
+                Image(systemName: "xmark").font(.system(size: 11, weight: .bold))
+            }
+            .buttonStyle(.plain)
+            Text(session.title)
+                .font(.callout)
+                .lineLimit(1)
+                .truncationMode(.tail)
+        }
+        .foregroundStyle(.white)
+        .padding(.horizontal, 10)
+        .padding(.vertical, 6)
+        .frame(maxWidth: 170)
+        .background(isActive ? Color.gray.opacity(0.45) : Color.gray.opacity(0.18), in: Capsule())
+        .contentShape(Capsule())
+        .onTapGesture { manager.activeID = session.id }
     }
 
     @ViewBuilder
@@ -136,12 +141,4 @@ struct SessionTabsView: View {
         return lines.joined(separator: "\n")
     }
 
-    private func statusDot(_ status: TerminalSession.Status) -> some View {
-        let color: SwiftUI.Color = switch status {
-        case .connected: .green
-        case .connecting: .yellow
-        case .failed, .closed: .red
-        }
-        return Circle().fill(color).frame(width: 8, height: 8)
-    }
 }
