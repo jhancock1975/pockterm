@@ -9,7 +9,8 @@ final class AppContainer {
 
     init() {
         modelContainer = try! ModelContainer(
-            for: Host.self, Identity.self, SSHKeyRecord.self, KnownHostRecord.self)
+            for: Host.self, Identity.self, SSHKeyRecord.self, KnownHostRecord.self,
+            HostGroup.self, Snippet.self)
         secretStore = KeychainSecretStore()
     }
 }

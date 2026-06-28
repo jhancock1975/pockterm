@@ -6,6 +6,7 @@ import SwiftData
 @Test func hostPersistsWithIdentity() throws {
     let container = try ModelContainer(
         for: Host.self, Identity.self, SSHKeyRecord.self, KnownHostRecord.self,
+        HostGroup.self, Snippet.self,
         configurations: .init(isStoredInMemoryOnly: true))
     let ctx = container.mainContext
     let id = Identity(label: "prod", username: "root", authMethod: .password)
