@@ -44,6 +44,9 @@ final class TerminalSession: Identifiable {
         self.title = host.label
         self.terminalView = TerminalView()
         terminalView.backgroundColor = .black
+        // Suppress SwiftTerm's built-in keyboard accessory bar; Pockterm shows
+        // its own single accessory bar instead.
+        terminalView.inputAccessoryView = nil
         terminalView.terminalDelegate = proxy
         proxy.onInput = { [weak self] bytes in self?.handleInput(bytes) }
         proxy.onSize = { [weak self] cols, rows in

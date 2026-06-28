@@ -1,8 +1,8 @@
 import SwiftUI
 
-/// Scrollable bar of special keys above the keyboard, mirroring Termius's
-/// terminal accessory row. `ctrlActive` latches the next byte into a control
-/// character (handled by the session view).
+/// The single scrollable bar of special keys above the keyboard. Every key
+/// shares one style; `ctrl` latches the next byte into a control character and
+/// fills in when active to show that state.
 struct TerminalKeyAccessoryBar: View {
     let send: ([UInt8]) -> Void
     @Binding var ctrlActive: Bool
@@ -11,11 +11,9 @@ struct TerminalKeyAccessoryBar: View {
 
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: 8) {
+            HStack(spacing: 6) {
                 key("esc") { bytes("\u{1b}") }
-                Toggle("ctrl", isOn: $ctrlActive)
-                    .toggleStyle(.button)
-                    .buttonStyle(.bordered)
+                ctrlKey
                 key("tab") { bytes("\t") }
                 key("◀") { bytes("\u{1b}[D") }
                 key("▼") { bytes("\u{1b}[B") }
@@ -30,15 +28,26 @@ struct TerminalKeyAccessoryBar: View {
                 key("pgup") { bytes("\u{1b}[5~") }
                 key("pgdn") { bytes("\u{1b}[6~") }
             }
-            .padding(.horizontal, 12)
+            .padding(.horizontal, 8)
             .padding(.vertical, 6)
         }
-        .background(.ultraThinMaterial)
+        .background(.black)
+    }
+
+    /// Latching modifier key. Same shape/font as the others; fills when active.
+    private var ctrlKey: some View {
+        Button("ctrl") { ctrlActive.toggle() }
+            .font(.system(.callout, design: .monospaced))
+            .buttonStyle(.borderedProminent)
+            .tint(ctrlActive ? Color.accentColor : Color(.tertiarySystemFill))
+            .foregroundStyle(ctrlActive ? Color.white : Color.accentColor)
     }
 
     private func key(_ label: String, _ action: @escaping () -> Void) -> some View {
         Button(label, action: action)
             .font(.system(.callout, design: .monospaced))
-            .buttonStyle(.bordered)
+            .buttonStyle(.borderedProminent)
+            .tint(Color(.tertiarySystemFill))
+            .foregroundStyle(Color.accentColor)
     }
 }
