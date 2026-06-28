@@ -44,29 +44,48 @@ struct SessionTabsView: View {
         }
     }
 
-    /// Compact single-row header: tab pills (× to close on the left + truncated
-    /// name), the snippet runner, and an exit button — no oversized title bar.
+    /// Compact header: the active session's name centered, a red close button
+    /// on the leading edge, and the snippet runner + exit trailing. A slim tab
+    /// chip row appears only when more than one session is open.
     private var topBar: some View {
-        HStack(spacing: 8) {
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 6) {
-                    ForEach(manager.sessions) { session in
-                        tabPill(session)
+        VStack(spacing: 6) {
+            ZStack {
+                Text(manager.active?.title ?? "Terminal")
+                    .font(.headline)
+                    .foregroundStyle(.white)
+                    .lineLimit(1)
+                    .truncationMode(.tail)
+                    .padding(.horizontal, 72)
+
+                HStack(spacing: 12) {
+                    if let active = manager.active {
+                        closeButton(active, size: .title3)
+                    }
+                    Spacer()
+                    if !snippets.isEmpty, let session = manager.active {
+                        Menu {
+                            ForEach(snippets) { snippet in
+                                Button(snippet.label) { session.run(snippet) }
+                            }
+                        } label: {
+                            Image(systemName: "text.badge.plus")
+                        }
+                        .disabled(session.status != .connected)
+                    }
+                    Button { manager.closeAll(); dismiss() } label: {
+                        Image(systemName: "chevron.down")
                     }
                 }
             }
-            if !snippets.isEmpty, let session = manager.active {
-                Menu {
-                    ForEach(snippets) { snippet in
-                        Button(snippet.label) { session.run(snippet) }
+
+            if manager.sessions.count > 1 {
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 6) {
+                        ForEach(manager.sessions) { session in
+                            tabChip(session)
+                        }
                     }
-                } label: {
-                    Image(systemName: "text.badge.plus")
                 }
-                .disabled(session.status != .connected)
-            }
-            Button { manager.closeAll(); dismiss() } label: {
-                Image(systemName: "chevron.down")
             }
         }
         .tint(.white)
@@ -75,13 +94,21 @@ struct SessionTabsView: View {
         .background(.black)
     }
 
-    private func tabPill(_ session: TerminalSession) -> some View {
+    /// Apple-style filled-circle close: white glyph on a red circle.
+    private func closeButton(_ session: TerminalSession, size: Font) -> some View {
+        Button { manager.close(session) } label: {
+            Image(systemName: "xmark.circle.fill")
+                .font(size)
+                .symbolRenderingMode(.palette)
+                .foregroundStyle(.white, .red)
+        }
+        .buttonStyle(.plain)
+    }
+
+    private func tabChip(_ session: TerminalSession) -> some View {
         let isActive = session.id == manager.activeID
         return HStack(spacing: 6) {
-            Button { manager.close(session) } label: {
-                Image(systemName: "xmark").font(.system(size: 11, weight: .bold))
-            }
-            .buttonStyle(.plain)
+            closeButton(session, size: .footnote)
             Text(session.title)
                 .font(.callout)
                 .lineLimit(1)
@@ -89,8 +116,8 @@ struct SessionTabsView: View {
         }
         .foregroundStyle(.white)
         .padding(.horizontal, 10)
-        .padding(.vertical, 6)
-        .frame(maxWidth: 170)
+        .padding(.vertical, 5)
+        .frame(maxWidth: 160)
         .background(isActive ? Color.gray.opacity(0.45) : Color.gray.opacity(0.18), in: Capsule())
         .contentShape(Capsule())
         .onTapGesture { manager.activeID = session.id }
