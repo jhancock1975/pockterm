@@ -50,17 +50,13 @@ struct SessionTabsView: View {
     private var topBar: some View {
         VStack(spacing: 6) {
             ZStack {
-                Text(manager.active?.title ?? "Terminal")
-                    .font(.headline)
-                    .foregroundStyle(.white)
-                    .lineLimit(1)
-                    .truncationMode(.tail)
-                    .padding(.horizontal, 72)
+                if let active = manager.active {
+                    activeSessionChip(active)
+                } else {
+                    Text("Terminal").font(.headline).foregroundStyle(.white)
+                }
 
                 HStack(spacing: 12) {
-                    if let active = manager.active {
-                        closeButton(active, size: .title3)
-                    }
                     Spacer()
                     if !snippets.isEmpty, let session = manager.active {
                         Menu {
@@ -92,6 +88,26 @@ struct SessionTabsView: View {
         .padding(.horizontal, 12)
         .padding(.vertical, 6)
         .background(.black)
+    }
+
+    /// The active session as a bordered, softly glowing pill: name plus the red
+    /// close button right beside it.
+    private func activeSessionChip(_ session: TerminalSession) -> some View {
+        let glow = Color(red: 0.3, green: 0.85, blue: 1.0)
+        return HStack(spacing: 8) {
+            Text(session.title)
+                .font(.headline)
+                .foregroundStyle(.white)
+                .lineLimit(1)
+                .truncationMode(.tail)
+            closeButton(session, size: .body)
+        }
+        .padding(.horizontal, 14)
+        .padding(.vertical, 7)
+        .background(Capsule().fill(.white.opacity(0.06)))
+        .overlay(Capsule().strokeBorder(glow.opacity(0.8), lineWidth: 1.5))
+        .shadow(color: glow.opacity(0.55), radius: 8)
+        .frame(maxWidth: 220)
     }
 
     /// Apple-style filled-circle close: white glyph on a red circle.
