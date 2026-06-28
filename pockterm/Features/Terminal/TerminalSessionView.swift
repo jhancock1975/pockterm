@@ -88,10 +88,12 @@ struct TerminalSessionView: View {
     }
 
     private func start() async {
-        guard let identity = host.identity else {
+        let effective = EffectiveHostSettings.resolve(host: host)
+        guard let identity = effective.identity else {
             status = .failed("This host has no identity. Edit it and assign one.")
             return
         }
+        host.lastConnectedAt = .now
         let auth: SSHAuth
         switch identity.authMethod {
         case .password:
@@ -107,7 +109,7 @@ struct TerminalSessionView: View {
             auth = .ed25519Seed(seed)
         }
 
-        let creds = SSHCredentials(host: host.address, port: host.port,
+        let creds = SSHCredentials(host: host.address, port: effective.port,
                                    username: identity.username, auth: auth)
         do {
             try await engine.connect(creds)

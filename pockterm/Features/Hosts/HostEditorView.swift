@@ -7,6 +7,7 @@ struct HostEditorView: View {
     @Environment(\.modelContext) private var ctx
     @Environment(\.dismiss) private var dismiss
     @Query(sort: \Identity.label) private var identities: [Identity]
+    @Query(sort: \HostGroup.name) private var groups: [HostGroup]
 
     var body: some View {
         NavigationStack {
@@ -30,6 +31,15 @@ struct HostEditorView: View {
                     NavigationLink("New Identity") {
                         IdentityEditorView(secretStore: secretStore)
                     }
+                }
+                Section("Organization") {
+                    Picker("Group", selection: $host.group) {
+                        Text("None").tag(HostGroup?.none)
+                        ForEach(groups) { group in
+                            Text(group.name).tag(HostGroup?.some(group))
+                        }
+                    }
+                    Toggle("Favorite", isOn: $host.isFavorite)
                 }
             }
             .navigationTitle(host.label.isEmpty ? "New Host" : host.label)
