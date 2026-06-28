@@ -7,6 +7,7 @@ struct HostsListView: View {
     @Query(sort: \Host.label) private var hosts: [Host]
     @State private var editing: Host?
     @State private var connecting: Host?
+    @State private var importing = false
 
     var body: some View {
         NavigationStack {
@@ -28,10 +29,22 @@ struct HostsListView: View {
             }
             .navigationTitle("Hosts")
             .toolbar {
-                Button { editing = Host(label: "", address: "") } label: { Image(systemName: "plus") }
+                Menu {
+                    Button { editing = Host(label: "", address: "") } label: {
+                        Label("New Host", systemImage: "plus")
+                    }
+                    Button { importing = true } label: {
+                        Label("Import from ssh_config", systemImage: "square.and.arrow.down")
+                    }
+                } label: {
+                    Image(systemName: "plus")
+                }
             }
             .sheet(item: $editing) { host in
                 HostEditorView(secretStore: secretStore, host: host)
+            }
+            .sheet(isPresented: $importing) {
+                ImportConfigView(secretStore: secretStore)
             }
             .fullScreenCover(item: $connecting) { host in
                 TerminalSessionView(secretStore: secretStore, host: host)
