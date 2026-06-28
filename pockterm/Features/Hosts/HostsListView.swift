@@ -9,10 +9,30 @@ struct HostsListView: View {
     @State private var connecting: Host?
     @State private var importing = false
     @State private var managingGroups = false
+    @State private var searchText = ""
+
+    private var filtered: [Host] {
+        guard !searchText.isEmpty else { return hosts }
+        let q = searchText.lowercased()
+        return hosts.filter { $0.label.lowercased().contains(q) || $0.address.lowercased().contains(q) }
+    }
+
+    private var favorites: [Host] {
+        searchText.isEmpty ? hosts.filter(\.isFavorite) : []
+    }
+
+    private var recents: [Host] {
+        guard searchText.isEmpty else { return [] }
+        return hosts
+            .filter { $0.lastConnectedAt != nil }
+            .sorted { ($0.lastConnectedAt ?? .distantPast) > ($1.lastConnectedAt ?? .distantPast) }
+            .prefix(5)
+            .map { $0 }
+    }
 
     /// Hosts bucketed by group name, with ungrouped hosts last.
     private var sections: [(title: String, hosts: [Host])] {
-        let grouped = Dictionary(grouping: hosts) { $0.group?.name }
+        let grouped = Dictionary(grouping: filtered) { $0.group?.name }
         let named = grouped
             .compactMap { key, value -> (String, [Host])? in
                 guard let key else { return nil }
@@ -34,20 +54,25 @@ struct HostsListView: View {
                                            description: Text("Tap + to add a host."))
                 } else {
                     List {
+                        if !favorites.isEmpty {
+                            Section("Favorites") {
+                                ForEach(favorites) { hostRow($0) }
+                            }
+                        }
+                        if !recents.isEmpty {
+                            Section("Recents") {
+                                ForEach(recents) { hostRow($0) }
+                            }
+                        }
                         ForEach(sections, id: \.title) { section in
                             Section(section.title) {
-                                ForEach(section.hosts) { host in
-                                    Button { connecting = host } label: { row(host) }
-                                        .swipeActions {
-                                            Button("Edit") { editing = host }.tint(.blue)
-                                            Button("Delete", role: .destructive) { ctx.delete(host) }
-                                        }
-                                }
+                                ForEach(section.hosts) { hostRow($0) }
                             }
                         }
                     }
                 }
             }
+            .searchable(text: $searchText, prompt: "Search hosts")
             .navigationTitle("Hosts")
             .toolbar {
                 Menu {
@@ -77,6 +102,15 @@ struct HostsListView: View {
                 TerminalSessionView(secretStore: secretStore, host: host)
             }
         }
+    }
+
+    private func hostRow(_ host: Host) -> some View {
+        Button { connecting = host } label: { row(host) }
+            .swipeActions {
+                Button("Edit") { editing = host }.tint(.blue)
+                Button(host.isFavorite ? "Unstar" : "Star") { host.isFavorite.toggle() }.tint(.yellow)
+                Button("Delete", role: .destructive) { ctx.delete(host) }
+            }
     }
 
     private func row(_ host: Host) -> some View {
