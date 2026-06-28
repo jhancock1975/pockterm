@@ -15,6 +15,7 @@
 		48802C0C5DF54ED611CEC84F /* SecretStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53305856679F3A11464DF689 /* SecretStoreTests.swift */; };
 		CD5F7FFA74943CF74F12447B /* Citadel in Frameworks */ = {isa = PBXBuildFile; productRef = 8931F71DF5C8B8E8AD2108FB /* Citadel */; };
 		F0766092A11161CB69BFDFAB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28FABE07D2973397E786A537 /* Foundation.framework */; };
+		F4077D2AB5BF300965EE0C31 /* Crypto in Frameworks */ = {isa = PBXBuildFile; productRef = 613D7A8CED6FCA39C30AAF8C /* Crypto */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 			files = (
 				45085A69102CC6B2045BEC4B /* SwiftTerm in Frameworks */,
 				CD5F7FFA74943CF74F12447B /* Citadel in Frameworks */,
+				F4077D2AB5BF300965EE0C31 /* Crypto in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,6 +140,7 @@
 			packageProductDependencies = (
 				CDC95F7F3E51993B3B834AE0 /* SwiftTerm */,
 				8931F71DF5C8B8E8AD2108FB /* Citadel */,
+				613D7A8CED6FCA39C30AAF8C /* Crypto */,
 			);
 			productName = pockterm;
 			productReference = 52A0DDCC2FF01A30003F2522 /* pockterm.app */;
@@ -188,6 +191,7 @@
 			packageReferences = (
 				B5742933639B85271BF5F2F1 /* XCRemoteSwiftPackageReference "SwiftTerm" */,
 				B96B7F11E546632E230E92A1 /* XCRemoteSwiftPackageReference "Citadel" */,
+				04113733FA1535993721D883 /* XCRemoteSwiftPackageReference "swift-crypto" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 52A0DDCD2FF01A30003F2522 /* Products */;
@@ -500,6 +504,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		04113733FA1535993721D883 /* XCRemoteSwiftPackageReference "swift-crypto" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-crypto.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
 		B5742933639B85271BF5F2F1 /* XCRemoteSwiftPackageReference "SwiftTerm" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/migueldeicaza/SwiftTerm.git";
@@ -519,6 +531,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		613D7A8CED6FCA39C30AAF8C /* Crypto */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 04113733FA1535993721D883 /* XCRemoteSwiftPackageReference "swift-crypto" */;
+			productName = Crypto;
+		};
 		8931F71DF5C8B8E8AD2108FB /* Citadel */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = B96B7F11E546632E230E92A1 /* XCRemoteSwiftPackageReference "Citadel" */;

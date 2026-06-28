@@ -32,6 +32,11 @@ add_pkg(project, app, 'https://github.com/migueldeicaza/SwiftTerm.git',
         { kind: 'upToNextMajorVersion', minimumVersion: '1.2.0' }, 'SwiftTerm')
 add_pkg(project, app, 'https://github.com/orlandos-nl/Citadel.git',
         { kind: 'upToNextMajorVersion', minimumVersion: '0.8.0' }, 'Citadel')
+# swift-crypto is pulled in transitively by Citadel, but SSHEngine needs to
+# construct Citadel's `Curve25519.Signing.PrivateKey` (swift-crypto's type, not
+# CryptoKit's) from a raw seed, so it must be a direct product dependency.
+add_pkg(project, app, 'https://github.com/apple/swift-crypto.git',
+        { kind: 'upToNextMajorVersion', minimumVersion: '3.0.0' }, 'Crypto')
 
 # Unit-test target
 test_target = project.targets.find { |t| t.name == 'pocktermTests' }
