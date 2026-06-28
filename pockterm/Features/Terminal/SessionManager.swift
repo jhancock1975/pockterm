@@ -1,4 +1,5 @@
 import SwiftUI
+import SwiftData
 
 /// Owns all open terminal sessions and which one is active. Sessions keep
 /// running in the background until explicitly closed.
@@ -8,9 +9,11 @@ final class SessionManager {
     var sessions: [TerminalSession] = []
     var activeID: TerminalSession.ID?
     let secretStore: SecretStore
+    let modelContext: ModelContext
 
-    init(secretStore: SecretStore) {
+    init(secretStore: SecretStore, modelContext: ModelContext) {
         self.secretStore = secretStore
+        self.modelContext = modelContext
     }
 
     var active: TerminalSession? {
@@ -18,7 +21,7 @@ final class SessionManager {
     }
 
     func open(_ host: Host) {
-        let session = TerminalSession(host: host, secretStore: secretStore)
+        let session = TerminalSession(host: host, secretStore: secretStore, modelContext: modelContext)
         sessions.append(session)
         activeID = session.id
         Task { await session.start() }

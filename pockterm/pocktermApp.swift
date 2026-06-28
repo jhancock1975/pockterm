@@ -7,7 +7,7 @@ struct pocktermApp: App {
 
     var body: some Scene {
         WindowGroup {
-            RootTabView(secretStore: container.secretStore)
+            RootTabView(secretStore: container.secretStore, sessions: container.sessions)
                 .modelContainer(container.modelContainer)
         }
     }

@@ -1,5 +1,15 @@
 import SwiftUI
+import SwiftData
 import SwiftTerm
+
+/// A host key awaiting the user's accept/reject decision.
+struct PendingHostKey: Identifiable {
+    let id = UUID()
+    let info: PresentedHostKey
+    /// Non-nil means the presented key differs from a previously trusted one.
+    let storedFingerprint: String?
+    let resume: (Bool) -> Void
+}
 
 /// One live SSH session: owns its engine and a persistent `TerminalView` so it
 /// keeps running (and retains scrollback) while another tab is on screen.
@@ -16,18 +26,21 @@ final class TerminalSession: Identifiable {
     let id = UUID()
     let host: Host
     let secretStore: SecretStore
+    let modelContext: ModelContext
     let engine = SSHEngine()
     let terminalView: TerminalView
 
     var title: String
     var status: Status = .connecting
     var ctrlActive = false
+    var pendingHostKey: PendingHostKey?
 
     private let proxy = TerminalDelegateProxy()
 
-    init(host: Host, secretStore: SecretStore) {
+    init(host: Host, secretStore: SecretStore, modelContext: ModelContext) {
         self.host = host
         self.secretStore = secretStore
+        self.modelContext = modelContext
         self.title = host.label
         self.terminalView = TerminalView()
         terminalView.backgroundColor = .black
@@ -85,7 +98,9 @@ final class TerminalSession: Identifiable {
         let creds = SSHCredentials(host: host.address, port: effective.port,
                                    username: identity.username, auth: auth)
         do {
-            try await engine.connect(creds)
+            try await engine.connect(creds) { [weak self] presented in
+                await self?.decideHostKey(presented) ?? false
+            }
             try await engine.openShell(
                 cols: 80, rows: 24,
                 onOutput: { [weak self] bytes in
@@ -103,6 +118,52 @@ final class TerminalSession: Identifiable {
             }
         } catch {
             status = .failed(error.localizedDescription)
+        }
+    }
+
+    /// Trust-on-first-use decision for a presented host key. Matches against
+    /// stored `KnownHostRecord`s; new or changed keys prompt the user, and an
+    /// accepted key is persisted.
+    func decideHostKey(_ info: PresentedHostKey) async -> Bool {
+        let records = (try? modelContext.fetch(FetchDescriptor<KnownHostRecord>())) ?? []
+        let store = KnownHostsStore()
+
+        guard let fingerprint = info.fingerprint else {
+            // Couldn't derive a fingerprint; ask the user without persisting.
+            return await prompt(info: info, storedFingerprint: nil)
+        }
+
+        switch store.evaluate(address: info.address, port: info.port, keyType: info.keyType,
+                              presentedFingerprint: fingerprint, against: records) {
+        case .matches:
+            return true
+        case .trustedNew:
+            let accepted = await prompt(info: info, storedFingerprint: nil)
+            if accepted {
+                modelContext.insert(KnownHostRecord(hostAddress: info.address, port: info.port,
+                                                    keyType: info.keyType, fingerprintSHA256: fingerprint))
+                try? modelContext.save()
+            }
+            return accepted
+        case .mismatch(let stored, let presented):
+            let accepted = await prompt(info: info, storedFingerprint: stored)
+            if accepted {
+                if let record = records.first(where: {
+                    $0.hostAddress == info.address && $0.port == info.port && $0.keyType == info.keyType
+                }) {
+                    record.fingerprintSHA256 = presented
+                    try? modelContext.save()
+                }
+            }
+            return accepted
+        }
+    }
+
+    private func prompt(info: PresentedHostKey, storedFingerprint: String?) async -> Bool {
+        await withCheckedContinuation { continuation in
+            pendingHostKey = PendingHostKey(info: info, storedFingerprint: storedFingerprint) { decision in
+                continuation.resume(returning: decision)
+            }
         }
     }
 

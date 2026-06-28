@@ -6,11 +6,15 @@ import SwiftData
 final class AppContainer {
     let modelContainer: ModelContainer
     let secretStore: SecretStore
+    let sessions: SessionManager
 
     init() {
-        modelContainer = try! ModelContainer(
+        let container = try! ModelContainer(
             for: Host.self, Identity.self, SSHKeyRecord.self, KnownHostRecord.self,
             HostGroup.self, Snippet.self)
-        secretStore = KeychainSecretStore()
+        let store = KeychainSecretStore()
+        modelContainer = container
+        secretStore = store
+        sessions = SessionManager(secretStore: store, modelContext: container.mainContext)
     }
 }

@@ -34,7 +34,8 @@ actor SSHEngine {
 
     var isConnected: Bool { client?.isConnected ?? false }
 
-    func connect(_ creds: SSHCredentials) async throws {
+    func connect(_ creds: SSHCredentials,
+                 onHostKey: @escaping @Sendable (PresentedHostKey) async -> Bool) async throws {
         let method: SSHAuthenticationMethod
         switch creds.auth {
         case .password(let password):
@@ -45,11 +46,12 @@ actor SSHEngine {
             }
             method = .ed25519(username: creds.username, privateKey: key)
         }
+        let validator = CallbackHostKeyValidator(address: creds.host, port: creds.port, decide: onHostKey)
         client = try await SSHClient.connect(
             host: creds.host,
             port: creds.port,
             authenticationMethod: method,
-            hostKeyValidator: .acceptAnything(),
+            hostKeyValidator: .custom(validator),
             reconnect: .never
         )
     }

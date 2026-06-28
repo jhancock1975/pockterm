@@ -48,6 +48,20 @@ struct SessionTabsView: View {
                     Button("Done") { manager.closeAll(); dismiss() }
                 }
             }
+            .alert("Verify Host Key", isPresented: hostKeyPresented,
+                   presenting: manager.active?.pendingHostKey) { pending in
+                Button(pending.storedFingerprint == nil ? "Accept" : "Accept Changed Key",
+                       role: pending.storedFingerprint == nil ? nil : .destructive) {
+                    pending.resume(true)
+                    manager.active?.pendingHostKey = nil
+                }
+                Button("Reject", role: .cancel) {
+                    pending.resume(false)
+                    manager.active?.pendingHostKey = nil
+                }
+            } message: { pending in
+                Text(hostKeyMessage(pending))
+            }
         }
     }
 
@@ -97,22 +111,33 @@ struct SessionTabsView: View {
             }
         }
         VStack(spacing: 0) {
-            unverifiedBanner
             TerminalKeyAccessoryBar(send: { session.sendKeys($0) },
                                     ctrlActive: ctrlBinding(session))
         }
     }
 
-    /// Honest indicator that host-key verification is not yet enforced.
-    private var unverifiedBanner: some View {
-        HStack(spacing: 6) {
-            Image(systemName: "exclamationmark.shield")
-            Text("Host key not verified").font(.caption2)
+    private var hostKeyPresented: Binding<Bool> {
+        Binding(get: { manager.active?.pendingHostKey != nil },
+                set: { presented in
+                    // Dismissed without a choice counts as rejection.
+                    if !presented, let pending = manager.active?.pendingHostKey {
+                        pending.resume(false)
+                        manager.active?.pendingHostKey = nil
+                    }
+                })
+    }
+
+    private func hostKeyMessage(_ pending: PendingHostKey) -> String {
+        var lines: [String] = []
+        if let stored = pending.storedFingerprint {
+            lines.append("⚠️ This key is DIFFERENT from the one you previously trusted:")
+            lines.append("was \(stored)")
+            lines.append("Only accept if you expected this change.")
+            lines.append("")
         }
-        .foregroundStyle(.orange)
-        .frame(maxWidth: .infinity)
-        .padding(.vertical, 2)
-        .background(.black)
+        lines.append("\(pending.info.address):\(pending.info.port)  (\(pending.info.keyType))")
+        lines.append(pending.info.fingerprint ?? "Fingerprint unavailable for this key type")
+        return lines.joined(separator: "\n")
     }
 
     private func ctrlBinding(_ session: TerminalSession) -> Binding<Bool> {

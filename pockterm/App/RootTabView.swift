@@ -4,12 +4,7 @@ import SwiftUI
 /// Settings are placeholders filled in by later phases.
 struct RootTabView: View {
     let secretStore: SecretStore
-    @State private var sessions: SessionManager
-
-    init(secretStore: SecretStore) {
-        self.secretStore = secretStore
-        _sessions = State(initialValue: SessionManager(secretStore: secretStore))
-    }
+    let sessions: SessionManager
 
     var body: some View {
         TabView {
