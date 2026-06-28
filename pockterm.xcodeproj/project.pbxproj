@@ -16,6 +16,7 @@
 		45085A69102CC6B2045BEC4B /* SwiftTerm in Frameworks */ = {isa = PBXBuildFile; productRef = CDC95F7F3E51993B3B834AE0 /* SwiftTerm */; };
 		48802C0C5DF54ED611CEC84F /* SecretStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53305856679F3A11464DF689 /* SecretStoreTests.swift */; };
 		8820DE41A33B965F1F4D570D /* InheritanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D553C2773E080BCBEFA379B /* InheritanceTests.swift */; };
+		88AEA5E0ED1BC9B1AA62181B /* RemoteFileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBD116E7D1E4B4A08C019E1 /* RemoteFileTests.swift */; };
 		BC5771A2F3E69E5C90A64611 /* GroupModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7948693B1996CA7DBA0F67F6 /* GroupModelTests.swift */; };
 		CD5F7FFA74943CF74F12447B /* Citadel in Frameworks */ = {isa = PBXBuildFile; productRef = 8931F71DF5C8B8E8AD2108FB /* Citadel */; };
 		F0766092A11161CB69BFDFAB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28FABE07D2973397E786A537 /* Foundation.framework */; };
@@ -40,6 +41,7 @@
 		7948693B1996CA7DBA0F67F6 /* GroupModelTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = GroupModelTests.swift; sourceTree = "<group>"; };
 		7D553C2773E080BCBEFA379B /* InheritanceTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = InheritanceTests.swift; sourceTree = "<group>"; };
 		803CF0CE7C87106C0FEA65D2 /* SSHConfigParserTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SSHConfigParserTests.swift; sourceTree = "<group>"; };
+		8BBD116E7D1E4B4A08C019E1 /* RemoteFileTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RemoteFileTests.swift; sourceTree = "<group>"; };
 		C76CBC9F7A224157FCBEC5AD /* pocktermTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = pocktermTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D244E6BCA6F44A2D3141774E /* KnownHostsStoreTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = KnownHostsStoreTests.swift; sourceTree = "<group>"; };
 		E162F790C5AB3945D81D844D /* HostKeyIntegrationTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HostKeyIntegrationTests.swift; sourceTree = "<group>"; };
@@ -50,6 +52,8 @@
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		52A0DDCE2FF01A30003F2522 /* pockterm */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = pockterm;
 			sourceTree = "<group>";
 		};
@@ -116,6 +120,7 @@
 				7D553C2773E080BCBEFA379B /* InheritanceTests.swift */,
 				803CF0CE7C87106C0FEA65D2 /* SSHConfigParserTests.swift */,
 				E162F790C5AB3945D81D844D /* HostKeyIntegrationTests.swift */,
+				8BBD116E7D1E4B4A08C019E1 /* RemoteFileTests.swift */,
 			);
 			path = pocktermTests;
 			sourceTree = "<group>";
@@ -252,6 +257,7 @@
 				8820DE41A33B965F1F4D570D /* InheritanceTests.swift in Sources */,
 				019B659E5251BAFF877E9DBA /* SSHConfigParserTests.swift in Sources */,
 				1E7FFD61DAEFAFC69A4BCB89 /* HostKeyIntegrationTests.swift in Sources */,
+				88AEA5E0ED1BC9B1AA62181B /* RemoteFileTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
