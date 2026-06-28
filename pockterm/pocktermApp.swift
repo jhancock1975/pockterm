@@ -1,17 +1,14 @@
-//
-//  pocktermApp.swift
-//  pockterm
-//
-//  Created by John Hancock on 6/27/26.
-//
-
 import SwiftUI
+import SwiftData
 
 @main
 struct pocktermApp: App {
+    @State private var container = AppContainer()
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            RootTabView(secretStore: container.secretStore)
+                .modelContainer(container.modelContainer)
         }
     }
 }
