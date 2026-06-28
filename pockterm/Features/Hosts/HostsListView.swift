@@ -9,6 +9,7 @@ struct HostsListView: View {
     @State private var editing: Host?
     @State private var importing = false
     @State private var managingGroups = false
+    @State private var filesHost: Host?
     @State private var searchText = ""
 
     private var filtered: [Host] {
@@ -98,11 +99,17 @@ struct HostsListView: View {
             .sheet(isPresented: $managingGroups) {
                 GroupsListView()
             }
+            .sheet(item: $filesHost) { host in
+                FilesBrowserView(host: host, secretStore: secretStore, modelContext: ctx)
+            }
         }
     }
 
     private func hostRow(_ host: Host) -> some View {
         Button { sessions.open(host) } label: { row(host) }
+            .swipeActions(edge: .leading) {
+                Button("Files") { filesHost = host }.tint(.indigo)
+            }
             .swipeActions {
                 Button("Edit") { editing = host }.tint(.blue)
                 Button(host.isFavorite ? "Unstar" : "Star") { host.isFavorite.toggle() }.tint(.yellow)

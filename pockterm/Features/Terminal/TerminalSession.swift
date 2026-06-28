@@ -63,30 +63,16 @@ final class TerminalSession: Identifiable {
     }
 
     func start() async {
-        let effective = EffectiveHostSettings.resolve(host: host)
-        guard let identity = effective.identity else {
-            status = .failed("This host has no identity. Edit it and assign one.")
+        let creds: SSHCredentials
+        switch HostConnection.credentials(for: host, secretStore: secretStore) {
+        case .failure(let message):
+            status = .failed(message)
             return
+        case .success(let resolved):
+            creds = resolved
         }
         host.lastConnectedAt = .now
 
-        let auth: SSHAuth
-        switch identity.authMethod {
-        case .password:
-            let password = (try? secretStore.getString(identity.id.uuidString)) ?? ""
-            auth = .password(password ?? "")
-        case .key:
-            guard let keyId = identity.keyRef,
-                  let pem = (try? secretStore.getString(keyId.uuidString)) ?? nil,
-                  let seed = KeyManager.seed(fromPEM: pem) else {
-                status = .failed("The identity's key is missing.")
-                return
-            }
-            auth = .ed25519Seed(seed)
-        }
-
-        let creds = SSHCredentials(host: host.address, port: effective.port,
-                                   username: identity.username, auth: auth)
         do {
             try await engine.connect(creds) { [weak self] presented in
                 await self?.decideHostKey(presented) ?? false
