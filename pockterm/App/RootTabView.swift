@@ -10,7 +10,7 @@ struct RootTabView: View {
             HostsListView(secretStore: secretStore)
                 .tabItem { Label("Hosts", systemImage: "server.rack") }
 
-            PlaceholderTab(title: "Snippets", systemImage: "text.badge.plus")
+            SnippetsListView()
                 .tabItem { Label("Snippets", systemImage: "text.badge.plus") }
 
             KeysListView(secretStore: secretStore)

@@ -7,6 +7,7 @@ struct TerminalSessionView: View {
     let secretStore: SecretStore
     let host: Host
     @Environment(\.dismiss) private var dismiss
+    @Query(sort: \Snippet.label) private var snippets: [Snippet]
 
     @State private var engine = SSHEngine()
     @State private var terminal: TerminalView?
@@ -50,6 +51,18 @@ struct TerminalSessionView: View {
             .navigationTitle(host.label)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
+                if !snippets.isEmpty {
+                    ToolbarItem(placement: .topBarLeading) {
+                        Menu {
+                            ForEach(snippets) { snippet in
+                                Button(snippet.label) { run(snippet) }
+                            }
+                        } label: {
+                            Image(systemName: "text.badge.plus")
+                        }
+                        .disabled(status != .connected)
+                    }
+                }
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("Close") { Task { await engine.disconnect(); dismiss() } }
                 }
@@ -57,6 +70,12 @@ struct TerminalSessionView: View {
             .task { await start() }
             .onDisappear { Task { await engine.disconnect() } }
         }
+    }
+
+    /// Sends a snippet's command (with a trailing newline) into the live shell.
+    private func run(_ snippet: Snippet) {
+        let bytes = Array((snippet.command + "\n").utf8)
+        Task { await engine.send(bytes) }
     }
 
     /// Latches the ctrl key: maps the next alphabetic byte to its control code.
