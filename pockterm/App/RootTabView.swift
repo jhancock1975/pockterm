@@ -4,10 +4,16 @@ import SwiftUI
 /// Settings are placeholders filled in by later phases.
 struct RootTabView: View {
     let secretStore: SecretStore
+    @State private var sessions: SessionManager
+
+    init(secretStore: SecretStore) {
+        self.secretStore = secretStore
+        _sessions = State(initialValue: SessionManager(secretStore: secretStore))
+    }
 
     var body: some View {
         TabView {
-            HostsListView(secretStore: secretStore)
+            HostsListView(secretStore: secretStore, sessions: sessions)
                 .tabItem { Label("Hosts", systemImage: "server.rack") }
 
             SnippetsListView()
@@ -22,6 +28,14 @@ struct RootTabView: View {
             PlaceholderTab(title: "Settings", systemImage: "gearshape")
                 .tabItem { Label("Settings", systemImage: "gearshape") }
         }
+        .fullScreenCover(isPresented: presentingSessions) {
+            SessionTabsView(manager: sessions)
+        }
+    }
+
+    private var presentingSessions: Binding<Bool> {
+        Binding(get: { !sessions.sessions.isEmpty },
+                set: { if !$0 { sessions.closeAll() } })
     }
 }
 

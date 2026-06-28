@@ -3,10 +3,10 @@ import SwiftData
 
 struct HostsListView: View {
     let secretStore: SecretStore
+    let sessions: SessionManager
     @Environment(\.modelContext) private var ctx
     @Query(sort: \Host.label) private var hosts: [Host]
     @State private var editing: Host?
-    @State private var connecting: Host?
     @State private var importing = false
     @State private var managingGroups = false
     @State private var searchText = ""
@@ -98,14 +98,11 @@ struct HostsListView: View {
             .sheet(isPresented: $managingGroups) {
                 GroupsListView()
             }
-            .fullScreenCover(item: $connecting) { host in
-                TerminalSessionView(secretStore: secretStore, host: host)
-            }
         }
     }
 
     private func hostRow(_ host: Host) -> some View {
-        Button { connecting = host } label: { row(host) }
+        Button { sessions.open(host) } label: { row(host) }
             .swipeActions {
                 Button("Edit") { editing = host }.tint(.blue)
                 Button(host.isFavorite ? "Unstar" : "Star") { host.isFavorite.toggle() }.tint(.yellow)
