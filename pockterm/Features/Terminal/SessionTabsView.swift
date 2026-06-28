@@ -110,10 +110,6 @@ struct SessionTabsView: View {
                 EmptyView()
             }
         }
-        VStack(spacing: 0) {
-            TerminalKeyAccessoryBar(send: { session.sendKeys($0) },
-                                    ctrlActive: ctrlBinding(session))
-        }
     }
 
     private var hostKeyPresented: Binding<Bool> {
@@ -138,10 +134,6 @@ struct SessionTabsView: View {
         lines.append("\(pending.info.address):\(pending.info.port)  (\(pending.info.keyType))")
         lines.append(pending.info.fingerprint ?? "Fingerprint unavailable for this key type")
         return lines.joined(separator: "\n")
-    }
-
-    private func ctrlBinding(_ session: TerminalSession) -> Binding<Bool> {
-        Binding(get: { session.ctrlActive }, set: { session.ctrlActive = $0 })
     }
 
     private func statusDot(_ status: TerminalSession.Status) -> some View {

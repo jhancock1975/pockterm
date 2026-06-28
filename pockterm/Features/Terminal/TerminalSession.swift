@@ -32,7 +32,6 @@ final class TerminalSession: Identifiable {
 
     var title: String
     var status: Status = .connecting
-    var ctrlActive = false
     var pendingHostKey: PendingHostKey?
 
     private let proxy = TerminalDelegateProxy()
@@ -44,9 +43,6 @@ final class TerminalSession: Identifiable {
         self.title = host.label
         self.terminalView = TerminalView()
         terminalView.backgroundColor = .black
-        // Suppress SwiftTerm's built-in keyboard accessory bar; Pockterm shows
-        // its own single accessory bar instead.
-        terminalView.inputAccessoryView = nil
         terminalView.terminalDelegate = proxy
         proxy.onInput = { [weak self] bytes in self?.handleInput(bytes) }
         proxy.onSize = { [weak self] cols, rows in
@@ -55,7 +51,7 @@ final class TerminalSession: Identifiable {
     }
 
     func handleInput(_ bytes: [UInt8]) {
-        Task { await engine.send(transformCtrl(bytes)) }
+        Task { await engine.send(bytes) }
     }
 
     func sendKeys(_ bytes: [UInt8]) {
@@ -64,15 +60,6 @@ final class TerminalSession: Identifiable {
 
     func run(_ snippet: Snippet) {
         sendKeys(Array((snippet.command + "\n").utf8))
-    }
-
-    /// Latches the ctrl key: maps the next alphabetic byte to its control code.
-    private func transformCtrl(_ bytes: [UInt8]) -> [UInt8] {
-        guard ctrlActive, let first = bytes.first else { return bytes }
-        ctrlActive = false
-        let upper = first & ~0x20
-        guard (0x41...0x5F).contains(upper) else { return bytes }
-        return [upper & 0x1F] + bytes.dropFirst()
     }
 
     func start() async {
