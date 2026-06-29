@@ -1,7 +1,7 @@
 import SwiftUI
 
-/// Top-level Termius-style tab navigation. Snippets, Port Forwarding, and
-/// Settings are placeholders filled in by later phases.
+/// Top-level tab navigation. Snippets, Port Forwarding, and Settings are
+/// placeholders filled in by later phases.
 struct RootTabView: View {
     let secretStore: SecretStore
     let sessions: SessionManager

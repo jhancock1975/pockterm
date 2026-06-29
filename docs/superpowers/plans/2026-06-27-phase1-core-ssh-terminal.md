@@ -4,7 +4,7 @@
 
 **Goal:** Ship a runnable iPhone app where the user creates a host with a key or password identity, connects over real SSH, and uses an interactive terminal — all on-device with secrets in the Keychain.
 
-**Architecture:** SwiftUI app shell with Termius-style tab navigation. A Vault layer (SwiftData + a `SecretStore` Keychain abstraction) holds hosts, identities, keys, and known-hosts. An `SSHEngine` built on Citadel (SwiftNIO SSH) opens a PTY channel; a SwiftTerm-backed terminal view renders it. Pure-logic units (models, secret store, key generation, known-hosts) are TDD'd against an in-memory store; terminal/SSH networking is verified on the device.
+**Architecture:** SwiftUI app shell with tab navigation. A Vault layer (SwiftData + a `SecretStore` Keychain abstraction) holds hosts, identities, keys, and known-hosts. An `SSHEngine` built on Citadel (SwiftNIO SSH) opens a PTY channel; a SwiftTerm-backed terminal view renders it. Pure-logic units (models, secret store, key generation, known-hosts) are TDD'd against an in-memory store; terminal/SSH networking is verified on the device.
 
 **Tech Stack:** Swift, SwiftUI, SwiftData, SwiftTerm, Citadel (SwiftNIO SSH), Swift Testing (`import Testing`), XCTest target, `xcodeproj` Ruby gem for project mutation.
 
@@ -712,7 +712,7 @@ git commit -m "Add SSHEngine over Citadel with PTY shell channel"
 
 ---
 
-### Task 7: App shell — Termius-style tab navigation + vault wiring
+### Task 7: App shell — tab navigation + vault wiring
 
 **Files:**
 - Modify: `pockterm/pocktermApp.swift`

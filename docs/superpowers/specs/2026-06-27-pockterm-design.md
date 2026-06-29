@@ -1,15 +1,14 @@
-# Pockterm — Termius Functional Clone Design
+# Pockterm — Design
 
 **Date:** 2026-06-27
 **Status:** Approved
-**Scope:** Single-device (local-only) functional clone of the Termius iPhone app.
+**Scope:** Single-device (local-only) SSH client for iPhone.
 
 ## Goal
 
-Build a precise functional clone of Termius for iPhone: every user-facing
-feature, organized the way Termius organizes it. "Functional clone" means
-feature parity from the user's perspective, not a reimplementation of
-Termius's internals.
+Build a full-featured iPhone SSH client: connections, hosts/groups,
+credentials and keys, an interactive terminal, snippets, SFTP, and port
+forwarding — all on-device.
 
 ## Decisions (locked)
 
@@ -71,7 +70,7 @@ tested independently.
 - Agent forwarding.
 
 ### 6. App shell / navigation
-- Termius-style tab bar: Hosts · Snippets · Keychain · Port Forwarding ·
+- Tab bar: Hosts · Snippets · Keychain · Port Forwarding ·
   Terminal · Settings.
 - Host editor (full per-host config), Group management with setting
   inheritance, search, favorites, recents.

@@ -2,7 +2,7 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development or superpowers:executing-plans. Steps use checkbox (`- [ ]`) syntax.
 
-**Goal:** Extend the Phase 1 SSH terminal into a Termius-grade organizer: multiple concurrent tabbed sessions, reusable snippets (incl. per-host startup), nested groups with setting inheritance, host search/favorites/recents, and `~/.ssh/config` import.
+**Goal:** Extend the Phase 1 SSH terminal into a full-featured organizer: multiple concurrent tabbed sessions, reusable snippets (incl. per-host startup), nested groups with setting inheritance, host search/favorites/recents, and `~/.ssh/config` import.
 
 **Architecture:** New SwiftData models (`Group`, `Snippet`) plus additive fields on `Host`. Pure-logic units (group inheritance resolution, ssh_config parsing) are TDD'd against in-memory stores. A `SessionManager` owns multiple live `SSHEngine`/terminal pairs surfaced through a tabbed terminal container. UI features are device-verified.
 
@@ -194,5 +194,5 @@ import SwiftData
 ## Self-Review notes
 
 - **Spec coverage (Phase 2):** tabs/multiple sessions (Task 8) ✓; snippets + startup (Task 5; per-host startup already on `Host.startupSnippet` from Phase 1, sent on connect) ✓; groups + inheritance (Tasks 1,2,6) ✓; search/favorites/recents (Task 7) ✓; ssh_config import (Tasks 3,4) ✓.
-- **Split panes:** Termius supports split; deferred to a Phase 2.x follow-up if tabbing lands first (YAGNI for initial Phase 2 cut — tabs deliver the multi-session value).
+- **Split panes:** deferred to a Phase 2.x follow-up if tabbing lands first (YAGNI for initial Phase 2 cut — tabs deliver the multi-session value).
 - **Host-key TOFU:** intentionally deferred to the libssh2 evaluation; visible unverified indicator added. Tracked as the standing limitation.
