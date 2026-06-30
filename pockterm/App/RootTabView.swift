@@ -5,6 +5,7 @@ import SwiftUI
 struct RootTabView: View {
     let secretStore: SecretStore
     let sessions: SessionManager
+    let forwards: ForwardRunner
 
     var body: some View {
         TabView {
@@ -17,7 +18,7 @@ struct RootTabView: View {
             KeysListView(secretStore: secretStore)
                 .tabItem { Label("Keychain", systemImage: "key.fill") }
 
-            PlaceholderTab(title: "Port Forwarding", systemImage: "arrow.left.arrow.right")
+            ForwardsListView(runner: forwards)
                 .tabItem { Label("Forwarding", systemImage: "arrow.left.arrow.right") }
 
             PlaceholderTab(title: "Settings", systemImage: "gearshape")

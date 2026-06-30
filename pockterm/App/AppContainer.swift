@@ -7,6 +7,7 @@ final class AppContainer {
     let modelContainer: ModelContainer
     let secretStore: SecretStore
     let sessions: SessionManager
+    let forwards: ForwardRunner
 
     init() {
         let container = try! ModelContainer(
@@ -16,5 +17,6 @@ final class AppContainer {
         modelContainer = container
         secretStore = store
         sessions = SessionManager(secretStore: store, modelContext: container.mainContext)
+        forwards = ForwardRunner(secretStore: store, modelContext: container.mainContext)
     }
 }
