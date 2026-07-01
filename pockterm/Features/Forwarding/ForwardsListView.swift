@@ -56,7 +56,10 @@ struct ForwardsListView: View {
                 Text(detail(forward)).font(.system(.caption, design: .monospaced)).foregroundStyle(.secondary)
                 statusLabel(forward)
             }
-            Spacer()
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .contentShape(Rectangle())
+            .onTapGesture { editing = forward }
+
             Button {
                 runner.toggle(forward)
             } label: {
