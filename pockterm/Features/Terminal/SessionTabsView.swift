@@ -15,6 +15,8 @@ struct SessionTabsView: View {
     @Bindable var manager: SessionManager
     @Environment(\.dismiss) private var dismiss
     @Query(sort: \Snippet.label) private var snippets: [Snippet]
+    @Query(sort: \Host.label) private var hosts: [Host]
+    @State private var showingHostPicker = false
 
     var body: some View {
         ZStack {
@@ -42,6 +44,12 @@ struct SessionTabsView: View {
         } message: { pending in
             Text(hostKeyMessage(pending))
         }
+        .sheet(isPresented: $showingHostPicker) {
+            NewSessionPicker(hosts: hosts) { host in
+                manager.open(host)
+                showingHostPicker = false
+            }
+        }
     }
 
     /// Compact header: the active session's name centered, a red close button
@@ -58,6 +66,10 @@ struct SessionTabsView: View {
 
                 HStack(spacing: 12) {
                     Spacer()
+                    Button { showingHostPicker = true } label: {
+                        Image(systemName: "plus")
+                    }
+                    .accessibilityLabel("New Session")
                     if !snippets.isEmpty, let session = manager.active {
                         Menu {
                             ForEach(snippets) { snippet in
@@ -184,4 +196,41 @@ struct SessionTabsView: View {
         return lines.joined(separator: "\n")
     }
 
+}
+
+/// Picks a host to open as an additional session without closing existing ones.
+private struct NewSessionPicker: View {
+    let hosts: [Host]
+    let onSelect: (Host) -> Void
+    @Environment(\.dismiss) private var dismiss
+
+    var body: some View {
+        NavigationStack {
+            Group {
+                if hosts.isEmpty {
+                    ContentUnavailableView("No Hosts", systemImage: "server.rack",
+                                           description: Text("Add a host on the Hosts tab first."))
+                } else {
+                    List(hosts) { host in
+                        Button {
+                            onSelect(host)
+                        } label: {
+                            VStack(alignment: .leading, spacing: 2) {
+                                Text(host.label).font(.headline)
+                                Text("\(host.identity?.username ?? "—")@\(host.address)")
+                                    .font(.subheadline).foregroundStyle(.secondary)
+                            }
+                        }
+                    }
+                }
+            }
+            .navigationTitle("New Session")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button("Cancel") { dismiss() }
+                }
+            }
+        }
+    }
 }
