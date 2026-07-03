@@ -10,6 +10,7 @@ struct HostsListView: View {
     @State private var importing = false
     @State private var managingGroups = false
     @State private var filesHost: Host?
+    @State private var showingHelp = false
     @State private var searchText = ""
 
     private var filtered: [Host] {
@@ -76,19 +77,30 @@ struct HostsListView: View {
             .searchable(text: $searchText, prompt: "Search hosts")
             .navigationTitle("Hosts")
             .toolbar {
-                Menu {
-                    Button { editing = Host(label: "", address: "") } label: {
-                        Label("New Host", systemImage: "plus")
+                ToolbarItem(placement: .topBarLeading) {
+                    Button { showingHelp = true } label: {
+                        Image(systemName: "questionmark.circle")
                     }
-                    Button { managingGroups = true } label: {
-                        Label("Manage Groups", systemImage: "folder")
-                    }
-                    Button { importing = true } label: {
-                        Label("Import from ssh_config", systemImage: "square.and.arrow.down")
-                    }
-                } label: {
-                    Image(systemName: "plus")
+                    .accessibilityLabel("Help")
                 }
+                ToolbarItem(placement: .topBarTrailing) {
+                    Menu {
+                        Button { editing = Host(label: "", address: "") } label: {
+                            Label("New Host", systemImage: "plus")
+                        }
+                        Button { managingGroups = true } label: {
+                            Label("Manage Groups", systemImage: "folder")
+                        }
+                        Button { importing = true } label: {
+                            Label("Import from ssh_config", systemImage: "square.and.arrow.down")
+                        }
+                    } label: {
+                        Image(systemName: "plus")
+                    }
+                }
+            }
+            .sheet(isPresented: $showingHelp) {
+                HelpView()
             }
             .sheet(item: $editing) { host in
                 HostEditorView(secretStore: secretStore, host: host)
