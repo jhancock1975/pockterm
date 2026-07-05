@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0073731D3B118E146274D836 /* ModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F04BEA86184EFB2FA84445 /* ModelTests.swift */; };
 		019B659E5251BAFF877E9DBA /* SSHConfigParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803CF0CE7C87106C0FEA65D2 /* SSHConfigParserTests.swift */; };
+		118E2C2E087A6E88DE6B9084 /* RequestEncoderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA036038EE00E63BE543278 /* RequestEncoderTests.swift */; };
 		1D93E161EBD8F64385DEA2DD /* KnownHostsStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D244E6BCA6F44A2D3141774E /* KnownHostsStoreTests.swift */; };
 		1E7FFD61DAEFAFC69A4BCB89 /* HostKeyIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E162F790C5AB3945D81D844D /* HostKeyIntegrationTests.swift */; };
 		2688A6EDE5C2905829E6D8FC /* KeyManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CC17F2AF1DC22FBB595ADF /* KeyManagerTests.swift */; };
@@ -57,6 +58,7 @@
 		E162F790C5AB3945D81D844D /* HostKeyIntegrationTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HostKeyIntegrationTests.swift; sourceTree = "<group>"; };
 		E1CC17F2AF1DC22FBB595ADF /* KeyManagerTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = KeyManagerTests.swift; sourceTree = "<group>"; };
 		E6F506163220C8FBDCD103A3 /* PlaceholderTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PlaceholderTests.swift; sourceTree = "<group>"; };
+		ECA036038EE00E63BE543278 /* RequestEncoderTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RequestEncoderTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -136,6 +138,7 @@
 				1BF8CF71E17130090CEC2AB7 /* TypedLineTrackerTests.swift */,
 				5A8DD1A3BF8BDC2B4F9B48BA /* CommandHistoryModelTests.swift */,
 				A15B3DDBB7CBB60A227FBBE9 /* AIProviderTests.swift */,
+				ECA036038EE00E63BE543278 /* RequestEncoderTests.swift */,
 			);
 			path = pocktermTests;
 			sourceTree = "<group>";
@@ -278,6 +281,7 @@
 				E60327C3A9F95478424DD5BE /* TypedLineTrackerTests.swift in Sources */,
 				758F97146AF8E7CAF41E7275 /* CommandHistoryModelTests.swift in Sources */,
 				A610943DE139E0BA04064670 /* AIProviderTests.swift in Sources */,
+				118E2C2E087A6E88DE6B9084 /* RequestEncoderTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
