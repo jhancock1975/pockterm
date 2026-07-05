@@ -21,6 +21,7 @@
 		8FAC77FDC999C01893B2CD6D /* PortForwardModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C742E9BBFD4E8FEBD6685C8F /* PortForwardModelTests.swift */; };
 		BC5771A2F3E69E5C90A64611 /* GroupModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7948693B1996CA7DBA0F67F6 /* GroupModelTests.swift */; };
 		CD5F7FFA74943CF74F12447B /* Citadel in Frameworks */ = {isa = PBXBuildFile; productRef = 8931F71DF5C8B8E8AD2108FB /* Citadel */; };
+		E60327C3A9F95478424DD5BE /* TypedLineTrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF8CF71E17130090CEC2AB7 /* TypedLineTrackerTests.swift */; };
 		F0766092A11161CB69BFDFAB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28FABE07D2973397E786A537 /* Foundation.framework */; };
 		F4077D2AB5BF300965EE0C31 /* Crypto in Frameworks */ = {isa = PBXBuildFile; productRef = 613D7A8CED6FCA39C30AAF8C /* Crypto */; };
 /* End PBXBuildFile section */
@@ -37,6 +38,7 @@
 
 /* Begin PBXFileReference section */
 		09A809901C46C17B1D062972 /* SOCKS5Tests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SOCKS5Tests.swift; sourceTree = "<group>"; };
+		1BF8CF71E17130090CEC2AB7 /* TypedLineTrackerTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TypedLineTrackerTests.swift; sourceTree = "<group>"; };
 		28FABE07D2973397E786A537 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		45F04BEA86184EFB2FA84445 /* ModelTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ModelTests.swift; sourceTree = "<group>"; };
 		52A0DDCC2FF01A30003F2522 /* pockterm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pockterm.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -56,6 +58,8 @@
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		52A0DDCE2FF01A30003F2522 /* pockterm */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = pockterm;
 			sourceTree = "<group>";
 		};
@@ -125,6 +129,7 @@
 				8BBD116E7D1E4B4A08C019E1 /* RemoteFileTests.swift */,
 				C742E9BBFD4E8FEBD6685C8F /* PortForwardModelTests.swift */,
 				09A809901C46C17B1D062972 /* SOCKS5Tests.swift */,
+				1BF8CF71E17130090CEC2AB7 /* TypedLineTrackerTests.swift */,
 			);
 			path = pocktermTests;
 			sourceTree = "<group>";
@@ -264,6 +269,7 @@
 				88AEA5E0ED1BC9B1AA62181B /* RemoteFileTests.swift in Sources */,
 				8FAC77FDC999C01893B2CD6D /* PortForwardModelTests.swift in Sources */,
 				49667823C877517A287DAE78 /* SOCKS5Tests.swift in Sources */,
+				E60327C3A9F95478424DD5BE /* TypedLineTrackerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
