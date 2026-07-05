@@ -33,8 +33,10 @@ final class TerminalSession: Identifiable {
     var title: String
     var status: Status = .connecting
     var pendingHostKey: PendingHostKey?
+    var suggestions: [Suggestion] = []
 
     private let proxy = TerminalDelegateProxy()
+    private var lineTracker = TypedLineTracker()
 
     init(host: Host, secretStore: SecretStore, modelContext: ModelContext) {
         self.host = host
@@ -52,10 +54,52 @@ final class TerminalSession: Identifiable {
 
     func handleInput(_ bytes: [UInt8]) {
         Task { await engine.send(bytes) }
+        if let finished = lineTracker.consume(bytes) {
+            recordHistory(finished)
+            suggestions = []
+        } else {
+            refreshSuggestions()
+        }
     }
 
     func sendKeys(_ bytes: [UInt8]) {
         Task { await engine.send(bytes) }
+    }
+
+    /// Inserts the completion for a tapped suggestion (the part after what the
+    /// user has already typed) without pressing Enter.
+    func applySuggestion(_ suggestion: Suggestion) {
+        let prefix = lineTracker.line
+        guard suggestion.text.hasPrefix(prefix) else { return }
+        let bytes = Array(suggestion.text.dropFirst(prefix.count).utf8)
+        sendKeys(bytes)
+        _ = lineTracker.consume(bytes)   // keep the typed-line model in sync
+        refreshSuggestions()
+    }
+
+    private func recordHistory(_ command: String) {
+        let hostID = host.id
+        let existing = (try? modelContext.fetch(FetchDescriptor<CommandHistory>(
+            predicate: #Predicate { $0.hostID == hostID && $0.command == command }))) ?? []
+        if let entry = existing.first {
+            entry.count += 1
+            entry.lastUsedAt = .now
+        } else {
+            modelContext.insert(CommandHistory(hostID: hostID, command: command))
+        }
+        try? modelContext.save()
+    }
+
+    private func refreshSuggestions() {
+        let prefix = lineTracker.line
+        guard !prefix.isEmpty else { suggestions = []; return }
+        let hostID = host.id
+        let historyRows = (try? modelContext.fetch(FetchDescriptor<CommandHistory>(
+            predicate: #Predicate { $0.hostID == hostID }))) ?? []
+        let history = historyRows.map { (command: $0.command, count: $0.count, lastUsedAt: $0.lastUsedAt) }
+        let snippets = ((try? modelContext.fetch(FetchDescriptor<Snippet>())) ?? []).map(\.command)
+        suggestions = SuggestionEngine.suggestions(
+            prefix: prefix, history: history, snippets: snippets, common: CommonCommands.all)
     }
 
     func run(_ snippet: Snippet) {
