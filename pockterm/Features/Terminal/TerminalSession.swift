@@ -36,6 +36,10 @@ final class TerminalSession: Identifiable {
     /// Commands shown in the ctrl-R-style dropdown (most recent first).
     var suggestionCommands: [String] = []
     var suggestionsVisible = false
+    /// Where the current command line sits, as fractions (0...1) of the terminal
+    /// height, so the dropdown can render next to it and flip above near the bottom.
+    var cursorLineTopFraction: Double = 0
+    var cursorLineHeightFraction: Double = 0.05
 
     private let proxy = TerminalDelegateProxy()
     private var lineTracker = TypedLineTracker()
@@ -130,7 +134,23 @@ final class TerminalSession: Identifiable {
             if commands.count == 3 { break }
         }
         suggestionCommands = commands
+        if !commands.isEmpty { captureCursorLine() }
         suggestionsVisible = !commands.isEmpty
+    }
+
+    /// Reads the on-screen cursor row so the dropdown can anchor to the command line.
+    private func captureCursorLine() {
+        let term = terminalView.getTerminal()
+        let rows = max(term.rows, 1)
+        let cursorRow = min(max(term.getCursorLocation().y, 0), rows - 1)
+        cursorLineTopFraction = Double(cursorRow) / Double(rows)
+        cursorLineHeightFraction = 1.0 / Double(rows)
+    }
+
+    /// Hides the dropdown and stops it from reappearing until the next keystroke.
+    func dismissSuggestions() {
+        suggestionsVisible = false
+        idleTask?.cancel()
     }
 
     func run(_ snippet: Snippet) {
