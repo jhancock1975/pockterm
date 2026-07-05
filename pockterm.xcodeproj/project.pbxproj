@@ -20,6 +20,7 @@
 		8820DE41A33B965F1F4D570D /* InheritanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D553C2773E080BCBEFA379B /* InheritanceTests.swift */; };
 		88AEA5E0ED1BC9B1AA62181B /* RemoteFileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBD116E7D1E4B4A08C019E1 /* RemoteFileTests.swift */; };
 		8FAC77FDC999C01893B2CD6D /* PortForwardModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C742E9BBFD4E8FEBD6685C8F /* PortForwardModelTests.swift */; };
+		A610943DE139E0BA04064670 /* AIProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15B3DDBB7CBB60A227FBBE9 /* AIProviderTests.swift */; };
 		BC5771A2F3E69E5C90A64611 /* GroupModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7948693B1996CA7DBA0F67F6 /* GroupModelTests.swift */; };
 		CD5F7FFA74943CF74F12447B /* Citadel in Frameworks */ = {isa = PBXBuildFile; productRef = 8931F71DF5C8B8E8AD2108FB /* Citadel */; };
 		E60327C3A9F95478424DD5BE /* TypedLineTrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF8CF71E17130090CEC2AB7 /* TypedLineTrackerTests.swift */; };
@@ -49,6 +50,7 @@
 		7D553C2773E080BCBEFA379B /* InheritanceTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = InheritanceTests.swift; sourceTree = "<group>"; };
 		803CF0CE7C87106C0FEA65D2 /* SSHConfigParserTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SSHConfigParserTests.swift; sourceTree = "<group>"; };
 		8BBD116E7D1E4B4A08C019E1 /* RemoteFileTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RemoteFileTests.swift; sourceTree = "<group>"; };
+		A15B3DDBB7CBB60A227FBBE9 /* AIProviderTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AIProviderTests.swift; sourceTree = "<group>"; };
 		C742E9BBFD4E8FEBD6685C8F /* PortForwardModelTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PortForwardModelTests.swift; sourceTree = "<group>"; };
 		C76CBC9F7A224157FCBEC5AD /* pocktermTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = pocktermTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D244E6BCA6F44A2D3141774E /* KnownHostsStoreTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = KnownHostsStoreTests.swift; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 				09A809901C46C17B1D062972 /* SOCKS5Tests.swift */,
 				1BF8CF71E17130090CEC2AB7 /* TypedLineTrackerTests.swift */,
 				5A8DD1A3BF8BDC2B4F9B48BA /* CommandHistoryModelTests.swift */,
+				A15B3DDBB7CBB60A227FBBE9 /* AIProviderTests.swift */,
 			);
 			path = pocktermTests;
 			sourceTree = "<group>";
@@ -274,6 +277,7 @@
 				49667823C877517A287DAE78 /* SOCKS5Tests.swift in Sources */,
 				E60327C3A9F95478424DD5BE /* TypedLineTrackerTests.swift in Sources */,
 				758F97146AF8E7CAF41E7275 /* CommandHistoryModelTests.swift in Sources */,
+				A610943DE139E0BA04064670 /* AIProviderTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
