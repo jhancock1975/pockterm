@@ -12,7 +12,7 @@ final class AppContainer {
     init() {
         let container = try! ModelContainer(
             for: Host.self, Identity.self, SSHKeyRecord.self, KnownHostRecord.self,
-            HostGroup.self, Snippet.self, PortForward.self)
+            HostGroup.self, Snippet.self, PortForward.self, CommandHistory.self)
         let store = KeychainSecretStore()
         modelContainer = container
         secretStore = store

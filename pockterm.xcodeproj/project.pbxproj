@@ -16,6 +16,7 @@
 		45085A69102CC6B2045BEC4B /* SwiftTerm in Frameworks */ = {isa = PBXBuildFile; productRef = CDC95F7F3E51993B3B834AE0 /* SwiftTerm */; };
 		48802C0C5DF54ED611CEC84F /* SecretStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53305856679F3A11464DF689 /* SecretStoreTests.swift */; };
 		49667823C877517A287DAE78 /* SOCKS5Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A809901C46C17B1D062972 /* SOCKS5Tests.swift */; };
+		758F97146AF8E7CAF41E7275 /* CommandHistoryModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8DD1A3BF8BDC2B4F9B48BA /* CommandHistoryModelTests.swift */; };
 		8820DE41A33B965F1F4D570D /* InheritanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D553C2773E080BCBEFA379B /* InheritanceTests.swift */; };
 		88AEA5E0ED1BC9B1AA62181B /* RemoteFileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBD116E7D1E4B4A08C019E1 /* RemoteFileTests.swift */; };
 		8FAC77FDC999C01893B2CD6D /* PortForwardModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C742E9BBFD4E8FEBD6685C8F /* PortForwardModelTests.swift */; };
@@ -43,6 +44,7 @@
 		45F04BEA86184EFB2FA84445 /* ModelTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ModelTests.swift; sourceTree = "<group>"; };
 		52A0DDCC2FF01A30003F2522 /* pockterm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pockterm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		53305856679F3A11464DF689 /* SecretStoreTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SecretStoreTests.swift; sourceTree = "<group>"; };
+		5A8DD1A3BF8BDC2B4F9B48BA /* CommandHistoryModelTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CommandHistoryModelTests.swift; sourceTree = "<group>"; };
 		7948693B1996CA7DBA0F67F6 /* GroupModelTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = GroupModelTests.swift; sourceTree = "<group>"; };
 		7D553C2773E080BCBEFA379B /* InheritanceTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = InheritanceTests.swift; sourceTree = "<group>"; };
 		803CF0CE7C87106C0FEA65D2 /* SSHConfigParserTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SSHConfigParserTests.swift; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 				C742E9BBFD4E8FEBD6685C8F /* PortForwardModelTests.swift */,
 				09A809901C46C17B1D062972 /* SOCKS5Tests.swift */,
 				1BF8CF71E17130090CEC2AB7 /* TypedLineTrackerTests.swift */,
+				5A8DD1A3BF8BDC2B4F9B48BA /* CommandHistoryModelTests.swift */,
 			);
 			path = pocktermTests;
 			sourceTree = "<group>";
@@ -270,6 +273,7 @@
 				8FAC77FDC999C01893B2CD6D /* PortForwardModelTests.swift in Sources */,
 				49667823C877517A287DAE78 /* SOCKS5Tests.swift in Sources */,
 				E60327C3A9F95478424DD5BE /* TypedLineTrackerTests.swift in Sources */,
+				758F97146AF8E7CAF41E7275 /* CommandHistoryModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
