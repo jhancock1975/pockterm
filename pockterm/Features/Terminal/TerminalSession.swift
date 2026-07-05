@@ -33,10 +33,13 @@ final class TerminalSession: Identifiable {
     var title: String
     var status: Status = .connecting
     var pendingHostKey: PendingHostKey?
-    var suggestions: [Suggestion] = []
+    /// Commands shown in the ctrl-R-style dropdown (most recent first).
+    var suggestionCommands: [String] = []
+    var suggestionsVisible = false
 
     private let proxy = TerminalDelegateProxy()
     private var lineTracker = TypedLineTracker()
+    private var idleTask: Task<Void, Never>?
 
     init(host: Host, secretStore: SecretStore, modelContext: ModelContext) {
         self.host = host
@@ -54,27 +57,38 @@ final class TerminalSession: Identifiable {
 
     func handleInput(_ bytes: [UInt8]) {
         Task { await engine.send(bytes) }
+        // Typing dismisses the dropdown; it only reappears after the line is
+        // empty and idle for 5 seconds.
+        suggestionsVisible = false
         if let finished = lineTracker.consume(bytes) {
             recordHistory(finished)
-            suggestions = []
-        } else {
-            refreshSuggestions()
         }
+        restartIdleTimer()
     }
 
     func sendKeys(_ bytes: [UInt8]) {
         Task { await engine.send(bytes) }
     }
 
-    /// Inserts the completion for a tapped suggestion (the part after what the
-    /// user has already typed) without pressing Enter.
-    func applySuggestion(_ suggestion: Suggestion) {
-        let prefix = lineTracker.line
-        guard suggestion.text.hasPrefix(prefix) else { return }
-        let bytes = Array(suggestion.text.dropFirst(prefix.count).utf8)
+    /// Tapping a dropdown row inserts the *next part* of that command (the next
+    /// whitespace-delimited token beyond what's already typed) — tap again for
+    /// the part after that, and so on. Does not press Enter.
+    func applyNextPart(of command: String) {
+        guard let part = nextPart(of: command, after: lineTracker.line) else { return }
+        let bytes = Array(part.utf8)
         sendKeys(bytes)
         _ = lineTracker.consume(bytes)   // keep the typed-line model in sync
-        refreshSuggestions()
+        refreshDropdown()                // stay open, re-filter to the new line
+    }
+
+    /// The next token to insert to advance `line` toward `command`.
+    private func nextPart(of command: String, after line: String) -> String? {
+        guard command.hasPrefix(line), command != line else { return nil }
+        let rest = Substring(command.dropFirst(line.count))
+        var index = rest.startIndex
+        while index < rest.endIndex, rest[index] == " " { index = rest.index(after: index) }
+        while index < rest.endIndex, rest[index] != " " { index = rest.index(after: index) }
+        return String(rest[rest.startIndex..<index])
     }
 
     private func recordHistory(_ command: String) {
@@ -90,16 +104,33 @@ final class TerminalSession: Identifiable {
         try? modelContext.save()
     }
 
-    private func refreshSuggestions() {
-        let prefix = lineTracker.line
-        guard !prefix.isEmpty else { suggestions = []; return }
+    /// Restarts the 5-second idle timer. When it fires with an empty line, the
+    /// dropdown appears showing the most recent commands (like ctrl-R).
+    func restartIdleTimer() {
+        idleTask?.cancel()
+        idleTask = Task { [weak self] in
+            try? await Task.sleep(for: .seconds(5))
+            guard !Task.isCancelled, let self, self.lineTracker.line.isEmpty else { return }
+            self.refreshDropdown()
+        }
+    }
+
+    /// Populates the dropdown with the 3 most recent history commands that match
+    /// the current line (most recent first).
+    private func refreshDropdown() {
+        let line = lineTracker.line
         let hostID = host.id
-        let historyRows = (try? modelContext.fetch(FetchDescriptor<CommandHistory>(
-            predicate: #Predicate { $0.hostID == hostID }))) ?? []
-        let history = historyRows.map { (command: $0.command, count: $0.count, lastUsedAt: $0.lastUsedAt) }
-        let snippets = ((try? modelContext.fetch(FetchDescriptor<Snippet>())) ?? []).map(\.command)
-        suggestions = SuggestionEngine.suggestions(
-            prefix: prefix, history: history, snippets: snippets, common: CommonCommands.all)
+        let rows = (try? modelContext.fetch(FetchDescriptor<CommandHistory>(
+            predicate: #Predicate { $0.hostID == hostID },
+            sortBy: [SortDescriptor(\.lastUsedAt, order: .reverse)]))) ?? []
+        var seen = Set<String>()
+        var commands: [String] = []
+        for row in rows where row.command.hasPrefix(line) && row.command != line {
+            if seen.insert(row.command).inserted { commands.append(row.command) }
+            if commands.count == 3 { break }
+        }
+        suggestionCommands = commands
+        suggestionsVisible = !commands.isEmpty
     }
 
     func run(_ snippet: Snippet) {
@@ -133,6 +164,7 @@ final class TerminalSession: Identifiable {
                     }
                 })
             status = .connected
+            restartIdleTimer()
             if let startup = host.startupSnippet, !startup.isEmpty {
                 sendKeys(Array((startup + "\n").utf8))
             }
@@ -188,6 +220,7 @@ final class TerminalSession: Identifiable {
     }
 
     func disconnect() async {
+        idleTask?.cancel()
         await engine.disconnect()
     }
 }

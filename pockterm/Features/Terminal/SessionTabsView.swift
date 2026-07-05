@@ -153,25 +153,30 @@ struct SessionTabsView: View {
 
     @ViewBuilder
     private func sessionContent(_ session: TerminalSession) -> some View {
-        VStack(spacing: 0) {
-            ZStack {
-                TerminalHostView(terminalView: session.terminalView)
-                switch session.status {
-                case .connecting:
-                    ProgressView("Connecting…").controlSize(.large).tint(.white)
-                case .failed(let message):
-                    ContentUnavailableView("Connection Failed", systemImage: "xmark.octagon",
-                                           description: Text(message))
-                        .foregroundStyle(.white)
-                case .closed:
-                    ContentUnavailableView("Session Closed", systemImage: "bolt.horizontal",
-                                           description: Text("The remote shell ended."))
-                        .foregroundStyle(.white)
-                case .connected:
-                    EmptyView()
-                }
+        ZStack {
+            TerminalHostView(terminalView: session.terminalView)
+            switch session.status {
+            case .connecting:
+                ProgressView("Connecting…").controlSize(.large).tint(.white)
+            case .failed(let message):
+                ContentUnavailableView("Connection Failed", systemImage: "xmark.octagon",
+                                       description: Text(message))
+                    .foregroundStyle(.white)
+            case .closed:
+                ContentUnavailableView("Session Closed", systemImage: "bolt.horizontal",
+                                       description: Text("The remote shell ended."))
+                    .foregroundStyle(.white)
+            case .connected:
+                EmptyView()
             }
-            SuggestionStrip(suggestions: session.suggestions) { session.applySuggestion($0) }
+        }
+        .overlay(alignment: .top) {
+            if session.suggestionsVisible {
+                SuggestionDropdown(commands: session.suggestionCommands) {
+                    session.applyNextPart(of: $0)
+                }
+                .padding(.top, 8)
+            }
         }
     }
 

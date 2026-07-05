@@ -66,5 +66,14 @@ Dir.glob(File.expand_path('../pocktermTests/**/*.swift', __dir__)).sort.each do 
   src_phase.add_file_reference(ref, true)
 end
 
+# Prune references to test files that were removed from disk.
+src_phase.files.dup.each do |bf|
+  ref = bf.file_ref
+  path = ref&.real_path&.to_s
+  next unless path && !File.exist?(path)
+  bf.remove_from_project
+  ref.remove_from_project
+end
+
 project.save
 puts 'OK'

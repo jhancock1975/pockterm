@@ -25,7 +25,6 @@
 		E60327C3A9F95478424DD5BE /* TypedLineTrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF8CF71E17130090CEC2AB7 /* TypedLineTrackerTests.swift */; };
 		F0766092A11161CB69BFDFAB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28FABE07D2973397E786A537 /* Foundation.framework */; };
 		F4077D2AB5BF300965EE0C31 /* Crypto in Frameworks */ = {isa = PBXBuildFile; productRef = 613D7A8CED6FCA39C30AAF8C /* Crypto */; };
-		F8E0AA631D44B8D093155F55 /* SuggestionEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1886B468C78122C0A82E0AC /* SuggestionEngineTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,7 +51,6 @@
 		8BBD116E7D1E4B4A08C019E1 /* RemoteFileTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RemoteFileTests.swift; sourceTree = "<group>"; };
 		C742E9BBFD4E8FEBD6685C8F /* PortForwardModelTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PortForwardModelTests.swift; sourceTree = "<group>"; };
 		C76CBC9F7A224157FCBEC5AD /* pocktermTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = pocktermTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		D1886B468C78122C0A82E0AC /* SuggestionEngineTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SuggestionEngineTests.swift; sourceTree = "<group>"; };
 		D244E6BCA6F44A2D3141774E /* KnownHostsStoreTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = KnownHostsStoreTests.swift; sourceTree = "<group>"; };
 		E162F790C5AB3945D81D844D /* HostKeyIntegrationTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HostKeyIntegrationTests.swift; sourceTree = "<group>"; };
 		E1CC17F2AF1DC22FBB595ADF /* KeyManagerTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = KeyManagerTests.swift; sourceTree = "<group>"; };
@@ -62,6 +60,8 @@
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		52A0DDCE2FF01A30003F2522 /* pockterm */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = pockterm;
 			sourceTree = "<group>";
 		};
@@ -133,7 +133,6 @@
 				09A809901C46C17B1D062972 /* SOCKS5Tests.swift */,
 				1BF8CF71E17130090CEC2AB7 /* TypedLineTrackerTests.swift */,
 				5A8DD1A3BF8BDC2B4F9B48BA /* CommandHistoryModelTests.swift */,
-				D1886B468C78122C0A82E0AC /* SuggestionEngineTests.swift */,
 			);
 			path = pocktermTests;
 			sourceTree = "<group>";
@@ -275,7 +274,6 @@
 				49667823C877517A287DAE78 /* SOCKS5Tests.swift in Sources */,
 				E60327C3A9F95478424DD5BE /* TypedLineTrackerTests.swift in Sources */,
 				758F97146AF8E7CAF41E7275 /* CommandHistoryModelTests.swift in Sources */,
-				F8E0AA631D44B8D093155F55 /* SuggestionEngineTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
