@@ -62,8 +62,6 @@
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		52A0DDCE2FF01A30003F2522 /* pockterm */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-			);
 			path = pockterm;
 			sourceTree = "<group>";
 		};
