@@ -64,13 +64,7 @@ final class AssistantModel {
     }
 
     var settings: AISettings {
-        if let existing = try? modelContext.fetch(FetchDescriptor<AISettings>()).first {
-            return existing
-        }
-        let created = AISettings()
-        modelContext.insert(created)
-        try? modelContext.save()
-        return created
+        AISettings.single(in: modelContext)
     }
 
     func send(_ prompt: String) {

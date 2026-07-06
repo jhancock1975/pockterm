@@ -18,10 +18,7 @@ struct AISettingsView: View {
         }
         .navigationTitle("AI Assistant")
         .task {
-            if allSettings.isEmpty {
-                modelContext.insert(AISettings())
-                try? modelContext.save()
-            }
+            _ = AISettings.single(in: modelContext)
         }
     }
 }
@@ -34,6 +31,7 @@ private struct AISettingsForm: View {
     @State private var keyInput = ""
     @State private var hasStoredKey = false
     @State private var testState: TestState = .idle
+    @State private var keychainError: String?
     private let client = AIClient()
 
     var body: some View {
@@ -44,9 +42,19 @@ private struct AISettingsForm: View {
                         Text(provider.displayName).tag(provider)
                     }
                 }
-                TextField("Model", text: $settings.model)
-                    .autocorrectionDisabled()
-                    .textInputAutocapitalization(.never)
+                NavigationLink {
+                    ModelPickerView(settings: settings,
+                                    apiKey: (try? keyStore.key(for: settings.activeProvider)) ?? nil)
+                } label: {
+                    HStack {
+                        Text("Model")
+                        Spacer()
+                        Text(settings.model)
+                            .foregroundStyle(.secondary)
+                            .lineLimit(1)
+                            .truncationMode(.middle)
+                    }
+                }
             }
 
             Section {
@@ -62,7 +70,10 @@ private struct AISettingsForm: View {
                     .autocorrectionDisabled()
                     .textInputAutocapitalization(.never)
                 Button("Save Key") { saveKey() }
-                    .disabled(keyInput.trimmingCharacters(in: .whitespaces).isEmpty)
+                    .disabled(keyInput.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+                if let keychainError {
+                    Text(keychainError).font(.footnote).foregroundStyle(.red)
+                }
             } header: {
                 Text("\(settings.activeProvider.displayName) API Key")
             } footer: {
@@ -109,9 +120,13 @@ private struct AISettingsForm: View {
     }
 
     private func saveKey() {
-        try? keyStore.setKey(keyInput.trimmingCharacters(in: .whitespaces),
-                             for: settings.activeProvider)
-        keyInput = ""
+        do {
+            try keyStore.setKey(keyInput, for: settings.activeProvider)
+            keychainError = nil
+            keyInput = ""
+        } catch {
+            keychainError = "Couldn't save to the Keychain: \(error.localizedDescription)"
+        }
         testState = .idle
         refreshKeyState()
     }

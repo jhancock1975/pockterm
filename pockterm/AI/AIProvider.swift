@@ -33,6 +33,15 @@ enum AIProvider: String, CaseIterable, Codable, Identifiable {
         }
     }
 
+    /// Endpoint listing the models this provider offers.
+    var modelsURL: URL {
+        switch self {
+        case .anthropic: return URL(string: "https://api.anthropic.com/v1/models")!
+        case .openai: return URL(string: "https://api.openai.com/v1/models")!
+        case .openRouter: return URL(string: "https://openrouter.ai/api/v1/models")!
+        }
+    }
+
     /// Stable identifier used as the SecretStore key for this provider's API key.
     var keychainKeyID: String { "ai.key.\(rawValue)" }
 }
