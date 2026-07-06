@@ -17,6 +17,7 @@ struct SessionTabsView: View {
     @Query(sort: \Snippet.label) private var snippets: [Snippet]
     @Query(sort: \Host.label) private var hosts: [Host]
     @State private var showingHostPicker = false
+    @State private var assistantSession: TerminalSession?
 
     var body: some View {
         ZStack {
@@ -50,6 +51,10 @@ struct SessionTabsView: View {
                 showingHostPicker = false
             }
         }
+        .sheet(item: $assistantSession) { session in
+            AssistantView(model: session.assistant, host: session.host,
+                          secretStore: manager.secretStore)
+        }
     }
 
     /// Compact header: the active session's name centered, a red close button
@@ -66,6 +71,12 @@ struct SessionTabsView: View {
 
                 HStack(spacing: 12) {
                     Spacer()
+                    if let session = manager.active {
+                        Button { assistantSession = session } label: {
+                            Image(systemName: "sparkles")
+                        }
+                        .accessibilityLabel("AI Assistant")
+                    }
                     Button { showingHostPicker = true } label: {
                         Image(systemName: "plus")
                     }

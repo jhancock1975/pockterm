@@ -36,6 +36,17 @@ final class TerminalSession: Identifiable {
 
     private let proxy = TerminalDelegateProxy()
     private var lineTracker = TypedLineTracker()
+    private var _assistant: AssistantModel?
+
+    /// This session's AI assistant, created on first use so the transcript
+    /// survives closing and reopening the assistant sheet.
+    var assistant: AssistantModel {
+        if let _assistant { return _assistant }
+        let created = AssistantModel(session: self, secretStore: secretStore,
+                                     modelContext: modelContext)
+        _assistant = created
+        return created
+    }
 
     init(host: Host, secretStore: SecretStore, modelContext: ModelContext) {
         self.host = host
