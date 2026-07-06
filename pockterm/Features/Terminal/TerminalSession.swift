@@ -56,6 +56,7 @@ final class TerminalSession: Identifiable {
         self.terminalView = TerminalView()
         terminalView.backgroundColor = .black
         terminalView.terminalDelegate = proxy
+        terminalView.inputAccessoryView = KeyBarView(terminalView: terminalView)
         proxy.onInput = { [weak self] bytes in self?.handleInput(bytes) }
         proxy.onSize = { [weak self] cols, rows in
             Task { await self?.engine.resize(cols: cols, rows: rows) }

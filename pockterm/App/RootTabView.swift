@@ -44,6 +44,11 @@ private struct SettingsHomeView: View {
                 } label: {
                     Label("AI Assistant", systemImage: "sparkles")
                 }
+                NavigationLink {
+                    KeyBarSettingsView()
+                } label: {
+                    Label("Key Bar", systemImage: "keyboard")
+                }
             }
             .navigationTitle("Settings")
         }
