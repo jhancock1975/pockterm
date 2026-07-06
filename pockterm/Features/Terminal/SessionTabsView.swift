@@ -3,10 +3,26 @@ import SwiftData
 import SwiftTerm
 
 /// Hosts an existing `TerminalView` (owned by a session) inside SwiftUI.
+/// Keyboard avoidance is done in UIKit via `keyboardLayoutGuide`, which stays
+/// correct across rotations where SwiftUI's automatic avoidance leaves the
+/// terminal's bottom rows behind the accessory bar.
 struct TerminalHostView: UIViewRepresentable {
     let terminalView: TerminalView
-    func makeUIView(context: Context) -> TerminalView { terminalView }
-    func updateUIView(_ uiView: TerminalView, context: Context) {}
+
+    func makeUIView(context: Context) -> UIView {
+        let container = UIView()
+        terminalView.translatesAutoresizingMaskIntoConstraints = false
+        container.addSubview(terminalView)
+        NSLayoutConstraint.activate([
+            terminalView.topAnchor.constraint(equalTo: container.topAnchor),
+            terminalView.leadingAnchor.constraint(equalTo: container.leadingAnchor),
+            terminalView.trailingAnchor.constraint(equalTo: container.trailingAnchor),
+            terminalView.bottomAnchor.constraint(equalTo: container.keyboardLayoutGuide.topAnchor),
+        ])
+        return container
+    }
+
+    func updateUIView(_ uiView: UIView, context: Context) {}
 }
 
 /// The full multi-session terminal surface: a tab strip over the active
@@ -31,6 +47,8 @@ struct SessionTabsView: View {
                 }
             }
         }
+        // Keyboard avoidance is handled in UIKit by TerminalHostView.
+        .ignoresSafeArea(.keyboard)
         .alert("Verify Host Key", isPresented: hostKeyPresented,
                presenting: manager.active?.pendingHostKey) { pending in
             Button(pending.storedFingerprint == nil ? "Accept" : "Accept Changed Key",
