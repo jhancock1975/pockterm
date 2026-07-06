@@ -42,6 +42,15 @@ private let sample = ChatRequest(
     #expect(body["max_completion_tokens"] == nil)
 }
 
+@Test func huggingFaceUsesOpenAIWireFormatWithMaxTokens() {
+    let body = RequestEncoder.body(for: sample, provider: .huggingFace)
+    #expect(body["max_tokens"] as? Int == 100)
+    #expect(body["max_completion_tokens"] == nil)
+    let messages = body["messages"] as? [[String: String]]
+    #expect(messages?.first?["role"] == "system")
+    #expect(RequestEncoder.headers(for: .huggingFace, apiKey: "K")["Authorization"] == "Bearer K")
+}
+
 @Test func headersCarryKeyInProviderField() {
     #expect(RequestEncoder.headers(for: .anthropic, apiKey: "K")["x-api-key"] == "K")
     #expect(RequestEncoder.headers(for: .anthropic, apiKey: "K")["anthropic-version"] == "2023-06-01")

@@ -76,7 +76,7 @@ final class ModelCatalog {
             case .anthropic:
                 request.setValue(apiKey, forHTTPHeaderField: "x-api-key")
                 request.setValue("2023-06-01", forHTTPHeaderField: "anthropic-version")
-            case .openai, .openRouter:
+            case .openai, .openRouter, .huggingFace:
                 request.setValue("Bearer \(apiKey)", forHTTPHeaderField: "Authorization")
             }
         }

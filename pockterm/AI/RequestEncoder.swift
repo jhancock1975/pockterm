@@ -16,7 +16,7 @@ enum RequestEncoder {
             ]
             if let system = request.system { body["system"] = system }
             return body
-        case .openai, .openRouter:
+        case .openai, .openRouter, .huggingFace:
             // Chat Completions carries the system prompt as a leading message.
             var messages: [[String: String]] = []
             if let system = request.system {
@@ -47,6 +47,8 @@ enum RequestEncoder {
             headers["Authorization"] = "Bearer \(apiKey)"
             headers["HTTP-Referer"] = "https://github.com/jhancock1975/pockterm"
             headers["X-Title"] = "Pockterm"
+        case .huggingFace:
+            headers["Authorization"] = "Bearer \(apiKey)"
         }
         return headers
     }

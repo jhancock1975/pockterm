@@ -20,7 +20,7 @@ struct StreamDecoder {
                   delta["type"] as? String == "text_delta"
             else { return nil }
             return delta["text"] as? String
-        case .openai, .openRouter:
+        case .openai, .openRouter, .huggingFace:
             guard let choices = json["choices"] as? [[String: Any]],
                   let delta = choices.first?["delta"] as? [String: Any]
             else { return nil }
