@@ -23,9 +23,12 @@ enum RequestEncoder {
                 messages.append(["role": "system", "content": system])
             }
             messages += turns
+            // OpenAI deprecated max_tokens; gpt-5/o-series reject it with a 400.
+            // OpenRouter's normalized schema still expects max_tokens.
+            let tokenField = provider == .openai ? "max_completion_tokens" : "max_tokens"
             return [
                 "model": request.model,
-                "max_tokens": request.maxTokens,
+                tokenField: request.maxTokens,
                 "stream": true,
                 "messages": messages,
             ]

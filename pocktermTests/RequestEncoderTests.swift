@@ -28,6 +28,20 @@ private let sample = ChatRequest(
     #expect(messages?.last?["role"] == "user")
 }
 
+@Test func openAIBodyUsesMaxCompletionTokens() {
+    // OpenAI deprecated max_tokens on Chat Completions; gpt-5/o-series 400 on it.
+    let body = RequestEncoder.body(for: sample, provider: .openai)
+    #expect(body["max_completion_tokens"] as? Int == 100)
+    #expect(body["max_tokens"] == nil)
+}
+
+@Test func openRouterBodyKeepsMaxTokens() {
+    // OpenRouter's normalized schema still takes max_tokens.
+    let body = RequestEncoder.body(for: sample, provider: .openRouter)
+    #expect(body["max_tokens"] as? Int == 100)
+    #expect(body["max_completion_tokens"] == nil)
+}
+
 @Test func headersCarryKeyInProviderField() {
     #expect(RequestEncoder.headers(for: .anthropic, apiKey: "K")["x-api-key"] == "K")
     #expect(RequestEncoder.headers(for: .anthropic, apiKey: "K")["anthropic-version"] == "2023-06-01")
