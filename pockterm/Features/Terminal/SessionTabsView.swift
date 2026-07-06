@@ -170,34 +170,6 @@ struct SessionTabsView: View {
                 EmptyView()
             }
         }
-        .overlay {
-            if session.suggestionsVisible {
-                suggestionOverlay(session)
-            }
-        }
-    }
-
-    /// Floats the dropdown next to the current command line — below it normally,
-    /// flipping above when the line is near the bottom — with a transparent layer
-    /// that dismisses on a tap anywhere else.
-    private func suggestionOverlay(_ session: TerminalSession) -> some View {
-        GeometryReader { geo in
-            let height = geo.size.height
-            let lineTop = session.cursorLineTopFraction * height
-            let lineBottom = lineTop + session.cursorLineHeightFraction * height
-            let estimated = CGFloat(session.suggestionCommands.count) * 46 + 8
-            let fitsBelow = lineBottom + estimated <= height
-            let y = fitsBelow ? lineBottom + 4 : max(0, lineTop - estimated - 4)
-            ZStack(alignment: .topLeading) {
-                Color.clear
-                    .contentShape(Rectangle())
-                    .onTapGesture { session.dismissSuggestions() }
-                SuggestionDropdown(commands: session.suggestionCommands) {
-                    session.applyNextPart(of: $0)
-                }
-                .offset(y: y)
-            }
-        }
     }
 
     private var hostKeyPresented: Binding<Bool> {
