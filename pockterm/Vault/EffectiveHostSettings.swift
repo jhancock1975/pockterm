@@ -10,30 +10,27 @@ struct EffectiveHostSettings {
     let port: Int
     let identity: Identity?
 
+    /// The pure inheritance rule, generic over the identity type so tests can
+    /// exercise it with plain values: walking real @Model relationships in
+    /// tests has hung the test host inside SwiftData's keypath machinery on
+    /// the iOS 26.5 simulator (profiled 2026-07-07).
+    /// `chain` is the host's ancestor groups, nearest first.
+    static func resolve<ID>(hostPort: Int, hostIdentity: ID?,
+                            chain: [(port: Int?, identity: ID?)]) -> (port: Int, identity: ID?) {
+        let port = hostPort != 0 ? hostPort : (chain.compactMap { $0.port }.first ?? 22)
+        let identity = hostIdentity ?? chain.compactMap { $0.identity }.first
+        return (port, identity)
+    }
+
     @MainActor
     static func resolve(host: Host) -> EffectiveHostSettings {
-        let port = host.port != 0 ? host.port : (inheritedPort(from: host.group) ?? 22)
-        let identity = host.identity ?? inheritedIdentity(from: host.group)
-        return EffectiveHostSettings(port: port, identity: identity)
-    }
-
-    @MainActor
-    private static func inheritedPort(from group: HostGroup?) -> Int? {
-        var current = group
-        while let g = current {
-            if let p = g.defaultPort { return p }
-            current = g.parent
+        var chain: [(port: Int?, identity: Identity?)] = []
+        var group = host.group
+        while let g = group {
+            chain.append((g.defaultPort, g.defaultIdentity))
+            group = g.parent
         }
-        return nil
-    }
-
-    @MainActor
-    private static func inheritedIdentity(from group: HostGroup?) -> Identity? {
-        var current = group
-        while let g = current {
-            if let id = g.defaultIdentity { return id }
-            current = g.parent
-        }
-        return nil
+        let resolved = resolve(hostPort: host.port, hostIdentity: host.identity, chain: chain)
+        return EffectiveHostSettings(port: resolved.port, identity: resolved.identity)
     }
 }
