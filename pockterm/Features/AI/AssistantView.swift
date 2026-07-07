@@ -26,6 +26,9 @@ struct AssistantView: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.horizontal).padding(.top, 6)
                 }
+                if let pending = model.pendingApproval {
+                    approvalCard(pending)
+                }
                 inputBar
             }
             .navigationTitle("Assistant")
@@ -60,10 +63,16 @@ struct AssistantView: View {
                 LazyVStack(alignment: .leading, spacing: 12) {
                     if model.messages.isEmpty { emptyState }
                     ForEach(model.messages) { message in
-                        MessageBubble(message: message,
-                                      onInsert: { insertAndDismiss($0, run: false) },
-                                      onRun: { insertAndDismiss($0, run: true) })
-                            .id(message.id)
+                        Group {
+                            if message.role == .tool {
+                                ToolCard(message: message)
+                            } else {
+                                MessageBubble(message: message,
+                                              onInsert: { insertAndDismiss($0, run: false) },
+                                              onRun: { insertAndDismiss($0, run: true) })
+                            }
+                        }
+                        .id(message.id)
                     }
                 }
                 .padding()
@@ -145,6 +154,25 @@ struct AssistantView: View {
         .padding()
     }
 
+    private func approvalCard(_ pending: PendingToolApproval) -> some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Label("The assistant wants to run:", systemImage: "exclamationmark.shield")
+                .font(.caption.bold())
+            Text("\(pending.call.name): \(AssistantModel.summary(of: pending.call))")
+                .font(.system(.caption, design: .monospaced))
+                .lineLimit(6)
+            HStack {
+                Button("Deny", role: .destructive) { model.resolveApproval(false) }
+                Spacer()
+                Button("Run") { model.resolveApproval(true) }
+                    .buttonStyle(.borderedProminent)
+            }
+        }
+        .padding()
+        .background(.thinMaterial, in: RoundedRectangle(cornerRadius: 12))
+        .padding(.horizontal)
+    }
+
     private func send() {
         model.send(prompt)
         prompt = ""
@@ -171,6 +199,36 @@ struct AssistantView: View {
     private var attachmentErrorPresented: Binding<Bool> {
         Binding(get: { attachmentError != nil },
                 set: { if !$0 { attachmentError = nil } })
+    }
+}
+
+/// A transcript card for one tool invocation: what ran, its (truncated)
+/// output, or that it was denied.
+private struct ToolCard: View {
+    let message: AssistantMessage
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 4) {
+            Label(message.toolName ?? "tool",
+                  systemImage: message.denied ? "hand.raised" : "wrench.and.screwdriver")
+                .font(.caption.bold())
+            if let detail = message.toolDetail, !detail.isEmpty {
+                Text(detail).font(.system(.caption, design: .monospaced))
+            }
+            if message.denied {
+                Text("Denied").font(.caption2).foregroundStyle(.red)
+            } else if let result = message.toolResult {
+                Text(result.prefix(400))
+                    .font(.system(.caption2, design: .monospaced))
+                    .foregroundStyle(.secondary)
+                    .lineLimit(8)
+            } else {
+                ProgressView().controlSize(.small)
+            }
+        }
+        .padding(10)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(.quaternary, in: RoundedRectangle(cornerRadius: 10))
     }
 }
 

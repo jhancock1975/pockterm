@@ -4,10 +4,15 @@ import SwiftTerm
 
 /// One turn in the assistant transcript.
 struct AssistantMessage: Identifiable {
-    enum Role { case user, assistant }
+    enum Role { case user, assistant, tool }
     let id = UUID()
     let role: Role
     var text: String
+    /// For role .tool: which tool ran and how it ended.
+    var toolName: String?
+    var toolDetail: String?      // e.g. the command or path
+    var toolResult: String?
+    var denied = false
 
     /// Completed fenced code blocks in an assistant reply, offered to the user
     /// as commands to insert or run. A trailing unclosed fence (mid-stream) is
@@ -36,9 +41,18 @@ struct AssistantMessage: Identifiable {
     }
 }
 
+/// A tool call waiting for the user's Run/Deny, same continuation pattern as
+/// PendingHostKey.
+struct PendingToolApproval: Identifiable {
+    let id = UUID()
+    let call: ToolCall
+    let resume: (Bool) -> Void
+}
+
 /// Drives the assistant chat for one terminal session: assembles context from
-/// the live terminal buffer and attachments, streams the reply, and can type
-/// a suggested command back into the terminal.
+/// the live terminal buffer and attachments, runs the agent loop (streaming
+/// replies, approving and executing tool calls), and can type a suggested
+/// command back into the terminal.
 @MainActor
 @Observable
 final class AssistantModel {
@@ -53,6 +67,7 @@ final class AssistantModel {
     var attachments: [ContextAttachment] = []
     var isStreaming = false
     var errorMessage: String?
+    var pendingApproval: PendingToolApproval?
 
     /// Total budget for the system prompt (terminal tail + attachments).
     static let contextBudget = 24_000
@@ -93,18 +108,23 @@ final class AssistantModel {
                 turns.append(ChatMessage(role: role, text: message.text))
             }
         }
-        let request = ChatRequest(model: settings.model, system: system, messages: turns)
+        var request = ChatRequest(model: settings.model, system: system, messages: turns)
+        request.tools = AgentTools.specs
 
         messages.append(AssistantMessage(role: .assistant, text: ""))
         isStreaming = true
+        let approvalMode = settings.agentApproval
+        let loop = AgentLoop(client: client,
+                             executor: SessionToolExecutor(session: session,
+                                                           modelContext: modelContext))
         streamTask = Task { [weak self] in
             guard let self else { return }
             do {
-                for try await event in await client.stream(request, provider: provider, apiKey: apiKey) {
-                    if case .text(let delta) = event {
-                        messages[messages.count - 1].text += delta
-                    }
-                }
+                try await loop.run(request: request, provider: provider, apiKey: apiKey,
+                                   approve: { [weak self] call in
+                                       await self?.approve(call, mode: approvalMode) ?? false
+                                   },
+                                   onEvent: { [weak self] event in self?.handle(event) })
             } catch is CancellationError {
                 // User tapped stop; keep whatever streamed so far.
             } catch {
@@ -118,7 +138,69 @@ final class AssistantModel {
     }
 
     func stop() {
+        if pendingApproval != nil { resolveApproval(false) }
         streamTask?.cancel()
+    }
+
+    private func approve(_ call: ToolCall, mode: AgentApproval) async -> Bool {
+        switch mode {
+        case .never: return true
+        case .risky where !AgentTools.isMutating(call): return true
+        default:
+            return await withCheckedContinuation { continuation in
+                pendingApproval = PendingToolApproval(call: call) { decision in
+                    continuation.resume(returning: decision)
+                }
+            }
+        }
+    }
+
+    func resolveApproval(_ approved: Bool) {
+        pendingApproval?.resume(approved)
+        pendingApproval = nil
+    }
+
+    private func handle(_ event: AgentLoop.Event) {
+        switch event {
+        case .assistantDelta(let delta):
+            if messages.last?.role != .assistant {
+                messages.append(AssistantMessage(role: .assistant, text: ""))
+            }
+            messages[messages.count - 1].text += delta
+        case .assistantTurnEnded:
+            if messages.last?.role == .assistant, messages.last?.text.isEmpty == true {
+                messages.removeLast()
+            }
+        case .toolPending:
+            break   // the approval card renders from pendingApproval
+        case .toolStarted(let call):
+            messages.append(AssistantMessage(role: .tool, text: "",
+                                             toolName: call.name,
+                                             toolDetail: Self.summary(of: call)))
+        case .toolFinished(let call, let result):
+            if let index = messages.lastIndex(where: {
+                $0.role == .tool && $0.toolName == call.name && $0.toolResult == nil && !$0.denied
+            }) {
+                messages[index].toolResult = result
+            }
+        case .toolDenied(let call):
+            var entry = AssistantMessage(role: .tool, text: "",
+                                         toolName: call.name, toolDetail: Self.summary(of: call))
+            entry.denied = true
+            messages.append(entry)
+        case .hitIterationCap:
+            errorMessage = "Stopped after \(AgentLoop.maxIterations) agent steps."
+        }
+    }
+
+    /// One-line human summary of a call for the transcript card.
+    static func summary(of call: ToolCall) -> String {
+        let args = call.arguments()
+        return args["command"] as? String
+            ?? args["path"] as? String
+            ?? args["host"] as? String
+            ?? args["label"] as? String
+            ?? ""
     }
 
     /// Types the command into the terminal and presses Enter.
