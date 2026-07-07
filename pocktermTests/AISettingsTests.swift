@@ -35,3 +35,13 @@ import SwiftData
     let settings = AISettings(provider: .anthropic)
     #expect(settings.model == AIProvider.anthropic.defaultModel)
 }
+
+@MainActor
+@Test func agentApprovalDefaultsToAlwaysAndPersists() throws {
+    let container = try ModelContainer(
+        for: AISettings.self, configurations: .init(isStoredInMemoryOnly: true))
+    let settings = AISettings.single(in: container.mainContext)
+    #expect(settings.agentApproval == .always)
+    settings.agentApproval = .risky
+    #expect(AISettings.single(in: container.mainContext).agentApproval == .risky)
+}

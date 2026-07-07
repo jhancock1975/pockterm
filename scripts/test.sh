@@ -76,7 +76,9 @@ done
 
 passed=$(grep -c "^✔ Test .* passed" "$LOG" || true)
 failed=$(grep -c "^✘" "$LOG" || true)
-echo "passed: $passed   failed: $failed   (log: $LOG)"
+# Authoritative per-run total (per-line ✔ counts drift on parameterized tests).
+grep -hE "^[✔✘] Test run with" "$LOG" || echo "passed: $passed   failed: $failed"
+echo "(log: $LOG)"
 if [[ "$failed" -gt 0 ]]; then
     grep -E "^✘" "$LOG" | head -20
     exit 1

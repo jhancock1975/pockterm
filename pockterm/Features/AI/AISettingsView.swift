@@ -58,6 +58,16 @@ private struct AISettingsForm: View {
             }
 
             Section {
+                Picker("Approval", selection: $settings.agentApproval) {
+                    ForEach(AgentApproval.allCases) { Text($0.label).tag($0) }
+                }
+            } header: {
+                Text("Agent")
+            } footer: {
+                Text("Controls whether the assistant asks before running commands or editing files on your server.")
+            }
+
+            Section {
                 if hasStoredKey {
                     HStack {
                         Label("Key saved in Keychain", systemImage: "checkmark.seal.fill")
