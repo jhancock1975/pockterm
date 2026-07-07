@@ -20,11 +20,16 @@ final class ModelCatalog {
     private(set) var refreshFailed = false
 
     private var refreshTask: Task<Void, Never>?
+    /// True when there was nothing cached and the list is just the provider's
+    /// default model — the first successful fetch then replaces it directly.
+    private let seeded: Bool
 
     init(provider: AIProvider, apiKey: String?) {
         self.provider = provider
         self.apiKey = apiKey
-        self.visibleModels = Self.cachedModels(for: provider)
+        let cached = Self.cachedModels(for: provider)
+        self.seeded = cached.isEmpty
+        self.visibleModels = cached.isEmpty ? [provider.defaultModel] : cached
     }
 
     func startRefresh() {
@@ -39,7 +44,7 @@ final class ModelCatalog {
                     let fresh = try await Self.fetchModels(provider: provider, apiKey: apiKey)
                     guard !Task.isCancelled else { return }
                     Self.storeModels(fresh, for: provider)
-                    if ContinuousClock.now - started < .seconds(1) || visibleModels.isEmpty {
+                    if ContinuousClock.now - started < .seconds(1) || seeded || visibleModels.isEmpty {
                         visibleModels = fresh
                     } else if fresh != visibleModels {
                         pendingUpdate = fresh
@@ -85,15 +90,36 @@ final class ModelCatalog {
             throw AIClientError(status: http.statusCode,
                                 detail: String(decoding: data, as: UTF8.self))
         }
-        return parseModels(data)
+        return parseModels(data, provider: provider)
     }
 
-    /// All three providers return `{"data": [{"id": "..."}]}`.
-    static func parseModels(_ data: Data) -> [String] {
+    /// All four providers return `{"data": [{"id": "..."}]}`. Text-first policy:
+    /// OpenRouter is filtered by declared output modality, OpenAI by id family
+    /// (its list mixes audio/image/embedding models); Anthropic and the HF
+    /// router already list only chat models.
+    static func parseModels(_ data: Data, provider: AIProvider) -> [String] {
         guard let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
               let entries = json["data"] as? [[String: Any]]
         else { return [] }
-        return entries.compactMap { $0["id"] as? String }.sorted()
+        let ids: [String]
+        switch provider {
+        case .openRouter:
+            ids = entries.compactMap { entry in
+                guard let id = entry["id"] as? String else { return nil }
+                if let arch = entry["architecture"] as? [String: Any],
+                   let modality = arch["modality"] as? String,
+                   !modality.hasSuffix("->text") { return nil }
+                return id
+            }
+        case .openai:
+            let nonChat = ["whisper", "tts", "dall-e", "embedding", "moderation",
+                           "realtime", "audio", "image", "transcribe", "davinci", "babbage"]
+            ids = entries.compactMap { $0["id"] as? String }
+                .filter { id in !nonChat.contains { id.contains($0) } }
+        case .anthropic, .huggingFace:
+            ids = entries.compactMap { $0["id"] as? String }
+        }
+        return ids.sorted()
     }
 
     // MARK: Cache
@@ -102,11 +128,21 @@ final class ModelCatalog {
         "modelCatalog.\(provider.rawValue)"
     }
 
+    private static func stampKey(for provider: AIProvider) -> String {
+        "modelCatalog.lastRefreshed.\(provider.rawValue)"
+    }
+
     static func cachedModels(for provider: AIProvider) -> [String] {
         UserDefaults.standard.stringArray(forKey: cacheKey(for: provider)) ?? []
     }
 
+    static func lastRefreshed(for provider: AIProvider) -> Date? {
+        UserDefaults.standard.object(forKey: stampKey(for: provider)) as? Date
+    }
+
     static func storeModels(_ models: [String], for provider: AIProvider) {
+        guard !models.isEmpty else { return }   // never clobber last-known-good
         UserDefaults.standard.set(models, forKey: cacheKey(for: provider))
+        UserDefaults.standard.set(Date.now, forKey: stampKey(for: provider))
     }
 }
