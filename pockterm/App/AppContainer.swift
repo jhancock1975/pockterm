@@ -8,6 +8,7 @@ final class AppContainer {
     let secretStore: SecretStore
     let sessions: SessionManager
     let forwards: ForwardRunner
+    let modelRefresher: ModelCatalogRefresher
 
     init() {
         let container = try! ModelContainer(
@@ -19,5 +20,6 @@ final class AppContainer {
         secretStore = store
         sessions = SessionManager(secretStore: store, modelContext: container.mainContext)
         forwards = ForwardRunner(secretStore: store, modelContext: container.mainContext)
+        modelRefresher = ModelCatalogRefresher(secretStore: store)
     }
 }
