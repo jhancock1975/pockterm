@@ -18,6 +18,7 @@
 		37DB105098B38CD8FF507F7F /* ToolSpecTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134AD88C7A6161F15A01D9BC /* ToolSpecTests.swift */; };
 		3F1632B9C4083082DB032D69 /* ContextBuilderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5ED310AE280278C98D8F50F /* ContextBuilderTests.swift */; };
 		45085A69102CC6B2045BEC4B /* SwiftTerm in Frameworks */ = {isa = PBXBuildFile; productRef = CDC95F7F3E51993B3B834AE0 /* SwiftTerm */; };
+		477DE86D405EA317944941A0 /* AgentLoopTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633EFF636DEFEBD3B08916AC /* AgentLoopTests.swift */; };
 		48802C0C5DF54ED611CEC84F /* SecretStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53305856679F3A11464DF689 /* SecretStoreTests.swift */; };
 		49667823C877517A287DAE78 /* SOCKS5Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A809901C46C17B1D062972 /* SOCKS5Tests.swift */; };
 		4D02A1A726327C4902EC758D /* StreamDecoderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56741099B230DBC5D66D4BE6 /* StreamDecoderTests.swift */; };
@@ -59,6 +60,7 @@
 		53305856679F3A11464DF689 /* SecretStoreTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SecretStoreTests.swift; sourceTree = "<group>"; };
 		56741099B230DBC5D66D4BE6 /* StreamDecoderTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = StreamDecoderTests.swift; sourceTree = "<group>"; };
 		5A8DD1A3BF8BDC2B4F9B48BA /* CommandHistoryModelTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CommandHistoryModelTests.swift; sourceTree = "<group>"; };
+		633EFF636DEFEBD3B08916AC /* AgentLoopTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AgentLoopTests.swift; sourceTree = "<group>"; };
 		7948693B1996CA7DBA0F67F6 /* GroupModelTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = GroupModelTests.swift; sourceTree = "<group>"; };
 		7D553C2773E080BCBEFA379B /* InheritanceTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = InheritanceTests.swift; sourceTree = "<group>"; };
 		803CF0CE7C87106C0FEA65D2 /* SSHConfigParserTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SSHConfigParserTests.swift; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 				134AD88C7A6161F15A01D9BC /* ToolSpecTests.swift */,
 				86C43BB4921DCF4B8124335C /* RiskClassifierTests.swift */,
 				18130CF1DA33127F0061FCE1 /* AgentToolsTests.swift */,
+				633EFF636DEFEBD3B08916AC /* AgentLoopTests.swift */,
 			);
 			path = pocktermTests;
 			sourceTree = "<group>";
@@ -314,6 +317,7 @@
 				37DB105098B38CD8FF507F7F /* ToolSpecTests.swift in Sources */,
 				B6ACC803B266DCBCE1216C85 /* RiskClassifierTests.swift in Sources */,
 				5890904BE1A09B36AC80F8D7 /* AgentToolsTests.swift in Sources */,
+				477DE86D405EA317944941A0 /* AgentLoopTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

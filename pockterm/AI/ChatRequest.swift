@@ -19,7 +19,7 @@ struct ChatRequest {
     /// Anthropic encoder can place it in the top-level `system` field.
     let system: String?
     /// User/assistant turns only — never the system prompt.
-    let messages: [ChatMessage]
+    var messages: [ChatMessage]
     var maxTokens: Int = 4096
     var tools: [ToolSpec] = []
 }
