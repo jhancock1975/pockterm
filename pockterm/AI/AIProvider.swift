@@ -5,6 +5,7 @@ enum AIProvider: String, CaseIterable, Codable, Identifiable {
     case anthropic
     case openai
     case openRouter
+    case huggingFace
 
     var id: String { rawValue }
 
@@ -13,6 +14,7 @@ enum AIProvider: String, CaseIterable, Codable, Identifiable {
         case .anthropic: return "Anthropic"
         case .openai: return "OpenAI"
         case .openRouter: return "OpenRouter"
+        case .huggingFace: return "Hugging Face"
         }
     }
 
@@ -22,6 +24,7 @@ enum AIProvider: String, CaseIterable, Codable, Identifiable {
         case .anthropic: return "claude-opus-4-8"
         case .openai: return "gpt-4o"
         case .openRouter: return "openai/gpt-4o"
+        case .huggingFace: return "openai/gpt-oss-120b"
         }
     }
 
@@ -30,6 +33,17 @@ enum AIProvider: String, CaseIterable, Codable, Identifiable {
         case .anthropic: return URL(string: "https://api.anthropic.com/v1/messages")!
         case .openai: return URL(string: "https://api.openai.com/v1/chat/completions")!
         case .openRouter: return URL(string: "https://openrouter.ai/api/v1/chat/completions")!
+        case .huggingFace: return URL(string: "https://router.huggingface.co/v1/chat/completions")!
+        }
+    }
+
+    /// Endpoint listing the models this provider offers.
+    var modelsURL: URL {
+        switch self {
+        case .anthropic: return URL(string: "https://api.anthropic.com/v1/models")!
+        case .openai: return URL(string: "https://api.openai.com/v1/models")!
+        case .openRouter: return URL(string: "https://openrouter.ai/api/v1/models")!
+        case .huggingFace: return URL(string: "https://router.huggingface.co/v1/models")!
         }
     }
 

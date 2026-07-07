@@ -33,17 +33,22 @@ final class TerminalSession: Identifiable {
     var title: String
     var status: Status = .connecting
     var pendingHostKey: PendingHostKey?
-    /// Commands shown in the ctrl-R-style dropdown (most recent first).
-    var suggestionCommands: [String] = []
-    var suggestionsVisible = false
-    /// Where the current command line sits, as fractions (0...1) of the terminal
-    /// height, so the dropdown can render next to it and flip above near the bottom.
-    var cursorLineTopFraction: Double = 0
-    var cursorLineHeightFraction: Double = 0.05
+    /// Set by SessionManager.open so agent tools can open further sessions.
+    weak var sessionManager: SessionManager?
 
     private let proxy = TerminalDelegateProxy()
     private var lineTracker = TypedLineTracker()
-    private var idleTask: Task<Void, Never>?
+    private var _assistant: AssistantModel?
+
+    /// This session's AI assistant, created on first use so the transcript
+    /// survives closing and reopening the assistant sheet.
+    var assistant: AssistantModel {
+        if let _assistant { return _assistant }
+        let created = AssistantModel(session: self, secretStore: secretStore,
+                                     modelContext: modelContext)
+        _assistant = created
+        return created
+    }
 
     init(host: Host, secretStore: SecretStore, modelContext: ModelContext) {
         self.host = host
@@ -53,6 +58,7 @@ final class TerminalSession: Identifiable {
         self.terminalView = TerminalView()
         terminalView.backgroundColor = .black
         terminalView.terminalDelegate = proxy
+        terminalView.inputAccessoryView = KeyBarView(terminalView: terminalView)
         proxy.onInput = { [weak self] bytes in self?.handleInput(bytes) }
         proxy.onSize = { [weak self] cols, rows in
             Task { await self?.engine.resize(cols: cols, rows: rows) }
@@ -61,38 +67,13 @@ final class TerminalSession: Identifiable {
 
     func handleInput(_ bytes: [UInt8]) {
         Task { await engine.send(bytes) }
-        // Typing dismisses the dropdown; it only reappears after the line is
-        // empty and idle for 5 seconds.
-        suggestionsVisible = false
         if let finished = lineTracker.consume(bytes) {
             recordHistory(finished)
         }
-        restartIdleTimer()
     }
 
     func sendKeys(_ bytes: [UInt8]) {
         Task { await engine.send(bytes) }
-    }
-
-    /// Tapping a dropdown row inserts the *next part* of that command (the next
-    /// whitespace-delimited token beyond what's already typed) — tap again for
-    /// the part after that, and so on. Does not press Enter.
-    func applyNextPart(of command: String) {
-        guard let part = nextPart(of: command, after: lineTracker.line) else { return }
-        let bytes = Array(part.utf8)
-        sendKeys(bytes)
-        _ = lineTracker.consume(bytes)   // keep the typed-line model in sync
-        refreshDropdown()                // stay open, re-filter to the new line
-    }
-
-    /// The next token to insert to advance `line` toward `command`.
-    private func nextPart(of command: String, after line: String) -> String? {
-        guard command.hasPrefix(line), command != line else { return nil }
-        let rest = Substring(command.dropFirst(line.count))
-        var index = rest.startIndex
-        while index < rest.endIndex, rest[index] == " " { index = rest.index(after: index) }
-        while index < rest.endIndex, rest[index] != " " { index = rest.index(after: index) }
-        return String(rest[rest.startIndex..<index])
     }
 
     private func recordHistory(_ command: String) {
@@ -106,51 +87,6 @@ final class TerminalSession: Identifiable {
             modelContext.insert(CommandHistory(hostID: hostID, command: command))
         }
         try? modelContext.save()
-    }
-
-    /// Restarts the 5-second idle timer. When it fires with an empty line, the
-    /// dropdown appears showing the most recent commands (like ctrl-R).
-    func restartIdleTimer() {
-        idleTask?.cancel()
-        idleTask = Task { [weak self] in
-            try? await Task.sleep(for: .seconds(5))
-            guard !Task.isCancelled, let self, self.lineTracker.line.isEmpty else { return }
-            self.refreshDropdown()
-        }
-    }
-
-    /// Populates the dropdown with the 3 most recent history commands that match
-    /// the current line (most recent first).
-    private func refreshDropdown() {
-        let line = lineTracker.line
-        let hostID = host.id
-        let rows = (try? modelContext.fetch(FetchDescriptor<CommandHistory>(
-            predicate: #Predicate { $0.hostID == hostID },
-            sortBy: [SortDescriptor(\.lastUsedAt, order: .reverse)]))) ?? []
-        var seen = Set<String>()
-        var commands: [String] = []
-        for row in rows where row.command.hasPrefix(line) && row.command != line {
-            if seen.insert(row.command).inserted { commands.append(row.command) }
-            if commands.count == 3 { break }
-        }
-        suggestionCommands = commands
-        if !commands.isEmpty { captureCursorLine() }
-        suggestionsVisible = !commands.isEmpty
-    }
-
-    /// Reads the on-screen cursor row so the dropdown can anchor to the command line.
-    private func captureCursorLine() {
-        let term = terminalView.getTerminal()
-        let rows = max(term.rows, 1)
-        let cursorRow = min(max(term.getCursorLocation().y, 0), rows - 1)
-        cursorLineTopFraction = Double(cursorRow) / Double(rows)
-        cursorLineHeightFraction = 1.0 / Double(rows)
-    }
-
-    /// Hides the dropdown and stops it from reappearing until the next keystroke.
-    func dismissSuggestions() {
-        suggestionsVisible = false
-        idleTask?.cancel()
     }
 
     func run(_ snippet: Snippet) {
@@ -184,7 +120,6 @@ final class TerminalSession: Identifiable {
                     }
                 })
             status = .connected
-            restartIdleTimer()
             if let startup = host.startupSnippet, !startup.isEmpty {
                 sendKeys(Array((startup + "\n").utf8))
             }
@@ -240,7 +175,6 @@ final class TerminalSession: Identifiable {
     }
 
     func disconnect() async {
-        idleTask?.cancel()
         await engine.disconnect()
     }
 }

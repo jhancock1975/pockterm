@@ -1,38 +1,51 @@
 import Testing
 @testable import pockterm
 
-@MainActor
+// Inheritance is tested through the pure resolver with plain String
+// identities — deliberately no SwiftData. Walking @Model relationships here
+// hung the test host on the iOS 26.5 simulator (600 s watchdog kill on
+// 2026-07-06/07; later profiled as a 60 s+ main-thread stall in SwiftData's
+// AnyKeyPath hashing), which poisoned every queued @MainActor test. The thin
+// SwiftData walk in resolve(host:) is exercised by the simulator smoke run.
+
 @Test func hostValueOverridesGroup() {
-    let g = HostGroup(name: "g", defaultPort: 2222)
-    let h = Host(label: "h", address: "a", port: 22, group: g)
-    let eff = EffectiveHostSettings.resolve(host: h)
-    #expect(eff.port == 22)
+    let r = EffectiveHostSettings.resolve(hostPort: 22, hostIdentity: String?.none,
+                                          chain: [(port: 2222, identity: nil)])
+    #expect(r.port == 22)
 }
 
-@MainActor
 @Test func groupDefaultUsedWhenHostUnset() {
-    let id = Identity(label: "i", username: "u", authMethod: .password)
-    let g = HostGroup(name: "g", defaultIdentity: id, defaultPort: 2222)
-    // Host with no explicit identity and sentinel port 0 means "inherit".
-    let h = Host(label: "h", address: "a", port: 0, identity: nil, group: g)
-    let eff = EffectiveHostSettings.resolve(host: h)
-    #expect(eff.port == 2222)
-    #expect(eff.identity?.username == "u")
+    // Host port 0 is the "inherit" sentinel; no host identity.
+    let r = EffectiveHostSettings.resolve(hostPort: 0, hostIdentity: String?.none,
+                                          chain: [(port: 2222, identity: "group-id")])
+    #expect(r.port == 2222)
+    #expect(r.identity == "group-id")
 }
 
-@MainActor
 @Test func nestedParentGroupDefaultUsed() {
-    let parent = HostGroup(name: "parent", defaultPort: 8022)
-    let child = HostGroup(name: "child", parent: parent) // child defines nothing
-    let h = Host(label: "h", address: "a", port: 0, group: child)
-    let eff = EffectiveHostSettings.resolve(host: h)
-    #expect(eff.port == 8022)
+    // Child group defines nothing; the parent's default applies.
+    let r = EffectiveHostSettings.resolve(
+        hostPort: 0, hostIdentity: String?.none,
+        chain: [(port: nil, identity: nil), (port: 8022, identity: nil)])
+    #expect(r.port == 8022)
 }
 
-@MainActor
+@Test func nearestAncestorWinsOverFarther() {
+    let r = EffectiveHostSettings.resolve(
+        hostPort: 0, hostIdentity: String?.none,
+        chain: [(port: 2022, identity: "near"), (port: 8022, identity: "far")])
+    #expect(r.port == 2022)
+    #expect(r.identity == "near")
+}
+
+@Test func hostIdentityWinsOverChain() {
+    let r = EffectiveHostSettings.resolve(hostPort: 0, hostIdentity: "mine",
+                                          chain: [(port: nil, identity: "group-id")])
+    #expect(r.identity == "mine")
+}
+
 @Test func defaultPort22WhenNothingSet() {
-    let h = Host(label: "h", address: "a", port: 0)
-    let eff = EffectiveHostSettings.resolve(host: h)
-    #expect(eff.port == 22)
-    #expect(eff.identity == nil)
+    let r = EffectiveHostSettings.resolve(hostPort: 0, hostIdentity: String?.none, chain: [])
+    #expect(r.port == 22)
+    #expect(r.identity == nil)
 }

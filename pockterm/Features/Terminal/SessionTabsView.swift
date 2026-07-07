@@ -3,10 +3,26 @@ import SwiftData
 import SwiftTerm
 
 /// Hosts an existing `TerminalView` (owned by a session) inside SwiftUI.
+/// Keyboard avoidance is done in UIKit via `keyboardLayoutGuide`, which stays
+/// correct across rotations where SwiftUI's automatic avoidance leaves the
+/// terminal's bottom rows behind the accessory bar.
 struct TerminalHostView: UIViewRepresentable {
     let terminalView: TerminalView
-    func makeUIView(context: Context) -> TerminalView { terminalView }
-    func updateUIView(_ uiView: TerminalView, context: Context) {}
+
+    func makeUIView(context: Context) -> UIView {
+        let container = UIView()
+        terminalView.translatesAutoresizingMaskIntoConstraints = false
+        container.addSubview(terminalView)
+        NSLayoutConstraint.activate([
+            terminalView.topAnchor.constraint(equalTo: container.topAnchor),
+            terminalView.leadingAnchor.constraint(equalTo: container.leadingAnchor),
+            terminalView.trailingAnchor.constraint(equalTo: container.trailingAnchor),
+            terminalView.bottomAnchor.constraint(equalTo: container.keyboardLayoutGuide.topAnchor),
+        ])
+        return container
+    }
+
+    func updateUIView(_ uiView: UIView, context: Context) {}
 }
 
 /// The full multi-session terminal surface: a tab strip over the active
@@ -17,6 +33,7 @@ struct SessionTabsView: View {
     @Query(sort: \Snippet.label) private var snippets: [Snippet]
     @Query(sort: \Host.label) private var hosts: [Host]
     @State private var showingHostPicker = false
+    @State private var assistantSession: TerminalSession?
 
     var body: some View {
         ZStack {
@@ -30,6 +47,8 @@ struct SessionTabsView: View {
                 }
             }
         }
+        // Keyboard avoidance is handled in UIKit by TerminalHostView.
+        .ignoresSafeArea(.keyboard)
         .alert("Verify Host Key", isPresented: hostKeyPresented,
                presenting: manager.active?.pendingHostKey) { pending in
             Button(pending.storedFingerprint == nil ? "Accept" : "Accept Changed Key",
@@ -50,6 +69,10 @@ struct SessionTabsView: View {
                 showingHostPicker = false
             }
         }
+        .sheet(item: $assistantSession) { session in
+            AssistantView(model: session.assistant, host: session.host,
+                          secretStore: manager.secretStore)
+        }
     }
 
     /// Compact header: the active session's name centered, a red close button
@@ -66,6 +89,12 @@ struct SessionTabsView: View {
 
                 HStack(spacing: 12) {
                     Spacer()
+                    if let session = manager.active {
+                        Button { assistantSession = session } label: {
+                            Image(systemName: "sparkles")
+                        }
+                        .accessibilityLabel("AI Assistant")
+                    }
                     Button { showingHostPicker = true } label: {
                         Image(systemName: "plus")
                     }
@@ -168,34 +197,6 @@ struct SessionTabsView: View {
                     .foregroundStyle(.white)
             case .connected:
                 EmptyView()
-            }
-        }
-        .overlay {
-            if session.suggestionsVisible {
-                suggestionOverlay(session)
-            }
-        }
-    }
-
-    /// Floats the dropdown next to the current command line — below it normally,
-    /// flipping above when the line is near the bottom — with a transparent layer
-    /// that dismisses on a tap anywhere else.
-    private func suggestionOverlay(_ session: TerminalSession) -> some View {
-        GeometryReader { geo in
-            let height = geo.size.height
-            let lineTop = session.cursorLineTopFraction * height
-            let lineBottom = lineTop + session.cursorLineHeightFraction * height
-            let estimated = CGFloat(session.suggestionCommands.count) * 46 + 8
-            let fitsBelow = lineBottom + estimated <= height
-            let y = fitsBelow ? lineBottom + 4 : max(0, lineTop - estimated - 4)
-            ZStack(alignment: .topLeading) {
-                Color.clear
-                    .contentShape(Rectangle())
-                    .onTapGesture { session.dismissSuggestions() }
-                SuggestionDropdown(commands: session.suggestionCommands) {
-                    session.applyNextPart(of: $0)
-                }
-                .offset(y: y)
             }
         }
     }

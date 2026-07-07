@@ -1,7 +1,6 @@
 import SwiftUI
 
-/// Top-level tab navigation. Snippets, Port Forwarding, and Settings are
-/// placeholders filled in by later phases.
+/// Top-level tab navigation.
 struct RootTabView: View {
     let secretStore: SecretStore
     let sessions: SessionManager
@@ -21,7 +20,7 @@ struct RootTabView: View {
             ForwardsListView(runner: forwards)
                 .tabItem { Label("Forwarding", systemImage: "arrow.left.arrow.right") }
 
-            PlaceholderTab(title: "Settings", systemImage: "gearshape")
+            SettingsHomeView(secretStore: secretStore)
                 .tabItem { Label("Settings", systemImage: "gearshape") }
         }
         .fullScreenCover(isPresented: presentingSessions) {
@@ -35,14 +34,23 @@ struct RootTabView: View {
     }
 }
 
-private struct PlaceholderTab: View {
-    let title: String
-    let systemImage: String
+private struct SettingsHomeView: View {
+    let secretStore: SecretStore
     var body: some View {
         NavigationStack {
-            ContentUnavailableView(title, systemImage: systemImage,
-                                   description: Text("Coming in a later phase."))
-                .navigationTitle(title)
+            List {
+                NavigationLink {
+                    AISettingsView(secretStore: secretStore)
+                } label: {
+                    Label("AI Assistant", systemImage: "sparkles")
+                }
+                NavigationLink {
+                    KeyBarSettingsView()
+                } label: {
+                    Label("Key Bar", systemImage: "keyboard")
+                }
+            }
+            .navigationTitle("Settings")
         }
     }
 }

@@ -8,15 +8,18 @@ final class AppContainer {
     let secretStore: SecretStore
     let sessions: SessionManager
     let forwards: ForwardRunner
+    let modelRefresher: ModelCatalogRefresher
 
     init() {
         let container = try! ModelContainer(
             for: Host.self, Identity.self, SSHKeyRecord.self, KnownHostRecord.self,
-            HostGroup.self, Snippet.self, PortForward.self, CommandHistory.self)
+            HostGroup.self, Snippet.self, PortForward.self, CommandHistory.self,
+            AISettings.self)
         let store = KeychainSecretStore()
         modelContainer = container
         secretStore = store
         sessions = SessionManager(secretStore: store, modelContext: container.mainContext)
         forwards = ForwardRunner(secretStore: store, modelContext: container.mainContext)
+        modelRefresher = ModelCatalogRefresher(secretStore: store)
     }
 }
