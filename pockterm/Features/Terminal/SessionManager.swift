@@ -22,6 +22,7 @@ final class SessionManager {
 
     func open(_ host: Host) {
         let session = TerminalSession(host: host, secretStore: secretStore, modelContext: modelContext)
+        session.sessionManager = self
         sessions.append(session)
         activeID = session.id
         Task { await session.start() }

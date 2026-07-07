@@ -33,6 +33,8 @@ final class TerminalSession: Identifiable {
     var title: String
     var status: Status = .connecting
     var pendingHostKey: PendingHostKey?
+    /// Set by SessionManager.open so agent tools can open further sessions.
+    weak var sessionManager: SessionManager?
 
     private let proxy = TerminalDelegateProxy()
     private var lineTracker = TypedLineTracker()

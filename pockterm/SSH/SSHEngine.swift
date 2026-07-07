@@ -109,6 +109,18 @@ actor SSHEngine {
         }
     }
 
+    /// Runs one command on a fresh exec channel of the live connection and
+    /// returns its merged stdout+stderr. The interactive PTY is not disturbed.
+    /// This Citadel release routes stderr into a thrown TTYSTDError instead of
+    /// merging streams, so merge in a remote subshell — the agent wants the
+    /// combined text either way.
+    func exec(_ command: String, maxOutputBytes: Int = 64 * 1024) async throws -> String {
+        guard let client else { throw SSHEngineError.notConnected }
+        let buffer = try await client.executeCommand("( \(command) ) 2>&1",
+                                                     maxResponseSize: maxOutputBytes)
+        return String(decoding: Array(buffer.readableBytesView), as: UTF8.self)
+    }
+
     func send(_ bytes: [UInt8]) {
         inputContinuation?.yield(.bytes(bytes))
     }
