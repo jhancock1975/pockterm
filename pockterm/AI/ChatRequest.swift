@@ -2,9 +2,13 @@ import Foundation
 
 /// One message in a chat exchange with the assistant.
 struct ChatMessage: Equatable {
-    enum Role: String { case system, user, assistant }
+    enum Role: String { case system, user, assistant, tool }
     let role: Role
     let text: String
+    /// Tool invocations attached to an assistant turn.
+    var toolCalls: [ToolCall] = []
+    /// For role .tool: which call this message answers.
+    var toolCallID: String? = nil
 }
 
 /// A provider-agnostic chat request; `RequestEncoder` turns it into each
@@ -17,4 +21,5 @@ struct ChatRequest {
     /// User/assistant turns only — never the system prompt.
     let messages: [ChatMessage]
     var maxTokens: Int = 4096
+    var tools: [ToolSpec] = []
 }
