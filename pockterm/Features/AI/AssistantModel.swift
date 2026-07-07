@@ -100,8 +100,10 @@ final class AssistantModel {
         streamTask = Task { [weak self] in
             guard let self else { return }
             do {
-                for try await delta in await client.stream(request, provider: provider, apiKey: apiKey) {
-                    messages[messages.count - 1].text += delta
+                for try await event in await client.stream(request, provider: provider, apiKey: apiKey) {
+                    if case .text(let delta) = event {
+                        messages[messages.count - 1].text += delta
+                    }
                 }
             } catch is CancellationError {
                 // User tapped stop; keep whatever streamed so far.

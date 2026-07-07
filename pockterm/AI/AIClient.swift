@@ -19,11 +19,11 @@ struct AIClientError: LocalizedError {
     }
 }
 
-/// Streams a chat completion over URLSession, yielding assistant text deltas
-/// as they arrive.
+/// Streams a chat completion over URLSession, yielding text deltas and
+/// completed tool calls as they arrive.
 actor AIClient {
     func stream(_ request: ChatRequest, provider: AIProvider,
-                apiKey: String) -> AsyncThrowingStream<String, Error> {
+                apiKey: String) -> AsyncThrowingStream<AIStreamEvent, Error> {
         var urlRequest = URLRequest(url: provider.baseURL)
         urlRequest.httpMethod = "POST"
         for (field, value) in RequestEncoder.headers(for: provider, apiKey: apiKey) {
@@ -47,10 +47,9 @@ actor AIClient {
                     }
                     let decoder = StreamDecoder(provider: provider)
                     for try await line in bytes.lines {
-                        if let delta = decoder.text(from: line) {
-                            continuation.yield(delta)
-                        }
+                        for event in decoder.events(from: line) { continuation.yield(event) }
                     }
+                    for event in decoder.finish() { continuation.yield(event) }
                     continuation.finish()
                 } catch {
                     continuation.finish(throwing: error)
