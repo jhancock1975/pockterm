@@ -90,7 +90,14 @@ struct SessionTabsView: View {
                 HStack(spacing: 12) {
                     Spacer()
                     if let session = manager.active {
-                        Button { assistantSession = session } label: {
+                        Button {
+                            // Drop the terminal's keyboard first: a sheet
+                            // presented under an already-visible keyboard gets
+                            // no keyboard notification, so its input bar would
+                            // lay out (covered) behind it.
+                            session.terminalView.resignFirstResponder()
+                            assistantSession = session
+                        } label: {
                             Image(systemName: "sparkles")
                         }
                         .accessibilityLabel("AI Assistant")
