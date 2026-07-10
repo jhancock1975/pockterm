@@ -117,8 +117,16 @@ struct HostsListView: View {
         }
     }
 
+    /// Tapping a host with a live session returns to it rather than opening a
+    /// duplicate; use the terminal's + button for a second session to a host.
     private func hostRow(_ host: Host) -> some View {
-        Button { sessions.open(host) } label: { row(host) }
+        Button {
+            if let existing = sessions.session(for: host) {
+                sessions.focus(existing)
+            } else {
+                sessions.open(host)
+            }
+        } label: { row(host) }
             .swipeActions(edge: .leading) {
                 Button("Files") { filesHost = host }.tint(.indigo)
             }
@@ -138,6 +146,11 @@ struct HostsListView: View {
                     .font(.subheadline).foregroundStyle(.secondary)
             }
             Spacer()
+            if sessions.session(for: host) != nil {
+                Image(systemName: "circle.fill")
+                    .foregroundStyle(.green).font(.system(size: 8))
+                    .accessibilityLabel("Session open")
+            }
             if host.isFavorite {
                 Image(systemName: "star.fill").foregroundStyle(.yellow).font(.caption)
             }

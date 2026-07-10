@@ -14,6 +14,11 @@ struct AssistantView: View {
     @State private var importingLocalFile = false
     @State private var pickingRemoteFile = false
     @State private var attachmentError: String?
+    @FocusState private var promptFocused: Bool
+    @State private var keyboardTop: CGFloat = .infinity
+    @State private var containerBottom: CGFloat = 0
+
+    private var keyboardOverlap: CGFloat { max(0, containerBottom - keyboardTop) }
 
     var body: some View {
         NavigationStack {
@@ -30,7 +35,10 @@ struct AssistantView: View {
                     approvalCard(pending)
                 }
                 inputBar
+                    .padding(.bottom, keyboardOverlap)
+                    .animation(.easeOut(duration: 0.2), value: keyboardOverlap)
             }
+            .background(keyboardOverlapReader)
             .navigationTitle("Assistant")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -40,6 +48,13 @@ struct AssistantView: View {
                 ToolbarItem(placement: .primaryAction) { attachMenu }
             }
         }
+        // Keyboard avoidance is done manually (`keyboardOverlapReader` +
+        // `inputBar` padding): SwiftUI's automatic avoidance uses a keyboard
+        // frame that excludes the predictive bar, leaving the input bar
+        // behind it (same OS defect TerminalHostView works around). Must be
+        // on the sheet root — inside the NavigationStack it can't undo the
+        // inset applied out here.
+        .ignoresSafeArea(.keyboard)
         .fileImporter(isPresented: $importingLocalFile,
                       allowedContentTypes: [.data], allowsMultipleSelection: false) { result in
             importLocalFile(result)
@@ -132,12 +147,38 @@ struct AssistantView: View {
         .accessibilityLabel("Attach a file")
     }
 
+    /// Tracks how far the keyboard overlaps the bottom of the chat column so
+    /// `inputBar` can pad itself clear of it. Keyboard top and container
+    /// bottom move independently (the notification can fire while the sheet
+    /// is still animating in), so both are tracked and the overlap recomputed
+    /// on either change.
+    private var keyboardOverlapReader: some View {
+        GeometryReader { geo in
+            let bottom = geo.frame(in: .global).maxY
+            Color.clear
+                .onAppear { containerBottom = bottom }
+                .onChange(of: bottom) { containerBottom = bottom }
+                .onReceive(NotificationCenter.default.publisher(
+                    for: UIResponder.keyboardWillChangeFrameNotification)) { note in
+                    guard let end = (note.userInfo?[UIResponder.keyboardFrameEndUserInfoKey]
+                                     as? NSValue)?.cgRectValue else { return }
+                    keyboardTop = end.minY
+                }
+                .onReceive(NotificationCenter.default.publisher(
+                    for: UIResponder.keyboardWillHideNotification)) { _ in
+                    keyboardTop = .infinity
+                }
+        }
+    }
+
     private var inputBar: some View {
         HStack(spacing: 8) {
             TextField("Ask the assistant…", text: $prompt, axis: .vertical)
                 .lineLimit(1...4)
                 .textFieldStyle(.roundedBorder)
+                .focused($promptFocused)
                 .onSubmit(send)
+                .onAppear { promptFocused = true }
             if model.isStreaming {
                 Button { model.stop() } label: {
                     Image(systemName: "stop.circle.fill").font(.title2)

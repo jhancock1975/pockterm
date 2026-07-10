@@ -29,7 +29,6 @@ struct TerminalHostView: UIViewRepresentable {
 /// session's terminal, accessory key bar, snippet runner, and host-key notice.
 struct SessionTabsView: View {
     @Bindable var manager: SessionManager
-    @Environment(\.dismiss) private var dismiss
     @Query(sort: \Snippet.label) private var snippets: [Snippet]
     @Query(sort: \Host.label) private var hosts: [Host]
     @State private var showingHostPicker = false
@@ -90,7 +89,14 @@ struct SessionTabsView: View {
                 HStack(spacing: 12) {
                     Spacer()
                     if let session = manager.active {
-                        Button { assistantSession = session } label: {
+                        Button {
+                            // Drop the terminal's keyboard first: a sheet
+                            // presented under an already-visible keyboard gets
+                            // no keyboard notification, so its input bar would
+                            // lay out (covered) behind it.
+                            session.terminalView.resignFirstResponder()
+                            assistantSession = session
+                        } label: {
                             Image(systemName: "sparkles")
                         }
                         .accessibilityLabel("AI Assistant")
@@ -109,9 +115,10 @@ struct SessionTabsView: View {
                         }
                         .disabled(session.status != .connected)
                     }
-                    Button { manager.closeAll(); dismiss() } label: {
+                    Button { manager.minimize() } label: {
                         Image(systemName: "chevron.down")
                     }
+                    .accessibilityLabel("Minimize")
                 }
             }
 
