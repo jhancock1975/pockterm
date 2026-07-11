@@ -24,12 +24,10 @@ struct RootTabView: View {
                 .tabItem { Label("Settings", systemImage: "gearshape") }
         }
         // The system's mini-player slot: sits above the tab bar rather than
-        // covering it, the way Music parks a playing track.
-        .tabViewBottomAccessory {
-            if sessions.isMinimized, let active = sessions.active {
-                MinimizedSessionBar(manager: sessions, active: active)
-            }
-        }
+        // covering it, the way Music parks a playing track. Falls back to a
+        // bottom safe-area inset on iOS < 26, where the accessory API and its
+        // glass background don't exist.
+        .minimizedSessionAccessory(sessions: sessions)
         .fullScreenCover(isPresented: presentingSessions) {
             SessionTabsView(manager: sessions)
         }
@@ -71,6 +69,30 @@ private struct MinimizedSessionBar: View {
         .buttonStyle(.plain)
         .tint(.primary)
         .accessibilityLabel("Resume session \(active.title)")
+    }
+}
+
+private extension View {
+    /// Parks the minimized-session bar above the tab bar. Uses the iOS 26
+    /// `tabViewBottomAccessory` slot (with its own glass background) where
+    /// available, and falls back to a bottom safe-area inset on iOS < 26.
+    @ViewBuilder
+    func minimizedSessionAccessory(sessions: SessionManager) -> some View {
+        if #available(iOS 26.0, *) {
+            self.tabViewBottomAccessory {
+                if sessions.isMinimized, let active = sessions.active {
+                    MinimizedSessionBar(manager: sessions, active: active)
+                }
+            }
+        } else {
+            self.safeAreaInset(edge: .bottom) {
+                if sessions.isMinimized, let active = sessions.active {
+                    MinimizedSessionBar(manager: sessions, active: active)
+                        .padding(.vertical, 8)
+                        .background(.bar)
+                }
+            }
+        }
     }
 }
 
