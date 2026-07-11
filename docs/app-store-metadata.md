@@ -49,7 +49,7 @@ https://github.com/jhancock1975/pockterm   (or a dedicated support page)
 https://github.com/jhancock1975/pockterm
 
 ## Privacy Policy URL (required)
-<public URL where you host docs/privacy-policy.md>
+https://jhancock1975.github.io/pockterm/privacy.html   (live — GitHub Pages, gh-pages branch)
 
 ## Category
 Primary: Developer Tools    Secondary: Utilities
@@ -85,6 +85,6 @@ Notes on guidelines:
 
 ## ACTION ITEMS you must complete before submitting
 1. Stand up a throwaway demo SSH host and fill in the credentials above (biggest rejection risk).
-2. Host the privacy policy and paste its URL.
+2. ~~Host the privacy policy~~ DONE → https://jhancock1975.github.io/pockterm/privacy.html — paste into App Store Connect.
 3. Answer export compliance (see docs/app-store-submission.md §0b).
 4. Capture screenshots: 6.9" iPhone and 13" iPad (device family is 1,2).
