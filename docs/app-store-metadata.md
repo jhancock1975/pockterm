@@ -62,12 +62,12 @@ is user-supplied content, not app content.
 
 ## App Review Notes (CRITICAL — put in the "Notes" field)
 Pockterm is an SSH/SFTP client. To review the core functionality you need a server to
-connect to. Please use the following demo host:
+connect to. A public demo SSH host is standing by:
 
-    Host: <demo-host-or-ip>
+    Host: 100.49.123.137
     Port: 22
-    Username: <demo-user>
-    Password: <demo-password>       (or attach a demo private key)
+    Username: demo
+    Password: Pockterm-Review-3f9889
 
 Steps: open the Hosts tab → tap + → enter the above → Connect. You'll get a live shell.
 For SFTP, open the connected session's file browser. The AI Assistant (Settings → AI
