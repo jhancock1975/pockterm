@@ -19,6 +19,7 @@
 		cc235449c0efc46ca733d15d /* TerminalThemeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23b1ec60d3ef9f3ca1877944 /* TerminalThemeTests.swift */; };
 		37b50605ace3c2a4f1b3f24ae0f69e6d /* TerminalFontTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5c7ad9f523fe6279560634bd9d35d8d4 /* TerminalFontTests.swift */; };
 		7b8c9d0e1f2g3h4i5j6k7l8m9n0o1p2q /* TerminalZoomTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1a2b3c4d5e6f7g8h9i0j1k2l3m4n5o6p /* TerminalZoomTests.swift */; };
+		d02317dbdd734a519d5ffe7d /* EffectiveAppearanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1c9757c22ddc472d8210b1df /* EffectiveAppearanceTests.swift */; };
 		37DB105098B38CD8FF507F7F /* ToolSpecTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134AD88C7A6161F15A01D9BC /* ToolSpecTests.swift */; };
 		3F1632B9C4083082DB032D69 /* ContextBuilderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5ED310AE280278C98D8F50F /* ContextBuilderTests.swift */; };
 		45085A69102CC6B2045BEC4B /* SwiftTerm in Frameworks */ = {isa = PBXBuildFile; productRef = CDC95F7F3E51993B3B834AE0 /* SwiftTerm */; };
@@ -84,6 +85,7 @@
 		23b1ec60d3ef9f3ca1877944 /* TerminalThemeTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TerminalThemeTests.swift; sourceTree = "<group>"; };
 		5c7ad9f523fe6279560634bd9d35d8d4 /* TerminalFontTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TerminalFontTests.swift; sourceTree = "<group>"; };
 		1a2b3c4d5e6f7g8h9i0j1k2l3m4n5o6p /* TerminalZoomTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TerminalZoomTests.swift; sourceTree = "<group>"; };
+		1c9757c22ddc472d8210b1df /* EffectiveAppearanceTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EffectiveAppearanceTests.swift; sourceTree = "<group>"; };
 		ECA036038EE00E63BE543278 /* RequestEncoderTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RequestEncoderTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -153,6 +155,7 @@
 			23b1ec60d3ef9f3ca1877944 /* TerminalThemeTests.swift */,
 			5c7ad9f523fe6279560634bd9d35d8d4 /* TerminalFontTests.swift */,
 			1a2b3c4d5e6f7g8h9i0j1k2l3m4n5o6p /* TerminalZoomTests.swift */,
+			1c9757c22ddc472d8210b1df /* EffectiveAppearanceTests.swift */,
 				45F04BEA86184EFB2FA84445 /* ModelTests.swift */,
 				53305856679F3A11464DF689 /* SecretStoreTests.swift */,
 				E1CC17F2AF1DC22FBB595ADF /* KeyManagerTests.swift */,
@@ -309,6 +312,7 @@
 			cc235449c0efc46ca733d15d /* TerminalThemeTests.swift in Sources */,
 			37b50605ace3c2a4f1b3f24ae0f69e6d /* TerminalFontTests.swift in Sources */,
 			7b8c9d0e1f2g3h4i5j6k7l8m9n0o1p2q /* TerminalZoomTests.swift in Sources */,
+			d02317dbdd734a519d5ffe7d /* EffectiveAppearanceTests.swift in Sources */,
 				0073731D3B118E146274D836 /* ModelTests.swift in Sources */,
 				48802C0C5DF54ED611CEC84F /* SecretStoreTests.swift in Sources */,
 				2688A6EDE5C2905829E6D8FC /* KeyManagerTests.swift in Sources */,
