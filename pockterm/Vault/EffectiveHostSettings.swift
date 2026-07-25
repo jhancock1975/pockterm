@@ -40,15 +40,18 @@ struct EffectiveHostSettings {
 
     @MainActor
     static func resolve(host: Host) -> EffectiveHostSettings {
-        var chain: [(port: Int?, identity: Identity?)] = []
+        var portIdentityChain: [(port: Int?, identity: Identity?)] = []
+        var appearanceChain: [(theme: String?, font: String?, size: Int?)] = []
         var group = host.group
         while let g = group {
-            chain.append((g.defaultPort, g.defaultIdentity))
+            portIdentityChain.append((g.defaultPort, g.defaultIdentity))
+            appearanceChain.append((g.defaultThemeID, g.defaultFontID, g.defaultFontSize))
             group = g.parent
         }
-        let resolved = resolve(hostPort: host.port, hostIdentity: host.identity, chain: chain)
-        // Temporary until Task 5 wires model appearance fields into the chain.
-        let appear = resolveAppearance(hostTheme: nil, hostFont: nil, hostSize: 0, chain: [])
+        let resolved = resolve(hostPort: host.port, hostIdentity: host.identity,
+                               chain: portIdentityChain)
+        let appear = resolveAppearance(hostTheme: host.themeID, hostFont: host.fontID,
+                                       hostSize: host.fontSize, chain: appearanceChain)
         return EffectiveHostSettings(port: resolved.port, identity: resolved.identity,
                                      themeID: appear.theme, fontID: appear.font,
                                      fontSize: appear.size)
