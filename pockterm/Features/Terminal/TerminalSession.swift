@@ -30,6 +30,10 @@ final class TerminalSession: Identifiable {
     let engine = SSHEngine()
     let terminalView: TerminalView
 
+    /// Session-local font size: seeded from resolved settings, mutated live by
+    /// pinch-zoom, and never written back to the model (zoom is session-only).
+    var currentFontSize: Int = 14
+
     var title: String
     var status: Status = .connecting
     var pendingHostKey: PendingHostKey?
@@ -56,13 +60,30 @@ final class TerminalSession: Identifiable {
         self.modelContext = modelContext
         self.title = host.label
         self.terminalView = TerminalView()
-        terminalView.backgroundColor = .black
         terminalView.terminalDelegate = proxy
         terminalView.inputAccessoryView = KeyBarView(terminalView: terminalView)
         proxy.onInput = { [weak self] bytes in self?.handleInput(bytes) }
         proxy.onSize = { [weak self] cols, rows in
             Task { await self?.engine.resize(cols: cols, rows: rows) }
         }
+        self.currentFontSize = EffectiveHostSettings.resolve(host: host).fontSize
+        applyAppearance()
+    }
+
+    /// Resolves this host's effective appearance and applies it to the
+    /// terminal view (font + full ANSI palette + native fg/bg/cursor).
+    func applyAppearance() {
+        let s = EffectiveHostSettings.resolve(host: host)
+        let theme = TerminalTheme.theme(id: s.themeID)
+        let fontID = TerminalFont.font(id: s.fontID).id
+        let size = CGFloat(currentFontSize)
+        terminalView.font = UIFont(name: fontID, size: size)
+            ?? UIFont.monospacedSystemFont(ofSize: size, weight: .regular)
+        if theme.ansi.count == 16 { terminalView.installColors(theme.ansi) }
+        terminalView.nativeForegroundColor = TerminalTheme.uiColor(theme.foreground)
+        terminalView.nativeBackgroundColor = TerminalTheme.uiColor(theme.background)
+        terminalView.backgroundColor = TerminalTheme.uiColor(theme.background)
+        terminalView.caretColor = TerminalTheme.uiColor(theme.cursor)
     }
 
     func handleInput(_ bytes: [UInt8]) {

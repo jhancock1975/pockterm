@@ -1,4 +1,5 @@
 import SwiftTerm
+import UIKit
 
 /// A curated terminal color scheme. Pure value type — no UIKit/SwiftData
 /// coupling — so it is fully unit-testable. `ansi` is the 16 ANSI colors in
@@ -52,5 +53,13 @@ struct TerminalTheme: Identifiable {
 
     static func theme(id: String) -> TerminalTheme {
         all.first { $0.id == id } ?? all[0]
+    }
+}
+
+extension TerminalTheme {
+    /// Converts a SwiftTerm 16-bit `Color` to a `UIColor`.
+    static func uiColor(_ c: Color) -> UIColor {
+        UIColor(red: CGFloat(c.red) / 65535, green: CGFloat(c.green) / 65535,
+                blue: CGFloat(c.blue) / 65535, alpha: 1)
     }
 }
