@@ -16,6 +16,7 @@
 		2E286BE151022704117C8332 /* SessionManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D8FC038179DE3F367473341 /* SessionManagerTests.swift */; };
 		2FE3769B7B4264677F1063C1 /* AISettingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC83DF8560A2D3E865F9D47E /* AISettingsTests.swift */; };
 		31A6CFFB7C9D5DCC2F6BE51C /* PlaceholderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F506163220C8FBDCD103A3 /* PlaceholderTests.swift */; };
+		1A2B3C4D5E6F7A8B9C0D1E2F /* KeepAliveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3E4D5C6B7A8C9D0E1F2A3B /* KeepAliveTests.swift */; };
 		E77D0A70809A41FAAC8EBBDA /* TerminalThemeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C261179C05D450E8C92DC1C /* TerminalThemeTests.swift */; };
 		D97291B755A14414B00C4D4F /* TerminalFontTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562765E9CB7544E78699E906 /* TerminalFontTests.swift */; };
 		C56195CBA2394C858773125E /* TerminalZoomTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AF5E29ECC5401F860FC7A4 /* TerminalZoomTests.swift */; };
@@ -82,6 +83,7 @@
 		E1CC17F2AF1DC22FBB595ADF /* KeyManagerTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = KeyManagerTests.swift; sourceTree = "<group>"; };
 		E5ED310AE280278C98D8F50F /* ContextBuilderTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ContextBuilderTests.swift; sourceTree = "<group>"; };
 		E6F506163220C8FBDCD103A3 /* PlaceholderTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PlaceholderTests.swift; sourceTree = "<group>"; };
+		2F3E4D5C6B7A8C9D0E1F2A3B /* KeepAliveTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = KeepAliveTests.swift; sourceTree = "<group>"; };
 		9C261179C05D450E8C92DC1C /* TerminalThemeTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TerminalThemeTests.swift; sourceTree = "<group>"; };
 		562765E9CB7544E78699E906 /* TerminalFontTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TerminalFontTests.swift; sourceTree = "<group>"; };
 		81AF5E29ECC5401F860FC7A4 /* TerminalZoomTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TerminalZoomTests.swift; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				E6F506163220C8FBDCD103A3 /* PlaceholderTests.swift */,
+				2F3E4D5C6B7A8C9D0E1F2A3B /* KeepAliveTests.swift */,
 			9C261179C05D450E8C92DC1C /* TerminalThemeTests.swift */,
 			562765E9CB7544E78699E906 /* TerminalFontTests.swift */,
 			81AF5E29ECC5401F860FC7A4 /* TerminalZoomTests.swift */,
@@ -309,6 +312,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				31A6CFFB7C9D5DCC2F6BE51C /* PlaceholderTests.swift in Sources */,
+				1A2B3C4D5E6F7A8B9C0D1E2F /* KeepAliveTests.swift in Sources */,
 			E77D0A70809A41FAAC8EBBDA /* TerminalThemeTests.swift in Sources */,
 			D97291B755A14414B00C4D4F /* TerminalFontTests.swift in Sources */,
 			C56195CBA2394C858773125E /* TerminalZoomTests.swift in Sources */,
