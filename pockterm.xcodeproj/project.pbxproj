@@ -21,6 +21,7 @@
 		D97291B755A14414B00C4D4F /* TerminalFontTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562765E9CB7544E78699E906 /* TerminalFontTests.swift */; };
 		C56195CBA2394C858773125E /* TerminalZoomTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81AF5E29ECC5401F860FC7A4 /* TerminalZoomTests.swift */; };
 		6860B8AD8A0243FF81F2026A /* EffectiveAppearanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A01751CC7CF4FA8A551773B /* EffectiveAppearanceTests.swift */; };
+		3C4D5E6F7A8B9C0D1E2F3A4B /* EffectiveKeepAliveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D3E4F5A6B7C8D9E0F1A2B3C /* EffectiveKeepAliveTests.swift */; };
 		37DB105098B38CD8FF507F7F /* ToolSpecTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134AD88C7A6161F15A01D9BC /* ToolSpecTests.swift */; };
 		3F1632B9C4083082DB032D69 /* ContextBuilderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5ED310AE280278C98D8F50F /* ContextBuilderTests.swift */; };
 		45085A69102CC6B2045BEC4B /* SwiftTerm in Frameworks */ = {isa = PBXBuildFile; productRef = CDC95F7F3E51993B3B834AE0 /* SwiftTerm */; };
@@ -88,6 +89,7 @@
 		562765E9CB7544E78699E906 /* TerminalFontTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TerminalFontTests.swift; sourceTree = "<group>"; };
 		81AF5E29ECC5401F860FC7A4 /* TerminalZoomTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TerminalZoomTests.swift; sourceTree = "<group>"; };
 		0A01751CC7CF4FA8A551773B /* EffectiveAppearanceTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EffectiveAppearanceTests.swift; sourceTree = "<group>"; };
+		2D3E4F5A6B7C8D9E0F1A2B3C /* EffectiveKeepAliveTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EffectiveKeepAliveTests.swift; sourceTree = "<group>"; };
 		ECA036038EE00E63BE543278 /* RequestEncoderTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RequestEncoderTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -159,6 +161,7 @@
 			562765E9CB7544E78699E906 /* TerminalFontTests.swift */,
 			81AF5E29ECC5401F860FC7A4 /* TerminalZoomTests.swift */,
 			0A01751CC7CF4FA8A551773B /* EffectiveAppearanceTests.swift */,
+			2D3E4F5A6B7C8D9E0F1A2B3C /* EffectiveKeepAliveTests.swift */,
 				45F04BEA86184EFB2FA84445 /* ModelTests.swift */,
 				53305856679F3A11464DF689 /* SecretStoreTests.swift */,
 				E1CC17F2AF1DC22FBB595ADF /* KeyManagerTests.swift */,
@@ -317,6 +320,7 @@
 			D97291B755A14414B00C4D4F /* TerminalFontTests.swift in Sources */,
 			C56195CBA2394C858773125E /* TerminalZoomTests.swift in Sources */,
 			6860B8AD8A0243FF81F2026A /* EffectiveAppearanceTests.swift in Sources */,
+			3C4D5E6F7A8B9C0D1E2F3A4B /* EffectiveKeepAliveTests.swift in Sources */,
 				0073731D3B118E146274D836 /* ModelTests.swift in Sources */,
 				48802C0C5DF54ED611CEC84F /* SecretStoreTests.swift in Sources */,
 				2688A6EDE5C2905829E6D8FC /* KeyManagerTests.swift in Sources */,
