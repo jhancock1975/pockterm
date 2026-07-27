@@ -66,4 +66,16 @@ struct EffectiveHostSettings {
                                      themeID: appear.theme, fontID: appear.font,
                                      fontSize: appear.size)
     }
+
+    @MainActor
+    static func resolveKeepAlive(host: Host, globalDefault: Int) -> Int {
+        var chain: [Int?] = []
+        var group = host.group
+        while let g = group {
+            chain.append(g.defaultKeepAliveSeconds)
+            group = g.parent
+        }
+        return resolveKeepAlive(hostValue: host.keepAliveSeconds, chain: chain,
+                                globalDefault: globalDefault)
+    }
 }

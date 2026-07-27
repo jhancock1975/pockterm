@@ -14,10 +14,11 @@ import SwiftData
     var defaultThemeID: String?
     var defaultFontID: String?
     var defaultFontSize: Int?
+    var defaultKeepAliveSeconds: Int?
     init(id: UUID = UUID(), name: String, parent: HostGroup? = nil,
          defaultIdentity: Identity? = nil, defaultPort: Int? = nil,
          defaultThemeID: String? = nil, defaultFontID: String? = nil,
-         defaultFontSize: Int? = nil) {
+         defaultFontSize: Int? = nil, defaultKeepAliveSeconds: Int? = nil) {
         self.id = id
         self.name = name
         self.parent = parent
@@ -26,5 +27,6 @@ import SwiftData
         self.defaultThemeID = defaultThemeID
         self.defaultFontID = defaultFontID
         self.defaultFontSize = defaultFontSize
+        self.defaultKeepAliveSeconds = defaultKeepAliveSeconds
     }
 }
