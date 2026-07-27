@@ -59,7 +59,7 @@ struct HostEditorView: View {
                             value: $host.fontSize,
                             in: 0...TerminalZoom.maxSize)
                     ThemePreviewRow(themeID: host.themeID ?? "default",
-                                    fontID: host.fontID ?? "Menlo-Regular")
+                                    fontID: host.fontID ?? "system")
                 }
             }
             .navigationTitle(host.label.isEmpty ? "New Host" : host.label)

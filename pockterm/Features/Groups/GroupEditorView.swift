@@ -56,7 +56,7 @@ struct GroupEditorView: View {
                         }
                     }
                     ThemePreviewRow(themeID: group.defaultThemeID ?? "default",
-                                    fontID: group.defaultFontID ?? "Menlo-Regular")
+                                    fontID: group.defaultFontID ?? "system")
                 }
             }
             .navigationTitle(group.name.isEmpty ? "New Group" : group.name)

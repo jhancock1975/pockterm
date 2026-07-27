@@ -33,8 +33,8 @@ struct EffectiveHostSettings {
         chain: [(theme: String?, font: String?, size: Int?)]
     ) -> (theme: String, font: String, size: Int) {
         let theme = hostTheme ?? chain.compactMap { $0.theme }.first ?? "default"
-        let font = hostFont ?? chain.compactMap { $0.font }.first ?? "Menlo-Regular"
-        let size = hostSize != 0 ? hostSize : (chain.compactMap { $0.size }.first ?? 14)
+        let font = hostFont ?? chain.compactMap { $0.font }.first ?? "system"
+        let size = hostSize != 0 ? hostSize : (chain.compactMap { $0.size }.first ?? 12)
         return (theme, font, size)
     }
 

@@ -9,6 +9,7 @@ struct TerminalFont: Identifiable {
     let name: String
 
     static let all: [TerminalFont] = [
+        TerminalFont(id: "system", name: "System"),
         TerminalFont(id: "Menlo-Regular", name: "Menlo"),
         TerminalFont(id: "SFMono-Regular", name: "SF Mono"),
         TerminalFont(id: "CourierNewPSMT", name: "Courier New"),
@@ -16,7 +17,7 @@ struct TerminalFont: Identifiable {
     ]
 
     static func available() -> [TerminalFont] {
-        all.filter { UIFont(name: $0.id, size: 12) != nil }
+        all.filter { $0.id == "system" || UIFont(name: $0.id, size: 12) != nil }
     }
 
     static func font(id: String) -> TerminalFont {

@@ -13,6 +13,7 @@ import SwiftData
     var lastConnectedAt: Date?
     var themeID: String?
     var fontID: String?
+    // Inline default required: SwiftData lightweight migration crashes existing stores without it. 0 = inherit sentinel.
     var fontSize: Int = 0
     init(id: UUID = UUID(), label: String, address: String, port: Int = 22,
          identity: Identity? = nil, startupSnippet: String? = nil,

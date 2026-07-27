@@ -24,8 +24,8 @@ import Testing
     let r = EffectiveHostSettings.resolveAppearance(
         hostTheme: nil, hostFont: nil, hostSize: 0, chain: [])
     #expect(r.theme == "default")
-    #expect(r.font == "Menlo-Regular")
-    #expect(r.size == 14)
+    #expect(r.font == "system")
+    #expect(r.size == 12)
 }
 
 @Test func appearanceSizeSentinelZeroInherits() {
