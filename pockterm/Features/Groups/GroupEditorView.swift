@@ -55,6 +55,8 @@ struct GroupEditorView: View {
                             Text("\(s)pt").tag(Int?.some(s))
                         }
                     }
+                    ThemePreviewRow(themeID: group.defaultThemeID ?? "default",
+                                    fontID: group.defaultFontID ?? "Menlo-Regular")
                 }
             }
             .navigationTitle(group.name.isEmpty ? "New Group" : group.name)
