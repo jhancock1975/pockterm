@@ -35,6 +35,27 @@ struct GroupEditorView: View {
                             .keyboardType(.numberPad)
                     }
                 }
+                Section("Appearance Defaults") {
+                    Picker("Theme", selection: $group.defaultThemeID) {
+                        Text("None").tag(String?.none)
+                        ForEach(TerminalTheme.all) { theme in
+                            Text(theme.name).tag(String?.some(theme.id))
+                        }
+                    }
+                    Picker("Font", selection: $group.defaultFontID) {
+                        Text("None").tag(String?.none)
+                        ForEach(TerminalFont.available()) { font in
+                            Text(font.name).tag(String?.some(font.id))
+                        }
+                    }
+                    Picker("Size", selection: $group.defaultFontSize) {
+                        Text("None").tag(Int?.none)
+                        ForEach(Array(stride(from: TerminalZoom.minSize,
+                                             through: TerminalZoom.maxSize, by: 2)), id: \.self) { s in
+                            Text("\(s)pt").tag(Int?.some(s))
+                        }
+                    }
+                }
             }
             .navigationTitle(group.name.isEmpty ? "New Group" : group.name)
             .navigationBarTitleDisplayMode(.inline)
