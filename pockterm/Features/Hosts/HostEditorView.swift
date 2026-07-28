@@ -20,6 +20,12 @@ struct HostEditorView: View {
                         .keyboardType(.URL)
                     TextField("Port", value: $host.port, format: .number)
                         .keyboardType(.numberPad)
+                    Picker("Keep-alive", selection: $host.keepAliveSeconds) {
+                        Text("Default (inherit)").tag(0)
+                        ForEach(KeepAlive.options.filter { $0.seconds != 0 }) { opt in
+                            Text(opt.label).tag(opt.seconds)
+                        }
+                    }
                 }
                 Section("Identity") {
                     Picker("Identity", selection: $host.identity) {
