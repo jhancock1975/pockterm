@@ -30,6 +30,10 @@ final class TerminalSession: Identifiable {
     let engine = SSHEngine()
     let terminalView: TerminalView
 
+    /// Session-local font size: seeded from resolved settings, mutated live by
+    /// pinch-zoom, and never written back to the model (zoom is session-only).
+    var currentFontSize: Int = 14
+
     var title: String
     var status: Status = .connecting
     var pendingHostKey: PendingHostKey?
@@ -39,6 +43,7 @@ final class TerminalSession: Identifiable {
     private let proxy = TerminalDelegateProxy()
     private var lineTracker = TypedLineTracker()
     private var _assistant: AssistantModel?
+    private var zoomStartSize: Int = 14
 
     /// This session's AI assistant, created on first use so the transcript
     /// survives closing and reopening the assistant sheet.
@@ -56,13 +61,35 @@ final class TerminalSession: Identifiable {
         self.modelContext = modelContext
         self.title = host.label
         self.terminalView = TerminalView()
-        terminalView.backgroundColor = .black
         terminalView.terminalDelegate = proxy
         terminalView.inputAccessoryView = KeyBarView(terminalView: terminalView)
         proxy.onInput = { [weak self] bytes in self?.handleInput(bytes) }
         proxy.onSize = { [weak self] cols, rows in
             Task { await self?.engine.resize(cols: cols, rows: rows) }
         }
+        self.currentFontSize = EffectiveHostSettings.resolve(host: host).fontSize
+        applyAppearance()
+
+        let pinch = UIPinchGestureRecognizer(target: proxy, action: #selector(TerminalDelegateProxy.handlePinch(_:)))
+        pinch.delegate = proxy
+        proxy.onPinch = { [weak self] recognizer in self?.handlePinch(recognizer) }
+        terminalView.addGestureRecognizer(pinch)
+    }
+
+    /// Resolves this host's effective appearance and applies it to the
+    /// terminal view (font + full ANSI palette + native fg/bg/cursor).
+    func applyAppearance() {
+        let s = EffectiveHostSettings.resolve(host: host)
+        let theme = TerminalTheme.theme(id: s.themeID)
+        let fontID = TerminalFont.font(id: s.fontID).id
+        let size = CGFloat(currentFontSize)
+        terminalView.font = UIFont(name: fontID, size: size)
+            ?? UIFont.monospacedSystemFont(ofSize: size, weight: .regular)
+        if theme.ansi.count == 16 { terminalView.installColors(theme.ansi) }
+        terminalView.nativeForegroundColor = TerminalTheme.uiColor(theme.foreground)
+        terminalView.nativeBackgroundColor = TerminalTheme.uiColor(theme.background)
+        terminalView.backgroundColor = TerminalTheme.uiColor(theme.background)
+        terminalView.caretColor = TerminalTheme.uiColor(theme.cursor)
     }
 
     func handleInput(_ bytes: [UInt8]) {
@@ -177,6 +204,23 @@ final class TerminalSession: Identifiable {
     func disconnect() async {
         await engine.disconnect()
     }
+
+    /// Session-only pinch-to-zoom: mutates `currentFontSize` live within the
+    /// clamped range and never writes back to `Host` settings.
+    private func handlePinch(_ recognizer: UIPinchGestureRecognizer) {
+        switch recognizer.state {
+        case .began:
+            zoomStartSize = currentFontSize
+        case .changed:
+            let size = TerminalZoom.clamped(base: zoomStartSize, scale: recognizer.scale)
+            if size != currentFontSize {
+                currentFontSize = size
+                applyAppearance()
+            }
+        default:
+            break
+        }
+    }
 }
 
 /// NSObject delegate bridge so the `@MainActor` session can receive SwiftTerm
@@ -184,6 +228,7 @@ final class TerminalSession: Identifiable {
 final class TerminalDelegateProxy: NSObject, TerminalViewDelegate {
     var onInput: (([UInt8]) -> Void)?
     var onSize: ((Int, Int) -> Void)?
+    var onPinch: ((UIPinchGestureRecognizer) -> Void)?
 
     func send(source: TerminalView, data: ArraySlice<UInt8>) { onInput?(Array(data)) }
     func sizeChanged(source: TerminalView, newCols: Int, newRows: Int) { onSize?(newCols, newRows) }
@@ -195,4 +240,17 @@ final class TerminalDelegateProxy: NSObject, TerminalViewDelegate {
     func clipboardCopy(source: TerminalView, content: Data) {}
     func iTermContent(source: TerminalView, content: ArraySlice<UInt8>) {}
     func rangeChanged(source: TerminalView, startY: Int, endY: Int) {}
+
+    @objc func handlePinch(_ recognizer: UIPinchGestureRecognizer) {
+        onPinch?(recognizer)
+    }
+}
+
+/// Allows the pinch recognizer to run simultaneously with SwiftTerm's own
+/// pan/tap gestures (selection, scroll) instead of suppressing them.
+extension TerminalDelegateProxy: UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
+                           shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        true
+    }
 }

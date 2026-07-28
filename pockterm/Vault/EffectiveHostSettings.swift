@@ -9,6 +9,9 @@ import Foundation
 struct EffectiveHostSettings {
     let port: Int
     let identity: Identity?
+    let themeID: String
+    let fontID: String
+    let fontSize: Int
 
     /// The pure inheritance rule, generic over the identity type so tests can
     /// exercise it with plain values: walking real @Model relationships in
@@ -22,15 +25,35 @@ struct EffectiveHostSettings {
         return (port, identity)
     }
 
+    /// Pure appearance inheritance, mirroring `resolve(hostPort:…)`: a non-nil
+    /// host value wins; else the nearest ancestor group that defines it; else a
+    /// built-in default. `chain` is the host's ancestor groups, nearest first.
+    static func resolveAppearance(
+        hostTheme: String?, hostFont: String?, hostSize: Int,
+        chain: [(theme: String?, font: String?, size: Int?)]
+    ) -> (theme: String, font: String, size: Int) {
+        let theme = hostTheme ?? chain.compactMap { $0.theme }.first ?? "default"
+        let font = hostFont ?? chain.compactMap { $0.font }.first ?? "system"
+        let size = hostSize != 0 ? hostSize : (chain.compactMap { $0.size }.first ?? 12)
+        return (theme, font, size)
+    }
+
     @MainActor
     static func resolve(host: Host) -> EffectiveHostSettings {
-        var chain: [(port: Int?, identity: Identity?)] = []
+        var portIdentityChain: [(port: Int?, identity: Identity?)] = []
+        var appearanceChain: [(theme: String?, font: String?, size: Int?)] = []
         var group = host.group
         while let g = group {
-            chain.append((g.defaultPort, g.defaultIdentity))
+            portIdentityChain.append((g.defaultPort, g.defaultIdentity))
+            appearanceChain.append((g.defaultThemeID, g.defaultFontID, g.defaultFontSize))
             group = g.parent
         }
-        let resolved = resolve(hostPort: host.port, hostIdentity: host.identity, chain: chain)
-        return EffectiveHostSettings(port: resolved.port, identity: resolved.identity)
+        let resolved = resolve(hostPort: host.port, hostIdentity: host.identity,
+                               chain: portIdentityChain)
+        let appear = resolveAppearance(hostTheme: host.themeID, hostFont: host.fontID,
+                                       hostSize: host.fontSize, chain: appearanceChain)
+        return EffectiveHostSettings(port: resolved.port, identity: resolved.identity,
+                                     themeID: appear.theme, fontID: appear.font,
+                                     fontSize: appear.size)
     }
 }

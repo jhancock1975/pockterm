@@ -41,6 +41,26 @@ struct HostEditorView: View {
                     }
                     Toggle("Favorite", isOn: $host.isFavorite)
                 }
+                Section("Appearance") {
+                    Picker("Theme", selection: $host.themeID) {
+                        Text("Default (inherit)").tag(String?.none)
+                        ForEach(TerminalTheme.all) { theme in
+                            Text(theme.name).tag(String?.some(theme.id))
+                        }
+                    }
+                    Picker("Font", selection: $host.fontID) {
+                        Text("Default (inherit)").tag(String?.none)
+                        ForEach(TerminalFont.available()) { font in
+                            Text(font.name).tag(String?.some(font.id))
+                        }
+                    }
+                    Stepper(host.fontSize == 0 ? "Size: Default"
+                                               : "Size: \(host.fontSize)pt",
+                            value: $host.fontSize,
+                            in: 0...TerminalZoom.maxSize)
+                    ThemePreviewRow(themeID: host.themeID ?? "default",
+                                    fontID: host.fontID ?? "system")
+                }
             }
             .navigationTitle(host.label.isEmpty ? "New Host" : host.label)
             .navigationBarTitleDisplayMode(.inline)
@@ -58,6 +78,9 @@ struct HostEditorView: View {
 
     private func save() {
         if host.modelContext == nil { ctx.insert(host) }
+        if host.fontSize != 0 && host.fontSize < TerminalZoom.minSize {
+            host.fontSize = TerminalZoom.minSize
+        }
         try? ctx.save()
         dismiss()
     }

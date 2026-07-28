@@ -11,12 +11,20 @@ import SwiftData
     var parent: HostGroup?
     var defaultIdentity: Identity?
     var defaultPort: Int?
+    var defaultThemeID: String?
+    var defaultFontID: String?
+    var defaultFontSize: Int?
     init(id: UUID = UUID(), name: String, parent: HostGroup? = nil,
-         defaultIdentity: Identity? = nil, defaultPort: Int? = nil) {
+         defaultIdentity: Identity? = nil, defaultPort: Int? = nil,
+         defaultThemeID: String? = nil, defaultFontID: String? = nil,
+         defaultFontSize: Int? = nil) {
         self.id = id
         self.name = name
         self.parent = parent
         self.defaultIdentity = defaultIdentity
         self.defaultPort = defaultPort
+        self.defaultThemeID = defaultThemeID
+        self.defaultFontID = defaultFontID
+        self.defaultFontSize = defaultFontSize
     }
 }
