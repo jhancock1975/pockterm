@@ -147,7 +147,13 @@ final class TerminalSession: Identifiable {
             try await engine.openShell(
                 cols: 80, rows: 24,
                 onOutput: { [weak self] bytes in
-                    Task { @MainActor in self?.terminalView.feed(byteArray: ArraySlice(bytes)) }
+                    Task { @MainActor in
+                        guard let self else { return }
+                        // Server output counts as activity: a streaming session
+                        // (tail -f, top) is in use and must not be idle-disconnected.
+                        self.lastActivityAt = .now
+                        self.terminalView.feed(byteArray: ArraySlice(bytes))
+                    }
                 },
                 onClose: { [weak self] in
                     Task { @MainActor in
