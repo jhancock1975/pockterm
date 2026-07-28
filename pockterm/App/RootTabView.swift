@@ -111,6 +111,11 @@ private struct SettingsHomeView: View {
                 } label: {
                     Label("Key Bar", systemImage: "keyboard")
                 }
+                NavigationLink {
+                    ConnectionSettingsView()
+                } label: {
+                    Label("Connection", systemImage: "network")
+                }
             }
             .navigationTitle("Settings")
         }
