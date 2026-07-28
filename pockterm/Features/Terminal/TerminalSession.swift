@@ -35,6 +35,11 @@ final class TerminalSession: Identifiable {
     /// pinch-zoom, and never written back to the model (zoom is session-only).
     var currentFontSize: Int = 14
 
+    /// The un-zoomed size for this session: the resolved size captured at
+    /// session start. Reset returns `currentFontSize` to this value. Like
+    /// `currentFontSize`, it is session-only and never persisted.
+    let baselineFontSize: Int
+
     var title: String
     var status: Status = .connecting
     var pendingHostKey: PendingHostKey?
@@ -67,6 +72,9 @@ final class TerminalSession: Identifiable {
         self.modelContext = modelContext
         self.title = host.label
         self.terminalView = TerminalView()
+        let resolvedSize = EffectiveHostSettings.resolve(host: host).fontSize
+        self.currentFontSize = resolvedSize
+        self.baselineFontSize = resolvedSize
         terminalView.terminalDelegate = proxy
         terminalView.inputAccessoryView = KeyBarView(terminalView: terminalView)
         proxy.onInput = { [weak self] bytes in self?.handleInput(bytes) }
@@ -75,7 +83,6 @@ final class TerminalSession: Identifiable {
             self.lastCols = cols; self.lastRows = rows
             Task { await self.engine.resize(cols: cols, rows: rows) }
         }
-        self.currentFontSize = EffectiveHostSettings.resolve(host: host).fontSize
         applyAppearance()
 
         let pinch = UIPinchGestureRecognizer(target: proxy, action: #selector(TerminalDelegateProxy.handlePinch(_:)))
@@ -264,6 +271,18 @@ final class TerminalSession: Identifiable {
         default:
             break
         }
+    }
+
+    /// True when the live session size differs from the un-zoomed baseline.
+    /// Drives the reset control's visibility.
+    var isZoomed: Bool { currentFontSize != baselineFontSize }
+
+    /// Session-only: return the terminal to its baseline size and reflow.
+    /// No-op when already at baseline. Never writes back to `Host`.
+    func resetZoom() {
+        guard currentFontSize != baselineFontSize else { return }
+        currentFontSize = baselineFontSize
+        applyAppearance()
     }
 }
 
