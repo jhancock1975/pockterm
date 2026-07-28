@@ -203,9 +203,17 @@ struct SessionTabsView: View {
                                        description: Text("The remote shell ended."))
                     .foregroundStyle(.white)
             case .idleDisconnected:
-                ContentUnavailableView("Disconnected (Idle)", systemImage: "moon.zzz",
-                                       description: Text("Closed after being idle too long."))
-                    .foregroundStyle(.white)
+                ContentUnavailableView {
+                    Label("Disconnected due to inactivity", systemImage: "moon.zzz")
+                } description: {
+                    Text("This session was closed after being idle. You can change how long sessions stay connected.")
+                } actions: {
+                    Button("Change how long sessions stay connected") {
+                        manager.requestOpenConnectionSettings = true
+                        manager.minimize()   // dismiss the full-screen terminal cover
+                    }
+                }
+                .foregroundStyle(.white)
             case .connected:
                 EmptyView()
             }

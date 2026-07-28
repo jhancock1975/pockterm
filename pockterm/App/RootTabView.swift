@@ -1,27 +1,41 @@
 import SwiftUI
 
+/// Destinations pushed onto the Settings tab's navigation stack, so other
+/// parts of the app (e.g. the inactivity-disconnect screen) can deep-link in.
+enum SettingsRoute: Hashable {
+    case connection
+}
+
 /// Top-level tab navigation.
 struct RootTabView: View {
     let secretStore: SecretStore
     let sessions: SessionManager
     let forwards: ForwardRunner
 
+    @State private var selectedTab = 0
+    @State private var settingsPath = NavigationPath()
+
     var body: some View {
-        TabView {
+        TabView(selection: $selectedTab) {
             HostsListView(secretStore: secretStore, sessions: sessions)
                 .tabItem { Label("Hosts", systemImage: "server.rack") }
+                .tag(0)
 
             SnippetsListView()
                 .tabItem { Label("Snippets", systemImage: "text.badge.plus") }
+                .tag(1)
 
             KeysListView(secretStore: secretStore)
                 .tabItem { Label("Keychain", systemImage: "key.fill") }
+                .tag(2)
 
             ForwardsListView(runner: forwards)
                 .tabItem { Label("Forwarding", systemImage: "arrow.left.arrow.right") }
+                .tag(3)
 
-            SettingsHomeView(secretStore: secretStore)
+            SettingsHomeView(secretStore: secretStore, path: $settingsPath)
                 .tabItem { Label("Settings", systemImage: "gearshape") }
+                .tag(4)
         }
         // The system's mini-player slot: sits above the tab bar rather than
         // covering it, the way Music parks a playing track. Falls back to a
@@ -30,6 +44,13 @@ struct RootTabView: View {
         .minimizedSessionAccessory(sessions: sessions)
         .fullScreenCover(isPresented: presentingSessions) {
             SessionTabsView(manager: sessions)
+        }
+        .onChange(of: sessions.requestOpenConnectionSettings) { _, want in
+            guard want else { return }
+            selectedTab = 4                       // Settings tab
+            settingsPath = NavigationPath()
+            settingsPath.append(SettingsRoute.connection)
+            sessions.requestOpenConnectionSettings = false
         }
     }
 
@@ -98,8 +119,10 @@ private extension View {
 
 private struct SettingsHomeView: View {
     let secretStore: SecretStore
+    @Binding var path: NavigationPath
+
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $path) {
             List {
                 NavigationLink {
                     AISettingsView(secretStore: secretStore)
@@ -118,6 +141,9 @@ private struct SettingsHomeView: View {
                 }
             }
             .navigationTitle("Settings")
+            .navigationDestination(for: SettingsRoute.self) { _ in
+                ConnectionSettingsView()
+            }
         }
     }
 }
