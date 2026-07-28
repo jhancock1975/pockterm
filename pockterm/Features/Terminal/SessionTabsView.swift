@@ -202,6 +202,10 @@ struct SessionTabsView: View {
                 ContentUnavailableView("Session Closed", systemImage: "bolt.horizontal",
                                        description: Text("The remote shell ended."))
                     .foregroundStyle(.white)
+            case .idleDisconnected:
+                ContentUnavailableView("Disconnected (Idle)", systemImage: "moon.zzz",
+                                       description: Text("Closed after being idle too long."))
+                    .foregroundStyle(.white)
             case .connected:
                 EmptyView()
             }
