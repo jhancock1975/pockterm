@@ -11,6 +11,9 @@ final class SessionManager {
     /// Terminal hidden while its sessions stay connected. Distinct from having
     /// no sessions, so dismissing the terminal never disconnects anything.
     private(set) var isMinimized = false
+    /// Set when the user taps "change setting" on the inactivity screen; the
+    /// root observes it, closes the terminal, and navigates to Settings.
+    var requestOpenConnectionSettings = false
     let secretStore: SecretStore
     let modelContext: ModelContext
 

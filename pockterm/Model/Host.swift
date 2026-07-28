@@ -15,10 +15,13 @@ import SwiftData
     var fontID: String?
     // Inline default required: SwiftData lightweight migration crashes existing stores without it. 0 = inherit sentinel.
     var fontSize: Int = 0
+    // Inline default required: SwiftData lightweight migration crashes existing stores without it. 0 = inherit sentinel.
+    var keepAliveSeconds: Int = 0
     init(id: UUID = UUID(), label: String, address: String, port: Int = 22,
          identity: Identity? = nil, startupSnippet: String? = nil,
          group: HostGroup? = nil, isFavorite: Bool = false, lastConnectedAt: Date? = nil,
-         themeID: String? = nil, fontID: String? = nil, fontSize: Int = 0) {
+         themeID: String? = nil, fontID: String? = nil, fontSize: Int = 0,
+         keepAliveSeconds: Int = 0) {
         self.id = id
         self.label = label
         self.address = address
@@ -31,5 +34,6 @@ import SwiftData
         self.themeID = themeID
         self.fontID = fontID
         self.fontSize = fontSize
+        self.keepAliveSeconds = keepAliveSeconds
     }
 }

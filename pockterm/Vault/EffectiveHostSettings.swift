@@ -38,6 +38,16 @@ struct EffectiveHostSettings {
         return (theme, font, size)
     }
 
+    /// Pure keep-alive inheritance: host value wins (non-zero), else nearest
+    /// ancestor group that sets it, else the global default (non-zero), else
+    /// Off. `chain` is the host's ancestor groups nearest-first; `0`/`nil`
+    /// mean "inherit / not set".
+    static func resolveKeepAlive(hostValue: Int, chain: [Int?], globalDefault: Int) -> Int {
+        if hostValue != 0 { return hostValue }
+        if let group = chain.compactMap({ $0 }).first { return group }
+        return globalDefault != 0 ? globalDefault : 0
+    }
+
     @MainActor
     static func resolve(host: Host) -> EffectiveHostSettings {
         var portIdentityChain: [(port: Int?, identity: Identity?)] = []
@@ -55,5 +65,17 @@ struct EffectiveHostSettings {
         return EffectiveHostSettings(port: resolved.port, identity: resolved.identity,
                                      themeID: appear.theme, fontID: appear.font,
                                      fontSize: appear.size)
+    }
+
+    @MainActor
+    static func resolveKeepAlive(host: Host, globalDefault: Int) -> Int {
+        var chain: [Int?] = []
+        var group = host.group
+        while let g = group {
+            chain.append(g.defaultKeepAliveSeconds)
+            group = g.parent
+        }
+        return resolveKeepAlive(hostValue: host.keepAliveSeconds, chain: chain,
+                                globalDefault: globalDefault)
     }
 }

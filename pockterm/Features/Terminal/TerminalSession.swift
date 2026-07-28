@@ -21,6 +21,7 @@ final class TerminalSession: Identifiable {
         case connected
         case failed(String)
         case closed
+        case idleDisconnected
     }
 
     let id = UUID()
@@ -44,6 +45,11 @@ final class TerminalSession: Identifiable {
     private var lineTracker = TypedLineTracker()
     private var _assistant: AssistantModel?
     private var zoomStartSize: Int = 14
+    private var lastActivityAt = Date()
+    private var lastCols = 80
+    private var lastRows = 24
+    private var keepAliveTimer: Timer?
+    private var holdSeconds = 0
 
     /// This session's AI assistant, created on first use so the transcript
     /// survives closing and reopening the assistant sheet.
@@ -65,7 +71,9 @@ final class TerminalSession: Identifiable {
         terminalView.inputAccessoryView = KeyBarView(terminalView: terminalView)
         proxy.onInput = { [weak self] bytes in self?.handleInput(bytes) }
         proxy.onSize = { [weak self] cols, rows in
-            Task { await self?.engine.resize(cols: cols, rows: rows) }
+            guard let self else { return }
+            self.lastCols = cols; self.lastRows = rows
+            Task { await self.engine.resize(cols: cols, rows: rows) }
         }
         self.currentFontSize = EffectiveHostSettings.resolve(host: host).fontSize
         applyAppearance()
@@ -93,6 +101,7 @@ final class TerminalSession: Identifiable {
     }
 
     func handleInput(_ bytes: [UInt8]) {
+        lastActivityAt = .now
         Task { await engine.send(bytes) }
         if let finished = lineTracker.consume(bytes) {
             recordHistory(finished)
@@ -138,15 +147,26 @@ final class TerminalSession: Identifiable {
             try await engine.openShell(
                 cols: 80, rows: 24,
                 onOutput: { [weak self] bytes in
-                    Task { @MainActor in self?.terminalView.feed(byteArray: ArraySlice(bytes)) }
+                    Task { @MainActor in
+                        guard let self else { return }
+                        // Server output counts as activity: a streaming session
+                        // (tail -f, top) is in use and must not be idle-disconnected.
+                        self.lastActivityAt = .now
+                        self.terminalView.feed(byteArray: ArraySlice(bytes))
+                    }
                 },
                 onClose: { [weak self] in
                     Task { @MainActor in
                         guard let self else { return }
+                        self.keepAliveTimer?.invalidate(); self.keepAliveTimer = nil
                         if self.status == .connected { self.status = .closed }
                     }
                 })
             status = .connected
+            lastActivityAt = .now
+            holdSeconds = EffectiveHostSettings.resolveKeepAlive(
+                host: host, globalDefault: ConnectionSettings.single(in: modelContext).defaultKeepAliveSeconds)
+            startKeepAliveTimer()
             if let startup = host.startupSnippet, !startup.isEmpty {
                 sendKeys(Array((startup + "\n").utf8))
             }
@@ -202,7 +222,31 @@ final class TerminalSession: Identifiable {
     }
 
     func disconnect() async {
+        keepAliveTimer?.invalidate(); keepAliveTimer = nil
         await engine.disconnect()
+    }
+
+    private func startKeepAliveTimer() {
+        keepAliveTimer?.invalidate()
+        guard holdSeconds > 0 else { return }   // Off = today's behavior
+        keepAliveTimer = Timer.scheduledTimer(withTimeInterval: TimeInterval(KeepAlive.interval),
+                                              repeats: true) { [weak self] _ in
+            Task { @MainActor in self?.keepAliveTick() }
+        }
+    }
+
+    private func keepAliveTick() {
+        guard status == .connected else { return }
+        let idle = Int(Date().timeIntervalSince(lastActivityAt))
+        if KeepAlive.shouldIdleDisconnect(idleSeconds: idle, holdSeconds: holdSeconds) {
+            keepAliveTimer?.invalidate(); keepAliveTimer = nil
+            status = .idleDisconnected
+            Task { await engine.disconnect() }
+            return
+        }
+        // Not yet at the limit: emit real SSH traffic (a window-change at the
+        // current size) so the server/NAT does not drop the idle session.
+        Task { await engine.resize(cols: lastCols, rows: lastRows) }
     }
 
     /// Session-only pinch-to-zoom: mutates `currentFontSize` live within the

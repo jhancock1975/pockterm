@@ -34,6 +34,12 @@ struct GroupEditorView: View {
                         TextField("Port", value: $portValue, format: .number)
                             .keyboardType(.numberPad)
                     }
+                    Picker("Keep-alive", selection: $group.defaultKeepAliveSeconds) {
+                        Text("None").tag(Int?.none)
+                        ForEach(KeepAlive.options.filter { $0.seconds != 0 }) { opt in
+                            Text(opt.label).tag(Int?.some(opt.seconds))
+                        }
+                    }
                 }
                 Section("Appearance Defaults") {
                     Picker("Theme", selection: $group.defaultThemeID) {
