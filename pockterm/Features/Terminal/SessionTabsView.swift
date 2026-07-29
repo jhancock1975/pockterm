@@ -33,6 +33,7 @@ struct SessionTabsView: View {
     @Query(sort: \Host.label) private var hosts: [Host]
     @State private var showingHostPicker = false
     @State private var assistantSession: TerminalSession?
+    @State private var themingSession: TerminalSession?
 
     var body: some View {
         ZStack {
@@ -71,6 +72,9 @@ struct SessionTabsView: View {
         .sheet(item: $assistantSession) { session in
             AssistantView(model: session.assistant, host: session.host,
                           secretStore: manager.secretStore)
+        }
+        .sheet(item: $themingSession) { session in
+            ThemePickerSheet(session: session)
         }
     }
 
@@ -113,6 +117,13 @@ struct SessionTabsView: View {
                         } label: {
                             Image(systemName: "text.badge.plus")
                         }
+                        .disabled(session.status != .connected)
+                    }
+                    if let session = manager.active {
+                        Button { themingSession = session } label: {
+                            Image(systemName: "paintpalette")
+                        }
+                        .accessibilityLabel("Terminal Theme")
                         .disabled(session.status != .connected)
                     }
                     Button { manager.minimize() } label: {
