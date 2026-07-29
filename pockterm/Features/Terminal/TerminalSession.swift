@@ -100,6 +100,16 @@ final class TerminalSession: Identifiable {
         terminalView.caretColor = TerminalTheme.uiColor(theme.cursor)
     }
 
+    /// Change this session's theme live and persist it as the host's default.
+    /// `id == nil` clears the host override so the theme resolves from the
+    /// group/global default again. Applies immediately via the existing
+    /// appearance path — no reconnect. Does not touch font or size.
+    func setTheme(id: String?) {
+        host.themeID = id
+        try? modelContext.save()
+        applyAppearance()
+    }
+
     func handleInput(_ bytes: [UInt8]) {
         lastActivityAt = .now
         Task { await engine.send(bytes) }
