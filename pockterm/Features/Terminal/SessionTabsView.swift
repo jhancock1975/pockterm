@@ -228,6 +228,10 @@ struct SessionTabsView: View {
             case .connected:
                 EmptyView()
             }
+            if session.status == .connected {
+                ZoomControlsView(session: session)
+                    .id(session.id)
+            }
         }
     }
 
