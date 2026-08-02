@@ -5,7 +5,7 @@ import SwiftData
 /// navigation, transfers, and management operations.
 @MainActor
 @Observable
-final class FilesBrowserModel {
+final class FilesBrowserModel: HostKeyDeciding {
     enum Status: Equatable {
         case connecting
         case loaded
@@ -14,7 +14,7 @@ final class FilesBrowserModel {
 
     let host: Host
     private let secretStore: SecretStore
-    private let modelContext: ModelContext
+    let modelContext: ModelContext
     private let sftp = SFTPService()
     let transfers = TransferQueue()
 
@@ -146,41 +146,4 @@ final class FilesBrowserModel {
         }
     }
 
-    private func decideHostKey(_ info: PresentedHostKey) async -> Bool {
-        let records = (try? modelContext.fetch(FetchDescriptor<KnownHostRecord>())) ?? []
-        let store = KnownHostsStore()
-        guard let fingerprint = info.fingerprint else {
-            return await prompt(info: info, storedFingerprint: nil)
-        }
-        switch store.evaluate(address: info.address, port: info.port, keyType: info.keyType,
-                              presentedFingerprint: fingerprint, against: records) {
-        case .matches:
-            return true
-        case .trustedNew:
-            let accepted = await prompt(info: info, storedFingerprint: nil)
-            if accepted {
-                modelContext.insert(KnownHostRecord(hostAddress: info.address, port: info.port,
-                                                    keyType: info.keyType, fingerprintSHA256: fingerprint))
-                try? modelContext.save()
-            }
-            return accepted
-        case .mismatch(let stored, let presented):
-            let accepted = await prompt(info: info, storedFingerprint: stored)
-            if accepted, let record = records.first(where: {
-                $0.hostAddress == info.address && $0.port == info.port && $0.keyType == info.keyType
-            }) {
-                record.fingerprintSHA256 = presented
-                try? modelContext.save()
-            }
-            return accepted
-        }
-    }
-
-    private func prompt(info: PresentedHostKey, storedFingerprint: String?) async -> Bool {
-        await withCheckedContinuation { continuation in
-            pendingHostKey = PendingHostKey(info: info, storedFingerprint: storedFingerprint) { decision in
-                continuation.resume(returning: decision)
-            }
-        }
-    }
 }
