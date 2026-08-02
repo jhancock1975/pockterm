@@ -44,8 +44,4 @@ final class TransferQueue {
     func finish(_ transfer: Transfer, error: Error?) {
         transfer.state = error.map { .failed($0.localizedDescription) } ?? .done
     }
-
-    func clearCompleted() {
-        transfers.removeAll { $0.state != .running }
-    }
 }

@@ -36,16 +36,7 @@ actor SSHEngine {
 
     func connect(_ creds: SSHCredentials,
                  onHostKey: @escaping @Sendable (PresentedHostKey) async -> Bool) async throws {
-        let method: SSHAuthenticationMethod
-        switch creds.auth {
-        case .password(let password):
-            method = .passwordBased(username: creds.username, password: password)
-        case .ed25519Seed(let seed):
-            guard let key = try? Curve25519.Signing.PrivateKey(rawRepresentation: seed) else {
-                throw SSHEngineError.invalidKey
-            }
-            method = .ed25519(username: creds.username, privateKey: key)
-        }
+        let method = try creds.authenticationMethod()
         let validator = CallbackHostKeyValidator(address: creds.host, port: creds.port, decide: onHostKey)
         client = try await SSHClient.connect(
             host: creds.host,
