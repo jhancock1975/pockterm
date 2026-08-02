@@ -64,15 +64,21 @@ is user-supplied content, not app content.
 Pockterm is an SSH/SFTP client. To review the core functionality you need a server to
 connect to. A public demo SSH host is standing by:
 
-    Host: 100.49.123.137
+    Host: 100.57.71.158
     Port: 22
     Username: demo
-    Password: Pockterm-Review-3f9889
+    Password: Review-80xuiNhvVAmI
 
 Steps: open the Hosts tab → tap + → enter the above → Connect. You'll get a live shell.
-For SFTP, open the connected session's file browser. The AI Assistant (Settings → AI
-Assistant) is optional and requires the reviewer's own provider API key; it can be skipped
-for review.
+New in 1.1: tap the palette icon in the terminal top bar to switch color themes live;
+pinch to zoom the terminal (a reset control appears while zoomed); Settings → Connection
+sets how long idle sessions stay connected. For SFTP, open the connected session's file
+browser. The AI Assistant (Settings → AI Assistant) is optional and requires the
+reviewer's own provider API key; it can be skipped for review.
+
+(Demo host is a throwaway AWS t4g.nano; torn down after approval via
+scripts/teardown-demo-host.sh. Re-provision and refresh the IP/password for each new
+submission.)
 
 Notes on guidelines:
 - The app executes commands only on the user's own remote servers over SSH. It does not
@@ -84,7 +90,7 @@ Notes on guidelines:
   (5.1.2).
 
 ## ACTION ITEMS you must complete before submitting
-1. Stand up a throwaway demo SSH host and fill in the credentials above (biggest rejection risk).
-2. ~~Host the privacy policy~~ DONE → https://jhancock1975.github.io/pockterm/privacy.html — paste into App Store Connect.
-3. Answer export compliance (see docs/app-store-submission.md §0b).
-4. Capture screenshots: 6.9" iPhone and 13" iPad (device family is 1,2).
+1. ~~Stand up a throwaway demo SSH host~~ DONE for 1.1 → `100.57.71.158` (demo / Review-80xuiNhvVAmI), t4g.nano us-east-1. Notes pasted into App Store Connect review detail. Tear down after approval.
+2. ~~Host the privacy policy~~ DONE → https://jhancock1975.github.io/pockterm/privacy.html.
+3. ~~Answer export compliance~~ DONE → `ITSAppUsesNonExemptEncryption = NO`; build 2 reports `usesNonExemptEncryption: false` (auto-cleared).
+4. ~~Capture screenshots~~ DONE for 1.1 → 4 × 6.9" iPhone (1320×2868) uploaded (TARGETED_DEVICE_FAMILY is now iPhone-only = 1).
