@@ -117,16 +117,11 @@ struct HostsListView: View {
         }
     }
 
-    /// Tapping a host with a live session returns to it rather than opening a
-    /// duplicate; use the terminal's + button for a second session to a host.
+    /// Tapping opens whichever surface the host is configured for. For SSH, a
+    /// host with a live session returns to it rather than opening a duplicate;
+    /// use the terminal's + button for a second session to a host.
     private func hostRow(_ host: Host) -> some View {
-        Button {
-            if let existing = sessions.session(for: host) {
-                sessions.focus(existing)
-            } else {
-                sessions.open(host)
-            }
-        } label: { row(host) }
+        Button { open(host) } label: { row(host) }
             .swipeActions(edge: .leading) {
                 Button("Files") { filesHost = host }.tint(.indigo)
             }
@@ -135,11 +130,54 @@ struct HostsListView: View {
                 Button(host.isFavorite ? "Unstar" : "Star") { host.isFavorite.toggle() }.tint(.yellow)
                 Button("Delete", role: .destructive) { ctx.delete(host) }
             }
+            .contextMenu { rowMenu(host) }
+    }
+
+    private func open(_ host: Host) {
+        switch host.hostProtocol {
+        case .sftp: filesHost = host
+        case .ssh: openTerminal(host)
+        }
+    }
+
+    private func openTerminal(_ host: Host) {
+        if let existing = sessions.session(for: host) {
+            sessions.focus(existing)
+        } else {
+            sessions.open(host)
+        }
+    }
+
+    /// Long-press menu. Both surfaces are listed for every host regardless of
+    /// its protocol — the protocol only decides the default, and the swipe
+    /// action that used to be the sole route to files was undiscoverable.
+    @ViewBuilder
+    private func rowMenu(_ host: Host) -> some View {
+        Button { openTerminal(host) } label: {
+            Label("Open Terminal", systemImage: "terminal")
+        }
+        Button { filesHost = host } label: {
+            Label("Browse Files", systemImage: "folder")
+        }
+        Divider()
+        Button { editing = host } label: { Label("Edit", systemImage: "pencil") }
+        Button { host.isFavorite.toggle() } label: {
+            Label(host.isFavorite ? "Unstar" : "Star",
+                  systemImage: host.isFavorite ? "star.slash" : "star")
+        }
+        Button(role: .destructive) { ctx.delete(host) } label: {
+            Label("Delete", systemImage: "trash")
+        }
     }
 
     private func row(_ host: Host) -> some View {
         let eff = EffectiveHostSettings.resolve(host: host)
         return HStack {
+            Image(systemName: host.hostProtocol.symbol)
+                .font(.callout)
+                .foregroundStyle(.secondary)
+                .frame(width: 22)
+                .accessibilityLabel(host.hostProtocol.title)
             VStack(alignment: .leading, spacing: 2) {
                 Text(host.label).font(.headline)
                 Text("\(eff.identity?.username ?? "—")@\(host.address):\(eff.port)")

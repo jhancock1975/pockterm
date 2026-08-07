@@ -1,6 +1,30 @@
 import Foundation
 import SwiftData
 
+/// What a host opens by default. Both run over the same SSH connection — this
+/// only decides whether tapping the host lands you in a terminal or in the
+/// file browser. Any host can still reach the other one on demand.
+enum HostProtocol: String, CaseIterable, Identifiable {
+    case ssh
+    case sftp
+
+    var id: String { rawValue }
+
+    var title: String {
+        switch self {
+        case .ssh: "SSH (Terminal)"
+        case .sftp: "SFTP (Files)"
+        }
+    }
+
+    var symbol: String {
+        switch self {
+        case .ssh: "terminal"
+        case .sftp: "folder"
+        }
+    }
+}
+
 @Model final class Host {
     var id: UUID
     var label: String
@@ -17,11 +41,20 @@ import SwiftData
     var fontSize: Int = 0
     // Inline default required: SwiftData lightweight migration crashes existing stores without it. 0 = inherit sentinel.
     var keepAliveSeconds: Int = 0
+    // Inline default required: SwiftData lightweight migration crashes existing stores without it.
+    // Stored raw so an unknown future value degrades to .ssh instead of failing to load.
+    var protocolRaw: String = HostProtocol.ssh.rawValue
+
+    var hostProtocol: HostProtocol {
+        get { HostProtocol(rawValue: protocolRaw) ?? .ssh }
+        set { protocolRaw = newValue.rawValue }
+    }
+
     init(id: UUID = UUID(), label: String, address: String, port: Int = 22,
          identity: Identity? = nil, startupSnippet: String? = nil,
          group: HostGroup? = nil, isFavorite: Bool = false, lastConnectedAt: Date? = nil,
          themeID: String? = nil, fontID: String? = nil, fontSize: Int = 0,
-         keepAliveSeconds: Int = 0) {
+         keepAliveSeconds: Int = 0, hostProtocol: HostProtocol = .ssh) {
         self.id = id
         self.label = label
         self.address = address
@@ -35,5 +68,6 @@ import SwiftData
         self.fontID = fontID
         self.fontSize = fontSize
         self.keepAliveSeconds = keepAliveSeconds
+        self.protocolRaw = hostProtocol.rawValue
     }
 }
