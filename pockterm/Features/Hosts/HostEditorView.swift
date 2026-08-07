@@ -12,6 +12,15 @@ struct HostEditorView: View {
     var body: some View {
         NavigationStack {
             Form {
+                Section {
+                    Picker("Opens", selection: $host.hostProtocol) {
+                        ForEach(HostProtocol.allCases) { proto in
+                            Label(proto.title, systemImage: proto.symbol).tag(proto)
+                        }
+                    }
+                } footer: {
+                    Text("SFTP runs over the same SSH connection, so the settings below apply either way. This only picks what opens when you tap the host — long-press a host to reach the other.")
+                }
                 Section("Connection") {
                     TextField("Label", text: $host.label)
                     TextField("Address", text: $host.address)

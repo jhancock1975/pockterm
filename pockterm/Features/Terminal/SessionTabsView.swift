@@ -34,6 +34,7 @@ struct SessionTabsView: View {
     @State private var showingHostPicker = false
     @State private var assistantSession: TerminalSession?
     @State private var themingSession: TerminalSession?
+    @State private var filesSession: TerminalSession?
 
     var body: some View {
         ZStack {
@@ -75,6 +76,10 @@ struct SessionTabsView: View {
         }
         .sheet(item: $themingSession) { session in
             ThemePickerSheet(session: session)
+        }
+        .sheet(item: $filesSession) { session in
+            FilesBrowserView(host: session.host, secretStore: session.secretStore,
+                             modelContext: session.modelContext)
         }
     }
 
@@ -118,6 +123,12 @@ struct SessionTabsView: View {
                             Image(systemName: "text.badge.plus")
                         }
                         .disabled(session.status != .connected)
+                    }
+                    if let session = manager.active {
+                        Button { filesSession = session } label: {
+                            Image(systemName: "folder")
+                        }
+                        .accessibilityLabel("Browse Files")
                     }
                     if let session = manager.active {
                         Button { themingSession = session } label: {

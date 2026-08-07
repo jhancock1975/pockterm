@@ -56,22 +56,105 @@ actor SFTPService {
         }
     }
 
-    func download(_ path: String) async throws -> Data {
+    /// Bytes moved per round trip. Servers are free to return short reads, which
+    /// the loops below handle by advancing on the count actually received.
+    private static let chunkSize = 32_768
+
+    /// How much `downloadData` will pull into memory before giving up.
+    static let inMemoryDownloadLimit = 1 << 20  // 1 MiB
+
+    /// Streams a remote file to `destination`, one chunk at a time — the whole
+    /// file is never resident. `progress` reports (transferred, total); total is
+    /// 0 when the server does not report a size.
+    func download(_ path: String, to destination: URL,
+                  progress: @Sendable (Int64, Int64) -> Void = { _, _ in }) async throws {
         let file = try await requireSFTP().openFile(filePath: path, flags: [.read])
         do {
-            let buffer = try await file.readAll()
+            try await stream(file, to: destination, progress: progress)
             try await file.close()
-            return Data(buffer.readableBytesView)
         } catch {
             try? await file.close()
             throw error
         }
     }
 
+    private func stream(_ file: SFTPFile, to destination: URL,
+                        progress: @Sendable (Int64, Int64) -> Void) async throws {
+        let total = Int64(clamping: (try? await file.readAttributes())?.size ?? 0)
+
+        guard FileManager.default.createFile(atPath: destination.path, contents: nil) else {
+            throw CocoaError(.fileWriteUnknown)
+        }
+        let handle = try FileHandle(forWritingTo: destination)
+        defer { try? handle.close() }
+
+        var offset: UInt64 = 0
+        while true {
+            try Task.checkCancellation()
+            var chunk = try await file.read(from: offset, length: UInt32(Self.chunkSize))
+            let count = chunk.readableBytes
+            guard count > 0, let bytes = chunk.readBytes(length: count) else { break }
+            try handle.write(contentsOf: bytes)
+            offset &+= UInt64(count)
+            progress(Int64(clamping: offset), total)
+        }
+        try handle.synchronize()
+    }
+
+    /// Streams a local file to `path`, one chunk at a time.
+    func upload(from source: URL, to path: String,
+                progress: @Sendable (Int64, Int64) -> Void = { _, _ in }) async throws {
+        let total = Int64((try? source.resourceValues(forKeys: [.fileSizeKey]))?.fileSize ?? 0)
+        let reader = try FileHandle(forReadingFrom: source)
+        defer { try? reader.close() }
+
+        let file = try await requireSFTP().openFile(filePath: path, flags: [.write, .create, .truncate])
+        do {
+            var offset: UInt64 = 0
+            while true {
+                try Task.checkCancellation()
+                guard let data = try reader.read(upToCount: Self.chunkSize), !data.isEmpty else { break }
+                try await file.write(ByteBuffer(bytes: data), at: offset)
+                offset &+= UInt64(data.count)
+                progress(Int64(clamping: offset), total)
+            }
+            try await file.close()
+        } catch {
+            try? await file.close()
+            throw error
+        }
+    }
+
+    /// Reads a remote file into memory for callers that need the bytes rather
+    /// than a file on disk (the AI assistant reading file contents). Capped at
+    /// `maxBytes` so a large file cannot exhaust memory — real transfers go
+    /// through `download(_:to:)`.
+    func downloadData(_ path: String, maxBytes: Int = SFTPService.inMemoryDownloadLimit) async throws -> Data {
+        let file = try await requireSFTP().openFile(filePath: path, flags: [.read])
+        do {
+            var out = Data()
+            var offset: UInt64 = 0
+            while out.count < maxBytes {
+                var chunk = try await file.read(from: offset, length: UInt32(Self.chunkSize))
+                let count = chunk.readableBytes
+                guard count > 0, let bytes = chunk.readBytes(length: count) else { break }
+                out.append(contentsOf: bytes)
+                offset &+= UInt64(count)
+            }
+            try await file.close()
+            return out.count > maxBytes ? out.prefix(maxBytes) : out
+        } catch {
+            try? await file.close()
+            throw error
+        }
+    }
+
+    /// Writes a small in-memory payload (agent-authored files). Anything sized
+    /// by the user goes through `upload(from:to:)`.
     func upload(_ data: Data, to path: String) async throws {
         let file = try await requireSFTP().openFile(filePath: path, flags: [.write, .create, .truncate])
         do {
-            try await file.write(ByteBuffer(bytes: Array(data)), at: 0)
+            try await file.write(ByteBuffer(bytes: data), at: 0)
             try await file.close()
         } catch {
             try? await file.close()
