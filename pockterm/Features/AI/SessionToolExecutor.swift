@@ -30,7 +30,7 @@ final class SessionToolExecutor: AgentToolExecuting {
                 return Self.truncate(output.isEmpty ? "(no output)" : output)
             case "read_file":
                 guard let path = args["path"] as? String else { return "error: missing 'path'" }
-                let data = try await sftpService().download(path)
+                let data = try await sftpService().downloadData(path)
                 return Self.truncate(String(decoding: data, as: UTF8.self))
             case "write_file":
                 guard let path = args["path"] as? String,

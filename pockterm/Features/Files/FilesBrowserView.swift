@@ -75,17 +75,47 @@ struct FilesBrowserView: View {
     }
 
     private var pathBar: some View {
-        HStack {
-            Image(systemName: "folder")
-            Text(model.path).lineLimit(1).truncationMode(.head)
-            Spacer()
-            if model.transfers.hasActive { ProgressView().controlSize(.small) }
+        VStack(spacing: 4) {
+            HStack {
+                Image(systemName: "folder")
+                Text(model.path).lineLimit(1).truncationMode(.head)
+                Spacer()
+                if model.transfers.hasActive { ProgressView().controlSize(.small) }
+            }
+            if let transfer = model.transfers.active {
+                transferProgress(transfer)
+            }
         }
         .font(.system(.footnote, design: .monospaced))
         .foregroundStyle(.secondary)
         .padding(.horizontal)
         .padding(.vertical, 6)
         .background(.bar)
+    }
+
+    /// Determinate bar when the server told us the size, indeterminate when it
+    /// didn't — a 0% bar that never moves reads as a hang.
+    @ViewBuilder
+    private func transferProgress(_ transfer: Transfer) -> some View {
+        HStack(spacing: 8) {
+            Image(systemName: transfer.direction == .upload
+                  ? "arrow.up.circle" : "arrow.down.circle")
+            Text(transfer.name).lineLimit(1).truncationMode(.middle)
+            Spacer()
+            if let fraction = transfer.fractionCompleted {
+                Text(Self.byteCount(transfer.bytesTransferred)
+                     + " / " + Self.byteCount(transfer.totalBytes))
+                ProgressView(value: fraction).frame(width: 64)
+            } else {
+                Text(Self.byteCount(transfer.bytesTransferred))
+                ProgressView().controlSize(.mini)
+            }
+        }
+        .font(.caption2)
+    }
+
+    private static func byteCount(_ bytes: Int64) -> String {
+        ByteCountFormatter.string(fromByteCount: bytes, countStyle: .file)
     }
 
     @ViewBuilder

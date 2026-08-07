@@ -102,16 +102,20 @@ final class FilesBrowserModel: HostKeyDeciding {
         await perform { try await self.sftp.chmod(file.path, mode: mode) }
     }
 
-    /// Downloads a file to a temporary URL for sharing/saving.
+    /// Downloads a file to a temporary URL for sharing/saving. The file is
+    /// streamed straight to disk, so size is bounded by storage, not memory.
     func download(_ file: RemoteFile) async -> URL? {
         let transfer = transfers.start(name: file.name, direction: .download)
+        let url = FileManager.default.temporaryDirectory.appendingPathComponent(file.name)
         do {
-            let data = try await sftp.download(file.path)
-            let url = FileManager.default.temporaryDirectory.appendingPathComponent(file.name)
-            try data.write(to: url)
+            try? FileManager.default.removeItem(at: url)
+            try await sftp.download(file.path, to: url,
+                                    progress: progressHandler(for: transfer))
             transfers.finish(transfer, error: nil)
             return url
         } catch {
+            // Don't leave a truncated file behind for the share sheet to offer.
+            try? FileManager.default.removeItem(at: url)
             transfers.finish(transfer, error: error)
             return nil
         }
@@ -123,12 +127,21 @@ final class FilesBrowserModel: HostKeyDeciding {
         do {
             let access = url.startAccessingSecurityScopedResource()
             defer { if access { url.stopAccessingSecurityScopedResource() } }
-            let data = try Data(contentsOf: url)
-            try await sftp.upload(data, to: RemoteFile.joinPath(path, name))
+            try await sftp.upload(from: url, to: RemoteFile.joinPath(path, name),
+                                  progress: progressHandler(for: transfer))
             transfers.finish(transfer, error: nil)
             await refresh()
         } catch {
             transfers.finish(transfer, error: error)
+        }
+    }
+
+    /// Bridges byte counts from the SFTP actor back onto the main actor, where
+    /// the queue the UI observes lives.
+    private func progressHandler(for transfer: Transfer) -> @Sendable (Int64, Int64) -> Void {
+        let queue = transfers
+        return { bytes, total in
+            Task { @MainActor in queue.update(transfer, bytes: bytes, total: total) }
         }
     }
 
