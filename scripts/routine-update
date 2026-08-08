@@ -1,0 +1,12 @@
+#!/bin/bash
+# Wrapper for scripts/routine_update.py; bootstraps its venv on first use.
+set -euo pipefail
+VENV="$HOME/.cache/pockterm-asc/venv"
+HERE="$(cd "$(dirname "$0")" && pwd)"
+if [[ ! -x "$VENV/bin/python" ]]; then
+    echo "bootstrapping venv at $VENV ..." >&2
+    python3 -m venv "$VENV"
+    "$VENV/bin/pip" install -q --upgrade pip
+    "$VENV/bin/pip" install -q "PyJWT[crypto]" requests
+fi
+exec "$VENV/bin/python" "$HERE/routine_update.py" "$@"

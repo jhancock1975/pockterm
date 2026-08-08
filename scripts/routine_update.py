@@ -1,0 +1,255 @@
+#!/usr/bin/env python3
+"""Pockterm routine update check: dependencies, advisories, and secret hygiene.
+
+Read-only by default — it reports, it does not change the repo. Pass --resolve
+to actually re-pin dependencies.
+
+    scripts/routine-update              # report only
+    scripts/routine-update --resolve    # also update Package.resolved
+
+Sections:
+  1. Dependency versions   pinned vs. latest upstream release
+  2. Security advisories   GitHub advisories, matched against the pinned version
+  3. Secret scan           tracked files + git history
+  4. Packaging identity    personal paths / identifiers in a built binary
+
+Exit code is 1 when anything actionable is found, so this can gate a release.
+"""
+import argparse
+import json
+import re
+import subprocess
+import sys
+from pathlib import Path
+
+REPO = Path(__file__).resolve().parent.parent
+RESOLVED = REPO / "pockterm.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved"
+
+# Pinned identity -> GitHub repo to check for releases.
+UPSTREAM = {
+    "bigint": "attaswift/BigInt",
+    "citadel": "orlandos-nl/Citadel",
+    "swift-argument-parser": "apple/swift-argument-parser",
+    "swift-asn1": "apple/swift-asn1",
+    "swift-atomics": "apple/swift-atomics",
+    "swift-collections": "apple/swift-collections",
+    "swift-crypto": "apple/swift-crypto",
+    "swift-log": "apple/swift-log",
+    "swift-nio": "apple/swift-nio",
+    "swift-system": "apple/swift-system",
+    "swiftterm": "migueldeicaza/SwiftTerm",
+}
+
+# Advisory package names to the identity they map to in Package.resolved.
+ADVISORY_PACKAGES = {
+    "github.com/apple/swift-nio": "swift-nio",
+    "swift-nio": "swift-nio",
+    "swift-crypto": "swift-crypto",
+    "github.com/apple/swift-crypto": "swift-crypto",
+    "Citadel": "citadel",
+    "SwiftTerm": "swiftterm",
+}
+
+# Updates we deliberately cannot or should not take, so the check reports them
+# as context instead of nagging every run.
+CAPPED = {
+    "swift-crypto": "Citadel pins <4.0.0, and 4.0.0-4.3.0 carry GHSA-9m44-rr2w-ppp7",
+}
+
+findings = []
+
+
+def note(section, msg):
+    findings.append(f"[{section}] {msg}")
+
+
+def sh(*args, **kw):
+    return subprocess.run(args, capture_output=True, text=True, cwd=REPO, **kw).stdout.strip()
+
+
+def gh_json(path):
+    out = sh("gh", "api", path)
+    try:
+        return json.loads(out) if out else None
+    except json.JSONDecodeError:
+        return None
+
+
+def parse_version(v):
+    """'1.13.0' / 'v1.13.0' -> (1, 13, 0); unparseable sorts lowest."""
+    m = re.search(r"(\d+)\.(\d+)\.(\d+)", v or "")
+    return tuple(int(g) for g in m.groups()) if m else (-1, -1, -1)
+
+
+def in_range(version, spec):
+    """Is `version` inside a GitHub advisory range like '>= 4.0.0, <= 4.3.0'?"""
+    v = parse_version(version)
+    for clause in (spec or "").split(","):
+        clause = clause.strip()
+        m = re.match(r"(>=|<=|>|<|=)\s*(.+)", clause)
+        if not m:
+            continue
+        op, bound = m.group(1), parse_version(m.group(2))
+        if op == ">=" and not v >= bound: return False
+        if op == "<=" and not v <= bound: return False
+        if op == ">" and not v > bound: return False
+        if op == "<" and not v < bound: return False
+        if op == "=" and not v == bound: return False
+    return True
+
+
+# ------------------------------------------------------------------ sections
+
+def pins():
+    data = json.loads(RESOLVED.read_text())
+    return {p["identity"]: p["state"].get("version") for p in data["pins"]}
+
+
+def check_dependencies(current):
+    print("1. DEPENDENCY VERSIONS")
+    stale = 0
+    for identity, version in sorted(current.items()):
+        repo = UPSTREAM.get(identity)
+        if not repo:
+            # Anything not on the known list is a fork or unusual source.
+            print(f"   ?  {identity:<24} {version:<10} (no upstream mapping — review manually)")
+            note("deps", f"{identity} has no known upstream; verify its source is trusted")
+            continue
+        latest = (gh_json(f"repos/{repo}/releases/latest") or {}).get("tag_name", "")
+        if latest and parse_version(latest) > parse_version(version):
+            if identity in CAPPED:
+                print(f"   -- {identity:<24} {version:<10} ({latest} exists; {CAPPED[identity]})")
+                continue
+            print(f"   ^  {identity:<24} {version:<10} -> {latest}")
+            stale += 1
+        else:
+            print(f"   ok {identity:<24} {version}")
+    if stale:
+        note("deps", f"{stale} dependency update(s) available — run with --resolve")
+    print()
+
+
+def check_advisories(current):
+    print("2. SECURITY ADVISORIES")
+    advisories = gh_json("/advisories?ecosystem=swift&per_page=100") or []
+    hits = 0
+    for adv in advisories:
+        for vuln in adv.get("vulnerabilities") or []:
+            name = (vuln.get("package") or {}).get("name")
+            identity = ADVISORY_PACKAGES.get(name)
+            if not identity or identity not in current:
+                continue
+            version = current[identity]
+            if in_range(version, vuln.get("vulnerable_version_range")):
+                hits += 1
+                print(f"   !! {adv['ghsa_id']} [{adv['severity']}] {identity} {version}")
+                print(f"      {adv['summary']}")
+                print(f"      fixed in: {vuln.get('first_patched_version')}")
+                note("vuln", f"{adv['ghsa_id']} affects {identity} {version}")
+    if not hits:
+        print(f"   ok no advisory affects the {len(current)} pinned versions "
+              f"({len(advisories)} checked)")
+    print()
+
+
+def check_secrets():
+    print("3. SECRET SCAN")
+    patterns = {
+        "private key block": r"BEGIN (RSA|OPENSSH|EC|DSA|PRIVATE)",
+        "AWS access key": r"AKIA[0-9A-Z]{16}",
+        "assigned secret": r"(password|passwd|api[_-]?key|secret|token)[a-zA-Z_]* *[:=] *[\"'][^\"'{}$<]{8,}[\"']",
+        "bearer token": r"(ghp_|github_pat_|sk-[A-Za-z0-9]{20,})",
+    }
+    tracked = sh("git", "ls-files").splitlines()
+    clean = True
+    for label, pattern in patterns.items():
+        out = subprocess.run(["git", "grep", "-nIE", pattern, "--"] + tracked,
+                             capture_output=True, text=True, cwd=REPO).stdout.strip()
+        # Placeholders are the documented way to keep real values out.
+        real = [ln for ln in out.splitlines()
+                if not re.search(r"<[A-Z_]+>|example|placeholder|REDACTED|xxxx", ln, re.I)]
+        if real:
+            clean = False
+            print(f"   !! {label}:")
+            for ln in real[:5]:
+                print(f"      {ln[:150]}")
+            note("secret", f"{label} found in tracked files")
+    # Files that should never be tracked at all, regardless of content.
+    banned = [f for f in tracked
+              if re.search(r"\.(p8|pem|key|p12|pfx|cer|mobileprovision)$|(^|/)(authorized_keys|id_rsa|id_ed25519)$", f)]
+    if banned:
+        clean = False
+        print(f"   !! sensitive file types tracked: {banned}")
+        note("secret", f"sensitive files tracked: {banned}")
+    if clean:
+        print(f"   ok no secrets in {len(tracked)} tracked files")
+    print()
+
+
+def check_packaging():
+    print("4. PACKAGING IDENTITY")
+    # Every built binary, not just the newest: a clean Debug build sitting on
+    # top of a leaky Release archive would otherwise read as all-clear.
+    apps = sorted(REPO.glob("build/**/pockterm.app"))
+    binaries = [a / "pockterm" for a in apps if (a / "pockterm").exists()]
+    if not binaries:
+        print("   -- no built binary found; run scripts/package-release first")
+        print()
+        return
+    for binary in binaries:
+        strings = sh("strings", "-a", str(binary))
+        found = re.findall(r"/Users/[A-Za-z0-9._-]+", strings)
+        rel = binary.relative_to(REPO)
+        if found:
+            print(f"   !! {len(found)} personal build paths in {rel}: {sorted(set(found))}")
+            note("packaging", f"personal paths embedded in {rel}")
+        else:
+            print(f"   ok {rel}")
+    if any("personal paths" in f for f in findings):
+        print("      build via scripts/package-release, which archives from a neutral path")
+    print()
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--resolve", action="store_true",
+                    help="re-pin dependencies to the newest allowed versions")
+    args = ap.parse_args()
+
+    print(f"pockterm routine update check\n{'=' * 60}\n")
+    current = pins()
+
+    check_dependencies(current)
+    check_advisories(current)
+    check_secrets()
+    check_packaging()
+
+    if args.resolve:
+        print("RE-RESOLVING DEPENDENCIES")
+        # A plain -resolvePackageDependencies reuses cached workspace state and
+        # will report "no changes" even when updates exist. Resolving into a
+        # throwaway derived-data path forces a real re-resolution.
+        RESOLVED.unlink(missing_ok=True)
+        subprocess.run(
+            ["xcodebuild", "-project", "pockterm.xcodeproj", "-scheme", "pockterm",
+             "-derivedDataPath", "/tmp/pockterm-resolve", "-resolvePackageDependencies"],
+            cwd=REPO, capture_output=True, text=True)
+        after = pins()
+        changes = [f"   {k}: {current.get(k)} -> {after[k]}"
+                   for k in after if current.get(k) != after[k]]
+        print("\n".join(changes) if changes else "   (already newest allowed)")
+        print("\n   now run: scripts/test.sh --build")
+        print()
+
+    print("=" * 60)
+    if findings:
+        print(f"{len(findings)} item(s) need attention:")
+        for f in findings:
+            print(f"  - {f}")
+        return 1
+    print("Nothing to do — dependencies current, no advisories, no secrets, clean packaging.")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

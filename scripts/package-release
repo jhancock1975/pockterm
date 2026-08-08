@@ -1,0 +1,79 @@
+#!/bin/bash
+# Archive and export a signed Pockterm build for App Store submission.
+#
+#   scripts/package-release            # archive + export App Store ipa
+#   scripts/package-release --archive  # archive only
+#
+# Why the odd derived-data path: Clang bakes __FILE__ strings from C
+# dependencies (swift-crypto's BoringSSL) into the shipped binary, so a default
+# archive embeds ~180 copies of /Users/<you>/Library/Developer/Xcode/... and
+# leaks the account name to anyone who runs `strings` on the App Store build.
+# Archiving from a neutral path removes them at the source.
+set -euo pipefail
+
+cd "$(dirname "$0")/.."
+BUILD_ROOT=/tmp/pockterm-release
+DERIVED="$BUILD_ROOT/dd"
+ARCHIVE="$BUILD_ROOT/pockterm.xcarchive"
+EXPORT_DIR="$BUILD_ROOT/export"
+OUT=build/release
+
+rm -rf "$BUILD_ROOT"
+mkdir -p "$DERIVED" "$OUT"
+
+echo "==> archiving (neutral derived-data path: $DERIVED)"
+xcodebuild -project pockterm.xcodeproj -scheme pockterm \
+    -configuration Release -destination 'generic/platform=iOS' \
+    -derivedDataPath "$DERIVED" -archivePath "$ARCHIVE" \
+    -allowProvisioningUpdates archive
+
+BIN="$ARCHIVE/Products/Applications/pockterm.app/pockterm"
+echo
+echo "==> identity check on the archived binary"
+LEAKS=$(strings -a "$BIN" | grep -oE '/Users/[A-Za-z0-9._-]+' | sort -u || true)
+if [[ -n "$LEAKS" ]]; then
+    echo "!! personal build paths still present:"; echo "$LEAKS"
+    echo "   (refusing to export — fix before submitting)"
+    exit 1
+fi
+echo "   ok no personal build paths in the shipped binary"
+
+if [[ "${1:-}" == "--archive" ]]; then
+    cp -R "$ARCHIVE" "$OUT/" && echo && echo "archive: $OUT/$(basename "$ARCHIVE")"
+    exit 0
+fi
+
+echo
+echo "==> exporting for App Store"
+cat > "$BUILD_ROOT/ExportOptions.plist" <<'PLIST'
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>method</key><string>app-store-connect</string>
+    <key>destination</key><string>export</string>
+    <key>teamID</key><string>5H22F8M69N</string>
+    <key>uploadSymbols</key><true/>
+    <key>signingStyle</key><string>automatic</string>
+</dict>
+</plist>
+PLIST
+
+xcodebuild -exportArchive -archivePath "$ARCHIVE" \
+    -exportOptionsPlist "$BUILD_ROOT/ExportOptions.plist" \
+    -exportPath "$EXPORT_DIR" -allowProvisioningUpdates
+
+cp -R "$ARCHIVE" "$OUT/" 2>/dev/null || true
+cp "$EXPORT_DIR"/*.ipa "$OUT/" 2>/dev/null || true
+
+echo
+echo "artifacts in $OUT:"
+ls -la "$OUT" | tail -n +2
+echo
+echo "Next: upload with"
+echo "  xcrun altool --upload-app -f $OUT/pockterm.ipa -t ios \\"
+echo "    --apiKey WVYS8ZU585 --apiIssuer \$(grep -oE '[0-9a-f-]{36}' ~/Documents/Apps/pockterm/key-issuer-id.txt)"
+echo
+echo "Before submitting for review: re-provision the demo SSH host and paste fresh"
+echo "credentials into the App Store Connect review notes. App Review will try to"
+echo "connect, and 2.1 rejection is the usual result when they cannot."
