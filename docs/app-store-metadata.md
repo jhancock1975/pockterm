@@ -64,10 +64,10 @@ is user-supplied content, not app content.
 Pockterm is an SSH/SFTP client. To review the core functionality you need a server to
 connect to. A public demo SSH host is standing by:
 
-    Host: 100.57.71.158
+    Host: <DEMO_HOST_IP>
     Port: 22
     Username: demo
-    Password: Review-80xuiNhvVAmI
+    Password: <DEMO_HOST_PASSWORD>
 
 Steps: open the Hosts tab → tap + → enter the above → Connect. You'll get a live shell.
 New in 1.1: tap the palette icon in the terminal top bar to switch color themes live;
@@ -80,6 +80,12 @@ reviewer's own provider API key; it can be skipped for review.
 scripts/teardown-demo-host.sh. Re-provision and refresh the IP/password for each new
 submission.)
 
+> **Never commit the real host IP or password to this file.** This repository is
+> public. Keep the live values in `~/Documents/Apps/pockterm/demo-host.txt` and paste
+> them straight into the App Store Connect review-notes field, substituting for the
+> placeholders above. A password that reaches a public repo is burned even after the
+> host is torn down, because the commit stays in history.
+
 Notes on guidelines:
 - The app executes commands only on the user's own remote servers over SSH. It does not
   download or execute code that changes the app itself (2.5.2).
@@ -90,7 +96,9 @@ Notes on guidelines:
   (5.1.2).
 
 ## ACTION ITEMS you must complete before submitting
-1. ~~Stand up a throwaway demo SSH host~~ DONE for 1.1 → `100.57.71.158` (demo / Review-80xuiNhvVAmI), t4g.nano us-east-1. Notes pasted into App Store Connect review detail. Tear down after approval.
+1. Stand up a throwaway demo SSH host for each submission (t4g.nano, us-east-1), record the
+   IP and password in `~/Documents/Apps/pockterm/demo-host.txt` (NOT here), and paste the
+   review notes into App Store Connect. Tear down after approval.
 2. ~~Host the privacy policy~~ DONE → https://jhancock1975.github.io/pockterm/privacy.html.
 3. ~~Answer export compliance~~ DONE → `ITSAppUsesNonExemptEncryption = NO`; build 2 reports `usesNonExemptEncryption: false` (auto-cleared).
 4. ~~Capture screenshots~~ DONE for 1.1 → 4 × 6.9" iPhone (1320×2868) uploaded (TARGETED_DEVICE_FAMILY is now iPhone-only = 1).
