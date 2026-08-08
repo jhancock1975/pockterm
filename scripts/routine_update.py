@@ -226,14 +226,24 @@ def check_secrets():
     print("4. SECRET SCAN")
     patterns = {
         "private key block": r"BEGIN (RSA|OPENSSH|EC|DSA|PRIVATE)",
-        "AWS access key": r"AKIA[0-9A-Z]{16}",
+        # AWS: the infra scripts run against a live account, so a leaked key here
+        # is worse than any app secret. Long-lived ids, STS ids, and the secret
+        # itself, which has no distinctive prefix and must be caught by context.
+        "AWS access key id": r"(AKIA|ASIA)[0-9A-Z]{16}",
+        "AWS secret key": r"(?i)aws_?secret_?access_?key\s*[:=]\s*[\"']?[A-Za-z0-9/+=]{40}",
+        "AWS session token": r"(?i)aws_?session_?token\s*[:=]\s*[\"']?[A-Za-z0-9/+=]{50,}",
         "assigned secret": r"(password|passwd|api[_-]?key|secret|token)[a-zA-Z_]* *[:=] *[\"'][^\"'{}$<]{8,}[\"']",
         "bearer token": r"(ghp_|github_pat_|sk-[A-Za-z0-9]{20,})",
     }
     tracked = sh("git", "ls-files").splitlines()
     clean = True
+    # This file necessarily contains secret-shaped strings — they are the
+    # patterns. Scanning it would flag itself every run, and a check that always
+    # cries wolf is a check nobody reads. The high-confidence AWS rules below
+    # cannot self-match, so they still cover it.
+    scannable = [f for f in tracked if f != "scripts/routine_update.py"]
     for label, pattern in patterns.items():
-        out = subprocess.run(["git", "grep", "-nIE", pattern, "--"] + tracked,
+        out = subprocess.run(["git", "grep", "-nIE", pattern, "--"] + scannable,
                              capture_output=True, text=True, cwd=REPO).stdout.strip()
         # Placeholders are the documented way to keep real values out.
         real = [ln for ln in out.splitlines()
@@ -244,6 +254,40 @@ def check_secrets():
             for ln in real[:5]:
                 print(f"      {ln[:150]}")
             note("secret", f"{label} found in tracked files")
+    # ...but still check the scanner itself for real AWS keys, which cannot
+    # match their own pattern definitions.
+    scanner = (REPO / "scripts/routine_update.py").read_text()
+    if re.search(r"(AKIA|ASIA)[0-9A-Z]{16}", scanner):
+        clean = False
+        print("   !! scripts/routine_update.py contains a real AWS access key id")
+        note("secret", "AWS key in routine_update.py")
+
+    # The infra scripts run against a live AWS account. They must authenticate
+    # from the ambient CLI config and never carry credentials of their own, so
+    # they get checked explicitly rather than relying on the generic patterns.
+    for script in ("scripts/provision-demo-host.sh", "scripts/teardown-demo-host.sh"):
+        path = REPO / script
+        if not path.exists():
+            continue
+        body = path.read_text()
+        bad = []
+        if re.search(r"(AKIA|ASIA)[0-9A-Z]{16}", body):
+            bad.append("access key id")
+        if re.search(r"(?i)aws_?secret_?access_?key\s*[:=]", body):
+            bad.append("secret access key")
+        if re.search(r"(?i)aws_?session_?token\s*[:=]", body):
+            bad.append("session token")
+        # --profile is not a secret, but it pins the script to one operator's
+        # machine and is usually a sign credentials are being wired in by hand.
+        if re.search(r"--profile\s+\S", body):
+            bad.append("hardcoded --profile")
+        if bad:
+            clean = False
+            print(f"   !! {script} carries AWS credentials: {', '.join(bad)}")
+            note("secret", f"{script} carries AWS credentials ({', '.join(bad)})")
+        else:
+            print(f"   ok {script} authenticates from ambient AWS config, carries no credentials")
+
     # Files that should never be tracked at all, regardless of content.
     banned = [f for f in tracked
               if re.search(r"\.(p8|pem|key|p12|pfx|cer|mobileprovision)$|(^|/)(authorized_keys|id_rsa|id_ed25519)$", f)]
