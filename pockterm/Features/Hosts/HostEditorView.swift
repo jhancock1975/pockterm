@@ -2,12 +2,18 @@ import SwiftUI
 import SwiftData
 
 struct HostEditorView: View {
+    /// Which text field holds focus, so the keyboard accessory can drop it.
+    private enum Field: Hashable {
+        case label, address, port
+    }
+
     let secretStore: SecretStore
     @Bindable var host: Host
     @Environment(\.modelContext) private var ctx
     @Environment(\.dismiss) private var dismiss
     @Query(sort: \Identity.label) private var identities: [Identity]
     @Query(sort: \HostGroup.name) private var groups: [HostGroup]
+    @FocusState private var focusedField: Field?
 
     var body: some View {
         NavigationStack {
@@ -23,12 +29,15 @@ struct HostEditorView: View {
                 }
                 Section("Connection") {
                     TextField("Label", text: $host.label)
+                        .focused($focusedField, equals: .label)
                     TextField("Address", text: $host.address)
                         .textInputAutocapitalization(.never)
                         .autocorrectionDisabled()
                         .keyboardType(.URL)
+                        .focused($focusedField, equals: .address)
                     TextField("Port", value: $host.port, format: .number)
                         .keyboardType(.numberPad)
+                        .focused($focusedField, equals: .port)
                     Picker("Keep-alive", selection: $host.keepAliveSeconds) {
                         Text("Default (inherit)").tag(0)
                         ForEach(KeepAlive.options.filter { $0.seconds != 0 }) { opt in
@@ -86,6 +95,15 @@ struct HostEditorView: View {
                 }
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Cancel") { dismiss() }
+                }
+                // Port uses a number pad, which has no return key — without
+                // this the keyboard cannot be dismissed at all.
+                ToolbarItemGroup(placement: .keyboard) {
+                    Spacer()
+                    Button { focusedField = nil } label: {
+                        Image(systemName: "keyboard.chevron.compact.down")
+                    }
+                    .accessibilityLabel("Dismiss Keyboard")
                 }
             }
         }
