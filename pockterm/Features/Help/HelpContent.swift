@@ -34,7 +34,7 @@ enum HelpContent {
             .bullets([
                 "On the **Hosts** tab, tap **+**, then **New Host**.",
                 "Enter a **Label**, the **Address** (hostname or IP), and the **Port** (22 by default).",
-                "Choose an **Identity** so Pockterm knows how to sign in. If you don't have one yet, tap **New Identity**.",
+                "Choose **Credentials** so Pockterm knows how to sign in. If you don't have any yet, tap **New Credentials**.",
                 "Tap **Save**.",
             ]),
             .heading("Host actions"),
@@ -46,20 +46,20 @@ enum HelpContent {
         ])
 
     static let keys = HelpTopic(
-        title: "Identities & SSH Keys",
+        title: "Credentials & SSH Keys",
         icon: "key.fill",
         summary: "How Pockterm signs you in",
         blocks: [
-            .paragraph("An **Identity** is a username plus a way to authenticate — either a password or an SSH key."),
+            .paragraph("**Credentials** are a username plus a way to authenticate — either a password or an SSH key."),
             .heading("Generate a key"),
             .bullets([
                 "On the **Keychain** tab, tap **+** and give the key a label.",
                 "Pockterm creates an Ed25519 key pair and stores the private key in the iOS Keychain.",
                 "Add the shown public-key line to the server's `~/.ssh/authorized_keys` file.",
             ]),
-            .heading("Create an identity"),
+            .heading("Create credentials"),
             .bullets([
-                "In a host's editor, choose **New Identity**.",
+                "In a host's editor, choose **New Credentials**.",
                 "Enter the username and pick **Password** or **Key**.",
                 "For **Key**, select one of the keys you generated.",
             ]),
@@ -97,7 +97,7 @@ enum HelpContent {
         summary: "Keep a large host list tidy",
         blocks: [
             .bullets([
-                "From the **Hosts** menu, choose **Manage Groups**. Groups can be nested, and a group's default identity and port are inherited by its hosts.",
+                "From the **Hosts** menu, choose **Manage Groups**. Groups can be nested, and a group's default credentials and port are inherited by its hosts.",
                 "Assign a host to a group in the host editor.",
                 "**Star** a host (swipe left) to pin it to a Favorites section.",
                 "Pull down to **search** by label or address. Hosts you've used recently appear under Recents.",
@@ -114,7 +114,7 @@ enum HelpContent {
                 "Paste your config text, or tap **Choose File**.",
                 "Review the detected hosts, turn off any you don't want, then tap **Import**.",
             ]),
-            .paragraph("Pockterm reads the `Host`, `HostName`, `User`, and `Port` settings. A password identity is created for each username so you can fill in the secret afterward."),
+            .paragraph("Pockterm reads the `Host`, `HostName`, `User`, and `Port` settings. Password credentials are created for each username so you can fill in the secret afterward."),
         ])
 
     static let sftp = HelpTopic(

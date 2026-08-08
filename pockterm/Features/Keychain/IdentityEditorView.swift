@@ -14,7 +14,7 @@ struct IdentityEditorView: View {
 
     var body: some View {
         Form {
-            Section("Identity") {
+            Section("Credentials") {
                 TextField("Label", text: $label)
                 TextField("Username", text: $username)
                     .textInputAutocapitalization(.never)
@@ -39,7 +39,7 @@ struct IdentityEditorView: View {
                 }
             }
         }
-        .navigationTitle("New Identity")
+        .navigationTitle("New Credentials")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .confirmationAction) {

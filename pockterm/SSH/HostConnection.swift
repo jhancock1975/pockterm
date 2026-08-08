@@ -15,7 +15,7 @@ enum HostConnection {
     static func credentials(for host: Host, secretStore: SecretStore) -> CredentialResult {
         let effective = EffectiveHostSettings.resolve(host: host)
         guard let identity = effective.identity else {
-            return .failure("This host has no identity. Edit it and assign one.")
+            return .failure("This host has no credentials. Edit the host and choose one.")
         }
         let auth: SSHAuth
         switch identity.authMethod {
@@ -26,7 +26,7 @@ enum HostConnection {
             guard let keyId = identity.keyRef,
                   let pem = (try? secretStore.getString(keyId.uuidString)) ?? nil,
                   let seed = KeyManager.seed(fromPEM: pem) else {
-                return .failure("The identity's key is missing.")
+                return .failure("The SSH key for these credentials is missing.")
             }
             auth = .ed25519Seed(seed)
         }

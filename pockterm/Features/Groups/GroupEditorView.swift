@@ -23,7 +23,7 @@ struct GroupEditorView: View {
                     }
                 }
                 Section("Defaults inherited by hosts") {
-                    Picker("Default Identity", selection: $group.defaultIdentity) {
+                    Picker("Default Credentials", selection: $group.defaultIdentity) {
                         Text("None").tag(Identity?.none)
                         ForEach(identities) { id in
                             Text(id.label).tag(Identity?.some(id))

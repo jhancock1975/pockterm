@@ -45,15 +45,25 @@ struct HostEditorView: View {
                         }
                     }
                 }
-                Section("Identity") {
-                    Picker("Identity", selection: $host.identity) {
+                Section {
+                    Picker("Credentials", selection: $host.identity) {
                         Text("None").tag(Identity?.none)
                         ForEach(identities) { id in
                             Text(id.label).tag(Identity?.some(id))
                         }
                     }
-                    NavigationLink("New Identity") {
+                    NavigationLink("New Credentials") {
                         IdentityEditorView(secretStore: secretStore)
+                    }
+                } header: {
+                    Text("Credentials")
+                } footer: {
+                    // Say why Save is disabled, rather than leaving the user to
+                    // guess at a greyed-out button.
+                    if effectiveIdentity == nil {
+                        Text("Required — Pockterm needs a username and either a password or a key to sign in.")
+                    } else if host.identity == nil {
+                        Text("Inherited from this host's group.")
                     }
                 }
                 Section("Organization") {
@@ -91,7 +101,8 @@ struct HostEditorView: View {
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Save") { save() }
-                        .disabled(host.address.isEmpty || host.label.isEmpty)
+                        .disabled(host.address.isEmpty || host.label.isEmpty
+                                  || effectiveIdentity == nil)
                 }
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Cancel") { dismiss() }
@@ -107,6 +118,12 @@ struct HostEditorView: View {
                 }
             }
         }
+    }
+
+    /// Credentials actually in force, which a host may inherit from its group
+    /// rather than set directly — so validation must not demand a local pick.
+    private var effectiveIdentity: Identity? {
+        EffectiveHostSettings.resolve(host: host).identity
     }
 
     private func save() {
