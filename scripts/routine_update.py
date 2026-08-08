@@ -38,6 +38,9 @@ UPSTREAM = {
     "swift-nio": "apple/swift-nio",
     "swift-system": "apple/swift-system",
     "swiftterm": "migueldeicaza/SwiftTerm",
+    # Citadel needs a patched NIOSSH. We override its declared dependency to the
+    # Citadel author's own fork; see CAPPED for why.
+    "swift-nio-ssh": "Joannis/swift-nio-ssh",
 }
 
 # Advisory package names to the identity they map to in Package.resolved.
@@ -54,6 +57,11 @@ ADVISORY_PACKAGES = {
 # as context instead of nagging every run.
 CAPPED = {
     "swift-crypto": "Citadel pins <4.0.0, and 4.0.0-4.3.0 carry GHSA-9m44-rr2w-ppp7",
+    # Citadel 0.12.1 declares Wellz26/swift-nio-ssh, a 0-star third-party fork.
+    # The project overrides it to the Citadel author's own fork via a root
+    # declaration; Citadel's range caps it below 0.4.0. If SwiftPM ever makes
+    # the identity conflict fatal, revisit (see docs/backlog.md).
+    "swift-nio-ssh": "held <0.4.0 by Citadel; overridden away from a third-party fork",
 }
 
 findings = []
