@@ -83,9 +83,10 @@ struct SessionTabsView: View {
         }
     }
 
-    /// Compact header: the active session's name centered, a red close button
-    /// on the leading edge, and the snippet runner + exit trailing. A slim tab
-    /// chip row appears only when more than one session is open.
+    /// Compact header: the active session's chip centered (carrying its own
+    /// close button), the AI assistant on the leading edge, and new-session,
+    /// snippets, files, theme and minimise trailing. A slim tab chip row
+    /// appears only when more than one session is open.
     private var topBar: some View {
         VStack(spacing: 6) {
             ZStack {
@@ -96,7 +97,9 @@ struct SessionTabsView: View {
                 }
 
                 HStack(spacing: 12) {
-                    Spacer()
+                    // AI sits on the leading edge, opposite the chip's close
+                    // button. Trailing, it landed hard against that red ✕ —
+                    // a frequently-tapped control touching a destructive one.
                     if let session = manager.active {
                         Button {
                             // Drop the terminal's keyboard first: a sheet
@@ -110,6 +113,7 @@ struct SessionTabsView: View {
                         }
                         .accessibilityLabel("AI Assistant")
                     }
+                    Spacer()
                     Button { showingHostPicker = true } label: {
                         Image(systemName: "plus")
                     }
