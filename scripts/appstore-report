@@ -1,0 +1,18 @@
+#!/bin/bash
+# Runs scripts/appstore_report.py, bootstrapping its venv on first use.
+#
+# System python3 is externally managed (PEP 668), so the deps live in a venv
+# under ~/.cache rather than being installed globally.
+set -euo pipefail
+
+VENV="$HOME/.cache/pockterm-asc/venv"
+HERE="$(cd "$(dirname "$0")" && pwd)"
+
+if [[ ! -x "$VENV/bin/python" ]]; then
+    echo "bootstrapping venv at $VENV ..." >&2
+    python3 -m venv "$VENV"
+    "$VENV/bin/pip" install -q --upgrade pip
+    "$VENV/bin/pip" install -q "PyJWT[crypto]" requests
+fi
+
+exec "$VENV/bin/python" "$HERE/appstore_report.py" "$@"
