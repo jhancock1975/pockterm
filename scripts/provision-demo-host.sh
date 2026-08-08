@@ -8,6 +8,11 @@
 # Credentials are written to ~/Documents/Apps/pockterm/demo-host.txt, OUTSIDE
 # the repo. This repository is public and a demo password was committed to it
 # once already; never paste the real values into docs/app-store-metadata.md.
+#
+# NEVER put AWS credentials in this file. It authenticates from the ambient AWS
+# CLI config (~/.aws/credentials, outside the repo) — no keys, no --profile, no
+# exported AWS_ACCESS_KEY_ID/AWS_SECRET_ACCESS_KEY. This repository is PUBLIC.
+# scripts/routine-update checks this file explicitly and fails if that changes.
 set -euo pipefail
 export AWS_PAGER=""
 
@@ -106,6 +111,11 @@ cat > "$TEARDOWN" <<EOF
 #!/bin/bash
 # Tears down the Pockterm App Review demo SSH host. Run AFTER the app is approved.
 # Written by scripts/provision-demo-host.sh on $(date -u +%Y-%m-%d).
+#
+# NEVER put AWS credentials in this file. It authenticates from the ambient AWS
+# CLI config (~/.aws/credentials, outside the repo) — no keys, no --profile, no
+# exported AWS_ACCESS_KEY_ID/AWS_SECRET_ACCESS_KEY. This repository is PUBLIC.
+# scripts/routine-update checks this file explicitly and fails if that changes.
 set -e
 export AWS_PAGER=""
 REGION=$REGION
