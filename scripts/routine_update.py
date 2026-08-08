@@ -9,9 +9,10 @@ to actually re-pin dependencies.
 
 Sections:
   1. Dependency versions   pinned vs. latest upstream release
-  2. Security advisories   GitHub advisories, matched against the pinned version
-  3. Secret scan           tracked files + git history
-  4. Packaging identity    personal paths / identifiers in a built binary
+  2. Supply chain          every package must come from a vetted source
+  3. Security advisories   GitHub advisories, matched against the pinned version
+  4. Secret scan           tracked files + git history
+  5. Packaging identity    personal paths / identifiers in a built binary
 
 Exit code is 1 when anything actionable is found, so this can gate a release.
 """
@@ -62,6 +63,34 @@ CAPPED = {
     # declaration; Citadel's range caps it below 0.4.0. If SwiftPM ever makes
     # the identity conflict fatal, revisit (see docs/backlog.md).
     "swift-nio-ssh": "held <0.4.0 by Citadel; overridden away from a third-party fork",
+}
+
+# ---------------------------------------------------------------- trust policy
+#
+# Supply-chain rule: every dependency must come from a source we have actually
+# vetted. Anything not listed here is treated as untrusted and reported, even if
+# it builds fine — that is the npm event-stream failure mode, where a legitimate
+# package quietly changes hands or gains an obscure transitive dependency.
+#
+# To add an entry you must have looked at the repo: who owns it, how long it has
+# existed, who commits to it, and what a fork changes versus its parent.
+
+TRUSTED_OWNERS = {
+    "apple": "Apple official",
+    "swiftlang": "Apple/Swift official",
+}
+
+TRUSTED_REPOS = {
+    "migueldeicaza/SwiftTerm":
+        "Miguel de Icaza; 1.6k stars, active since 2019. The terminal emulator.",
+    "attaswift/BigInt":
+        "Karoly Lorentey; 815 stars, active since 2015. Widely used, pulled in by Citadel.",
+    "orlandos-nl/Citadel":
+        "Joannis Orlandos (Vapor core team); 380 stars, active since 2020. The SSH layer.",
+    "Joannis/swift-nio-ssh":
+        "Citadel author's fork of apple/swift-nio-ssh. History is Apple's (113 commits by "
+        "Cory Benfield); the delta is public-API and platform work Citadel needs. Audited "
+        "2026-08-08 — legitimate but 4 years behind Apple; see docs/dependency-policy.md.",
 }
 
 findings = []
@@ -137,8 +166,41 @@ def check_dependencies(current):
     print()
 
 
+def check_supply_chain():
+    """Every resolved package must come from a vetted source.
+
+    Deliberately allowlist-based rather than heuristic: a package that looks
+    healthy today (stars, activity) is exactly what a hijacked package looks
+    like. The only durable question is whether a human has vetted this source.
+    """
+    print("2. SUPPLY CHAIN — dependency provenance")
+    data = json.loads(RESOLVED.read_text())
+    untrusted = 0
+    for pin in sorted(data["pins"], key=lambda p: p["identity"]):
+        repo = re.sub(r"^https://github\.com/|\.git$", "", pin["location"])
+        owner = repo.split("/")[0]
+        if owner in TRUSTED_OWNERS:
+            print(f"   ok {repo:<34} {TRUSTED_OWNERS[owner]}")
+        elif repo in TRUSTED_REPOS:
+            print(f"   ok {repo:<34} vetted")
+        else:
+            untrusted += 1
+            print(f"   !! {repo:<34} NOT VETTED")
+            meta = gh_json(f"repos/{repo}") or {}
+            parent = (meta.get("parent") or {}).get("full_name")
+            print(f"      stars={meta.get('stargazers_count', '?')} "
+                  f"created={(meta.get('created_at') or '?')[:10]} "
+                  f"pushed={(meta.get('pushed_at') or '?')[:10]}"
+                  + (f" fork_of={parent}" if parent else ""))
+            print("      Review it, then add to TRUSTED_REPOS with a reason — or remove it.")
+            note("supply-chain", f"{repo} is not on the vetted list")
+    if not untrusted:
+        print(f"   ok all {len(data['pins'])} packages come from vetted sources")
+    print()
+
+
 def check_advisories(current):
-    print("2. SECURITY ADVISORIES")
+    print("3. SECURITY ADVISORIES")
     advisories = gh_json("/advisories?ecosystem=swift&per_page=100") or []
     hits = 0
     for adv in advisories:
@@ -161,7 +223,7 @@ def check_advisories(current):
 
 
 def check_secrets():
-    print("3. SECRET SCAN")
+    print("4. SECRET SCAN")
     patterns = {
         "private key block": r"BEGIN (RSA|OPENSSH|EC|DSA|PRIVATE)",
         "AWS access key": r"AKIA[0-9A-Z]{16}",
@@ -195,7 +257,7 @@ def check_secrets():
 
 
 def check_packaging():
-    print("4. PACKAGING IDENTITY")
+    print("5. PACKAGING IDENTITY")
     # Every built binary, not just the newest: a clean Debug build sitting on
     # top of a leaky Release archive would otherwise read as all-clear.
     apps = sorted(REPO.glob("build/**/pockterm.app"))
@@ -228,6 +290,7 @@ def main():
     current = pins()
 
     check_dependencies(current)
+    check_supply_chain()
     check_advisories(current)
     check_secrets()
     check_packaging()
