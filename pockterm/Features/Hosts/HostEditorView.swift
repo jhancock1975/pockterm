@@ -13,7 +13,7 @@ struct HostEditorView: View {
         NavigationStack {
             Form {
                 Section {
-                    Picker("Opens", selection: $host.hostProtocol) {
+                    Picker("Protocol", selection: $host.hostProtocol) {
                         ForEach(HostProtocol.allCases) { proto in
                             Label(proto.title, systemImage: proto.symbol).tag(proto)
                         }
