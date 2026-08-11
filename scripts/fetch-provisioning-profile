@@ -1,0 +1,43 @@
+#!/bin/bash
+# Downloads the "Pockterm App Store" distribution profile from App Store Connect
+# and installs it where xcodebuild looks, so package-release can sign manually.
+#
+# Manual signing avoids automatic signing's need to MINT a profile, which
+# headless requires an Admin-role API key. Reading an existing profile only
+# needs App Manager.
+#
+# NEVER put credentials in this file — the .p8 lives in ~/Documents/Apps/pockterm.
+set -euo pipefail
+VENV="$HOME/.cache/pockterm-asc/venv"
+[[ -x "$VENV/bin/python" ]] || { echo "run scripts/routine-update once to build the venv" >&2; exit 1; }
+
+"$VENV/bin/python" - <<'PY'
+import base64, json, re, time, pathlib
+import jwt, requests
+
+CRED = pathlib.Path.home() / "Documents/Apps/pockterm"
+KEY_ID = "WVYS8ZU585"          # App Manager is enough to READ an existing profile
+ISSUER = re.search(r"[0-9a-f-]{36}", (CRED / "key-issuer-id.txt").read_text()).group(0)
+now = int(time.time())
+token = jwt.encode({"iss": ISSUER, "iat": now, "exp": now + 900, "aud": "appstoreconnect-v1"},
+                   (CRED / f"AuthKey_{KEY_ID}.p8").read_text(),
+                   algorithm="ES256", headers={"kid": KEY_ID, "typ": "JWT"})
+
+r = requests.get("https://api.appstoreconnect.apple.com/v1/profiles",
+                 headers={"Authorization": f"Bearer {token}"},
+                 params={"limit": 50}, timeout=60)
+r.raise_for_status()
+match = next((p for p in r.json()["data"]
+              if p["attributes"]["name"] == "Pockterm App Store"
+              and p["attributes"]["profileState"] == "ACTIVE"), None)
+if not match:
+    raise SystemExit("no ACTIVE 'Pockterm App Store' profile found")
+
+attrs = match["attributes"]
+dest = pathlib.Path.home() / "Library/Developer/Xcode/UserData/Provisioning Profiles"
+dest.mkdir(parents=True, exist_ok=True)
+out = dest / f"{attrs['uuid']}.mobileprovision"
+out.write_bytes(base64.b64decode(attrs["profileContent"]))
+print(f"installed {attrs['name']} ({attrs['profileType']}, expires {attrs['expirationDate'][:10]})")
+print(f"  -> {out}")
+PY
