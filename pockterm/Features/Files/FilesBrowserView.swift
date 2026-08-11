@@ -14,6 +14,7 @@ struct FilesBrowserView: View {
     @State private var chmodTarget: RemoteFile?
     @State private var chmodText = ""
     @State private var shareItem: ShareItem?
+    @State private var showingHelp = false
 
     init(host: Host, secretStore: SecretStore, modelContext: ModelContext) {
         _model = State(initialValue: FilesBrowserModel(host: host, secretStore: secretStore,
@@ -38,6 +39,18 @@ struct FilesBrowserView: View {
                 }
             }
             .sheet(item: $shareItem) { item in ActivityView(url: item.url) }
+            .sheet(isPresented: $showingHelp) {
+                NavigationStack {
+                    HelpTopicView(topic: HelpContent.sftp)
+                        .navigationTitle(HelpContent.sftp.title)
+                        .navigationBarTitleDisplayMode(.inline)
+                        .toolbar {
+                            ToolbarItem(placement: .confirmationAction) {
+                                Button("Done") { showingHelp = false }
+                            }
+                        }
+                }
+            }
             .modifier(FilesBrowserAlerts(
                 model: model,
                 showingNewFolder: $showingNewFolder, newFolderName: $newFolderName,
@@ -145,6 +158,12 @@ struct FilesBrowserView: View {
                 Button { showingUploader = true } label: { Label("Upload File", systemImage: "square.and.arrow.up") }
             } label: { Image(systemName: "plus") }
             .disabled(model.status != .loaded)
+        }
+        ToolbarItem(placement: .topBarTrailing) {
+            Button { showingHelp = true } label: {
+                Image(systemName: "questionmark.circle")
+            }
+            .accessibilityLabel("SFTP Help")
         }
         ToolbarItem(placement: .topBarLeading) {
             Button("Done") { dismiss() }

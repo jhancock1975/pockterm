@@ -120,16 +120,33 @@ enum HelpContent {
     static let sftp = HelpTopic(
         title: "Transferring Files (SFTP)",
         icon: "folder.badge.gearshape",
-        summary: "Browse and move files",
+        summary: "Browse, download and upload files",
         blocks: [
-            .paragraph("Pockterm includes an SFTP file browser for each host."),
+            .paragraph("Every host has an SFTP file browser. SFTP runs over the same SSH connection, so there is nothing extra to set up."),
+            .heading("Open the browser"),
             .bullets([
-                "**Swipe a host right** and tap **Files**.",
-                "Tap folders to open them; **pull to refresh**.",
-                "**Long-press** a file to Download, Rename, change Permissions, or Delete.",
-                "Use **+** to create a folder or upload a file from your device.",
+                "**Long-press a host** and choose **Browse Files**.",
+                "Or set the host's **Protocol** to **SFTP (Files)**, and tapping it opens the browser instead of a terminal.",
+                "Already in a session? Tap the **folder** button in the terminal's top bar.",
             ]),
-            .paragraph("Downloads open in the system share sheet so you can save them where you like."),
+            .heading("Download a file"),
+            .bullets([
+                "**Long-press the file**, then choose **Download**.",
+                "It opens in the share sheet, so you can send it anywhere \u{2014} choose **Save to Files** to keep it, including in **iCloud Drive**.",
+            ]),
+            .heading("Upload a file"),
+            .bullets([
+                "Tap **+**, then **Upload File**.",
+                "That opens the iPhone's own file picker, so you can upload straight from **iCloud Drive**, On My iPhone, or any other Files location.",
+                "The file lands in the folder you are currently viewing.",
+            ]),
+            .heading("Manage files"),
+            .bullets([
+                "**Long-press** a file to Rename it, change its **Permissions**, or Delete it.",
+                "Tap **+** to create a folder. **Pull down** to refresh the listing.",
+                "Tap **..** at the top to go up a directory.",
+            ]),
+            .paragraph("Transfers are streamed in chunks, so even a large file will not exhaust memory. While one runs, the path bar shows how much has transferred and the total size."),
         ])
 
     static let forwarding = HelpTopic(
