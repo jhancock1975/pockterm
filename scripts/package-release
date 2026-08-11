@@ -54,40 +54,43 @@ cat > "$BUILD_ROOT/ExportOptions.plist" <<'PLIST'
     <key>destination</key><string>export</string>
     <key>teamID</key><string>5H22F8M69N</string>
     <key>uploadSymbols</key><true/>
-    <key>signingStyle</key><string>automatic</string>
+    <key>signingStyle</key><string>manual</string>
+    <key>signingCertificate</key><string>Apple Distribution</string>
+    <key>provisioningProfiles</key>
+    <dict>
+        <key>John-Hancock.pockterm</key><string>Pockterm App Store</string>
+    </dict>
 </dict>
 </plist>
 PLIST
 
-# Export needs to mint a distribution provisioning profile. Headless, that means
-# cloud signing via an API key with the **Admin** role — an App Manager key fails
-# with "Cloud signing permission error". Falls back to whatever Xcode account is
-# signed in, which is what makes this work from the Xcode Organizer.
-AUTH=()
-ISSUER=$(grep -oE '[0-9a-f-]{36}' "$HOME/Documents/Apps/pockterm/key-issuer-id.txt" 2>/dev/null || true)
-SIGNING_KEY="${POCKTERM_SIGNING_KEY_ID:-}"
-if [[ -n "$SIGNING_KEY" && -n "$ISSUER" \
-      && -f "$HOME/Documents/Apps/pockterm/AuthKey_${SIGNING_KEY}.p8" ]]; then
-    echo "    using API key $SIGNING_KEY for cloud signing"
-    AUTH=(-authenticationKeyPath "$HOME/Documents/Apps/pockterm/AuthKey_${SIGNING_KEY}.p8"
-          -authenticationKeyID "$SIGNING_KEY" -authenticationKeyIssuerID "$ISSUER")
+# Manual signing on purpose. Automatic signing would have to *mint* a
+# distribution profile, which headless means cloud signing via an API key with
+# the Admin role — our App Manager key fails with "Cloud signing permission
+# error". The "Pockterm App Store" profile already exists, so signing against it
+# directly needs no Admin key and no Xcode GUI.
+PROFILE_DIR="$HOME/Library/Developer/Xcode/UserData/Provisioning Profiles"
+if ! grep -qla "Pockterm App Store" "$PROFILE_DIR"/*.mobileprovision 2>/dev/null; then
+    echo "!! the 'Pockterm App Store' provisioning profile is not installed."
+    echo "   Fetch and install it with:"
+    echo "     scripts/fetch-provisioning-profile"
+    exit 1
 fi
 
 if ! xcodebuild -exportArchive -archivePath "$ARCHIVE" \
         -exportOptionsPlist "$BUILD_ROOT/ExportOptions.plist" \
-        -exportPath "$EXPORT_DIR" -allowProvisioningUpdates "${AUTH[@]}"; then
+        -exportPath "$EXPORT_DIR"; then
     cp -R "$ARCHIVE" "$OUT/" 2>/dev/null || true
     cat >&2 <<'MSG'
 
 Export failed, but the archive is built and identity-checked at
-build/release/pockterm.xcarchive. Export needs signing credentials this shell
-does not have. Either:
+build/release/pockterm.xcarchive. Check that the distribution certificate and
+the "Pockterm App Store" profile are both present:
 
-  * set POCKTERM_SIGNING_KEY_ID to an App Store Connect API key with the
-    **Admin** role (App Manager is not enough — it fails with "Cloud signing
-    permission error"), then re-run; or
-  * open the archive in Xcode: Window > Organizer > Distribute App, which uses
-    the signed-in Apple ID.
+  security find-identity -v -p codesigning | grep Distribution
+  scripts/fetch-provisioning-profile
+
+Failing that, open the archive in Xcode: Window > Organizer > Distribute App.
 MSG
     exit 1
 fi
