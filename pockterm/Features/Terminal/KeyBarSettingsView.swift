@@ -6,7 +6,7 @@ struct KeyBarSettingsView: View {
     @State private var keys: [KeyBarKey] = KeyBarConfig.load()
 
     private var availableKeys: [KeyBarKey] {
-        KeyBarKey.allCases.filter { !keys.contains($0) }
+        KeyBarConfig.configurableKeys.filter { !keys.contains($0) }
     }
 
     var body: some View {

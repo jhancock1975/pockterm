@@ -120,8 +120,14 @@ enum KeyBarConfig {
 
     static let defaultKeys: [KeyBarKey] = [
         .esc, .ctrl, .meta, .tab, .tilde, .pipe, .slash, .dash,
-        .left, .down, .up, .right, .pageUp, .pageDown, .f1, .hideKeyboard,
+        .left, .down, .up, .right, .pageUp, .pageDown, .f1,
     ]
+
+    /// Keys the user may add or remove. hideKeyboard is excluded: it is pinned
+    /// to the trailing edge of the bar, so it is not the layout's to place.
+    static var configurableKeys: [KeyBarKey] {
+        KeyBarKey.allCases.filter { $0 != .hideKeyboard }
+    }
 
     static func load() -> [KeyBarKey] {
         guard let raw = UserDefaults.standard.stringArray(forKey: defaultsKey) else {
