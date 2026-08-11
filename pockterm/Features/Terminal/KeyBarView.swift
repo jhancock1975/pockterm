@@ -8,6 +8,9 @@ final class KeyBarView: UIInputView, UIInputViewAudioFeedback {
     private weak var terminalView: TerminalView?
     private let scrollView = UIScrollView()
     private let stack = UIStackView()
+    /// Sits above the scroll view on the trailing edge so the keys pass beneath
+    /// it. Dismissing the keyboard must never require scrolling to find it.
+    private let dismissPad = UIVisualEffectView(effect: UIBlurEffect(style: .systemChromeMaterial))
     private var ctrlButton: HighlightButton?
     private var metaButton: HighlightButton?
 
@@ -30,6 +33,12 @@ final class KeyBarView: UIInputView, UIInputViewAudioFeedback {
         stack.translatesAutoresizingMaskIntoConstraints = false
         scrollView.addSubview(stack)
 
+        // Pinned dismiss button, added after the scroll view so it draws on top.
+        let dismiss = makeButton(for: .hideKeyboard)
+        dismissPad.translatesAutoresizingMaskIntoConstraints = false
+        dismissPad.contentView.addSubview(dismiss)
+        addSubview(dismissPad)
+
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: topAnchor),
             scrollView.bottomAnchor.constraint(equalTo: bottomAnchor),
@@ -40,6 +49,15 @@ final class KeyBarView: UIInputView, UIInputViewAudioFeedback {
             stack.leadingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.leadingAnchor, constant: 6),
             stack.trailingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.trailingAnchor, constant: -6),
             stack.heightAnchor.constraint(equalTo: scrollView.frameLayoutGuide.heightAnchor, constant: -10),
+
+            // Full bar height, so a key sliding under it disappears cleanly
+            // rather than showing slivers above and below.
+            dismissPad.topAnchor.constraint(equalTo: topAnchor),
+            dismissPad.bottomAnchor.constraint(equalTo: bottomAnchor),
+            dismissPad.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
+            dismiss.leadingAnchor.constraint(equalTo: dismissPad.leadingAnchor, constant: 6),
+            dismiss.trailingAnchor.constraint(equalTo: dismissPad.trailingAnchor, constant: -6),
+            dismiss.centerYAnchor.constraint(equalTo: dismissPad.centerYAnchor),
         ])
 
         reloadKeys()
@@ -69,13 +87,26 @@ final class KeyBarView: UIInputView, UIInputViewAudioFeedback {
         ctrlButton = nil
         metaButton = nil
         for view in stack.arrangedSubviews { view.removeFromSuperview() }
-        for key in KeyBarConfig.load() {
+        // hideKeyboard is pinned separately now; a saved layout from before that
+        // change still contains it, so drop it here rather than draw it twice.
+        for key in KeyBarConfig.load() where key != .hideKeyboard {
             let button = makeButton(for: key)
             stack.addArrangedSubview(button)
             if key == .esc {
                 // Breathing room so esc is hard to fat-finger into ctrl.
                 stack.setCustomSpacing(14, after: button)
             }
+        }
+    }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        // Let the last key scroll clear of the pinned button instead of ending
+        // up permanently underneath it.
+        let reserved = dismissPad.bounds.width
+        if scrollView.contentInset.right != reserved {
+            scrollView.contentInset.right = reserved
+            scrollView.horizontalScrollIndicatorInsets.right = reserved
         }
     }
 
