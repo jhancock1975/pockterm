@@ -79,3 +79,8 @@ emulation and [Citadel](https://github.com/orlandos-nl/Citadel) for SSH.
 Free, and staying that way. Actively developed — see
 [docs/backlog.md](docs/backlog.md) for what's next, and
 [Issues](https://github.com/jhancock1975/pockterm/issues) for bugs and requests.
+
+## Licence
+
+Apache License 2.0 — see [LICENSE](LICENSE). Third-party components and their
+licences are listed in [NOTICE](NOTICE); all are Apache-2.0 or MIT.
