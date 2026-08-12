@@ -61,12 +61,16 @@ ranking weight than the keyword field, so it is worth deciding deliberately:
 
 Ranking versus conversion. Not obviously one or the other.
 
-## Not done — needs a decision
+## Licensing — settled
 
-**LICENSE.** The repo is public with no licence, which legally means all rights
-reserved: people may read it but not use or fork it. Fine if deliberate. If the
-intent is open source, that is a choice to make explicitly (MIT and Apache-2.0
-being the usual picks), and it materially changes how a Show HN lands.
+**Apache License 2.0** (`LICENSE`, with third-party attribution in `NOTICE`).
+Every dependency is compatible: nine are Apache-2.0 already — all the Apple
+packages plus swift-nio-ssh — and SwiftTerm, Citadel and BigInt are MIT, which
+combines cleanly. Apache-2.0 also carries an explicit patent grant, which MIT
+does not.
+
+This matters for a Show HN: the repo is now genuinely open source rather than
+merely public, so "source is at ..." is an invitation instead of a technicality.
 
 ## Launch post drafts
 

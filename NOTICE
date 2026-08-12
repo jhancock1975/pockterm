@@ -1,0 +1,27 @@
+Pockterm
+Copyright 2026 John Hancock
+
+This product is licensed under the Apache License, Version 2.0 (see LICENSE).
+
+--------------------------------------------------------------------------------
+This product bundles the following third-party components. Their licences are
+reproduced at the URLs given; each remains under its own terms.
+
+Apache License 2.0
+  SwiftNIO                    https://github.com/apple/swift-nio
+  SwiftNIO SSH (Citadel fork) https://github.com/Joannis/swift-nio-ssh
+  swift-crypto                https://github.com/apple/swift-crypto
+  swift-log                   https://github.com/apple/swift-log
+  swift-collections           https://github.com/apple/swift-collections
+  swift-atomics               https://github.com/apple/swift-atomics
+  swift-system                https://github.com/apple/swift-system
+  swift-asn1                  https://github.com/apple/swift-asn1
+  swift-argument-parser       https://github.com/apple/swift-argument-parser
+
+MIT License
+  SwiftTerm                   https://github.com/migueldeicaza/SwiftTerm
+                              Copyright (c) Miguel de Icaza
+  Citadel                     https://github.com/orlandos-nl/Citadel
+                              Copyright (c) Joannis Orlandos
+  BigInt                      https://github.com/attaswift/BigInt
+                              Copyright (c) Karoly Lorentey
