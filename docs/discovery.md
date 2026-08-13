@@ -16,7 +16,20 @@ creating a version does not carry it across. It shows above the description and
 is the one metadata field editable on a live version without review, so it is
 worth keeping filled.
 
-## Staged for the next submission
+## Shipped in 1.3
+
+Keywords, applied when the 1.3 version record unlocked them (99/100):
+
+```
+ssh,sftp,shell,console,server,linux,vps,raspberry,pi,tunnel,port,forward,scp,ftp,remote,client,bash
+```
+
+Subtitle left at `Terminal, keys & AI assistant`. It could not be changed while
+1.3 was in review — the app-info record returns `409` — and changing it would
+have meant cancelling the submission and losing the queue position. Deferred to
+1.4 deliberately; see below.
+
+## Staged for 1.4
 
 Keywords cannot be edited on a shipped version — the API returns
 `409 STATE_ERROR`. They unlock when a new version enters
@@ -49,17 +62,30 @@ Reasoning:
 - No competitor names. Apple rejects metadata containing them, and it is not
   worth a rejection.
 
-### Subtitle — a decision, not a recommendation
+### Subtitle and keywords must change together
 
-Currently `Terminal, keys & AI assistant` (29/30). The subtitle carries more
-ranking weight than the keyword field, so it is worth deciding deliberately:
+Decided: move to `SSH, SFTP & terminal for Linux` (30/30) in 1.4. The subtitle
+carries more ranking weight than the keyword field, so the highest-volume terms
+belong there. It costs the "AI assistant" hook, which helped conversion once
+someone was already on the page.
 
-| Option | Trades |
-|---|---|
-| Keep as-is | "AI assistant" is a genuine differentiator and helps *conversion* once someone is on the page. |
-| `SSH, SFTP & terminal for Linux` (30/30) | Maximum search weight — puts the four highest-volume terms in the strongest field. Loses the AI hook. |
+**These two fields are coupled and must be edited in the same submission.**
+Apple indexes name + subtitle + keywords as one pool, so the moment the subtitle
+starts carrying `ssh`, `sftp`, `terminal` and `linux`, paying for any of them in
+the keyword field is waste.
 
-Ranking versus conversion. Not obviously one or the other.
+Dropping `ssh`, `sftp` and `linux` frees 15 characters, plus the 1 unused:
+
+```
+shell,console,server,vps,raspberry,pi,tunnel,port,forward,scp,ftp,remote,client,bash,key,homelab,nas
+```
+
+100/100. `key` returns because `keys` leaves the subtitle; `homelab` and `nas`
+are where this app's users actually gather.
+
+**Timing note:** the subtitle lives on `appInfoLocalizations`, not on the
+version, and is only editable while no version is in review. Set it *before*
+submitting 1.4, not after.
 
 ## Licensing — settled
 
