@@ -4,6 +4,73 @@ Things worth doing, not yet scheduled. Newest first.
 
 ---
 
+## Move both App Store URLs to pockterm.com, then take the repo private
+
+**Recorded:** 2026-08-14
+
+The repo is public again as a temporary measure. It should end up private — but
+**the URL move has to ship first**, because the App Store currently depends on
+GitHub for two links, and taking the repo private breaks both.
+
+**Order matters. Do not flip private before a release carries the new URLs.**
+
+### What breaks when the repo goes private
+
+| App Store field | Currently points at | On going private |
+|---|---|---|
+| Marketing URL | `github.com/jhancock1975/pockterm` | 404 |
+| Privacy Policy URL | `jhancock1975.github.io/pockterm/privacy.html` | 404 — GitHub Pages does not serve private repos on free plans |
+
+Both were verified 404 while the repo was private on 2026-08-14. Note that
+flipping back to public did **not** restore Pages — the privacy URL was still
+404 afterwards, so Pages needs re-enabling in repo settings if it is ever relied
+on again. Better not to rely on it.
+
+### The replacement is already live
+
+`pockterm.com` is up on S3 + CloudFront and serves both pages over HTTPS:
+
+- `https://pockterm.com` — landing page, deliberately makes no mention of
+  GitHub or open source, so it stays correct whether the repo is public or not
+- `https://pockterm.com/privacy.html` — the privacy policy, recovered verbatim
+  from `git show gh-pages:privacy.html`
+
+Resource IDs and the redeploy command are in the auto-memory note
+`pockterm-marketing-site`.
+
+### Why this needs a release
+
+Both fields are **frozen** while the app is live with no version in
+`PREPARE_FOR_SUBMISSION`. The API returns HTTP 409 "cannot be edited at this
+time" for `appStoreVersionLocalizations.marketingUrl` and
+`appInfoLocalizations.privacyPolicyUrl`. This is a state lock, not a credentials
+problem — `promotionalText` on the same record still writes fine (verified 200).
+
+### Steps
+
+1. Create the next version (1.4) in App Store Connect. It can be
+   **metadata-only and reuse the existing VALID build** — no new binary needed.
+2. Set `marketingUrl` to `https://pockterm.com` and `privacyPolicyUrl` to
+   `https://pockterm.com/privacy.html`.
+3. Carry the already-queued subtitle + keyword change in the same version — see
+   `docs/discovery.md`. Keywords sit at **99 of 100 characters**, so terms must
+   be swapped, not added.
+4. **Re-provision the reviewer demo SSH host** and refresh the credentials in
+   `docs/app-store-metadata.md`. The previous host was torn down on 2026-08-14
+   after 1.3 was approved, and review will fail without a live one.
+5. Submit, wait for approval, confirm both URLs resolve on the live listing.
+6. **Only then** flip the repo to private.
+
+### Loose end
+
+`PROMOTION.local.md` names the GitHub repo as the Show HN submission URL. Taking
+the repo private kills that plan. Decide before the flip whether Show HN happens
+first (repo public, as written), or whether the submission moves to
+`pockterm.com` — HN treats marketing pages more harshly than source, so that is
+a real trade-off, not a swap.
+
+---
+
 ## ~~Terminal top bar is too crowded; AI icon collides with the close button~~ — DONE 2026-08-08
 
 The active-session chip carries a red close button on its trailing edge, and the
