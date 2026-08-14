@@ -121,3 +121,10 @@ GoogleService-Info.plist
 *.pkg
 *.bin
 *.iso
+
+# ---------------------------------------------------------------------------
+# Claude Code - personal, machine-specific
+# ---------------------------------------------------------------------------
+# Per-machine tool permissions. .claude/skills/ is deliberately NOT ignored:
+# the verify harness is shared and belongs in the repo.
+.claude/settings.local.json
