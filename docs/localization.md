@@ -141,15 +141,27 @@ Step 5 is not optional. Both bugs found during this work — `Ungrouped` staying
 English, and the Arabic-Indic port digits — were invisible in the catalog and
 obvious in a screenshot.
 
+## Checking coverage
+
+`scripts/i18n-status` reads the catalog and reports per-language coverage plus
+the two defects that ship looking fine — a dropped format specifier, and an
+unbalanced `**` or backtick pair that renders as literal punctuation in the
+guide. `scripts/i18n-status --missing fr` lists what one language still needs.
+
+Run it before committing a language. It needs no build and no network.
+
 ## Known gaps
 
-- **`Features/Help/HelpContent.swift`** — roughly 200 lines of user-facing
-  markdown held as plain `String`, so Xcode does not extract it and it is not
-  translated. The largest remaining chunk; needs a code change, not just
-  translation.
-- **`accessibilityLabel`** (16 sites) — VoiceOver still speaks English.
-- **`errorDescription`** on the `LocalizedError` types (4) — error text is
-  still English.
-- **App Store metadata** — listing description and keywords are separate from
-  this and are not localized. That is what surfaces the app in a local App
-  Store's search, so it may matter more for discovery than the UI does.
+- **Nine languages remain**: French, Japanese, Korean, Russian, Ukrainian,
+  Hindi, Telugu, Greek, Italian. Everything they need is in place — the
+  extraction, the RTL rules and the digit rules are language-agnostic — so
+  what is left is translation volume. See `docs/backlog.md`.
+- **App Store metadata** — the listing description and keywords are separate
+  from the app's own strings and are not localized. That is what surfaces the
+  app in a local App Store's search, so for discovery it may matter more than
+  the UI does. It is also gated on the same version lock as the marketing URL.
+
+Everything else that was outstanding is now done: the help guide is extracted
+and translated, both `LocalizedError` types are localized, and `VoiceOver`
+reads translated labels (fifteen of the sixteen `accessibilityLabel` sites had
+always passed literals, so only `HostProtocol.title` needed changing).

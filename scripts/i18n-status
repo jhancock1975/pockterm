@@ -1,0 +1,90 @@
+#!/usr/bin/env python3
+"""Report translation coverage and catch the two defects that fail silently.
+
+Reads pockterm/Localizable.xcstrings — the committed source of truth — so it
+needs no build and no network.
+
+    scripts/i18n-status              # coverage per language + validation
+    scripts/i18n-status --missing es # list what a language is still missing
+
+Two classes of defect matter more than coverage, because both ship looking
+fine:
+
+  * a dropped or altered format specifier (%@, %lld) loses the value at
+    runtime, or crashes on a type mismatch;
+  * an unbalanced ** or ` pair renders as literal punctuation in the help
+    guide instead of emphasis.
+
+Both are checked against the English key for every translation.
+"""
+import argparse
+import json
+import re
+import sys
+from pathlib import Path
+
+CATALOG = Path(__file__).resolve().parent.parent / "pockterm/Localizable.xcstrings"
+SPEC = re.compile(r"%(?:@|lld|\d+\$@|\d+\$lld)")
+
+
+def units(entry):
+    """Every (language, string) pair in a catalog entry, plurals included."""
+    for lang, loc in (entry.get("localizations") or {}).items():
+        if "stringUnit" in loc:
+            yield lang, loc["stringUnit"].get("value", "")
+        for cat in (loc.get("variations", {}).get("plural") or {}).values():
+            yield lang, cat.get("stringUnit", {}).get("value", "")
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--missing", metavar="LANG", help="list untranslated keys for LANG")
+    args = ap.parse_args()
+
+    catalog = json.loads(CATALOG.read_text())
+    strings = catalog["strings"]
+
+    translatable = {k: v for k, v in strings.items()
+                    if v.get("shouldTranslate") is not False}
+    verbatim = len(strings) - len(translatable)
+
+    langs, gaps, problems = set(), {}, []
+    for key, entry in translatable.items():
+        seen = set()
+        for lang, value in units(entry):
+            seen.add(lang)
+            langs.add(lang)
+            if sorted(SPEC.findall(key)) != sorted(SPEC.findall(value)):
+                problems.append(f"{lang}: format specifiers differ — {key[:60]!r}")
+            for marker in ("**", "`"):
+                if key.count(marker) != value.count(marker):
+                    problems.append(f"{lang}: unbalanced {marker!r} — {key[:60]!r}")
+        for lang in langs:
+            if lang not in seen:
+                gaps.setdefault(lang, []).append(key)
+
+    if args.missing:
+        for key in gaps.get(args.missing, []):
+            print(key)
+        return 0
+
+    total = len(translatable)
+    print(f"{len(strings)} keys  ({total} translatable, {verbatim} verbatim)\n")
+    for lang in sorted(langs):
+        missing = len(gaps.get(lang, []))
+        done = total - missing
+        bar = "complete" if not missing else f"{missing} missing"
+        print(f"  {lang:<9} {done:>3}/{total}  {bar}")
+
+    print()
+    if problems:
+        print(f"{len(problems)} PROBLEM(S):")
+        for p in problems[:20]:
+            print("  " + p)
+        return 1
+    print("no format or markup problems")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

@@ -4,6 +4,67 @@ Things worth doing, not yet scheduled. Newest first.
 
 ---
 
+## Translate the app into the nine remaining languages
+
+**Recorded:** 2026-08-15
+
+Five languages ship complete at **274/274 strings**: Spanish, Hebrew, Arabic,
+Simplified Chinese, Traditional Chinese. Verify at any time with
+`scripts/i18n-status`.
+
+Nine remain, **one language per commit**, in this order:
+
+1. Italian
+2. French
+3. Greek
+4. Russian
+5. Ukrainian
+6. Japanese
+7. Korean
+8. Hindi
+9. Telugu
+
+Roughly 274 strings each, so about 2,470 translations in total. Ninety-seven of
+them are full help-guide paragraphs rather than single words.
+
+### Per language, the whole procedure
+
+1. Add the code to `knownRegions` in `pockterm.xcodeproj/project.pbxproj`.
+   Hyphenated codes need quoting.
+2. Add the translations to `pockterm/Localizable.xcstrings`, keyed by the
+   English source string.
+3. Add that language's CLDR plural categories for `%lld sessions`.
+4. `scripts/i18n-status` — must report the language complete with no format or
+   markup problems.
+5. Build, confirm the `.lproj` appears in the built app, and **run it**:
+   `xcrun simctl launch <dev> John-Hancock.pockterm -AppleLanguages '(it)' -AppleLocale it_IT`
+6. Commit.
+
+Step 5 is not optional. Both bugs found so far — `Ungrouped` staying English,
+and Arabic rendering the port as `٢٢` — were invisible in the catalog and
+obvious in a screenshot.
+
+### Things that will bite
+
+- **Russian and Ukrainian need four CLDR plural categories** (`one`, `few`,
+  `many`, `other`), the same treatment Arabic got with its six. A single string
+  for `%lld sessions` is wrong in both.
+- **Emphasis inside the help guide names UI controls.** Translate the word
+  inside the `**` to whatever that control is called in that language, or the
+  guide will tell the reader to tap a button that is not on their screen.
+- **Do not translate the ten verbatim keys** — `..`, `•`,
+  `user@host:~$ ls`, the format-only keys, `Local`, `Terminal`, `OK`. They are
+  already marked `shouldTranslate: false` and need no per-language action.
+- **Telugu is worth confirming before spending the effort.** iOS supports it
+  in-app, but App Store Connect does not offer it as a metadata locale, so the
+  store listing cannot be localized to match.
+
+Conventions, the terminal right-to-left rule and the Latin-digit rule are in
+`docs/localization.md`. Nothing about them is language-specific, so no further
+code changes should be needed for any of the nine.
+
+---
+
 ## Move both App Store URLs to pockterm.com, then take the repo private
 
 **Recorded:** 2026-08-14
