@@ -43,7 +43,9 @@ struct HostsListView: View {
             .sorted { $0.0 < $1.0 }
         var result = named.map { (title: $0.0, hosts: $0.1) }
         if let ungrouped = grouped[String?.none] ?? nil, !ungrouped.isEmpty {
-            result.append((title: "Ungrouped", hosts: ungrouped))
+            // Localized here rather than at the Section: the other titles are
+            // user-entered group names, which must stay verbatim.
+            result.append((title: String(localized: "Ungrouped"), hosts: ungrouped))
         }
         return result
     }
