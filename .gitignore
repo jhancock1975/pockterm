@@ -131,7 +131,3 @@ GoogleService-Info.plist
 
 # Local agent tooling, including a checked-out Python venv (~26 MB).
 .superpowers/
-
-# Working notes on promotion. Deliberately local: it tracks download numbers
-# and launch timing that don't belong in a public repo.
-PROMOTION.local.md
