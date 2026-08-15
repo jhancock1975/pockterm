@@ -199,18 +199,414 @@
         }
       }
     },
-    "**Credentials** are a username plus a way to authenticate — either a password or an SSH key.": {},
-    "**Dynamic** — a SOCKS5 proxy on your device sends each connection through the server.": {},
-    "**Local** — a port on your device forwards to a host the server can reach.": {},
-    "**Long-press a host** and choose **Browse Files**.": {},
-    "**Long-press the file**, then choose **Download**.": {},
-    "**Long-press** a file to Rename it, change its **Permissions**, or Delete it.": {},
-    "**Remote** — a port on the server forwards back to your device.": {},
-    "**Star** a host (swipe left) to pin it to a Favorites section.": {},
-    "**Swipe left** for Edit, Star, or Delete.": {},
-    "**Swipe right** and tap **Files** to browse it over SFTP.": {},
-    "**Tap a row** to edit it.": {},
-    "**Tap** a host to connect.": {},
+    "**Credentials** are a username plus a way to authenticate — either a password or an SSH key.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**بيانات الاعتماد** هي اسم مستخدم بالإضافة إلى طريقة للمصادقة — إمّا كلمة سر أو مفتاح SSH."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Las **Credenciales** son un nombre de usuario más una forma de autenticarse: una contraseña o una clave SSH."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**אישורי גישה** הם שם משתמש בתוספת דרך אימות — סיסמה או מפתח SSH."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**凭证**由用户名加上一种身份验证方式组成 — 密码或 SSH 密钥。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**憑證**由使用者名稱加上一種驗證方式組成 — 密碼或 SSH 金鑰。"
+          }
+        }
+      }
+    },
+    "**Dynamic** — a SOCKS5 proxy on your device sends each connection through the server.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**ديناميكي** — وكيل SOCKS5 على جهازك يرسل كل اتصال عبر الخادم."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**Dinámico**: un proxy SOCKS5 en tu dispositivo envía cada conexión a través del servidor."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**דינמי** — פרוקסי SOCKS5 במכשיר שלך שולח כל חיבור דרך השרת."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**动态** — 设备上的 SOCKS5 代理会把每个连接都经由服务器发送。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**動態** — 裝置上的 SOCKS5 代理會將每個連線都經由伺服器傳送。"
+          }
+        }
+      }
+    },
+    "**Local** — a port on your device forwards to a host the server can reach.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**محلي** — منفذ على جهازك يُوجَّه إلى مضيف يستطيع الخادم الوصول إليه."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**Local**: un puerto de tu dispositivo se redirige a un host al que el servidor puede llegar."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**מקומי** — יציאה במכשיר שלך מנותבת אל מארח שהשרת יכול להגיע אליו."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**本地** — 设备上的某个端口转发到服务器能访问的主机。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**本機** — 裝置上的某個埠轉送到伺服器能連到的主機。"
+          }
+        }
+      }
+    },
+    "**Long-press a host** and choose **Browse Files**.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**اضغط مطوّلًا على مضيف** واختر **تصفح الملفات**."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**Mantén pulsado un host** y elige **Explorar archivos**."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**לחץ לחיצה ארוכה על מארח** ובחר **עיין בקבצים**."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**长按主机**并选择**浏览文件**。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**長按主機**並選擇**瀏覽檔案**。"
+          }
+        }
+      }
+    },
+    "**Long-press the file**, then choose **Download**.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**اضغط مطوّلًا على الملف**، ثم اختر **تنزيل**."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**Mantén pulsado el archivo** y luego elige **Descargar**."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**לחץ לחיצה ארוכה על הקובץ** ואז בחר **הורד**."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**长按文件**，然后选择**下载**。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**長按檔案**，然後選擇**下載**。"
+          }
+        }
+      }
+    },
+    "**Long-press** a file to Rename it, change its **Permissions**, or Delete it.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**اضغط مطوّلًا** على ملف لإعادة تسميته أو تغيير **الأذونات** الخاصة به أو حذفه."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**Mantén pulsado** un archivo para renombrarlo, cambiar sus **Permisos** o eliminarlo."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**לחץ לחיצה ארוכה** על קובץ כדי לשנות את שמו, לשנות את **ההרשאות** שלו או למחוק אותו."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**长按**文件可重命名、更改其**权限**或删除。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**長按**檔案可重新命名、更改其**權限**或刪除。"
+          }
+        }
+      }
+    },
+    "**Remote** — a port on the server forwards back to your device.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**بعيد** — منفذ على الخادم يُوجَّه رجوعًا إلى جهازك."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**Remoto**: un puerto del servidor se redirige de vuelta a tu dispositivo."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**מרוחק** — יציאה בשרת מנותבת בחזרה אל המכשיר שלך."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**远程** — 服务器上的某个端口转发回你的设备。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**遠端** — 伺服器上的某個埠轉送回你的裝置。"
+          }
+        }
+      }
+    },
+    "**Star** a host (swipe left) to pin it to a Favorites section.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**ميّز بنجمة** مضيفًا (مرّر لليسار) لتثبيته في قسم المفضّلة."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**Destaca** un host (desliza a la izquierda) para fijarlo en la sección Favoritos."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**סמן בכוכב** מארח (החלק שמאלה) כדי לקבע אותו למקטע המועדפים."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "为主机**标记星标**（向左滑动）可将其固定到“收藏”分组。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "為主機**標上星號**（向左滑動）可將其釘選到「收藏」區段。"
+          }
+        }
+      }
+    },
+    "**Swipe left** for Edit, Star, or Delete.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**مرّر لليسار** للتحرير أو التمييز بنجمة أو الحذف."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**Desliza a la izquierda** para Editar, Destacar o Eliminar."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**החלק שמאלה** לעריכה, סימון בכוכב או מחיקה."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**向左滑动**可进行编辑、标记星标或删除。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**向左滑動**可編輯、標上星號或刪除。"
+          }
+        }
+      }
+    },
+    "**Swipe right** and tap **Files** to browse it over SFTP.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**مرّر لليمين** واضغط **الملفات** لتصفحه عبر SFTP."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**Desliza a la derecha** y toca **Archivos** para explorarlo por SFTP."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**החלק ימינה** והקש **קבצים** כדי לעיין בו דרך SFTP."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**向右滑动**并轻点**文件**，即可通过 SFTP 浏览。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**向右滑動**並點一下**檔案**，即可透過 SFTP 瀏覽。"
+          }
+        }
+      }
+    },
+    "**Tap a row** to edit it.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**اضغط على صف** لتحريره."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**Toca una fila** para editarla."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**הקש על שורה** כדי לערוך אותה."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**轻点某一行**即可编辑。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**點一下某一列**即可編輯。"
+          }
+        }
+      }
+    },
+    "**Tap** a host to connect.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**اضغط** على مضيف للاتصال."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**Toca** un host para conectarte."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**הקש** על מארח כדי להתחבר."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**轻点**主机即可连接。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**點一下**主機即可連線。"
+          }
+        }
+      }
+    },
     "..": {
       "shouldTranslate": false
     },
@@ -350,7 +746,40 @@
         }
       }
     },
-    "Accept only if the fingerprint matches what you expect from the server's owner.": {},
+    "Accept only if the fingerprint matches what you expect from the server's owner.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "لا توافق إلا إذا كانت البصمة مطابقة لما تتوقعه من مالك الخادم."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Acéptala solo si la huella coincide con la que esperas del propietario del servidor."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "אשר רק אם טביעת האצבע תואמת למה שאתה מצפה לו מבעל השרת."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "只有在指纹与服务器所有者告知的一致时才接受。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "只有在指紋與伺服器擁有者告知的相符時才接受。"
+          }
+        }
+      }
+    },
     "Active on :%@": {
       "localizations": {
         "ar": {
@@ -419,8 +848,74 @@
         }
       }
     },
-    "Add the shown public-key line to the server's `~/.ssh/authorized_keys` file.": {},
-    "Adding a Host": {},
+    "Add the shown public-key line to the server's `~/.ssh/authorized_keys` file.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "أضف سطر المفتاح العام المعروض إلى ملف `~/.ssh/authorized_keys` على الخادم."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Añade la línea de clave pública que se muestra al archivo `~/.ssh/authorized_keys` del servidor."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הוסף את שורת המפתח הציבורי המוצגת לקובץ `~/.ssh/authorized_keys` בשרת."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "把显示的公钥这一行添加到服务器的 `~/.ssh/authorized_keys` 文件中。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "將顯示的公開金鑰那一行加入伺服器的 `~/.ssh/authorized_keys` 檔案。"
+          }
+        }
+      }
+    },
+    "Adding a Host": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "إضافة مضيف"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Añadir un host"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הוספת מארח"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "添加主机"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "加入主機"
+          }
+        }
+      }
+    },
     "Address": {
       "localizations": {
         "ar": {
@@ -489,7 +984,40 @@
         }
       }
     },
-    "Already in a session? Tap the **folder** button in the terminal's top bar.": {},
+    "Already in a session? Tap the **folder** button in the terminal's top bar.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "هل أنت داخل جلسة بالفعل؟ اضغط زر **المجلد** في الشريط العلوي للطرفية."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Ya estás en una sesión? Toca el botón de **carpeta** en la barra superior del terminal."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "כבר בתוך הפעלה? הקש על כפתור **התיקייה** בסרגל העליון של המסוף."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已经在会话中了？轻点终端顶部栏中的**文件夹**按钮。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已經在工作階段中了嗎？點一下終端機頂端列中的**檔案夾**按鈕。"
+          }
+        }
+      }
+    },
     "Appearance": {
       "localizations": {
         "ar": {
@@ -694,7 +1222,40 @@
         }
       }
     },
-    "Assign a host to a group in the host editor.": {},
+    "Assign a host to a group in the host editor.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "أسنِد مضيفًا إلى مجموعة من محرّر المضيف."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Asigna un host a un grupo en el editor de hosts."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "שייך מארח לקבוצה בעורך המארחים."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在主机编辑器中将主机分配到某个群组。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在主機編輯器中將主機指定到某個群組。"
+          }
+        }
+      }
+    },
     "Assistant": {
       "localizations": {
         "ar": {
@@ -933,7 +1494,40 @@
         }
       }
     },
-    "Bring in existing hosts": {},
+    "Bring in existing hosts": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "جلب مضيفين موجودين"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Importar hosts existentes"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ייבוא מארחים קיימים"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "导入已有主机"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "輸入既有主機"
+          }
+        }
+      }
+    },
     "Browse Files": {
       "localizations": {
         "ar": {
@@ -968,7 +1562,40 @@
         }
       }
     },
-    "Browse, download and upload files": {},
+    "Browse, download and upload files": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تصفح الملفات وتنزيلها ورفعها"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Explorar, descargar y subir archivos"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "עיון, הורדה והעלאה של קבצים"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "浏览、下载和上传文件"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "瀏覽、下載與上傳檔案"
+          }
+        }
+      }
+    },
     "Cancel": {
       "localizations": {
         "ar": {
@@ -1071,7 +1698,40 @@
         }
       }
     },
-    "Choose **Credentials** so Pockterm knows how to sign in. If you don't have any yet, tap **New Credentials**.": {},
+    "Choose **Credentials** so Pockterm knows how to sign in. If you don't have any yet, tap **New Credentials**.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اختر **بيانات الاعتماد** ليعرف Pockterm كيفية تسجيل الدخول. إن لم تكن لديك أي منها بعد، اضغط **بيانات اعتماد جديدة**."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elige **Credenciales** para que Pockterm sepa cómo iniciar sesión. Si aún no tienes ninguna, toca **Credenciales nuevas**."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "בחר **אישורי גישה** כדי ש-Pockterm יידע כיצד להתחבר. אם אין לך עדיין, הקש **אישורי גישה חדשים**."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "选择**凭证**，让 Pockterm 知道如何登录。如果还没有，请轻点**新建凭证**。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "選擇**憑證**，讓 Pockterm 知道如何登入。若還沒有，請點一下**新增憑證**。"
+          }
+        }
+      }
+    },
     "Choose File…": {
       "localizations": {
         "ar": {
@@ -1140,7 +1800,40 @@
         }
       }
     },
-    "Connecting and working in a session": {},
+    "Connecting and working in a session": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "الاتصال والعمل داخل جلسة"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conectarse y trabajar en una sesión"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "התחברות ועבודה בהפעלה"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "连接并在会话中工作"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "連線並在工作階段中作業"
+          }
+        }
+      }
+    },
     "Connecting…": {
       "localizations": {
         "ar": {
@@ -1379,9 +2072,108 @@
         }
       }
     },
-    "Create a host": {},
-    "Create a server you can connect to": {},
-    "Create credentials": {},
+    "Create a host": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "إنشاء مضيف"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crear un host"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "יצירת מארח"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "创建主机"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "製作主機"
+          }
+        }
+      }
+    },
+    "Create a server you can connect to": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "أنشئ خادمًا يمكنك الاتصال به"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crea un servidor al que puedas conectarte"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "צור שרת שאפשר להתחבר אליו"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "创建一个可以连接的服务器"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "製作一個可以連線的伺服器"
+          }
+        }
+      }
+    },
+    "Create credentials": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "إنشاء بيانات اعتماد"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crear credenciales"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "יצירת אישורי גישה"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "创建凭证"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "製作憑證"
+          }
+        }
+      }
+    },
     "Creates a new key pair stored securely in the Keychain.": {
       "localizations": {
         "ar": {
@@ -1450,7 +2242,40 @@
         }
       }
     },
-    "Credentials & SSH Keys": {},
+    "Credentials & SSH Keys": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "بيانات الاعتماد ومفاتيح SSH"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Credenciales y claves SSH"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "אישורי גישה ומפתחות SSH"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "凭证与 SSH 密钥"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "憑證與 SSH 金鑰"
+          }
+        }
+      }
+    },
     "Custom": {
       "localizations": {
         "ar": {
@@ -1859,7 +2684,40 @@
         }
       }
     },
-    "Download a file": {},
+    "Download a file": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تنزيل ملف"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Descargar un archivo"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הורדת קובץ"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "下载文件"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "下載檔案"
+          }
+        }
+      }
+    },
     "Drag to reorder; swipe to remove. The bar scrolls horizontally in the terminal.": {
       "localizations": {
         "ar": {
@@ -1962,10 +2820,142 @@
         }
       }
     },
-    "Enter a **Label**, the **Address** (hostname or IP), and the **Port** (22 by default).": {},
-    "Enter the username and pick **Password** or **Key**.": {},
-    "Every host has an SFTP file browser. SFTP runs over the same SSH connection, so there is nothing extra to set up.": {},
-    "Everything stays on your device — see **Your Data & Privacy** for details.": {},
+    "Enter a **Label**, the **Address** (hostname or IP), and the **Port** (22 by default).": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "أدخل **تسمية** و**العنوان** (اسم المضيف أو عنوان IP) و**المنفذ** (22 افتراضيًا)."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Introduce una **Etiqueta**, la **Dirección** (nombre de host o IP) y el **Puerto** (22 por omisión)."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הזן **תווית**, את ה**כתובת** (שם מארח או IP) ואת ה**יציאה** (22 כברירת מחדל)."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "输入**标签**、**地址**（主机名或 IP）和**端口**（默认为 22）。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "輸入**標籤**、**位址**（主機名稱或 IP）與**埠**（預設為 22）。"
+          }
+        }
+      }
+    },
+    "Enter the username and pick **Password** or **Key**.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "أدخل اسم المستخدم واختر **كلمة السر** أو **المفتاح**."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Introduce el nombre de usuario y elige **Contraseña** o **Clave**."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הזן את שם המשתמש ובחר **סיסמה** או **מפתח**."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "输入用户名，并选择**密码**或**密钥**。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "輸入使用者名稱，並選擇**密碼**或**金鑰**。"
+          }
+        }
+      }
+    },
+    "Every host has an SFTP file browser. SFTP runs over the same SSH connection, so there is nothing extra to set up.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "لكل مضيف متصفّح ملفات SFTP. يعمل SFTP عبر اتصال SSH نفسه، لذا لا حاجة إلى أي إعداد إضافي."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Todos los hosts tienen un explorador de archivos SFTP. SFTP funciona sobre la misma conexión SSH, así que no hay nada más que configurar."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "לכל מארח יש דפדפן קבצים של SFTP. ‏SFTP פועל על אותו חיבור SSH, ולכן אין צורך בהגדרה נוספת."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "每台主机都有 SFTP 文件浏览器。SFTP 通过同一个 SSH 连接运行，因此无需任何额外设置。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "每部主機都有 SFTP 檔案瀏覽器。SFTP 透過同一個 SSH 連線運作，因此不需要任何額外設定。"
+          }
+        }
+      }
+    },
+    "Everything stays on your device — see **Your Data & Privacy** for details.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "يبقى كل شيء على جهازك — راجع **بياناتك وخصوصيتك** للتفاصيل."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Todo permanece en tu dispositivo; consulta **Tus datos y privacidad** para más detalles."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הכול נשאר במכשיר שלך — ראה **הנתונים והפרטיות שלך** לפרטים."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "所有内容都保留在你的设备上 — 详见**你的数据与隐私**。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "所有內容都保留在你的裝置上 — 詳見**你的資料與隱私權**。"
+          }
+        }
+      }
+    },
     "Favorite": {
       "localizations": {
         "ar": {
@@ -2068,7 +3058,40 @@
         }
       }
     },
-    "Files & Networking": {},
+    "Files & Networking": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "الملفات والشبكة"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Archivos y red"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "קבצים ורשת"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "文件与网络"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "檔案與網路"
+          }
+        }
+      }
+    },
     "Font": {
       "localizations": {
         "ar": {
@@ -2103,7 +3126,40 @@
         }
       }
     },
-    "For **Key**, select one of the keys you generated.": {},
+    "For **Key**, select one of the keys you generated.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "بالنسبة إلى **المفتاح**، اختر أحد المفاتيح التي ولّدتها."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Para **Clave**, selecciona una de las claves que has generado."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "עבור **מפתח**, בחר אחד מהמפתחות שיצרת."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "对于**密钥**，请选择你生成的密钥之一。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "對於**金鑰**，請選擇你產生的其中一把金鑰。"
+          }
+        }
+      }
+    },
     "Forward": {
       "localizations": {
         "ar": {
@@ -2240,8 +3296,74 @@
         }
       }
     },
-    "From the **Hosts** menu, choose **Import from ssh_config**.": {},
-    "From the **Hosts** menu, choose **Manage Groups**. Groups can be nested, and a group's default credentials and port are inherited by its hosts.": {},
+    "From the **Hosts** menu, choose **Import from ssh_config**.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "من قائمة **المضيفون**، اختر **استيراد من ssh_config**."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En el menú **Hosts**, elige **Importar desde ssh_config**."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "מתפריט **מארחים**, בחר **ייבוא מ-ssh_config**."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在**主机**菜单中，选择**从 ssh_config 导入**。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在**主機**選單中，選擇**從 ssh_config 輸入**。"
+          }
+        }
+      }
+    },
+    "From the **Hosts** menu, choose **Manage Groups**. Groups can be nested, and a group's default credentials and port are inherited by its hosts.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "من قائمة **المضيفون**، اختر **إدارة المجموعات**. يمكن تداخل المجموعات، ويرث مضيفو المجموعة بيانات الاعتماد والمنفذ الافتراضية الخاصة بها."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En el menú **Hosts**, elige **Gestionar grupos**. Los grupos pueden anidarse, y los hosts heredan las credenciales y el puerto predeterminados de su grupo."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "מתפריט **מארחים**, בחר **נהל קבוצות**. אפשר לקנן קבוצות, והמארחים יורשים את אישורי הגישה והיציאה שהוגדרו כברירת מחדל בקבוצה."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在**主机**菜单中，选择**管理群组**。群组可以嵌套，群组的默认凭证和端口会被其主机继承。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在**主機**選單中，選擇**管理群組**。群組可以巢狀排列，群組的預設憑證與埠會由其主機繼承。"
+          }
+        }
+      }
+    },
     "Generate": {
       "localizations": {
         "ar": {
@@ -2310,9 +3432,108 @@
         }
       }
     },
-    "Generate a key": {},
-    "Getting Started": {},
-    "Give a host a **Startup Snippet** to run it automatically on connect.": {},
+    "Generate a key": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "توليد مفتاح"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Generar una clave"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "יצירת מפתח"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "生成密钥"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "產生金鑰"
+          }
+        }
+      }
+    },
+    "Getting Started": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "البدء"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Primeros pasos"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "צעדים ראשונים"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "快速入门"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "快速入門"
+          }
+        }
+      }
+    },
+    "Give a host a **Startup Snippet** to run it automatically on connect.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "امنح المضيف **مقتطف بدء** لتشغيله تلقائيًا عند الاتصال."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Asigna a un host un **Fragmento de inicio** para ejecutarlo automáticamente al conectar."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הגדר למארח **קטע הפעלה** כדי להריץ אותו אוטומטית בעת החיבור."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "为主机设置**启动代码片段**，即可在连接时自动运行。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "為主機設定**啟動程式碼片段**，即可在連線時自動執行。"
+          }
+        }
+      }
+    },
     "Group": {
       "localizations": {
         "ar": {
@@ -2381,7 +3602,40 @@
         }
       }
     },
-    "Groups, Favorites & Search": {},
+    "Groups, Favorites & Search": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "المجموعات والمفضّلة والبحث"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Grupos, favoritos y búsqueda"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "קבוצות, מועדפים וחיפוש"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "群组、收藏与搜索"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "群組、收藏與搜尋"
+          }
+        }
+      }
+    },
     "Help": {
       "localizations": {
         "ar": {
@@ -2484,7 +3738,40 @@
         }
       }
     },
-    "Host actions": {},
+    "Host actions": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "إجراءات المضيف"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Acciones del host"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "פעולות על מארח"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "主机操作"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "主機操作"
+          }
+        }
+      }
+    },
     "Hosts": {
       "localizations": {
         "ar": {
@@ -2553,9 +3840,108 @@
         }
       }
     },
-    "Hosts, groups, snippets, and forwards are stored on your device.": {},
-    "How Pockterm signs you in": {},
-    "If a server later presents a **different** key, Pockterm warns you before continuing — this can mean the server was rebuilt, or that something is wrong.": {},
+    "Hosts, groups, snippets, and forwards are stored on your device.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تُخزَّن المضيفون والمجموعات والمقتطفات والتوجيهات على جهازك."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Los hosts, grupos, fragmentos y redirecciones se guardan en tu dispositivo."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "מארחים, קבוצות, קטעים וניתובים נשמרים במכשיר שלך."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "主机、群组、代码片段和端口转发都存储在你的设备上。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "主機、群組、程式碼片段與埠轉送都儲存在你的裝置上。"
+          }
+        }
+      }
+    },
+    "How Pockterm signs you in": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "كيف يسجّل Pockterm دخولك"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cómo inicia sesión Pockterm"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "כיצד Pockterm מחבר אותך"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pockterm 如何为你登录"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pockterm 如何為你登入"
+          }
+        }
+      }
+    },
+    "If a server later presents a **different** key, Pockterm warns you before continuing — this can mean the server was rebuilt, or that something is wrong.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "إذا قدّم الخادم لاحقًا مفتاحًا **مختلفًا**، ينبّهك Pockterm قبل المتابعة — وقد يعني ذلك أن الخادم أُعيد بناؤه، أو أن هناك خطبًا ما."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Si más adelante un servidor presenta una clave **distinta**, Pockterm te avisa antes de continuar: puede significar que el servidor se reinstaló, o que algo va mal."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "אם בהמשך שרת מציג מפתח **שונה**, ‏Pockterm מזהיר אותך לפני שממשיכים — ייתכן שהשרת הותקן מחדש, או שמשהו אינו כשורה."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "如果服务器之后出示了**不同的**密钥，Pockterm 会在继续之前向你发出警告 — 这可能意味着服务器被重建过，也可能意味着出了问题。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "若伺服器之後出示了**不同的**金鑰，Pockterm 會在繼續之前警告你 — 這可能表示伺服器被重建過，也可能表示出了問題。"
+          }
+        }
+      }
+    },
     "Import": {
       "localizations": {
         "ar": {
@@ -2658,8 +4044,74 @@
         }
       }
     },
-    "Importing from ssh_config": {},
-    "In a host's editor, choose **New Credentials**.": {},
+    "Importing from ssh_config": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "الاستيراد من ssh_config"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Importar desde ssh_config"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ייבוא מ-ssh_config"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "从 ssh_config 导入"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "從 ssh_config 輸入"
+          }
+        }
+      }
+    },
+    "In a host's editor, choose **New Credentials**.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "في محرّر المضيف، اختر **بيانات اعتماد جديدة**."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En el editor de un host, elige **Credenciales nuevas**."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "בעורך של מארח, בחר **אישורי גישה חדשים**."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在主机的编辑器中，选择**新建凭证**。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在主機的編輯器中，選擇**新增憑證**。"
+          }
+        }
+      }
+    },
     "Inherited from this host's group.": {
       "localizations": {
         "ar": {
@@ -2728,9 +4180,108 @@
         }
       }
     },
-    "Invalid private key": {},
-    "It opens in the share sheet, so you can send it anywhere — choose **Save to Files** to keep it, including in **iCloud Drive**.": {},
-    "Keep a large host list tidy": {},
+    "Invalid private key": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "مفتاح خاص غير صالح"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clave privada no válida"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "מפתח פרטי לא תקין"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "私钥无效"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "私密金鑰無效"
+          }
+        }
+      }
+    },
+    "It opens in the share sheet, so you can send it anywhere — choose **Save to Files** to keep it, including in **iCloud Drive**.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "يُفتح في ورقة المشاركة، فيمكنك إرساله إلى أي مكان — اختر **حفظ في الملفات** للاحتفاظ به، بما في ذلك في **iCloud Drive**."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Se abre en la hoja de compartir, así que puedes enviarlo a donde quieras; elige **Guardar en Archivos** para conservarlo, incluso en **iCloud Drive**."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הוא נפתח בגיליון השיתוף, כך שאפשר לשלוח אותו לכל מקום — בחר **שמור בקבצים** כדי לשמור אותו, כולל ב-**iCloud Drive**."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "它会在共享表单中打开，因此你可以发送到任何地方 — 选择**存储到文件**即可保存，也可存到 **iCloud 云盘**。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "它會在共享表單中打開，因此你可以傳送到任何地方 — 選擇**儲存到檔案**即可保存，也可存到 **iCloud 雲碟**。"
+          }
+        }
+      }
+    },
+    "Keep a large host list tidy": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "إبقاء قائمة مضيفين كبيرة مرتّبة"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mantén ordenada una lista larga de hosts"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "שמירה על סדר ברשימת מארחים גדולה"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "让庞大的主机列表保持整洁"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "讓龐大的主機列表保持整齊"
+          }
+        }
+      }
+    },
     "Keep sessions alive when idle": {
       "localizations": {
         "ar": {
@@ -3074,7 +4625,40 @@
         }
       }
     },
-    "Manage files": {},
+    "Manage files": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "إدارة الملفات"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gestionar archivos"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ניהול קבצים"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "管理文件"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "管理檔案"
+          }
+        }
+      }
+    },
     "Method": {
       "localizations": {
         "ar": {
@@ -3619,14 +5203,179 @@
         }
       }
     },
-    "Not connected": {},
+    "Not connected": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "غير متصل"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sin conexión"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "אין חיבור"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "未连接"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "未連線"
+          }
+        }
+      }
+    },
     "OK": {
       "shouldTranslate": false
     },
-    "On the **Hosts** tab, tap **+**, then **New Host**.": {},
-    "On the **Keychain** tab, tap **+** and give the key a label.": {},
-    "On the **Port Forwarding** tab, tap **+** to add one.": {},
-    "On the **Snippets** tab, tap **+** to save a command with a label.": {},
+    "On the **Hosts** tab, tap **+**, then **New Host**.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "من علامة التبويب **المضيفون**، اضغط **+** ثم **مضيف جديد**."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En la pestaña **Hosts**, toca **+** y luego **Host nuevo**."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "בלשונית **מארחים**, הקש **+** ואז **מארח חדש**."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在**主机**标签页中，轻点 **+**，然后选择**新建主机**。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在**主機**標籤頁中，點一下 **+**，然後選擇**新增主機**。"
+          }
+        }
+      }
+    },
+    "On the **Keychain** tab, tap **+** and give the key a label.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "من علامة التبويب **سلسلة المفاتيح**، اضغط **+** وأعطِ المفتاح تسمية."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En la pestaña **Llavero**, toca **+** y ponle una etiqueta a la clave."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "בלשונית **מחזיק מפתחות**, הקש **+** ותן למפתח תווית."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在**钥匙串**标签页中，轻点 **+** 并为密钥设置标签。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在**鑰匙圈**標籤頁中，點一下 **+** 並為金鑰設定標籤。"
+          }
+        }
+      }
+    },
+    "On the **Port Forwarding** tab, tap **+** to add one.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "من علامة التبويب **توجيه المنافذ**، اضغط **+** لإضافة واحد."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En la pestaña **Redirección de puertos**, toca **+** para añadir una."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "בלשונית **ניתוב יציאות**, הקש **+** כדי להוסיף אחד."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在**端口转发**标签页中，轻点 **+** 添加一个。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在**埠轉送**標籤頁中，點一下 **+** 加入一個。"
+          }
+        }
+      }
+    },
+    "On the **Snippets** tab, tap **+** to save a command with a label.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "من علامة التبويب **المقتطفات**، اضغط **+** لحفظ أمر مع تسمية."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En la pestaña **Fragmentos**, toca **+** para guardar un comando con una etiqueta."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "בלשונית **קטעים**, הקש **+** כדי לשמור פקודה עם תווית."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在**代码片段**标签页中，轻点 **+** 保存带标签的命令。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在**程式碼片段**標籤頁中，點一下 **+** 儲存帶標籤的指令。"
+          }
+        }
+      }
+    },
     "On the Key Bar": {
       "localizations": {
         "ar": {
@@ -3661,7 +5410,40 @@
         }
       }
     },
-    "Once accepted, the key is remembered and you won't be asked again.": {},
+    "Once accepted, the key is remembered and you won't be asked again.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "بعد القبول، يُحفظ المفتاح ولن تُسأل مرة أخرى."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Una vez aceptada, la clave se recuerda y no se te volverá a preguntar."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "לאחר האישור, המפתח נשמר ולא תישאל שוב."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "一旦接受，该密钥就会被记住，不会再次询问你。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "一旦接受，該金鑰就會被記住，不會再次詢問你。"
+          }
+        }
+      }
+    },
     "Open Terminal": {
       "localizations": {
         "ar": {
@@ -3696,8 +5478,74 @@
         }
       }
     },
-    "Open several hosts at once — each session is a tab across the top. Tap its name to switch, or the red **✕** to close it.": {},
-    "Open the browser": {},
+    "Open several hosts at once — each session is a tab across the top. Tap its name to switch, or the red **✕** to close it.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "افتح عدة مضيفين في وقت واحد — كل جلسة هي علامة تبويب في الأعلى. اضغط على اسمها للتبديل، أو على **✕** الحمراء لإغلاقها."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abre varios hosts a la vez: cada sesión es una pestaña en la parte superior. Toca su nombre para cambiar, o la **✕** roja para cerrarla."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "אפשר לפתוח כמה מארחים בו-זמנית — כל הפעלה היא לשונית בחלק העליון. הקש על השם כדי להחליף, או על ה-**✕** האדום כדי לסגור."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "可同时打开多台主机 — 每个会话都是顶部的一个标签。轻点名称可切换，轻点红色 **✕** 可关闭。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "可同時打開多部主機 — 每個工作階段都是頂端的一個標籤。點一下名稱可切換，點一下紅色 **✕** 可關閉。"
+          }
+        }
+      }
+    },
+    "Open the browser": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "فتح المتصفّح"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir el explorador"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "פתיחת הדפדפן"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "打开浏览器"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "打開瀏覽器"
+          }
+        }
+      }
+    },
     "Operation Failed": {
       "localizations": {
         "ar": {
@@ -3732,7 +5580,40 @@
         }
       }
     },
-    "Or set the host's **Protocol** to **SFTP (Files)**, and tapping it opens the browser instead of a terminal.": {},
+    "Or set the host's **Protocol** to **SFTP (Files)**, and tapping it opens the browser instead of a terminal.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "أو اضبط **بروتوكول** المضيف على **SFTP (الملفات)**، فيؤدي الضغط عليه إلى فتح المتصفّح بدلًا من الطرفية."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O ajusta el **Protocolo** del host a **SFTP (Archivos)**: al tocarlo se abrirá el explorador en lugar de un terminal."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "לחלופין הגדר את ה**פרוטוקול** של המארח ל-**SFTP (קבצים)**, ואז הקשה עליו תפתח את הדפדפן במקום מסוף."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "或者把主机的**协议**设为 **SFTP（文件）**，这样轻点它会打开浏览器而不是终端。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "或者將主機的**通訊協定**設為 **SFTP（檔案）**，這樣點一下它會打開瀏覽器而不是終端機。"
+          }
+        }
+      }
+    },
     "Organization": {
       "localizations": {
         "ar": {
@@ -3835,7 +5716,40 @@
         }
       }
     },
-    "Passwords and private keys are kept in the **iOS Keychain**.": {},
+    "Passwords and private keys are kept in the **iOS Keychain**.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تُحفظ كلمات السر والمفاتيح الخاصة في **سلسلة مفاتيح iOS**."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Las contraseñas y las claves privadas se guardan en el **Llavero de iOS**."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "סיסמאות ומפתחות פרטיים נשמרים ב**מחזיק המפתחות של iOS**."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "密码和私钥保存在 **iOS 钥匙串**中。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "密碼與私密金鑰保存在 **iOS 鑰匙圈**中。"
+          }
+        }
+      }
+    },
     "Paste API key": {
       "localizations": {
         "ar": {
@@ -3870,7 +5784,40 @@
         }
       }
     },
-    "Paste your config text, or tap **Choose File**.": {},
+    "Paste your config text, or tap **Choose File**.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "الصق نص الإعداد الخاص بك، أو اضغط **اختيار ملف**."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pega el texto de tu configuración o toca **Elegir archivo**."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הדבק את טקסט התצורה שלך, או הקש **בחר קובץ**."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "粘贴你的配置文本，或轻点**选择文件**。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "貼上你的設定文字，或點一下**選擇檔案**。"
+          }
+        }
+      }
+    },
     "Paste ~/.ssh/config": {
       "localizations": {
         "ar": {
@@ -3973,10 +5920,142 @@
         }
       }
     },
-    "Pockterm creates an Ed25519 key pair and stores the private key in the iOS Keychain.": {},
-    "Pockterm has no account, and your connection data stays on your device.": {},
-    "Pockterm is a full-featured SSH client for iPhone. You can connect to servers, run an interactive terminal, transfer files over SFTP, and set up port-forwarding tunnels.": {},
-    "Pockterm reads the `Host`, `HostName`, `User`, and `Port` settings. Password credentials are created for each username so you can fill in the secret afterward.": {},
+    "Pockterm creates an Ed25519 key pair and stores the private key in the iOS Keychain.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ينشئ Pockterm زوج مفاتيح Ed25519 ويحفظ المفتاح الخاص في سلسلة مفاتيح iOS."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pockterm crea un par de claves Ed25519 y guarda la clave privada en el Llavero de iOS."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "‏Pockterm יוצר זוג מפתחות Ed25519 ושומר את המפתח הפרטי במחזיק המפתחות של iOS."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pockterm 会创建一个 Ed25519 密钥对，并将私钥存储在 iOS 钥匙串中。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pockterm 會製作一組 Ed25519 金鑰組，並將私密金鑰儲存在 iOS 鑰匙圈中。"
+          }
+        }
+      }
+    },
+    "Pockterm has no account, and your connection data stays on your device.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "لا يستخدم Pockterm أي حساب، وتبقى بيانات اتصالك على جهازك."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pockterm no tiene cuentas, y los datos de tus conexiones permanecen en tu dispositivo."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ל-Pockterm אין חשבונות, ונתוני החיבורים שלך נשארים במכשיר שלך."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pockterm 没有账户，你的连接数据都保留在设备上。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pockterm 沒有帳號，你的連線資料都保留在裝置上。"
+          }
+        }
+      }
+    },
+    "Pockterm is a full-featured SSH client for iPhone. You can connect to servers, run an interactive terminal, transfer files over SFTP, and set up port-forwarding tunnels.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "‏Pockterm عميل SSH متكامل للآيفون. يمكنك الاتصال بالخوادم وتشغيل طرفية تفاعلية ونقل الملفات عبر SFTP وإعداد أنفاق لتوجيه المنافذ."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pockterm es un cliente SSH completo para iPhone. Puedes conectarte a servidores, usar un terminal interactivo, transferir archivos por SFTP y crear túneles de redirección de puertos."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "‏Pockterm הוא לקוח SSH מלא לאייפון. אפשר להתחבר לשרתים, להריץ מסוף אינטראקטיבי, להעביר קבצים דרך SFTP ולהקים מנהרות לניתוב יציאות."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pockterm 是一款功能完整的 iPhone SSH 客户端。你可以连接服务器、运行交互式终端、通过 SFTP 传输文件，并设置端口转发隧道。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pockterm 是一款功能完整的 iPhone SSH 用戶端。你可以連線伺服器、執行互動式終端機、透過 SFTP 傳輸檔案，並設定埠轉送通道。"
+          }
+        }
+      }
+    },
+    "Pockterm reads the `Host`, `HostName`, `User`, and `Port` settings. Password credentials are created for each username so you can fill in the secret afterward.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "يقرأ Pockterm إعدادات `Host` و`HostName` و`User` و`Port`. وتُنشأ بيانات اعتماد بكلمة سر لكل اسم مستخدم لتتمكن من إدخال السر لاحقًا."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pockterm lee los ajustes `Host`, `HostName`, `User` y `Port`. Se crean credenciales de contraseña para cada nombre de usuario, de modo que puedas rellenar el secreto después."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "‏Pockterm קורא את ההגדרות `Host`, `HostName`, `User` ו-`Port`. נוצרים אישורי גישה מסוג סיסמה לכל שם משתמש, כך שתוכל למלא את הסוד אחר כך."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pockterm 会读取 `Host`、`HostName`、`User` 和 `Port` 设置。系统会为每个用户名创建密码凭证，你可以随后填入密钥内容。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pockterm 會讀取 `Host`、`HostName`、`User` 與 `Port` 設定。系統會為每個使用者名稱製作密碼憑證，你可以稍後再填入密鑰內容。"
+          }
+        }
+      }
+    },
     "Port": {
       "localizations": {
         "ar": {
@@ -4045,7 +6124,40 @@
         }
       }
     },
-    "Port forwarding routes network connections through an SSH server.": {},
+    "Port forwarding routes network connections through an SSH server.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "يوجّه توجيهُ المنافذ اتصالاتِ الشبكة عبر خادم SSH."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La redirección de puertos encamina conexiones de red a través de un servidor SSH."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ניתוב יציאות מנתב חיבורי רשת דרך שרת SSH."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "端口转发会将网络连接经由 SSH 服务器进行路由。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "埠轉送會將網路連線經由 SSH 伺服器進行路由。"
+          }
+        }
+      }
+    },
     "Protocol": {
       "localizations": {
         "ar": {
@@ -4114,8 +6226,74 @@
         }
       }
     },
-    "Pull down to **search** by label or address. Hosts you've used recently appear under Recents.": {},
-    "Rate limited by the provider. Try again shortly.": {},
+    "Pull down to **search** by label or address. Hosts you've used recently appear under Recents.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اسحب لأسفل لـ**البحث** بالتسمية أو العنوان. ويظهر المضيفون الذين استخدمتهم مؤخرًا ضمن الأخيرة."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Desliza hacia abajo para **buscar** por etiqueta o dirección. Los hosts que has usado hace poco aparecen en Recientes."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "משוך מטה כדי **לחפש** לפי תווית או כתובת. מארחים שהשתמשת בהם לאחרונה מופיעים תחת אחרונים."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "下拉可按标签或地址**搜索**。最近使用过的主机会显示在“最近使用”下。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "下拉可依標籤或位址**搜尋**。最近使用過的主機會顯示在「最近使用」下方。"
+          }
+        }
+      }
+    },
+    "Rate limited by the provider. Try again shortly.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "قيّد المزوّد معدّل الطلبات. أعد المحاولة بعد قليل."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El proveedor ha limitado la frecuencia de peticiones. Vuelve a intentarlo en breve."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הספק הגביל את קצב הבקשות. נסה שוב בקרוב."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已被服务商限流。请稍后重试。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已被供應商限流。請稍後再試。"
+          }
+        }
+      }
+    },
     "Recents": {
       "localizations": {
         "ar": {
@@ -4354,8 +6532,74 @@
         }
       }
     },
-    "Request failed (HTTP %@).": {},
-    "Request failed (HTTP %@): %@": {},
+    "Request failed (HTTP %@).": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "فشل الطلب (HTTP %@)."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La petición falló (HTTP %@)."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הבקשה נכשלה (HTTP %@)."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "请求失败（HTTP %@）。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "請求失敗（HTTP %@）。"
+          }
+        }
+      }
+    },
+    "Request failed (HTTP %@): %@": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "فشل الطلب (HTTP %@): %@"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La petición falló (HTTP %@): %@"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הבקשה נכשלה (HTTP %@): %@"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "请求失败（HTTP %@）：%@"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "請求失敗（HTTP %@）：%@"
+          }
+        }
+      }
+    },
     "Required — Pockterm needs a username and either a password or a key to sign in.": {
       "localizations": {
         "ar": {
@@ -4492,7 +6736,40 @@
         }
       }
     },
-    "Review the detected hosts, turn off any you don't want, then tap **Import**.": {},
+    "Review the detected hosts, turn off any you don't want, then tap **Import**.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "راجع المضيفين المكتشفين، وعطّل ما لا تريده، ثم اضغط **استيراد**."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Revisa los hosts detectados, desactiva los que no quieras y toca **Importar**."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "עבור על המארחים שזוהו, בטל את אלה שאינך רוצה, ואז הקש **ייבוא**."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "检查检测到的主机，关闭不需要的，然后轻点**导入**。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "檢視偵測到的主機，關閉不需要的，然後點一下**輸入**。"
+          }
+        }
+      }
+    },
     "Run": {
       "localizations": {
         "ar": {
@@ -4527,8 +6804,74 @@
         }
       }
     },
-    "Run a forward": {},
-    "SFTP (Files)": {},
+    "Run a forward": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تشغيل توجيه"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ejecutar una redirección"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הרצת ניתוב"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "运行转发"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "執行轉送"
+          }
+        }
+      }
+    },
+    "SFTP (Files)": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SFTP (الملفات)"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SFTP (Archivos)"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SFTP (קבצים)"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SFTP（文件）"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SFTP（檔案）"
+          }
+        }
+      }
+    },
     "SFTP Error": {
       "localizations": {
         "ar": {
@@ -4631,7 +6974,40 @@
         }
       }
     },
-    "SSH (Terminal)": {},
+    "SSH (Terminal)": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SSH (الطرفية)"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SSH (Terminal)"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SSH (מסוף)"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SSH（终端）"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SSH（終端機）"
+          }
+        }
+      }
+    },
     "Save": {
       "localizations": {
         "ar": {
@@ -4700,7 +7076,40 @@
         }
       }
     },
-    "Save and run reusable commands": {},
+    "Save and run reusable commands": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "احفظ أوامر قابلة لإعادة الاستخدام وشغّلها"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Guarda y ejecuta comandos reutilizables"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "שמירה והרצה של פקודות לשימוש חוזר"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "保存并运行可重复使用的命令"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "儲存並執行可重複使用的指令"
+          }
+        }
+      }
+    },
     "Search hosts": {
       "localizations": {
         "ar": {
@@ -4735,7 +7144,40 @@
         }
       }
     },
-    "Security & Privacy": {},
+    "Security & Privacy": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "الأمان والخصوصية"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Seguridad y privacidad"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "אבטחה ופרטיות"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "安全与隐私"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "安全性與隱私權"
+          }
+        }
+      }
+    },
     "Send": {
       "localizations": {
         "ar": {
@@ -5076,7 +7518,40 @@
         }
       }
     },
-    "Snippets are commands you use often.": {},
+    "Snippets are commands you use often.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "المقتطفات هي أوامر تستخدمها كثيرًا."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Los fragmentos son comandos que usas a menudo."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "קטעים הם פקודות שאתה משתמש בהן לעיתים קרובות."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "代码片段就是你经常使用的命令。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "程式碼片段就是你經常使用的指令。"
+          }
+        }
+      }
+    },
     "Star": {
       "localizations": {
         "ar": {
@@ -5179,11 +7654,176 @@
         }
       }
     },
-    "Tap **+** to create a folder. **Pull down** to refresh the listing.": {},
-    "Tap **+**, then **Upload File**.": {},
-    "Tap **..** at the top to go up a directory.": {},
-    "Tap **Save**.": {},
-    "Tap **▶** to start; the status shows when it's active. Tap **⏹** to stop.": {},
+    "Tap **+** to create a folder. **Pull down** to refresh the listing.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اضغط **+** لإنشاء مجلد. و**اسحب لأسفل** لتحديث القائمة."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Toca **+** para crear una carpeta. **Desliza hacia abajo** para actualizar el listado."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הקש **+** כדי ליצור תיקייה. **משוך מטה** כדי לרענן את הרשימה."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "轻点 **+** 可新建文件夹。**下拉**可刷新列表。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "點一下 **+** 可新增檔案夾。**下拉**可重新整理列表。"
+          }
+        }
+      }
+    },
+    "Tap **+**, then **Upload File**.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اضغط **+**، ثم **رفع ملف**."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Toca **+** y luego **Subir un archivo**."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הקש **+** ואז **העלה קובץ**."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "轻点 **+**，然后选择**上传文件**。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "點一下 **+**，然後選擇**上傳檔案**。"
+          }
+        }
+      }
+    },
+    "Tap **..** at the top to go up a directory.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اضغط **..** في الأعلى للصعود مجلدًا واحدًا."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Toca **..** en la parte superior para subir un directorio."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הקש **..** בחלק העליון כדי לעלות תיקייה אחת."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "轻点顶部的 **..** 可返回上一级目录。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "點一下頂端的 **..** 可回到上一層目錄。"
+          }
+        }
+      }
+    },
+    "Tap **Save**.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اضغط **حفظ**."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Toca **Guardar**."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הקש **שמור**."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "轻点**存储**。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "點一下**儲存**。"
+          }
+        }
+      }
+    },
+    "Tap **▶** to start; the status shows when it's active. Tap **⏹** to stop.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اضغط **▶** للبدء؛ وتُظهر الحالة متى يكون نشطًا. واضغط **⏹** للإيقاف."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Toca **▶** para iniciar; el estado indica cuándo está activa. Toca **⏹** para detenerla."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הקש **▶** כדי להתחיל; המצב מראה מתי הוא פעיל. הקש **⏹** כדי לעצור."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "轻点 **▶** 启动；状态会显示它何时处于活动状态。轻点 **⏹** 停止。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "點一下 **▶** 啟動；狀態會顯示它何時處於作用中。點一下 **⏹** 停止。"
+          }
+        }
+      }
+    },
     "Tap + to add a host.": {
       "localizations": {
         "ar": {
@@ -5354,8 +7994,74 @@
         }
       }
     },
-    "Tap a host to open a terminal session.": {},
-    "Tap the **snippet** button to run a saved command in the session.": {},
+    "Tap a host to open a terminal session.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اضغط على مضيف لفتح جلسة طرفية."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Toca un host para abrir una sesión de terminal."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הקש על מארח כדי לפתוח הפעלת מסוף."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "轻点主机即可打开终端会话。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "點一下主機即可打開終端機工作階段。"
+          }
+        }
+      }
+    },
+    "Tap the **snippet** button to run a saved command in the session.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اضغط زر **المقتطف** لتشغيل أمر محفوظ داخل الجلسة."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Toca el botón de **fragmento** para ejecutar un comando guardado en la sesión."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הקש על כפתור ה**קטע** כדי להריץ פקודה שמורה בהפעלה."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "轻点**代码片段**按钮，即可在会话中运行已保存的命令。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "點一下**程式碼片段**按鈕，即可在工作階段中執行已儲存的指令。"
+          }
+        }
+      }
+    },
     "Terminal": {
       "shouldTranslate": false
     },
@@ -5427,10 +8133,142 @@
         }
       }
     },
-    "That opens the iPhone's own file picker, so you can upload straight from **iCloud Drive**, On My iPhone, or any other Files location.": {},
-    "The **AI Assistant** is the one exception: when you use it, the relevant terminal output (and any files you attach) is sent to the model provider you configure — Anthropic, OpenAI, OpenRouter, or Hugging Face — using **your own API key**. Nothing is sent until you use the assistant, and your key is stored in the iOS Keychain. Review your provider's privacy policy for how they handle that data.": {},
-    "The API key was rejected. Check it in AI Settings.": {},
-    "The Terminal": {},
+    "That opens the iPhone's own file picker, so you can upload straight from **iCloud Drive**, On My iPhone, or any other Files location.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "يفتح ذلك منتقي الملفات الخاص بالآيفون، فيمكنك الرفع مباشرة من **iCloud Drive** أو «على الآيفون» أو أي موقع آخر في «الملفات»."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eso abre el selector de archivos del propio iPhone, así que puedes subir directamente desde **iCloud Drive**, En mi iPhone o cualquier otra ubicación de Archivos."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "זה פותח את בורר הקבצים של האייפון עצמו, כך שאפשר להעלות ישירות מ-**iCloud Drive**, מ״באייפון שלי״ או מכל מיקום אחר באפליקציית קבצים."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "这会打开 iPhone 自带的文件选择器，因此你可以直接从 **iCloud 云盘**、“我的 iPhone”或“文件”中的任何其他位置上传。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "這會打開 iPhone 內建的檔案選擇器，因此你可以直接從 **iCloud 雲碟**、「在我的 iPhone 上」或「檔案」中的任何其他位置上傳。"
+          }
+        }
+      }
+    },
+    "The **AI Assistant** is the one exception: when you use it, the relevant terminal output (and any files you attach) is sent to the model provider you configure — Anthropic, OpenAI, OpenRouter, or Hugging Face — using **your own API key**. Nothing is sent until you use the assistant, and your key is stored in the iOS Keychain. Review your provider's privacy policy for how they handle that data.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "‏**مساعد الذكاء الاصطناعي** هو الاستثناء الوحيد: عند استخدامه، يُرسَل مخرج الطرفية ذو الصلة (وأي ملفات ترفقها) إلى مزوّد النماذج الذي تضبطه — Anthropic أو OpenAI أو OpenRouter أو Hugging Face — باستخدام **مفتاح API الخاص بك**. ولا يُرسَل أي شيء حتى تستخدم المساعد، ويُحفظ مفتاحك في سلسلة مفاتيح iOS. راجع سياسة خصوصية المزوّد لمعرفة كيفية تعامله مع تلك البيانات."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El **Asistente de IA** es la única excepción: cuando lo usas, la salida relevante del terminal (y cualquier archivo que adjuntes) se envía al proveedor de modelos que configures —Anthropic, OpenAI, OpenRouter o Hugging Face— usando **tu propia clave API**. No se envía nada hasta que usas el asistente, y tu clave se guarda en el Llavero de iOS. Consulta la política de privacidad de tu proveedor para saber cómo tratan esos datos."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**עוזר ה-AI** הוא היוצא מן הכלל היחיד: כשאתה משתמש בו, פלט המסוף הרלוונטי (וכל קובץ שתצרף) נשלח לספק הדגמים שהגדרת — Anthropic, ‏OpenAI, ‏OpenRouter או Hugging Face — באמצעות **מפתח ה-API שלך**. שום דבר לא נשלח עד שתשתמש בעוזר, והמפתח שלך נשמר במחזיק המפתחות של iOS. עיין במדיניות הפרטיות של הספק כדי לדעת כיצד הוא מטפל בנתונים האלה."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**AI 助手**是唯一的例外：使用它时，相关的终端输出（以及你附加的任何文件）会使用**你自己的 API 密钥**发送给你所配置的模型服务商 — Anthropic、OpenAI、OpenRouter 或 Hugging Face。在你使用助手之前不会发送任何内容，而且你的密钥存储在 iOS 钥匙串中。请查阅服务商的隐私政策，了解他们如何处理这些数据。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**AI 助理**是唯一的例外：使用它時，相關的終端機輸出（以及你附加的任何檔案）會使用**你自己的 API 金鑰**傳送給你所設定的模型供應商 — Anthropic、OpenAI、OpenRouter 或 Hugging Face。在你使用助理之前不會傳送任何內容，而且你的金鑰儲存在 iOS 鑰匙圈中。請查閱供應商的隱私權政策，瞭解他們如何處理這些資料。"
+          }
+        }
+      }
+    },
+    "The API key was rejected. Check it in AI Settings.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "رُفض مفتاح API. تحقق منه في إعدادات الذكاء الاصطناعي."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La clave API fue rechazada. Compruébala en los ajustes de IA."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "מפתח ה-API נדחה. בדוק אותו בהגדרות ה-AI."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "API 密钥被拒绝。请在“AI 设置”中检查。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "API 金鑰遭拒。請在「AI 設定」中檢查。"
+          }
+        }
+      }
+    },
+    "The Terminal": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "الطرفية"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El terminal"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "המסוף"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "终端"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "終端機"
+          }
+        }
+      }
+    },
     "The assistant wants to run:": {
       "localizations": {
         "ar": {
@@ -5465,7 +8303,40 @@
         }
       }
     },
-    "The bar above the keyboard has **esc**, **ctrl**, **tab**, arrow keys, and more.": {},
+    "The bar above the keyboard has **esc**, **ctrl**, **tab**, arrow keys, and more.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "يحتوي الشريط فوق لوحة المفاتيح على **esc** و**ctrl** و**tab** ومفاتيح الأسهم وغيرها."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La barra encima del teclado incluye **esc**, **ctrl**, **tab**, las teclas de flecha y más."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הסרגל מעל המקלדת כולל **esc**, **ctrl**, **tab**, מקשי חיצים ועוד."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "键盘上方的栏中包含 **esc**、**ctrl**、**tab**、方向键等。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "鍵盤上方的列中包含 **esc**、**ctrl**、**tab**、方向鍵等。"
+          }
+        }
+      }
+    },
     "The default for all hosts. \"Off\" keeps the current behavior. Individual hosts and groups can override this.": {
       "localizations": {
         "ar": {
@@ -5500,9 +8371,108 @@
         }
       }
     },
-    "The file lands in the folder you are currently viewing.": {},
-    "The first time you connect to a server, Pockterm shows its key **fingerprint** and asks you to accept it. This is called trust on first use.": {},
-    "The provider is overloaded. Try again shortly.": {},
+    "The file lands in the folder you are currently viewing.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "يُحفظ الملف في المجلد الذي تعرضه حاليًا."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El archivo se guarda en la carpeta que estás viendo en ese momento."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הקובץ נשמר בתיקייה שאתה צופה בה כעת."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "文件会存入你当前正在查看的文件夹。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "檔案會存入你目前正在檢視的檔案夾。"
+          }
+        }
+      }
+    },
+    "The first time you connect to a server, Pockterm shows its key **fingerprint** and asks you to accept it. This is called trust on first use.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "في أول مرة تتصل فيها بخادم، يعرض Pockterm **بصمة** مفتاحه ويطلب منك قبولها. ويسمى ذلك الثقة عند الاستخدام الأول."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La primera vez que te conectas a un servidor, Pockterm muestra la **huella** de su clave y te pide que la aceptes. Esto se llama confianza en el primer uso."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "בפעם הראשונה שאתה מתחבר לשרת, ‏Pockterm מציג את **טביעת האצבע** של המפתח שלו ומבקש ממך לאשר אותה. זה נקרא אמון בשימוש ראשון."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "首次连接服务器时，Pockterm 会显示其密钥**指纹**并请你接受。这称为首次使用即信任。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "首次連線伺服器時，Pockterm 會顯示其金鑰**指紋**並請你接受。這稱為首次使用即信任。"
+          }
+        }
+      }
+    },
+    "The provider is overloaded. Try again shortly.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "المزوّد محمّل بأكثر من طاقته. أعد المحاولة بعد قليل."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El proveedor está sobrecargado. Vuelve a intentarlo en breve."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הספק עמוס. נסה שוב בקרוב."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "服务商负载过高。请稍后重试。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "供應商負載過高。請稍後再試。"
+          }
+        }
+      }
+    },
     "The remote shell ended.": {
       "localizations": {
         "ar": {
@@ -5639,11 +8609,176 @@
         }
       }
     },
-    "Transferring Files (SFTP)": {},
-    "Transfers are streamed in chunks, so even a large file will not exhaust memory. While one runs, the path bar shows how much has transferred and the total size.": {},
-    "Trusted host keys are remembered on your device for the warnings described in **Verifying Host Keys**.": {},
-    "Trusting servers safely": {},
-    "Tunnel connections through SSH": {},
+    "Transferring Files (SFTP)": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "نقل الملفات (SFTP)"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Transferir archivos (SFTP)"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "העברת קבצים (SFTP)"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "传输文件 (SFTP)"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "傳輸檔案 (SFTP)"
+          }
+        }
+      }
+    },
+    "Transfers are streamed in chunks, so even a large file will not exhaust memory. While one runs, the path bar shows how much has transferred and the total size.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تُنقل الملفات على شكل أجزاء متدفقة، فحتى الملف الكبير لن يستنفد الذاكرة. وأثناء النقل، يعرض شريط المسار المقدار المنقول والحجم الإجمالي."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Las transferencias se envían por fragmentos, así que ni siquiera un archivo grande agotará la memoria. Mientras una está en curso, la barra de ruta muestra cuánto se ha transferido y el tamaño total."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ההעברות מוזרמות במקטעים, כך שגם קובץ גדול לא ימצה את הזיכרון. בזמן העברה, סרגל הנתיב מציג כמה הועבר ומה הגודל הכולל."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "传输采用分块流式处理，因此即使是大文件也不会耗尽内存。传输过程中，路径栏会显示已传输的量和总大小。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "傳輸採用分塊串流處理，因此即使是大型檔案也不會耗盡記憶體。傳輸過程中，路徑列會顯示已傳輸的量與總大小。"
+          }
+        }
+      }
+    },
+    "Trusted host keys are remembered on your device for the warnings described in **Verifying Host Keys**.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تُحفظ مفاتيح المضيفين الموثوقة على جهازك من أجل التنبيهات الموصوفة في **التحقق من مفاتيح المضيف**."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Las claves de host aceptadas se recuerdan en tu dispositivo para los avisos descritos en **Verificar claves de host**."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "מפתחות מארח שאושרו נשמרים במכשיר שלך לצורך האזהרות המתוארות ב**אימות מפתחות מארח**."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "受信任的主机密钥会记录在你的设备上，用于**验证主机密钥**中所述的警告。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "受信任的主機金鑰會記錄在你的裝置上，用於**驗證主機金鑰**中所述的警告。"
+          }
+        }
+      }
+    },
+    "Trusting servers safely": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "الوثوق بالخوادم بأمان"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Confiar en los servidores de forma segura"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "מתן אמון בשרתים בבטחה"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "安全地信任服务器"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "安全地信任伺服器"
+          }
+        }
+      }
+    },
+    "Tunnel connections through SSH": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تمرير الاتصالات عبر نفق SSH"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tunelizar conexiones a través de SSH"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ניתוב חיבורים דרך מנהרת SSH"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "通过 SSH 建立隧道连接"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "透過 SSH 建立通道連線"
+          }
+        }
+      }
+    },
     "Type": {
       "localizations": {
         "ar": {
@@ -5712,7 +8847,40 @@
         }
       }
     },
-    "Unknown model. Check the model name in AI Settings.": {},
+    "Unknown model. Check the model name in AI Settings.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "نموذج غير معروف. تحقق من اسم النموذج في إعدادات الذكاء الاصطناعي."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modelo desconocido. Comprueba el nombre del modelo en los ajustes de IA."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "דגם לא מוכר. בדוק את שם הדגם בהגדרות ה-AI."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "未知模型。请在“AI 设置”中检查模型名称。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "未知模型。請在「AI 設定」中檢查模型名稱。"
+          }
+        }
+      }
+    },
     "Unstar": {
       "localizations": {
         "ar": {
@@ -5781,7 +8949,40 @@
         }
       }
     },
-    "Upload a file": {},
+    "Upload a file": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "رفع ملف"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Subir un archivo"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "העלאת קובץ"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "上传文件"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "上傳檔案"
+          }
+        }
+      }
+    },
     "Use": {
       "localizations": {
         "ar": {
@@ -5816,7 +9017,40 @@
         }
       }
     },
-    "Use the tabs along the bottom to move between **Hosts**, **Snippets**, **Keychain**, and **Port Forwarding**.": {},
+    "Use the tabs along the bottom to move between **Hosts**, **Snippets**, **Keychain**, and **Port Forwarding**.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "استخدم علامات التبويب في الأسفل للتنقل بين **المضيفون** و**المقتطفات** و**سلسلة المفاتيح** و**توجيه المنافذ**."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usa las pestañas de la parte inferior para moverte entre **Hosts**, **Fragmentos**, **Llavero** y **Redirección de puertos**."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "השתמש בלשוניות שבתחתית כדי לעבור בין **מארחים**, **קטעים**, **מחזיק מפתחות** ו**ניתוב יציאות**."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "使用底部的标签在**主机**、**代码片段**、**钥匙串**和**端口转发**之间切换。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "使用底部的標籤在**主機**、**程式碼片段**、**鑰匙圈**與**埠轉送**之間切換。"
+          }
+        }
+      }
+    },
     "Username": {
       "localizations": {
         "ar": {
@@ -5851,7 +9085,40 @@
         }
       }
     },
-    "Using Pockterm": {},
+    "Using Pockterm": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "استخدام Pockterm"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usar Pockterm"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "עבודה עם Pockterm"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "使用 Pockterm"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "使用 Pockterm"
+          }
+        }
+      }
+    },
     "Verify Host Key": {
       "localizations": {
         "ar": {
@@ -5886,12 +9153,210 @@
         }
       }
     },
-    "Verifying Host Keys": {},
-    "Welcome to Pockterm": {},
-    "What Pockterm is and how it's organized": {},
-    "Where everything is stored": {},
-    "While connected, tap the snippet button in the terminal to run one.": {},
-    "Your Data & Privacy": {},
+    "Verifying Host Keys": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "التحقق من مفاتيح المضيف"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verificar claves de host"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "אימות מפתחות מארח"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "验证主机密钥"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "驗證主機金鑰"
+          }
+        }
+      }
+    },
+    "Welcome to Pockterm": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "مرحبًا بك في Pockterm"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Te damos la bienvenida a Pockterm"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ברוך הבא ל-Pockterm"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "欢迎使用 Pockterm"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "歡迎使用 Pockterm"
+          }
+        }
+      }
+    },
+    "What Pockterm is and how it's organized": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ما هو Pockterm وكيف نُظِّم"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Qué es Pockterm y cómo está organizado"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "מה זה Pockterm וכיצד הוא מאורגן"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pockterm 是什么，以及它的结构"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pockterm 是什麼，以及它的架構"
+          }
+        }
+      }
+    },
+    "Where everything is stored": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "أين يُخزَّن كل شيء"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dónde se guarda todo"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "היכן הכול נשמר"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "所有内容存储在哪里"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "所有內容儲存在哪裡"
+          }
+        }
+      }
+    },
+    "While connected, tap the snippet button in the terminal to run one.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "أثناء الاتصال، اضغط زر المقتطف في الطرفية لتشغيل أحدها."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mientras estés conectado, toca el botón de fragmento en el terminal para ejecutar uno."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "בזמן שאתה מחובר, הקש על כפתור הקטע במסוף כדי להריץ אחד."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "连接期间，轻点终端中的代码片段按钮即可运行一个。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "連線期間，點一下終端機中的程式碼片段按鈕即可執行一個。"
+          }
+        }
+      }
+    },
+    "Your Data & Privacy": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "بياناتك وخصوصيتك"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tus datos y privacidad"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הנתונים והפרטיות שלך"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你的数据与隐私"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你的資料與隱私權"
+          }
+        }
+      }
+    },
     "e.g. 644": {
       "localizations": {
         "ar": {
