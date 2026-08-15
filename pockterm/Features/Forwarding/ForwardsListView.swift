@@ -87,7 +87,7 @@ struct ForwardsListView: View {
         case .connecting:
             Label("Connecting…", systemImage: "circle.dotted").font(.caption2).foregroundStyle(.yellow)
         case .active(let port):
-            Label("Active on :\(port)", systemImage: "circle.fill").font(.caption2).foregroundStyle(.green)
+            Label("Active on :\(port.technicalDigits)", systemImage: "circle.fill").font(.caption2).foregroundStyle(.green)
         case .failed(let message):
             Label(message, systemImage: "exclamationmark.triangle.fill").font(.caption2).foregroundStyle(.red)
         }

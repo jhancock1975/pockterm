@@ -19,10 +19,19 @@ struct TerminalHostView: UIViewRepresentable {
             terminalView.trailingAnchor.constraint(equalTo: container.trailingAnchor),
             terminalView.bottomAnchor.constraint(equalTo: container.keyboardLayoutGuide.topAnchor),
         ])
+        // In Hebrew and Arabic the rest of the app mirrors, but the terminal
+        // must not: the server addresses columns from the left. See
+        // Localization/LeftToRight.swift. This also keeps the leading/trailing
+        // constraints above resolving to left/right.
+        container.pinLeftToRightForTerminalContent()
         return container
     }
 
-    func updateUIView(_ uiView: UIView, context: Context) {}
+    func updateUIView(_ uiView: UIView, context: Context) {
+        // Subviews SwiftTerm adds after makeUIView (its own scroller and
+        // accessory views) would otherwise inherit the mirrored default.
+        uiView.pinLeftToRightForTerminalContent()
+    }
 }
 
 /// The full multi-session terminal surface: a tab strip over the active

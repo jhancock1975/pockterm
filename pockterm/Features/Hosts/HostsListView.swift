@@ -182,7 +182,7 @@ struct HostsListView: View {
                 .accessibilityLabel(host.hostProtocol.title)
             VStack(alignment: .leading, spacing: 2) {
                 Text(host.label).font(.headline)
-                Text("\(eff.identity?.username ?? "—")@\(host.address):\(eff.port)")
+                Text("\(eff.identity?.username ?? "—")@\(host.address):\(eff.port.technicalDigits)")
                     .font(.subheadline).foregroundStyle(.secondary)
             }
             Spacer()

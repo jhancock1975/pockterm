@@ -3,10 +3,34 @@
   "strings": {
     "%@ API Key": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "مفتاح API لـ %@"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Clave API de %@"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "מפתח API של %@"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ API 密钥"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ API 金鑰"
           }
         }
       }
@@ -14,17 +38,59 @@
     "%@: %@": {
       "shouldTranslate": false
     },
-    "%@:%lld\n%@": {
+    "%@:%@\n%@": {
       "shouldTranslate": false
     },
     "%@@%@": {
       "shouldTranslate": false
     },
-    "%@@%@:%lld": {
+    "%@@%@:%@": {
       "shouldTranslate": false
     },
     "%lld sessions": {
       "localizations": {
+        "ar": {
+          "variations": {
+            "plural": {
+              "few": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld جلسات"
+                }
+              },
+              "many": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld جلسة"
+                }
+              },
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "جلسة %lld"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld جلسة"
+                }
+              },
+              "two": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld جلستان"
+                }
+              },
+              "zero": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld جلسة"
+                }
+              }
+            }
+          }
+        },
         "es": {
           "variations": {
             "plural": {
@@ -42,15 +108,93 @@
               }
             }
           }
+        },
+        "he": {
+          "variations": {
+            "plural": {
+              "many": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld הפעלות"
+                }
+              },
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "הפעלה %lld"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld הפעלות"
+                }
+              },
+              "two": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld הפעלות"
+                }
+              }
+            }
+          }
+        },
+        "zh-Hans": {
+          "variations": {
+            "plural": {
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld 个会话"
+                }
+              }
+            }
+          }
+        },
+        "zh-Hant": {
+          "variations": {
+            "plural": {
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld 個工作階段"
+                }
+              }
+            }
+          }
         }
       }
     },
     "%lldpt": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "‎%lld نقطة"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "%lld pt"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "‎%lld נק׳"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld 磅"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld 點"
           }
         }
       }
@@ -60,820 +204,2788 @@
     },
     "A SOCKS5 proxy listens on the bind port; each connection is tunneled to its requested destination.": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "يستمع وكيل SOCKS5 على منفذ الربط؛ ويُنفَّق كل اتصال إلى الوجهة المطلوبة."
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Un proxy SOCKS5 escucha en el puerto de enlace; cada conexión se tuneliza hacia el destino solicitado."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "פרוקסי SOCKS5 מאזין ביציאת הקישור; כל חיבור מנותב אל היעד שביקש."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SOCKS5 代理在绑定端口上监听；每个连接都会被隧道转发到它请求的目标地址。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SOCKS5 代理會在綁定埠上監聽；每個連線都會透過通道轉送到它要求的目的地。"
           }
         }
       }
     },
     "AI Assistant": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "مساعد الذكاء الاصطناعي"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Asistente de IA"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "עוזר AI"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "AI 助手"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "AI 助理"
           }
         }
       }
     },
     "Accept": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "قبول"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Aceptar"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "אישור"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "接受"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "接受"
           }
         }
       }
     },
     "Accept Changed Key": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "قبول المفتاح المتغيّر"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Aceptar clave modificada"
           }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "אשר מפתח שהשתנה"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "接受已更改的密钥"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "接受已變更的金鑰"
+          }
         }
       }
     },
-    "Active on :%lld": {
+    "Active on :%@": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "نشط على المنفذ ‎:%@"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Activo en :%lld"
+            "value": "Activo en :%@"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "פעיל ביציאה ‎:%@"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在 :%@ 上运行"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在 :%@ 上運作"
           }
         }
       }
     },
     "Add a host on the Hosts tab first.": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "أضف مضيفًا من علامة التبويب «المضيفون» أولًا."
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Primero añade un host en la pestaña Hosts."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "תחילה הוסף מארח בלשונית המארחים."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "请先在“主机”标签页中添加主机。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "請先在「主機」標籤頁中加入主機。"
           }
         }
       }
     },
     "Address": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "العنوان"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Dirección"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "כתובת"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "地址"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "位址"
           }
         }
       }
     },
     "Agent": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "الوكيل"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Agente"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "סוכן"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "代理"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "代理程式"
           }
         }
       }
     },
     "Appearance": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "المظهر"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Apariencia"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "מראה"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "外观"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "外觀"
           }
         }
       }
     },
     "Appearance Defaults": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "إعدادات المظهر الافتراضية"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Valores de apariencia"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ברירות מחדל למראה"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "外观默认值"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "外觀預設值"
           }
         }
       }
     },
     "Apply": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تطبيق"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Aplicar"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "החל"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "应用"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "套用"
           }
         }
       }
     },
     "Approval": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "الموافقة"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Aprobación"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "אישור"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "审批"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "核准"
           }
         }
       }
     },
     "Ask about what's on screen, or ask for a command.": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اسأل عمّا يظهر على الشاشة، أو اطلب أمرًا."
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Pregunta sobre lo que ves en pantalla o pide un comando."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "שאל על מה שמופיע במסך, או בקש פקודה."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "询问屏幕上的内容，或让它给出命令。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "詢問螢幕上的內容，或請它提供指令。"
           }
         }
       }
     },
     "Ask the assistant…": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اسأل المساعد…"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Pregunta al asistente…"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "שאל את העוזר…"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "向助手提问…"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "詢問助理…"
           }
         }
       }
     },
     "Assistant": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "المساعد"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Asistente"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "עוזר"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "助手"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "助理"
           }
         }
       }
     },
     "Attach Local File": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "إرفاق ملف محلي"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Adjuntar archivo local"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "צרף קובץ מקומי"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "附加本地文件"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "附加本機檔案"
           }
         }
       }
     },
     "Attach Remote File": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "إرفاق ملف بعيد"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Adjuntar archivo remoto"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "צרף קובץ מרוחק"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "附加远程文件"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "附加遠端檔案"
           }
         }
       }
     },
     "Attach a file": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "إرفاق ملف"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Adjuntar un archivo"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "צרף קובץ"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "附加文件"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "附加檔案"
           }
         }
       }
     },
     "Authentication": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "المصادقة"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Autenticación"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "אימות"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "身份验证"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "驗證"
           }
         }
       }
     },
     "Available Keys": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "المفاتيح المتاحة"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Claves disponibles"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "מפתחות זמינים"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "可用密钥"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "可用金鑰"
           }
         }
       }
     },
     "Bind Port": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "منفذ الربط"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Puerto de enlace"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "יציאת קישור"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "绑定端口"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "綁定埠"
           }
         }
       }
     },
     "Browse Files": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تصفح الملفات"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Explorar archivos"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "עיין בקבצים"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "浏览文件"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "瀏覽檔案"
           }
         }
       }
     },
     "Cancel": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "إلغاء"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Cancelar"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ביטול"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "取消"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "取消"
           }
         }
       }
     },
     "Change how long sessions stay connected": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تغيير مدة بقاء الجلسات متصلة"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Cambiar cuánto tiempo permanecen conectadas las sesiones"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "שנה כמה זמן הפעלות נשארות מחוברות"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "更改会话保持连接的时长"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "更改工作階段保持連線的時間長度"
           }
         }
       }
     },
     "Checking %@ for new models…": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "جارٍ البحث عن نماذج جديدة في %@…"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Buscando modelos nuevos en %@…"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "בודק אם יש דגמים חדשים ב-%@…"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在检查 %@ 是否有新模型…"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在檢查 %@ 是否有新模型…"
           }
         }
       }
     },
     "Choose File…": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اختيار ملف…"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Elegir archivo…"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "בחר קובץ…"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "选择文件…"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "選擇檔案…"
           }
         }
       }
     },
     "Command": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "الأمر"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Comando"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "פקודה"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "命令"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "指令"
           }
         }
       }
     },
     "Connecting…": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "جارٍ الاتصال…"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Conectando…"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "מתחבר…"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在连接…"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在連線…"
           }
         }
       }
     },
     "Connection": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "الاتصال"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Conexión"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "חיבור"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "连接"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "連線"
           }
         }
       }
     },
     "Connection Failed": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "فشل الاتصال"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Error de conexión"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "החיבור נכשל"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "连接失败"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "連線失敗"
           }
         }
       }
     },
     "Controls whether the assistant asks before running commands or editing files on your server.": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "يحدّد ما إذا كان المساعد يسأل قبل تنفيذ الأوامر أو تعديل الملفات على خادمك."
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Controla si el asistente pregunta antes de ejecutar comandos o editar archivos en tu servidor."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "קובע אם העוזר שואל לפני הרצת פקודות או עריכת קבצים בשרת שלך."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "控制助手在服务器上运行命令或编辑文件之前是否先询问你。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "控制助理在你的伺服器上執行指令或編輯檔案前是否先詢問。"
           }
         }
       }
     },
     "Couldn't Attach File": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تعذّر إرفاق الملف"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "No se pudo adjuntar el archivo"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "לא ניתן לצרף את הקובץ"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无法附加文件"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "無法附加檔案"
           }
         }
       }
     },
     "Couldn't reach %@; showing the cached list.": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تعذّر الوصول إلى %@؛ يتم عرض القائمة المخزّنة."
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "No se pudo conectar con %@; se muestra la lista en caché."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "לא ניתן להגיע אל %@; מוצגת הרשימה השמורה."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无法连接 %@；显示缓存的列表。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "無法連線至 %@；顯示快取的列表。"
           }
         }
       }
     },
     "Create": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "إنشاء"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Crear"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "צור"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "创建"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "製作"
           }
         }
       }
     },
     "Creates a new key pair stored securely in the Keychain.": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ينشئ زوج مفاتيح جديدًا ويحفظه بأمان في سلسلة المفاتيح."
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Crea un par de claves nuevo y lo guarda de forma segura en el Llavero."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "יוצר זוג מפתחות חדש ושומר אותו באופן מאובטח במחזיק המפתחות."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "创建新的密钥对，并安全地存储在钥匙串中。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "製作新的金鑰組，並安全地儲存在鑰匙圈中。"
           }
         }
       }
     },
     "Credentials": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "بيانات الاعتماد"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Credenciales"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "אישורי גישה"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "凭证"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "憑證"
           }
         }
       }
     },
     "Custom": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "مخصص"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Personalizado"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "מותאם אישית"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "自定义"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "自訂"
           }
         }
       }
     },
     "Default (inherit)": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "افتراضي (موروث)"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Predeterminado (heredado)"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ברירת מחדל (בירושה)"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "默认（继承）"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "預設（繼承）"
           }
         }
       }
     },
     "Default Credentials": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "بيانات الاعتماد الافتراضية"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Credenciales predeterminadas"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "אישורי גישה כברירת מחדל"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "默认凭证"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "預設憑證"
           }
         }
       }
     },
     "Default size": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "الحجم الافتراضي"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Tamaño predeterminado"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "גודל ברירת מחדל"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "默认大小"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "預設大小"
           }
         }
       }
     },
     "Defaults inherited by hosts": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "الإعدادات الافتراضية التي يرثها المضيفون"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Valores predeterminados heredados por los hosts"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ברירות מחדל שהמארחים יורשים"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "主机继承的默认值"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "主機繼承的預設值"
           }
         }
       }
     },
     "Delete": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "حذف"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Eliminar"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "מחק"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "删除"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "刪除"
           }
         }
       }
     },
     "Denied": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "مرفوض"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Denegado"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "נדחה"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已拒绝"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已拒絕"
           }
         }
       }
     },
     "Deny": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "رفض"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Denegar"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "דחה"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "拒绝"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "拒絕"
           }
         }
       }
     },
     "Disconnected due to inactivity": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "انقطع الاتصال بسبب الخمول"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Desconectado por inactividad"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "נותק עקב חוסר פעילות"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "因闲置而断开连接"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "因閒置而中斷連線"
           }
         }
       }
     },
     "Dismiss Keyboard": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "إخفاء لوحة المفاتيح"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Ocultar el teclado"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "סגור מקלדת"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "收起键盘"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "收起鍵盤"
           }
         }
       }
     },
     "Done": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تم"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Listo"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "סיום"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "完成"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "完成"
           }
         }
       }
     },
     "Download": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تنزيل"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Descargar"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הורד"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "下载"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "下載"
           }
         }
       }
     },
     "Drag to reorder; swipe to remove. The bar scrolls horizontally in the terminal.": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اسحب لإعادة الترتيب؛ ومرّر للإزالة. ينزلق الشريط أفقيًا داخل الطرفية."
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Arrastra para reordenar; desliza para quitar. La barra se desplaza horizontalmente en el terminal."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "גרור לשינוי הסדר; החלק להסרה. הסרגל נגלל לרוחב במסוף."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "拖动可重新排序，滑动可移除。该栏在终端中横向滚动。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "拖移可重新排序，滑動可移除。此列在終端機中會水平捲動。"
           }
         }
       }
     },
     "Dynamic (SOCKS)": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ديناميكي (SOCKS)"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Dinámico (SOCKS)"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "דינמי (SOCKS)"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "动态 (SOCKS)"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "動態 (SOCKS)"
           }
         }
       }
     },
     "Edit": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تحرير"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Editar"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ערוך"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "编辑"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "編輯"
           }
         }
       }
     },
     "Favorite": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "مفضّل"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Favorito"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "מועדף"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "收藏"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "收藏"
           }
         }
       }
     },
     "Favorites": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "المفضّلة"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Favoritos"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "מועדפים"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "收藏"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "收藏"
           }
         }
       }
     },
     "Files": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "الملفات"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Archivos"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "קבצים"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "文件"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "檔案"
           }
         }
       }
     },
     "Font": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "الخط"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Tipografía"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "גופן"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "字体"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "字體"
           }
         }
       }
     },
     "Forward": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "توجيه"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Redirigir"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "נתב"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "转发"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "轉送"
           }
         }
       }
     },
     "Forward To (local)": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "توجيه إلى (محلي)"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Redirigir a (local)"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "נתב אל (מקומי)"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "转发到（本地）"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "轉送至（本機）"
           }
         }
       }
     },
     "Forward To (remote)": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "توجيه إلى (بعيد)"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Redirigir a (remoto)"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "נתב אל (מרוחק)"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "转发到（远程）"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "轉送至（遠端）"
           }
         }
       }
     },
     "Forwarding": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "توجيه المنافذ"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Redirección"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ניתוב יציאות"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "端口转发"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "埠轉送"
           }
         }
       }
     },
     "Generate": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "توليد"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Generar"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "צור"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "生成"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "產生"
           }
         }
       }
     },
     "Generate Ed25519 Key": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "توليد مفتاح Ed25519"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Generar clave Ed25519"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "צור מפתח Ed25519"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "生成 Ed25519 密钥"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "產生 Ed25519 金鑰"
           }
         }
       }
     },
     "Group": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "المجموعة"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Grupo"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "קבוצה"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "群组"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "群組"
           }
         }
       }
     },
     "Groups": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "المجموعات"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Grupos"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "קבוצות"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "群组"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "群組"
           }
         }
       }
     },
     "Help": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "المساعدة"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Ayuda"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "עזרה"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "帮助"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "輔助說明"
           }
         }
       }
     },
     "Hold time": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "مدة الانتظار"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Tiempo de espera"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "משך החזקה"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "保持时间"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "保持時間"
           }
         }
       }
     },
     "Host": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "المضيف"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Host"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "מארח"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "主机"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "主機"
           }
         }
       }
     },
     "Hosts": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "المضيفون"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Hosts"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "מארחים"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "主机"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "主機"
           }
         }
       }
     },
     "Hosts to import (%lld selected)": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "المضيفون المراد استيرادهم (%lld محدد)"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Hosts para importar (%lld seleccionados)"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "מארחים לייבוא (%lld נבחרו)"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "要导入的主机（已选择 %lld 个）"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "要輸入的主機（已選擇 %lld 個）"
           }
         }
       }
     },
     "Import": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "استيراد"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Importar"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ייבוא"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "导入"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "輸入"
           }
         }
       }
     },
     "Import Hosts": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "استيراد المضيفين"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Importar hosts"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ייבוא מארחים"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "导入主机"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "輸入主機"
           }
         }
       }
     },
     "Import from ssh_config": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "استيراد من ssh_config"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Importar desde ssh_config"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ייבוא מ-ssh_config"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "从 ssh_config 导入"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "從 ssh_config 輸入"
           }
         }
       }
     },
     "Inherited from this host's group.": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "موروث من مجموعة هذا المضيف."
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Heredado del grupo de este host."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "בירושה מהקבוצה של מארח זה."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "继承自此主机所属的群组。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "繼承自此主機所屬的群組。"
           }
         }
       }
     },
     "Insert": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "إدراج"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Insertar"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הוסף"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "插入"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "插入"
           }
         }
       }
     },
     "Keep sessions alive when idle": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "إبقاء الجلسات نشطة أثناء الخمول"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Mantener las sesiones activas cuando estén inactivas"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "השאר הפעלות פעילות בזמן חוסר פעילות"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "闲置时保持会话连接"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "閒置時保持工作階段連線"
           }
         }
       }
     },
     "Keep-alive": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "إبقاء الاتصال"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Mantener conexión"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "שמירת חיבור"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "保持连接"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "保持連線"
           }
         }
       }
     },
     "Key": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "المفتاح"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Clave"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "מפתח"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "密钥"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "金鑰"
           }
         }
       }
     },
     "Key Bar": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "شريط المفاتيح"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Barra de teclas"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "סרגל מקשים"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "按键栏"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "按鍵列"
           }
         }
       }
     },
     "Key saved in Keychain": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تم حفظ المفتاح في سلسلة المفاتيح"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Clave guardada en el Llavero"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "המפתח נשמר במחזיק המפתחות"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "密钥已保存到钥匙串"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "金鑰已儲存至鑰匙圈"
           }
         }
       }
     },
     "Keychain": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "سلسلة المفاتيح"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Llavero"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "מחזיק מפתחות"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "钥匙串"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "鑰匙圈"
           }
         }
       }
     },
     "Keys are stored in the iOS Keychain and sent only to %@.": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تُحفظ المفاتيح في سلسلة مفاتيح iOS ولا تُرسل إلا إلى %@."
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Las claves se guardan en el Llavero de iOS y solo se envían a %@."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "המפתחות נשמרים במחזיק המפתחות של iOS ונשלחים רק אל %@."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "密钥存储在 iOS 钥匙串中，且仅发送给 %@。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "金鑰儲存在 iOS 鑰匙圈中，且只會傳送給 %@。"
           }
         }
       }
     },
     "Label": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "التسمية"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Etiqueta"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "תווית"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "标签"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "標籤"
           }
         }
       }
     },
     "Loading models…": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "جارٍ تحميل النماذج…"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Cargando modelos…"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "טוען דגמים…"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在加载模型…"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在載入模型…"
           }
         }
       }
@@ -883,170 +2995,578 @@
     },
     "Manage Groups": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "إدارة المجموعات"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Gestionar grupos"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "נהל קבוצות"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "管理群组"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "管理群組"
           }
         }
       }
     },
     "Method": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "الطريقة"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Método"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "שיטה"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "方式"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "方式"
           }
         }
       }
     },
     "Minimize": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تصغير"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Minimizar"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "מזער"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "最小化"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "縮到最小"
           }
         }
       }
     },
     "Model": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "النموذج"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Modelo"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "דגם"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "模型"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "模型"
           }
         }
       }
     },
     "Model id": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "معرّف النموذج"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "ID del modelo"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "מזהה דגם"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "模型 ID"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "模型 ID"
           }
         }
       }
     },
     "Model list updated — tap to show": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تم تحديث قائمة النماذج — اضغط للعرض"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Lista de modelos actualizada: toca para mostrarla"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "רשימת הדגמים עודכנה — הקש להצגה"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "模型列表已更新 — 轻点以显示"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "模型列表已更新 — 點一下以顯示"
           }
         }
       }
     },
     "Name": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "الاسم"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Nombre"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "שם"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "名称"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "名稱"
           }
         }
       }
     },
     "New Credentials": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "بيانات اعتماد جديدة"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Credenciales nuevas"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "אישורי גישה חדשים"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "新建凭证"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "新增憑證"
           }
         }
       }
     },
     "New Folder": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "مجلد جديد"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Carpeta nueva"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "תיקייה חדשה"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "新建文件夹"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "新增檔案夾"
           }
         }
       }
     },
     "New Host": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "مضيف جديد"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Host nuevo"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "מארח חדש"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "新建主机"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "新增主機"
           }
         }
       }
     },
     "New Session": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "جلسة جديدة"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Sesión nueva"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הפעלה חדשה"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "新建会话"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "新增工作階段"
           }
         }
       }
     },
     "No Groups": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "لا توجد مجموعات"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Sin grupos"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "אין קבוצות"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "没有群组"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "沒有群組"
           }
         }
       }
     },
     "No Hosts": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "لا يوجد مضيفون"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Sin hosts"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "אין מארחים"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "没有主机"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "沒有主機"
           }
         }
       }
     },
     "No Keys": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "لا توجد مفاتيح"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Sin claves"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "אין מפתחות"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "没有密钥"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "沒有金鑰"
           }
         }
       }
     },
     "No Port Forwards": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "لا توجد توجيهات منافذ"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Sin redirecciones de puertos"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "אין ניתובי יציאות"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "没有端口转发"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "沒有埠轉送"
           }
         }
       }
     },
     "No Snippets": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "لا توجد مقتطفات"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Sin fragmentos"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "אין קטעים"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "没有代码片段"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "沒有程式碼片段"
           }
         }
       }
     },
     "None": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "بلا"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Ninguno"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ללא"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "無"
           }
         }
       }
@@ -1056,500 +3576,1700 @@
     },
     "On the Key Bar": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "في شريط المفاتيح"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "En la barra de teclas"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "בסרגל המקשים"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在按键栏中"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在按鍵列中"
           }
         }
       }
     },
     "Open Terminal": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "فتح الطرفية"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Abrir el terminal"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "פתח מסוף"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "打开终端"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "打開終端機"
           }
         }
       }
     },
     "Operation Failed": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "فشلت العملية"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "La operación falló"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הפעולה נכשלה"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "操作失败"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "操作失敗"
           }
         }
       }
     },
     "Organization": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "المؤسسة"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Organización"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ארגון"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "组织"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "組織"
           }
         }
       }
     },
     "Parent": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "الأصل"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Superior"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "אב"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "上级"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "上層"
           }
         }
       }
     },
     "Password": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "كلمة السر"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Contraseña"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "סיסמה"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "密码"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "密碼"
           }
         }
       }
     },
     "Paste API key": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "لصق مفتاح API"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Pegar la clave API"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הדבק מפתח API"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "粘贴 API 密钥"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "貼上 API 金鑰"
           }
         }
       }
     },
     "Paste ~/.ssh/config": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "لصق ‎~/.ssh/config"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Pegar ~/.ssh/config"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הדבק ‎~/.ssh/config"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "粘贴 ~/.ssh/config"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "貼上 ~/.ssh/config"
           }
         }
       }
     },
     "Permissions": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "الأذونات"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Permisos"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הרשאות"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "权限"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "權限"
           }
         }
       }
     },
     "Permissions (octal)": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "الأذونات (ثماني)"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Permisos (octal)"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הרשאות (אוקטלי)"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "权限（八进制）"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "權限（八進位）"
           }
         }
       }
     },
     "Port": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "المنفذ"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Puerto"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "יציאה"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "端口"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "埠"
           }
         }
       }
     },
     "Port Forwarding": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "توجيه المنافذ"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Redirección de puertos"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ניתוב יציאות"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "端口转发"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "埠轉送"
           }
         }
       }
     },
     "Protocol": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "البروتوكول"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Protocolo"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "פרוטוקול"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "协议"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "通訊協定"
           }
         }
       }
     },
     "Provider": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "المزوّد"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Proveedor"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ספק"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "服务商"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "供應商"
           }
         }
       }
     },
     "Recents": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "الأخيرة"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Recientes"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "אחרונים"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "最近使用"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "最近使用"
           }
         }
       }
     },
     "Reject": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "رفض"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Rechazar"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "דחה"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "拒绝"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "拒絕"
           }
         }
       }
     },
     "Remote": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "بعيد"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Remoto"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "מרוחק"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "远程"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "遠端"
           }
         }
       }
     },
     "Remove": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "إزالة"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Quitar"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הסר"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "移除"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "移除"
           }
         }
       }
     },
     "Remove %@": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "إزالة %@"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Quitar %@"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הסר %@"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "移除 %@"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "移除 %@"
           }
         }
       }
     },
     "Rename": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "إعادة تسمية"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Renombrar"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "שנה שם"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "重命名"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "重新命名"
           }
         }
       }
     },
     "Replace API key": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "استبدال مفتاح API"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Sustituir la clave API"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "החלף מפתח API"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "替换 API 密钥"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "替換 API 金鑰"
           }
         }
       }
     },
     "Required — Pockterm needs a username and either a password or a key to sign in.": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "مطلوب — يحتاج Pockterm إلى اسم مستخدم وإلى كلمة سر أو مفتاح لتسجيل الدخول."
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Obligatorio: Pockterm necesita un nombre de usuario y una contraseña o una clave para iniciar sesión."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "נדרש — Pockterm זקוק לשם משתמש ולסיסמה או מפתח כדי להתחבר."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "必填 — Pockterm 需要用户名，以及密码或密钥才能登录。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "必填 — Pockterm 需要使用者名稱，以及密碼或金鑰才能登入。"
           }
         }
       }
     },
     "Reset to Default": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "إعادة التعيين إلى الافتراضي"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Restablecer el valor predeterminado"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "אפס לברירת המחדל"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "恢复默认值"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "重置為預設值"
           }
         }
       }
     },
     "Reset zoom to default size": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "إعادة التكبير إلى الحجم الافتراضي"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Restablecer el zoom al tamaño predeterminado"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "אפס את המרחק לגודל ברירת המחדל"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "将缩放恢复为默认大小"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "將縮放重置為預設大小"
           }
         }
       }
     },
     "Resume session %@": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "استئناف الجلسة %@"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Reanudar la sesión %@"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "חדש את ההפעלה %@"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "恢复会话 %@"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "繼續工作階段 %@"
           }
         }
       }
     },
     "Run": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تشغيل"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Ejecutar"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הרץ"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "运行"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "執行"
           }
         }
       }
     },
     "SFTP Error": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "خطأ في SFTP"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Error de SFTP"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "שגיאת SFTP"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SFTP 错误"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SFTP 錯誤"
           }
         }
       }
     },
     "SFTP Help": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "مساعدة SFTP"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Ayuda de SFTP"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "עזרה ל-SFTP"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SFTP 帮助"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SFTP 輔助說明"
           }
         }
       }
     },
     "SFTP runs over the same SSH connection, so the settings below apply either way. This only picks what opens when you tap the host — long-press a host to reach the other.": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "يعمل SFTP عبر اتصال SSH نفسه، لذا تنطبق الإعدادات أدناه في الحالتين. هذا يحدّد فقط ما يُفتح عند الضغط على المضيف — اضغط مطوّلًا على مضيف للوصول إلى الآخر."
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "SFTP funciona sobre la misma conexión SSH, así que los ajustes de abajo se aplican en ambos casos. Esto solo elige qué se abre al tocar el host; mantén pulsado un host para acceder al otro."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SFTP פועל על אותו חיבור SSH, ולכן ההגדרות שלהלן חלות בכל מקרה. כאן נבחר רק מה נפתח בהקשה על המארח — לחיצה ארוכה על מארח תפתח את השני."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SFTP 通过同一个 SSH 连接运行，因此下面的设置在两种情况下都适用。这里只决定轻点主机时打开哪一个 — 长按主机可进入另一个。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SFTP 透過同一個 SSH 連線運作，因此下方設定在兩種情況下都適用。這裡只決定點一下主機時開啟哪一個 — 長按主機可前往另一個。"
           }
         }
       }
     },
     "Save": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "حفظ"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Guardar"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "שמור"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "存储"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "儲存"
           }
         }
       }
     },
     "Save Key": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "حفظ المفتاح"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Guardar la clave"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "שמור מפתח"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "存储密钥"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "儲存金鑰"
           }
         }
       }
     },
     "Search hosts": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "البحث عن مضيفين"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Buscar hosts"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "חפש מארחים"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "搜索主机"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "搜尋主機"
           }
         }
       }
     },
     "Send": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "إرسال"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Enviar"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "שלח"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "发送"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "傳送"
           }
         }
       }
     },
     "Sends a one-token request to verify the key and model.": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "يرسل طلبًا برمز واحد للتحقق من المفتاح والنموذج."
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Envía una petición de un solo token para verificar la clave y el modelo."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "שולח בקשה באורך אסימון אחד כדי לאמת את המפתח ואת הדגם."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "发送一个仅含一个令牌的请求，以验证密钥和模型。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "傳送僅含一個 token 的請求，以驗證金鑰與模型。"
           }
         }
       }
     },
     "Session Closed": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "أُغلقت الجلسة"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Sesión cerrada"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ההפעלה נסגרה"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "会话已关闭"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "工作階段已關閉"
           }
         }
       }
     },
     "Session open": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "جلسة مفتوحة"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Sesión abierta"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הפעלה פתוחה"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "会话已打开"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "工作階段已開啟"
           }
         }
       }
     },
     "Set default port": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تعيين المنفذ الافتراضي"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Establecer el puerto predeterminado"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הגדר יציאת ברירת מחדל"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "设置默认端口"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "設定預設埠"
           }
         }
       }
     },
     "Settings": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "الإعدادات"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Ajustes"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הגדרות"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "设置"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "設定"
           }
         }
       }
     },
     "Size": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "الحجم"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Tamaño"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "גודל"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "大小"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "大小"
           }
         }
       }
     },
     "Size: %lldpt": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "الحجم: ‎%lld نقطة"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Tamaño: %lld pt"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "גודל: ‎%lld נק׳"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "大小：%lld 磅"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "大小：%lld 點"
           }
         }
       }
     },
     "Size: Default": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "الحجم: افتراضي"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Tamaño: predeterminado"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "גודל: ברירת מחדל"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "大小：默认"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "大小：預設"
           }
         }
       }
     },
     "Snippets": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "المقتطفات"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Fragmentos"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "קטעים"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "代码片段"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "程式碼片段"
           }
         }
       }
     },
     "Star": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تمييز بنجمة"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Destacar"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "סמן בכוכב"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "标记星标"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "標上星號"
           }
         }
       }
     },
     "Stop generating": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "إيقاف التوليد"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Detener la generación"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הפסק ליצור"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "停止生成"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "停止產生"
           }
         }
       }
     },
     "Stopped": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "متوقف"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Detenido"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הופסק"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已停止"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已停止"
           }
         }
       }
     },
     "Tap + to add a host.": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اضغط + لإضافة مضيف."
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Toca + para añadir un host."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הקש + כדי להוסיף מארח."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "轻点 + 添加主机。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "點一下 + 以加入主機。"
           }
         }
       }
     },
     "Tap + to add a tunnel.": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اضغط + لإضافة نفق."
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Toca + para añadir un túnel."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הקש + כדי להוסיף מנהרה."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "轻点 + 添加隧道。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "點一下 + 以加入通道。"
           }
         }
       }
     },
     "Tap + to generate an Ed25519 key.": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اضغط + لتوليد مفتاح Ed25519."
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Toca + para generar una clave Ed25519."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הקש + כדי ליצור מפתח Ed25519."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "轻点 + 生成 Ed25519 密钥。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "點一下 + 以產生 Ed25519 金鑰。"
           }
         }
       }
     },
     "Tap + to organize hosts into groups.": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اضغط + لتنظيم المضيفين في مجموعات."
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Toca + para organizar los hosts en grupos."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הקש + כדי לארגן מארחים בקבוצות."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "轻点 + 将主机整理到群组中。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "點一下 + 以將主機整理到群組中。"
           }
         }
       }
     },
     "Tap + to save a reusable command.": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اضغط + لحفظ أمر قابل لإعادة الاستخدام."
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Toca + para guardar un comando reutilizable."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הקש + כדי לשמור פקודה לשימוש חוזר."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "轻点 + 保存可重复使用的命令。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "點一下 + 以儲存可重複使用的指令。"
           }
         }
       }
@@ -1559,170 +5279,578 @@
     },
     "Terminal Theme": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "سمة الطرفية"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Tema del terminal"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ערכת נושא למסוף"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "终端主题"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "終端機主題"
           }
         }
       }
     },
     "Test Connection": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اختبار الاتصال"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Probar la conexión"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "בדוק חיבור"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "测试连接"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "測試連線"
           }
         }
       }
     },
     "The assistant wants to run:": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "يريد المساعد تنفيذ:"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "El asistente quiere ejecutar:"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "העוזר מבקש להריץ:"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "助手想要运行："
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "助理想要執行："
           }
         }
       }
     },
     "The default for all hosts. \"Off\" keeps the current behavior. Individual hosts and groups can override this.": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "الإعداد الافتراضي لكل المضيفين. «إيقاف» يبقي السلوك الحالي. ويمكن للمضيفين والمجموعات فرادى تجاوزه."
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "El valor predeterminado para todos los hosts. «Desactivado» mantiene el comportamiento actual. Los hosts y grupos individuales pueden anularlo."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ברירת המחדל לכל המארחים. ״כבוי״ משאיר את ההתנהגות הנוכחית. מארחים וקבוצות בודדים יכולים לעקוף זאת."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "所有主机的默认设置。“关闭”会保持当前行为。单个主机和群组可以覆盖此设置。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "所有主機的預設值。「關閉」會保持目前的行為。個別主機和群組可以覆寫此設定。"
           }
         }
       }
     },
     "The remote shell ended.": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "انتهت الصدفة البعيدة."
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "El shell remoto ha terminado."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "המעטפת המרוחקת הסתיימה."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "远程 shell 已结束。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "遠端 shell 已結束。"
           }
         }
       }
     },
     "The terminal output%@ will be sent to %@.": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "سيُرسل مخرج الطرفية%@ إلى %@."
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "La salida del terminal%@ se enviará a %@."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "פלט המסוף%@ יישלח אל %@."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "终端输出%@将发送给 %@。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "終端機輸出%@將傳送給 %@。"
           }
         }
       }
     },
     "Theme": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "السمة"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Tema"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ערכת נושא"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "主题"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "主題"
           }
         }
       }
     },
     "This session was closed after being idle. You can change how long sessions stay connected.": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "أُغلقت هذه الجلسة بعد فترة خمول. يمكنك تغيير مدة بقاء الجلسات متصلة."
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Esta sesión se cerró tras estar inactiva. Puedes cambiar cuánto tiempo permanecen conectadas las sesiones."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ההפעלה נסגרה לאחר חוסר פעילות. אפשר לשנות כמה זמן הפעלות נשארות מחוברות."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "此会话在闲置后已关闭。你可以更改会话保持连接的时长。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "此工作階段在閒置後已關閉。你可以更改工作階段保持連線的時間長度。"
           }
         }
       }
     },
     "Type": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "النوع"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Tipo"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "סוג"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "类型"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "類型"
           }
         }
       }
     },
     "Ungrouped": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "بلا مجموعة"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Sin grupo"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ללא קבוצה"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "未分组"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "未分組"
           }
         }
       }
     },
     "Unstar": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "إزالة النجمة"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Quitar de destacados"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "בטל סימון בכוכב"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "取消星标"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "取消星號"
           }
         }
       }
     },
     "Upload File": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "رفع ملف"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Subir un archivo"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "העלה קובץ"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "上传文件"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "上傳檔案"
           }
         }
       }
     },
     "Use": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "استخدام"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Usar"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "השתמש"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "使用"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "使用"
           }
         }
       }
     },
     "Username": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اسم المستخدم"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Nombre de usuario"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "שם משתמש"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "用户名"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "使用者名稱"
           }
         }
       }
     },
     "Verify Host Key": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "التحقق من مفتاح المضيف"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "Verificar la clave del host"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "אמת את מפתח המארח"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "验证主机密钥"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "驗證主機金鑰"
           }
         }
       }
     },
     "e.g. 644": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "مثال: 644"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "p. ej. 644"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "לדוגמה 644"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "例如 644"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "例如 644"
           }
         }
       }
     },
     "in %@": {
       "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "في %@"
+          }
+        },
         "es": {
           "stringUnit": {
             "state": "translated",
             "value": "en %@"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ב-%@"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "位于 %@"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "位於 %@"
           }
         }
       }

@@ -276,6 +276,10 @@
 				en,
 				Base,
 				es,
+				he,
+				ar,
+				"zh-Hans",
+				"zh-Hant",
 			);
 			mainGroup = 52A0DDC32FF01A30003F2522;
 			minimizedProjectReferenceProxies = 1;

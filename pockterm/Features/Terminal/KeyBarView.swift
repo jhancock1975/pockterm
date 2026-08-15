@@ -23,6 +23,12 @@ final class KeyBarView: UIInputView, UIInputViewAudioFeedback {
         self.terminalView = terminalView
         super.init(frame: CGRect(x: 0, y: 0, width: 0, height: 48), inputViewStyle: .keyboard)
         allowsSelfSizing = true
+        // Never mirrors in Hebrew or Arabic. The arrow keys have to keep
+        // pointing where they actually send, the key order matches a physical
+        // keyboard, and the dismiss pad below is positioned on the trailing
+        // edge — which would jump to the left under RTL. See
+        // Localization/LeftToRight.swift.
+        semanticContentAttribute = .forceLeftToRight
 
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.translatesAutoresizingMaskIntoConstraints = false

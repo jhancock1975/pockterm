@@ -34,7 +34,7 @@ struct ImportConfigView: View {
                             Toggle(isOn: binding(for: host.alias)) {
                                 VStack(alignment: .leading, spacing: 2) {
                                     Text(host.alias).font(.headline)
-                                    Text("\(host.user ?? "—")@\(host.hostName ?? host.alias):\(host.port ?? 22)")
+                                    Text("\(host.user ?? "—")@\(host.hostName ?? host.alias):\((host.port ?? 22).technicalDigits)")
                                         .font(.caption).foregroundStyle(.secondary)
                                 }
                             }

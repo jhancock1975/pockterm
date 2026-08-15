@@ -43,7 +43,7 @@ struct RemoteFilePickerView: View {
             Button("Accept") { pending.resume(true); model.pendingHostKey = nil }
             Button("Reject", role: .cancel) { pending.resume(false); model.pendingHostKey = nil }
         } message: { pending in
-            Text("\(pending.info.address):\(pending.info.port)\n\(pending.info.fingerprint ?? "")")
+            Text("\(pending.info.address):\(pending.info.port.technicalDigits)\n\(pending.info.fingerprint ?? "")")
         }
     }
 
