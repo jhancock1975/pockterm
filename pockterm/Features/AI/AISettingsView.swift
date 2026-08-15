@@ -29,6 +29,7 @@ private struct AISettingsForm: View {
 
     enum TestState: Equatable { case idle, testing, success, failure(String) }
     @State private var keyInput = ""
+    @FocusState private var keyFieldFocused: Bool
     @State private var hasStoredKey = false
     @State private var testState: TestState = .idle
     @State private var keychainError: String?
@@ -79,6 +80,7 @@ private struct AISettingsForm: View {
                 SecureField(hasStoredKey ? "Replace API key" : "Paste API key", text: $keyInput)
                     .autocorrectionDisabled()
                     .textInputAutocapitalization(.never)
+                    .focused($keyFieldFocused)
                 Button("Save Key") { saveKey() }
                     .disabled(keyInput.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
                 if let keychainError {
@@ -109,6 +111,17 @@ private struct AISettingsForm: View {
                 }
             } footer: {
                 Text("Sends a one-token request to verify the key and model.")
+            }
+        }
+        .toolbar {
+            // Same chip as HostEditorView, so dismissing works identically
+            // wherever the app takes typed input.
+            ToolbarItemGroup(placement: .keyboard) {
+                Spacer()
+                Button { keyFieldFocused = false } label: {
+                    Image(systemName: "keyboard.chevron.compact.down")
+                }
+                .accessibilityLabel("Dismiss Keyboard")
             }
         }
         .onAppear { refreshKeyState() }

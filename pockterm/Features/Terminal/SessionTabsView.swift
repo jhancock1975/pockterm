@@ -145,7 +145,7 @@ struct SessionTabsView: View {
                     }
                     if let session = manager.active {
                         Button { themingSession = session } label: {
-                            Image(systemName: "paintpalette")
+                            ThemeWheelIcon()
                         }
                         .accessibilityLabel("Terminal Theme")
                         .disabled(session.status != .connected)
@@ -173,10 +173,10 @@ struct SessionTabsView: View {
         .background(.black)
     }
 
-    /// The active session as a bordered, softly glowing pill: name plus the red
-    /// close button right beside it.
+    /// The active session as a bordered pill: name plus the red close button
+    /// right beside it.
     private func activeSessionChip(_ session: TerminalSession) -> some View {
-        let glow = Color(red: 0.3, green: 0.85, blue: 1.0)
+        let border = Color(red: 0.3, green: 0.85, blue: 1.0)
         return HStack(spacing: 8) {
             Text(session.title)
                 .font(.headline)
@@ -188,20 +188,21 @@ struct SessionTabsView: View {
         .padding(.horizontal, 14)
         .padding(.vertical, 7)
         .background(Capsule().fill(.white.opacity(0.06)))
-        .overlay(Capsule().strokeBorder(glow.opacity(0.8), lineWidth: 1.5))
-        .shadow(color: glow.opacity(0.55), radius: 8)
+        .overlay(Capsule().strokeBorder(border.opacity(0.8), lineWidth: 1.5))
         .frame(maxWidth: 220)
     }
 
-    /// Apple-style filled-circle close: white glyph on a red circle.
+    /// A plain red dot, in the theme wheel's red. The label is spelled out
+    /// because a bare circle leaves VoiceOver nothing to describe — the ✕ it
+    /// replaced carried its own "Close" description.
     private func closeButton(_ session: TerminalSession, size: Font) -> some View {
         Button { manager.close(session) } label: {
-            Image(systemName: "xmark.circle.fill")
+            Image(systemName: "circle.fill")
                 .font(size)
-                .symbolRenderingMode(.palette)
-                .foregroundStyle(.white, .red)
+                .foregroundStyle(ThemeWheelIcon.red)
         }
         .buttonStyle(.plain)
+        .accessibilityLabel("Close Session")
     }
 
     private func tabChip(_ session: TerminalSession) -> some View {
@@ -283,6 +284,51 @@ struct SessionTabsView: View {
         return lines.joined(separator: "\n")
     }
 
+}
+
+/// The theme picker's icon: one circle cut into three equal wedges, red then
+/// green then blue. The colours are muted so the button sits quieter than the
+/// white symbols beside it, but stay light enough to read on the black bar.
+private struct ThemeWheelIcon: View {
+    /// A disabled Button dims a text/symbol label by restyling its foreground,
+    /// which leaves these explicit fills untouched — so dim them by hand.
+    @Environment(\.isEnabled) private var isEnabled
+
+    /// Matches the optical size of the toolbar's SF Symbols.
+    private let diameter: CGFloat = 17
+
+    // Spelled out because SwiftTerm exports a `Color` of its own.
+    /// Shared with the session close buttons, which are dots in this same red.
+    static let red = SwiftUI.Color(red: 0.70, green: 0.24, blue: 0.24)
+
+    private static let wedges: [SwiftUI.Color] = [
+        red,
+        Color(red: 0.22, green: 0.55, blue: 0.31),
+        Color(red: 0.24, green: 0.40, blue: 0.76),
+    ]
+
+    var body: some View {
+        Canvas { context, size in
+            let center = CGPoint(x: size.width / 2, y: size.height / 2)
+            let radius = min(size.width, size.height) / 2
+            for (index, color) in Self.wedges.enumerated() {
+                let start = Angle.degrees(Double(index) * 120 - 90)
+                var wedge = Path()
+                wedge.move(to: center)
+                wedge.addArc(center: center, radius: radius,
+                             startAngle: start, endAngle: start + .degrees(120),
+                             clockwise: false)
+                wedge.closeSubpath()
+                context.fill(wedge, with: .color(color))
+                // Stroking in the bar's own colour cuts a visible gap along the
+                // two radii; the outer arc's share of the stroke is invisible
+                // against the same black.
+                context.stroke(wedge, with: .color(.black), lineWidth: 1)
+            }
+        }
+        .frame(width: diameter, height: diameter)
+        .opacity(isEnabled ? 1 : 0.35)
+    }
 }
 
 /// Picks a host to open as an additional session without closing existing ones.
