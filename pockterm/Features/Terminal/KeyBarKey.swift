@@ -52,15 +52,18 @@ enum KeyBarKey: String, CaseIterable, Codable, Identifiable {
         }
     }
 
-    /// Name shown in the key bar customization screen.
+    /// Name shown in the key bar customization screen. Localized explicitly:
+    /// these reach the UI as `Text(key.displayName)`, and `Text(String)` does
+    /// not localize, so a plain literal here would stay English everywhere.
+    /// The default case returns key caps (Ctrl, Esc, ~) which don't translate.
     var displayName: String {
         switch self {
-        case .tab: return "Tab"
-        case .left: return "← Left"
-        case .down: return "↓ Down"
-        case .up: return "↑ Up"
-        case .right: return "→ Right"
-        case .hideKeyboard: return "Hide Keyboard"
+        case .tab: return String(localized: "Tab")
+        case .left: return String(localized: "← Left")
+        case .down: return String(localized: "↓ Down")
+        case .up: return String(localized: "↑ Up")
+        case .right: return String(localized: "→ Right")
+        case .hideKeyboard: return String(localized: "Hide Keyboard")
         default: return title ?? rawValue
         }
     }
