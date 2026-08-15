@@ -5,11 +5,13 @@ import SwiftData
 enum AgentApproval: String, CaseIterable, Identifiable {
     case always, risky, never
     var id: String { rawValue }
+    /// Localized here: this reaches the UI as `Text($0.label)`, and
+    /// `Text(String)` does not localize.
     var label: String {
         switch self {
-        case .always: return "Confirm everything"
-        case .risky: return "Confirm risky only"
-        case .never: return "Auto-run"
+        case .always: return String(localized: "Confirm everything")
+        case .risky: return String(localized: "Confirm risky only")
+        case .never: return String(localized: "Auto-run")
         }
     }
 }

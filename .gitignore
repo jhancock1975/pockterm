@@ -128,3 +128,10 @@ GoogleService-Info.plist
 # Per-machine tool permissions. .claude/skills/ is deliberately NOT ignored:
 # the verify harness is shared and belongs in the repo.
 .claude/settings.local.json
+
+# Local agent tooling, including a checked-out Python venv (~26 MB).
+.superpowers/
+
+# Working notes on promotion. Deliberately local: it tracks download numbers
+# and launch timing that don't belong in a public repo.
+PROMOTION.local.md
