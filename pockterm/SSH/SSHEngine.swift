@@ -9,8 +9,8 @@ enum SSHEngineError: Error, LocalizedError {
     case invalidKey
     var errorDescription: String? {
         switch self {
-        case .notConnected: return "Not connected"
-        case .invalidKey: return "Invalid private key"
+        case .notConnected: return String(localized: "Not connected")
+        case .invalidKey: return String(localized: "Invalid private key")
         }
     }
 }

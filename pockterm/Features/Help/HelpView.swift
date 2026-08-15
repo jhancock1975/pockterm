@@ -1,19 +1,37 @@
 import SwiftUI
 
 /// A block of help content within a topic.
+///
+/// These are `LocalizedStringResource` rather than `String` so that Xcode
+/// extracts them into the String Catalog. The previous renderer built a
+/// `LocalizedStringKey` from a runtime `String`, which does look the value up
+/// at runtime but is invisible to the build-time extractor — so the entire
+/// user guide silently stayed English in every language.
 enum HelpBlock {
-    case paragraph(String)
-    case heading(String)
-    case bullets([String])
+    case paragraph(LocalizedStringResource)
+    case heading(LocalizedStringResource)
+    case bullets([LocalizedStringResource])
 }
 
 /// One help topic, rendered as its own detail page.
 struct HelpTopic: Identifiable {
     let id = UUID()
-    let title: String
+    let title: LocalizedStringResource
+    /// SF Symbol name — an asset identifier, never localized.
     let icon: String
-    let summary: String
+    let summary: LocalizedStringResource
     let blocks: [HelpBlock]
+}
+
+/// Help prose is authored with inline markdown emphasis (`**bold**`, backticks).
+/// Resolve the translation first, then parse the markdown of whichever language
+/// came back — emphasis markers are part of the translated text.
+func helpMarkdown(_ resource: LocalizedStringResource) -> AttributedString {
+    let localized = String(localized: resource)
+    let options = AttributedString.MarkdownParsingOptions(
+        interpretedSyntax: .inlineOnlyPreservingWhitespace)
+    return (try? AttributedString(markdown: localized, options: options))
+        ?? AttributedString(localized)
 }
 
 /// The in-app user guide. Presented as a sheet from the Hosts screen's Help
@@ -25,8 +43,8 @@ struct HelpView: View {
     var body: some View {
         NavigationStack {
             List {
-                ForEach(HelpContent.sections, id: \.title) { section in
-                    Section(section.title) {
+                ForEach(HelpContent.sections) { section in
+                    Section {
                         ForEach(section.topics) { topic in
                             NavigationLink {
                                 HelpTopicView(topic: topic)
@@ -43,6 +61,8 @@ struct HelpView: View {
                                 }
                             }
                         }
+                    } header: {
+                        Text(section.title)
                     }
                 }
             }
@@ -67,7 +87,7 @@ struct HelpTopicView: View {
                 ForEach(Array(topic.blocks.enumerated()), id: \.offset) { _, block in
                     switch block {
                     case .paragraph(let text):
-                        Text(.init(text))
+                        Text(helpMarkdown(text))
                             .fixedSize(horizontal: false, vertical: true)
                     case .heading(let text):
                         Text(text)
@@ -75,10 +95,10 @@ struct HelpTopicView: View {
                             .padding(.top, 4)
                     case .bullets(let items):
                         VStack(alignment: .leading, spacing: 8) {
-                            ForEach(items, id: \.self) { item in
+                            ForEach(Array(items.enumerated()), id: \.offset) { _, item in
                                 HStack(alignment: .firstTextBaseline, spacing: 10) {
                                     Text("•").foregroundStyle(.secondary)
-                                    Text(.init(item))
+                                    Text(helpMarkdown(item))
                                         .fixedSize(horizontal: false, vertical: true)
                                 }
                             }
@@ -89,7 +109,7 @@ struct HelpTopicView: View {
             .padding()
             .frame(maxWidth: .infinity, alignment: .leading)
         }
-        .navigationTitle(topic.title)
+        .navigationTitle(Text(topic.title))
         .navigationBarTitleDisplayMode(.inline)
     }
 }

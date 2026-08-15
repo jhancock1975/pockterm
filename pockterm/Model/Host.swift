@@ -10,10 +10,12 @@ enum HostProtocol: String, CaseIterable, Identifiable {
 
     var id: String { rawValue }
 
+    /// Shown in the protocol picker and spoken by VoiceOver on the host row,
+    /// so it is localized. The protocol names themselves stay verbatim.
     var title: String {
         switch self {
-        case .ssh: "SSH (Terminal)"
-        case .sftp: "SFTP (Files)"
+        case .ssh: String(localized: "SSH (Terminal)")
+        case .sftp: String(localized: "SFTP (Files)")
         }
     }
 

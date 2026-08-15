@@ -199,6 +199,18 @@
         }
       }
     },
+    "**Credentials** are a username plus a way to authenticate — either a password or an SSH key.": {},
+    "**Dynamic** — a SOCKS5 proxy on your device sends each connection through the server.": {},
+    "**Local** — a port on your device forwards to a host the server can reach.": {},
+    "**Long-press a host** and choose **Browse Files**.": {},
+    "**Long-press the file**, then choose **Download**.": {},
+    "**Long-press** a file to Rename it, change its **Permissions**, or Delete it.": {},
+    "**Remote** — a port on the server forwards back to your device.": {},
+    "**Star** a host (swipe left) to pin it to a Favorites section.": {},
+    "**Swipe left** for Edit, Star, or Delete.": {},
+    "**Swipe right** and tap **Files** to browse it over SFTP.": {},
+    "**Tap a row** to edit it.": {},
+    "**Tap** a host to connect.": {},
     "..": {
       "shouldTranslate": false
     },
@@ -338,6 +350,7 @@
         }
       }
     },
+    "Accept only if the fingerprint matches what you expect from the server's owner.": {},
     "Active on :%@": {
       "localizations": {
         "ar": {
@@ -406,6 +419,8 @@
         }
       }
     },
+    "Add the shown public-key line to the server's `~/.ssh/authorized_keys` file.": {},
+    "Adding a Host": {},
     "Address": {
       "localizations": {
         "ar": {
@@ -474,6 +489,7 @@
         }
       }
     },
+    "Already in a session? Tap the **folder** button in the terminal's top bar.": {},
     "Appearance": {
       "localizations": {
         "ar": {
@@ -678,6 +694,7 @@
         }
       }
     },
+    "Assign a host to a group in the host editor.": {},
     "Assistant": {
       "localizations": {
         "ar": {
@@ -916,6 +933,7 @@
         }
       }
     },
+    "Bring in existing hosts": {},
     "Browse Files": {
       "localizations": {
         "ar": {
@@ -950,6 +968,7 @@
         }
       }
     },
+    "Browse, download and upload files": {},
     "Cancel": {
       "localizations": {
         "ar": {
@@ -1052,6 +1071,7 @@
         }
       }
     },
+    "Choose **Credentials** so Pockterm knows how to sign in. If you don't have any yet, tap **New Credentials**.": {},
     "Choose File…": {
       "localizations": {
         "ar": {
@@ -1120,6 +1140,7 @@
         }
       }
     },
+    "Connecting and working in a session": {},
     "Connecting…": {
       "localizations": {
         "ar": {
@@ -1358,6 +1379,9 @@
         }
       }
     },
+    "Create a host": {},
+    "Create a server you can connect to": {},
+    "Create credentials": {},
     "Creates a new key pair stored securely in the Keychain.": {
       "localizations": {
         "ar": {
@@ -1426,6 +1450,7 @@
         }
       }
     },
+    "Credentials & SSH Keys": {},
     "Custom": {
       "localizations": {
         "ar": {
@@ -1834,6 +1859,7 @@
         }
       }
     },
+    "Download a file": {},
     "Drag to reorder; swipe to remove. The bar scrolls horizontally in the terminal.": {
       "localizations": {
         "ar": {
@@ -1936,6 +1962,10 @@
         }
       }
     },
+    "Enter a **Label**, the **Address** (hostname or IP), and the **Port** (22 by default).": {},
+    "Enter the username and pick **Password** or **Key**.": {},
+    "Every host has an SFTP file browser. SFTP runs over the same SSH connection, so there is nothing extra to set up.": {},
+    "Everything stays on your device — see **Your Data & Privacy** for details.": {},
     "Favorite": {
       "localizations": {
         "ar": {
@@ -2038,6 +2068,7 @@
         }
       }
     },
+    "Files & Networking": {},
     "Font": {
       "localizations": {
         "ar": {
@@ -2072,6 +2103,7 @@
         }
       }
     },
+    "For **Key**, select one of the keys you generated.": {},
     "Forward": {
       "localizations": {
         "ar": {
@@ -2208,6 +2240,8 @@
         }
       }
     },
+    "From the **Hosts** menu, choose **Import from ssh_config**.": {},
+    "From the **Hosts** menu, choose **Manage Groups**. Groups can be nested, and a group's default credentials and port are inherited by its hosts.": {},
     "Generate": {
       "localizations": {
         "ar": {
@@ -2276,6 +2310,9 @@
         }
       }
     },
+    "Generate a key": {},
+    "Getting Started": {},
+    "Give a host a **Startup Snippet** to run it automatically on connect.": {},
     "Group": {
       "localizations": {
         "ar": {
@@ -2344,6 +2381,7 @@
         }
       }
     },
+    "Groups, Favorites & Search": {},
     "Help": {
       "localizations": {
         "ar": {
@@ -2446,6 +2484,7 @@
         }
       }
     },
+    "Host actions": {},
     "Hosts": {
       "localizations": {
         "ar": {
@@ -2514,6 +2553,9 @@
         }
       }
     },
+    "Hosts, groups, snippets, and forwards are stored on your device.": {},
+    "How Pockterm signs you in": {},
+    "If a server later presents a **different** key, Pockterm warns you before continuing — this can mean the server was rebuilt, or that something is wrong.": {},
     "Import": {
       "localizations": {
         "ar": {
@@ -2616,6 +2658,8 @@
         }
       }
     },
+    "Importing from ssh_config": {},
+    "In a host's editor, choose **New Credentials**.": {},
     "Inherited from this host's group.": {
       "localizations": {
         "ar": {
@@ -2684,6 +2728,9 @@
         }
       }
     },
+    "Invalid private key": {},
+    "It opens in the share sheet, so you can send it anywhere — choose **Save to Files** to keep it, including in **iCloud Drive**.": {},
+    "Keep a large host list tidy": {},
     "Keep sessions alive when idle": {
       "localizations": {
         "ar": {
@@ -3027,6 +3074,7 @@
         }
       }
     },
+    "Manage files": {},
     "Method": {
       "localizations": {
         "ar": {
@@ -3571,9 +3619,14 @@
         }
       }
     },
+    "Not connected": {},
     "OK": {
       "shouldTranslate": false
     },
+    "On the **Hosts** tab, tap **+**, then **New Host**.": {},
+    "On the **Keychain** tab, tap **+** and give the key a label.": {},
+    "On the **Port Forwarding** tab, tap **+** to add one.": {},
+    "On the **Snippets** tab, tap **+** to save a command with a label.": {},
     "On the Key Bar": {
       "localizations": {
         "ar": {
@@ -3608,6 +3661,7 @@
         }
       }
     },
+    "Once accepted, the key is remembered and you won't be asked again.": {},
     "Open Terminal": {
       "localizations": {
         "ar": {
@@ -3642,6 +3696,8 @@
         }
       }
     },
+    "Open several hosts at once — each session is a tab across the top. Tap its name to switch, or the red **✕** to close it.": {},
+    "Open the browser": {},
     "Operation Failed": {
       "localizations": {
         "ar": {
@@ -3676,6 +3732,7 @@
         }
       }
     },
+    "Or set the host's **Protocol** to **SFTP (Files)**, and tapping it opens the browser instead of a terminal.": {},
     "Organization": {
       "localizations": {
         "ar": {
@@ -3778,6 +3835,7 @@
         }
       }
     },
+    "Passwords and private keys are kept in the **iOS Keychain**.": {},
     "Paste API key": {
       "localizations": {
         "ar": {
@@ -3812,6 +3870,7 @@
         }
       }
     },
+    "Paste your config text, or tap **Choose File**.": {},
     "Paste ~/.ssh/config": {
       "localizations": {
         "ar": {
@@ -3914,6 +3973,10 @@
         }
       }
     },
+    "Pockterm creates an Ed25519 key pair and stores the private key in the iOS Keychain.": {},
+    "Pockterm has no account, and your connection data stays on your device.": {},
+    "Pockterm is a full-featured SSH client for iPhone. You can connect to servers, run an interactive terminal, transfer files over SFTP, and set up port-forwarding tunnels.": {},
+    "Pockterm reads the `Host`, `HostName`, `User`, and `Port` settings. Password credentials are created for each username so you can fill in the secret afterward.": {},
     "Port": {
       "localizations": {
         "ar": {
@@ -3982,6 +4045,7 @@
         }
       }
     },
+    "Port forwarding routes network connections through an SSH server.": {},
     "Protocol": {
       "localizations": {
         "ar": {
@@ -4050,6 +4114,8 @@
         }
       }
     },
+    "Pull down to **search** by label or address. Hosts you've used recently appear under Recents.": {},
+    "Rate limited by the provider. Try again shortly.": {},
     "Recents": {
       "localizations": {
         "ar": {
@@ -4288,6 +4354,8 @@
         }
       }
     },
+    "Request failed (HTTP %@).": {},
+    "Request failed (HTTP %@): %@": {},
     "Required — Pockterm needs a username and either a password or a key to sign in.": {
       "localizations": {
         "ar": {
@@ -4424,6 +4492,7 @@
         }
       }
     },
+    "Review the detected hosts, turn off any you don't want, then tap **Import**.": {},
     "Run": {
       "localizations": {
         "ar": {
@@ -4458,6 +4527,8 @@
         }
       }
     },
+    "Run a forward": {},
+    "SFTP (Files)": {},
     "SFTP Error": {
       "localizations": {
         "ar": {
@@ -4560,6 +4631,7 @@
         }
       }
     },
+    "SSH (Terminal)": {},
     "Save": {
       "localizations": {
         "ar": {
@@ -4628,6 +4700,7 @@
         }
       }
     },
+    "Save and run reusable commands": {},
     "Search hosts": {
       "localizations": {
         "ar": {
@@ -4662,6 +4735,7 @@
         }
       }
     },
+    "Security & Privacy": {},
     "Send": {
       "localizations": {
         "ar": {
@@ -5002,6 +5076,7 @@
         }
       }
     },
+    "Snippets are commands you use often.": {},
     "Star": {
       "localizations": {
         "ar": {
@@ -5104,6 +5179,11 @@
         }
       }
     },
+    "Tap **+** to create a folder. **Pull down** to refresh the listing.": {},
+    "Tap **+**, then **Upload File**.": {},
+    "Tap **..** at the top to go up a directory.": {},
+    "Tap **Save**.": {},
+    "Tap **▶** to start; the status shows when it's active. Tap **⏹** to stop.": {},
     "Tap + to add a host.": {
       "localizations": {
         "ar": {
@@ -5274,6 +5354,8 @@
         }
       }
     },
+    "Tap a host to open a terminal session.": {},
+    "Tap the **snippet** button to run a saved command in the session.": {},
     "Terminal": {
       "shouldTranslate": false
     },
@@ -5345,6 +5427,10 @@
         }
       }
     },
+    "That opens the iPhone's own file picker, so you can upload straight from **iCloud Drive**, On My iPhone, or any other Files location.": {},
+    "The **AI Assistant** is the one exception: when you use it, the relevant terminal output (and any files you attach) is sent to the model provider you configure — Anthropic, OpenAI, OpenRouter, or Hugging Face — using **your own API key**. Nothing is sent until you use the assistant, and your key is stored in the iOS Keychain. Review your provider's privacy policy for how they handle that data.": {},
+    "The API key was rejected. Check it in AI Settings.": {},
+    "The Terminal": {},
     "The assistant wants to run:": {
       "localizations": {
         "ar": {
@@ -5379,6 +5465,7 @@
         }
       }
     },
+    "The bar above the keyboard has **esc**, **ctrl**, **tab**, arrow keys, and more.": {},
     "The default for all hosts. \"Off\" keeps the current behavior. Individual hosts and groups can override this.": {
       "localizations": {
         "ar": {
@@ -5413,6 +5500,9 @@
         }
       }
     },
+    "The file lands in the folder you are currently viewing.": {},
+    "The first time you connect to a server, Pockterm shows its key **fingerprint** and asks you to accept it. This is called trust on first use.": {},
+    "The provider is overloaded. Try again shortly.": {},
     "The remote shell ended.": {
       "localizations": {
         "ar": {
@@ -5549,6 +5639,11 @@
         }
       }
     },
+    "Transferring Files (SFTP)": {},
+    "Transfers are streamed in chunks, so even a large file will not exhaust memory. While one runs, the path bar shows how much has transferred and the total size.": {},
+    "Trusted host keys are remembered on your device for the warnings described in **Verifying Host Keys**.": {},
+    "Trusting servers safely": {},
+    "Tunnel connections through SSH": {},
     "Type": {
       "localizations": {
         "ar": {
@@ -5617,6 +5712,7 @@
         }
       }
     },
+    "Unknown model. Check the model name in AI Settings.": {},
     "Unstar": {
       "localizations": {
         "ar": {
@@ -5685,6 +5781,7 @@
         }
       }
     },
+    "Upload a file": {},
     "Use": {
       "localizations": {
         "ar": {
@@ -5719,6 +5816,7 @@
         }
       }
     },
+    "Use the tabs along the bottom to move between **Hosts**, **Snippets**, **Keychain**, and **Port Forwarding**.": {},
     "Username": {
       "localizations": {
         "ar": {
@@ -5753,6 +5851,7 @@
         }
       }
     },
+    "Using Pockterm": {},
     "Verify Host Key": {
       "localizations": {
         "ar": {
@@ -5787,6 +5886,12 @@
         }
       }
     },
+    "Verifying Host Keys": {},
+    "Welcome to Pockterm": {},
+    "What Pockterm is and how it's organized": {},
+    "Where everything is stored": {},
+    "While connected, tap the snippet button in the terminal to run one.": {},
+    "Your Data & Privacy": {},
     "e.g. 644": {
       "localizations": {
         "ar": {

@@ -1,8 +1,9 @@
 import Foundation
 
 /// A named group of help topics.
-struct HelpSection {
-    let title: String
+struct HelpSection: Identifiable {
+    let id = UUID()
+    let title: LocalizedStringResource
     let topics: [HelpTopic]
 }
 

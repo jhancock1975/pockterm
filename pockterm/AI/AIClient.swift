@@ -7,14 +7,18 @@ struct AIClientError: LocalizedError {
 
     var errorDescription: String? {
         switch status {
-        case 401, 403: return "The API key was rejected. Check it in AI Settings."
-        case 404: return "Unknown model. Check the model name in AI Settings."
-        case 429: return "Rate limited by the provider. Try again shortly."
-        case 529: return "The provider is overloaded. Try again shortly."
+        case 401, 403: return String(localized: "The API key was rejected. Check it in AI Settings.")
+        case 404: return String(localized: "Unknown model. Check the model name in AI Settings.")
+        case 429: return String(localized: "Rate limited by the provider. Try again shortly.")
+        case 529: return String(localized: "The provider is overloaded. Try again shortly.")
         default:
+            // The status code stays in Latin digits: it is an HTTP identifier
+            // the user may quote in a bug report, not a count.
+            let code = status.technicalDigits
             let trimmed = detail.trimmingCharacters(in: .whitespacesAndNewlines)
-            return trimmed.isEmpty ? "Request failed (HTTP \(status))."
-                                   : "Request failed (HTTP \(status)): \(trimmed.prefix(200))"
+            return trimmed.isEmpty
+                ? String(localized: "Request failed (HTTP \(code)).")
+                : String(localized: "Request failed (HTTP \(code)): \(String(trimmed.prefix(200)))")
         }
     }
 }
