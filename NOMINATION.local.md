@@ -15,7 +15,7 @@ values and reading the rejection:
 | Field | Limit | Filed |
 |---|---|---|
 | Nomination Name | 60 | 48 |
-| Description | 1000 | 1000 |
+| Description | 1000 | 968 |
 | Helpful Details (`notes`) | 500 | 434 |
 | Supplemental URLs | 5 | 5 |
 
@@ -34,13 +34,14 @@ APP_ENHANCEMENTS
 ## Publish date
 
 ```
-2026-09-15T11:00:00Z
+2026-09-05T11:00:00Z
 ```
 
-Chosen when a later release was assumed. 1.4 now ships on approval, so pull
-this earlier if you want the featuring date to track the release.
+Apple asks for at least three weeks between filing and this date, so this is
+the earliest that could be set on 15 August. The date is when the *featuring*
+runs, not a release date — 1.4 is already live.
 
-## Description (1000/1000)
+## Description (968/1000)
 
 ```
 Pockterm is a free, native SSH and SFTP client for iPhone: no account, no subscription, no ads, no analytics.
@@ -51,7 +52,7 @@ It exists because every free iPhone terminal we tried mangles full-screen consol
 
 Also: SFTP over the same connection, keys held in the iOS Keychain, host-key change warnings, port forwarding. The optional AI assistant is off by default and needs the user's own API key.
 
-Built in SwiftUI. Source public under Apache-2.0.
+Built in SwiftUI.
 ```
 
 ## Helpful Details (434/500)
@@ -68,8 +69,8 @@ Our first featuring nomination.
 
 ```
 https://pockterm.com/zh-Hans.html
+https://pockterm.com/he.html
 https://pockterm.com/ar.html
 https://pockterm.com/
-https://github.com/jhancock1975/pockterm
 https://apps.apple.com/app/id6789968094
 ```
