@@ -9,8 +9,8 @@
 set -e
 export AWS_PAGER=""
 REGION=us-east-1
-aws ec2 terminate-instances --region $REGION --instance-ids i-05cf0e61bd1edf871
-aws ec2 wait instance-terminated --region $REGION --instance-ids i-05cf0e61bd1edf871
-aws ec2 release-address --region $REGION --allocation-id eipalloc-07b5277dfd9fe6583
-aws ec2 delete-security-group --region $REGION --group-id sg-0020fac865f0db5bf 2>/dev/null || true
+aws ec2 terminate-instances --region $REGION --instance-ids i-0c4209912c0fff046
+aws ec2 wait instance-terminated --region $REGION --instance-ids i-0c4209912c0fff046
+aws ec2 release-address --region $REGION --allocation-id eipalloc-0ae9258c72a627668
+aws ec2 delete-security-group --region $REGION --group-id sg-0bd0254b35beff3c9 2>/dev/null || true
 echo "demo host torn down."
