@@ -118,6 +118,12 @@ final class KeyBarView: UIInputView, UIInputViewAudioFeedback {
 
     private func makeButton(for key: KeyBarKey) -> UIButton {
         let button = HighlightButton(type: .system)
+        // Every button here is sized by constraints, so none of them may keep
+        // its autoresizing mask. UIStackView clears this for the keys it
+        // arranges; the pinned dismiss button is added with a plain addSubview
+        // and would otherwise lay out at zero size, leaving a bare sliver of
+        // blur where the chip should be.
+        button.translatesAutoresizingMaskIntoConstraints = false
         var config = UIButton.Configuration.gray()
         config.baseForegroundColor = .label
         config.background.backgroundColor = UIColor(white: 0.28, alpha: 1)

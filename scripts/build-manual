@@ -1,0 +1,411 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""Build the pockterm.com user manual from the app's own help content.
+
+  scripts/build-manual [--out DIR] [--deploy]
+
+The manual is not written twice. `HelpContent.swift` already holds the whole
+user guide, and `Localizable.xcstrings` already holds it translated into every
+shipped language — so this parses the Swift for structure, looks each string up
+in the catalog, and emits one page per language. Change the guide in the app and
+the site follows; there is no second copy to forget.
+
+Stdlib only, so unlike scripts/appstore-report there is no venv to bootstrap.
+
+Flat files (manual-es.html rather than es/manual.html) for the same reason the
+landing pages are flat: CloudFront applies its default root object only at the
+root, so a directory URL 404s against an S3 origin behind OAC.
+"""
+import argparse
+import html
+import json
+import re
+import subprocess
+import sys
+import tempfile
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+HELP = ROOT / "pockterm/Features/Help/HelpContent.swift"
+CATALOG = ROOT / "pockterm/Localizable.xcstrings"
+
+BUCKET = "s3://pockterm-site-071350569379/"
+DISTRIBUTION = "E28OSFYVGJMTML"
+APP_STORE = "https://apps.apple.com/app/id6789968094"
+
+# (code, endonym, direction) — order the language switcher shows them in,
+# matching the landing pages.
+LANGS = [
+    ("en", "English", "ltr"),
+    ("es", "Español", "ltr"),
+    ("ar", "العربية", "rtl"),
+    ("he", "עברית", "rtl"),
+    ("zh-Hans", "简体中文", "ltr"),
+    ("zh-Hant", "繁體中文", "ltr"),
+]
+
+def page(code):
+    return "manual.html" if code == "en" else f"manual-{code}.html"
+
+def home(code):
+    return "/" if code == "en" else f"/{code}.html"
+
+# Page chrome. The guide's own text comes from the catalog; only the wrapper
+# around it is written here. Footer strings match the landing pages verbatim.
+CHROME = {
+    "en": dict(guide="User Guide", contents="Contents", lang="Language",
+               sub="Everything in the app's built-in guide, on one page.",
+               privacy="Privacy", contact="Contact",
+               foot="© 2026 John Hancock. Pockterm — SSH &amp; SFTP for iPhone."),
+    "es": dict(guide="Guía del usuario", contents="Contenido", lang="Idioma",
+               sub="Toda la guía integrada en la app, en una sola página.",
+               privacy="Privacidad", contact="Contacto",
+               foot="© 2026 John Hancock. Pockterm — SSH y SFTP para iPhone."),
+    "ar": dict(guide="دليل المستخدم", contents="المحتويات", lang="اللغة",
+               sub="كل ما في دليل التطبيق المدمج، في صفحة واحدة.",
+               privacy="الخصوصية", contact="اتصل بنا",
+               foot="© 2026 John Hancock. Pockterm — SSH و SFTP لـ iPhone."),
+    "he": dict(guide="מדריך למשתמש", contents="תוכן העניינים", lang="שפה",
+               sub="כל המדריך המובנה באפליקציה, בעמוד אחד.",
+               privacy="פרטיות", contact="צור קשר",
+               foot="© 2026 John Hancock. Pockterm — SSH ו-SFTP ל-iPhone."),
+    "zh-Hans": dict(guide="用户指南", contents="目录", lang="语言",
+                    sub="应用内置指南的全部内容，集中在一页。",
+                    privacy="隐私", contact="联系",
+                    foot="© 2026 John Hancock. Pockterm — 适用于 iPhone 的 SSH 与 SFTP。"),
+    "zh-Hant": dict(guide="使用手冊", contents="目錄", lang="語言",
+                    sub="App 內建說明的全部內容，集中在一頁。",
+                    privacy="隱私", contact="聯絡",
+                    foot="© 2026 John Hancock. Pockterm — 適用於 iPhone 的 SSH 與 SFTP。"),
+}
+
+
+# --- reading the app -------------------------------------------------------
+
+def unescape(s):
+    """Decode the Swift string escapes HelpContent actually uses."""
+    s = re.sub(r"\\u\{([0-9A-Fa-f]+)\}", lambda m: chr(int(m.group(1), 16)), s)
+    return s.replace('\\"', '"').replace("\\n", "\n").replace("\\\\", "\\")
+
+
+LITERAL = re.compile(r'"((?:[^"\\]|\\.)*)"')
+
+
+def literals(text):
+    return [unescape(m.group(1)) for m in LITERAL.finditer(text)]
+
+
+def balanced(text, start):
+    """Return the contents of the bracket opening at `start`, skipping strings."""
+    depth, i, in_string = 0, start, False
+    while i < len(text):
+        c = text[i]
+        if in_string:
+            if c == "\\":
+                i += 2
+                continue
+            if c == '"':
+                in_string = False
+        elif c == '"':
+            in_string = True
+        elif c in "([":
+            depth += 1
+        elif c in ")]":
+            depth -= 1
+            if depth == 0:
+                return text[start + 1:i]
+        i += 1
+    raise ValueError("unbalanced bracket in HelpContent.swift")
+
+
+def parse_help():
+    """-> [(section_title, [topic, ...])] where topic is a dict."""
+    src = HELP.read_text(encoding="utf-8")
+
+    topics = {}
+    for m in re.finditer(r"static let (\w+) = HelpTopic\(", src):
+        name = m.group(1)
+        body = balanced(src, m.end() - 1)
+        topic = {"title": None, "summary": None, "blocks": []}
+        for field in ("title", "summary"):
+            f = re.search(field + r':\s*"((?:[^"\\]|\\.)*)"', body)
+            if f:
+                topic[field] = unescape(f.group(1))
+        for b in re.finditer(r"\.(paragraph|heading|bullets)\s*\(", body):
+            kind = b.group(1)
+            inner = balanced(body, b.end() - 1)
+            items = literals(inner)
+            topic["blocks"].append((kind, items))
+        topics[name] = topic
+
+    sections = []
+    for m in re.finditer(r'HelpSection\(title:\s*"((?:[^"\\]|\\.)*)",\s*topics:\s*\[([^\]]*)\]\)', src):
+        names = [n.strip() for n in m.group(2).split(",") if n.strip()]
+        sections.append((unescape(m.group(1)), [topics[n] for n in names]))
+    if not sections:
+        sys.exit("parsed no sections out of HelpContent.swift — did its shape change?")
+    return sections
+
+
+def load_catalog():
+    return json.loads(CATALOG.read_text(encoding="utf-8"))["strings"]
+
+
+# --- rendering -------------------------------------------------------------
+
+INLINE_CODE = re.compile(r"`([^`]+)`")
+BOLD = re.compile(r"\*\*(.+?)\*\*")
+
+
+def markup(text):
+    """The guide's light markdown -> HTML, escaped first.
+
+    Code spans are isolated: a path or a shell command is left-to-right content
+    even inside an Arabic or Hebrew page, the same rule the app applies.
+    """
+    out = html.escape(text, quote=False)
+    out = INLINE_CODE.sub(lambda m: f'<code dir="ltr">{m.group(1)}</code>', out)
+    out = BOLD.sub(lambda m: f"<strong>{m.group(1)}</strong>", out)
+    return out
+
+
+def slug(text, used):
+    base = re.sub(r"[^a-z0-9]+", "-", text.lower()).strip("-") or "topic"
+    candidate, n = base, 2
+    while candidate in used:
+        candidate, n = f"{base}-{n}", n + 1
+    used.add(candidate)
+    return candidate
+
+
+CSS = """
+  :root {
+    color-scheme: light dark;
+    --bg: #ffffff; --fg: #14161a; --muted: #5c626d; --line: #e4e7ec;
+    --card: #f7f8fa; --accent: #0a66c2; --term-bg: #0b1220;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #121417; --fg: #e8eaee; --muted: #9aa1ac; --line: #262a30;
+            --card: #1a1d21; --accent: #5aa9ff; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--fg);
+         font: 17px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+         -webkit-font-smoothing: antialiased; }
+  .wrap { max-width: 860px; margin: 0 auto; padding: 0 1.25rem; }
+  a { color: var(--accent); }
+  code { background: rgba(127,127,127,.15); padding: .1em .35em; border-radius: 4px;
+         font-size: .92em; unicode-bidi: isolate; }
+
+  .home { display: inline-block; margin: 2rem 0 0; font-size: .92rem;
+          text-decoration: none; color: var(--muted); }
+  .home:hover { color: var(--accent); }
+  header { padding: 1.6rem 0 2rem; text-align: center; }
+  .mark { width: 62px; height: 62px; border-radius: 14px; margin: 0 auto 1.2rem;
+          background: var(--term-bg); display: grid; place-items: center;
+          box-shadow: 0 6px 24px rgba(0,0,0,.18); }
+  .mark svg { width: 34px; height: 34px; display: block; }
+  h1 { font-size: clamp(1.9rem, 5vw, 2.5rem); line-height: 1.1; margin: 0 0 .5rem;
+       letter-spacing: -.02em; }
+  .tag { font-size: 1.06rem; color: var(--muted); margin: 0 auto; max-width: 40ch; }
+
+  .toc { background: var(--card); border: 1px solid var(--line); border-radius: 11px;
+         padding: 1.2rem 1.4rem; margin: 0 0 3rem; }
+  .toc h2 { margin: 0 0 .8rem; }
+  .toc ol { margin: 0; padding-inline-start: 1.2rem; columns: 2; column-gap: 2rem; }
+  @media (max-width: 560px) { .toc ol { columns: 1; } }
+  .toc li { margin: .18rem 0; break-inside: avoid; }
+  .toc a { text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+
+  h2 { font-size: 1.05rem; text-transform: uppercase; letter-spacing: .08em;
+       color: var(--muted); font-weight: 600; margin: 3.2rem 0 1.2rem; }
+  article { border-top: 1px solid var(--line); padding: 1.6rem 0 .4rem; }
+  article h3 { margin: 0 0 .25rem; font-size: 1.25rem; letter-spacing: -.01em; }
+  .summary { margin: 0 0 1rem; color: var(--muted); font-size: .95rem; }
+  article h4 { margin: 1.5rem 0 .5rem; font-size: 1rem; }
+  article p { margin: .8rem 0; }
+  article ul { margin: .8rem 0; padding-inline-start: 1.3rem; }
+  article li { margin: .35rem 0; }
+
+  footer { border-top: 1px solid var(--line); margin-top: 4rem; padding: 2rem 0 3.5rem;
+           color: var(--muted); font-size: .9rem; }
+  footer a { margin-inline-end: 1.2rem; }
+
+  .langbar { display: flex; flex-wrap: wrap; gap: .1rem .25rem; align-items: center;
+             justify-content: center; padding: .55rem 0 0; margin: 0 0 2.2rem;
+             border-top: 1px solid var(--line); font-size: .93rem; }
+  .langbar .lb-label { color: var(--muted); margin-inline-end: .45rem; font-size: .85rem;
+                       text-transform: uppercase; letter-spacing: .06em; }
+  .langbar a, .langbar span[aria-current] { padding: .2rem .5rem; border-radius: 6px; }
+  .langbar a { color: var(--accent); text-decoration: none; }
+  .langbar a:hover { background: var(--card); text-decoration: underline; }
+  .langbar span[aria-current] { color: var(--fg); font-weight: 600; background: var(--card); }
+"""
+
+MARK_SVG = """<svg viewBox="0 0 32 32" aria-hidden="true">
+        <path d="M8 11l4.5 4.5L8 20" stroke="#40d17f" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M16.5 21h7" stroke="#40d17f" stroke-width="2.5" stroke-linecap="round"/>
+      </svg>"""
+
+FAVICON = ("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'>"
+           "<rect width='32' height='32' rx='7' fill='%230b1220'/>"
+           "<path d='M8 11l4.5 4.5L8 20' stroke='%2340d17f' stroke-width='2.5' fill='none' "
+           "stroke-linecap='round' stroke-linejoin='round'/>"
+           "<path d='M16.5 21h7' stroke='%2340d17f' stroke-width='2.5' stroke-linecap='round'/></svg>")
+
+
+def langbar(current, label):
+    items = []
+    for code, name, _ in LANGS:
+        if code == current:
+            items.append(f'<span aria-current="true" lang="{code}">{name}</span>')
+        else:
+            items.append(f'<a href="/{page(code)}" lang="{code}" hreflang="{code}">{name}</a>')
+    return (f'<nav class="langbar" aria-label="{label}">'
+            f'<span class="lb-label">{label}</span>' + "".join(items) + "</nav>")
+
+
+def build(code, direction, sections, catalog, missing):
+    c = CHROME[code]
+
+    def tr(key):
+        if code == "en":
+            return key
+        entry = catalog.get(key, {}).get("localizations", {}).get(code, {})
+        value = entry.get("stringUnit", {}).get("value")
+        if not value:
+            missing.append((code, key))
+            return key
+        return value
+
+    used = set()
+    body, toc = [], []
+    for section_title, topics in sections:
+        section = tr(section_title)
+        body.append(f"  <h2>{html.escape(section)}</h2>")
+        for topic in topics:
+            title = tr(topic["title"])
+            anchor = slug(topic["title"], used)
+            toc.append(f'<li><a href="#{anchor}">{html.escape(title)}</a></li>')
+            body.append(f'  <article id="{anchor}">')
+            body.append(f"    <h3>{html.escape(title)}</h3>")
+            if topic["summary"]:
+                body.append(f'    <p class="summary">{html.escape(tr(topic["summary"]))}</p>')
+            for kind, items in topic["blocks"]:
+                if kind == "paragraph":
+                    body.append(f"    <p>{markup(tr(items[0]))}</p>")
+                elif kind == "heading":
+                    body.append(f"    <h4>{html.escape(tr(items[0]))}</h4>")
+                else:
+                    body.append("    <ul>")
+                    for item in items:
+                        body.append(f"      <li>{markup(tr(item))}</li>")
+                    body.append("    </ul>")
+            body.append("  </article>")
+
+    alternates = "\n".join(
+        f'<link rel="alternate" hreflang="{c2}" href="https://pockterm.com/{page(c2)}">'
+        for c2, _, _ in LANGS)
+    arrow = "&rarr;" if direction == "rtl" else "&larr;"
+    title = f"{c['guide']} — Pockterm"
+    dir_attr = ' dir="rtl"' if direction == "rtl" else ""
+
+    return f"""<!doctype html>
+<html lang="{code}"{dir_attr}>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{title}</title>
+<meta name="description" content="{html.escape(c['sub'], quote=True)}">
+<link rel="canonical" href="https://pockterm.com/{page(code)}">
+{alternates}
+<link rel="alternate" hreflang="x-default" href="https://pockterm.com/manual.html">
+<meta property="og:title" content="{title}">
+<meta property="og:description" content="{html.escape(c['sub'], quote=True)}">
+<meta property="og:url" content="https://pockterm.com/{page(code)}">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="{FAVICON}">
+<style>{CSS}</style>
+</head>
+<body>
+<div class="wrap">
+
+  <a class="home" href="{home(code)}">{arrow} Pockterm</a>
+
+  <header>
+    <div class="mark">
+      {MARK_SVG}
+    </div>
+    <h1>{c['guide']}</h1>
+    <p class="tag">{c['sub']}</p>
+  </header>
+
+  {langbar(code, c['lang'])}
+
+  <nav class="toc" aria-label="{c['contents']}">
+    <h2>{c['contents']}</h2>
+    <ol>{''.join(toc)}</ol>
+  </nav>
+
+{chr(10).join(body)}
+
+  <footer>
+    <a href="{home(code)}">Pockterm</a>
+    <a href="/privacy.html">{c['privacy']}</a>
+    <a href="{APP_STORE}">App&nbsp;Store</a>
+    <a href="mailto:jhancock1975@gmail.com">{c['contact']}</a>
+    <p style="margin:1.2rem 0 0;">{c['foot']}</p>
+  </footer>
+
+</div>
+</body>
+</html>
+"""
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--out", type=Path, help="output directory (default: a temp dir)")
+    ap.add_argument("--deploy", action="store_true", help="upload to S3 and invalidate CloudFront")
+    args = ap.parse_args()
+
+    out = args.out or Path(tempfile.mkdtemp(prefix="pockterm-manual-"))
+    out.mkdir(parents=True, exist_ok=True)
+
+    sections = parse_help()
+    catalog = load_catalog()
+    topics = sum(len(t) for _, t in sections)
+    print(f"{len(sections)} sections, {topics} topics from HelpContent.swift")
+
+    missing = []
+    written = []
+    for code, _, direction in LANGS:
+        html_text = build(code, direction, sections, catalog, missing)
+        path = out / page(code)
+        path.write_text(html_text, encoding="utf-8")
+        written.append(path)
+        print(f"  {page(code):20} {len(html_text):6} bytes  dir={direction}")
+
+    if missing:
+        print(f"\n{len(missing)} untranslated strings (fell back to English):")
+        for code, key in missing[:20]:
+            print(f"  {code:8} {key[:70]}")
+    else:
+        print("\nevery string translated in all languages")
+
+    print(f"\noutput: {out}")
+
+    if args.deploy:
+        for path in written:
+            subprocess.run(["aws", "s3", "cp", str(path), BUCKET,
+                            "--content-type", "text/html; charset=utf-8",
+                            "--cache-control", "public, max-age=300"], check=True)
+        subprocess.run(["aws", "cloudfront", "create-invalidation",
+                        "--distribution-id", DISTRIBUTION, "--paths", "/*"], check=True)
+        print("deployed and invalidated")
+
+
+if __name__ == "__main__":
+    main()
