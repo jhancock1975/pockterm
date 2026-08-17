@@ -152,8 +152,16 @@ final class TerminalSession: Identifiable, HostKeyDeciding {
             try await engine.connect(creds) { [weak self] presented in
                 await self?.decideHostKey(presented) ?? false
             }
+            // The terminal's real size, not a guess. This used to open every
+            // shell at a hard-coded 80x24: SwiftTerm reports its size through
+            // proxy.onSize during layout, which is before the shell exists, so
+            // nothing ever corrected it and the server kept formatting for 80
+            // columns. Anything full-screen — top, vim, htop — then wrapped
+            // every line on a display that is nearer 46 columns, which is the
+            // exact garbling this app exists to avoid. The keep-alive tick did
+            // eventually send the true size, but minutes later.
             try await engine.openShell(
-                cols: 80, rows: 24,
+                cols: lastCols, rows: lastRows,
                 onOutput: { [weak self] bytes in
                     Task { @MainActor in
                         guard let self else { return }

@@ -25,6 +25,7 @@
 		48802C0C5DF54ED611CEC84F /* SecretStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53305856679F3A11464DF689 /* SecretStoreTests.swift */; };
 		49667823C877517A287DAE78 /* SOCKS5Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A809901C46C17B1D062972 /* SOCKS5Tests.swift */; };
 		4D02A1A726327C4902EC758D /* StreamDecoderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56741099B230DBC5D66D4BE6 /* StreamDecoderTests.swift */; };
+		4F4FAF101DD45378FC119E27 /* AssistantTranscriptTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D317821CFD18B0C77032FC49 /* AssistantTranscriptTests.swift */; };
 		57EACD440DD07C7C21B86F43 /* HostProtocolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC924C0D59ED53E9F552349D /* HostProtocolTests.swift */; };
 		5890904BE1A09B36AC80F8D7 /* AgentToolsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18130CF1DA33127F0061FCE1 /* AgentToolsTests.swift */; };
 		5D0F43CAFDFDE144A179D6F0 /* KeyBarConfigTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D488A191CE8B36543FAE6BB /* KeyBarConfigTests.swift */; };
@@ -90,6 +91,7 @@
 		C76CBC9F7A224157FCBEC5AD /* pocktermTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = pocktermTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C81907FC9D3BDEBDD36D885C /* TransferQueueTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TransferQueueTests.swift; sourceTree = "<group>"; };
 		D244E6BCA6F44A2D3141774E /* KnownHostsStoreTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = KnownHostsStoreTests.swift; sourceTree = "<group>"; };
+		D317821CFD18B0C77032FC49 /* AssistantTranscriptTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AssistantTranscriptTests.swift; sourceTree = "<group>"; };
 		DB8D18F88B5CFD7D085A51D4 /* ModelCatalogRefresherTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ModelCatalogRefresherTests.swift; sourceTree = "<group>"; };
 		DC924C0D59ED53E9F552349D /* HostProtocolTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HostProtocolTests.swift; sourceTree = "<group>"; };
 		E162F790C5AB3945D81D844D /* HostKeyIntegrationTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HostKeyIntegrationTests.swift; sourceTree = "<group>"; };
@@ -196,6 +198,7 @@
 				DC924C0D59ED53E9F552349D /* HostProtocolTests.swift */,
 				C81907FC9D3BDEBDD36D885C /* TransferQueueTests.swift */,
 				8D488A191CE8B36543FAE6BB /* KeyBarConfigTests.swift */,
+				D317821CFD18B0C77032FC49 /* AssistantTranscriptTests.swift */,
 			);
 			path = pocktermTests;
 			sourceTree = "<group>";
@@ -364,6 +367,7 @@
 				57EACD440DD07C7C21B86F43 /* HostProtocolTests.swift in Sources */,
 				D321B5E10C46726E886AE712 /* TransferQueueTests.swift in Sources */,
 				5D0F43CAFDFDE144A179D6F0 /* KeyBarConfigTests.swift in Sources */,
+				4F4FAF101DD45378FC119E27 /* AssistantTranscriptTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

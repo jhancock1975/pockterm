@@ -1426,6 +1426,40 @@
         }
       }
     },
+    "Assistant conversations are kept on your device, one per host, so a chat is still there when you reconnect. Tap the bin in the assistant to delete one.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تُحفظ محادثات المساعد على جهازك، محادثة لكل مضيف، فتجدها كما هي عند إعادة الاتصال. اضغط على سلة المهملات في المساعد لحذف محادثة."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Las conversaciones con el asistente se guardan en tu dispositivo, una por host, así que el chat sigue ahí cuando vuelves a conectarte. Toca la papelera en el asistente para eliminar una."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "שיחות עם העוזר נשמרות במכשיר שלכם, אחת לכל מארח, כך שהשיחה עדיין שם כשמתחברים מחדש. הקישו על פח האשפה בעוזר כדי למחוק שיחה."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "助手对话保存在你的设备上，每台主机一份，重新连接时对话仍在。点按助手中的垃圾桶即可删除。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "助理對話儲存在你的裝置上，每台主機一份，重新連線時對話仍在。點一下助理中的垃圾桶即可刪除。"
+          }
+        }
+      }
+    },
     "Attach Local File": {
       "localizations": {
         "ar": {
@@ -1932,6 +1966,40 @@
           "stringUnit": {
             "state": "translated",
             "value": "選擇檔案…"
+          }
+        }
+      }
+    },
+    "Clear Conversation": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "مسح المحادثة"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Borrar conversación"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "מחיקת שיחה"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "清除对话"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "清除對話"
           }
         }
       }

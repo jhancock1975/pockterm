@@ -14,7 +14,7 @@ final class AppContainer {
         let container = try! ModelContainer(
             for: Host.self, Identity.self, SSHKeyRecord.self, KnownHostRecord.self,
             HostGroup.self, Snippet.self, PortForward.self, CommandHistory.self,
-            AISettings.self, ConnectionSettings.self)
+            AISettings.self, ConnectionSettings.self, AssistantMessageRecord.self)
         let store = KeychainSecretStore()
         modelContainer = container
         secretStore = store

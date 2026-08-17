@@ -192,6 +192,7 @@ enum HelpContent {
                 "Hosts, groups, snippets, and forwards are stored on your device.",
                 "Passwords and private keys are kept in the **iOS Keychain**.",
                 "Trusted host keys are remembered on your device for the warnings described in **Verifying Host Keys**.",
+                "Assistant conversations are kept on your device, one per host, so a chat is still there when you reconnect. Tap the bin in the assistant to delete one.",
             ]),
             .paragraph("The **AI Assistant** is the one exception: when you use it, the relevant terminal output (and any files you attach) is sent to the model provider you configure — Anthropic, OpenAI, OpenRouter, or Hugging Face — using **your own API key**. Nothing is sent until you use the assistant, and your key is stored in the iOS Keychain. Review your provider's privacy policy for how they handle that data."),
         ])

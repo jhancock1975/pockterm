@@ -46,6 +46,29 @@ struct AssistantView: View {
                     Button("Done") { dismiss() }
                 }
                 ToolbarItem(placement: .primaryAction) { attachMenu }
+                // Conversations persist per host now, so there has to be a way
+                // to get rid of one: a transcript holds terminal output and
+                // tool results, which is exactly what a user may not want kept.
+                ToolbarItem(placement: .primaryAction) {
+                    Button(role: .destructive) {
+                        model.clearConversation()
+                    } label: {
+                        Image(systemName: "trash")
+                    }
+                    .accessibilityLabel("Clear Conversation")
+                    .disabled(model.messages.isEmpty || model.isStreaming)
+                }
+                // The same chip AISettingsView and HostEditorView carry. The
+                // assistant needed it most and was the one screen without it:
+                // the keyboard opens automatically with the sheet, and until
+                // it is dismissed it hides most of the answer.
+                ToolbarItemGroup(placement: .keyboard) {
+                    Spacer()
+                    Button { promptFocused = false } label: {
+                        Image(systemName: "keyboard.chevron.compact.down")
+                    }
+                    .accessibilityLabel("Dismiss Keyboard")
+                }
             }
         }
         // Keyboard avoidance is done manually (`keyboardOverlapReader` +

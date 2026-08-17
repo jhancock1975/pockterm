@@ -4,7 +4,9 @@ import SwiftTerm
 
 /// One turn in the assistant transcript.
 struct AssistantMessage: Identifiable {
-    enum Role { case user, assistant, tool }
+    /// String-backed so a turn can round-trip through `AssistantMessageRecord`
+    /// without a second mapping table to keep in step.
+    enum Role: String { case user, assistant, tool }
     let id = UUID()
     let role: Role
     var text: String
@@ -72,10 +74,32 @@ final class AssistantModel {
     /// Total budget for the system prompt (terminal tail + attachments).
     static let contextBudget = 24_000
 
+    private let transcripts: AssistantTranscriptStore
+
     init(session: TerminalSession, secretStore: SecretStore, modelContext: ModelContext) {
         self.session = session
         self.modelContext = modelContext
         self.keyStore = AIKeyStore(secretStore: secretStore)
+        self.transcripts = AssistantTranscriptStore(modelContext: modelContext)
+        // Conversations are per host, so reopening a box resumes where you
+        // left off instead of starting blank — including after the app has
+        // been killed, which is when it used to lose everything.
+        self.messages = transcripts.load(hostID: session.host.id)
+    }
+
+    /// Writes the transcript out. Called when a turn settles rather than on
+    /// every streamed token: mid-stream state is not worth persisting, and a
+    /// write per token would be one per few characters.
+    private func persist() {
+        transcripts.save(messages, hostID: session.host.id)
+    }
+
+    /// Drops this host's conversation, on disk and on screen.
+    func clearConversation() {
+        guard !isStreaming else { return }
+        messages.removeAll()
+        errorMessage = nil
+        transcripts.clear(hostID: session.host.id)
     }
 
     var settings: AISettings {
@@ -94,6 +118,9 @@ final class AssistantModel {
         }
 
         messages.append(AssistantMessage(role: .user, text: text))
+        // Written before the request goes out, so a question survives the app
+        // being killed while the answer is still streaming.
+        persist()
         let system = ContextBuilder.systemPrompt(terminalText: terminalText(),
                                                  attachments: attachments,
                                                  maxChars: Self.contextBudget)
@@ -134,6 +161,9 @@ final class AssistantModel {
                 messages.removeLast()
             }
             isStreaming = false
+            // Every exit lands here — finished, stopped, or failed — so the
+            // reply is stored whichever way the turn ended.
+            persist()
         }
     }
 
