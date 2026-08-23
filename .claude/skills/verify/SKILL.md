@@ -26,7 +26,7 @@ open -a Simulator
 ruby .claude/skills/verify/add_uitest_target.rb   # adds pocktermUITests target
 ruby .claude/skills/verify/add_scheme.rb          # adds shared pocktermUI scheme
 xcodebuild build-for-testing -project pockterm.xcodeproj -scheme pocktermUI \
-  -destination 'platform=iOS Simulator,name=iPhone 17'
+  -destination 'platform=iOS Simulator,name=iPhone 17' -skipPackagePluginValidation
 ```
 
 The driver tests live in `.claude/skills/verify/uitests/VerifyDriverUITests.swift`

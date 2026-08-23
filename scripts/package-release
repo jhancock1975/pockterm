@@ -22,9 +22,12 @@ rm -rf "$BUILD_ROOT"
 mkdir -p "$DERIVED" "$OUT"
 
 echo "==> archiving (neutral derived-data path: $DERIVED)"
+# -skipPackagePluginValidation: SwiftTerm 1.19.0+ carries a build-tool plugin;
+# see the note in scripts/test.sh.
 xcodebuild -project pockterm.xcodeproj -scheme pockterm \
     -configuration Release -destination 'generic/platform=iOS' \
     -derivedDataPath "$DERIVED" -archivePath "$ARCHIVE" \
+    -skipPackagePluginValidation \
     -allowProvisioningUpdates archive
 
 BIN="$ARCHIVE/Products/Applications/pockterm.app/pockterm"

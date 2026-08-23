@@ -347,7 +347,8 @@ def main():
         RESOLVED.unlink(missing_ok=True)
         subprocess.run(
             ["xcodebuild", "-project", "pockterm.xcodeproj", "-scheme", "pockterm",
-             "-derivedDataPath", "/tmp/pockterm-resolve", "-resolvePackageDependencies"],
+             "-derivedDataPath", "/tmp/pockterm-resolve", "-skipPackagePluginValidation",
+             "-resolvePackageDependencies"],
             cwd=REPO, capture_output=True, text=True)
         after = pins()
         changes = [f"   {k}: {current.get(k)} -> {after[k]}"

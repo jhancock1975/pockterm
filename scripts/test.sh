@@ -17,6 +17,13 @@ set -uo pipefail
 cd "$(dirname "$0")/.."
 
 DEST='platform=iOS Simulator,name=iPhone 17'
+# SwiftTerm 1.19.0+ ships a build-tool plugin (SwiftTermBuildInfoPlugin) that
+# stamps its git branch/tag/commit into a generated Swift file. Xcode refuses to
+# run any package plugin non-interactively without a trust prompt, so a headless
+# build fails at "Validate plug-in". This flag is the only way past it.
+# The trade-off is real: it also waives validation for any FUTURE plugin any
+# dependency adds, so re-read the plugin sources whenever SwiftTerm moves.
+PLUGIN_FLAG='-skipPackagePluginValidation'
 LOG=${TEST_LOG:-/tmp/pockterm-tests.log}
 GRACE=20      # seconds to let xcodebuild exit on its own after tests finish
 STALL=180     # seconds with no new results before we declare a hang
@@ -24,7 +31,7 @@ STALL=180     # seconds with no new results before we declare a hang
 if [[ "${1:-}" == "--build" ]]; then
     echo "building for testing..."
     if ! xcodebuild build-for-testing -project pockterm.xcodeproj -scheme pockterm \
-            -destination "$DEST" > /tmp/pockterm-build-for-testing.log 2>&1; then
+            -destination "$DEST" $PLUGIN_FLAG > /tmp/pockterm-build-for-testing.log 2>&1; then
         echo "BUILD FAILED — last 30 lines of /tmp/pockterm-build-for-testing.log:"
         tail -30 /tmp/pockterm-build-for-testing.log
         exit 65
