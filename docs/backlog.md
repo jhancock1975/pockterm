@@ -162,7 +162,55 @@ overflow menu rather than each holding a top-level slot.
 
 ---
 
-## SwiftPM identity-conflict override for swift-nio-ssh is not future-proof
+## ~~SwiftPM identity-conflict override for swift-nio-ssh is not future-proof~~ — RESOLVED 2026-08-29
+
+**Took option 2: Citadel is pinned to exactly 0.12.0.** The identity conflict is
+gone (SwiftPM reports zero "conflicting identity" warnings), so the
+escalates-to-an-error problem no longer applies, and the third-party fork is
+**not even fetched** any more — deleting its cached clone and re-resolving does
+not bring it back. `Package.resolved`: `citadel 0.12.0`,
+`swift-nio-ssh Joannis/swift-nio-ssh 0.3.5`.
+
+The root `Joannis/swift-nio-ssh` declaration is kept deliberately. It no longer
+overrides anything — 0.12.0 declares the same URL — but it states the source
+explicitly rather than inheriting whatever Citadel decides, and it is what would
+stop a future Citadel from quietly swapping the source again.
+
+### What the pin cost — measured, not assumed
+
+Nothing, as far as we use it:
+
+- 0.12.1's only client-side change is **+57/-0 in `TTY/Client/TTY.swift`** —
+  purely additive, adding `withExec`. `withPTY` and `executeCommand`, the two we
+  call, have zero deletions. `withExec` is unused in the app.
+- The stderr-flush fix is in `Exec/Server/ExecHandler.swift` — Citadel's SSH
+  **server**. Pockterm is a client and never runs it.
+- The remaining change is a Mac Catalyst build fix; we ship iOS.
+
+Verified against the real thing, not just the diff: a temporary integration test
+connected over SSH to the Mac's own sshd on Citadel 0.12.0 and ran the exact call
+`SSHEngine.exec` makes.
+
+| Case | Result on 0.12.0 |
+|---|---|
+| `( echo OUT; echo ERR >&2 ) 2>&1` | returned `OUT\nERR` — both streams |
+| `( echo ONLYERR >&2 ) 2>&1` | returned `ONLYERR` — **the case claimed to hang** |
+| `echo RAWERR >&2` (unmerged) | throws `TTYSTDError("RAWERR")`, as our code comment describes |
+
+So `run_command` is unaffected, and the remote-subshell merge in `SSHEngine.exec`
+remains necessary and correct.
+
+**`scripts/routine_update.py` now guards this** — Citadel is in `CAPPED`, so the
+check reports it as deliberately held instead of offering the bump. Do not take
+Citadel 0.12.1+ without re-reading this entry; the bump silently puts a
+zero-star account back in the dependency graph.
+
+Still worth watching: Citadel issue #122, the maintainer's own plan to migrate
+back to `apple/swift-nio-ssh`. That is the real fix, and it is upstream's to make.
+
+---
+
+### Original note
 
 **Recorded:** 2026-08-08
 

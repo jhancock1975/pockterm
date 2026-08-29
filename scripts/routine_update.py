@@ -39,8 +39,8 @@ UPSTREAM = {
     "swift-nio": "apple/swift-nio",
     "swift-system": "apple/swift-system",
     "swiftterm": "migueldeicaza/SwiftTerm",
-    # Citadel needs a patched NIOSSH. We override its declared dependency to the
-    # Citadel author's own fork; see CAPPED for why.
+    # Citadel needs a patched NIOSSH. We declare the Citadel author's own fork at
+    # the root so the source is explicit rather than inherited; see CAPPED.
     "swift-nio-ssh": "Joannis/swift-nio-ssh",
 }
 
@@ -58,11 +58,19 @@ ADVISORY_PACKAGES = {
 # as context instead of nagging every run.
 CAPPED = {
     "swift-crypto": "Citadel pins <4.0.0, and 4.0.0-4.3.0 carry GHSA-9m44-rr2w-ppp7",
-    # Citadel 0.12.1 declares Wellz26/swift-nio-ssh, a 0-star third-party fork.
-    # The project overrides it to the Citadel author's own fork via a root
-    # declaration; Citadel's range caps it below 0.4.0. If SwiftPM ever makes
-    # the identity conflict fatal, revisit (see docs/backlog.md).
-    "swift-nio-ssh": "held <0.4.0 by Citadel; overridden away from a third-party fork",
+    # Citadel 0.12.1 declares Wellz26/swift-nio-ssh, a 0-star third-party fork
+    # carrying a 0.3.6 tag that upstream does not have — and Citadel's range
+    # makes that tag the highest match. We hold Citadel at 0.12.0, the last
+    # release that declares the author's own fork directly, so the third-party
+    # fork is never even fetched.
+    #
+    # DO NOT BUMP CITADEL TO 0.12.1+ WITHOUT RE-READING docs/backlog.md.
+    # Taking that bump silently puts a zero-star account back in the graph.
+    # Verified 2026-08-29 that 0.12.0 costs us nothing: 0.12.1's only client
+    # change is additive (withExec, +57/-0, which we do not use) and its stderr
+    # fix is server-side, while SSHEngine.exec merges streams remotely itself.
+    "citadel": "held at 0.12.0; 0.12.1 declares a third-party swift-nio-ssh fork",
+    "swift-nio-ssh": "held <0.4.0 by Citadel; declared at the root, not inherited",
 }
 
 # ---------------------------------------------------------------- trust policy
