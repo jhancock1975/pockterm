@@ -66,7 +66,7 @@ are all understood and recorded.
 
 ---
 
-## Translate the app into the nine remaining languages
+## ~~Translate the app into the nine remaining languages~~ — DONE 2026-08-29
 
 **Recorded:** 2026-08-15
 
@@ -84,18 +84,23 @@ is likely how it got marked verbatim. Fixing it means un-flagging the key and
 translating it for all seven languages; it is not Italian-specific, so it
 belongs in its own change.
 
-**Italian (#52) and French (#53) are done.** Seven remain, **one language per
-commit**, in this order:
+**All nine shipped on 2026-08-29**, one language per commit: Italian (#52),
+French (#53), then Greek, Russian, Ukrainian, Japanese, Korean, Hindi and
+Telugu (#56). The app now ships **14 languages** complete at 297/297 strings.
 
-1. ~~Italian~~ — done 2026-08-29
-2. ~~French~~ — done 2026-08-29
-3. Greek
-4. Russian
-5. Ukrainian
-6. Japanese
-7. Korean
-8. Hindi
-9. Telugu
+Notes worth keeping:
+
+- **Russian and Ukrainian** use the four CLDR plural categories, as warned.
+  Their tab labels also had to be shortened — `Связка ключей` and
+  `Переспрямування` collided with their neighbours in a five-tab bar — so
+  Keychain and Forwarding became `Ключи`/`Ключі` and `Порты`/`Порти`, and the
+  guide sentences naming those tabs were realigned to the short labels.
+- **Japanese and Korean** take only an `other` plural category.
+- **Telugu shipped by John's decision** despite App Store Connect not offering
+  it as a metadata locale, so the store listing cannot be localized to match.
+- Verified by running each language in the simulator and reading the guide, not
+  just by `i18n-status` — which reports the catalogue, not what is on screen.
+  See the Local/`New Forward` defects found that way (#54).
 
 Roughly 291 strings each, so about 2,600 translations in total. Ninety-seven of
 them are full help-guide paragraphs rather than single words.

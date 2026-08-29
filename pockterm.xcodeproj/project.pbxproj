@@ -283,6 +283,13 @@
 				ar,
 				it,
 				fr,
+				el,
+				ru,
+				uk,
+				ja,
+				ko,
+				hi,
+				te,
 				"zh-Hans",
 				"zh-Hant",
 			);
