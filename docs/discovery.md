@@ -7,9 +7,11 @@ This file records what was changed, what is staged, and what is still a decision
 ## Done
 
 **README, repo description, topics.** The App Store listing's Developer Website
-*and* Support URL both point at the GitHub repo, which had no README, no
+*and* Support URL used to point at the GitHub repo, which had no README, no
 description and no topics — every person who tapped through landed on a bare
-file tree. That was the largest leak and it is now fixed.
+file tree. Both fields now point at pockterm.com in all seven locales
+(verified against the API 2026-08-29), which is the right target anyway now
+that the repo is staying private.
 
 **Promotional text restored.** It was set on 1.1 but came back empty on 1.2 —
 creating a version does not carry it across. It shows above the description and
@@ -95,8 +97,16 @@ packages plus swift-nio-ssh — and SwiftTerm, Citadel and BigInt are MIT, which
 combines cleanly. Apache-2.0 also carries an explicit patent grant, which MIT
 does not.
 
-This matters for a Show HN: the repo is now genuinely open source rather than
-merely public, so "source is at ..." is an invitation instead of a technicality.
+**The repo stays private for now** (decided 2026-08-29). The Apache-2.0 LICENSE
+and NOTICE still matter — they settle the third-party attribution the
+dependencies require — but nothing published should offer, imply, or link
+source. The drafts below are written accordingly.
+
+Expect the question anyway: a Show HN for a developer tool draws "is it open
+source?" within the first few comments. Answer it plainly rather than dodging —
+the app is free, there is no backend and no telemetry, and the source is simply
+not published at the moment. A straight no reads far better there than silence
+or a maybe.
 
 ## Launch post drafts
 
@@ -119,8 +129,7 @@ third party poorly, and several ban it outright.
 > assistant that's off by default and needs your own API key — it tells you which
 > provider is about to receive your terminal output before it sends anything.
 >
-> Source is at github.com/jhancock1975/pockterm. Happy to answer anything about
-> the SSH or terminal-emulation side.
+> Happy to answer anything about the SSH or terminal-emulation side.
 
 HN responds to the engineering, not the pitch — the memory-streaming detail and
 the host-key handling are more interesting there than the feature list.
@@ -139,11 +148,69 @@ the host-key handling are more interesting there than the feature list.
 > - Host groups that pass credentials down, so a dozen boxes is one setup
 > - Optional AI assistant, off by default, bring your own key
 >
-> [App Store link] — source at github.com/jhancock1975/pockterm. Happy to take
-> feature requests.
+> [App Store link] — happy to take feature requests.
 
 Check each subreddit's self-promotion rule first; some require a flair, some
 require you to be an established commenter.
+
+### r/SideProject
+
+That sub is builders, not sysadmins, so the SSH feature list means nothing to
+most of them. Lead with the problem and the numbers; they reward honesty about
+small numbers far more than they reward a pitch.
+
+Title (pick one):
+
+> I built a free SSH client for iPhone because every other one mangled vim.
+> 28 users in five weeks.
+
+> Six releases in five weeks, 28 users, zero revenue by design. Here's what I
+> built and what I got wrong.
+
+Body:
+
+> **What it is:** Pockterm, a free SSH and SFTP client for iPhone. Native
+> SwiftUI. No account, no tracking, no ads, no subscription, no paid tier.
+>
+> **Why I built it:** I wanted to fix a server from my phone while away from my
+> desk. Every free iPhone terminal I tried mangled full-screen console programs
+> — vim, htop and tmux all came out garbled, because they don't implement enough
+> of the terminal to redraw a screen properly. So I wrote one that does.
+>
+> **The stack:** SwiftUI, SwiftTerm for terminal emulation, Citadel for the SSH
+> layer. Keys are generated on device and stored in the iOS Keychain. Host keys
+> are pinned on first connection and you get warned if one ever changes. SFTP
+> runs over the same connection and streams in chunks, so pulling a large file
+> doesn't blow up memory on a phone.
+>
+> **Numbers, since you'll ask:** shipped 11 July. 28 first-time downloads across
+> 12 countries. Zero ratings. Six releases in five weeks. New installs have been
+> flat for two weeks, which is the actual problem — the app works, nobody knows
+> it exists.
+>
+> **The thing I underestimated:** localization. It ships in six languages, two
+> of them right-to-left, and Arabic and Hebrew turned out to be much harder than
+> translating strings. You mirror the entire interface, but you must *not*
+> mirror the terminal itself — an SSH server addresses column 1 on the left no
+> matter what language you read in, so a mirrored grid renders every full-screen
+> program backwards. The fix is a mirrored UI wrapped around an unmirrored
+> terminal, which is not a thing any framework does for you.
+>
+> **What I'd like feedback on:** how you'd find an app like this if you needed
+> it. I think the honest answer is that developer tools don't get discovered on
+> the App Store, and I don't have a distribution channel. Curious what worked
+> for anyone here who shipped a free tool.
+>
+> [App Store link]
+
+Then answer the inevitable monetization question in a comment rather than
+pre-empting it in the post — pre-empting reads defensively:
+
+> No plans to charge. It costs me $99 a year for the developer account and
+> nothing to run — there is no backend, so users cost me nothing. There's an
+> optional AI assistant that takes your own API key; I don't resell tokens and
+> don't want to be in the billing business. If it ever needs money I'd rather
+> ask than paywall it.
 
 ## Honest expectation
 
