@@ -1,12 +1,21 @@
 #!/usr/bin/env ruby
 # Adds a TEMPORARY pocktermUITests target whose sources are the driver tests
-# in this directory's uitests/. Revert pockterm.xcodeproj (and delete the
-# pocktermUI scheme) when verification is done — the target is not meant to
-# be committed into the project file.
+# in this directory's uitests/. Run cleanup.sh when verification is done — the
+# target is not meant to be committed into the project file.
+require 'fileutils'
 require 'xcodeproj'
 
 project_path = File.expand_path('../../../pockterm.xcodeproj', __dir__)
 src_dir = File.expand_path('uitests', __dir__)
+
+# Snapshot the project file so cleanup.sh can restore it exactly, without
+# reaching for `git checkout -- pockterm.xcodeproj` — which would also revert
+# the tracked Package.resolved living inside the bundle. Never overwrite an
+# existing snapshot: a second run would capture an already-modified project.
+pbx = File.join(project_path, 'project.pbxproj')
+backup = "#{pbx}.verifybak"
+FileUtils.cp(pbx, backup) unless File.exist?(backup)
+
 project = Xcodeproj::Project.open(project_path)
 app = project.targets.find { |t| t.name == 'pockterm' }
 raise 'app target missing' unless app

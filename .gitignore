@@ -131,3 +131,6 @@ GoogleService-Info.plist
 
 # Local agent tooling, including a checked-out Python venv (~26 MB).
 .superpowers/
+
+# Snapshot taken by the verify skill while its harness target is installed.
+*.pbxproj.verifybak

@@ -86,9 +86,23 @@ sqlite store (path above): `ZHOST`, `ZIDENTITY`, `ZSSHKEYRECORD`,
 ## Cleanup
 
 ```bash
-git checkout -- pockterm.xcodeproj
-rm -rf pockterm.xcodeproj/xcshareddata/xcschemes/pocktermUI.xcscheme
+.claude/skills/verify/cleanup.sh
 ```
+
+**Do not hand-roll this with git.** `Package.resolved` is tracked *inside* the
+bundle, at
+`pockterm.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved`,
+so `git checkout -- pockterm.xcodeproj` silently reverts any dependency re-pin
+along with the harness target, leaving no diff to notice afterwards. The script
+restores `project.pbxproj` from the snapshot `add_uitest_target.rb` takes,
+deletes only the `pocktermUI` scheme, and then fails loudly if `Package.resolved`
+moved or the harness target survived.
+
+Clean up **before** running anything against the `pockterm` scheme. That scheme
+is autocreated, not shared, and it disappears from `xcodebuild -list` while the
+harness target is in the project — `scripts/test.sh` then fails with
+`does not contain a scheme named "pockterm"`, which looks like a broken repo
+and is only the harness still being installed.
 
 Optionally remove the `verify@pockterm` line from `~/.ssh/authorized_keys` if
 the simulator app's key should no longer be able to SSH into the Mac.
