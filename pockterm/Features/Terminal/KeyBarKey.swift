@@ -121,9 +121,15 @@ enum KeyBarConfig {
     static let changedNotification = Notification.Name("pockterm.keyBarConfigChanged")
     private static let defaultsKey = "keyBarKeys"
 
+    /// Order matters more than it looks. Six keys fit before the trailing edge
+    /// of the bar on a 375-393 pt phone, and everything past that needs a
+    /// horizontal swipe to reach. The arrows are the most-used keys here, so
+    /// they lead; meta, tab and the punctuation scroll. This is the default
+    /// only — a user who has customized the bar keeps their own order.
+    /// `defaultLayoutKeepsTheArrowsOnScreen` measures that this still holds.
     static let defaultKeys: [KeyBarKey] = [
-        .esc, .ctrl, .meta, .tab, .tilde, .pipe, .slash, .dash,
-        .left, .down, .up, .right, .pageUp, .pageDown, .f1,
+        .esc, .ctrl, .left, .down, .up, .right,
+        .tab, .meta, .tilde, .pipe, .slash, .dash, .pageUp, .pageDown, .f1,
     ]
 
     /// Keys the user may add or remove. hideKeyboard is excluded: it is pinned

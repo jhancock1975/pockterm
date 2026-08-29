@@ -30,7 +30,10 @@ final class KeyBarView: UIInputView, UIInputViewAudioFeedback {
         // Localization/LeftToRight.swift.
         semanticContentAttribute = .forceLeftToRight
 
-        scrollView.showsHorizontalScrollIndicator = false
+        // The bar holds more keys than fit, and a row of keys does not read as
+        // scrollable the way a list does. The indicator is flashed on appearance
+        // (see didMoveToWindow) as the only hint that there is more to the right.
+        scrollView.showsHorizontalScrollIndicator = true
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(scrollView)
 
@@ -100,8 +103,17 @@ final class KeyBarView: UIInputView, UIInputViewAudioFeedback {
             stack.addArrangedSubview(button)
             if key == .esc {
                 // Breathing room so esc is hard to fat-finger into ctrl.
-                stack.setCustomSpacing(14, after: button)
+                stack.setCustomSpacing(10, after: button)
             }
+        }
+    }
+
+    override func didMoveToWindow() {
+        super.didMoveToWindow()
+        guard window != nil else { return }
+        // After layout, or the indicator has nothing to size itself against.
+        DispatchQueue.main.async { [weak self] in
+            self?.scrollView.flashScrollIndicators()
         }
     }
 
@@ -136,12 +148,15 @@ final class KeyBarView: UIInputView, UIInputViewAudioFeedback {
             config.image = UIImage(systemName: symbol,
                                    withConfiguration: UIImage.SymbolConfiguration(pointSize: 14))
         }
-        // Generous hit area; esc gets extra width so it's easy to hit.
-        let horizontalPad: CGFloat = key == .esc ? 22 : 10
+        // Generous hit area; esc gets extra width so it's easy to hit. It is
+        // not as wide as it looks it could be: esc plus ctrl plus the four
+        // arrows is the whole visible bar on a 375 pt iPhone, and the arrows
+        // losing their place there costs more than esc losing a few points.
+        let horizontalPad: CGFloat = key == .esc ? 14 : 10
         config.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: horizontalPad,
                                                        bottom: 8, trailing: horizontalPad)
         button.configuration = config
-        button.widthAnchor.constraint(greaterThanOrEqualToConstant: key == .esc ? 72 : 44).isActive = true
+        button.widthAnchor.constraint(greaterThanOrEqualToConstant: key == .esc ? 54 : 44).isActive = true
 
         switch key {
         case .ctrl:

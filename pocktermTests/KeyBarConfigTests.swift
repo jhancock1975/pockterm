@@ -35,12 +35,13 @@ import UIKit
 // MARK: Pinned dismiss chip
 
 private let barWidth: CGFloat = 393     // iPhone 17 portrait
+private let narrowestBarWidth: CGFloat = 375   // iPhone SE, the narrowest on iOS 26
 
 @MainActor
-private func laidOutKeyBar() -> KeyBarView {
-    let terminal = TerminalView(frame: CGRect(x: 0, y: 0, width: barWidth, height: 600))
+private func laidOutKeyBar(width: CGFloat = barWidth) -> KeyBarView {
+    let terminal = TerminalView(frame: CGRect(x: 0, y: 0, width: width, height: 600))
     let bar = KeyBarView(terminalView: terminal)
-    bar.frame = CGRect(x: 0, y: 0, width: barWidth, height: 48)
+    bar.frame = CGRect(x: 0, y: 0, width: width, height: 48)
     bar.setNeedsLayout()
     bar.layoutIfNeeded()
     return bar
@@ -81,4 +82,34 @@ private func laidOutKeyBar() -> KeyBarView {
     let scroll = try! #require(bar.subviews.compactMap { $0 as? UIScrollView }.first)
 
     #expect(scroll.contentInset.right == pad.bounds.width)
+}
+
+// MARK: Arrows reachable without scrolling
+
+/// The arrows are the most-used keys on the bar, and only about six keys fit
+/// before the trailing edge on the narrowest iPhone. For most of 1.x the
+/// default layout spent those slots on `esc ctrl meta tab ~ |`, which left every
+/// arrow off-screen behind a horizontal swipe that nothing advertises.
+@MainActor
+@Test(arguments: [barWidth, narrowestBarWidth])
+func defaultLayoutKeepsTheArrowsOnScreen(width: CGFloat) {
+    KeyBarConfig.save(KeyBarConfig.defaultKeys)
+    let bar = laidOutKeyBar(width: width)
+    let scroll = try! #require(bar.subviews.compactMap { $0 as? UIScrollView }.first)
+    let stack = try! #require(scroll.subviews.compactMap { $0 as? UIStackView }.first)
+
+    // At rest the scroll view shows content up to its own width, less the
+    // reserved strip the pinned dismiss chip occupies.
+    let visibleWidth = scroll.bounds.width - scroll.contentInset.right
+    let laidOut = KeyBarConfig.defaultKeys.filter { $0 != .hideKeyboard }
+
+    for arrow in [KeyBarKey.left, .down, .up, .right] {
+        let index = try! #require(laidOut.firstIndex(of: arrow))
+        let button = stack.arrangedSubviews[index]
+        let frame = button.convert(button.bounds, to: scroll)
+        // With a cushion, not merely inside the edge: a layout that fits by a
+        // point is one SF Symbol metric change away from clipping again.
+        #expect(frame.maxX <= visibleWidth - 4,
+                "\(arrow) ends at \(frame.maxX) of \(visibleWidth) visible at \(width) pt")
+    }
 }
