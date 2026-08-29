@@ -4,6 +4,28 @@ Things worth doing, not yet scheduled. Newest first.
 
 ---
 
+## Get off the Citadel dependency bottleneck (watch #122, then act)
+
+**Recorded:** 2026-08-29
+
+Four of twelve dependencies are held, and every one is held by Citadel — see
+the table in `CLAUDE.md`. Citadel issue #122, the maintainer's own plan to
+migrate back to `apple/swift-nio-ssh`, is the single change most likely to
+unstick all of them.
+
+**It has had zero comments and no activity since it was filed on 2026-01-08,
+and Citadel has 10+ open PRs unmerged.** So this is not a wait-and-see item
+indefinitely; it is work we should cost out.
+
+Next review: check the issue, and if it is still dormant, price up contributing
+the migration as an upstream PR. Forking Citadel is the fallback and is a real
+maintenance commitment — argue for it explicitly rather than drifting into it.
+
+Nothing is urgent today: no advisory affects any pinned version, and the holds
+are all understood and recorded.
+
+---
+
 ## Translate the app into the nine remaining languages
 
 **Recorded:** 2026-08-15
