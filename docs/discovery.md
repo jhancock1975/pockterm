@@ -102,120 +102,47 @@ and NOTICE still matter — they settle the third-party attribution the
 dependencies require — but nothing published should offer, imply, or link
 source. The drafts below are written accordingly.
 
-Expect the question anyway: a Show HN for a developer tool draws "is it open
-source?" within the first few comments. Answer it plainly rather than dodging —
+If the question ever comes up in public, answer it plainly rather than dodging:
 the app is free, there is no backend and no telemetry, and the source is simply
-not published at the moment. A straight no reads far better there than silence
-or a maybe.
+not published at the moment. A straight no reads better than a maybe.
 
-## Launch post drafts
+## STOP — BEFORE ANYTHING GOES ON REDDIT, GO EARN SOME KARMA
 
-Both are drafts to post yourself. Most communities treat self-promotion by a
-third party poorly, and several ban it outright.
+**Do not post about Pockterm on Reddit. Not a submission, not a comment, not a
+megathread, not "just asking for feedback on my side project". Not yet.**
 
-### Show HN
+The account is old but has **never posted anything**. A first-ever submission
+that links your own app is the exact shape every spam filter is tuned for. And
+removals are *silent* — the post looks completely normal to you while nobody
+else can see it, so you will think it flopped when it was never shown.
 
-> **Show HN: Pockterm – a free SSH/SFTP client for iPhone**
->
-> I wrote this because none of the free iPhone terminals rendered full-screen
-> console apps properly — vim, htop and tmux all came out garbled.
->
-> It's native SwiftUI on top of SwiftTerm for emulation and Citadel for SSH.
-> Keys live in the iOS Keychain, host keys are verified on first use and warn on
-> change, and SFTP transfers stream in chunks so a large file doesn't blow up
-> memory on a phone.
->
-> No account, no analytics, no ads, no subscription. There's an optional AI
-> assistant that's off by default and needs your own API key — it tells you which
-> provider is about to receive your terminal output before it sends anything.
->
-> Happy to answer anything about the SSH or terminal-emulation side.
+**The task, and it is a boring one: go be a normal Reddit user for two or three
+weeks first.** Comment where there is actual expertise to offer —
+r/iOSProgramming, r/commandline, r/selfhosted. SwiftUI, iOS 26 keyboard
+avoidance, String Catalogs, App Store rejections, RTL layout, terminal
+emulation. Answer other people's questions. Link nothing.
 
-HN responds to the engineering, not the pitch — the memory-streaming detail and
-the host-key handling are more interesting there than the feature list.
+Non-negotiables:
 
-### r/selfhosted, r/homelab
+- **These have to be your own comments.** Do not have me write them. Post copy
+  is marketing; a comment history has to read like a person, and a fake one
+  reads exactly like what it is.
+- **Never buy karma and never use an alt.** Vote manipulation gets both the
+  account and the thing being promoted banned.
+- **Read each sub's rules from a logged-in browser** before posting there. Some
+  are login-gated and cannot be checked any other way.
 
-> **I got tired of not being able to properly SSH into my homelab from my phone,
-> so I built Pockterm**
->
-> Free, no account, no subscription, no ads. The thing that finally made me write
-> it: every free iPhone terminal I tried mangled tmux and htop.
->
-> - Full SFTP browser over the same connection
-> - Ed25519/RSA keys stored in the iOS Keychain
-> - Local and remote port forwarding
-> - Host groups that pass credentials down, so a dozen boxes is one setup
-> - Optional AI assistant, off by default, bring your own key
->
-> [App Store link] — happy to take feature requests.
+**Only once there is a real comment history does Pockterm get mentioned on
+Reddit at all.** Until then, this is the entire Reddit plan, and this section
+stays pinned at the top of the file until it is honestly done.
 
-Check each subreddit's self-promotion rule first; some require a flair, some
-require you to be an established commenter.
-
-### r/SideProject
-
-That sub is builders, not sysadmins, so the SSH feature list means nothing to
-most of them. Lead with the problem and the numbers; they reward honesty about
-small numbers far more than they reward a pitch.
-
-Title (pick one):
-
-> I built a free SSH client for iPhone because every other one mangled vim.
-> 28 users in five weeks.
-
-> Six releases in five weeks, 28 users, zero revenue by design. Here's what I
-> built and what I got wrong.
-
-Body:
-
-> **What it is:** Pockterm, a free SSH and SFTP client for iPhone. Native
-> SwiftUI. No account, no tracking, no ads, no subscription, no paid tier.
->
-> **Why I built it:** I wanted to fix a server from my phone while away from my
-> desk. Every free iPhone terminal I tried mangled full-screen console programs
-> — vim, htop and tmux all came out garbled, because they don't implement enough
-> of the terminal to redraw a screen properly. So I wrote one that does.
->
-> **The stack:** SwiftUI, SwiftTerm for terminal emulation, Citadel for the SSH
-> layer. Keys are generated on device and stored in the iOS Keychain. Host keys
-> are pinned on first connection and you get warned if one ever changes. SFTP
-> runs over the same connection and streams in chunks, so pulling a large file
-> doesn't blow up memory on a phone.
->
-> **Numbers, since you'll ask:** shipped 11 July. 28 first-time downloads across
-> 12 countries. Zero ratings. Six releases in five weeks. New installs have been
-> flat for two weeks, which is the actual problem — the app works, nobody knows
-> it exists.
->
-> **The thing I underestimated:** localization. It ships in six languages, two
-> of them right-to-left, and Arabic and Hebrew turned out to be much harder than
-> translating strings. You mirror the entire interface, but you must *not*
-> mirror the terminal itself — an SSH server addresses column 1 on the left no
-> matter what language you read in, so a mirrored grid renders every full-screen
-> program backwards. The fix is a mirrored UI wrapped around an unmirrored
-> terminal, which is not a thing any framework does for you.
->
-> **What I'd like feedback on:** how you'd find an app like this if you needed
-> it. I think the honest answer is that developer tools don't get discovered on
-> the App Store, and I don't have a distribution channel. Curious what worked
-> for anyone here who shipped a free tool.
->
-> [App Store link]
-
-Then answer the inevitable monetization question in a comment rather than
-pre-empting it in the post — pre-empting reads defensively:
-
-> No plans to charge. It costs me $99 a year for the developer account and
-> nothing to run — there is no backend, so users cost me nothing. There's an
-> optional AI assistant that takes your own API key; I don't resell tokens and
-> don't want to be in the billing business. If it ever needs money I'd rather
-> ask than paywall it.
+*Hacker News: dropped 2026-08-29. Not planned, not on hold. Don't re-draft it.*
 
 ## Honest expectation
 
 ASO helps at the margin, and it helps *least* on an app with no ranking signal —
 Apple has almost no engagement data to rank 26 downloads on. The keyword work is
 free and worth doing, but the thing that actually moves this is external traffic
-from somewhere the audience already gathers. The README and the launch posts
-matter more than the keyword field.
+from somewhere the audience already gathers — which, with Hacker News dropped and
+Reddit gated behind building a comment history first, Pockterm does not currently
+have. That is the real gap, not the keyword field.

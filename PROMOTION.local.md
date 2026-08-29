@@ -6,99 +6,37 @@ the repo.
 
 ---
 
-## 1. Show HN  ← ON HOLD (15 Aug 2026), keep the draft
+## STOP — BEFORE ANYTHING GOES ON REDDIT, GO EARN SOME KARMA
 
-Paused by decision, not by a blocker. **The repo is private and staying that
-way** (decided 2026-08-29), so the submission URL below is no longer the repo —
-that is the one part of this draft the decision changed.
+**Do not post about Pockterm on Reddit. Not a submission, not a comment, not a
+megathread, not "just asking for feedback on my side project". Not yet.**
 
-**Submit at:** https://news.ycombinator.com/submit
+The account is old but has **never posted anything**. A first-ever submission
+that links your own app is the exact shape every spam filter is tuned for. And
+removals are *silent* — the post looks completely normal to you while nobody
+else can see it, so you will think it flopped when it was never shown.
 
-**Title** (exact — HN strips editorialising, and "Show HN:" is the required prefix):
+**The task, and it is a boring one: go be a normal Reddit user for two or three
+weeks first.** Comment where there is actual expertise to offer —
+r/iOSProgramming, r/commandline, r/selfhosted. SwiftUI, iOS 26 keyboard
+avoidance, String Catalogs, App Store rejections, RTL layout, terminal
+emulation. Answer other people's questions. Link nothing.
 
-```
-Show HN: Pockterm – a free SSH/SFTP client for iPhone
-```
+Non-negotiables:
 
-**URL** — the site, *not* the App Store:
+- **These have to be your own comments.** Do not have me write them. Post copy
+  is marketing; a comment history has to read like a person, and a fake one
+  reads exactly like what it is.
+- **Never buy karma and never use an alt.** Vote manipulation gets both the
+  account and the thing being promoted banned.
+- **Read each sub's rules from a logged-in browser** before posting there. Some
+  are login-gated and cannot be checked any other way.
 
-```
-https://pockterm.com
-```
+**Only once there is a real comment history does Pockterm get mentioned on
+Reddit at all.** Until then, this is the entire Reddit plan, and this section
+stays pinned at the top of the file until it is honestly done.
 
-This is a real trade-off, not a swap. HN prefers something readable without an
-install, and a repo was the ideal submission for that; with no public source the
-choice is between the marketing site and a store link, and HN treats store links
-as ads and flags them. pockterm.com is the lesser evil — but it has to earn the
-click, so it should read as a description of what the thing does, not a pitch.
-Review the landing page before submitting.
-
-**Expect "is it open source?" early in the thread and answer it straight:** no,
-the source isn't published; the app is free, has no backend, no accounts and no
-telemetry. A plain no lands far better there than a dodge or a "maybe later".
-
-**Then immediately post this as the first comment.** HN convention is that the
-author explains in-thread; a Show HN with no author comment usually dies.
-
-> I wrote this because none of the free iPhone terminals rendered full-screen
-> console apps properly — vim, htop and tmux all came out garbled.
->
-> It's native SwiftUI on top of SwiftTerm for emulation and Citadel for SSH.
-> Keys live in the iOS Keychain, host keys are verified on first use and warn on
-> change, and SFTP transfers stream in chunks so a large file doesn't blow up
-> memory on a phone — that last one was a real bug: the first implementation
-> read whole files into memory and would have been killed by the OS on anything
-> sizeable.
->
-> No account, no analytics, no ads, no subscription. There's an optional AI
-> assistant that's off by default and needs your own API key — it tells you
-> which provider is about to receive your terminal output before it sends
-> anything.
->
-> App Store: https://apps.apple.com/app/id6789968094
->
-> Happy to answer anything about the SSH or terminal-emulation side.
-
-**Timing:** Tuesday–Thursday, 08:00–10:00 US Eastern is the usual sweet spot.
-
-**Afterwards:** stay in the thread for the first two hours. Replying to
-questions matters more to ranking than the submission itself. Expect scrutiny of
-the AI feature and the "free forever" claim — answer both plainly.
-
----
-
-## 2. Reddit — a few days after HN
-
-Post to **r/selfhosted** first, then **r/homelab**, then **r/commandline**,
-spaced a few days apart. Never the same day.
-
-**Read each sidebar first.** Self-promotion is restricted in all three; some
-require a flair, some require an established comment history. Breaking the rule
-gets you banned, not just removed.
-
-**Title:**
-
-```
-I got tired of not being able to properly SSH into my homelab from my phone, so I built Pockterm
-```
-
-**Body:**
-
-> Free, no account, no subscription, no ads. The thing that finally made me
-> write it: every free iPhone terminal I tried mangled tmux and htop.
->
-> - Full SFTP browser over the same connection
-> - Ed25519/RSA keys stored in the iOS Keychain
-> - Local and remote port forwarding
-> - Host groups that pass credentials down, so a dozen boxes is one setup
-> - Optional AI assistant, off by default, bring your own key
->
-> App Store: https://apps.apple.com/app/id6789968094
->
-> Happy to take feature requests.
-
-Lead with the problem, not the feature list. That audience responds to "I had
-this itch" far better than to a spec sheet.
+*Hacker News: dropped 2026-08-29. Not planned, not on hold. Don't re-draft it.*
 
 ---
 
@@ -110,10 +48,9 @@ crash-class bug. ASO helps least on an app with no ranking signal, because Apple
 has almost no engagement data to rank on. External traffic from where the
 audience already gathers is the lever that actually moves it.
 
-Don't wait for 1.3 to clear review. 1.2 is live and good; the 1.3 changes are
-refinements nobody outside this repo is waiting on.
-
-*(15 Aug: 1.3 is approved and live, so this no longer blocks anything — post.)*
+What that lever is, now that Hacker News is out and Reddit is gated behind a
+comment history, is an open question. Apple Ads and the featuring nomination are
+the only channels currently in play.
 
 ---
 
@@ -231,8 +168,9 @@ convert, or is simply never seen. Kill it once you have the answer.
 
 **Custom product pages.** Up to 35 variants, each with its own screenshots and
 its own URL. The API 404s for this key, so it is UI work. The payoff is
-specific: give the Show HN link its own page whose first screenshot is tmux
-rendering correctly, so the store page finishes the argument the post started.
+specific: any campaign that ever gets a dedicated link — an ad group, a future
+post — can point at a page whose first screenshot is tmux rendering correctly,
+so the store page finishes the argument the click started.
 
 ---
 

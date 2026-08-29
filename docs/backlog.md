@@ -170,6 +170,41 @@ Citadel 0.12.1 declares `Wellz26/swift-nio-ssh` — a zero-star third-party fork
 created and last pushed within the same 82 seconds. Citadel 0.10.0 through
 0.12.0 all used the author's own `Joannis/swift-nio-ssh`; only 0.12.1 switched.
 
+### What we actually build (verified 2026-08-29)
+
+**We do not compile the fork.** The checkout in DerivedData is at
+`791437a67f53`, which is `Joannis/swift-nio-ssh` 0.3.5 and matches the pin in
+`Package.resolved`. The root override works.
+
+**But the override is load-bearing, not cosmetic.** Wellz26 carries a **0.3.6**
+tag (`a05e6bbe6b14`) that does not exist in Joannis's repo at all. Citadel asks
+for `"0.3.4" ..< "0.4.0"`, so **0.3.6 is the highest match** — every Citadel
+user without our override resolves to a commit that exists only in the zero-star
+account. Ours resolves to Joannis 0.3.5 because we declare it at the root.
+
+**The fork's content is not, on inspection, malicious.** Those 8 commits are
+Joannis's own post-0.3.5 `main` (certificate-authentication work by `nedithgar`,
+merged by Joannis himself) plus one commit by the fork owner: *"add NIO product
+dependency to NIOSSH target for Mac Catalyst compatibility."* So it looks like a
+Catalyst build fix that Citadel adopted wholesale instead of getting merged
+upstream. The objection is the shape of the arrangement, not the diff.
+
+**SwiftPM still clones the fork at resolve time** to read its manifest — there
+is a bare `swift-nio-ssh-ccb6c93f` in `SourcePackages/repositories` pointing at
+`Wellz26`. It is fetched and its `Package.swift` evaluated; it is just never
+compiled.
+
+**Upstream already wants out.** Citadel issue #122, *"Fix CI and migrate back to
+official swift-nio-ssh"*, was opened by **Joannis, the maintainer**, on
+2026-01-08 and is still open. Note the direction: back to `apple/swift-nio-ssh`,
+not merely back to his own copy. Worth watching or nudging rather than filing a
+new issue.
+
+Also worth knowing: `Joannis/swift-nio-ssh` is not a GitHub fork of Apple's — it
+is a separate 1-star repo created 2020-05-08. So even the "safe" side of this is
+a personal copy of an Apple library, and `apple/swift-nio-ssh` (515 stars) is
+still being pushed to as of 2026-07-28.
+
 We now override it by declaring `Joannis/swift-nio-ssh` 0.3.5 at the root of
 `pockterm.xcodeproj`, which wins the `swift-nio-ssh` identity. That works today,
 but SwiftPM warns:
