@@ -4,6 +4,66 @@ Things worth doing, not yet scheduled. Newest first.
 
 ---
 
+## Key bar covers the bottom lines of the terminal
+
+**Recorded:** 2026-08-29, reported from device with a screenshot.
+
+With the keyboard up, the key bar is drawn **over** the last row or two of the
+terminal instead of the terminal ending above it. In the report the Emacs mode
+line was the last fully visible row, and another line was legible *through the
+gaps between the key bar buttons* — which is the giveaway that the key bar is
+an overlay on live terminal content, not a boundary the terminal was sized to.
+
+Inside tmux this costs the tmux status line, since tmux draws it on the last
+row.
+
+### Why this is not the layout we intended
+
+`TerminalHostView` (in `pockterm/Features/Terminal/SessionTabsView.swift`)
+already pins the terminal to the keyboard:
+
+```swift
+terminalView.bottomAnchor.constraint(equalTo: container.keyboardLayoutGuide.topAnchor)
+```
+
+and its own doc comment says this exists so the terminal's bottom rows do not
+end up "behind the accessory bar". So this is a fix that is incomplete or has
+regressed, not a case nobody considered.
+
+The key bar is the terminal's `inputAccessoryView`
+(`TerminalSession.swift:70`), and `KeyBarView` is a self-sizing `UIInputView`
+(`allowsSelfSizing = true`, intrinsic height 48).
+
+### Suspects, in order
+
+1. **`keyboardLayoutGuide` not counting the accessory view.** If the guide
+   tracks the keyboard proper and not the self-sizing accessory above it, the
+   terminal runs ~48 pt too low — which matches the one-to-two rows observed.
+2. **The iOS 26 frame defect we already know about.** Reported keyboard frames
+   exclude the predictive bar (~45 pt); see the auto-memory note on iOS 26
+   keyboard avoidance. Same shape of error, similar magnitude.
+3. **Timing.** The guide may resolve before the accessory self-sizes, leaving
+   the constraint correct on paper and stale in practice.
+
+### How to check it
+
+Log `terminalView.frame.maxY` against the key bar's `frame.minY` in the
+window's coordinate space while the keyboard is up: if the terminal's bottom is
+below the bar's top, it is a layout bug and suspect 1 or 3. Then compare the
+rows SwiftTerm reports (`proxy.onSize`) against the rows actually visible.
+
+Worth answering early: does it reproduce **without tmux**, and does it happen
+only when the keyboard is raised? Those two answers narrow it to a geometry
+bug quickly.
+
+### Related
+
+This is *occlusion*, distinct from the mode line **corruption** item below —
+but both are about the bottom rows of the grid, so check whether one causes the
+other before treating them separately.
+
+---
+
 ## Emacs mode line gets corrupted inside tmux
 
 **Recorded:** 2026-08-29. **Start after the next App Store release** — John's
