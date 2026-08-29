@@ -69,6 +69,14 @@ CAPPED = {
     # Verified 2026-08-29 that 0.12.0 costs us nothing: 0.12.1's only client
     # change is additive (withExec, +57/-0, which we do not use) and its stderr
     # fix is server-side, while SSHEngine.exec merges streams remotely itself.
+    # BigInt is transitive via Citadel and never imported by the app. Citadel
+    # declares `from: "5.2.0"`, which caps it below 6.0.0, and Citadel main
+    # still does. Taking 6.x would mean declaring BigInt at our root to force
+    # Citadel to compile against a major it doesn't claim to support — in its
+    # RSA path — and 6.0.0/6.0.1 contain only a WASI fix, CI runners, and a
+    # migration of BigInt's own tests to Swift Testing. Nothing for an iOS app.
+    # Revisit only if Citadel widens its range or an advisory lands on 5.x.
+    "bigint": "held <6.0.0 by Citadel; 6.x is a WASI fix and test migration, no iOS benefit",
     "citadel": "held at 0.12.0; 0.12.1 declares a third-party swift-nio-ssh fork",
     "swift-nio-ssh": "held <0.4.0 by Citadel; declared at the root, not inherited",
 }
