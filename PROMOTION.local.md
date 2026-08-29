@@ -8,9 +8,9 @@ the repo.
 
 ## 1. Show HN  ← ON HOLD (15 Aug 2026), keep the draft
 
-Paused by decision, not by a blocker. The repo **stays public**, so this draft
-still works exactly as written whenever it comes off hold — nothing here needs
-rewriting.
+Paused by decision, not by a blocker. **The repo is private and staying that
+way** (decided 2026-08-29), so the submission URL below is no longer the repo —
+that is the one part of this draft the decision changed.
 
 **Submit at:** https://news.ycombinator.com/submit
 
@@ -20,15 +20,22 @@ rewriting.
 Show HN: Pockterm – a free SSH/SFTP client for iPhone
 ```
 
-**URL** — the repo, *not* the App Store:
+**URL** — the site, *not* the App Store:
 
 ```
-https://github.com/jhancock1975/pockterm
+https://pockterm.com
 ```
 
-HN strongly prefers something you can read without an install. The repo is now
-Apache-2.0 with a real README, so it stands on its own. An App Store link as the
-submission URL reads as an ad and gets flagged.
+This is a real trade-off, not a swap. HN prefers something readable without an
+install, and a repo was the ideal submission for that; with no public source the
+choice is between the marketing site and a store link, and HN treats store links
+as ads and flags them. pockterm.com is the lesser evil — but it has to earn the
+click, so it should read as a description of what the thing does, not a pitch.
+Review the landing page before submitting.
+
+**Expect "is it open source?" early in the thread and answer it straight:** no,
+the source isn't published; the app is free, has no backend, no accounts and no
+telemetry. A plain no lands far better there than a dodge or a "maybe later".
 
 **Then immediately post this as the first comment.** HN convention is that the
 author explains in-thread; a Show HN with no author comment usually dies.
@@ -87,7 +94,6 @@ I got tired of not being able to properly SSH into my homelab from my phone, so 
 > - Optional AI assistant, off by default, bring your own key
 >
 > App Store: https://apps.apple.com/app/id6789968094
-> Source (Apache-2.0): https://github.com/jhancock1975/pockterm
 >
 > Happy to take feature requests.
 

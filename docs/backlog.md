@@ -8,9 +8,10 @@ Things worth doing, not yet scheduled. Newest first.
 
 **Recorded:** 2026-08-15
 
-Five languages ship complete at **274/274 strings**: Spanish, Hebrew, Arabic,
+Five languages ship complete at **291/291 strings**: Spanish, Hebrew, Arabic,
 Simplified Chinese, Traditional Chinese. Verify at any time with
-`scripts/i18n-status`.
+`scripts/i18n-status`. (The catalogue grows: it was 274 when this was written,
+301 keys today of which 291 translate. Re-check the count before estimating.)
 
 Nine remain, **one language per commit**, in this order:
 
@@ -24,7 +25,7 @@ Nine remain, **one language per commit**, in this order:
 8. Hindi
 9. Telugu
 
-Roughly 274 strings each, so about 2,470 translations in total. Ninety-seven of
+Roughly 291 strings each, so about 2,600 translations in total. Ninety-seven of
 them are full help-guide paragraphs rather than single words.
 
 ### Per language, the whole procedure
@@ -65,7 +66,20 @@ code changes should be needed for any of the nine.
 
 ---
 
-## Move both App Store URLs to pockterm.com, then take the repo private
+## ~~Move both App Store URLs to pockterm.com, then take the repo private~~ — DONE 2026-08-29
+
+Verified against the API and over HTTPS on 2026-08-29:
+
+- Marketing URL and Support URL are `https://pockterm.com` in all seven locales.
+- Privacy Policy URL is `https://pockterm.com/privacy.html` in all seven, and
+  serves 200.
+- The repo is PRIVATE, and staying private — open-sourcing is off the plan as
+  of 2026-08-29. The old GitHub Pages privacy URL 404s, and nothing points at
+  it any more.
+
+The loose end below is also resolved: `PROMOTION.local.md` no longer names the
+repo as the Show HN submission URL — it now submits `pockterm.com`, with the
+trade-off written up. The original note is kept below for the reasoning.
 
 **Recorded:** 2026-08-14
 
