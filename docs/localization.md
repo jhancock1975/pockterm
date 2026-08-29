@@ -101,6 +101,44 @@ as `22` when checking against `sshd_config`. Use `technicalDigits`
 Text("\(user)@\(host.address):\(eff.port.technicalDigits)")
 ```
 
+## Coverage is not the same as "no English on screen"
+
+`scripts/i18n-status` reads the catalogue. A string that never reached the
+catalogue is invisible to it, so **every language can report 100% complete
+while the screen still shows English**. That happened: `New Forward`,
+`New Snippet`, `New Group` and both `Bind Port (…)` section headers were
+missing entirely, and `New Host` was in the catalogue but its own call site
+bypassed the translation.
+
+The cause is that SwiftUI only localizes a `LocalizedStringKey`, and two
+common shapes silently produce a plain `String` instead:
+
+```swift
+// NOT localized: the other branch is a String, so the whole expression is one.
+.navigationTitle(host.label.isEmpty ? "New Host" : host.label)
+// NOT localized: a computed String hits Section's StringProtocol overload.
+private var bindLabel: String { "Bind Port (on device)" }
+```
+
+Both are fixed with `String(localized:)`, the same way `KeyBarKey.displayName`
+already was. To find them:
+
+```bash
+grep -rn "navigationTitle(" pockterm --include="*.swift" | grep -v '"'
+```
+
+**So the run-and-screenshot step is the only real check.** Two of the three
+defects found while adding Italian were invisible in the catalogue.
+
+## Tab labels are the tightest constraint
+
+Five tabs share one bar. Russian `Связка ключей` and Ukrainian
+`Переспрямування` left the labels touching, and would truncate on a 375 pt
+phone. Both were shortened (`Ключи`/`Ключі`, `Порты`/`Порти`) — **and the guide
+sentences that name those tabs were changed to match**, since the guide tells
+the reader which tab to touch. Check the tab bar in any new language before
+declaring it done.
+
 ## Strings that must not be translated
 
 Ten keys are marked `"shouldTranslate": false` so they survive verbatim in
