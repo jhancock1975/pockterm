@@ -4,6 +4,46 @@ Things worth doing, not yet scheduled. Newest first.
 
 ---
 
+## Emacs mode line gets corrupted inside tmux
+
+**Recorded:** 2026-08-29. **Start after the next App Store release** — John's
+explicit sequencing, so it does not delay shipping what is already merged.
+
+Running Emacs inside tmux in the terminal, the status/mode line becomes
+garbled after actions that redraw a lot: saving a file (`C-x C-s`), or moving
+around the buffer heavily. Reproduced by John on device; the mode line is the
+bottom row, which is also where tmux draws its own status line.
+
+### Where to look
+
+This is a terminal-emulation defect, not a SwiftUI one, so it lives at the
+SwiftTerm boundary rather than in our views.
+
+- **Scroll regions.** Emacs and tmux both set DECSTBM to protect the bottom
+  row(s) while scrolling the body. A redraw that resets or mis-tracks the
+  region will smear the mode line. This is the most likely cause.
+- **Two nested status lines.** tmux draws its own status row and reserves the
+  last line; Emacs draws a mode line just above it. Both repaint on save.
+- **Resize.** The window size is negotiated on connect
+  (`TerminalSession`/`SSHEngine`); check nothing re-sends a stale size after
+  the first draw, which would leave both programs disagreeing about the last
+  row.
+- **Alternate screen.** Emacs uses it; check the switch in and out restores
+  the scroll region rather than leaving the previous one set.
+
+### How to reproduce and verify
+
+The verify skill connects to the Mac's own sshd, so this is reproducible in the
+simulator without a remote box: connect, `tmux`, `emacs some-file`, save
+repeatedly and page around. Capture the terminal before and after. Worth
+checking against Terminal.app over the same SSH connection to confirm the
+server-side byte stream is fine and the defect is ours.
+
+Check whether it also reproduces **without** tmux — that single answer splits
+the search in half.
+
+---
+
 ## Get off the Citadel dependency bottleneck (watch #122, then act)
 
 **Recorded:** 2026-08-29
