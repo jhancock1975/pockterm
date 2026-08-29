@@ -232,4 +232,31 @@ So a future Xcode/SwiftPM will break the build. Options when that happens:
    stderr-only command before believing it.
 3. **Fork Citadel** under our own account with the dependency corrected.
 
+### "Can we just use Apple's library instead of Citadel?" — no (checked 2026-08-29)
+
+This was never Citadel *versus* Apple. **Citadel is built on top of
+`swift-nio-ssh`** — it is the client layer Apple deliberately declined to
+write. Dropping Citadel doesn't remove the Apple dependency, it just deletes
+the layer in between. From Apple's own README:
+
+> SwiftNIO SSH does not ship production-ready SSH clients and servers, but
+> instead provides the building blocks [...] more like libssh2 than openssh.
+
+**Apple has no SFTP at all** — searching the whole 0.15.0 source tree for
+"sftp" returns nothing. SFTP is a separate subsystem protocol.
+
+Nor did we ever switch to Citadel to work around Apple: Citadel arrives in the
+first SSH commit (`c998ec9`), and `docs/superpowers/specs/2026-06-27-pockterm-design.md`
+names the transport as "SwiftNIO SSH / Citadel" from the start.
+
+What replacing it would cost: Citadel is 9,573 lines — SFTP 3,276, client layer
+2,710, algorithms 1,576, TTY+Exec 939. Our four Citadel-facing files total 529.
+That is protocol and crypto code in the security-critical path of an app whose
+pitch is that keys never leave the device. libssh2-backed wrappers (Shout,
+NMSSH, SwiftSH) are worse on the same terms: a memory-unsafe C library in the
+security path, mostly unmaintained.
+
+So the live options are the override we have, or pinning Citadel 0.12.0 —
+**not** replacing Citadel.
+
 Until then `scripts/routine-update` reports the pin as deliberately held.
