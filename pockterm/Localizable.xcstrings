@@ -15,6 +15,12 @@
             "value": "Clave API de %@"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clé API %@"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -115,6 +121,24 @@
             }
           }
         },
+        "fr": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld session"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld sessions"
+                }
+              }
+            }
+          }
+        },
         "he": {
           "variations": {
             "plural": {
@@ -203,6 +227,12 @@
             "value": "%lld pt"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lldpt"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -241,6 +271,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Las **Credenciales** son un nombre de usuario más una forma de autenticarse: una contraseña o una clave SSH."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les **Identifiants** sont un nom d'utilisateur associé à un moyen d'authentification : un mot de passe ou une clé SSH."
           }
         },
         "he": {
@@ -283,6 +319,12 @@
             "value": "**Dinámico**: un proxy SOCKS5 en tu dispositivo envía cada conexión a través del servidor."
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**Dynamique** — un proxy SOCKS5 sur votre appareil envoie chaque connexion via le serveur."
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -321,6 +363,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "**Local**: un puerto de tu dispositivo se redirige a un host al que el servidor puede llegar."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**Local** — un port de votre appareil redirige vers un hôte que le serveur peut joindre."
           }
         },
         "he": {
@@ -363,6 +411,12 @@
             "value": "**Mantén pulsado un host** y elige **Explorar archivos**."
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**Appuyez longuement sur un hôte** et choisissez **Parcourir les fichiers**."
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -401,6 +455,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "**Mantén pulsado el archivo** y luego elige **Descargar**."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**Appuyez longuement sur le fichier**, puis choisissez **Télécharger**."
           }
         },
         "he": {
@@ -443,6 +503,12 @@
             "value": "**Mantén pulsado** un archivo para renombrarlo, cambiar sus **Permisos** o eliminarlo."
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**Appuyez longuement** sur un fichier pour le renommer, modifier ses **Autorisations** ou le supprimer."
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -481,6 +547,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "**Remoto**: un puerto del servidor se redirige de vuelta a tu dispositivo."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**Distant** — un port du serveur redirige vers votre appareil."
           }
         },
         "he": {
@@ -523,6 +595,12 @@
             "value": "**Destaca** un host (desliza a la izquierda) para fijarlo en la sección Favoritos."
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Marquez un hôte comme **Favori** (balayez vers la gauche) pour l'épingler dans la section Favoris."
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -561,6 +639,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "**Desliza a la izquierda** para Editar, Destacar o Eliminar."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**Balayez vers la gauche** pour Modifier, Favori ou Supprimer."
           }
         },
         "he": {
@@ -603,6 +687,12 @@
             "value": "**Desliza a la derecha** y toca **Archivos** para explorarlo por SFTP."
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**Balayez vers la droite** et touchez **Fichiers** pour le parcourir via SFTP."
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -643,6 +733,12 @@
             "value": "**Toca una fila** para editarla."
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**Touchez une ligne** pour la modifier."
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -681,6 +777,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "**Toca** un host para conectarte."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**Touchez** un hôte pour vous connecter."
           }
         },
         "he": {
@@ -726,6 +828,12 @@
             "value": "15 min"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "15 min"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -761,6 +869,12 @@
           }
         },
         "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "30 min"
+          }
+        },
+        "fr": {
           "stringUnit": {
             "state": "translated",
             "value": "30 min"
@@ -806,6 +920,12 @@
             "value": "5 min"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "5 min"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -841,6 +961,12 @@
           }
         },
         "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "60 min"
+          }
+        },
+        "fr": {
           "stringUnit": {
             "state": "translated",
             "value": "60 min"
@@ -886,6 +1012,12 @@
             "value": "Un proxy SOCKS5 escucha en el puerto de enlace; cada conexión se tuneliza hacia el destino solicitado."
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Un proxy SOCKS5 écoute sur le port d'écoute ; chaque connexion est acheminée par tunnel vers la destination demandée."
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -924,6 +1056,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Asistente de IA"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Assistant IA"
           }
         },
         "he": {
@@ -966,6 +1104,12 @@
             "value": "Aceptar"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Accepter"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -1004,6 +1148,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Aceptar clave modificada"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Accepter la clé modifiée"
           }
         },
         "he": {
@@ -1046,6 +1196,12 @@
             "value": "Acéptala solo si la huella coincide con la que esperas del propietario del servidor."
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "N'acceptez que si l'empreinte correspond à celle attendue de la part du propriétaire du serveur."
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -1084,6 +1240,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Activo en :%@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Actif sur :%@"
           }
         },
         "he": {
@@ -1126,6 +1288,12 @@
             "value": "Primero añade un host en la pestaña Hosts."
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ajoutez d'abord un hôte dans l'onglet Hôtes."
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -1164,6 +1332,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Añade la línea de clave pública que se muestra al archivo `~/.ssh/authorized_keys` del servidor."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ajoutez la ligne de clé publique affichée au fichier `~/.ssh/authorized_keys` du serveur."
           }
         },
         "he": {
@@ -1206,6 +1380,12 @@
             "value": "Añadir un host"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ajouter un hôte"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -1244,6 +1424,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Dirección"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Adresse"
           }
         },
         "he": {
@@ -1286,6 +1472,12 @@
             "value": "Agente"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Agent"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -1324,6 +1516,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "¿Ya estás en una sesión? Toca el botón de **carpeta** en la barra superior del terminal."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Déjà dans une session ? Touchez le bouton **dossier** dans la barre supérieure du terminal."
           }
         },
         "he": {
@@ -1366,6 +1564,12 @@
             "value": "Apariencia"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apparence"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -1404,6 +1608,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Valores de apariencia"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apparence par défaut"
           }
         },
         "he": {
@@ -1446,6 +1656,12 @@
             "value": "Aplicar"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Appliquer"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -1484,6 +1700,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Aprobación"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Approbation"
           }
         },
         "he": {
@@ -1526,6 +1748,12 @@
             "value": "Pregunta sobre lo que ves en pantalla o pide un comando."
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Posez une question sur ce qui est à l'écran, ou demandez une commande."
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -1564,6 +1792,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Pregunta al asistente…"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Demandez à l'assistant…"
           }
         },
         "he": {
@@ -1606,6 +1840,12 @@
             "value": "Asigna un host a un grupo en el editor de hosts."
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Affectez un hôte à un groupe dans l'éditeur d'hôte."
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -1644,6 +1884,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Asistente"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Assistant"
           }
         },
         "he": {
@@ -1686,6 +1932,12 @@
             "value": "Las conversaciones con el asistente se guardan en tu dispositivo, una por host, así que el chat sigue ahí cuando vuelves a conectarte. Toca la papelera en el asistente para eliminar una."
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les conversations avec l'assistant sont conservées sur votre appareil, une par hôte, de sorte qu'une discussion est toujours là lorsque vous vous reconnectez. Touchez la corbeille dans l'assistant pour en supprimer une."
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -1724,6 +1976,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Adjuntar archivo local"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Joindre un fichier local"
           }
         },
         "he": {
@@ -1766,6 +2024,12 @@
             "value": "Adjuntar archivo remoto"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Joindre un fichier distant"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -1804,6 +2068,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Adjuntar un archivo"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Joindre un fichier"
           }
         },
         "he": {
@@ -1846,6 +2116,12 @@
             "value": "Autenticación"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Authentification"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -1884,6 +2160,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Ejecución automática"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exécution automatique"
           }
         },
         "he": {
@@ -1926,6 +2208,12 @@
             "value": "Claves disponibles"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clés disponibles"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -1964,6 +2252,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Puerto de enlace"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Port d'écoute"
           }
         },
         "he": {
@@ -2006,6 +2300,12 @@
             "value": "Importar hosts existentes"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Importez des hôtes existants"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -2044,6 +2344,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Explorar archivos"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Parcourir les fichiers"
           }
         },
         "he": {
@@ -2086,6 +2392,12 @@
             "value": "Explorar, descargar y subir archivos"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Parcourez, téléchargez et envoyez des fichiers"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -2124,6 +2436,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Cancelar"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Annuler"
           }
         },
         "he": {
@@ -2166,6 +2484,12 @@
             "value": "Cambiar cuánto tiempo permanecen conectadas las sesiones"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modifier la durée pendant laquelle les sessions restent connectées"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -2204,6 +2528,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Buscando modelos nuevos en %@…"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recherche de nouveaux modèles sur %@…"
           }
         },
         "he": {
@@ -2246,6 +2576,12 @@
             "value": "Elige **Credenciales** para que Pockterm sepa cómo iniciar sesión. Si aún no tienes ninguna, toca **Credenciales nuevas**."
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choisissez des **Identifiants** pour que Pockterm sache comment s'authentifier. Si vous n'en avez pas encore, touchez **Nouveaux identifiants**."
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -2284,6 +2620,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Elegir archivo…"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choisir un fichier…"
           }
         },
         "he": {
@@ -2326,6 +2668,12 @@
             "value": "Borrar conversación"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Effacer la conversation"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -2364,6 +2712,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Cerrar sesión"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fermer la session"
           }
         },
         "he": {
@@ -2406,6 +2760,12 @@
             "value": "Comando"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Commande"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -2444,6 +2804,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Confirmar todo"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tout confirmer"
           }
         },
         "he": {
@@ -2486,6 +2852,12 @@
             "value": "Confirmar solo lo arriesgado"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Confirmer uniquement si risqué"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -2524,6 +2896,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Conectarse y trabajar en una sesión"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Se connecter et travailler dans une session"
           }
         },
         "he": {
@@ -2566,6 +2944,12 @@
             "value": "Conectando…"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connexion…"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -2604,6 +2988,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Conexión"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connexion"
           }
         },
         "he": {
@@ -2646,6 +3036,12 @@
             "value": "Error de conexión"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Échec de la connexion"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -2684,6 +3080,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Controla si el asistente pregunta antes de ejecutar comandos o editar archivos en tu servidor."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Détermine si l'assistant demande confirmation avant d'exécuter des commandes ou de modifier des fichiers sur votre serveur."
           }
         },
         "he": {
@@ -2726,6 +3128,12 @@
             "value": "No se pudo adjuntar el archivo"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impossible de joindre le fichier"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -2764,6 +3172,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "No se pudo conectar con %@; se muestra la lista en caché."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impossible de joindre %@ ; la liste en cache est affichée."
           }
         },
         "he": {
@@ -2806,6 +3220,12 @@
             "value": "Crear"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Créer"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -2844,6 +3264,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Crear un host"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Créer un hôte"
           }
         },
         "he": {
@@ -2886,6 +3312,12 @@
             "value": "Crea un servidor al que puedas conectarte"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Créez un serveur auquel vous connecter"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -2924,6 +3356,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Crear credenciales"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Créer des identifiants"
           }
         },
         "he": {
@@ -2966,6 +3404,12 @@
             "value": "Crea un par de claves nuevo y lo guarda de forma segura en el Llavero."
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crée une nouvelle paire de clés conservée en sécurité dans le trousseau."
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -3004,6 +3448,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Credenciales"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Identifiants"
           }
         },
         "he": {
@@ -3046,6 +3496,12 @@
             "value": "Credenciales y claves SSH"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Identifiants et clés SSH"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -3084,6 +3540,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Personalizado"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Personnalisé"
           }
         },
         "he": {
@@ -3126,6 +3588,12 @@
             "value": "Predeterminado (heredado)"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Par défaut (hérité)"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -3164,6 +3632,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Credenciales predeterminadas"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Identifiants par défaut"
           }
         },
         "he": {
@@ -3206,6 +3680,12 @@
             "value": "Tamaño predeterminado"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Taille par défaut"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -3244,6 +3724,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Valores predeterminados heredados por los hosts"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Valeurs par défaut héritées par les hôtes"
           }
         },
         "he": {
@@ -3286,6 +3772,12 @@
             "value": "Eliminar"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Supprimer"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -3324,6 +3816,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Denegado"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Refusé"
           }
         },
         "he": {
@@ -3366,6 +3864,12 @@
             "value": "Denegar"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Refuser"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -3404,6 +3908,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Desconectado por inactividad"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Déconnecté pour cause d'inactivité"
           }
         },
         "he": {
@@ -3446,6 +3956,12 @@
             "value": "Ocultar el teclado"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fermer le clavier"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -3484,6 +4000,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Listo"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Terminé"
           }
         },
         "he": {
@@ -3526,6 +4048,12 @@
             "value": "Descargar"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Télécharger"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -3564,6 +4092,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Descargar un archivo"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Télécharger un fichier"
           }
         },
         "he": {
@@ -3606,6 +4140,12 @@
             "value": "Arrastra para reordenar; desliza para quitar. La barra se desplaza horizontalmente en el terminal."
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Faites glisser pour réorganiser ; balayez pour retirer. Dans le terminal, la barre défile horizontalement."
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -3644,6 +4184,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Dinámico (SOCKS)"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dynamique (SOCKS)"
           }
         },
         "he": {
@@ -3686,6 +4232,12 @@
             "value": "Editar"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modifier"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -3724,6 +4276,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Introduce una **Etiqueta**, la **Dirección** (nombre de host o IP) y el **Puerto** (22 por omisión)."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saisissez un **Libellé**, l'**Adresse** (nom d'hôte ou IP) et le **Port** (22 par défaut)."
           }
         },
         "he": {
@@ -3766,6 +4324,12 @@
             "value": "Introduce el nombre de usuario y elige **Contraseña** o **Clave**."
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saisissez le nom d'utilisateur et choisissez **Mot de passe** ou **Clé**."
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -3804,6 +4368,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Todos los hosts tienen un explorador de archivos SFTP. SFTP funciona sobre la misma conexión SSH, así que no hay nada más que configurar."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chaque hôte dispose d'un navigateur de fichiers SFTP. SFTP passe par la même connexion SSH, il n'y a donc rien de plus à configurer."
           }
         },
         "he": {
@@ -3846,6 +4416,12 @@
             "value": "Todo permanece en tu dispositivo; consulta **Tus datos y privacidad** para más detalles."
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tout reste sur votre appareil — voir **Vos données et votre confidentialité** pour les détails."
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -3884,6 +4460,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Favorito"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Favori"
           }
         },
         "he": {
@@ -3926,6 +4508,12 @@
             "value": "Favoritos"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Favoris"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -3964,6 +4552,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Archivos"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fichiers"
           }
         },
         "he": {
@@ -4006,6 +4600,12 @@
             "value": "Archivos y red"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fichiers et réseau"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -4044,6 +4644,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Tipografía"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Police"
           }
         },
         "he": {
@@ -4086,6 +4692,12 @@
             "value": "Para **Clave**, selecciona una de las claves que has generado."
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pour **Clé**, sélectionnez l'une des clés que vous avez générées."
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -4124,6 +4736,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Redirigir"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rediriger"
           }
         },
         "he": {
@@ -4166,6 +4784,12 @@
             "value": "Redirigir a (local)"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rediriger vers (local)"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -4204,6 +4828,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Redirigir a (remoto)"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rediriger vers (distant)"
           }
         },
         "he": {
@@ -4246,6 +4876,12 @@
             "value": "Redirección"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Redirection"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -4284,6 +4920,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "En el menú **Hosts**, elige **Importar desde ssh_config**."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dans le menu **Hôtes**, choisissez **Importer depuis ssh_config**."
           }
         },
         "he": {
@@ -4326,6 +4968,12 @@
             "value": "En el menú **Hosts**, elige **Gestionar grupos**. Los grupos pueden anidarse, y los hosts heredan las credenciales y el puerto predeterminados de su grupo."
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dans le menu **Hôtes**, choisissez **Gérer les groupes**. Les groupes peuvent être imbriqués, et les identifiants et le port par défaut d'un groupe sont hérités par ses hôtes."
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -4364,6 +5012,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Generar"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Générer"
           }
         },
         "he": {
@@ -4406,6 +5060,12 @@
             "value": "Generar clave Ed25519"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Générer une clé Ed25519"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -4444,6 +5104,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Generar una clave"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Générer une clé"
           }
         },
         "he": {
@@ -4486,6 +5152,12 @@
             "value": "Primeros pasos"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Premiers pas"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -4524,6 +5196,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Asigna a un host un **Fragmento de inicio** para ejecutarlo automáticamente al conectar."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Attribuez à un hôte un **Extrait de démarrage** pour l'exécuter automatiquement à la connexion."
           }
         },
         "he": {
@@ -4566,6 +5244,12 @@
             "value": "Grupo"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Groupe"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -4604,6 +5288,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Grupos"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Groupes"
           }
         },
         "he": {
@@ -4646,6 +5336,12 @@
             "value": "Grupos, favoritos y búsqueda"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Groupes, favoris et recherche"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -4684,6 +5380,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Ayuda"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aide"
           }
         },
         "he": {
@@ -4726,6 +5428,12 @@
             "value": "Ocultar el teclado"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Masquer le clavier"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -4764,6 +5472,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Tiempo de espera"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Durée de maintien"
           }
         },
         "he": {
@@ -4806,6 +5520,12 @@
             "value": "Host"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hôte"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -4844,6 +5564,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Acciones del host"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Actions sur l'hôte"
           }
         },
         "he": {
@@ -4886,6 +5612,12 @@
             "value": "Hosts"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hôtes"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -4924,6 +5656,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Hosts para importar (%lld seleccionados)"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hôtes à importer (%lld sélectionnés)"
           }
         },
         "he": {
@@ -4966,6 +5704,12 @@
             "value": "Los hosts, grupos, fragmentos y redirecciones se guardan en tu dispositivo."
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les hôtes, les groupes, les extraits et les redirections sont stockés sur votre appareil."
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -5004,6 +5748,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Cómo inicia sesión Pockterm"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Comment Pockterm vous authentifie"
           }
         },
         "he": {
@@ -5046,6 +5796,12 @@
             "value": "Si más adelante un servidor presenta una clave **distinta**, Pockterm te avisa antes de continuar: puede significar que el servidor se reinstaló, o que algo va mal."
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Si un serveur présente ensuite une clé **différente**, Pockterm vous avertit avant de continuer : cela peut signifier que le serveur a été reconstruit, ou que quelque chose ne va pas."
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -5084,6 +5840,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Importar"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Importer"
           }
         },
         "he": {
@@ -5126,6 +5888,12 @@
             "value": "Importar hosts"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Importer des hôtes"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -5164,6 +5932,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Importar desde ssh_config"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Importer depuis ssh_config"
           }
         },
         "he": {
@@ -5206,6 +5980,12 @@
             "value": "Importar desde ssh_config"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Importer depuis ssh_config"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -5244,6 +6024,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "En el editor de un host, elige **Credenciales nuevas**."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dans l'éditeur d'un hôte, choisissez **Nouveaux identifiants**."
           }
         },
         "he": {
@@ -5286,6 +6072,12 @@
             "value": "Heredado del grupo de este host."
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hérité du groupe de cet hôte."
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -5324,6 +6116,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Insertar"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Insérer"
           }
         },
         "he": {
@@ -5366,6 +6164,12 @@
             "value": "Clave privada no válida"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clé privée non valide"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -5404,6 +6208,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Se abre en la hoja de compartir, así que puedes enviarlo a donde quieras; elige **Guardar en Archivos** para conservarlo, incluso en **iCloud Drive**."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le fichier s'ouvre dans la feuille de partage, vous pouvez donc l'envoyer où vous voulez — choisissez **Enregistrer dans Fichiers** pour le conserver, y compris dans **iCloud Drive**."
           }
         },
         "he": {
@@ -5446,6 +6256,12 @@
             "value": "Mantén ordenada una lista larga de hosts"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gardez une longue liste d'hôtes bien rangée"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -5484,6 +6300,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Mantener las sesiones activas cuando estén inactivas"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Maintenir les sessions actives en cas d'inactivité"
           }
         },
         "he": {
@@ -5526,6 +6348,12 @@
             "value": "Mantener conexión"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Keep-alive"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -5564,6 +6392,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Clave"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clé"
           }
         },
         "he": {
@@ -5606,6 +6440,12 @@
             "value": "Barra de teclas"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Barre de touches"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -5644,6 +6484,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Clave guardada en el Llavero"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clé enregistrée dans le trousseau"
           }
         },
         "he": {
@@ -5686,6 +6532,12 @@
             "value": "Llavero"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Trousseau"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -5724,6 +6576,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Las claves se guardan en el Llavero de iOS y solo se envían a %@."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les clés sont conservées dans le trousseau iOS et envoyées uniquement à %@."
           }
         },
         "he": {
@@ -5766,6 +6624,12 @@
             "value": "Etiqueta"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Libellé"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -5804,6 +6668,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Cargando modelos…"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chargement des modèles…"
           }
         },
         "he": {
@@ -5849,6 +6719,12 @@
             "value": "Gestionar grupos"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gérer les groupes"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -5887,6 +6763,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Gestionar archivos"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gérer les fichiers"
           }
         },
         "he": {
@@ -5929,6 +6811,12 @@
             "value": "Método"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Méthode"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -5967,6 +6855,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Minimizar"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Réduire"
           }
         },
         "he": {
@@ -6009,6 +6903,12 @@
             "value": "Modelo"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modèle"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -6047,6 +6947,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "ID del modelo"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Identifiant du modèle"
           }
         },
         "he": {
@@ -6089,6 +6995,12 @@
             "value": "Lista de modelos actualizada: toca para mostrarla"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Liste des modèles mise à jour — touchez pour l'afficher"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -6127,6 +7039,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Nombre"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nom"
           }
         },
         "he": {
@@ -6169,6 +7087,12 @@
             "value": "Credenciales nuevas"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nouveaux identifiants"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -6207,6 +7131,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Carpeta nueva"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nouveau dossier"
           }
         },
         "he": {
@@ -6249,6 +7179,12 @@
             "value": "Host nuevo"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nouvel hôte"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -6287,6 +7223,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Sesión nueva"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nouvelle session"
           }
         },
         "he": {
@@ -6329,6 +7271,12 @@
             "value": "Sin grupos"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aucun groupe"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -6367,6 +7315,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Sin hosts"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aucun hôte"
           }
         },
         "he": {
@@ -6409,6 +7363,12 @@
             "value": "Sin claves"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aucune clé"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -6447,6 +7407,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Sin redirecciones de puertos"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aucune redirection"
           }
         },
         "he": {
@@ -6489,6 +7455,12 @@
             "value": "Sin fragmentos"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aucun extrait"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -6529,6 +7501,12 @@
             "value": "Ninguno"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aucun"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -6567,6 +7545,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Sin conexión"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Non connecté"
           }
         },
         "he": {
@@ -6612,6 +7596,12 @@
             "value": "Desactivado"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Désactivé"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -6650,6 +7640,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "En la pestaña **Hosts**, toca **+** y luego **Host nuevo**."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dans l'onglet **Hôtes**, touchez **+**, puis **Nouvel hôte**."
           }
         },
         "he": {
@@ -6692,6 +7688,12 @@
             "value": "En la pestaña **Llavero**, toca **+** y ponle una etiqueta a la clave."
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dans l'onglet **Trousseau**, touchez **+** et donnez un libellé à la clé."
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -6730,6 +7732,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "En la pestaña **Redirección de puertos**, toca **+** para añadir una."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dans l'onglet **Redirection de ports**, touchez **+** pour en ajouter une."
           }
         },
         "he": {
@@ -6772,6 +7780,12 @@
             "value": "En la pestaña **Fragmentos**, toca **+** para guardar un comando con una etiqueta."
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dans l'onglet **Extraits**, touchez **+** pour enregistrer une commande avec un libellé."
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -6810,6 +7824,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "En la barra de teclas"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sur la barre de touches"
           }
         },
         "he": {
@@ -6852,6 +7872,12 @@
             "value": "Una vez aceptada, la clave se recuerda y no se te volverá a preguntar."
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Une fois acceptée, la clé est mémorisée et la question ne vous sera plus posée."
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -6890,6 +7916,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Abrir el terminal"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ouvrir le terminal"
           }
         },
         "he": {
@@ -6932,6 +7964,12 @@
             "value": "Abre varios hosts a la vez: cada sesión es una pestaña en la parte superior. Toca su nombre para cambiar, o la **✕** roja para cerrarla."
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ouvrez plusieurs hôtes à la fois — chaque session est un onglet en haut. Touchez son nom pour changer de session, ou la **✕** rouge pour la fermer."
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -6970,6 +8008,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Abrir el explorador"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ouvrir le navigateur"
           }
         },
         "he": {
@@ -7012,6 +8056,12 @@
             "value": "La operación falló"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Échec de l'opération"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -7050,6 +8100,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "O ajusta el **Protocolo** del host a **SFTP (Archivos)**: al tocarlo se abrirá el explorador en lugar de un terminal."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ou réglez le **Protocole** de l'hôte sur **SFTP (Fichiers)** : le toucher ouvre alors le navigateur au lieu d'un terminal."
           }
         },
         "he": {
@@ -7092,6 +8148,12 @@
             "value": "Organización"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Organisation"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -7130,6 +8192,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Superior"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Parent"
           }
         },
         "he": {
@@ -7172,6 +8240,12 @@
             "value": "Contraseña"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mot de passe"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -7210,6 +8284,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Las contraseñas y las claves privadas se guardan en el **Llavero de iOS**."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les mots de passe et les clés privées sont conservés dans le **trousseau iOS**."
           }
         },
         "he": {
@@ -7252,6 +8332,12 @@
             "value": "Pegar la clave API"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Coller la clé API"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -7290,6 +8376,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Pega el texto de tu configuración o toca **Elegir archivo**."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Collez le texte de votre configuration, ou touchez **Choisir un fichier**."
           }
         },
         "he": {
@@ -7332,6 +8424,12 @@
             "value": "Pegar ~/.ssh/config"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Collez ~/.ssh/config"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -7370,6 +8468,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Permisos"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Autorisations"
           }
         },
         "he": {
@@ -7412,6 +8516,12 @@
             "value": "Permisos (octal)"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Autorisations (octal)"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -7450,6 +8560,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Pockterm crea un par de claves Ed25519 y guarda la clave privada en el Llavero de iOS."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pockterm crée une paire de clés Ed25519 et conserve la clé privée dans le trousseau iOS."
           }
         },
         "he": {
@@ -7492,6 +8608,12 @@
             "value": "Pockterm no tiene cuentas, y los datos de tus conexiones permanecen en tu dispositivo."
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pockterm ne nécessite aucun compte, et les données de vos connexions restent sur votre appareil."
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -7530,6 +8652,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Pockterm es un cliente SSH completo para iPhone. Puedes conectarte a servidores, usar un terminal interactivo, transferir archivos por SFTP y crear túneles de redirección de puertos."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pockterm est un client SSH complet pour iPhone. Vous pouvez vous connecter à des serveurs, utiliser un terminal interactif, transférer des fichiers via SFTP et créer des tunnels de redirection de ports."
           }
         },
         "he": {
@@ -7572,6 +8700,12 @@
             "value": "Pockterm lee los ajustes `Host`, `HostName`, `User` y `Port`. Se crean credenciales de contraseña para cada nombre de usuario, de modo que puedas rellenar el secreto después."
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pockterm lit les réglages `Host`, `HostName`, `User` et `Port`. Des identifiants par mot de passe sont créés pour chaque nom d'utilisateur, afin que vous puissiez renseigner le secret par la suite."
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -7610,6 +8744,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Puerto"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Port"
           }
         },
         "he": {
@@ -7652,6 +8792,12 @@
             "value": "Redirección de puertos"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Redirection de ports"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -7690,6 +8836,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "La redirección de puertos encamina conexiones de red a través de un servidor SSH."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La redirection de ports achemine les connexions réseau via un serveur SSH."
           }
         },
         "he": {
@@ -7732,6 +8884,12 @@
             "value": "Protocolo"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Protocole"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -7770,6 +8928,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Proveedor"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fournisseur"
           }
         },
         "he": {
@@ -7812,6 +8976,12 @@
             "value": "Desliza hacia abajo para **buscar** por etiqueta o dirección. Los hosts que has usado hace poco aparecen en Recientes."
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tirez vers le bas pour **rechercher** par libellé ou par adresse. Les hôtes utilisés récemment apparaissent sous Récents."
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -7850,6 +9020,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "El proveedor ha limitado la frecuencia de peticiones. Vuelve a intentarlo en breve."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Limite de débit atteinte chez le fournisseur. Réessayez dans un instant."
           }
         },
         "he": {
@@ -7892,6 +9068,12 @@
             "value": "Recientes"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Récents"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -7930,6 +9112,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Rechazar"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rejeter"
           }
         },
         "he": {
@@ -7972,6 +9160,12 @@
             "value": "Remoto"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Distant"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -8010,6 +9204,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Quitar"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Retirer"
           }
         },
         "he": {
@@ -8052,6 +9252,12 @@
             "value": "Quitar %@"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Retirer %@"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -8090,6 +9296,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Renombrar"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Renommer"
           }
         },
         "he": {
@@ -8132,6 +9344,12 @@
             "value": "Sustituir la clave API"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Remplacer la clé API"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -8170,6 +9388,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "La petición falló (HTTP %@)."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Échec de la requête (HTTP %@)."
           }
         },
         "he": {
@@ -8212,6 +9436,12 @@
             "value": "La petición falló (HTTP %@): %@"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Échec de la requête (HTTP %@) : %@"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -8250,6 +9480,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Obligatorio: Pockterm necesita un nombre de usuario y una contraseña o una clave para iniciar sesión."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Obligatoire — Pockterm a besoin d'un nom d'utilisateur et d'un mot de passe ou d'une clé pour s'authentifier."
           }
         },
         "he": {
@@ -8292,6 +9528,12 @@
             "value": "Restablecer el valor predeterminado"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rétablir les valeurs par défaut"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -8330,6 +9572,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Restablecer el zoom al tamaño predeterminado"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rétablir le zoom à la taille par défaut"
           }
         },
         "he": {
@@ -8372,6 +9620,12 @@
             "value": "Reanudar la sesión %@"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reprendre la session %@"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -8410,6 +9664,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Revisa los hosts detectados, desactiva los que no quieras y toca **Importar**."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vérifiez les hôtes détectés, désactivez ceux dont vous ne voulez pas, puis touchez **Importer**."
           }
         },
         "he": {
@@ -8452,6 +9712,12 @@
             "value": "Ejecutar"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exécuter"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -8490,6 +9756,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Ejecutar una redirección"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exécuter une redirection"
           }
         },
         "he": {
@@ -8532,6 +9804,12 @@
             "value": "SFTP (Archivos)"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SFTP (Fichiers)"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -8570,6 +9848,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Error de SFTP"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erreur SFTP"
           }
         },
         "he": {
@@ -8612,6 +9896,12 @@
             "value": "Ayuda de SFTP"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aide SFTP"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -8652,6 +9942,12 @@
             "value": "SFTP funciona sobre la misma conexión SSH, así que los ajustes de abajo se aplican en ambos casos. Esto solo elige qué se abre al tocar el host; mantén pulsado un host para acceder al otro."
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SFTP passe par la même connexion SSH, les réglages ci-dessous s'appliquent donc dans les deux cas. Ceci choisit seulement ce qui s'ouvre lorsque vous touchez l'hôte — appuyez longuement sur un hôte pour accéder à l'autre."
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -8687,6 +9983,12 @@
           }
         },
         "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SSH (Terminal)"
+          }
+        },
+        "fr": {
           "stringUnit": {
             "state": "translated",
             "value": "SSH (Terminal)"
@@ -8732,6 +10034,12 @@
             "value": "Guardar"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enregistrer"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -8770,6 +10078,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Guardar la clave"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enregistrer la clé"
           }
         },
         "he": {
@@ -8812,6 +10126,12 @@
             "value": "Guarda y ejecuta comandos reutilizables"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enregistrez et exécutez des commandes réutilisables"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -8850,6 +10170,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Buscar hosts"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rechercher des hôtes"
           }
         },
         "he": {
@@ -8892,6 +10218,12 @@
             "value": "Seguridad y privacidad"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sécurité et confidentialité"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -8930,6 +10262,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Enviar"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Envoyer"
           }
         },
         "he": {
@@ -8972,6 +10310,12 @@
             "value": "Envía una petición de un solo token para verificar la clave y el modelo."
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Envoie une requête d'un seul jeton pour vérifier la clé et le modèle."
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -9010,6 +10354,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Sesión cerrada"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Session fermée"
           }
         },
         "he": {
@@ -9052,6 +10402,12 @@
             "value": "Sesión abierta"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Session ouverte"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -9090,6 +10446,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Establecer el puerto predeterminado"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Définir le port par défaut"
           }
         },
         "he": {
@@ -9132,6 +10494,12 @@
             "value": "Ajustes"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Réglages"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -9170,6 +10538,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Tamaño"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Taille"
           }
         },
         "he": {
@@ -9212,6 +10586,12 @@
             "value": "Tamaño: %lld pt"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Taille : %lldpt"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -9250,6 +10630,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Tamaño: predeterminado"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Taille : par défaut"
           }
         },
         "he": {
@@ -9292,6 +10678,12 @@
             "value": "Fragmentos"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Extraits"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -9330,6 +10722,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Los fragmentos son comandos que usas a menudo."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les extraits sont des commandes que vous utilisez souvent."
           }
         },
         "he": {
@@ -9372,6 +10770,12 @@
             "value": "Destacar"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Favori"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -9410,6 +10814,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Detener la generación"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Arrêter la génération"
           }
         },
         "he": {
@@ -9452,6 +10862,12 @@
             "value": "Detenido"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Arrêté"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -9487,6 +10903,12 @@
           }
         },
         "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tab"
+          }
+        },
+        "fr": {
           "stringUnit": {
             "state": "translated",
             "value": "Tab"
@@ -9532,6 +10954,12 @@
             "value": "Toca **+** para crear una carpeta. **Desliza hacia abajo** para actualizar el listado."
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Touchez **+** pour créer un dossier. **Tirez vers le bas** pour actualiser la liste."
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -9570,6 +10998,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Toca **+** y luego **Subir un archivo**."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Touchez **+**, puis **Envoyer un fichier**."
           }
         },
         "he": {
@@ -9612,6 +11046,12 @@
             "value": "Toca **..** en la parte superior para subir un directorio."
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Touchez **..** en haut pour remonter d'un répertoire."
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -9650,6 +11090,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Toca **Guardar**."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Touchez **Enregistrer**."
           }
         },
         "he": {
@@ -9692,6 +11138,12 @@
             "value": "Toca **▶** para iniciar; el estado indica cuándo está activa. Toca **⏹** para detenerla."
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Touchez **▶** pour démarrer ; l'état indique quand la redirection est active. Touchez **⏹** pour l'arrêter."
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -9730,6 +11182,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Toca + para añadir un host."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Touchez + pour ajouter un hôte."
           }
         },
         "he": {
@@ -9772,6 +11230,12 @@
             "value": "Toca + para añadir un túnel."
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Touchez + pour ajouter un tunnel."
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -9810,6 +11274,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Toca + para generar una clave Ed25519."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Touchez + pour générer une clé Ed25519."
           }
         },
         "he": {
@@ -9852,6 +11322,12 @@
             "value": "Toca + para organizar los hosts en grupos."
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Touchez + pour organiser les hôtes en groupes."
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -9890,6 +11366,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Toca + para guardar un comando reutilizable."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Touchez + pour enregistrer une commande réutilisable."
           }
         },
         "he": {
@@ -9932,6 +11414,12 @@
             "value": "Toca un host para abrir una sesión de terminal."
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Touchez un hôte pour ouvrir une session de terminal."
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -9970,6 +11458,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Toca el botón de **fragmento** para ejecutar un comando guardado en la sesión."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Touchez le bouton **extrait** pour exécuter une commande enregistrée dans la session."
           }
         },
         "he": {
@@ -10015,6 +11509,12 @@
             "value": "Tema del terminal"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Thème du terminal"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -10053,6 +11553,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Probar la conexión"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tester la connexion"
           }
         },
         "he": {
@@ -10095,6 +11601,12 @@
             "value": "Eso abre el selector de archivos del propio iPhone, así que puedes subir directamente desde **iCloud Drive**, En mi iPhone o cualquier otra ubicación de Archivos."
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cela ouvre le sélecteur de fichiers de l'iPhone : vous pouvez donc envoyer directement depuis **iCloud Drive**, Sur mon iPhone ou tout autre emplacement de Fichiers."
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -10133,6 +11645,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "El **Asistente de IA** es la única excepción: cuando lo usas, la salida relevante del terminal (y cualquier archivo que adjuntes) se envía al proveedor de modelos que configures —Anthropic, OpenAI, OpenRouter o Hugging Face— usando **tu propia clave API**. No se envía nada hasta que usas el asistente, y tu clave se guarda en el Llavero de iOS. Consulta la política de privacidad de tu proveedor para saber cómo tratan esos datos."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "L'**Assistant IA** est la seule exception : lorsque vous l'utilisez, la sortie pertinente du terminal (et les fichiers que vous joignez) est envoyée au fournisseur de modèles que vous configurez — Anthropic, OpenAI, OpenRouter ou Hugging Face — à l'aide de **votre propre clé API**. Rien n'est envoyé tant que vous n'utilisez pas l'assistant, et votre clé est conservée dans le trousseau iOS. Consultez la politique de confidentialité de votre fournisseur pour savoir comment il traite ces données."
           }
         },
         "he": {
@@ -10175,6 +11693,12 @@
             "value": "La clave API fue rechazada. Compruébala en los ajustes de IA."
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La clé API a été rejetée. Vérifiez-la dans les réglages IA."
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -10213,6 +11737,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "El terminal"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le terminal"
           }
         },
         "he": {
@@ -10255,6 +11785,12 @@
             "value": "El asistente quiere ejecutar:"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "L'assistant veut exécuter :"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -10293,6 +11829,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "La barra encima del teclado incluye **esc**, **ctrl**, **tab**, las teclas de flecha y más."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La barre au-dessus du clavier comporte **esc**, **ctrl**, **tab**, les touches fléchées et plus encore."
           }
         },
         "he": {
@@ -10335,6 +11877,12 @@
             "value": "El valor predeterminado para todos los hosts. «Desactivado» mantiene el comportamiento actual. Los hosts y grupos individuales pueden anularlo."
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La valeur par défaut pour tous les hôtes. « Désactivé » conserve le comportement actuel. Les hôtes et les groupes peuvent la remplacer individuellement."
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -10373,6 +11921,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "El archivo se guarda en la carpeta que estás viendo en ese momento."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le fichier arrive dans le dossier que vous consultez actuellement."
           }
         },
         "he": {
@@ -10415,6 +11969,12 @@
             "value": "La primera vez que te conectas a un servidor, Pockterm muestra la **huella** de su clave y te pide que la aceptes. Esto se llama confianza en el primer uso."
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La première fois que vous vous connectez à un serveur, Pockterm affiche l'**empreinte** de sa clé et vous demande de l'accepter. C'est ce qu'on appelle la confiance à la première utilisation."
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -10453,6 +12013,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "El proveedor está sobrecargado. Vuelve a intentarlo en breve."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le fournisseur est surchargé. Réessayez dans un instant."
           }
         },
         "he": {
@@ -10495,6 +12061,12 @@
             "value": "El shell remoto ha terminado."
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le shell distant s'est terminé."
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -10533,6 +12105,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "La salida del terminal%@ se enviará a %@."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La sortie du terminal%@ sera envoyée à %@."
           }
         },
         "he": {
@@ -10575,6 +12153,12 @@
             "value": "Tema"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Thème"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -10613,6 +12197,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Esta sesión se cerró tras estar inactiva. Puedes cambiar cuánto tiempo permanecen conectadas las sesiones."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cette session a été fermée après une période d'inactivité. Vous pouvez modifier la durée pendant laquelle les sessions restent connectées."
           }
         },
         "he": {
@@ -10655,6 +12245,12 @@
             "value": "Transferir archivos (SFTP)"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Transférer des fichiers (SFTP)"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -10693,6 +12289,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Las transferencias se envían por fragmentos, así que ni siquiera un archivo grande agotará la memoria. Mientras una está en curso, la barra de ruta muestra cuánto se ha transferido y el tamaño total."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les transferts se font par blocs, si bien que même un fichier volumineux n'épuise pas la mémoire. Pendant un transfert, la barre de chemin indique la quantité transférée et la taille totale."
           }
         },
         "he": {
@@ -10735,6 +12337,12 @@
             "value": "Las claves de host aceptadas se recuerdan en tu dispositivo para los avisos descritos en **Verificar claves de host**."
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les clés d'hôte approuvées sont mémorisées sur votre appareil pour les avertissements décrits dans **Vérifier les clés d'hôte**."
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -10773,6 +12381,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Confiar en los servidores de forma segura"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Faire confiance aux serveurs en toute sécurité"
           }
         },
         "he": {
@@ -10815,6 +12429,12 @@
             "value": "Tunelizar conexiones a través de SSH"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Faites passer les connexions par un tunnel SSH"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -10853,6 +12473,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Tipo"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Type"
           }
         },
         "he": {
@@ -10895,6 +12521,12 @@
             "value": "Sin grupo"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sans groupe"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -10933,6 +12565,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Modelo desconocido. Comprueba el nombre del modelo en los ajustes de IA."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modèle inconnu. Vérifiez le nom du modèle dans les réglages IA."
           }
         },
         "he": {
@@ -10975,6 +12613,12 @@
             "value": "Quitar de destacados"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Retirer des favoris"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -11013,6 +12657,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Subir un archivo"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Envoyer un fichier"
           }
         },
         "he": {
@@ -11055,6 +12705,12 @@
             "value": "Subir un archivo"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Envoyer un fichier"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -11093,6 +12749,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Usar"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Utiliser"
           }
         },
         "he": {
@@ -11135,6 +12797,12 @@
             "value": "Usa las pestañas de la parte inferior para moverte entre **Hosts**, **Fragmentos**, **Llavero** y **Redirección de puertos**."
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Utilisez les onglets en bas pour passer de **Hôtes** à **Extraits**, **Trousseau** et **Redirection de ports**."
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -11173,6 +12841,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Nombre de usuario"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nom d'utilisateur"
           }
         },
         "he": {
@@ -11215,6 +12889,12 @@
             "value": "Usar Pockterm"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Utiliser Pockterm"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -11253,6 +12933,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Verificar la clave del host"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vérifier la clé d'hôte"
           }
         },
         "he": {
@@ -11295,6 +12981,12 @@
             "value": "Verificar claves de host"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vérifier les clés d'hôte"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -11333,6 +13025,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Te damos la bienvenida a Pockterm"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bienvenue dans Pockterm"
           }
         },
         "he": {
@@ -11375,6 +13073,12 @@
             "value": "Qué es Pockterm y cómo está organizado"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ce qu'est Pockterm et comment il est organisé"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -11413,6 +13117,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Dónde se guarda todo"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Où tout est stocké"
           }
         },
         "he": {
@@ -11455,6 +13165,12 @@
             "value": "Mientras estés conectado, toca el botón de fragmento en el terminal para ejecutar uno."
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Une fois connecté, touchez le bouton extrait dans le terminal pour en exécuter un."
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -11493,6 +13209,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Tus datos y privacidad"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vos données et votre confidentialité"
           }
         },
         "he": {
@@ -11535,6 +13257,12 @@
             "value": "p. ej. 644"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "p. ex. 644"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -11573,6 +13301,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "en %@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "dans %@"
           }
         },
         "he": {
@@ -11621,6 +13355,12 @@
             "value": "← Izquierda"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "← Gauche"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -11659,6 +13399,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "↑ Arriba"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "↑ Haut"
           }
         },
         "he": {
@@ -11701,6 +13447,12 @@
             "value": "→ Derecha"
           }
         },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "→ Droite"
+          }
+        },
         "he": {
           "stringUnit": {
             "state": "translated",
@@ -11739,6 +13491,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "↓ Abajo"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "↓ Bas"
           }
         },
         "he": {

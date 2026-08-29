@@ -282,6 +282,7 @@
 				he,
 				ar,
 				it,
+				fr,
 				"zh-Hans",
 				"zh-Hant",
 			);

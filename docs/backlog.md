@@ -30,15 +30,25 @@ are all understood and recorded.
 
 **Recorded:** 2026-08-15
 
-Five languages ship complete at **291/291 strings**: Spanish, Hebrew, Arabic,
+Seven languages ship complete at **291/291 strings**: Spanish, Hebrew, Arabic,
 Simplified Chinese, Traditional Chinese. Verify at any time with
 `scripts/i18n-status`. (The catalogue grows: it was 274 when this was written,
 301 keys today of which 291 translate. Re-check the count before estimating.)
 
-Nine remain, **one language per commit**, in this order:
+**Found while verifying Italian:** the port-forward type picker
+(`ForwardEditorView.swift:16`, `Text("Local")`) reads `Local` / `Remote` /
+`Dynamic`, but `Local` is one of the ten `shouldTranslate: false` keys — so
+every language shows a half-translated list, e.g. `Local / Remoto / Dinamico`.
+It is almost certainly a mistake: `Local` happens to be correct Spanish, which
+is likely how it got marked verbatim. Fixing it means un-flagging the key and
+translating it for all seven languages; it is not Italian-specific, so it
+belongs in its own change.
 
-1. Italian
-2. French
+**Italian (#52) and French (#53) are done.** Seven remain, **one language per
+commit**, in this order:
+
+1. ~~Italian~~ — done 2026-08-29
+2. ~~French~~ — done 2026-08-29
 3. Greek
 4. Russian
 5. Ukrainian
