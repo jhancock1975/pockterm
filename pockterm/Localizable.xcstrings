@@ -21,6 +21,12 @@
             "value": "מפתח API של %@"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chiave API %@"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -139,6 +145,24 @@
             }
           }
         },
+        "it": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld sessione"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld sessioni"
+                }
+              }
+            }
+          }
+        },
         "zh-Hans": {
           "variations": {
             "plural": {
@@ -185,6 +209,12 @@
             "value": "‎%lld נק׳"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lldpt"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -217,6 +247,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "**אישורי גישה** הם שם משתמש בתוספת דרך אימות — סיסמה או מפתח SSH."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le **Credenziali** sono un nome utente più un modo per autenticarsi: una password oppure una chiave SSH."
           }
         },
         "zh-Hans": {
@@ -253,6 +289,12 @@
             "value": "**דינמי** — פרוקסי SOCKS5 במכשיר שלך שולח כל חיבור דרך השרת."
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**Dinamico** — un proxy SOCKS5 sul tuo dispositivo invia ogni connessione attraverso il server."
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -285,6 +327,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "**מקומי** — יציאה במכשיר שלך מנותבת אל מארח שהשרת יכול להגיע אליו."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**Local** — una porta sul tuo dispositivo inoltra a un host raggiungibile dal server."
           }
         },
         "zh-Hans": {
@@ -321,6 +369,12 @@
             "value": "**לחץ לחיצה ארוכה על מארח** ובחר **עיין בקבצים**."
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**Tieni premuto un host** e scegli **Sfoglia file**."
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -353,6 +407,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "**לחץ לחיצה ארוכה על הקובץ** ואז בחר **הורד**."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**Tieni premuto il file**, poi scegli **Scarica**."
           }
         },
         "zh-Hans": {
@@ -389,6 +449,12 @@
             "value": "**לחץ לחיצה ארוכה** על קובץ כדי לשנות את שמו, לשנות את **ההרשאות** שלו או למחוק אותו."
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**Tieni premuto** un file per rinominarlo, cambiarne i **Permessi** o eliminarlo."
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -421,6 +487,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "**מרוחק** — יציאה בשרת מנותבת בחזרה אל המכשיר שלך."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**Remoto** — una porta sul server inoltra verso il tuo dispositivo."
           }
         },
         "zh-Hans": {
@@ -457,6 +529,12 @@
             "value": "**סמן בכוכב** מארח (החלק שמאלה) כדי לקבע אותו למקטע המועדפים."
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Segna un host come **Preferito** (scorri a sinistra) per fissarlo nella sezione Preferiti."
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -489,6 +567,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "**החלק שמאלה** לעריכה, סימון בכוכב או מחיקה."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**Scorri a sinistra** per Modifica, Preferito o Elimina."
           }
         },
         "zh-Hans": {
@@ -525,6 +609,12 @@
             "value": "**החלק ימינה** והקש **קבצים** כדי לעיין בו דרך SFTP."
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**Scorri a destra** e tocca **File** per sfogliarlo via SFTP."
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -559,6 +649,12 @@
             "value": "**הקש על שורה** כדי לערוך אותה."
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**Tocca una riga** per modificarla."
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -591,6 +687,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "**הקש** על מארח כדי להתחבר."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**Tocca** un host per connetterti."
           }
         },
         "zh-Hans": {
@@ -630,6 +732,12 @@
             "value": "15 דק׳"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "15 min"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -662,6 +770,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "30 דק׳"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "30 min"
           }
         },
         "zh-Hans": {
@@ -698,6 +812,12 @@
             "value": "5 דק׳"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "5 min"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -730,6 +850,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "60 דק׳"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "60 min"
           }
         },
         "zh-Hans": {
@@ -766,6 +892,12 @@
             "value": "פרוקסי SOCKS5 מאזין ביציאת הקישור; כל חיבור מנותב אל היעד שביקש."
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Un proxy SOCKS5 resta in ascolto sulla porta di bind; ogni connessione viene incanalata verso la destinazione richiesta."
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -798,6 +930,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "עוזר AI"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Assistente AI"
           }
         },
         "zh-Hans": {
@@ -834,6 +972,12 @@
             "value": "אישור"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Accetta"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -866,6 +1010,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "אשר מפתח שהשתנה"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Accetta la chiave modificata"
           }
         },
         "zh-Hans": {
@@ -902,6 +1052,12 @@
             "value": "אשר רק אם טביעת האצבע תואמת למה שאתה מצפה לו מבעל השרת."
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Accetta solo se il fingerprint corrisponde a quello che ti aspetti dal proprietario del server."
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -934,6 +1090,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "פעיל ביציאה ‎:%@"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Attivo su :%@"
           }
         },
         "zh-Hans": {
@@ -970,6 +1132,12 @@
             "value": "תחילה הוסף מארח בלשונית המארחים."
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aggiungi prima un host nella scheda Host."
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -1002,6 +1170,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "הוסף את שורת המפתח הציבורי המוצגת לקובץ `~/.ssh/authorized_keys` בשרת."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aggiungi la riga di chiave pubblica mostrata al file `~/.ssh/authorized_keys` del server."
           }
         },
         "zh-Hans": {
@@ -1038,6 +1212,12 @@
             "value": "הוספת מארח"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aggiungere un host"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -1070,6 +1250,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "כתובת"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Indirizzo"
           }
         },
         "zh-Hans": {
@@ -1106,6 +1292,12 @@
             "value": "סוכן"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Agente"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -1138,6 +1330,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "כבר בתוך הפעלה? הקש על כפתור **התיקייה** בסרגל העליון של המסוף."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sei già in una sessione? Tocca il pulsante **cartella** nella barra superiore del terminale."
           }
         },
         "zh-Hans": {
@@ -1174,6 +1372,12 @@
             "value": "מראה"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aspetto"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -1206,6 +1410,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "ברירות מחדל למראה"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aspetto predefinito"
           }
         },
         "zh-Hans": {
@@ -1242,6 +1452,12 @@
             "value": "החל"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Applica"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -1274,6 +1490,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "אישור"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Approvazione"
           }
         },
         "zh-Hans": {
@@ -1310,6 +1532,12 @@
             "value": "שאל על מה שמופיע במסך, או בקש פקודה."
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chiedi informazioni su ciò che vedi sullo schermo, oppure chiedi un comando."
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -1342,6 +1570,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "שאל את העוזר…"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chiedi all'assistente…"
           }
         },
         "zh-Hans": {
@@ -1378,6 +1612,12 @@
             "value": "שייך מארח לקבוצה בעורך המארחים."
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Assegna un host a un gruppo nell'editor dell'host."
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -1410,6 +1650,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "עוזר"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Assistente"
           }
         },
         "zh-Hans": {
@@ -1446,6 +1692,12 @@
             "value": "שיחות עם העוזר נשמרות במכשיר שלכם, אחת לכל מארח, כך שהשיחה עדיין שם כשמתחברים מחדש. הקישו על פח האשפה בעוזר כדי למחוק שיחה."
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le conversazioni con l'assistente restano sul tuo dispositivo, una per host, così una chat è ancora lì quando ti riconnetti. Tocca il cestino nell'assistente per eliminarne una."
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -1478,6 +1730,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "צרף קובץ מקומי"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Allega file locale"
           }
         },
         "zh-Hans": {
@@ -1514,6 +1772,12 @@
             "value": "צרף קובץ מרוחק"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Allega file remoto"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -1546,6 +1810,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "צרף קובץ"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Allega un file"
           }
         },
         "zh-Hans": {
@@ -1582,6 +1852,12 @@
             "value": "אימות"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Autenticazione"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -1614,6 +1890,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "הרצה אוטומטית"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esecuzione automatica"
           }
         },
         "zh-Hans": {
@@ -1650,6 +1932,12 @@
             "value": "מפתחות זמינים"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chiavi disponibili"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -1682,6 +1970,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "יציאת קישור"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Porta di bind"
           }
         },
         "zh-Hans": {
@@ -1718,6 +2012,12 @@
             "value": "ייבוא מארחים קיימים"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Importa host esistenti"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -1750,6 +2050,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "עיין בקבצים"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sfoglia file"
           }
         },
         "zh-Hans": {
@@ -1786,6 +2092,12 @@
             "value": "עיון, הורדה והעלאה של קבצים"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sfoglia, scarica e carica file"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -1818,6 +2130,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "ביטול"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Annulla"
           }
         },
         "zh-Hans": {
@@ -1854,6 +2172,12 @@
             "value": "שנה כמה זמן הפעלות נשארות מחוברות"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modifica per quanto tempo le sessioni restano connesse"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -1886,6 +2210,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "בודק אם יש דגמים חדשים ב-%@…"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ricerca di nuovi modelli su %@…"
           }
         },
         "zh-Hans": {
@@ -1922,6 +2252,12 @@
             "value": "בחר **אישורי גישה** כדי ש-Pockterm יידע כיצד להתחבר. אם אין לך עדיין, הקש **אישורי גישה חדשים**."
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Scegli le **Credenziali** così Pockterm sa come autenticarsi. Se non ne hai ancora, tocca **Nuove credenziali**."
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -1954,6 +2290,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "בחר קובץ…"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Scegli file…"
           }
         },
         "zh-Hans": {
@@ -1990,6 +2332,12 @@
             "value": "מחיקת שיחה"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancella la conversazione"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -2022,6 +2370,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "סגור הפעלה"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chiudi la sessione"
           }
         },
         "zh-Hans": {
@@ -2058,6 +2412,12 @@
             "value": "פקודה"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Comando"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -2090,6 +2450,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "אישור להכול"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conferma tutto"
           }
         },
         "zh-Hans": {
@@ -2126,6 +2492,12 @@
             "value": "אישור למסוכן בלבד"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conferma solo se rischioso"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -2158,6 +2530,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "התחברות ועבודה בהפעלה"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connettersi e lavorare in una sessione"
           }
         },
         "zh-Hans": {
@@ -2194,6 +2572,12 @@
             "value": "מתחבר…"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connessione…"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -2226,6 +2610,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "חיבור"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connessione"
           }
         },
         "zh-Hans": {
@@ -2262,6 +2652,12 @@
             "value": "החיבור נכשל"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connessione non riuscita"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -2294,6 +2690,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "קובע אם העוזר שואל לפני הרצת פקודות או עריכת קבצים בשרת שלך."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Determina se l'assistente chiede conferma prima di eseguire comandi o modificare file sul tuo server."
           }
         },
         "zh-Hans": {
@@ -2330,6 +2732,12 @@
             "value": "לא ניתן לצרף את הקובץ"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impossibile allegare il file"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -2362,6 +2770,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "לא ניתן להגיע אל %@; מוצגת הרשימה השמורה."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impossibile raggiungere %@; viene mostrato l'elenco memorizzato."
           }
         },
         "zh-Hans": {
@@ -2398,6 +2812,12 @@
             "value": "צור"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crea"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -2430,6 +2850,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "יצירת מארח"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Creare un host"
           }
         },
         "zh-Hans": {
@@ -2466,6 +2892,12 @@
             "value": "צור שרת שאפשר להתחבר אליו"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crea un server a cui connetterti"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -2498,6 +2930,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "יצירת אישורי גישה"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Creare credenziali"
           }
         },
         "zh-Hans": {
@@ -2534,6 +2972,12 @@
             "value": "יוצר זוג מפתחות חדש ושומר אותו באופן מאובטח במחזיק המפתחות."
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Crea una nuova coppia di chiavi conservata in sicurezza nel Portachiavi."
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -2566,6 +3010,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "אישורי גישה"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Credenziali"
           }
         },
         "zh-Hans": {
@@ -2602,6 +3052,12 @@
             "value": "אישורי גישה ומפתחות SSH"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Credenziali e chiavi SSH"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -2634,6 +3090,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "מותאם אישית"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Personalizzato"
           }
         },
         "zh-Hans": {
@@ -2670,6 +3132,12 @@
             "value": "ברירת מחדל (בירושה)"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Predefinito (eredita)"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -2702,6 +3170,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "אישורי גישה כברירת מחדל"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Credenziali predefinite"
           }
         },
         "zh-Hans": {
@@ -2738,6 +3212,12 @@
             "value": "גודל ברירת מחדל"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dimensione predefinita"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -2770,6 +3250,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "ברירות מחדל שהמארחים יורשים"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Valori predefiniti ereditati dagli host"
           }
         },
         "zh-Hans": {
@@ -2806,6 +3292,12 @@
             "value": "מחק"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elimina"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -2838,6 +3330,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "נדחה"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Negato"
           }
         },
         "zh-Hans": {
@@ -2874,6 +3372,12 @@
             "value": "דחה"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nega"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -2906,6 +3410,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "נותק עקב חוסר פעילות"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Disconnesso per inattività"
           }
         },
         "zh-Hans": {
@@ -2942,6 +3452,12 @@
             "value": "סגור מקלדת"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chiudi tastiera"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -2974,6 +3490,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "סיום"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fine"
           }
         },
         "zh-Hans": {
@@ -3010,6 +3532,12 @@
             "value": "הורד"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Scarica"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -3042,6 +3570,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "הורדת קובץ"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Scaricare un file"
           }
         },
         "zh-Hans": {
@@ -3078,6 +3612,12 @@
             "value": "גרור לשינוי הסדר; החלק להסרה. הסרגל נגלל לרוחב במסוף."
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Trascina per riordinare; scorri per rimuovere. Nel terminale la barra scorre orizzontalmente."
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -3110,6 +3650,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "דינמי (SOCKS)"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dinamico (SOCKS)"
           }
         },
         "zh-Hans": {
@@ -3146,6 +3692,12 @@
             "value": "ערוך"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modifica"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -3178,6 +3730,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "הזן **תווית**, את ה**כתובת** (שם מארח או IP) ואת ה**יציאה** (22 כברירת מחדל)."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inserisci un'**Etichetta**, l'**Indirizzo** (hostname o IP) e la **Porta** (22 per impostazione predefinita)."
           }
         },
         "zh-Hans": {
@@ -3214,6 +3772,12 @@
             "value": "הזן את שם המשתמש ובחר **סיסמה** או **מפתח**."
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inserisci il nome utente e scegli **Password** o **Chiave**."
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -3246,6 +3810,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "לכל מארח יש דפדפן קבצים של SFTP. ‏SFTP פועל על אותו חיבור SSH, ולכן אין צורך בהגדרה נוספת."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ogni host ha un browser di file SFTP. SFTP viaggia sulla stessa connessione SSH, quindi non c'è nulla da configurare in più."
           }
         },
         "zh-Hans": {
@@ -3282,6 +3852,12 @@
             "value": "הכול נשאר במכשיר שלך — ראה **הנתונים והפרטיות שלך** לפרטים."
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tutto resta sul tuo dispositivo — vedi **I tuoi dati e la privacy** per i dettagli."
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -3314,6 +3890,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "מועדף"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preferito"
           }
         },
         "zh-Hans": {
@@ -3350,6 +3932,12 @@
             "value": "מועדפים"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preferiti"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -3382,6 +3970,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "קבצים"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "File"
           }
         },
         "zh-Hans": {
@@ -3418,6 +4012,12 @@
             "value": "קבצים ורשת"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "File e rete"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -3450,6 +4050,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "גופן"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Font"
           }
         },
         "zh-Hans": {
@@ -3486,6 +4092,12 @@
             "value": "עבור **מפתח**, בחר אחד מהמפתחות שיצרת."
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Per **Chiave**, seleziona una delle chiavi che hai generato."
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -3518,6 +4130,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "נתב"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inoltra"
           }
         },
         "zh-Hans": {
@@ -3554,6 +4172,12 @@
             "value": "נתב אל (מקומי)"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inoltra a (locale)"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -3586,6 +4210,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "נתב אל (מרוחק)"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inoltra a (remoto)"
           }
         },
         "zh-Hans": {
@@ -3622,6 +4252,12 @@
             "value": "ניתוב יציאות"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inoltro"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -3654,6 +4290,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "מתפריט **מארחים**, בחר **ייבוא מ-ssh_config**."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dal menu **Host**, scegli **Importa da ssh_config**."
           }
         },
         "zh-Hans": {
@@ -3690,6 +4332,12 @@
             "value": "מתפריט **מארחים**, בחר **נהל קבוצות**. אפשר לקנן קבוצות, והמארחים יורשים את אישורי הגישה והיציאה שהוגדרו כברירת מחדל בקבוצה."
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dal menu **Host**, scegli **Gestisci gruppi**. I gruppi possono essere annidati e le credenziali e la porta predefinite di un gruppo vengono ereditate dai suoi host."
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -3722,6 +4370,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "צור"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Genera"
           }
         },
         "zh-Hans": {
@@ -3758,6 +4412,12 @@
             "value": "צור מפתח Ed25519"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Genera chiave Ed25519"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -3790,6 +4450,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "יצירת מפתח"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Generare una chiave"
           }
         },
         "zh-Hans": {
@@ -3826,6 +4492,12 @@
             "value": "צעדים ראשונים"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Per iniziare"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -3858,6 +4530,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "הגדר למארח **קטע הפעלה** כדי להריץ אותו אוטומטית בעת החיבור."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Assegna a un host uno **Snippet di avvio** per eseguirlo automaticamente alla connessione."
           }
         },
         "zh-Hans": {
@@ -3894,6 +4572,12 @@
             "value": "קבוצה"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gruppo"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -3926,6 +4610,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "קבוצות"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gruppi"
           }
         },
         "zh-Hans": {
@@ -3962,6 +4652,12 @@
             "value": "קבוצות, מועדפים וחיפוש"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gruppi, preferiti e ricerca"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -3994,6 +4690,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "עזרה"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aiuto"
           }
         },
         "zh-Hans": {
@@ -4030,6 +4732,12 @@
             "value": "הסתר מקלדת"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nascondi tastiera"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -4062,6 +4770,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "משך החזקה"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tempo di attesa"
           }
         },
         "zh-Hans": {
@@ -4098,6 +4812,12 @@
             "value": "מארח"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Host"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -4130,6 +4850,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "פעולות על מארח"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Azioni host"
           }
         },
         "zh-Hans": {
@@ -4166,6 +4892,12 @@
             "value": "מארחים"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Host"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -4198,6 +4930,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "מארחים לייבוא (%lld נבחרו)"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Host da importare (%lld selezionati)"
           }
         },
         "zh-Hans": {
@@ -4234,6 +4972,12 @@
             "value": "מארחים, קבוצות, קטעים וניתובים נשמרים במכשיר שלך."
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Host, gruppi, snippet e inoltri sono conservati sul tuo dispositivo."
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -4266,6 +5010,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "כיצד Pockterm מחבר אותך"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Come Pockterm ti autentica"
           }
         },
         "zh-Hans": {
@@ -4302,6 +5052,12 @@
             "value": "אם בהמשך שרת מציג מפתח **שונה**, ‏Pockterm מזהיר אותך לפני שממשיכים — ייתכן שהשרת הותקן מחדש, או שמשהו אינו כשורה."
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Se in seguito un server presenta una chiave **diversa**, Pockterm ti avvisa prima di continuare: può significare che il server è stato ricostruito, oppure che qualcosa non va."
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -4334,6 +5090,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "ייבוא"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Importa"
           }
         },
         "zh-Hans": {
@@ -4370,6 +5132,12 @@
             "value": "ייבוא מארחים"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Importa host"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -4402,6 +5170,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "ייבוא מ-ssh_config"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Importa da ssh_config"
           }
         },
         "zh-Hans": {
@@ -4438,6 +5212,12 @@
             "value": "ייבוא מ-ssh_config"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Importare da ssh_config"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -4470,6 +5250,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "בעורך של מארח, בחר **אישורי גישה חדשים**."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nell'editor di un host, scegli **Nuove credenziali**."
           }
         },
         "zh-Hans": {
@@ -4506,6 +5292,12 @@
             "value": "בירושה מהקבוצה של מארח זה."
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ereditato dal gruppo di questo host."
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -4538,6 +5330,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "הוסף"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inserisci"
           }
         },
         "zh-Hans": {
@@ -4574,6 +5372,12 @@
             "value": "מפתח פרטי לא תקין"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chiave privata non valida"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -4606,6 +5410,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "הוא נפתח בגיליון השיתוף, כך שאפשר לשלוח אותו לכל מקום — בחר **שמור בקבצים** כדי לשמור אותו, כולל ב-**iCloud Drive**."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Si apre nel pannello di condivisione, così puoi inviarlo ovunque — scegli **Salva su File** per conservarlo, anche in **iCloud Drive**."
           }
         },
         "zh-Hans": {
@@ -4642,6 +5452,12 @@
             "value": "שמירה על סדר ברשימת מארחים גדולה"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mantieni ordinato un elenco di host lungo"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -4674,6 +5490,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "השאר הפעלות פעילות בזמן חוסר פעילות"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mantieni attive le sessioni inattive"
           }
         },
         "zh-Hans": {
@@ -4710,6 +5532,12 @@
             "value": "שמירת חיבור"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Keep-alive"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -4742,6 +5570,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "מפתח"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chiave"
           }
         },
         "zh-Hans": {
@@ -4778,6 +5612,12 @@
             "value": "סרגל מקשים"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Barra tasti"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -4810,6 +5650,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "המפתח נשמר במחזיק המפתחות"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chiave salvata nel Portachiavi"
           }
         },
         "zh-Hans": {
@@ -4846,6 +5692,12 @@
             "value": "מחזיק מפתחות"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Portachiavi"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -4878,6 +5730,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "המפתחות נשמרים במחזיק המפתחות של iOS ונשלחים רק אל %@."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le chiavi sono conservate nel Portachiavi iOS e inviate solo a %@."
           }
         },
         "zh-Hans": {
@@ -4914,6 +5772,12 @@
             "value": "תווית"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Etichetta"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -4946,6 +5810,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "טוען דגמים…"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Caricamento dei modelli…"
           }
         },
         "zh-Hans": {
@@ -4985,6 +5855,12 @@
             "value": "נהל קבוצות"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gestisci gruppi"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -5017,6 +5893,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "ניהול קבצים"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gestisci i file"
           }
         },
         "zh-Hans": {
@@ -5053,6 +5935,12 @@
             "value": "שיטה"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Metodo"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -5085,6 +5973,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "מזער"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Riduci"
           }
         },
         "zh-Hans": {
@@ -5121,6 +6015,12 @@
             "value": "דגם"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modello"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -5153,6 +6053,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "מזהה דגם"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ID modello"
           }
         },
         "zh-Hans": {
@@ -5189,6 +6095,12 @@
             "value": "רשימת הדגמים עודכנה — הקש להצגה"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elenco dei modelli aggiornato — tocca per mostrarlo"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -5221,6 +6133,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "שם"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nome"
           }
         },
         "zh-Hans": {
@@ -5257,6 +6175,12 @@
             "value": "אישורי גישה חדשים"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nuove credenziali"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -5289,6 +6213,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "תיקייה חדשה"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nuova cartella"
           }
         },
         "zh-Hans": {
@@ -5325,6 +6255,12 @@
             "value": "מארח חדש"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nuovo host"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -5357,6 +6293,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "הפעלה חדשה"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nuova sessione"
           }
         },
         "zh-Hans": {
@@ -5393,6 +6335,12 @@
             "value": "אין קבוצות"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nessun gruppo"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -5425,6 +6373,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "אין מארחים"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nessun host"
           }
         },
         "zh-Hans": {
@@ -5461,6 +6415,12 @@
             "value": "אין מפתחות"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nessuna chiave"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -5493,6 +6453,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "אין ניתובי יציאות"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nessun inoltro"
           }
         },
         "zh-Hans": {
@@ -5529,6 +6495,12 @@
             "value": "אין קטעים"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nessuno snippet"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -5563,6 +6535,12 @@
             "value": "ללא"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nessuno"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -5595,6 +6573,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "אין חיבור"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Non connesso"
           }
         },
         "zh-Hans": {
@@ -5634,6 +6618,12 @@
             "value": "כבוי"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Off"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -5666,6 +6656,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "בלשונית **מארחים**, הקש **+** ואז **מארח חדש**."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nella scheda **Host**, tocca **+**, poi **Nuovo host**."
           }
         },
         "zh-Hans": {
@@ -5702,6 +6698,12 @@
             "value": "בלשונית **מחזיק מפתחות**, הקש **+** ותן למפתח תווית."
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nella scheda **Portachiavi**, tocca **+** e assegna un'etichetta alla chiave."
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -5734,6 +6736,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "בלשונית **ניתוב יציאות**, הקש **+** כדי להוסיף אחד."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nella scheda **Inoltro porte**, tocca **+** per aggiungerne uno."
           }
         },
         "zh-Hans": {
@@ -5770,6 +6778,12 @@
             "value": "בלשונית **קטעים**, הקש **+** כדי לשמור פקודה עם תווית."
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nella scheda **Snippet**, tocca **+** per salvare un comando con un'etichetta."
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -5802,6 +6816,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "בסרגל המקשים"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sulla barra tasti"
           }
         },
         "zh-Hans": {
@@ -5838,6 +6858,12 @@
             "value": "לאחר האישור, המפתח נשמר ולא תישאל שוב."
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Una volta accettata, la chiave viene memorizzata e non ti verrà più chiesto."
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -5870,6 +6896,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "פתח מסוף"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apri il terminale"
           }
         },
         "zh-Hans": {
@@ -5906,6 +6938,12 @@
             "value": "אפשר לפתוח כמה מארחים בו-זמנית — כל הפעלה היא לשונית בחלק העליון. הקש על השם כדי להחליף, או על ה-**✕** האדום כדי לסגור."
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apri più host contemporaneamente — ogni sessione è una scheda in alto. Tocca il suo nome per passare a essa, o la **✕** rossa per chiuderla."
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -5938,6 +6976,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "פתיחת הדפדפן"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apri il browser"
           }
         },
         "zh-Hans": {
@@ -5974,6 +7018,12 @@
             "value": "הפעולה נכשלה"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Operazione non riuscita"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -6006,6 +7056,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "לחלופין הגדר את ה**פרוטוקול** של המארח ל-**SFTP (קבצים)**, ואז הקשה עליו תפתח את הדפדפן במקום מסוף."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oppure imposta il **Protocollo** dell'host su **SFTP (File)**: toccandolo si apre il browser invece del terminale."
           }
         },
         "zh-Hans": {
@@ -6042,6 +7098,12 @@
             "value": "ארגון"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Organizzazione"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -6074,6 +7136,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "אב"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Genitore"
           }
         },
         "zh-Hans": {
@@ -6110,6 +7178,12 @@
             "value": "סיסמה"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Password"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -6142,6 +7216,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "סיסמאות ומפתחות פרטיים נשמרים ב**מחזיק המפתחות של iOS**."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le password e le chiavi private sono conservate nel **Portachiavi iOS**."
           }
         },
         "zh-Hans": {
@@ -6178,6 +7258,12 @@
             "value": "הדבק מפתח API"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Incolla la chiave API"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -6210,6 +7296,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "הדבק את טקסט התצורה שלך, או הקש **בחר קובץ**."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Incolla il testo della tua configurazione, oppure tocca **Scegli file**."
           }
         },
         "zh-Hans": {
@@ -6246,6 +7338,12 @@
             "value": "הדבק ‎~/.ssh/config"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Incolla ~/.ssh/config"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -6278,6 +7376,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "הרשאות"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Permessi"
           }
         },
         "zh-Hans": {
@@ -6314,6 +7418,12 @@
             "value": "הרשאות (אוקטלי)"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Permessi (ottali)"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -6346,6 +7456,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "‏Pockterm יוצר זוג מפתחות Ed25519 ושומר את המפתח הפרטי במחזיק המפתחות של iOS."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pockterm crea una coppia di chiavi Ed25519 e conserva la chiave privata nel Portachiavi iOS."
           }
         },
         "zh-Hans": {
@@ -6382,6 +7498,12 @@
             "value": "ל-Pockterm אין חשבונות, ונתוני החיבורים שלך נשארים במכשיר שלך."
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pockterm non richiede alcun account e i dati delle tue connessioni restano sul tuo dispositivo."
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -6414,6 +7536,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "‏Pockterm הוא לקוח SSH מלא לאייפון. אפשר להתחבר לשרתים, להריץ מסוף אינטראקטיבי, להעביר קבצים דרך SFTP ולהקים מנהרות לניתוב יציאות."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pockterm è un client SSH completo per iPhone. Puoi connetterti a server, usare un terminale interattivo, trasferire file via SFTP e creare tunnel di inoltro porte."
           }
         },
         "zh-Hans": {
@@ -6450,6 +7578,12 @@
             "value": "‏Pockterm קורא את ההגדרות `Host`, `HostName`, `User` ו-`Port`. נוצרים אישורי גישה מסוג סיסמה לכל שם משתמש, כך שתוכל למלא את הסוד אחר כך."
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pockterm legge le impostazioni `Host`, `HostName`, `User` e `Port`. Per ogni nome utente vengono create credenziali con password, così puoi inserire il segreto in un secondo momento."
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -6482,6 +7616,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "יציאה"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Porta"
           }
         },
         "zh-Hans": {
@@ -6518,6 +7658,12 @@
             "value": "ניתוב יציאות"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inoltro porte"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -6550,6 +7696,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "ניתוב יציאות מנתב חיבורי רשת דרך שרת SSH."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "L'inoltro delle porte instrada le connessioni di rete attraverso un server SSH."
           }
         },
         "zh-Hans": {
@@ -6586,6 +7738,12 @@
             "value": "פרוטוקול"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Protocollo"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -6618,6 +7776,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "ספק"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Provider"
           }
         },
         "zh-Hans": {
@@ -6654,6 +7818,12 @@
             "value": "משוך מטה כדי **לחפש** לפי תווית או כתובת. מארחים שהשתמשת בהם לאחרונה מופיעים תחת אחרונים."
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Trascina verso il basso per **cercare** per etichetta o indirizzo. Gli host usati di recente compaiono sotto Recenti."
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -6686,6 +7856,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "הספק הגביל את קצב הבקשות. נסה שוב בקרוב."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Limite di frequenza del provider raggiunto. Riprova tra poco."
           }
         },
         "zh-Hans": {
@@ -6722,6 +7898,12 @@
             "value": "אחרונים"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recenti"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -6754,6 +7936,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "דחה"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rifiuta"
           }
         },
         "zh-Hans": {
@@ -6790,6 +7978,12 @@
             "value": "מרוחק"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Remoto"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -6822,6 +8016,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "הסר"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rimuovi"
           }
         },
         "zh-Hans": {
@@ -6858,6 +8058,12 @@
             "value": "הסר %@"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rimuovi %@"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -6890,6 +8096,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "שנה שם"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rinomina"
           }
         },
         "zh-Hans": {
@@ -6926,6 +8138,12 @@
             "value": "החלף מפתח API"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sostituisci la chiave API"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -6958,6 +8176,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "הבקשה נכשלה (HTTP %@)."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Richiesta non riuscita (HTTP %@)."
           }
         },
         "zh-Hans": {
@@ -6994,6 +8218,12 @@
             "value": "הבקשה נכשלה (HTTP %@): %@"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Richiesta non riuscita (HTTP %@): %@"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -7026,6 +8256,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "נדרש — Pockterm זקוק לשם משתמש ולסיסמה או מפתח כדי להתחבר."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Obbligatorio — a Pockterm servono un nome utente e una password o una chiave per autenticarsi."
           }
         },
         "zh-Hans": {
@@ -7062,6 +8298,12 @@
             "value": "אפס לברירת המחדל"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ripristina predefiniti"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -7094,6 +8336,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "אפס את המרחק לגודל ברירת המחדל"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ripristina lo zoom alla dimensione predefinita"
           }
         },
         "zh-Hans": {
@@ -7130,6 +8378,12 @@
             "value": "חדש את ההפעלה %@"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Riprendi la sessione %@"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -7162,6 +8416,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "עבור על המארחים שזוהו, בטל את אלה שאינך רוצה, ואז הקש **ייבוא**."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Controlla gli host rilevati, disattiva quelli che non vuoi, poi tocca **Importa**."
           }
         },
         "zh-Hans": {
@@ -7198,6 +8458,12 @@
             "value": "הרץ"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esegui"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -7230,6 +8496,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "הרצת ניתוב"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eseguire un inoltro"
           }
         },
         "zh-Hans": {
@@ -7266,6 +8538,12 @@
             "value": "SFTP (קבצים)"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SFTP (File)"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -7298,6 +8576,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "שגיאת SFTP"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Errore SFTP"
           }
         },
         "zh-Hans": {
@@ -7334,6 +8618,12 @@
             "value": "עזרה ל-SFTP"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Guida SFTP"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -7366,6 +8656,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "SFTP פועל על אותו חיבור SSH, ולכן ההגדרות שלהלן חלות בכל מקרה. כאן נבחר רק מה נפתח בהקשה על המארח — לחיצה ארוכה על מארח תפתח את השני."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SFTP viaggia sulla stessa connessione SSH, quindi le impostazioni qui sotto valgono in entrambi i casi. Questo sceglie solo cosa si apre quando tocchi l'host — tieni premuto un host per raggiungere l'altro."
           }
         },
         "zh-Hans": {
@@ -7402,6 +8698,12 @@
             "value": "SSH (מסוף)"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SSH (Terminale)"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -7434,6 +8736,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "שמור"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Salva"
           }
         },
         "zh-Hans": {
@@ -7470,6 +8778,12 @@
             "value": "שמור מפתח"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Salva la chiave"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -7502,6 +8816,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "שמירה והרצה של פקודות לשימוש חוזר"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Salva ed esegui comandi riutilizzabili"
           }
         },
         "zh-Hans": {
@@ -7538,6 +8858,12 @@
             "value": "חפש מארחים"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cerca host"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -7570,6 +8896,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "אבטחה ופרטיות"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sicurezza e privacy"
           }
         },
         "zh-Hans": {
@@ -7606,6 +8938,12 @@
             "value": "שלח"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Invia"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -7638,6 +8976,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "שולח בקשה באורך אסימון אחד כדי לאמת את המפתח ואת הדגם."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Invia una richiesta da un token per verificare la chiave e il modello."
           }
         },
         "zh-Hans": {
@@ -7674,6 +9018,12 @@
             "value": "ההפעלה נסגרה"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sessione chiusa"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -7706,6 +9056,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "הפעלה פתוחה"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sessione aperta"
           }
         },
         "zh-Hans": {
@@ -7742,6 +9098,12 @@
             "value": "הגדר יציאת ברירת מחדל"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Imposta la porta predefinita"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -7774,6 +9136,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "הגדרות"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impostazioni"
           }
         },
         "zh-Hans": {
@@ -7810,6 +9178,12 @@
             "value": "גודל"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dimensione"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -7842,6 +9216,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "גודל: ‎%lld נק׳"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dimensione: %lldpt"
           }
         },
         "zh-Hans": {
@@ -7878,6 +9258,12 @@
             "value": "גודל: ברירת מחדל"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dimensione: predefinita"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -7910,6 +9296,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "קטעים"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Snippet"
           }
         },
         "zh-Hans": {
@@ -7946,6 +9338,12 @@
             "value": "קטעים הם פקודות שאתה משתמש בהן לעיתים קרובות."
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gli snippet sono comandi che usi spesso."
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -7978,6 +9376,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "סמן בכוכב"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preferito"
           }
         },
         "zh-Hans": {
@@ -8014,6 +9418,12 @@
             "value": "הפסק ליצור"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Interrompi la generazione"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -8048,6 +9458,12 @@
             "value": "הופסק"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Interrotto"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -8077,6 +9493,12 @@
           }
         },
         "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tab"
+          }
+        },
+        "it": {
           "stringUnit": {
             "state": "translated",
             "value": "Tab"
@@ -8116,6 +9538,12 @@
             "value": "הקש **+** כדי ליצור תיקייה. **משוך מטה** כדי לרענן את הרשימה."
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tocca **+** per creare una cartella. **Trascina verso il basso** per aggiornare l'elenco."
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -8148,6 +9576,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "הקש **+** ואז **העלה קובץ**."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tocca **+**, poi **Carica file**."
           }
         },
         "zh-Hans": {
@@ -8184,6 +9618,12 @@
             "value": "הקש **..** בחלק העליון כדי לעלות תיקייה אחת."
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tocca **..** in alto per salire di una directory."
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -8216,6 +9656,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "הקש **שמור**."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tocca **Salva**."
           }
         },
         "zh-Hans": {
@@ -8252,6 +9698,12 @@
             "value": "הקש **▶** כדי להתחיל; המצב מראה מתי הוא פעיל. הקש **⏹** כדי לעצור."
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tocca **▶** per avviare; lo stato indica quando è attivo. Tocca **⏹** per fermarlo."
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -8284,6 +9736,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "הקש + כדי להוסיף מארח."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tocca + per aggiungere un host."
           }
         },
         "zh-Hans": {
@@ -8320,6 +9778,12 @@
             "value": "הקש + כדי להוסיף מנהרה."
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tocca + per aggiungere un tunnel."
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -8352,6 +9816,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "הקש + כדי ליצור מפתח Ed25519."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tocca + per generare una chiave Ed25519."
           }
         },
         "zh-Hans": {
@@ -8388,6 +9858,12 @@
             "value": "הקש + כדי לארגן מארחים בקבוצות."
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tocca + per organizzare gli host in gruppi."
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -8420,6 +9896,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "הקש + כדי לשמור פקודה לשימוש חוזר."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tocca + per salvare un comando riutilizzabile."
           }
         },
         "zh-Hans": {
@@ -8456,6 +9938,12 @@
             "value": "הקש על מארח כדי לפתוח הפעלת מסוף."
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tocca un host per aprire una sessione di terminale."
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -8488,6 +9976,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "הקש על כפתור ה**קטע** כדי להריץ פקודה שמורה בהפעלה."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tocca il pulsante **snippet** per eseguire un comando salvato nella sessione."
           }
         },
         "zh-Hans": {
@@ -8527,6 +10021,12 @@
             "value": "ערכת נושא למסוף"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tema del terminale"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -8559,6 +10059,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "בדוק חיבור"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prova la connessione"
           }
         },
         "zh-Hans": {
@@ -8595,6 +10101,12 @@
             "value": "זה פותח את בורר הקבצים של האייפון עצמו, כך שאפשר להעלות ישירות מ-**iCloud Drive**, מ״באייפון שלי״ או מכל מיקום אחר באפליקציית קבצים."
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Si apre il selettore di file dell'iPhone, così puoi caricare direttamente da **iCloud Drive**, Su questo iPhone o qualsiasi altra posizione di File."
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -8627,6 +10139,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "**עוזר ה-AI** הוא היוצא מן הכלל היחיד: כשאתה משתמש בו, פלט המסוף הרלוונטי (וכל קובץ שתצרף) נשלח לספק הדגמים שהגדרת — Anthropic, ‏OpenAI, ‏OpenRouter או Hugging Face — באמצעות **מפתח ה-API שלך**. שום דבר לא נשלח עד שתשתמש בעוזר, והמפתח שלך נשמר במחזיק המפתחות של iOS. עיין במדיניות הפרטיות של הספק כדי לדעת כיצד הוא מטפל בנתונים האלה."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "L'**Assistente AI** è l'unica eccezione: quando lo usi, l'output pertinente del terminale (e gli eventuali file che alleghi) viene inviato al provider di modelli che configuri — Anthropic, OpenAI, OpenRouter o Hugging Face — usando **la tua chiave API**. Non viene inviato nulla finché non usi l'assistente, e la tua chiave è conservata nel Portachiavi iOS. Consulta l'informativa sulla privacy del tuo provider per sapere come tratta quei dati."
           }
         },
         "zh-Hans": {
@@ -8663,6 +10181,12 @@
             "value": "מפתח ה-API נדחה. בדוק אותו בהגדרות ה-AI."
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La chiave API è stata rifiutata. Controllala nelle impostazioni AI."
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -8695,6 +10219,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "המסוף"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Il terminale"
           }
         },
         "zh-Hans": {
@@ -8731,6 +10261,12 @@
             "value": "העוזר מבקש להריץ:"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "L'assistente vuole eseguire:"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -8763,6 +10299,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "הסרגל מעל המקלדת כולל **esc**, **ctrl**, **tab**, מקשי חיצים ועוד."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La barra sopra la tastiera contiene **esc**, **ctrl**, **tab**, i tasti freccia e altro."
           }
         },
         "zh-Hans": {
@@ -8799,6 +10341,12 @@
             "value": "ברירת המחדל לכל המארחים. ״כבוי״ משאיר את ההתנהגות הנוכחית. מארחים וקבוצות בודדים יכולים לעקוף זאת."
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Il valore predefinito per tutti gli host. \"Off\" mantiene il comportamento attuale. I singoli host e gruppi possono sovrascriverlo."
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -8831,6 +10379,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "הקובץ נשמר בתיקייה שאתה צופה בה כעת."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Il file finisce nella cartella che stai visualizzando."
           }
         },
         "zh-Hans": {
@@ -8867,6 +10421,12 @@
             "value": "בפעם הראשונה שאתה מתחבר לשרת, ‏Pockterm מציג את **טביעת האצבע** של המפתח שלו ומבקש ממך לאשר אותה. זה נקרא אמון בשימוש ראשון."
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La prima volta che ti connetti a un server, Pockterm mostra il **fingerprint** della sua chiave e ti chiede di accettarlo. Questo si chiama trust on first use."
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -8899,6 +10459,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "הספק עמוס. נסה שוב בקרוב."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Il provider è sovraccarico. Riprova tra poco."
           }
         },
         "zh-Hans": {
@@ -8935,6 +10501,12 @@
             "value": "המעטפת המרוחקת הסתיימה."
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La shell remota è terminata."
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -8967,6 +10539,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "פלט המסוף%@ יישלח אל %@."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "L'output del terminale%@ sarà inviato a %@."
           }
         },
         "zh-Hans": {
@@ -9003,6 +10581,12 @@
             "value": "ערכת נושא"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tema"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -9035,6 +10619,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "ההפעלה נסגרה לאחר חוסר פעילות. אפשר לשנות כמה זמן הפעלות נשארות מחוברות."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Questa sessione è stata chiusa dopo un periodo di inattività. Puoi modificare per quanto tempo le sessioni restano connesse."
           }
         },
         "zh-Hans": {
@@ -9071,6 +10661,12 @@
             "value": "העברת קבצים (SFTP)"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Trasferire file (SFTP)"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -9103,6 +10699,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "ההעברות מוזרמות במקטעים, כך שגם קובץ גדול לא ימצה את הזיכרון. בזמן העברה, סרגל הנתיב מציג כמה הועבר ומה הגודל הכולל."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I trasferimenti avvengono in blocchi, così nemmeno un file di grandi dimensioni esaurisce la memoria. Durante un trasferimento, la barra del percorso mostra quanto è stato trasferito e la dimensione totale."
           }
         },
         "zh-Hans": {
@@ -9139,6 +10741,12 @@
             "value": "מפתחות מארח שאושרו נשמרים במכשיר שלך לצורך האזהרות המתוארות ב**אימות מפתחות מארח**."
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le chiavi host attendibili vengono memorizzate sul tuo dispositivo per gli avvisi descritti in **Verificare le chiavi host**."
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -9171,6 +10779,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "מתן אמון בשרתים בבטחה"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fidarsi dei server in sicurezza"
           }
         },
         "zh-Hans": {
@@ -9207,6 +10821,12 @@
             "value": "ניתוב חיבורים דרך מנהרת SSH"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Incanala le connessioni tramite SSH"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -9239,6 +10859,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "סוג"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tipo"
           }
         },
         "zh-Hans": {
@@ -9275,6 +10901,12 @@
             "value": "ללא קבוצה"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Senza gruppo"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -9307,6 +10939,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "דגם לא מוכר. בדוק את שם הדגם בהגדרות ה-AI."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modello sconosciuto. Controlla il nome del modello nelle impostazioni AI."
           }
         },
         "zh-Hans": {
@@ -9343,6 +10981,12 @@
             "value": "בטל סימון בכוכב"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Togli preferito"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -9375,6 +11019,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "העלה קובץ"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Carica file"
           }
         },
         "zh-Hans": {
@@ -9411,6 +11061,12 @@
             "value": "העלאת קובץ"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Caricare un file"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -9443,6 +11099,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "השתמש"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usa"
           }
         },
         "zh-Hans": {
@@ -9479,6 +11141,12 @@
             "value": "השתמש בלשוניות שבתחתית כדי לעבור בין **מארחים**, **קטעים**, **מחזיק מפתחות** ו**ניתוב יציאות**."
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usa le schede in basso per spostarti tra **Host**, **Snippet**, **Portachiavi** e **Inoltro porte**."
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -9511,6 +11179,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "שם משתמש"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nome utente"
           }
         },
         "zh-Hans": {
@@ -9547,6 +11221,12 @@
             "value": "עבודה עם Pockterm"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usare Pockterm"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -9579,6 +11259,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "אמת את מפתח המארח"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verifica la chiave host"
           }
         },
         "zh-Hans": {
@@ -9615,6 +11301,12 @@
             "value": "אימות מפתחות מארח"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verificare le chiavi host"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -9647,6 +11339,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "ברוך הבא ל-Pockterm"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Benvenuto in Pockterm"
           }
         },
         "zh-Hans": {
@@ -9683,6 +11381,12 @@
             "value": "מה זה Pockterm וכיצד הוא מאורגן"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Che cos'è Pockterm e come è organizzato"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -9715,6 +11419,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "היכן הכול נשמר"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dove viene conservato tutto"
           }
         },
         "zh-Hans": {
@@ -9751,6 +11461,12 @@
             "value": "בזמן שאתה מחובר, הקש על כפתור הקטע במסוף כדי להריץ אחד."
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mentre sei connesso, tocca il pulsante snippet nel terminale per eseguirne uno."
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -9783,6 +11499,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "הנתונים והפרטיות שלך"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I tuoi dati e la privacy"
           }
         },
         "zh-Hans": {
@@ -9819,6 +11541,12 @@
             "value": "לדוגמה 644"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "es. 644"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -9851,6 +11579,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "ב-%@"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "in %@"
           }
         },
         "zh-Hans": {
@@ -9893,6 +11627,12 @@
             "value": "← שמאלה"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "← Sinistra"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -9925,6 +11665,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "↑ למעלה"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "↑ Su"
           }
         },
         "zh-Hans": {
@@ -9961,6 +11707,12 @@
             "value": "→ ימינה"
           }
         },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "→ Destra"
+          }
+        },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
@@ -9993,6 +11745,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "↓ למטה"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "↓ Giù"
           }
         },
         "zh-Hans": {
