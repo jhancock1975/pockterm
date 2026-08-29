@@ -25,3 +25,18 @@ extension BinaryInteger {
     /// follow the user's locale.
     var technicalDigits: String { String(self, radix: 10) }
 }
+
+extension FormatStyle where Self == IntegerFormatStyle<Int> {
+    /// Port-style formatting for an editable field: Latin digits, no grouping
+    /// separator, whatever the UI language.
+    ///
+    /// `TextField(value:format: .number)` formats for the user's locale, which
+    /// does to an editable port exactly what plain interpolation does to a
+    /// displayed one — an Arabic user sees ٨٬٠٨٠ in a field they typed 8080
+    /// into, complete with a thousands separator that is meaningless in a port.
+    /// This is the `TextField` counterpart to `technicalDigits`.
+    static var technicalPort: IntegerFormatStyle<Int> {
+        IntegerFormatStyle<Int>(locale: Locale(identifier: "en_US_POSIX"))
+            .grouping(.never)
+    }
+}

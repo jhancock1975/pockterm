@@ -35,7 +35,7 @@ struct HostEditorView: View {
                         .autocorrectionDisabled()
                         .keyboardType(.URL)
                         .focused($focusedField, equals: .address)
-                    TextField("Port", value: $host.port, format: .number)
+                    TextField("Port", value: $host.port, format: .technicalPort)
                         .keyboardType(.numberPad)
                         .focused($focusedField, equals: .port)
                     Picker("Keep-alive", selection: $host.keepAliveSeconds) {
@@ -96,7 +96,7 @@ struct HostEditorView: View {
                                     fontID: host.fontID ?? "system")
                 }
             }
-            .navigationTitle(host.label.isEmpty ? "New Host" : host.label)
+            .navigationTitle(host.label.isEmpty ? String(localized: "New Host") : host.label)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {

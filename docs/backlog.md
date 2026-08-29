@@ -85,9 +85,11 @@ obvious in a screenshot.
 - **Emphasis inside the help guide names UI controls.** Translate the word
   inside the `**` to whatever that control is called in that language, or the
   guide will tell the reader to tap a button that is not on their screen.
-- **Do not translate the ten verbatim keys** — `..`, `•`,
-  `user@host:~$ ls`, the format-only keys, `Local`, `Terminal`, `OK`. They are
+- **Do not translate the nine verbatim keys** — `..`, `•`,
+  `user@host:~$ ls`, the format-only keys, `Terminal`, `OK`. They are
   already marked `shouldTranslate: false` and need no per-language action.
+  (`Local` was a tenth until 2026-08-29; it was a port-forward type sitting
+  next to a translated Remote and Dynamic, and being verbatim was a mistake.)
 - **Telugu is worth confirming before spending the effort.** iOS supports it
   in-app, but App Store Connect does not offer it as a metadata locale, so the
   store listing cannot be localized to match.

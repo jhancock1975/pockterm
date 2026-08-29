@@ -24,7 +24,7 @@ struct ForwardEditorView: View {
                 }
 
                 Section(bindLabel) {
-                    TextField("Bind Port", value: $forward.bindPort, format: .number)
+                    TextField("Bind Port", value: $forward.bindPort, format: .technicalPort)
                         .keyboardType(.numberPad)
                 }
 
@@ -32,7 +32,7 @@ struct ForwardEditorView: View {
                     Section(forward.type == .local ? "Forward To (remote)" : "Forward To (local)") {
                         TextField("Host", text: $forward.remoteHost)
                             .textInputAutocapitalization(.never).autocorrectionDisabled()
-                        TextField("Port", value: $forward.remotePort, format: .number)
+                        TextField("Port", value: $forward.remotePort, format: .technicalPort)
                             .keyboardType(.numberPad)
                     }
                 } else {
@@ -42,7 +42,7 @@ struct ForwardEditorView: View {
                     }
                 }
             }
-            .navigationTitle(forward.label.isEmpty ? "New Forward" : forward.label)
+            .navigationTitle(forward.label.isEmpty ? String(localized: "New Forward") : forward.label)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
@@ -59,8 +59,13 @@ struct ForwardEditorView: View {
         Binding(get: { forward.type }, set: { forward.type = $0 })
     }
 
+    /// Localized explicitly. This is a `String`, so it reaches `Section(_:)`
+    /// through the StringProtocol overload rather than LocalizedStringKey — a
+    /// plain literal here would stay English in every language.
     private var bindLabel: String {
-        forward.type == .remote ? "Bind Port (on server)" : "Bind Port (on device)"
+        forward.type == .remote
+            ? String(localized: "Bind Port (on server)")
+            : String(localized: "Bind Port (on device)")
     }
 
     private var isValid: Bool {

@@ -31,7 +31,7 @@ struct GroupEditorView: View {
                     }
                     Toggle("Set default port", isOn: $inheritPort.inverted)
                     if !inheritPort {
-                        TextField("Port", value: $portValue, format: .number)
+                        TextField("Port", value: $portValue, format: .technicalPort)
                             .keyboardType(.numberPad)
                     }
                     Picker("Keep-alive", selection: $group.defaultKeepAliveSeconds) {
@@ -65,7 +65,7 @@ struct GroupEditorView: View {
                                     fontID: group.defaultFontID ?? "system")
                 }
             }
-            .navigationTitle(group.name.isEmpty ? "New Group" : group.name)
+            .navigationTitle(group.name.isEmpty ? String(localized: "New Group") : group.name)
             .navigationBarTitleDisplayMode(.inline)
             .onAppear {
                 if let p = group.defaultPort { inheritPort = false; portValue = p }

@@ -18,7 +18,7 @@ struct SnippetEditorView: View {
                         .textInputAutocapitalization(.never)
                 }
             }
-            .navigationTitle(snippet.label.isEmpty ? "New Snippet" : snippet.label)
+            .navigationTitle(snippet.label.isEmpty ? String(localized: "New Snippet") : snippet.label)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
