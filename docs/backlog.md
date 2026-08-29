@@ -217,8 +217,19 @@ So a future Xcode/SwiftPM will break the build. Options when that happens:
 1. **Citadel moves back** to the author's fork upstream — best outcome; worth
    opening an issue on orlandos-nl/Citadel asking why 0.12.1 switched.
 2. **Pin Citadel 0.12.0**, which declares Joannis's fork directly and needs no
-   override. Costs the 0.12.1 stderr-flush fix (stderr-only output hangs
-   `exec`, which the AI assistant's `run_command` uses) and `withExec`.
+   override — the fork would then never even be fetched.
+
+   **The stated cost of this looks wrong (re-checked 2026-08-29).** The
+   0.12.1 stderr-flush fix is in `Sources/Citadel/Exec/Server/ExecHandler.swift`
+   — Citadel's SSH **server**. Pockterm is a client and never runs it. Our own
+   `SSHEngine.exec` already merges the streams remotely with
+   `executeCommand("( cmd ) 2>&1")`, in our source, independent of the Citadel
+   version. `withExec` is unused — no references in the app. The other 0.12.1
+   change is a Mac Catalyst build fix, and we ship iOS.
+
+   So this may cost nothing. **Not yet tested** — verify by pinning 0.12.0,
+   building, and exercising the assistant's `run_command` against a
+   stderr-only command before believing it.
 3. **Fork Citadel** under our own account with the dependency corrected.
 
 Until then `scripts/routine-update` reports the pin as deliberately held.
