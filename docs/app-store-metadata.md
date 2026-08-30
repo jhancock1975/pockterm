@@ -99,6 +99,6 @@ Notes on guidelines:
 1. Stand up a throwaway demo SSH host for each submission (t4g.nano, us-east-1), record the
    IP and password in `~/Documents/Apps/pockterm/demo-host.txt` (NOT here), and paste the
    review notes into App Store Connect. Tear down after approval.
-2. ~~Host the privacy policy~~ DONE → https://jhancock1975.github.io/pockterm/privacy.html.
+2. ~~Host the privacy policy~~ DONE → https://pockterm.com/privacy.html (moved off GitHub Pages when the repo went private; the old URL 404s).
 3. ~~Answer export compliance~~ DONE → `ITSAppUsesNonExemptEncryption = NO`; build 2 reports `usesNonExemptEncryption: false` (auto-cleared).
 4. ~~Capture screenshots~~ DONE for 1.1 → 4 × 6.9" iPhone (1320×2868) uploaded (TARGETED_DEVICE_FAMILY is now iPhone-only = 1).
