@@ -63,6 +63,41 @@ Screenshots come out of the xcresult attachments (named `1-connected`,
 sqlite store (path above): `ZHOST`, `ZIDENTITY`, `ZSSHKEYRECORD`,
 `ZKNOWNHOSTRECORD`.
 
+## Driving the AI assistant end to end
+
+The agent's `run_command` path (model → tool call → `SessionToolExecutor` →
+`SSHEngine.exec` → real sshd) can only be checked with a live provider. It is
+worth checking, because a defect there is invisible to unit tests: a non-zero
+exit used to surface as an opaque Citadel error with the output discarded
+(fixed in #59).
+
+**Pass the API key without putting it in the source or a screenshot.**
+`xcodebuild` forwards its own environment variables prefixed `TEST_RUNNER_` to
+the test runner with the prefix stripped. It must be **exported into
+xcodebuild's environment** — passing it as a build-setting argument on the
+command line does not work, and would put the key in the process arguments:
+
+```bash
+export TEST_RUNNER_OR_KEY="$(tr -d '\n' < ~/Documents/open-router-key)"
+xcodebuild test-without-building ... -only-testing:.../testAgentRunCommandEndToEnd
+unset TEST_RUNNER_OR_KEY
+```
+
+The test reads `ProcessInfo.processInfo.environment["OR_KEY"]` and types it into
+the key field, which is a `SecureField`, so screenshots stay safe.
+
+**Selectors that are not obvious.** SwiftUI `Picker` rows are buttons labelled
+`'Provider, Anthropic'` and `'Approval, Confirm everything'`, so match with
+`label BEGINSWITH`. The assistant's input is a `TextField` with
+placeholder `Ask the assistant…` — `app.textViews.firstMatch` grabs the
+*terminal* instead. Set Approval to **Auto-run** so no confirmation tap is
+needed. `Test Connection` is disabled until a key is stored, so its enabled
+state is the reliable signal that the save landed.
+
+**Afterwards, delete the key**: drive Settings → AI Assistant → **Remove**.
+That clears it from the simulator Keychain without erasing the simulator, which
+would also destroy the host and SSH key the harness depends on.
+
 ## Gotchas
 
 - **Each UI action can stall ~60s**: XCUITest waits for app quiescence and the
