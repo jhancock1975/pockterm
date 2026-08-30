@@ -105,11 +105,50 @@ actor SSHEngine {
     /// This Citadel release routes stderr into a thrown TTYSTDError instead of
     /// merging streams, so merge in a remote subshell — the agent wants the
     /// combined text either way.
+    ///
+    /// A non-zero exit is **not** an error here. `executeCommand` throws
+    /// `CommandFailed` on any non-zero status and discards everything the
+    /// command printed, which turns `grep` finding no match — exit 1, and
+    /// completely normal — into an opaque Citadel error with no output. A
+    /// shell tool has to report the output and the status, so this streams the
+    /// chunks itself, keeps what arrived, and appends the status.
+    ///
+    /// Oversized output is truncated for the same reason: `maxResponseSize`
+    /// throws `commandOutputTooLarge` mid-stream and drops the whole response,
+    /// so a command that prints a lot returns nothing at all.
     func exec(_ command: String, maxOutputBytes: Int = 64 * 1024) async throws -> String {
         guard let client else { throw SSHEngineError.notConnected }
-        let buffer = try await client.executeCommand("( \(command) ) 2>&1",
-                                                     maxResponseSize: maxOutputBytes)
-        return String(decoding: Array(buffer.readableBytesView), as: UTF8.self)
+
+        var out = [UInt8]()
+        var truncated = false
+        var exitCode: Int?
+
+        func append(_ buffer: ByteBuffer) {
+            guard out.count < maxOutputBytes else { truncated = true; return }
+            let room = maxOutputBytes - out.count
+            let bytes = buffer.readableBytesView
+            out.append(contentsOf: bytes.prefix(room))
+            if bytes.count > room { truncated = true }
+        }
+
+        do {
+            for try await chunk in try await client.executeCommandStream("( \(command) ) 2>&1") {
+                switch chunk {
+                case .stdout(let buffer), .stderr(let buffer): append(buffer)
+                }
+            }
+        } catch let failure as SSHClient.CommandFailed {
+            exitCode = failure.exitCode
+        }
+
+        var text = String(decoding: out, as: UTF8.self)
+        if truncated {
+            text += "\n[output truncated at \(maxOutputBytes) bytes]"
+        }
+        if let exitCode {
+            text += "\n[exit status \(exitCode)]"
+        }
+        return text
     }
 
     func send(_ bytes: [UInt8]) {

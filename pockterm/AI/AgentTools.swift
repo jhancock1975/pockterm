@@ -11,7 +11,7 @@ protocol AgentToolExecuting {
 enum AgentTools {
     static let specs: [ToolSpec] = [
         ToolSpec(name: "run_command",
-                 description: "Run a shell command on the connected host and return its combined stdout and stderr. Runs on a separate channel; the user's interactive terminal is not affected.",
+                 description: "Run a shell command on the connected host and return its combined stdout and stderr. A non-zero exit is reported as a trailing [exit status N] line, not an error. Long output is truncated. Runs on a separate channel; the user's interactive terminal is not affected.",
                  parameters: schema(["command": ["type": "string", "description": "The shell command to run"]], required: ["command"])),
         ToolSpec(name: "read_file",
                  description: "Read a text file from the connected host over SFTP.",
