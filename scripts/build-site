@@ -89,6 +89,15 @@ def build(code, template, data):
     body = re.sub(r'<span class="lb-label">.*?</a>(?=\s*</)',
                   switcher(code, data), body, count=1, flags=re.S)
 
+    # Rewrite the head's hreflang alternates too, or search engines keep being
+    # told only the original six pages exist.
+    alts = "".join(
+        f'<link rel="alternate" hreflang="{c}" '
+        f'href="https://pockterm.com{home(c)}">' for c in data["order"])
+    alts += '<link rel="alternate" hreflang="x-default" href="https://pockterm.com/">'
+    head = re.sub(r'<link rel="alternate"[^>]*>(\s*<link rel="alternate"[^>]*>)*',
+                  alts, head, count=1)
+
     page = head + body
     page = page.replace('href="/manual.html"', f'href="{manual(code)}"')
     page = page.replace('href="/pockterm-demo.mp4"', f'href="{video(code)}"')
