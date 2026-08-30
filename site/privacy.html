@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pockterm Privacy Policy</title>
+<style>
+  :root { color-scheme: light dark; }
+  body {
+    font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    max-width: 720px; margin: 0 auto; padding: 2.5rem 1.25rem 4rem; color: #1c1c1e;
+  }
+  h1 { font-size: 1.8rem; margin-bottom: .25rem; }
+  h2 { font-size: 1.2rem; margin-top: 2rem; }
+  .updated { color: #6b6b70; font-size: .9rem; margin-top: 0; }
+  a { color: #0a66c2; }
+  ul { padding-left: 1.25rem; }
+  li { margin: .3rem 0; }
+  code { background: rgba(127,127,127,.15); padding: .1em .35em; border-radius: 4px; }
+  footer { margin-top: 3rem; font-size: .85rem; color: #6b6b70; }
+  @media (prefers-color-scheme: dark) {
+    body { color: #e6e6ea; background: #1c1c1e; }
+    .updated, footer { color: #9a9aa0; }
+    a { color: #4aa3ff; }
+  }
+</style>
+</head>
+<body>
+<h1>Pockterm Privacy Policy</h1>
+<p class="updated">Last updated: 11 July 2026</p>
+
+<p>Pockterm is an SSH/SFTP terminal client for iPhone. This policy explains what data the app handles.</p>
+
+<h2>Summary</h2>
+<p>Pockterm has no user accounts and runs no servers of its own. Your connection data stays on your device. The one time data leaves your device is when <strong>you</strong> use the AI Assistant, which sends data to a model provider <strong>you</strong> choose, using <strong>your own</strong> API key.</p>
+
+<h2>Data stored on your device</h2>
+<p>The following are stored locally and never uploaded by Pockterm:</p>
+<ul>
+  <li><strong>Connection profiles</strong> — host names, ports, usernames, groups, snippets, and port-forward definitions, stored in the app's on-device database.</li>
+  <li><strong>Passwords and SSH private keys</strong> — stored in the <strong>iOS Keychain</strong>.</li>
+  <li><strong>Trusted host keys</strong> — remembered on-device so the app can warn you if a server's key later changes.</li>
+  <li><strong>AI provider API keys</strong> — stored in the <strong>iOS Keychain</strong>.</li>
+</ul>
+<p>Deleting the app removes this data. You can also delete individual hosts, keys, and credentials from within the app at any time.</p>
+
+<h2>Data you send to remote servers</h2>
+<p>Pockterm connects to the SSH/SFTP servers <strong>you</strong> specify and transmits the commands, input, and file transfers <strong>you</strong> initiate, over an encrypted SSH connection. This traffic goes directly from your device to your server; it is not routed through any Pockterm-operated server.</p>
+
+<h2>Data sent to AI providers (only when you use the AI Assistant)</h2>
+<p>The AI Assistant is optional and off until you configure it. When you use it, Pockterm sends the relevant terminal output and any files you attach to the model provider you have selected — <strong>Anthropic, OpenAI, OpenRouter, or Hugging Face</strong> — authenticated with the API key you provide. The app tells you which provider will receive the data before it is sent.</p>
+<p>Pockterm does not receive or store a copy of this data on any Pockterm server. How the provider handles it is governed by that provider's own privacy policy:</p>
+<ul>
+  <li><a href="https://www.anthropic.com/legal/privacy">Anthropic</a></li>
+  <li><a href="https://openai.com/policies/privacy-policy">OpenAI</a></li>
+  <li><a href="https://openrouter.ai/privacy">OpenRouter</a></li>
+  <li><a href="https://huggingface.co/privacy">Hugging Face</a></li>
+</ul>
+
+<h2>Analytics and tracking</h2>
+<p>Pockterm contains <strong>no</strong> analytics, advertising, or third-party tracking SDKs. It does not collect usage data and does not track you across other apps or websites.</p>
+
+<h2>Children</h2>
+<p>Pockterm is a developer/IT tool and is not directed at children.</p>
+
+<h2>Contact</h2>
+<p>Questions about this policy: <a href="mailto:jhancock1975@gmail.com">jhancock1975@gmail.com</a></p>
+
+<footer>Pockterm — SSH &amp; SFTP client for iPhone.</footer>
+</body>
+</html>

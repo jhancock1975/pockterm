@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pockterm — SSH &amp; SFTP for iPhone</title>
+<meta name="description" content="A native SSH and SFTP client for iPhone. Free, with no account, no subscription and no tracking.">
+<link rel="canonical" href="https://pockterm.com/">
+<link rel="alternate" hreflang="en" href="https://pockterm.com/">
+<link rel="alternate" hreflang="es" href="https://pockterm.com/es.html">
+<link rel="alternate" hreflang="ar" href="https://pockterm.com/ar.html">
+<link rel="alternate" hreflang="he" href="https://pockterm.com/he.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://pockterm.com/zh-Hans.html">
+<link rel="alternate" hreflang="zh-Hant" href="https://pockterm.com/zh-Hant.html">
+<link rel="alternate" hreflang="x-default" href="https://pockterm.com/">
+<meta property="og:title" content="Pockterm — SSH &amp; SFTP for iPhone">
+<meta property="og:description" content="A native SSH and SFTP client for iPhone. Free, with no account, no subscription and no tracking.">
+<meta property="og:url" content="https://pockterm.com/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%230b1220'/><path d='M8 11l4.5 4.5L8 20' stroke='%2340d17f' stroke-width='2.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/><path d='M16.5 21h7' stroke='%2340d17f' stroke-width='2.5' stroke-linecap='round'/></svg>">
+<style>
+  :root {
+    color-scheme: light dark;
+    --bg: #ffffff;
+    --fg: #14161a;
+    --muted: #5c626d;
+    --line: #e4e7ec;
+    --card: #f7f8fa;
+    --accent: #0a66c2;
+    --term-bg: #0b1220;
+    --term-fg: #d7dde8;
+    --term-green: #40d17f;
+    --term-dim: #7c8798;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #121417;
+      --fg: #e8eaee;
+      --muted: #9aa1ac;
+      --line: #262a30;
+      --card: #1a1d21;
+      --accent: #5aa9ff;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font: 17px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 860px; margin: 0 auto; padding: 0 1.25rem; }
+  a { color: var(--accent); }
+
+  header { padding: 4.5rem 0 2.5rem; text-align: center; }
+  .mark {
+    width: 76px; height: 76px; border-radius: 17px; margin: 0 auto 1.4rem;
+    background: var(--term-bg); display: grid; place-items: center;
+    box-shadow: 0 6px 24px rgba(0,0,0,.18);
+  }
+  .mark svg { width: 42px; height: 42px; display: block; }
+  h1 { font-size: clamp(2.1rem, 6vw, 3rem); line-height: 1.1; margin: 0 0 .6rem; letter-spacing: -.02em; }
+  .tag { font-size: 1.18rem; color: var(--muted); margin: 0 auto 1.1rem; max-width: 34ch; }
+  .badges { color: var(--muted); font-size: .95rem; margin-bottom: 2rem; }
+  .badges b { color: var(--fg); font-weight: 600; }
+
+  .cta {
+    display: inline-block; background: var(--fg); color: var(--bg);
+    text-decoration: none; font-weight: 600; font-size: 1.02rem;
+    padding: .82rem 1.7rem; border-radius: 100px; transition: opacity .15s;
+  }
+  .cta:hover { opacity: .85; }
+  .cta-note { display: block; margin-top: .8rem; font-size: .88rem; color: var(--muted); }
+
+  /* Terminal illustration — pure CSS/markup, no image requests. */
+  .term {
+    background: var(--term-bg); border-radius: 12px; margin: 3rem 0 1rem;
+    padding: .9rem 0 1.1rem; overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0,0,0,.22);
+  }
+  .term-bar { display: flex; gap: .4rem; padding: 0 1rem .8rem; }
+  .dot { width: 11px; height: 11px; border-radius: 50%; background: #333a47; }
+  .term pre {
+    margin: 0; padding: 0 1.15rem; overflow-x: auto;
+    font: 13.5px/1.75 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    color: var(--term-fg);
+  }
+  .g { color: var(--term-green); }
+  .d { color: var(--term-dim); }
+
+  h2 { font-size: 1.05rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); font-weight: 600; margin: 3.5rem 0 1.2rem; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 11px; padding: 1.15rem 1.25rem; }
+  .card h3 { margin: 0 0 .4rem; font-size: 1.02rem; }
+  .card p { margin: 0; color: var(--muted); font-size: .95rem; line-height: 1.55; }
+
+  .why { border-left: 3px solid var(--line); padding-left: 1.3rem; margin: 3.5rem 0; color: var(--muted); }
+  .why strong { color: var(--fg); }
+
+  footer { border-top: 1px solid var(--line); margin-top: 4.5rem; padding: 2rem 0 3.5rem; color: var(--muted); font-size: .9rem; }
+  footer a { margin-right: 1.2rem; }
+  code { background: rgba(127,127,127,.15); padding: .1em .35em; border-radius: 4px; font-size: .92em; }
+
+  .langbar {
+    display: flex; flex-wrap: wrap; gap: .1rem .25rem;
+    align-items: center; justify-content: center;
+    padding: .55rem 0 0; margin: 0 0 2.2rem;
+    border-top: 1px solid var(--line);
+    font-size: .93rem;
+  }
+  .langbar .lb-label {
+    color: var(--muted); margin-inline-end: .45rem; font-size: .85rem;
+    text-transform: uppercase; letter-spacing: .06em;
+  }
+  .langbar a, .langbar span[aria-current] { padding: .2rem .5rem; border-radius: 6px; }
+  .langbar a { color: var(--accent); text-decoration: none; }
+  .langbar a:hover { background: var(--card); text-decoration: underline; }
+  .langbar span[aria-current] { color: var(--fg); font-weight: 600; background: var(--card); }
+  .cta-alt {
+    background: transparent; color: var(--fg); border: 1px solid var(--line);
+    padding: calc(.82rem - 1px) calc(1.7rem - 1px); margin-inline-start: .55rem;
+  }
+  .cta-alt:hover { background: var(--card); opacity: 1; }
+  @media (max-width: 460px) { .cta-alt { margin: .7rem 0 0; display: block; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="mark">
+      <svg viewBox="0 0 32 32" aria-hidden="true">
+        <path d="M8 11l4.5 4.5L8 20" stroke="#40d17f" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M16.5 21h7" stroke="#40d17f" stroke-width="2.5" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <h1>Pockterm</h1>
+    <p class="tag">Smart SSH and SFTP client</p>
+    <p class="badges"><b>Free.</b> No account. No subscription. No ads. No tracking.</p>
+    <a class="cta" href="https://apps.apple.com/app/id6789968094">Download on the App&nbsp;Store</a><a class="cta cta-alt" href="/manual.html">User Guide</a>
+    <span class="cta-note">Requires iOS 18 or later</span>
+  </header>
+
+  <nav class="langbar" aria-label="Language"><span class="lb-label">Language</span><span aria-current="true" lang="en">English</span><a href="/es.html" lang="es" hreflang="es">Español</a><a href="/ar.html" lang="ar" hreflang="ar">العربية</a><a href="/he.html" lang="he" hreflang="he">עברית</a><a href="/zh-Hans.html" lang="zh-Hans" hreflang="zh-Hans">简体中文</a><a href="/zh-Hant.html" lang="zh-Hant" hreflang="zh-Hant">繁體中文</a></nav>
+
+  <div class="term">
+    <div class="term-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i></div>
+<pre><span class="g">john@homelab</span>:<span class="d">~</span>$ htop
+<span class="d">  1  [|||||||||       28.4%]   Tasks: 94, 212 thr
+  2  [|||||            12.1%]   Load average: 0.42 0.31 0.28
+  Mem[||||||||   2.914G/7.79G]   Uptime: 41 days, 06:12</span>
+
+<span class="g">john@homelab</span>:<span class="d">~</span>$ tmux attach -t deploy
+<span class="d">[0] 0:build*  1:logs  2:shell</span>          <span class="g">"homelab" 09:41</span>
+</pre>
+  </div>
+  <p style="color:var(--muted); font-size:.92rem; margin:.2rem 0 0;">
+    Full-screen console apps render properly — not as garbled text.
+  </p>
+
+  <h2>What it does</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>Connect</h3>
+      <p>SSH with passwords or Ed25519/RSA keys. Host-key verification warns you if a server's key ever changes. Multiple live sessions you can minimise and pick back up.</p>
+    </div>
+    <div class="card">
+      <h3>Transfer</h3>
+      <p>A full SFTP browser over the same connection — no extra setup. Large files stream in chunks, so a big transfer won't exhaust memory on a phone.</p>
+    </div>
+    <div class="card">
+      <h3>Forward</h3>
+      <p>Local and remote port forwarding. Host groups pass credentials down to their members, so a dozen boxes is one piece of setup rather than twelve.</p>
+    </div>
+    <div class="card">
+      <h3>Assist (optional)</h3>
+      <p>An AI assistant that is off by default and needs your own API key. It names the provider about to receive your terminal output before anything is sent.</p>
+    </div>
+  </div>
+
+  <div class="why">
+    <p><strong>Why it exists.</strong> None of the free iPhone terminals did what I wanted: <code>vim</code>, <code>htop</code> and <code>tmux</code> all came out garbled. Pockterm renders them properly, keeps your keys in the iOS Keychain, and asks nothing of you in return — no account to create, nothing to subscribe to.</p>
+  </div>
+
+  <footer>
+    <a href="/manual.html">User Guide</a>
+    <a href="/pockterm-demo.mp4">Watch the demo</a>
+    <a href="/privacy.html">Privacy</a>
+    <a href="https://apps.apple.com/app/id6789968094">App&nbsp;Store</a>
+    <a href="mailto:jhancock1975@gmail.com">Contact</a>
+    <p style="margin:1.2rem 0 0;">© 2026 John Hancock. Pockterm — SSH &amp; SFTP for iPhone.</p>
+  </footer>
+
+</div>
+</body>
+</html>

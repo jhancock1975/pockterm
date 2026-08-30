@@ -1,0 +1,124 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""Build the pockterm.com landing pages in every language the app ships.
+
+  scripts/build-site [--out DIR]
+
+The English page (site/index.html) is the template; site/content.json holds the
+translated copy, keyed by the index of each text node in that template. Both
+live in the repo on purpose: the first generator lived only in a session
+scratchpad and was lost, after which the deployed S3 objects were the sole copy.
+
+Flat files (es.html rather than es/index.html) because CloudFront applies its
+default root object only at the root, so a directory URL 404s against an S3
+origin behind OAC — the same reason scripts/build-manual emits flat files.
+
+Deploy is deliberately NOT automated here. Publishing a language page tells
+visitors the app speaks their language; do not put one up before the release
+that ships it. Upload with:
+
+  aws s3 cp <file> s3://pockterm-site-071350569379/ \\
+      --content-type "text/html; charset=utf-8" --cache-control "public, max-age=300"
+  aws cloudfront create-invalidation --distribution-id E28OSFYVGJMTML --paths "/*"
+"""
+import argparse
+import json
+import pathlib
+import re
+import sys
+
+ROOT = pathlib.Path(__file__).resolve().parent.parent
+TEMPLATE = ROOT / "site/index.html"
+CONTENT = ROOT / "site/content.json"
+# Languages with their own recorded demo cut; the rest fall back to English.
+HAS_VIDEO = {"en", "es", "ar", "he", "zh-Hans", "zh-Hant"}
+
+NODE = re.compile(r">([^<>]{1,300})<")
+
+
+def page_name(code):
+    return "index.html" if code == "en" else f"{code}.html"
+
+
+def home(code):
+    return "/" if code == "en" else f"/{code}.html"
+
+
+def manual(code):
+    return "/manual.html" if code == "en" else f"/manual-{code}.html"
+
+
+def video(code):
+    return "/pockterm-demo.mp4" if code not in HAS_VIDEO or code == "en" \
+        else f"/pockterm-demo-{code}.mp4"
+
+
+def switcher(code, data):
+    """The language row: current language as text, the others as links."""
+    parts = [f'<span class="lb-label">{data["switch_label"][code]}</span>']
+    for other in data["order"]:
+        name = data["native"][other]
+        if other == code:
+            parts.append(f'<span aria-current="true" lang="{other}">{name}</span>')
+        else:
+            parts.append(f'<a href="{home(other)}" lang="{other}" '
+                         f'hreflang="{other}">{name}</a>')
+    return "".join(parts)
+
+
+def build(code, template, data):
+    body_at = template.index("<body")
+    head, body = template[:body_at], template[body_at:]
+    varying = {int(i) for i in data["varying"]}
+    strings = data["strings"][code]
+
+    # Substitute the copy, node by node, in template order.
+    idx = -1
+    def repl(m):
+        nonlocal idx
+        if not m.group(1).strip():
+            return m.group(0)
+        idx += 1
+        if idx in varying and str(idx) in strings:
+            return ">" + strings[str(idx)] + "<"
+        return m.group(0)
+    body = NODE.sub(repl, body)
+
+    # Replace the whole switcher region rather than its nodes: the number of
+    # languages differs from the template's.
+    body = re.sub(r'<span class="lb-label">.*?</a>(?=\s*</)',
+                  switcher(code, data), body, count=1, flags=re.S)
+
+    page = head + body
+    page = page.replace('href="/manual.html"', f'href="{manual(code)}"')
+    page = page.replace('href="/pockterm-demo.mp4"', f'href="{video(code)}"')
+    direction = ' dir="rtl"' if code in data["rtl"] else ""
+    page = re.sub(r'<html[^>]*>', f'<html lang="{code}"{direction}>', page, count=1)
+    return page
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--out", default="build/site")
+    args = ap.parse_args()
+    data = json.loads(CONTENT.read_text())
+    data["order"] = ["en", "es", "fr", "it", "el", "ru", "uk", "ar", "he",
+                     "hi", "te", "ja", "ko", "zh-Hans", "zh-Hant"]
+    missing = [c for c in data["order"] if c not in data["strings"]]
+    if missing:
+        sys.exit(f"no copy for: {missing}")
+    template = TEMPLATE.read_text()
+    out = pathlib.Path(args.out)
+    out.mkdir(parents=True, exist_ok=True)
+    for code in data["order"]:
+        page = build(code, template, data)
+        left = [s for s in ("What it does", "Why it exists.", "Requires iOS 18")
+                if code != "en" and s in page]
+        (out / page_name(code)).write_text(page)
+        print(f"  {page_name(code):<16} {len(page):>6} bytes"
+              f"{'  UNTRANSLATED: ' + ', '.join(left) if left else ''}")
+    print(f"\n{len(data['order'])} pages -> {out}")
+
+
+if __name__ == "__main__":
+    main()
