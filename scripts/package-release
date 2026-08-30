@@ -4,11 +4,20 @@
 #   scripts/package-release            # archive + export App Store ipa
 #   scripts/package-release --archive  # archive only
 #
-# Why the odd derived-data path: Clang bakes __FILE__ strings from C
-# dependencies (swift-crypto's BoringSSL) into the shipped binary, so a default
-# archive embeds ~180 copies of /Users/<you>/Library/Developer/Xcode/... and
-# leaks the account name to anyone who runs `strings` on the App Store build.
-# Archiving from a neutral path removes them at the source.
+# Two defences against leaking build paths into the shipped binary. Clang bakes
+# __FILE__ strings from C dependencies (swift-crypto's BoringSSL) into the
+# binary, so a default archive embeds ~180 copies of
+# /Users/<you>/Library/Developer/Xcode/... and hands the account name to anyone
+# who runs `strings` on the App Store build.
+#
+#   1. -ffile-prefix-map rewrites those strings at compile time, so the paths
+#      are stripped wherever the build happens. This is the actual fix.
+#   2. The neutral derived-data path below is kept as a backstop: if the flag
+#      ever stops reaching a dependency, the worst case is a /tmp path rather
+#      than a home directory. The identity check further down enforces it.
+#
+# 1.6 and earlier shipped with 181 /tmp/pockterm-release/... strings — neutral,
+# but present. From 1.7 there should be none.
 set -euo pipefail
 
 cd "$(dirname "$0")/.."
@@ -24,10 +33,15 @@ mkdir -p "$DERIVED" "$OUT"
 echo "==> archiving (neutral derived-data path: $DERIVED)"
 # -skipPackagePluginValidation: SwiftTerm 1.19.0+ carries a build-tool plugin;
 # see the note in scripts/test.sh.
+# Map the checkout root away so __FILE__ reads "swift-crypto/Sources/..." with
+# no absolute prefix at all. $(inherited) so targets keep their own flags.
+PREFIX_MAP="-ffile-prefix-map=$DERIVED/SourcePackages/checkouts/= -ffile-prefix-map=$PWD/="
 xcodebuild -project pockterm.xcodeproj -scheme pockterm \
     -configuration Release -destination 'generic/platform=iOS' \
     -derivedDataPath "$DERIVED" -archivePath "$ARCHIVE" \
     -skipPackagePluginValidation \
+    OTHER_CFLAGS="\$(inherited) $PREFIX_MAP" \
+    OTHER_CPLUSPLUSFLAGS="\$(inherited) $PREFIX_MAP" \
     -allowProvisioningUpdates archive
 
 BIN="$ARCHIVE/Products/Applications/pockterm.app/pockterm"
@@ -40,6 +54,16 @@ if [[ -n "$LEAKS" ]]; then
     exit 1
 fi
 echo "   ok no personal build paths in the shipped binary"
+
+# Any absolute build path at all means -ffile-prefix-map stopped reaching a
+# dependency. Not an identity leak on its own, but it is how one starts.
+BUILDPATHS=$(strings -a "$BIN" | grep -cE '(^|[^A-Za-z0-9])/(tmp|Users|home|private)/' || true)
+if [[ "$BUILDPATHS" -gt 0 ]]; then
+    echo "   !! $BUILDPATHS absolute build path(s) still embedded — prefix map is not reaching everything:"
+    strings -a "$BIN" | grep -oE '/(tmp|Users|home|private)/[A-Za-z0-9._/-]{0,40}' | sort -u | head -3
+else
+    echo "   ok no absolute build paths at all"
+fi
 
 if [[ "${1:-}" == "--archive" ]]; then
     cp -R "$ARCHIVE" "$OUT/" && echo && echo "archive: $OUT/$(basename "$ARCHIVE")"

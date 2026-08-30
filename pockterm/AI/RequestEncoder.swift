@@ -102,7 +102,9 @@ enum RequestEncoder {
             headers["Authorization"] = "Bearer \(apiKey)"
         case .openRouter:
             headers["Authorization"] = "Bearer \(apiKey)"
-            headers["HTTP-Referer"] = "https://github.com/jhancock1975/pockterm"
+            // OpenRouter uses this for attribution. It pointed at the repo,
+            // which is private and 404s; nothing public may link to GitHub.
+            headers["HTTP-Referer"] = "https://pockterm.com"
             headers["X-Title"] = "Pockterm"
         case .huggingFace:
             headers["Authorization"] = "Bearer \(apiKey)"

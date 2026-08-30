@@ -216,9 +216,8 @@ Verified against the API and over HTTPS on 2026-08-29:
   of 2026-08-29. The old GitHub Pages privacy URL 404s, and nothing points at
   it any more.
 
-The loose end below is also resolved: `PROMOTION.local.md` no longer names the
-repo as the Show HN submission URL — it now submits `pockterm.com`, with the
-trade-off written up. The original note is kept below for the reasoning.
+The loose end below is closed: Hacker News was dropped altogether on
+2026-08-29, so the submission-URL question it posed no longer exists.
 
 **Recorded:** 2026-08-14
 
@@ -275,13 +274,12 @@ problem — `promotionalText` on the same record still writes fine (verified 200
 5. Submit, wait for approval, confirm both URLs resolve on the live listing.
 6. **Only then** flip the repo to private.
 
-### Loose end
+### Loose end — closed
 
-`PROMOTION.local.md` names the GitHub repo as the Show HN submission URL. Taking
-the repo private kills that plan. Decide before the flip whether Show HN happens
-first (repo public, as written), or whether the submission moves to
-`pockterm.com` — HN treats marketing pages more harshly than source, so that is
-a real trade-off, not a swap.
+This asked whether to post to Hacker News before or after taking the repo
+private. **Neither: Hacker News was dropped entirely on 2026-08-29** and the
+draft was deleted. It is not planned and not on hold. Do not reconstruct the
+question from this entry.
 
 ---
 
