@@ -30,8 +30,10 @@ import sys
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 TEMPLATE = ROOT / "site/index.html"
 CONTENT = ROOT / "site/content.json"
-# Languages with their own recorded demo cut; the rest fall back to English.
-HAS_VIDEO = {"en", "es", "ar", "he", "zh-Hans", "zh-Hant"}
+# Every shipped language now has its own demo cut (scripts/build-demo-videos),
+# so no page falls back to the English one.
+HAS_VIDEO = {"en", "es", "fr", "it", "el", "ru", "uk", "ar", "he",
+             "hi", "te", "ja", "ko", "zh-Hans", "zh-Hant"}
 
 NODE = re.compile(r">([^<>]{1,300})<")
 

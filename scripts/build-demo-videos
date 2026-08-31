@@ -1,0 +1,97 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""Rebuild the pockterm.com demo videos, one per shipped language.
+
+  scripts/build-demo-videos [--out DIR] [--lang xx ...]
+
+Every language cut is the SAME screen recording with a different burned-in
+caption track; only English carries narration, the rest are silent. That is the
+shape of the original set and this reproduces it.
+
+The base recording is pulled from S3 on purpose. The source cuts for the first
+set lived only in a session scratchpad and were lost, leaving the deployed
+objects as the only copy — so this treats S3 as the master and never assumes a
+local original exists.
+
+Captions live in site/video-captions.json. They are rendered to PNG by
+scripts/caption-render.swift, because the ffmpeg on this machine is built
+without drawtext; CoreText also gives font fallback for Telugu, Devanagari,
+CJK, Greek and Cyrillic without naming a font per language. The caption box is
+drawn at the two-line height whatever the text, so a short caption still covers
+a taller one underneath it in the source recording.
+
+Deploy (upload then invalidate):
+  aws s3 cp <file> s3://pockterm-site-071350569379/ \\
+      --content-type video/mp4 --cache-control "public, max-age=3600"
+  aws cloudfront create-invalidation --distribution-id E28OSFYVGJMTML --paths "/*"
+"""
+import argparse
+import json
+import pathlib
+import subprocess
+import sys
+
+ROOT = pathlib.Path(__file__).resolve().parent.parent
+CAPTIONS = ROOT / "site/video-captions.json"
+RENDERER_SRC = ROOT / "scripts/caption-render.swift"
+BASE_URL = "s3://pockterm-site-071350569379/pockterm-demo.mp4"
+BAND_Y, BAND_H = 2440, 260
+WINDOWS = [(0, 4), (4, 8), (8, 12), (12, 16), (16, 20), (20, 24), (24, 99)]
+
+
+def out_name(lang):
+    return "pockterm-demo.mp4" if lang == "en" else f"pockterm-demo-{lang}.mp4"
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--out", default="build/videos")
+    ap.add_argument("--lang", nargs="*")
+    args = ap.parse_args()
+
+    data = json.loads(CAPTIONS.read_text())
+    caps, rtl = data["captions"], set(data["rtl"])
+    out = pathlib.Path(args.out); out.mkdir(parents=True, exist_ok=True)
+    work = out / ".work"; work.mkdir(exist_ok=True)
+
+    renderer = work / "caption-render"
+    subprocess.run(["swiftc", "-O", "-o", str(renderer), str(RENDERER_SRC)], check=True)
+
+    base = work / "base.mp4"
+    if not base.exists():
+        subprocess.run(["aws", "s3", "cp", BASE_URL, str(base), "--quiet"], check=True)
+
+    for lang in (args.lang or list(caps)):
+        pngs = []
+        for i, text in enumerate(caps[lang]):
+            p = work / f"{lang}-{i}.png"
+            subprocess.run([str(renderer), str(p), "1320", str(BAND_H),
+                            "1" if lang in rtl else "0", text], check=True)
+            pngs.append(p)
+
+        cmd = ["ffmpeg", "-v", "error", "-y", "-i", str(base)]
+        for p in pngs:
+            cmd += ["-i", str(p)]
+        silent = lang != "en"
+        if silent:
+            cmd += ["-f", "lavfi", "-i", "anullsrc=r=44100:cl=mono"]
+
+        chain, last = [], "0:v"
+        for i, (a, b) in enumerate(WINDOWS):
+            chain.append(f"[{last}][{i+1}:v]overlay=0:{BAND_Y}:"
+                         f"enable='between(t,{a},{b})'[v{i}]")
+            last = f"v{i}"
+        cmd += ["-filter_complex", ";".join(chain), "-map", f"[{last}]"]
+        cmd += ["-map", f"{len(pngs)+1}:a" if silent else "0:a"]
+        cmd += ["-c:v", "libx264", "-preset", "medium", "-crf", "23",
+                "-pix_fmt", "yuv420p", "-r", "30",
+                "-c:a", "aac", "-b:a", "64k", "-ar", "44100", "-shortest",
+                "-movflags", "+faststart", str(out / out_name(lang))]
+        subprocess.run(cmd, check=True)
+        print(f"  {out_name(lang):<28} {(out / out_name(lang)).stat().st_size / 1e6:.2f} MB")
+
+    print(f"\n{len(args.lang or caps)} video(s) -> {out}")
+
+
+if __name__ == "__main__":
+    main()
