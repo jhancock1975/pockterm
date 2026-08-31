@@ -113,3 +113,14 @@ func defaultLayoutKeepsTheArrowsOnScreen(width: CGFloat) {
                 "\(arrow) ends at \(frame.maxX) of \(visibleWidth) visible at \(width) pt")
     }
 }
+
+// MARK: Backspace
+
+/// The point of having backspace on the bar at all is that its repeat is ours
+/// (450ms delay, 80ms interval) rather than the software keyboard's.
+@Test func backspaceRepeatsAndSendsDEL() {
+    #expect(KeyBarKey.backspace.repeats)
+    #expect(KeyBarKey.backspace.bytes(applicationCursor: false) == [0x7f])
+    #expect(KeyBarKey.backspace.bytes(applicationCursor: true) == [0x7f])
+    #expect(KeyBarConfig.defaultKeys.contains(.backspace))
+}

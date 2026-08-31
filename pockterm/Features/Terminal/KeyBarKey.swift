@@ -3,7 +3,7 @@ import SwiftTerm
 
 /// One key that can appear on the terminal key bar.
 enum KeyBarKey: String, CaseIterable, Codable, Identifiable {
-    case esc, ctrl, meta, tab
+    case esc, ctrl, meta, tab, backspace
     case tilde, pipe, slash, dash
     case left, down, up, right
     case pageUp, pageDown, home, end
@@ -36,13 +36,14 @@ enum KeyBarKey: String, CaseIterable, Codable, Identifiable {
         case .f8: return "F8"
         case .f9: return "F9"
         case .f10: return "F10"
-        case .tab, .left, .down, .up, .right, .hideKeyboard: return nil
+        case .tab, .backspace, .left, .down, .up, .right, .hideKeyboard: return nil
         }
     }
 
     var systemImage: String? {
         switch self {
         case .tab: return "arrow.right.to.line.compact"
+        case .backspace: return "delete.left"
         case .left: return "arrow.left"
         case .down: return "arrow.down"
         case .up: return "arrow.up"
@@ -59,6 +60,7 @@ enum KeyBarKey: String, CaseIterable, Codable, Identifiable {
     var displayName: String {
         switch self {
         case .tab: return String(localized: "Tab")
+        case .backspace: return String(localized: "Backspace")
         case .left: return String(localized: "← Left")
         case .down: return String(localized: "↓ Down")
         case .up: return String(localized: "↑ Up")
@@ -71,7 +73,7 @@ enum KeyBarKey: String, CaseIterable, Codable, Identifiable {
     /// Keys that auto-repeat while held (typematic).
     var repeats: Bool {
         switch self {
-        case .tab, .left, .down, .up, .right, .pageUp, .pageDown: return true
+        case .tab, .backspace, .left, .down, .up, .right, .pageUp, .pageDown: return true
         default: return false
         }
     }
@@ -82,6 +84,7 @@ enum KeyBarKey: String, CaseIterable, Codable, Identifiable {
         switch self {
         case .esc: return [0x1b]
         case .tab: return [0x09]
+        case .backspace: return [0x7f]
         case .left: return applicationCursor ? EscapeSequences.moveLeftApp : EscapeSequences.moveLeftNormal
         case .down: return applicationCursor ? EscapeSequences.moveDownApp : EscapeSequences.moveDownNormal
         case .up: return applicationCursor ? EscapeSequences.moveUpApp : EscapeSequences.moveUpNormal
@@ -128,7 +131,7 @@ enum KeyBarConfig {
     /// only — a user who has customized the bar keeps their own order.
     /// `defaultLayoutKeepsTheArrowsOnScreen` measures that this still holds.
     static let defaultKeys: [KeyBarKey] = [
-        .esc, .ctrl, .left, .down, .up, .right,
+        .esc, .ctrl, .left, .down, .up, .right, .backspace,
         .tab, .meta, .tilde, .pipe, .slash, .dash, .pageUp, .pageDown, .f1,
     ]
 

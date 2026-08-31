@@ -156,6 +156,10 @@ final class KeyBarView: UIInputView, UIInputViewAudioFeedback {
         config.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: horizontalPad,
                                                        bottom: 8, trailing: horizontalPad)
         button.configuration = config
+        // Icon keys otherwise fall back to the SF Symbol's own name, so
+        // VoiceOver reads "delete.left" and "arrow.right.to.line.compact".
+        // displayName is the localized key name already shown in Settings.
+        button.accessibilityLabel = key.displayName
         button.widthAnchor.constraint(greaterThanOrEqualToConstant: key == .esc ? 54 : 44).isActive = true
 
         switch key {
