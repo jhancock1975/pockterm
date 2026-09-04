@@ -4,6 +4,49 @@ Things worth doing, not yet scheduled. Newest first.
 
 ---
 
+## Try VoiceStudio for narration the next time the demo videos are rebuilt
+
+**Recorded:** 2026-09-03.
+
+Only the English demo video carries narration. The other fourteen are silent
+with burned-in captions, which is what `scripts/build-demo-videos` produces on
+purpose — it was the honest option when there was no way to voice fourteen
+languages. [VoiceStudio](https://github.com/debpalash/VoiceStudio) is worth a
+look next time that script runs.
+
+It is a local, offline TTS and voice-cloning application: 646 languages for
+TTS, 16 switchable engines, voice cloning from a 3–15 second reference clip,
+and an OpenAI-compatible REST API. Python/FastAPI backend, React front end,
+Tauri shell, runs on Apple Silicon. AGPL-3.0, ~16.3k stars, actively
+maintained.
+
+### Why it fits here
+
+- **It is a tool, not a dependency.** It would generate audio on this Mac and
+  never enter the app's dependency graph, so this does not touch the rules in
+  `docs/dependency-policy.md`. AGPL-3.0 covers the application; it does not
+  reach the audio it produces.
+- **Voice cloning is the interesting part.** Cloning one reference clip across
+  all fifteen cuts would give the set a single consistent narrator instead of
+  fourteen unrelated stock voices — which is the thing that would otherwise
+  make multilingual narration feel cheaper than silence.
+- Everything is local, so no script or recording leaves the machine.
+
+### What to check before committing to it
+
+- Whether the non-English output is good enough to ship. Telugu, Hindi, Greek
+  and Ukrainian are the ones to audition first; a bad accent is worse than a
+  caption.
+- Timing. The captions are cut to fixed windows in `build-demo-videos`
+  (`WINDOWS`), so narration has to fit those or the windows have to move.
+- Whether the App Store previews should carry narration too, or stay silent.
+  Previews autoplay muted, so the caption track is doing the work there and
+  audio may not earn its keep.
+- It is a large stack to install for an occasional asset build. Docker may be
+  the cleaner way in than a native install.
+
+---
+
 ## Key bar covers the bottom lines of the terminal
 
 **Recorded:** 2026-08-29, reported from device with a screenshot.
