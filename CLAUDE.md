@@ -3,6 +3,28 @@
 Things that must survive across sessions. Short by design — everything else
 lives in `docs/backlog.md`, `docs/dependency-policy.md`, or the skills.
 
+## Ship finished work without being asked
+
+**Do not leave finished work sitting in the working tree, and do not ask
+whether to land it.** The moment a change is verified — tests green, and built
+or run if it is the sort of change that needs it — do the whole sequence
+unprompted:
+
+```bash
+git checkout -b <branch>        # never commit straight to main
+git commit                      # then push
+gh pr create                    # a real description: why, what was measured
+gh pr merge <n> --squash --delete-branch
+git checkout main && git pull --ff-only
+```
+
+Finish with `git status` clean and `main` in sync. "Say the word and I'll open
+a PR" is not a deliverable; John has had to ask for this too many times.
+
+The only reasons to stop short of merging: tests are failing, the change is a
+deliberate work-in-progress he has been told about, or he has said to hold it.
+Say which one, rather than going quiet with a dirty tree.
+
 ## Watch Citadel issue #122, and start planning to fix it ourselves
 
 **Check it whenever dependency work comes up** — a routine update, a Citadel
