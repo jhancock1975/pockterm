@@ -124,3 +124,81 @@ func defaultLayoutKeepsTheArrowsOnScreen(width: CGFloat) {
     #expect(KeyBarKey.backspace.bytes(applicationCursor: true) == [0x7f])
     #expect(KeyBarConfig.defaultKeys.contains(.backspace))
 }
+
+// MARK: Keys added after a layout was saved
+
+/// A `UserDefaults` of its own per test — these run in parallel, and a shared
+/// store (or a shared settable one on `KeyBarConfig`) has them reading each
+/// other's layouts.
+private func withEphemeralDefaults(_ body: (UserDefaults) -> Void) {
+    let name = "pockterm.tests.\(UUID().uuidString)"
+    let suite = UserDefaults(suiteName: name)!
+    defer { UserDefaults.standard.removePersistentDomain(forName: name) }
+    body(suite)
+}
+
+/// The layout an early-1.x user is still carrying: customized (esc moved to
+/// the end) and saved before backspace existed as a key at all. This is the
+/// one that was actually on the phone.
+private let layoutSavedBeforeBackspace = [
+    "meta", "ctrl", "tab", "tilde", "pipe", "slash", "dash",
+    "left", "down", "up", "right", "pageUp", "pageDown", "f1", "esc", "hideKeyboard",
+]
+
+/// #66 put a repeating Backspace in `defaultKeys`, but `load()` returns a saved
+/// layout verbatim — so the bar of everyone who had ever customized it, the
+/// user who asked for the key included, still had no backspace on it. A key
+/// added to the bar after a layout was saved has to be merged into that layout.
+@Test func savedLayoutFromBeforeBackspaceGainsIt() {
+    withEphemeralDefaults { suite in
+        suite.set(layoutSavedBeforeBackspace, forKey: "keyBarKeys")
+
+        let migrated = KeyBarConfig.load(from: suite)
+        // At the front, not appended: six or seven keys fit before the trailing
+        // edge, and a 16-key bar would hide the new key behind a swipe.
+        #expect(migrated.first == .backspace)
+        // Their own layout is otherwise untouched — same keys, same order.
+        #expect(migrated.dropFirst().map(\.rawValue) == layoutSavedBeforeBackspace)
+        // Persisted, so the Key Bar settings screen agrees with the bar.
+        #expect(suite.stringArray(forKey: "keyBarKeys")?.first == "backspace")
+    }
+}
+
+/// The merge runs once. Otherwise the key could never be taken off the bar: it
+/// would be back on the next load.
+@Test func removingBackspaceAfterTheMergeSticks() {
+    withEphemeralDefaults { suite in
+        suite.set(layoutSavedBeforeBackspace, forKey: "keyBarKeys")
+        var keys = KeyBarConfig.load(from: suite)
+
+        keys.removeAll { $0 == .backspace }
+        KeyBarConfig.save(keys, to: suite)
+
+        #expect(!KeyBarConfig.load(from: suite).contains(.backspace))
+    }
+}
+
+/// A user who never customized the bar gets `defaultKeys`, which already has
+/// backspace in its tested position — the merge must not move it to the front.
+@Test func untouchedBarKeepsTheDefaultOrder() {
+    withEphemeralDefaults { suite in
+        #expect(KeyBarConfig.load(from: suite) == KeyBarConfig.defaultKeys)
+    }
+}
+
+/// A layout saved with backspace already in it is left exactly as arranged.
+@Test func savedLayoutThatAlreadyHasBackspaceIsUntouched() {
+    withEphemeralDefaults { suite in
+        let saved = ["esc", "ctrl", "backspace", "left", "right"]
+        suite.set(saved, forKey: "keyBarKeys")
+        #expect(KeyBarConfig.load(from: suite).map(\.rawValue) == saved)
+    }
+}
+
+/// The merge itself, without a store in the way.
+@Test func mergeOnlyAddsWhatWasNeverOffered() {
+    #expect(KeyBarConfig.merging(saved: [.esc, .ctrl], alreadyOffered: []) == [.backspace, .esc, .ctrl])
+    #expect(KeyBarConfig.merging(saved: [.esc, .ctrl], alreadyOffered: ["backspace"]) == [.esc, .ctrl])
+    #expect(KeyBarConfig.merging(saved: [.esc, .backspace], alreadyOffered: []) == [.esc, .backspace])
+}
+

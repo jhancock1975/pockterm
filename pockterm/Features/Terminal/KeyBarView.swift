@@ -30,10 +30,10 @@ final class KeyBarView: UIInputView, UIInputViewAudioFeedback {
         // Localization/LeftToRight.swift.
         semanticContentAttribute = .forceLeftToRight
 
-        // The bar holds more keys than fit, and a row of keys does not read as
-        // scrollable the way a list does. The indicator is flashed on appearance
-        // (see didMoveToWindow) as the only hint that there is more to the right.
-        scrollView.showsHorizontalScrollIndicator = true
+        // No scroll indicator. It sat as a bright bar under the keys, and a
+        // strip of chrome that thick directly above the keyboard reads as a
+        // control rather than as a hint that the bar scrolls.
+        scrollView.showsHorizontalScrollIndicator = false
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(scrollView)
 
@@ -108,15 +108,6 @@ final class KeyBarView: UIInputView, UIInputViewAudioFeedback {
         }
     }
 
-    override func didMoveToWindow() {
-        super.didMoveToWindow()
-        guard window != nil else { return }
-        // After layout, or the indicator has nothing to size itself against.
-        DispatchQueue.main.async { [weak self] in
-            self?.scrollView.flashScrollIndicators()
-        }
-    }
-
     override func layoutSubviews() {
         super.layoutSubviews()
         // Let the last key scroll clear of the pinned button instead of ending
@@ -124,7 +115,6 @@ final class KeyBarView: UIInputView, UIInputViewAudioFeedback {
         let reserved = dismissPad.bounds.width
         if scrollView.contentInset.right != reserved {
             scrollView.contentInset.right = reserved
-            scrollView.horizontalScrollIndicatorInsets.right = reserved
         }
     }
 

@@ -141,16 +141,61 @@ enum KeyBarConfig {
         KeyBarKey.allCases.filter { $0 != .hideKeyboard }
     }
 
-    static func load() -> [KeyBarKey] {
-        guard let raw = UserDefaults.standard.stringArray(forKey: defaultsKey) else {
+    /// Keys added to the bar after the layout format shipped. `load()` returns
+    /// a saved layout verbatim, so anyone who had customized the bar before a
+    /// key existed never saw it: #66 put a repeating Backspace in the defaults
+    /// and every user with a saved layout — including the one who asked for it
+    /// — still had a bar with no backspace on it at all.
+    ///
+    /// Each addition is applied once and recorded, so a user who then removes
+    /// the key keeps it removed.
+    private static let lateAdditions: [KeyBarKey] = [.backspace]
+    private static let appliedAdditionsKey = "keyBarAppliedAdditions"
+
+    /// `defaults` is a parameter rather than a hard-wired `.standard` so tests
+    /// can hand in a throwaway suite. It is deliberately not a shared settable
+    /// property: the tests run in parallel, and one of those raced the others
+    /// into reading the wrong store.
+    static func load(from defaults: UserDefaults = .standard) -> [KeyBarKey] {
+        guard let raw = defaults.stringArray(forKey: defaultsKey) else {
             return defaultKeys
         }
         let keys = raw.compactMap(KeyBarKey.init(rawValue:))
-        return keys.isEmpty ? defaultKeys : keys
+        guard !keys.isEmpty else { return defaultKeys }
+
+        let offered = Set(defaults.stringArray(forKey: appliedAdditionsKey) ?? [])
+        guard lateAdditions.contains(where: { !offered.contains($0.rawValue) }) else { return keys }
+
+        // Recorded as offered whether or not it ends up on the bar, so that
+        // removing the key afterwards is not undone on the next launch.
+        markLateAdditionsOffered(in: defaults)
+        let merged = merging(saved: keys, alreadyOffered: offered)
+        if merged != keys {
+            defaults.set(merged.map(\.rawValue), forKey: defaultsKey)
+        }
+        return merged
     }
 
-    static func save(_ keys: [KeyBarKey]) {
-        UserDefaults.standard.set(keys.map(\.rawValue), forKey: defaultsKey)
+    static func save(_ keys: [KeyBarKey], to defaults: UserDefaults = .standard) {
+        defaults.set(keys.map(\.rawValue), forKey: defaultsKey)
+        // Saving is the user's own word on what the bar holds, so nothing may
+        // be added back into it afterwards.
+        markLateAdditionsOffered(in: defaults)
         NotificationCenter.default.post(name: changedNotification, object: nil)
+    }
+
+    /// Puts any not-yet-offered key at the **front** of a saved layout.
+    /// A customized bar can hold anything in any order, and only the first six
+    /// or seven keys fit before the trailing edge, so appending would drop the
+    /// new key off the end where the user who asked for it would never see it.
+    static func merging(saved: [KeyBarKey], alreadyOffered: Set<String>) -> [KeyBarKey] {
+        let missing = lateAdditions.filter {
+            !alreadyOffered.contains($0.rawValue) && !saved.contains($0)
+        }
+        return missing + saved
+    }
+
+    private static func markLateAdditionsOffered(in defaults: UserDefaults) {
+        defaults.set(lateAdditions.map(\.rawValue), forKey: appliedAdditionsKey)
     }
 }

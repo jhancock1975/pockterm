@@ -442,6 +442,89 @@ final class VerifyDriverUITests: XCTestCase {
         Thread.sleep(forTimeInterval: 1)
     }
 
+    /// Measures typematic backspace: how many DEL bytes reach the terminal
+    /// when the software keyboard's delete key and the key bar's Backspace
+    /// are each held down. Read the counts back out of the app's log:
+    ///   xcrun simctl spawn booted log show --last 10m \
+    ///     --predicate 'eventMessage CONTAINS "POCKVERIFY"'
+    /// Markers: 'Q' (0x51) before the software-keyboard hold, 'W' (0x57)
+    /// before the key bar hold, 'E' (0x45) after.
+    func testBackspaceRepeat() throws {
+        let app = XCUIApplication()
+        app.launch()
+
+        app.tabBars.buttons["Hosts"].tap()
+        let hostRow = app.buttons.matching(
+            NSPredicate(format: "label CONTAINS 'localhost'")).firstMatch
+        if !hostRow.waitForExistence(timeout: 2) {
+            try createHost(app)
+        }
+        XCTAssertTrue(hostRow.waitForExistence(timeout: 5), app.debugDescription)
+        hostRow.tap()
+
+        let hostKeyAlert = app.alerts["Verify Host Key"]
+        if hostKeyAlert.waitForExistence(timeout: 8) {
+            hostKeyAlert.buttons.matching(
+                NSPredicate(format: "label BEGINSWITH 'Accept'")).firstMatch.tap()
+        }
+        let spinner = app.activityIndicators.firstMatch
+        let deadline = Date().addingTimeInterval(20)
+        while Date() < deadline && spinner.exists {
+            Thread.sleep(forTimeInterval: 0.5)
+        }
+        Thread.sleep(forTimeInterval: 2)
+
+        // Raise the terminal keyboard.
+        app.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.4)).tap()
+        let kb = app.keyboards.firstMatch
+        XCTAssertTrue(kb.waitForExistence(timeout: 10), "terminal keyboard never appeared")
+        Thread.sleep(forTimeInterval: 1.5)
+        attach(app, name: "kb-up")
+
+        print("KEYS>>>\(app.keyboards.keys.allElementsBoundByIndex.map(\.identifier))<<<")
+
+        // Element queries are resolved once, for their frames; the holds go
+        // through raw coordinates. Re-resolving at press time loses the key
+        // ("No matches found for Descendants matching type Key") as the
+        // keyboard redraws. XCUITest also delivers each press only after the
+        // app goes idle — about 60 s later here, since the terminal caret
+        // animates forever — so the printed timestamps do not line up with the
+        // log. Read the bursts off the log in order instead.
+        var del = app.keys["delete"]
+        if !del.waitForExistence(timeout: 5) { del = app.buttons["delete"] }
+        XCTAssertTrue(del.waitForExistence(timeout: 5), "no delete key: \(app.keyboards.debugDescription)")
+        let delPoint = point(app, in: del.frame)
+
+        // Burst 1 — software keyboard delete with nothing typed locally. This
+        // is the ordinary case: whatever is on the command line came from the
+        // shell, so SwiftTerm's text-input buffer is empty. Without the
+        // hasText override iOS refuses to repeat at all.
+        print("HOLD_1_EMPTY_BUFFER_SOFT_DELETE>>>\(Date().timeIntervalSince1970)<<<")
+        delPoint.press(forDuration: 3.0)
+        Thread.sleep(forTimeInterval: 2)
+        attach(app, name: "1-after-empty-buffer-hold")
+
+        // Burst 2 — same key, after typing ten characters. Even unfixed this
+        // one repeats, but only ten times, and then stops mid-hold.
+        app.typeText("abcdefghij")
+        Thread.sleep(forTimeInterval: 1)
+        print("HOLD_2_TYPED_TEXT_SOFT_DELETE>>>\(Date().timeIntervalSince1970)<<<")
+        delPoint.press(forDuration: 3.0)
+        Thread.sleep(forTimeInterval: 2)
+        attach(app, name: "2-after-typed-text-hold")
+
+        // Burst 3 — the key bar's own Backspace, whose repeat is ours.
+        let barBackspace = app.buttons["Backspace"]
+        if barBackspace.waitForExistence(timeout: 5) {
+            print("HOLD_3_KEYBAR>>>\(Date().timeIntervalSince1970)<<< frame=\(barBackspace.frame) hittable=\(barBackspace.isHittable)")
+            point(app, in: barBackspace.frame).press(forDuration: 3.0)
+        } else {
+            print("KEYBAR_BACKSPACE_MISSING>>>true<<<")
+        }
+        Thread.sleep(forTimeInterval: 2)
+        attach(app, name: "3-after-keybar-hold")
+    }
+
     private func createHost(_ app: XCUIApplication) throws {
         app.navigationBars.buttons["Add"].tap()
         app.buttons["New Host"].tap()
@@ -483,6 +566,13 @@ final class VerifyDriverUITests: XCTestCase {
         XCTAssertTrue(johnItem.waitForExistence(timeout: 5), app.debugDescription)
         johnItem.tap()
         app.navigationBars.buttons["Save"].tap()
+    }
+
+    /// Absolute screen point at the centre of `frame`, for presses that must
+    /// not re-resolve an element query.
+    private func point(_ app: XCUIApplication, in frame: CGRect) -> XCUICoordinate {
+        app.coordinate(withNormalizedOffset: .zero)
+            .withOffset(CGVector(dx: frame.midX, dy: frame.midY))
     }
 
     private func attach(_ app: XCUIApplication, name: String) {
