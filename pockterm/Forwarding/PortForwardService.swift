@@ -20,7 +20,8 @@ actor PortForwardService {
             host: creds.host, port: creds.port,
             authenticationMethod: method,
             hostKeyValidator: .custom(validator),
-            reconnect: .never)
+            reconnect: .never,
+            algorithms: .pockterm)
     }
 
     /// Listens on `bindHost:bindPort` and forwards each connection to

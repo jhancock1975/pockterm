@@ -82,6 +82,15 @@ enum HostKeyInspector {
                     sshString("ecdsa-sha2-nistp521") + sshString("nistp521")
                         + sshString(pub.x963Representation))
         }
+        // Anything registered through SSHAlgorithms — today that is ssh-rsa,
+        // whose rawRepresentation is already the wire body (mpint e, mpint n).
+        // Without this an RSA server's key reaches the trust prompt as
+        // "unknown" with no fingerprint, which is exactly the moment the user
+        // needs to be able to check it.
+        if let pub = associated as? NIOSSHPublicKeyProtocol {
+            let type = Swift.type(of: pub).publicKeyPrefix
+            return (type, sshString(type) + pub.rawRepresentation)
+        }
         return nil
     }
 

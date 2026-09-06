@@ -18,7 +18,8 @@ actor SFTPService {
             port: creds.port,
             authenticationMethod: method,
             hostKeyValidator: .custom(validator),
-            reconnect: .never)
+            reconnect: .never,
+            algorithms: .pockterm)
         client = connection
         sftp = try await connection.openSFTP()
     }
