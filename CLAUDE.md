@@ -46,20 +46,27 @@ dependencies are held back, and *every one of them* is held by Citadel:
 | `bigint` 5.7.0 | Citadel declares `from: "5.2.0"`, capping below 6.0.0 |
 | `citadel` 0.12.0 | 0.12.1 declares a zero-star third-party `swift-nio-ssh` fork |
 | `swift-crypto` 3.15.1 | Citadel pins `<4.0.0`; 4.0.0–4.3.0 carry GHSA-9m44-rr2w-ppp7 |
-| `swift-nio-ssh` 0.3.5 | Citadel's range caps below 0.4.0; also ~91 commits behind Apple |
+| `swift-nio-ssh` 0.3.5 | Citadel's range caps below 0.4.0; Apple is at 0.15.0 (twelve minor releases ahead) |
 
 One mid-sized library sits between us and four upstreams and decides which
-versions we are allowed to have. #122 is the single change that would most
-likely unstick that whole column.
+versions we are allowed to have.
 
-**Baseline as of 2026-08-29 — do not assume it will resolve on its own.** The
-issue is open with **zero comments and no activity since the day it was
-filed**, and Citadel has 10+ open PRs sitting unmerged. Eight months of silence
-from the maintainer on his own stated intent is the signal.
+**Costed out 2026-09-06 — #122 is not the small change it reads as, and it is
+not ours to do.** Measured against Apple's own 0.15.0 source: the copy of
+`swift-nio-ssh` we build carries a pluggable-algorithm API
+(`NIOSSHAlgorithms`, `NIOSSHKeyExchangeAlgorithmProtocol`,
+`NIOSSHSignatureProtocol`) that **Apple's library does not have**, and Citadel
+registers `ssh-rsa`, `diffie-hellman-group14-*` and AES128-CTR through it.
+Migrating back therefore needs new API accepted into `apple/swift-nio-ssh`
+first, or Citadel dropping those algorithms. That is the likeliest reason the
+maintainer's own issue has had zero comments since 2026-01-08.
 
-**So treat this as work we may have to do, not work to wait for.** If it is
-still dormant at the next dependency review, cost out doing it ourselves and
-put a real item in `docs/backlog.md`. Preference order:
+**But pockterm uses none of it**: `SSHEngine.connect` passes no `algorithms:`,
+so it takes Citadel's empty default. Before doing any of this work, read
+Apple's 0.4 → 0.15 notes for client-affecting fixes — that is the only thing
+that decides whether the hold matters. Full costing in `docs/backlog.md`.
+
+**If it ever does become work we do**, preference order:
 
 1. **Contribute the migration upstream** as a PR to Citadel — everyone benefits
    and we carry no fork.

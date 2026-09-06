@@ -149,23 +149,74 @@ the search in half.
 
 ## Get off the Citadel dependency bottleneck (watch #122, then act)
 
-**Recorded:** 2026-08-29
+**Recorded:** 2026-08-29 · **Reviewed:** 2026-09-06
 
 Four of twelve dependencies are held, and every one is held by Citadel — see
-the table in `CLAUDE.md`. Citadel issue #122, the maintainer's own plan to
-migrate back to `apple/swift-nio-ssh`, is the single change most likely to
-unstick all of them.
+the table in `CLAUDE.md`.
 
-**It has had zero comments and no activity since it was filed on 2026-01-08,
-and Citadel has 10+ open PRs unmerged.** So this is not a wait-and-see item
-indefinitely; it is work we should cost out.
+### Review 2026-09-06 — still dormant, and #122 is not the small change we assumed
 
-Next review: check the issue, and if it is still dormant, price up contributing
-the migration as an upstream PR. Forking Citadel is the fallback and is a real
-maintenance commitment — argue for it explicitly rather than drifting into it.
+Issue #122 is open with **zero comments and no activity since it was filed on
+2026-01-08** — eight months. Citadel itself: 12 open PRs, last push 2026-06-12,
+last release 0.12.1 on 2026-04-04. `CLAUDE.md` said to cost it out at this
+review if it was still dormant, so here is the costing.
 
-Nothing is urgent today: no advisory affects any pinned version, and the holds
-are all understood and recorded.
+**The premise was wrong.** `#122` reads like a version bump and CI fix. It is
+not. `Joannis/swift-nio-ssh`, the copy we build, carries a pluggable-algorithm
+API that **Apple's library does not have**. Measured against Apple's own
+0.15.0 source, not against code search:
+
+| symbol | the fork we build | apple/swift-nio-ssh 0.15.0 |
+|---|---|---|
+| `NIOSSHAlgorithms` | 1 file | **absent** |
+| `NIOSSHKeyExchangeAlgorithmProtocol` | 7 files | **absent** |
+| `NIOSSHSignatureProtocol` | 3 files | **absent** |
+| `NIOSSHPublicKeyProtocol` | used by Citadel | **absent** |
+| `NIOSSHTransportProtection` | 12 files | 23 files (exists) |
+
+Citadel registers three things through that API — AES128-CTR,
+`diffie-hellman-group14-sha1`/`-sha256`, and `ssh-rsa` (`Insecure.RSA`). So
+"migrate back to official swift-nio-ssh" means either **getting Apple to accept
+a public algorithm-extension API first**, or **Citadel giving up RSA keys and
+group14 key exchange**. Either way it is gated on a second upstream, which is
+the likeliest reason the maintainer's own issue has sat untouched for eight
+months.
+
+**How far behind we are.** We are pinned to the 0.3.5 line. Apple shipped 0.4.0
+on 2022-04-27 and is at **0.15.0 (2026-07-28)** — twelve minor releases.
+
+**Coupling, if anyone still fancies forking Citadel:** 28 of its 43 source
+files import NIOSSH, 116 symbol references, about 20 of them to API that does
+not exist upstream.
+
+### What the hold actually costs us — less than it looks
+
+`SSHEngine.connect` calls `SSHClient.connect` **without an `algorithms:`
+argument**, so it takes Citadel's default empty `SSHAlgorithms()` and registers
+none of the extras. Nothing pockterm ships uses the API that the fork exists to
+provide. (Side effect worth knowing separately: that also means we do not
+support `ssh-rsa` keys or group14 key exchange, so older servers will refuse us.
+That is a product question, not a dependency one.)
+
+### Options, priced
+
+1. **Read Apple's 0.4 → 0.15 release notes for client-affecting security and
+   protocol fixes.** An afternoon. Since we use none of the pluggable
+   algorithms, this is the only thing that decides whether the hold matters at
+   all. **Do this one first** — it either produces a concrete reason to act or
+   retires the anxiety with evidence.
+2. **Contribute the migration upstream to Citadel.** No longer a small PR:
+   blocked on new API in `apple/swift-nio-ssh` and their release cycle, or on
+   dropping algorithms. Weeks, gated on two upstreams. Do not start this
+   expecting it to unstick anything soon.
+3. **Fork Citadel.** Inherits the same problem — the nio-ssh side is the hard
+   part, not Citadel — so it buys nothing here. Still a real maintenance
+   commitment; argue for it explicitly rather than drifting into it.
+4. **Keep the holds.** Legitimate today and said out loud rather than by
+   default: as of 2026-09-06 no advisory affects any of the 12 pinned versions
+   (62 checked), and all four holds are understood and recorded.
+
+**Recommendation: 1, then re-decide.** Nothing here is urgent.
 
 ---
 
