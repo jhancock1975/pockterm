@@ -76,6 +76,37 @@ actor FingerprintBox {
     #expect(fingerprint?.count == "SHA256:".count + 43)
 }
 
+/// End to end, the thing the whole RSA change is for: a key the user already
+/// had, imported, authenticating against a server that speaks only the older
+/// algorithms. Skips unless all three pieces are present — the fixture (see
+/// `KeyManagerTests` for how to make it), its public half in the Mac's
+/// `~/.ssh/authorized_keys`, and the sshd on 2222.
+///
+/// That sshd needs `PubkeyAcceptedAlgorithms +ssh-rsa`, which is itself the
+/// point worth remembering: Citadel signs with `ssh-rsa`, i.e. SHA-1, and
+/// current OpenSSH refuses SHA-1 RSA client signatures by default.
+@Test func authenticatesWithAnImportedRSAKey() async throws {
+    guard sshReachable(host: "127.0.0.1", port: 2222),
+          let pem = keyFixture("rsa_plain"),
+          let username = keyFixture("username")?.trimmingCharacters(in: .whitespacesAndNewlines),
+          !username.isEmpty
+    else { return }
+
+    let engine = SSHEngine()
+    let creds = SSHCredentials(host: "127.0.0.1", port: 2222, username: username,
+                               auth: .openSSHKey(pem: pem, passphrase: nil))
+    // Throwing fails the test: reaching this point means the key parsed, the
+    // signature verified server-side, and the session came up.
+    try await engine.connect(creds) { _ in true }
+    await engine.disconnect()
+    print("IMPORTED_RSA_AUTH ok as \(username)")
+}
+
+private func keyFixture(_ name: String) -> String? {
+    let documents = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+    return try? String(contentsOf: documents.appending(path: "testkeys/\(name)"), encoding: .utf8)
+}
+
 private func sshReachable(host: String, port: UInt16) -> Bool {
     let fd = socket(AF_INET, SOCK_STREAM, 0)
     guard fd >= 0 else { return false }

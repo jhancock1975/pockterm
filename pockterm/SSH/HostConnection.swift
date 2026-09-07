@@ -24,11 +24,20 @@ enum HostConnection {
             auth = .password(password ?? "")
         case .key:
             guard let keyId = identity.keyRef,
-                  let pem = (try? secretStore.getString(keyId.uuidString)) ?? nil,
-                  let seed = KeyManager.seed(fromPEM: pem) else {
+                  let pem = (try? secretStore.getString(keyId.uuidString)) ?? nil else {
                 return .failure("The SSH key for these credentials is missing.")
             }
-            auth = .ed25519Seed(seed)
+            // Generated keys are stored as a bare seed in pockterm's own
+            // wrapper; imported ones keep the OpenSSH container they arrived
+            // in, with any passphrase alongside them.
+            if let seed = KeyManager.seed(fromPEM: pem) {
+                auth = .ed25519Seed(seed)
+            } else if pem.hasPrefix(PrivateKeyImport.openSSHBegin) {
+                let passphrase = (try? secretStore.getString(PrivateKeyImport.passphraseKey(for: keyId))) ?? nil
+                auth = .openSSHKey(pem: pem, passphrase: passphrase)
+            } else {
+                return .failure("The SSH key for these credentials could not be read.")
+            }
         }
         return .success(SSHCredentials(host: host.address, port: effective.port,
                                        username: identity.username, auth: auth))

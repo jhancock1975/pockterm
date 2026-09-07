@@ -241,7 +241,6 @@ def check_advisories(current):
 def check_secrets():
     print("4. SECRET SCAN")
     patterns = {
-        "private key block": r"BEGIN (RSA|OPENSSH|EC|DSA|PRIVATE)",
         # AWS: the infra scripts run against a live account, so a leaked key here
         # is worse than any app secret. Long-lived ids, STS ids, and the secret
         # itself, which has no distinctive prefix and must be caught by context.
@@ -258,6 +257,31 @@ def check_secrets():
     # cries wolf is a check nobody reads. The high-confidence AWS rules below
     # cannot self-match, so they still cover it.
     scannable = [f for f in tracked if f != "scripts/routine_update.py"]
+
+    # Private keys are scanned across lines rather than with the others.
+    # `git grep` is line-based, and in a real key the BEGIN marker and the
+    # base64 body are on separate lines — so a line pattern can only match the
+    # bare marker, which is also what a source file legitimately contains when
+    # it needs to *recognise* the format. Requiring the marker to be followed
+    # by a long run of base64 tells key material apart from a format constant
+    # without weakening the check: a leaked key always has a body.
+    key_block = re.compile(
+        r"BEGIN (?:RSA|OPENSSH|EC|DSA|PRIVATE)[^\n]*-----[\r\n]+[A-Za-z0-9+/=\s]{100,}")
+    leaked = []
+    for name in scannable:
+        try:
+            body = (REPO / name).read_text(errors="ignore")
+        except OSError:
+            continue
+        if key_block.search(body):
+            leaked.append(name)
+    if leaked:
+        clean = False
+        print("   !! private key block:")
+        for name in leaked[:5]:
+            print(f"      {name}")
+        note("secret", "private key block found in tracked files")
+
     for label, pattern in patterns.items():
         out = subprocess.run(["git", "grep", "-nIE", pattern, "--"] + scannable,
                              capture_output=True, text=True, cwd=REPO).stdout.strip()
