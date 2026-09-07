@@ -89,6 +89,94 @@
         }
       }
     },
+    "%@ keys aren't supported yet. Ed25519 and RSA keys can be imported.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "مفاتيح %@ غير مدعومة بعد. يمكن استيراد مفاتيح Ed25519 وRSA."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Τα κλειδιά %@ δεν υποστηρίζονται ακόμη. Μπορείτε να εισαγάγετε κλειδιά Ed25519 και RSA."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Las claves %@ aún no son compatibles. Se pueden importar claves Ed25519 y RSA."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les clés %@ ne sont pas encore prises en charge. Vous pouvez importer des clés Ed25519 et RSA."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "מפתחות %@ אינם נתמכים עדיין. אפשר לייבא מפתחות Ed25519 ו‑RSA."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ कुंजियाँ अभी समर्थित नहीं हैं। Ed25519 और RSA कुंजियाँ आयात की जा सकती हैं।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le chiavi %@ non sono ancora supportate. Puoi importare chiavi Ed25519 e RSA."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ 鍵にはまだ対応していません。読み込めるのは Ed25519 鍵と RSA 鍵です。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ 키는 아직 지원하지 않습니다. Ed25519와 RSA 키를 가져올 수 있습니다."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ключи %@ пока не поддерживаются. Можно импортировать ключи Ed25519 и RSA."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ కీలకు ఇంకా మద్దతు లేదు. Ed25519 మరియు RSA కీలను దిగుమతి చేయవచ్చు."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ключі %@ поки не підтримуються. Можна імпортувати ключі Ed25519 та RSA."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "暂不支持 %@ 密钥。可导入 Ed25519 和 RSA 密钥。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "暫不支援 %@ 金鑰。可輸入 Ed25519 與 RSA 金鑰。"
+          }
+        }
+      }
+    },
     "%@: %@": {
       "shouldTranslate": false
     },
@@ -1980,6 +2068,94 @@
         }
       }
     },
+    "A name for this key in Pockterm. The key itself is unchanged.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اسم لهذا المفتاح داخل Pockterm. لا يطرأ أي تغيير على المفتاح نفسه."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ένα όνομα για αυτό το κλειδί στο Pockterm. Το ίδιο το κλειδί δεν αλλάζει."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Un nombre para esta clave en Pockterm. La clave en sí no se modifica."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Un nom pour cette clé dans Pockterm. La clé elle-même reste inchangée."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "שם עבור המפתח הזה ב‑Pockterm. המפתח עצמו אינו משתנה."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pockterm में इस कुंजी का नाम। कुंजी स्वयं अपरिवर्तित रहती है।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Un nome per questa chiave in Pockterm. La chiave stessa non viene modificata."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pockterm 内でのこの鍵の名前です。鍵自体は変更されません。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pockterm에서 이 키에 사용할 이름입니다. 키 자체는 바뀌지 않습니다."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Имя этого ключа в Pockterm. Сам ключ не изменяется."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pockterm లో ఈ కీకి ఒక పేరు. కీ మాత్రం మారదు."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ім’я цього ключа в Pockterm. Сам ключ не змінюється."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "该密钥在 Pockterm 中的名称。密钥本身不会被修改。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "該金鑰在 Pockterm 中的名稱。金鑰本身不會被修改。"
+          }
+        }
+      }
+    },
     "AI Assistant": {
       "localizations": {
         "ar": {
@@ -2416,6 +2592,94 @@
           "stringUnit": {
             "state": "translated",
             "value": "正在 :%@ 上運作"
+          }
+        }
+      }
+    },
+    "Add Key": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "إضافة مفتاح"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Προσθήκη κλειδιού"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Añadir clave"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ajouter une clé"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הוספת מפתח"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "कुंजी जोड़ें"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aggiungi chiave"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "鍵を追加"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "키 추가"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Добавить ключ"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "కీని జోడించు"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Додати ключ"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "添加密钥"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "新增金鑰"
           }
         }
       }
@@ -9988,6 +10252,94 @@
         }
       }
     },
+    "Generate Ed25519 Key…": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "توليد مفتاح Ed25519…"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Παραγωγή κλειδιού Ed25519…"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Generar clave Ed25519…"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Générer une clé Ed25519…"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "צור מפתח Ed25519…"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ed25519 कुंजी जनरेट करें…"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Genera chiave Ed25519…"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ed25519 鍵を生成…"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ed25519 키 만들기…"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сгенерировать ключ Ed25519…"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ed25519 కీని రూపొందించు…"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Згенерувати ключ Ed25519…"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "生成 Ed25519 密钥…"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "產生 Ed25519 金鑰…"
+          }
+        }
+      }
+    },
     "Generate a key": {
       "localizations": {
         "ar": {
@@ -11484,6 +11836,94 @@
         }
       }
     },
+    "Import Existing Key…": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "استيراد مفتاح موجود…"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Εισαγωγή υπάρχοντος κλειδιού…"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Importar clave existente…"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Importer une clé existante…"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ייבוא מפתח קיים…"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "मौजूदा कुंजी आयात करें…"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Importa chiave esistente…"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "既存の鍵を読み込む…"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "기존 키 가져오기…"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Импортировать существующий ключ…"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ఇప్పటికే ఉన్న కీని దిగుమతి చేయి…"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Імпортувати наявний ключ…"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "导入已有密钥…"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "輸入既有金鑰…"
+          }
+        }
+      }
+    },
     "Import Hosts": {
       "localizations": {
         "ar": {
@@ -11568,6 +12008,94 @@
           "stringUnit": {
             "state": "translated",
             "value": "輸入主機"
+          }
+        }
+      }
+    },
+    "Import Key": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "استيراد مفتاح"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Εισαγωγή κλειδιού"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Importar clave"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Importer une clé"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ייבוא מפתח"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "कुंजी आयात करें"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Importa chiave"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "鍵を読み込む"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "키 가져오기"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Импорт ключа"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "కీని దిగుమతి చేయి"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Імпорт ключа"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "导入密钥"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "輸入金鑰"
           }
         }
       }
@@ -16327,6 +16855,94 @@
         }
       }
     },
+    "Passphrase": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "عبارة المرور"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Συνθηματική φράση"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Frase de contraseña"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Phrase secrète"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "מילת צופן"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पासफ़्रेज़"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Passphrase"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "パスフレーズ"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "암호"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Пароль ключа"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "పాస్‌ఫ్రేజ్"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Пароль ключа"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "密码短语"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "密碼短語"
+          }
+        }
+      }
+    },
     "Password": {
       "localizations": {
         "ar": {
@@ -16587,6 +17203,94 @@
           "stringUnit": {
             "state": "translated",
             "value": "貼上 API 金鑰"
+          }
+        }
+      }
+    },
+    "Paste the whole private key file, including the BEGIN and END lines. Ed25519 and RSA keys in OpenSSH format are supported.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "الصق ملف المفتاح الخاص بالكامل، بما في ذلك سطرَي BEGIN وEND. المفاتيح المدعومة هي Ed25519 وRSA بتنسيق OpenSSH."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Επικολλήστε ολόκληρο το αρχείο ιδιωτικού κλειδιού, μαζί με τις γραμμές BEGIN και END. Υποστηρίζονται κλειδιά Ed25519 και RSA σε μορφή OpenSSH."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pega el archivo de clave privada completo, incluidas las líneas BEGIN y END. Se admiten claves Ed25519 y RSA en formato OpenSSH."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Collez le fichier de clé privée en entier, lignes BEGIN et END comprises. Les clés Ed25519 et RSA au format OpenSSH sont prises en charge."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הדבק את קובץ המפתח הפרטי כולו, כולל השורות BEGIN ו‑END. נתמכים מפתחות Ed25519 ו‑RSA בתבנית OpenSSH."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पूरी निजी कुंजी फ़ाइल चिपकाएँ, BEGIN और END पंक्तियों सहित। OpenSSH प्रारूप में Ed25519 और RSA कुंजियाँ समर्थित हैं।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Incolla l'intero file della chiave privata, comprese le righe BEGIN e END. Sono supportate chiavi Ed25519 e RSA in formato OpenSSH."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "BEGIN 行と END 行を含め、秘密鍵ファイル全体を貼り付けてください。OpenSSH 形式の Ed25519 鍵と RSA 鍵に対応しています。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "BEGIN과 END 줄을 포함해 개인 키 파일 전체를 붙여넣으세요. OpenSSH 형식의 Ed25519 및 RSA 키를 지원합니다."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Вставьте файл закрытого ключа целиком, включая строки BEGIN и END. Поддерживаются ключи Ed25519 и RSA в формате OpenSSH."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "BEGIN మరియు END పంక్తులతో సహా ప్రైవేట్ కీ ఫైల్ మొత్తాన్ని అతికించండి. OpenSSH ఫార్మాట్‌లోని Ed25519 మరియు RSA కీలకు మద్దతు ఉంది."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Вставте файл закритого ключа повністю, разом із рядками BEGIN і END. Підтримуються ключі Ed25519 та RSA у форматі OpenSSH."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "粘贴完整的私钥文件，包括 BEGIN 和 END 行。支持 OpenSSH 格式的 Ed25519 和 RSA 密钥。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "貼上完整的私密金鑰檔案，包括 BEGIN 與 END 行。支援 OpenSSH 格式的 Ed25519 與 RSA 金鑰。"
           }
         }
       }
@@ -17555,6 +18259,94 @@
           "stringUnit": {
             "state": "translated",
             "value": "埠轉送會將網路連線經由 SSH 伺服器進行路由。"
+          }
+        }
+      }
+    },
+    "Private Key": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "المفتاح الخاص"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ιδιωτικό κλειδί"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clave privada"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clé privée"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "מפתח פרטי"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "निजी कुंजी"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chiave privata"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "秘密鍵"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "개인 키"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Закрытый ключ"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ప్రైవేట్ కీ"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Закритий ключ"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "私钥"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "私密金鑰"
           }
         }
       }
@@ -21431,6 +22223,94 @@
         }
       }
     },
+    "Stored in the Keychain alongside the key.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تُحفظ في سلسلة المفاتيح إلى جانب المفتاح."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Αποθηκεύεται στο Μπρελόκ μαζί με το κλειδί."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Se guarda en el Llavero junto a la clave."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conservée dans le trousseau avec la clé."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "נשמרת במחזיק המפתחות לצד המפתח."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "कुंजी के साथ कीचेन में सहेजा जाता है।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Salvata nel Portachiavi insieme alla chiave."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "鍵とともにキーチェーンに保存されます。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "키와 함께 키체인에 저장됩니다."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сохраняется в «Ключах» вместе с ключом."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "కీతో పాటు కీచెయిన్‌లో నిల్వ చేయబడుతుంది."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Зберігається у «Ключах» разом із ключем."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "与密钥一同保存在钥匙串中。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "與金鑰一同儲存在鑰匙圈中。"
+          }
+        }
+      }
+    },
     "Tab": {
       "localizations": {
         "ar": {
@@ -22135,6 +23015,94 @@
         }
       }
     },
+    "Tap + to generate an Ed25519 key, or import one you already have.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اضغط + لإنشاء مفتاح Ed25519، أو لاستيراد مفتاح لديك بالفعل."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Πατήστε + για να δημιουργήσετε ένα κλειδί Ed25519 ή να εισαγάγετε ένα που ήδη έχετε."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Toca + para generar una clave Ed25519 o importar una que ya tengas."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Touchez + pour générer une clé Ed25519 ou importer une clé existante."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הקש + כדי ליצור מפתח Ed25519 או לייבא מפתח שכבר יש לך."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ed25519 कुंजी बनाने या पहले से मौजूद कुंजी आयात करने के लिए + दबाएँ।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tocca + per generare una chiave Ed25519 o importarne una che hai già."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "＋ をタップして Ed25519 鍵を作成するか、既存の鍵を読み込みます。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "+를 탭해 Ed25519 키를 생성하거나 기존 키를 가져오세요."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Нажмите +, чтобы создать ключ Ed25519 или импортировать существующий."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ed25519 కీని సృష్టించడానికి లేదా మీ వద్ద ఉన్న కీని దిగుమతి చేయడానికి + నొక్కండి."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Торкніться +, щоб створити ключ Ed25519 або імпортувати наявний."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "点按 + 生成 Ed25519 密钥，或导入你已有的密钥。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "點一下 + 產生 Ed25519 金鑰，或輸入你已有的金鑰。"
+          }
+        }
+      }
+    },
     "Tap + to generate an Ed25519 key.": {
       "localizations": {
         "ar": {
@@ -22754,6 +23722,182 @@
         }
       }
     },
+    "That doesn't look like a private key. Paste the whole file, including the BEGIN and END lines.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "لا يبدو أن هذا مفتاح خاص. الصق الملف بالكامل، بما في ذلك سطرَي BEGIN وEND."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Αυτό δεν μοιάζει με ιδιωτικό κλειδί. Επικολλήστε ολόκληρο το αρχείο, μαζί με τις γραμμές BEGIN και END."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eso no parece una clave privada. Pega el archivo completo, incluidas las líneas BEGIN y END."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cela ne ressemble pas à une clé privée. Collez le fichier en entier, lignes BEGIN et END comprises."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "זה לא נראה כמו מפתח פרטי. הדבק את הקובץ כולו, כולל השורות BEGIN ו‑END."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "यह निजी कुंजी नहीं लगती। पूरी फ़ाइल चिपकाएँ, BEGIN और END पंक्तियों सहित।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Non sembra una chiave privata. Incolla l’intero file, comprese le righe BEGIN e END."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "秘密鍵ではないようです。BEGIN 行と END 行を含め、ファイル全体を貼り付けてください。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "개인 키로 보이지 않습니다. BEGIN과 END 줄을 포함해 파일 전체를 붙여넣으세요."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Это не похоже на закрытый ключ. Вставьте файл целиком, включая строки BEGIN и END."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ఇది ప్రైవేట్ కీలా కనిపించడం లేదు. BEGIN మరియు END పంక్తులతో సహా ఫైల్ మొత్తాన్ని అతికించండి."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Це не схоже на закритий ключ. Вставте файл повністю, разом із рядками BEGIN і END."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "这看起来不是私钥。请粘贴完整文件，包括 BEGIN 和 END 行。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "這看起來不是私密金鑰。請貼上完整檔案，包括 BEGIN 與 END 行。"
+          }
+        }
+      }
+    },
+    "That file could not be read as text.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تعذّرت قراءة هذا الملف كنص."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Το αρχείο δεν ήταν δυνατό να διαβαστεί ως κείμενο."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se pudo leer ese archivo como texto."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ce fichier n’a pas pu être lu comme du texte."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "לא ניתן היה לקרוא את הקובץ כטקסט."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "उस फ़ाइल को पाठ के रूप में नहीं पढ़ा जा सका।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impossibile leggere il file come testo."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "このファイルをテキストとして読み込めませんでした。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "해당 파일을 텍스트로 읽을 수 없습니다."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Не удалось прочитать файл как текст."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ఆ ఫైల్‌ను టెక్స్ట్‌గా చదవలేకపోయాం."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Не вдалося прочитати файл як текст."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无法将该文件作为文本读取。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "無法將該檔案作為文字讀取。"
+          }
+        }
+      }
+    },
     "That opens the iPhone's own file picker, so you can upload straight from **iCloud Drive**, On My iPhone, or any other Files location.": {
       "localizations": {
         "ar": {
@@ -22838,6 +23982,94 @@
           "stringUnit": {
             "state": "translated",
             "value": "這會打開 iPhone 內建的檔案選擇器，因此你可以直接從 **iCloud 雲碟**、「在我的 iPhone 上」或「檔案」中的任何其他位置上傳。"
+          }
+        }
+      }
+    },
+    "That passphrase didn't unlock the key.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "عبارة المرور هذه لم تفتح المفتاح."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Αυτή η συνθηματική φράση δεν ξεκλείδωσε το κλειδί."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esa frase de contraseña no desbloqueó la clave."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cette phrase secrète n’a pas déverrouillé la clé."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "מילת הצופן הזו לא פתחה את המפתח."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "उस पासफ़्रेज़ से कुंजी नहीं खुली।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Questa passphrase non ha sbloccato la chiave."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "そのパスフレーズでは鍵を復号できませんでした。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "해당 암호로는 키를 열 수 없습니다."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Этот пароль не подошёл к ключу."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ఆ పాస్‌ఫ్రేజ్ కీని అన్‌లాక్ చేయలేదు."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Цей пароль не підійшов до ключа."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "该密码短语无法解开此密钥。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "該密碼短語無法解開此金鑰。"
           }
         }
       }
@@ -23546,6 +24778,94 @@
         }
       }
     },
+    "The key could not be read. It may be incomplete or corrupted.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تعذّرت قراءة المفتاح. قد يكون ناقصًا أو تالفًا."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Το κλειδί δεν ήταν δυνατό να διαβαστεί. Μπορεί να είναι ελλιπές ή κατεστραμμένο."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se pudo leer la clave. Puede estar incompleta o dañada."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La clé n’a pas pu être lue. Elle est peut-être incomplète ou endommagée."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "לא ניתן היה לקרוא את המפתח. ייתכן שהוא חלקי או פגום."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "कुंजी नहीं पढ़ी जा सकी। यह अधूरी या क्षतिग्रस्त हो सकती है।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impossibile leggere la chiave. Potrebbe essere incompleta o danneggiata."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "鍵を読み取れませんでした。内容が不完全か破損している可能性があります。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "키를 읽을 수 없습니다. 내용이 불완전하거나 손상되었을 수 있습니다."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Не удалось прочитать ключ. Возможно, он неполный или повреждён."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "కీని చదవలేకపోయాం. అది అసంపూర్ణంగా లేదా పాడైనదిగా ఉండవచ్చు."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Не вдалося прочитати ключ. Можливо, він неповний або пошкоджений."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无法读取该密钥，文件可能不完整或已损坏。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "無法讀取該金鑰，檔案可能不完整或已損毀。"
+          }
+        }
+      }
+    },
     "The provider is overloaded. Try again shortly.": {
       "localizations": {
         "ar": {
@@ -23894,6 +25214,182 @@
           "stringUnit": {
             "state": "translated",
             "value": "主題"
+          }
+        }
+      }
+    },
+    "This key is in the older PEM format. Convert it with `ssh-keygen -p -f <file>` — that rewrites the file in place without changing the key — then paste it again.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "هذا المفتاح بتنسيق PEM القديم. حوّله باستخدام `ssh-keygen -p -f <file>` — تعيد الأمر كتابة الملف في مكانه دون تغيير المفتاح — ثم الصقه مجددًا."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Αυτό το κλειδί είναι σε παλαιότερη μορφή PEM. Μετατρέψτε το με `ssh-keygen -p -f <file>` — ξαναγράφει το αρχείο επιτόπου χωρίς να αλλάξει το κλειδί — και επικολλήστε το ξανά."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esta clave está en el formato PEM antiguo. Conviértela con `ssh-keygen -p -f <file>` —reescribe el archivo sin cambiar la clave— y vuelve a pegarla."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cette clé est au format PEM ancien. Convertissez-la avec `ssh-keygen -p -f <file>` — le fichier est réécrit sur place sans que la clé change — puis collez-la à nouveau."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "המפתח הזה בתבנית PEM הישנה. המר אותו באמצעות `ssh-keygen -p -f <file>` — הפקודה כותבת מחדש את הקובץ מבלי לשנות את המפתח — ואז הדבק שוב."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "यह कुंजी पुराने PEM प्रारूप में है। इसे `ssh-keygen -p -f <file>` से बदलें — यह कुंजी बदले बिना फ़ाइल को उसी जगह फिर से लिखता है — फिर दोबारा चिपकाएँ।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Questa chiave è nel vecchio formato PEM. Convertila con `ssh-keygen -p -f <file>` — riscrive il file senza modificare la chiave — poi incollala di nuovo."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "この鍵は古い PEM 形式です。`ssh-keygen -p -f <file>` で変換してから貼り付け直してください。鍵を変えずにファイルを書き換えます。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "이 키는 예전 PEM 형식입니다. `ssh-keygen -p -f <file>`로 변환한 뒤 다시 붙여넣으세요. 키는 그대로 두고 파일만 다시 씁니다."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Этот ключ в старом формате PEM. Преобразуйте его командой `ssh-keygen -p -f <file>` — она перезаписывает файл, не меняя сам ключ — и вставьте снова."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ఈ కీ పాత PEM ఫార్మాట్‌లో ఉంది. `ssh-keygen -p -f <file>` తో మార్చండి — ఇది కీని మార్చకుండా ఫైల్‌ను తిరిగి రాస్తుంది — ఆపై మళ్లీ అతికించండి."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Цей ключ у старому форматі PEM. Перетворіть його командою `ssh-keygen -p -f <file>` — вона перезаписує файл, не змінюючи ключ — і вставте знову."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "此密钥为旧的 PEM 格式。请用 `ssh-keygen -p -f <file>` 转换后重新粘贴——该命令会就地重写文件，不会改变密钥。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "此金鑰為舊的 PEM 格式。請用 `ssh-keygen -p -f <file>` 轉換後重新貼上——該指令會就地重寫檔案，不會改變金鑰。"
+          }
+        }
+      }
+    },
+    "This key is protected by a passphrase. Enter it to import the key.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "هذا المفتاح محمي بعبارة مرور. أدخلها لاستيراد المفتاح."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Αυτό το κλειδί προστατεύεται με συνθηματική φράση. Εισαγάγετέ την για να εισαχθεί το κλειδί."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esta clave está protegida con una frase de contraseña. Introdúcela para importarla."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cette clé est protégée par une phrase secrète. Saisissez-la pour importer la clé."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "המפתח הזה מוגן במילת צופן. הזן אותה כדי לייבא את המפתח."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "यह कुंजी पासफ़्रेज़ से सुरक्षित है। कुंजी आयात करने के लिए उसे दर्ज करें।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Questa chiave è protetta da una passphrase. Inseriscila per importarla."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "この鍵はパスフレーズで保護されています。読み込むにはパスフレーズを入力してください。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "이 키는 암호로 보호되어 있습니다. 가져오려면 암호를 입력하세요."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Этот ключ защищён паролем. Введите его, чтобы импортировать ключ."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ఈ కీ పాస్‌ఫ్రేజ్‌తో రక్షించబడింది. కీని దిగుమతి చేయడానికి దాన్ని నమోదు చేయండి."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Цей ключ захищено паролем. Введіть його, щоб імпортувати ключ."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "此密钥受密码短语保护。请输入密码短语以导入。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "此金鑰受密碼短語保護。請輸入密碼短語以輸入金鑰。"
           }
         }
       }
