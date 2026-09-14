@@ -54,15 +54,23 @@ enum HelpContent {
             .paragraph("**Credentials** are a username plus a way to authenticate — either a password or an SSH key."),
             .heading("Generate a key"),
             .bullets([
-                "On the **Keychain** tab, tap **+** and give the key a label.",
+                "On the **Keychain** tab, tap **+**, choose **Generate Ed25519 Key…**, and give the key a label.",
                 "Pockterm creates an Ed25519 key pair and stores the private key in the iOS Keychain.",
                 "Add the shown public-key line to the server's `~/.ssh/authorized_keys` file.",
             ]),
+            .heading("Import a key you already have"),
+            .bullets([
+                "On the **Keychain** tab, tap **+** and choose **Import Existing Key…**",
+                "Paste the whole private key file, including the BEGIN and END lines. Ed25519 and RSA keys in OpenSSH format are supported.",
+                "Or tap **Choose File…** to pick the key out of Files.",
+                "If the key has a passphrase, Pockterm asks for it once and stores it in the Keychain alongside the key.",
+            ]),
+            .paragraph("A key that starts `-----BEGIN RSA PRIVATE KEY-----` is in the older PEM format. Convert it with `ssh-keygen -p -f <file>` — that rewrites the file in place without changing the key — then import it."),
             .heading("Create credentials"),
             .bullets([
                 "In a host's editor, choose **New Credentials**.",
                 "Enter the username and pick **Password** or **Key**.",
-                "For **Key**, select one of the keys you generated.",
+                "For **Key**, select one of your keys.",
             ]),
         ])
 
