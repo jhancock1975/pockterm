@@ -4,6 +4,10 @@
 #   scripts/test.sh --build   # recompile first (required after source changes)
 #   scripts/test.sh           # re-run tests against the last build (~1 min)
 #
+# Read the EXIT STATUS, not the output. `scripts/test.sh | tail -5` reports
+# tail's status, not the script's, so a failed run reads as a pass — that has
+# already been mis-reported once.
+#
 # Why this exists (vs. plain `xcodebuild test`):
 #   - build-for-testing/test-without-building splits the ~2-3 min compile from
 #     the seconds-long test run, so iterating on tests is cheap.
@@ -53,12 +57,13 @@ started() { grep -cE "^◇ Test .*\(.*\) started\." "$LOG" 2>/dev/null || true; 
 
 last_results=0
 stall_started=$SECONDS
+killed=0   # set when WE stop xcodebuild, so its status can be ignored
 while true; do
     if ! kill -0 "$XCB" 2>/dev/null; then
         break   # xcodebuild exited on its own
     fi
     if grep -qE '\*\* TEST (SUCCEEDED|FAILED) \*\*' "$LOG"; then
-        sleep "$GRACE"; kill "$XCB" 2>/dev/null
+        sleep "$GRACE"; kill "$XCB" 2>/dev/null; killed=1
         break
     fi
     r=$(results); s=$(started)
@@ -66,6 +71,7 @@ while true; do
         # every started test has a result; xcodebuild is only tearing down
         sleep "$GRACE"
         kill -0 "$XCB" 2>/dev/null && { echo "(killed xcodebuild teardown hang)"; kill "$XCB" 2>/dev/null; }
+        killed=1
         break
     fi
     if [[ "$r" -ne "$last_results" ]]; then
@@ -80,6 +86,19 @@ while true; do
     fi
     sleep 3
 done
+
+# Reap xcodebuild and judge its status. A kill WE issued is expected and says
+# nothing — that is the teardown-hang workaround this script exists for. A
+# non-zero status from a process we did not kill means the run collapsed partway,
+# and the greps below cannot see that: a run that dies after one passing test
+# with no ✘ line reads as green. Verified with a stub that exits 70 after two
+# passes — before this check it printed TESTS GREEN.
+wait "$XCB" 2>/dev/null; status=$?
+if [[ "$killed" -eq 0 && "$status" -ne 0 ]]; then
+    echo "RUN DID NOT FINISH — xcodebuild exited $status. Tail of log:"
+    tail -20 "$LOG"
+    exit 1
+fi
 
 passed=$(grep -c "^✔ Test .* passed" "$LOG" || true)
 failed=$(grep -c "^✘" "$LOG" || true)
