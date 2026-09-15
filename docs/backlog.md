@@ -99,6 +99,45 @@ Worth answering early: does it reproduce **without tmux**, and does it happen
 only when the keyboard is raised? Those two answers narrow it to a geometry
 bug quickly.
 
+### Measured 2026-09-15 — does NOT reproduce in the simulator
+
+Checked on iPhone 17 / iOS 26 against main at `15cdace`, over a real SSH
+session to the Mac's own sshd, by printing `LINE-1`..`LINE-60` and looking at
+what the key bar covers. Probe kept as
+`testKeyBarOcclusionGeometry` in the verify skill's driver.
+
+**With the software keyboard up, there is no occlusion.** `LINE-60` and the
+shell prompt below it are both fully visible, the key bar sits under them, and
+nothing is legible through the gaps between the buttons. The key bar moves from
+y=831 (docked) to y=523 (keyboard up) in an 874 pt window, so the layout does
+respond to the keyboard. The constraint in `TerminalHostView` is doing its job
+in this configuration.
+
+**Do not measure this through XCUI frames.** `app.keyboards.firstMatch.frame`
+reports minY 891 in an 874 pt window — the keyboard placed below the bottom of
+the screen. That is the iOS 26 frame defect in the auto-memory note, and it
+makes frame arithmetic here worthless. Printing numbered lines and reading the
+screenshot is the measurement that works.
+
+**There is no "keyboard down, key bar still showing" state on a touch-only
+device.** The key bar is the terminal's `inputAccessoryView`, so dismissing the
+keyboard resigns first responder and takes the bar with it. The docked bar seen
+at launch in the simulator is its *hardware* keyboard — i.e. an external
+keyboard on device.
+
+So suspect 1 is not confirmed and suspect 3 is not visible here. What is still
+untested, and where the report may yet live:
+
+* **a physical device** — the original report came from one, with a screenshot;
+* **tmux**, which draws its status line on the last row;
+* **the docked/hardware-keyboard case** with a full screen of output, which this
+  probe could not reach (typing raises the software keyboard, and hiding it
+  removes the bar).
+
+The report predates 1.5, 1.6 and 1.7, which included keyboard-avoidance work, so
+"already fixed" is a live possibility alongside device- or tmux-specific. Do not
+close it on this evidence alone; do not re-derive the simulator half either.
+
 ### Related
 
 This is *occlusion*, distinct from the mode line **corruption** item below —

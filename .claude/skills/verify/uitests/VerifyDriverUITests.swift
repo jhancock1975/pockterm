@@ -525,6 +525,86 @@ final class VerifyDriverUITests: XCTestCase {
         attach(app, name: "3-after-keybar-hold")
     }
 
+    /// Discovery for the "key bar covers the bottom lines" backlog item.
+    /// Connects, raises the terminal keyboard, and dumps the element tree plus
+    /// the frames that matter, so the occlusion can be measured rather than
+    /// argued from the constraint in TerminalHostView.
+    func testKeyBarOcclusionGeometry() throws {
+        let app = XCUIApplication()
+        app.launch()
+        app.tabBars.buttons["Hosts"].tap()
+
+        let hostRow = app.buttons.matching(
+            NSPredicate(format: "label CONTAINS 'localhost' OR label CONTAINS 'mac'")).firstMatch
+        if !hostRow.waitForExistence(timeout: 2) {
+            try createHost(app)
+        }
+        XCTAssertTrue(hostRow.waitForExistence(timeout: 5), app.debugDescription)
+        hostRow.tap()
+
+        let hostKeyAlert = app.alerts["Verify Host Key"]
+        if hostKeyAlert.waitForExistence(timeout: 8) {
+            hostKeyAlert.buttons.matching(
+                NSPredicate(format: "label BEGINSWITH 'Accept'")).firstMatch.tap()
+        }
+
+        let failed = app.staticTexts["Connection Failed"]
+        let spinner = app.activityIndicators.firstMatch
+        let deadline = Date().addingTimeInterval(20)
+        while Date() < deadline {
+            if failed.exists { XCTFail("connection failed: \(app.debugDescription)") }
+            if !spinner.exists { break }
+            Thread.sleep(forTimeInterval: 0.5)
+        }
+        Thread.sleep(forTimeInterval: 2)
+
+        app.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.4)).tap()
+        XCTAssertTrue(app.keyboards.firstMatch.waitForExistence(timeout: 5),
+                      "terminal keyboard never appeared")
+        Thread.sleep(forTimeInterval: 1.5)
+
+        print("GEOM>>> window=\(app.windows.firstMatch.frame)")
+        print("GEOM>>> keyboard=\(app.keyboards.firstMatch.frame)")
+        for name in ["esc", "ctrl", "tab"] {
+            let b = app.buttons[name]
+            if b.exists { print("GEOM>>> keybar button \(name)=\(b.frame)") }
+        }
+        // Fill the screen with numbered lines. Frame arithmetic through XCUI is
+        // unreliable here (it reports the keyboard at minY 891 in an 874pt
+        // window), so measure what a user actually sees: print more lines than
+        // fit, and read which number ends up last.
+        app.typeText("for i in $(seq 1 60); do echo \"LINE-$i\"; done\n")
+        Thread.sleep(forTimeInterval: 3)
+        attach(app, name: "occlusion-filled-hardware-kb")
+
+        // Now raise the software keyboard explicitly via the key bar's own
+        // keyboard button, which is the state the bug report describes.
+        let kbButton = app.buttons["Show Keyboard"]
+        if kbButton.exists {
+            kbButton.tap()
+            Thread.sleep(forTimeInterval: 2)
+            attach(app, name: "occlusion-filled-software-kb")
+            print("GEOM>>> after show keyboard, keyboard=\(app.keyboards.firstMatch.frame)")
+            for name in ["esc", "ctrl"] where app.buttons[name].exists {
+                print("GEOM>>> keybar \(name)=\(app.buttons[name].frame)")
+            }
+        } else {
+            print("GEOM>>> no 'Show Keyboard' button; buttons present:")
+            for b in app.buttons.allElementsBoundByIndex.prefix(20) {
+                print("GEOM>>>   \(b.label) \(b.frame)")
+            }
+        }
+
+        // Note: there is no "keyboard down, key bar still visible" state to
+        // test on a touch-only device. Dismissing the keyboard resigns the
+        // terminal's first responder status and the key bar goes with it —
+        // it is an inputAccessoryView. The docked bar seen at launch here is
+        // the simulator's hardware keyboard, i.e. an external keyboard on
+        // device. Tapping Hide Keyboard then typing fails with "Neither
+        // element nor any descendant has keyboard focus", which is that same
+        // fact showing up as a test error.
+    }
+
     private func createHost(_ app: XCUIApplication) throws {
         app.navigationBars.buttons["Add"].tap()
         app.buttons["New Host"].tap()
