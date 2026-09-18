@@ -2,7 +2,7 @@ import Testing
 import Foundation
 @testable import pockterm
 
-@Test func everyProviderHasValidMetadata() {
+@Test @MainActor func everyProviderHasValidMetadata() {
     var keyIDs = Set<String>()
     for provider in AIProvider.allCases {
         #expect(!provider.defaultModel.isEmpty)
@@ -12,6 +12,6 @@ import Foundation
     }
 }
 
-@Test func anthropicDefaultsToOpus() {
+@Test @MainActor func anthropicDefaultsToOpus() {
     #expect(AIProvider.anthropic.defaultModel == "claude-opus-4-8")
 }

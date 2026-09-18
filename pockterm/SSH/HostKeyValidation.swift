@@ -5,7 +5,7 @@ import NIOSSH
 
 /// A host key presented by a server during connection, reduced to the bits the
 /// UI needs to make a trust decision.
-struct PresentedHostKey: Sendable {
+nonisolated struct PresentedHostKey: Sendable {
     let address: String
     let port: Int
     let keyType: String
@@ -17,7 +17,7 @@ enum HostKeyError: Error { case rejected }
 
 /// Bridges Citadel/NIOSSH host-key validation to an async accept/reject
 /// decision supplied by the app.
-final class CallbackHostKeyValidator: NIOSSHClientServerAuthenticationDelegate {
+nonisolated final class CallbackHostKeyValidator: NIOSSHClientServerAuthenticationDelegate {
     private let address: String
     private let port: Int
     private let decide: @Sendable (PresentedHostKey) async -> Bool
@@ -33,12 +33,18 @@ final class CallbackHostKeyValidator: NIOSSHClientServerAuthenticationDelegate {
         let presented = PresentedHostKey(address: address, port: port,
                                          keyType: inspected.keyType,
                                          fingerprint: inspected.fingerprint)
+        // EventLoopPromise is not Sendable; it is fulfilled exactly once here
+        // and the NIO promise API is itself thread-safe.
+        let promiseBox = UncheckedBox(validationCompletePromise)
+        // Hoisted so the task captures the @Sendable closure alone rather than
+        // all of self, which is not Sendable.
+        let decide = self.decide
         Task {
             let accepted = await decide(presented)
             if accepted {
-                validationCompletePromise.succeed(())
+                promiseBox.value.succeed(())
             } else {
-                validationCompletePromise.fail(HostKeyError.rejected)
+                promiseBox.value.fail(HostKeyError.rejected)
             }
         }
     }
@@ -49,7 +55,7 @@ final class CallbackHostKeyValidator: NIOSSHClientServerAuthenticationDelegate {
 /// key and build the canonical OpenSSH wire encoding for fingerprinting.
 /// Reflection is fragile by nature; every path degrades gracefully to a nil
 /// fingerprint rather than crashing.
-enum HostKeyInspector {
+nonisolated enum HostKeyInspector {
     static func inspect(_ key: NIOSSHPublicKey) -> (keyType: String, fingerprint: String?) {
         guard let blob = wireEncoding(of: key) else {
             return ("unknown", nil)

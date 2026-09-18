@@ -1,7 +1,7 @@
 import Testing
 @testable import pockterm
 
-@Test func appearanceHostValuesWin() {
+@Test @MainActor func appearanceHostValuesWin() {
     let r = EffectiveHostSettings.resolveAppearance(
         hostTheme: "nord", hostFont: "Courier", hostSize: 18,
         chain: [(theme: "dracula", font: "Menlo-Regular", size: 20)])
@@ -10,7 +10,7 @@ import Testing
     #expect(r.size == 18)
 }
 
-@Test func appearanceInheritsFromNearestGroup() {
+@Test @MainActor func appearanceInheritsFromNearestGroup() {
     let r = EffectiveHostSettings.resolveAppearance(
         hostTheme: nil, hostFont: nil, hostSize: 0,
         chain: [(theme: nil, font: nil, size: nil),
@@ -20,7 +20,7 @@ import Testing
     #expect(r.size == 22)
 }
 
-@Test func appearanceFallsBackToDefaults() {
+@Test @MainActor func appearanceFallsBackToDefaults() {
     let r = EffectiveHostSettings.resolveAppearance(
         hostTheme: nil, hostFont: nil, hostSize: 0, chain: [])
     #expect(r.theme == "default")
@@ -28,7 +28,7 @@ import Testing
     #expect(r.size == 12)
 }
 
-@Test func appearanceSizeSentinelZeroInherits() {
+@Test @MainActor func appearanceSizeSentinelZeroInherits() {
     let r = EffectiveHostSettings.resolveAppearance(
         hostTheme: nil, hostFont: nil, hostSize: 0,
         chain: [(theme: nil, font: nil, size: 16)])

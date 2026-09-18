@@ -2,8 +2,7 @@ import Testing
 import SwiftData
 @testable import pockterm
 
-@MainActor
-@Test func hostBelongsToGroupAndFavorite() throws {
+@Test @MainActor func hostBelongsToGroupAndFavorite() throws {
     let c = try ModelContainer(for: Host.self, Identity.self, SSHKeyRecord.self,
                                KnownHostRecord.self, HostGroup.self, Snippet.self,
                                configurations: .init(isStoredInMemoryOnly: true))
@@ -19,8 +18,7 @@ import SwiftData
     #expect(fetched.first?.isFavorite == true)
 }
 
-@MainActor
-@Test func snippetPersists() throws {
+@Test @MainActor func snippetPersists() throws {
     let c = try ModelContainer(for: Host.self, Identity.self, SSHKeyRecord.self,
                                KnownHostRecord.self, HostGroup.self, Snippet.self,
                                configurations: .init(isStoredInMemoryOnly: true))

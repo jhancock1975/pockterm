@@ -8,13 +8,13 @@ import Testing
 // AnyKeyPath hashing), which poisoned every queued @MainActor test. The thin
 // SwiftData walk in resolve(host:) is exercised by the simulator smoke run.
 
-@Test func hostValueOverridesGroup() {
+@Test @MainActor func hostValueOverridesGroup() {
     let r = EffectiveHostSettings.resolve(hostPort: 22, hostIdentity: String?.none,
                                           chain: [(port: 2222, identity: nil)])
     #expect(r.port == 22)
 }
 
-@Test func groupDefaultUsedWhenHostUnset() {
+@Test @MainActor func groupDefaultUsedWhenHostUnset() {
     // Host port 0 is the "inherit" sentinel; no host identity.
     let r = EffectiveHostSettings.resolve(hostPort: 0, hostIdentity: String?.none,
                                           chain: [(port: 2222, identity: "group-id")])
@@ -22,7 +22,7 @@ import Testing
     #expect(r.identity == "group-id")
 }
 
-@Test func nestedParentGroupDefaultUsed() {
+@Test @MainActor func nestedParentGroupDefaultUsed() {
     // Child group defines nothing; the parent's default applies.
     let r = EffectiveHostSettings.resolve(
         hostPort: 0, hostIdentity: String?.none,
@@ -30,7 +30,7 @@ import Testing
     #expect(r.port == 8022)
 }
 
-@Test func nearestAncestorWinsOverFarther() {
+@Test @MainActor func nearestAncestorWinsOverFarther() {
     let r = EffectiveHostSettings.resolve(
         hostPort: 0, hostIdentity: String?.none,
         chain: [(port: 2022, identity: "near"), (port: 8022, identity: "far")])
@@ -38,13 +38,13 @@ import Testing
     #expect(r.identity == "near")
 }
 
-@Test func hostIdentityWinsOverChain() {
+@Test @MainActor func hostIdentityWinsOverChain() {
     let r = EffectiveHostSettings.resolve(hostPort: 0, hostIdentity: "mine",
                                           chain: [(port: nil, identity: "group-id")])
     #expect(r.identity == "mine")
 }
 
-@Test func defaultPort22WhenNothingSet() {
+@Test @MainActor func defaultPort22WhenNothingSet() {
     let r = EffectiveHostSettings.resolve(hostPort: 0, hostIdentity: String?.none, chain: [])
     #expect(r.port == 22)
     #expect(r.identity == nil)

@@ -12,13 +12,13 @@ struct TerminalTheme: Identifiable {
     let background: Color
     let cursor: Color
 
-    nonisolated private static func c(_ hex: UInt32) -> Color {
+    private static func c(_ hex: UInt32) -> Color {
         Color(red: UInt16((hex >> 16) & 0xff) * 257,
               green: UInt16((hex >> 8) & 0xff) * 257,
               blue: UInt16(hex & 0xff) * 257)
     }
 
-    nonisolated private static func theme(_ id: String, _ name: String,
+    private static func theme(_ id: String, _ name: String,
                               ansi: [UInt32], fg: UInt32, bg: UInt32, cursor: UInt32) -> TerminalTheme {
         TerminalTheme(id: id, name: name, ansi: ansi.map(c),
                       foreground: c(fg), background: c(bg), cursor: c(cursor))

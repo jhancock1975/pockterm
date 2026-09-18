@@ -2,7 +2,7 @@ import Testing
 import Foundation
 @testable import pockterm
 
-@Test func inMemoryStoreRoundTrips() throws {
+@Test @MainActor func inMemoryStoreRoundTrips() throws {
     let store: SecretStore = InMemorySecretStore()
     let secret = Data("hunter2".utf8)
     try store.set(secret, for: "id-1")
@@ -11,7 +11,7 @@ import Foundation
     #expect(try store.get("id-1") == nil)
 }
 
-@Test func inMemoryStoreStringHelpers() throws {
+@Test @MainActor func inMemoryStoreStringHelpers() throws {
     let store: SecretStore = InMemorySecretStore()
     try store.setString("s3cr3t", for: "k")
     #expect(try store.getString("k") == "s3cr3t")

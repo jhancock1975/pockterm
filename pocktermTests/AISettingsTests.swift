@@ -3,7 +3,7 @@ import Foundation
 import SwiftData
 @testable import pockterm
 
-@Test func keyStoreRoundTripsPerProvider() throws {
+@Test @MainActor func keyStoreRoundTripsPerProvider() throws {
     let store = AIKeyStore(secretStore: InMemorySecretStore())
     try store.setKey("sk-test-123", for: .anthropic)
     #expect(try store.key(for: .anthropic) == "sk-test-123")
@@ -16,8 +16,7 @@ import SwiftData
     #expect(try store.key(for: .anthropic) == nil)
 }
 
-@MainActor
-@Test func aiSettingsPersists() throws {
+@Test @MainActor func aiSettingsPersists() throws {
     let container = try ModelContainer(
         for: AISettings.self, configurations: .init(isStoredInMemoryOnly: true))
     let ctx = container.mainContext
@@ -30,14 +29,12 @@ import SwiftData
     #expect(fetched[0].model == "openai/gpt-4o")
 }
 
-@MainActor
-@Test func aiSettingsDefaultsToProviderDefaultModel() throws {
+@Test @MainActor func aiSettingsDefaultsToProviderDefaultModel() throws {
     let settings = AISettings(provider: .anthropic)
     #expect(settings.model == AIProvider.anthropic.defaultModel)
 }
 
-@MainActor
-@Test func agentApprovalDefaultsToAlwaysAndPersists() throws {
+@Test @MainActor func agentApprovalDefaultsToAlwaysAndPersists() throws {
     let container = try ModelContainer(
         for: AISettings.self, configurations: .init(isStoredInMemoryOnly: true))
     let settings = AISettings.single(in: container.mainContext)

@@ -13,7 +13,7 @@ actor FingerprintBox {
 /// reachable from the simulator). Skips cleanly when no server is listening so
 /// it doesn't fail on machines/CI without one. Auth is intentionally wrong —
 /// host-key validation happens first, which is what we're verifying.
-@Test func presentsRealHostKeyFingerprintFromLocalhost() async throws {
+@Test @MainActor func presentsRealHostKeyFingerprintFromLocalhost() async throws {
     guard sshReachable(host: "127.0.0.1", port: 22) else { return }
 
     let engine = SSHEngine()
@@ -52,7 +52,7 @@ actor FingerprintBox {
 /// `MACs hmac-sha2-256`, `Port 2222`, `ListenAddress 127.0.0.1`. It does not
 /// need to run as root: authentication is deliberately wrong here, because
 /// host-key validation happens first and is the whole point.
-@Test func presentsRSAHostKeyFingerprintFromLegacyServer() async throws {
+@Test @MainActor func presentsRSAHostKeyFingerprintFromLegacyServer() async throws {
     guard sshReachable(host: "127.0.0.1", port: 2222) else { return }
 
     let engine = SSHEngine()
@@ -85,7 +85,7 @@ actor FingerprintBox {
 /// That sshd needs `PubkeyAcceptedAlgorithms +ssh-rsa`, which is itself the
 /// point worth remembering: Citadel signs with `ssh-rsa`, i.e. SHA-1, and
 /// current OpenSSH refuses SHA-1 RSA client signatures by default.
-@Test func authenticatesWithAnImportedRSAKey() async throws {
+@Test @MainActor func authenticatesWithAnImportedRSAKey() async throws {
     guard sshReachable(host: "127.0.0.1", port: 2222),
           let pem = keyFixture("rsa_plain"),
           let username = keyFixture("username")?.trimmingCharacters(in: .whitespacesAndNewlines),

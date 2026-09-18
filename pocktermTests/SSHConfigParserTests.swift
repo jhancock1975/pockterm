@@ -1,7 +1,7 @@
 import Testing
 @testable import pockterm
 
-@Test func parsesMultipleHostsAndSkipsWildcard() {
+@Test @MainActor func parsesMultipleHostsAndSkipsWildcard() {
     let config = """
     # global
     Host *
@@ -30,7 +30,7 @@ import Testing
     #expect(db?.port == nil)
 }
 
-@Test func ignoresUnknownKeysAndComments() {
+@Test @MainActor func ignoresUnknownKeysAndComments() {
     let config = """
     Host only
         # a comment

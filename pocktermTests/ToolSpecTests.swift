@@ -1,7 +1,7 @@
 import Testing
 @testable import pockterm
 
-@Test func toolCallParsesItsArgumentsJSON() {
+@Test @MainActor func toolCallParsesItsArgumentsJSON() {
     let call = ToolCall(id: "1", name: "run_command",
                         argumentsJSON: #"{"command":"ls -la"}"#)
     #expect(call.arguments()["command"] as? String == "ls -la")

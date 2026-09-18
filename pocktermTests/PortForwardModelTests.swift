@@ -2,8 +2,7 @@ import Testing
 import SwiftData
 @testable import pockterm
 
-@MainActor
-@Test func portForwardPersistsWithHost() throws {
+@Test @MainActor func portForwardPersistsWithHost() throws {
     let container = try ModelContainer(
         for: Host.self, Identity.self, SSHKeyRecord.self, KnownHostRecord.self,
         HostGroup.self, Snippet.self, PortForward.self,

@@ -2,7 +2,7 @@ import Testing
 import Foundation
 @testable import pockterm
 
-@Test func tofuThenMatchThenMismatch() {
+@Test @MainActor func tofuThenMatchThenMismatch() {
     let store = KnownHostsStore()
     let none: [KnownHostRecord] = []
     #expect(store.evaluate(address: "h", port: 22, keyType: "ssh-ed25519",
@@ -15,7 +15,7 @@ import Foundation
         presentedFingerprint: "SHA256:BBB", against: known) == .mismatch(stored: "SHA256:AAA", presented: "SHA256:BBB"))
 }
 
-@Test func fingerprintFormat() {
+@Test @MainActor func fingerprintFormat() {
     let fp = KnownHostsStore.fingerprintSHA256(ofHostKey: Data([1, 2, 3]))
     #expect(fp.hasPrefix("SHA256:"))
     #expect(!fp.contains("="))

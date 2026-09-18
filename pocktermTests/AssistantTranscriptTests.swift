@@ -22,20 +22,20 @@ private func tool(name: String, result: String? = nil, denied: Bool = false) -> 
     return message
 }
 
-@Test func roleRoundTripsThroughItsRawValue() {
+@Test @MainActor func roleRoundTripsThroughItsRawValue() {
     for role in [AssistantMessage.Role.user, .assistant, .tool] {
         #expect(AssistantMessage.Role(rawValue: role.rawValue) == role)
     }
 }
 
-@Test func shortTranscriptsAreKeptWhole() {
+@Test @MainActor func shortTranscriptsAreKeptWhole() {
     let messages = [user("one"), assistant("two")]
     #expect(AssistantTranscript.pruned(messages).count == 2)
 }
 
 /// A transcript carries terminal output, so it grows faster than a chat log and
 /// has to be capped rather than left to fill the device.
-@Test func longTranscriptsKeepTheMostRecentTurns() {
+@Test @MainActor func longTranscriptsKeepTheMostRecentTurns() {
     let messages = (1...250).map { user("turn \($0)") }
     let kept = AssistantTranscript.pruned(messages)
 
@@ -44,13 +44,13 @@ private func tool(name: String, result: String? = nil, denied: Bool = false) -> 
     #expect(kept.last?.text == "turn 250")
 }
 
-@Test func pruningToZeroKeepsNothing() {
+@Test @MainActor func pruningToZeroKeepsNothing() {
     #expect(AssistantTranscript.pruned([user("one")], limit: 0).isEmpty)
 }
 
 /// `send` appends an empty assistant turn as a placeholder before the first
 /// token arrives. Storing it would reload as a blank bubble.
-@Test func emptyPlaceholderTurnsAreNotStored() {
+@Test @MainActor func emptyPlaceholderTurnsAreNotStored() {
     let kept = AssistantTranscript.persistable([user("hello"), assistant("")])
 
     #expect(kept.count == 1)
@@ -59,7 +59,7 @@ private func tool(name: String, result: String? = nil, denied: Bool = false) -> 
 
 /// A tool turn with no result never finished — usually the app went away
 /// mid-call. Reloading it would strand a spinner that can never resolve.
-@Test func unfinishedToolCallsAreNotStored() {
+@Test @MainActor func unfinishedToolCallsAreNotStored() {
     let kept = AssistantTranscript.persistable([
         user("what is running?"),
         tool(name: "run_command", result: "root 1 systemd"),
@@ -72,19 +72,19 @@ private func tool(name: String, result: String? = nil, denied: Bool = false) -> 
 
 /// A denied call is a real outcome and worth keeping: it records that the
 /// assistant asked and the user said no.
-@Test func deniedToolCallsAreStored() {
+@Test @MainActor func deniedToolCallsAreStored() {
     let kept = AssistantTranscript.persistable([tool(name: "write_file", denied: true)])
     #expect(kept.count == 1)
     #expect(kept.first?.denied == true)
 }
 
-@Test func emptyUserTurnsAreNotStored() {
+@Test @MainActor func emptyUserTurnsAreNotStored() {
     #expect(AssistantTranscript.persistable([user("")]).isEmpty)
 }
 
 /// Order has to survive the round trip: a transcript read back out of order
 /// would attribute answers to the wrong questions.
-@Test func persistableKeepsOriginalOrder() {
+@Test @MainActor func persistableKeepsOriginalOrder() {
     let kept = AssistantTranscript.persistable([
         user("first"), assistant("second"),
         tool(name: "run_command", result: "third"), user("fourth"),

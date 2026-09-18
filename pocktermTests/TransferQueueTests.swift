@@ -2,8 +2,7 @@ import Foundation
 import Testing
 @testable import pockterm
 
-@MainActor
-@Test func transferReportsNoFractionWithoutAKnownTotal() {
+@Test @MainActor func transferReportsNoFractionWithoutAKnownTotal() {
     let queue = TransferQueue()
     let transfer = queue.start(name: "big.iso", direction: .download)
 
@@ -14,8 +13,7 @@ import Testing
     #expect(transfer.bytesTransferred == 4096)
 }
 
-@MainActor
-@Test func transferComputesFractionFromBytes() {
+@Test @MainActor func transferComputesFractionFromBytes() {
     let queue = TransferQueue()
     let transfer = queue.start(name: "big.iso", direction: .download)
 
@@ -26,8 +24,7 @@ import Testing
     #expect(transfer.fractionCompleted == 1)
 }
 
-@MainActor
-@Test func transferFractionClampsWhenServerUndersizesTheFile() {
+@Test @MainActor func transferFractionClampsWhenServerUndersizesTheFile() {
     let queue = TransferQueue()
     let transfer = queue.start(name: "grew.log", direction: .download)
 
@@ -36,8 +33,7 @@ import Testing
     #expect(transfer.fractionCompleted == 1)
 }
 
-@MainActor
-@Test func finishingSuccessfullySnapsProgressToComplete() {
+@Test @MainActor func finishingSuccessfullySnapsProgressToComplete() {
     let queue = TransferQueue()
     let transfer = queue.start(name: "a.txt", direction: .upload)
     queue.update(transfer, bytes: 90, total: 100)
@@ -47,8 +43,7 @@ import Testing
     #expect(transfer.bytesTransferred == 100)
 }
 
-@MainActor
-@Test func failingLeavesProgressWhereItStopped() {
+@Test @MainActor func failingLeavesProgressWhereItStopped() {
     let queue = TransferQueue()
     let transfer = queue.start(name: "a.txt", direction: .upload)
     queue.update(transfer, bytes: 90, total: 100)
@@ -58,8 +53,7 @@ import Testing
     #expect(transfer.state != .done)
 }
 
-@MainActor
-@Test func activeTracksOldestRunningTransfer() {
+@Test @MainActor func activeTracksOldestRunningTransfer() {
     let queue = TransferQueue()
     let first = queue.start(name: "first", direction: .download)
     let second = queue.start(name: "second", direction: .download)

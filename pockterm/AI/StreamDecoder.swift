@@ -10,7 +10,7 @@ enum AIStreamEvent: Equatable, Sendable {
 /// Decodes Server-Sent-Events lines into `AIStreamEvent`s, accumulating
 /// streamed tool-call fragments (both providers deliver arguments in chunks).
 /// Pure state machine over strings so it unit-tests without networking.
-final class StreamDecoder {
+nonisolated final class StreamDecoder {
     let provider: AIProvider
     private struct Partial { var id = ""; var name = ""; var args = "" }
     private var partials: [Int: Partial] = [:]

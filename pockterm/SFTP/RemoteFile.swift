@@ -1,6 +1,6 @@
 import Foundation
 
-enum FileKind: Equatable {
+nonisolated enum FileKind: Equatable {
     case directory
     case regular
     case symlink
@@ -9,7 +9,7 @@ enum FileKind: Equatable {
 
 /// A remote filesystem entry returned by SFTP, reduced to what the browser
 /// needs to display and act on.
-struct RemoteFile: Identifiable, Equatable {
+nonisolated struct RemoteFile: Identifiable, Equatable {
     /// Full remote path — unique within a listing.
     let id: String
     let name: String

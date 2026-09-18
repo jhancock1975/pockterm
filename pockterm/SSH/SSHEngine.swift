@@ -67,12 +67,28 @@ actor SSHEngine {
             terminalPixelHeight: 0,
             terminalModes: .init([:]))
 
+        // Same upstream gap as PortForwardService: Citadel's SSHClient is not
+        // Sendable, though SSHClientSession beside it is. Scoped to the capture
+        // so the assumption is visible rather than asserted for the type.
+        nonisolated(unsafe) let unsafeClient = client
         shellTask = Task {
             do {
-                try await client.withPTY(request) { inbound, outbound in
+                try await unsafeClient.withPTY(request) { inbound, outbound in
+                    // inbound/outbound are Citadel's PTY halves and are not
+                    // Sendable, but the two task-group children below use one
+                    // each and never the same one — reads on inbound, writes on
+                    // outbound. The split is by construction, not by the type
+                    // system, which is why these are scoped opt-outs.
+                    // Each half goes to exactly one child task — reads on
+                    // inbound, writes on outbound — but they stay reachable
+                    // from this scope, which is what the compiler objects to.
+                    // Boxing hands each child its own reference and keeps the
+                    // unchecked claim to this one narrow use.
+                    let inboundBox = UncheckedBox(inbound)
+                    let outboundBox = UncheckedBox(outbound)
                     try await withThrowingTaskGroup(of: Void.self) { group in
                         group.addTask {
-                            for try await chunk in inbound {
+                            for try await chunk in inboundBox.value {
                                 switch chunk {
                                 case .stdout(let buffer), .stderr(let buffer):
                                     onOutput(Array(buffer.readableBytesView))
@@ -83,9 +99,9 @@ actor SSHEngine {
                             for await input in inputStream {
                                 switch input {
                                 case .bytes(let bytes):
-                                    try await outbound.write(ByteBuffer(bytes: bytes))
+                                    try await outboundBox.value.write(ByteBuffer(bytes: bytes))
                                 case .resize(let c, let r):
-                                    try await outbound.changeSize(cols: c, rows: r, pixelWidth: 0, pixelHeight: 0)
+                                    try await outboundBox.value.changeSize(cols: c, rows: r, pixelWidth: 0, pixelHeight: 0)
                                 }
                             }
                         }
@@ -133,7 +149,8 @@ actor SSHEngine {
         }
 
         do {
-            for try await chunk in try await client.executeCommandStream("( \(command) ) 2>&1") {
+            nonisolated(unsafe) let unsafeClient = client
+            for try await chunk in try await unsafeClient.executeCommandStream("( \(command) ) 2>&1") {
                 switch chunk {
                 case .stdout(let buffer), .stderr(let buffer): append(buffer)
                 }
@@ -163,8 +180,21 @@ actor SSHEngine {
     func disconnect() async {
         inputContinuation?.finish()
         shellTask?.cancel()
-        try? await client?.close()
+        if let client {
+            nonisolated(unsafe) let unsafeClient = client
+            try? await unsafeClient.close()
+        }
         client = nil
         inputContinuation = nil
     }
+}
+
+/// Carries a non-Sendable value into exactly one child task.
+///
+/// Citadel's PTY halves are not Sendable and the task group below needs one
+/// each. Boxing keeps the unchecked claim at the point of use instead of
+/// conforming a third-party type we do not own.
+nonisolated struct UncheckedBox<T>: @unchecked Sendable {
+    let value: T
+    init(_ value: T) { self.value = value }
 }

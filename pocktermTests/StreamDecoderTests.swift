@@ -1,7 +1,7 @@
 import Testing
 @testable import pockterm
 
-@Test func anthropicDecodesTextDeltasOnly() {
+@Test @MainActor func anthropicDecodesTextDeltasOnly() {
     let d = StreamDecoder(provider: .anthropic)
     let delta = #"data: {"type":"content_block_delta","index":0,"delta":{"type":"text_delta","text":"Hello"}}"#
     #expect(d.events(from: delta) == [.text("Hello")])
@@ -9,14 +9,14 @@ import Testing
     #expect(d.events(from: #"data: {"type":"message_stop"}"#) == [])
 }
 
-@Test func openAIDecodesContentAndIgnoresDone() {
+@Test @MainActor func openAIDecodesContentAndIgnoresDone() {
     let d = StreamDecoder(provider: .openai)
     #expect(d.events(from: #"data: {"choices":[{"delta":{"content":"Hi"}}]}"#) == [.text("Hi")])
     #expect(d.events(from: "data: [DONE]") == [])
     #expect(d.events(from: "") == [])
 }
 
-@Test func concatenatesAStream() {
+@Test @MainActor func concatenatesAStream() {
     let d = StreamDecoder(provider: .openai)
     let lines = [
         #"data: {"choices":[{"delta":{"content":"Hel"}}]}"#,
@@ -30,7 +30,7 @@ import Testing
     #expect(text == "Hello")
 }
 
-@Test func openAIAssemblesStreamedToolCallFragments() {
+@Test @MainActor func openAIAssemblesStreamedToolCallFragments() {
     let decoder = StreamDecoder(provider: .openai)
     var events: [AIStreamEvent] = []
     let lines = [
@@ -46,7 +46,7 @@ import Testing
                                           argumentsJSON: #"{"command":"ls"}"#))])
 }
 
-@Test func anthropicAssemblesToolUseBlocks() {
+@Test @MainActor func anthropicAssemblesToolUseBlocks() {
     let decoder = StreamDecoder(provider: .anthropic)
     var events: [AIStreamEvent] = []
     let lines = [
@@ -60,7 +60,7 @@ import Testing
                                           argumentsJSON: #"{"path":"/etc/hosts"}"#))])
 }
 
-@Test func textDeltasStillFlowAsEvents() {
+@Test @MainActor func textDeltasStillFlowAsEvents() {
     let decoder = StreamDecoder(provider: .openai)
     let line = #"data: {"choices":[{"delta":{"content":"hi"}}]}"#
     #expect(decoder.events(from: line) == [.text("hi")])

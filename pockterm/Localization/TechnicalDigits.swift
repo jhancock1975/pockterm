@@ -17,7 +17,7 @@ import Foundation
 // of UI language, for the same reason the terminal grid stays left-to-right:
 // the value belongs to the remote machine, not to the phone's locale.
 
-extension BinaryInteger {
+nonisolated extension BinaryInteger {
     /// The value in Latin digits, never localized.
     ///
     /// Use when interpolating an identifier — a port, a permission mask — into

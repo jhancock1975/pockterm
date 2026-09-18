@@ -7,7 +7,7 @@ struct SOCKSTarget: Equatable {
 
 /// Minimal SOCKS5 parsing for the dynamic-forwarding front-end. Only what a
 /// CONNECT proxy needs: the no-auth greeting and a CONNECT request.
-enum SOCKS5 {
+nonisolated enum SOCKS5 {
     /// Returns true if the client's greeting offers the "no authentication"
     /// method, false if it doesn't, or nil if the bytes are incomplete.
     static func parseGreeting(_ bytes: [UInt8]) -> Bool? {

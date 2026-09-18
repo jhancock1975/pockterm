@@ -1,7 +1,7 @@
 import Testing
 @testable import pockterm
 
-@Test func toolSpecsCoverTheAgentSurface() {
+@Test @MainActor func toolSpecsCoverTheAgentSurface() {
     let names = AgentTools.specs.map(\.name).sorted()
     #expect(names == ["list_files", "open_session", "read_file",
                       "run_command", "save_snippet", "write_file"])
@@ -11,7 +11,7 @@ import Testing
     }
 }
 
-@Test func mutationRoutingMatchesToolAndCommand() {
+@Test @MainActor func mutationRoutingMatchesToolAndCommand() {
     func call(_ name: String, _ json: String) -> ToolCall {
         ToolCall(id: "t", name: name, argumentsJSON: json)
     }

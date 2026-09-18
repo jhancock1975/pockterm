@@ -13,7 +13,7 @@ actor SFTPService {
                  onHostKey: @escaping @Sendable (PresentedHostKey) async -> Bool) async throws {
         let method = try creds.authenticationMethod()
         let validator = CallbackHostKeyValidator(address: creds.host, port: creds.port, decide: onHostKey)
-        let connection = try await SSHClient.connect(
+        nonisolated(unsafe) let connection = try await SSHClient.connect(
             host: creds.host,
             port: creds.port,
             authenticationMethod: method,
@@ -70,7 +70,7 @@ actor SFTPService {
     /// 0 when the server does not report a size.
     func download(_ path: String, to destination: URL,
                   progress: @Sendable (Int64, Int64) -> Void = { _, _ in }) async throws {
-        let file = try await requireSFTP().openFile(filePath: path, flags: [.read])
+        nonisolated(unsafe) let file = try await requireSFTP().openFile(filePath: path, flags: [.read])
         do {
             try await stream(file, to: destination, progress: progress)
             try await file.close()
@@ -80,8 +80,11 @@ actor SFTPService {
         }
     }
 
-    private func stream(_ file: SFTPFile, to destination: URL,
+    private func stream(_ incoming: SFTPFile, to destination: URL,
                         progress: @Sendable (Int64, Int64) -> Void) async throws {
+        // SFTPFile is not Sendable upstream; each await below hands it to a
+        // @concurrent method. Scoped here rather than conformed on their type.
+        nonisolated(unsafe) let file = incoming
         let total = Int64(clamping: (try? await file.readAttributes())?.size ?? 0)
 
         guard FileManager.default.createFile(atPath: destination.path, contents: nil) else {
@@ -187,8 +190,14 @@ actor SFTPService {
     }
 
     func disconnect() async {
-        try? await sftp?.close()
-        try? await client?.close()
+        if let sftp {
+            nonisolated(unsafe) let unsafeSFTP = sftp
+            try? await unsafeSFTP.close()
+        }
+        if let client {
+            nonisolated(unsafe) let unsafeClient = client
+            try? await unsafeClient.close()
+        }
         sftp = nil
         client = nil
     }

@@ -3,7 +3,7 @@ import NIOCore
 /// Bidirectional relay that splices two channels together: each side's inbound
 /// data is written to the other, with read backpressure honored. Used to glue a
 /// local accepted connection to its SSH direct-TCP/IP channel.
-final class GlueHandler: ChannelDuplexHandler {
+nonisolated final class GlueHandler: ChannelDuplexHandler {
     typealias InboundIn = ByteBuffer
     typealias InboundOut = ByteBuffer
     typealias OutboundIn = ByteBuffer

@@ -3,8 +3,7 @@ import Foundation
 import SwiftData
 @testable import pockterm
 
-@MainActor
-@Test func commandHistoryPersists() throws {
+@Test @MainActor func commandHistoryPersists() throws {
     let container = try ModelContainer(
         for: Host.self, Identity.self, SSHKeyRecord.self, KnownHostRecord.self,
         HostGroup.self, Snippet.self, PortForward.self, CommandHistory.self,

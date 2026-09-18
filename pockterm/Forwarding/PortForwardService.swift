@@ -62,9 +62,18 @@ actor PortForwardService {
     /// to `targetHost:targetPort` on the device side.
     func startRemote(bindPort: Int, targetHost: String, targetPort: Int) async throws {
         guard let client else { throw SSHEngineError.notConnected }
+        // Citadel's SSHClient is not Sendable — an upstream omission, not a
+        // statement about the type: SSHClientSession and the inbound handler
+        // beside it in the same file both declare Sendable. The client is a
+        // NIO Channel wrapper whose methods hop to that channel's event loop,
+        // and this code has handed it to event-loop callbacks since before
+        // strict concurrency. Scoped to the capture rather than conformed
+        // @unchecked Sendable, so the assumption stays visible here instead of
+        // being asserted for every use of a type we do not own.
+        nonisolated(unsafe) let unsafeClient = client
         remoteTask = Task {
-            try await client.runRemotePortForward(host: "127.0.0.1", port: bindPort,
-                                                  forwardingTo: targetHost, port: targetPort)
+            try await unsafeClient.runRemotePortForward(host: "127.0.0.1", port: bindPort,
+                                                        forwardingTo: targetHost, port: targetPort)
         }
     }
 
@@ -73,15 +82,21 @@ actor PortForwardService {
         remoteTask = nil
         try? await serverChannel?.close()
         serverChannel = nil
-        try? await client?.close()
+        if let client {
+            nonisolated(unsafe) let unsafeClient = client
+            try? await unsafeClient.close()
+        }
         client = nil
     }
 
     /// Opens a direct-TCP/IP channel to the target and splices it to `child`.
     private static func glue(child: Channel, client: SSHClient, host: String, port: Int) async throws {
+        // See startRemote: the client crosses into an event-loop callback here
+        // too, for the same reason and with the same caveat.
+        nonisolated(unsafe) let unsafeClient = client
         let origin = child.remoteAddress ?? (try? SocketAddress(ipAddress: "127.0.0.1", port: 0))
             ?? (try! SocketAddress(unixDomainSocketPath: "/dev/null"))
-        let remote = try await client.createDirectTCPIPChannel(
+        let remote = try await unsafeClient.createDirectTCPIPChannel(
             using: .init(targetHost: host, targetPort: port, originatorAddress: origin)
         ) { remoteChannel in
             remoteChannel.setOption(ChannelOptions.autoRead, value: false)
@@ -104,7 +119,7 @@ actor PortForwardService {
 
 /// Per-connection SOCKS5 front-end for dynamic forwarding: negotiates no-auth,
 /// reads the CONNECT target, then opens the tunnel and splices the channels.
-final class SOCKS5Handler: ChannelInboundHandler, RemovableChannelHandler {
+nonisolated final class SOCKS5Handler: ChannelInboundHandler, RemovableChannelHandler {
     typealias InboundIn = ByteBuffer
 
     private enum State { case greeting, connect, done }

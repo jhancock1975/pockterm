@@ -5,7 +5,7 @@ private let sample = ChatRequest(
     model: "M", system: "CTX",
     messages: [ChatMessage(role: .user, text: "hi")], maxTokens: 100)
 
-@Test func anthropicBodyPlacesSystemTopLevel() {
+@Test @MainActor func anthropicBodyPlacesSystemTopLevel() {
     let body = RequestEncoder.body(for: sample, provider: .anthropic)
     #expect(body["system"] as? String == "CTX")
     #expect(body["model"] as? String == "M")
@@ -17,7 +17,7 @@ private let sample = ChatRequest(
     #expect(messages?.allSatisfy { $0["role"] as? String != "system" } == true)
 }
 
-@Test func openAIBodyLeadsWithSystemMessage() {
+@Test @MainActor func openAIBodyLeadsWithSystemMessage() {
     let body = RequestEncoder.body(for: sample, provider: .openai)
     #expect(body["stream"] as? Bool == true)
     #expect(body["system"] == nil)
@@ -28,21 +28,21 @@ private let sample = ChatRequest(
     #expect(messages?.last?["role"] as? String == "user")
 }
 
-@Test func openAIBodyUsesMaxCompletionTokens() {
+@Test @MainActor func openAIBodyUsesMaxCompletionTokens() {
     // OpenAI deprecated max_tokens on Chat Completions; gpt-5/o-series 400 on it.
     let body = RequestEncoder.body(for: sample, provider: .openai)
     #expect(body["max_completion_tokens"] as? Int == 100)
     #expect(body["max_tokens"] == nil)
 }
 
-@Test func openRouterBodyKeepsMaxTokens() {
+@Test @MainActor func openRouterBodyKeepsMaxTokens() {
     // OpenRouter's normalized schema still takes max_tokens.
     let body = RequestEncoder.body(for: sample, provider: .openRouter)
     #expect(body["max_tokens"] as? Int == 100)
     #expect(body["max_completion_tokens"] == nil)
 }
 
-@Test func huggingFaceUsesOpenAIWireFormatWithMaxTokens() {
+@Test @MainActor func huggingFaceUsesOpenAIWireFormatWithMaxTokens() {
     let body = RequestEncoder.body(for: sample, provider: .huggingFace)
     #expect(body["max_tokens"] as? Int == 100)
     #expect(body["max_completion_tokens"] == nil)
@@ -68,7 +68,7 @@ private let toolSample: ChatRequest = {
     return request
 }()
 
-@Test func openAIEncodesToolsAndToolTurns() {
+@Test @MainActor func openAIEncodesToolsAndToolTurns() {
     let body = RequestEncoder.body(for: toolSample, provider: .openai)
     let tools = body["tools"] as? [[String: Any]]
     #expect(tools?.first?["type"] as? String == "function")
@@ -87,7 +87,7 @@ private let toolSample: ChatRequest = {
     #expect(toolMsg?["content"] as? String == "file.txt")
 }
 
-@Test func anthropicEncodesToolsAndToolTurns() {
+@Test @MainActor func anthropicEncodesToolsAndToolTurns() {
     let body = RequestEncoder.body(for: toolSample, provider: .anthropic)
     let tools = body["tools"] as? [[String: Any]]
     #expect(tools?.first?["name"] as? String == "run_command")
@@ -107,7 +107,7 @@ private let toolSample: ChatRequest = {
     #expect(resultBlocks?.first?["content"] as? String == "file.txt")
 }
 
-@Test func headersCarryKeyInProviderField() {
+@Test @MainActor func headersCarryKeyInProviderField() {
     #expect(RequestEncoder.headers(for: .anthropic, apiKey: "K")["x-api-key"] == "K")
     #expect(RequestEncoder.headers(for: .anthropic, apiKey: "K")["anthropic-version"] == "2023-06-01")
     #expect(RequestEncoder.headers(for: .openai, apiKey: "K")["Authorization"] == "Bearer K")

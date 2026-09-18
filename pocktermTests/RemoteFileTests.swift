@@ -2,14 +2,14 @@ import Testing
 import Foundation
 @testable import pockterm
 
-@Test func kindFromMode() {
+@Test @MainActor func kindFromMode() {
     #expect(RemoteFile.kind(fromMode: 0o040755) == .directory)
     #expect(RemoteFile.kind(fromMode: 0o100644) == .regular)
     #expect(RemoteFile.kind(fromMode: 0o120777) == .symlink)
     #expect(RemoteFile.kind(fromMode: 0o010000) == .other)
 }
 
-@Test func permissionString() {
+@Test @MainActor func permissionString() {
     #expect(RemoteFile.permissionString(0o755) == "rwxr-xr-x")
     #expect(RemoteFile.permissionString(0o640) == "rw-r-----")
     #expect(RemoteFile.permissionString(0o000) == "---------")
@@ -17,7 +17,7 @@ import Foundation
     #expect(RemoteFile.permissionString(0o100644) == "rw-r--r--")
 }
 
-@Test func joinPath() {
+@Test @MainActor func joinPath() {
     #expect(RemoteFile.joinPath("/a", "b") == "/a/b")
     #expect(RemoteFile.joinPath("/", "b") == "/b")
     #expect(RemoteFile.joinPath("/a/", "b") == "/a/b")
@@ -38,7 +38,7 @@ private func at(_ y: Int, _ mo: Int, _ d: Int, _ h: Int = 12, _ mi: Int = 0) -> 
     utc.date(from: DateComponents(year: y, month: mo, day: d, hour: h, minute: mi))!
 }
 
-@Test func modifiedShowsTimeOfDayForToday() {
+@Test @MainActor func modifiedShowsTimeOfDayForToday() {
     let out = RemoteFile.modifiedString(at(2026, 9, 18, 6, 7),
                                         now: at(2026, 9, 18, 23, 30),
                                         calendar: utc, locale: posix)
@@ -48,7 +48,7 @@ private func at(_ y: Int, _ mo: Int, _ d: Int, _ h: Int = 12, _ mi: Int = 0) -> 
     #expect(!out.contains("Sep"))
 }
 
-@Test func modifiedShowsDayAndMonthWithinTheYear() {
+@Test @MainActor func modifiedShowsDayAndMonthWithinTheYear() {
     let out = RemoteFile.modifiedString(at(2026, 3, 4),
                                         now: at(2026, 9, 18),
                                         calendar: utc, locale: posix)
@@ -58,7 +58,7 @@ private func at(_ y: Int, _ mo: Int, _ d: Int, _ h: Int = 12, _ mi: Int = 0) -> 
     #expect(!out.contains("2026"))
 }
 
-@Test func modifiedShowsYearOnceItIsAnOldFile() {
+@Test @MainActor func modifiedShowsYearOnceItIsAnOldFile() {
     let out = RemoteFile.modifiedString(at(2024, 3, 4),
                                         now: at(2026, 9, 18),
                                         calendar: utc, locale: posix)
@@ -66,7 +66,7 @@ private func at(_ y: Int, _ mo: Int, _ d: Int, _ h: Int = 12, _ mi: Int = 0) -> 
     #expect(out.contains("Mar"))
 }
 
-@Test func modifiedTreatsYearBoundaryAsOld() {
+@Test @MainActor func modifiedTreatsYearBoundaryAsOld() {
     // 31 Dec and 1 Jan are a day apart but must not read as the same year.
     let out = RemoteFile.modifiedString(at(2025, 12, 31, 23, 59),
                                         now: at(2026, 1, 1, 0, 1),

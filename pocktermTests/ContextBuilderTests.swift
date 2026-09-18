@@ -1,7 +1,7 @@
 import Testing
 @testable import pockterm
 
-@Test func includesTerminalTextAndAttachmentsWhenUnderBudget() {
+@Test @MainActor func includesTerminalTextAndAttachmentsWhenUnderBudget() {
     let prompt = ContextBuilder.systemPrompt(
         terminalText: "$ ls\nfoo.txt",
         attachments: [ContextAttachment(name: "notes.md", contents: "remember the milk")],
@@ -12,7 +12,7 @@ import Testing
     #expect(prompt.contains("remember the milk"))
 }
 
-@Test func keepsTheTailOfOversizedTerminalOutput() {
+@Test @MainActor func keepsTheTailOfOversizedTerminalOutput() {
     let terminal = "OLDMARKER" + String(repeating: "x", count: 4_000) + "ERROR: db down"
     let prompt = ContextBuilder.systemPrompt(terminalText: terminal, attachments: [], maxChars: 600)
     #expect(prompt.count <= 600)
@@ -20,7 +20,7 @@ import Testing
     #expect(!prompt.contains("OLDMARKER"))
 }
 
-@Test func truncatesOldestAttachmentFirstWhenOverBudget() {
+@Test @MainActor func truncatesOldestAttachmentFirstWhenOverBudget() {
     let oldest = ContextAttachment(name: "first.txt", contents: String(repeating: "a", count: 300))
     let newest = ContextAttachment(name: "second.txt", contents: String(repeating: "b", count: 300))
     let prompt = ContextBuilder.systemPrompt(
@@ -30,14 +30,14 @@ import Testing
     #expect(!prompt.contains(String(repeating: "a", count: 300)))
 }
 
-@Test func isDeterministic() {
+@Test @MainActor func isDeterministic() {
     let attachments = [ContextAttachment(name: "a.txt", contents: String(repeating: "a", count: 500))]
     let first = ContextBuilder.systemPrompt(terminalText: "hello", attachments: attachments, maxChars: 400)
     let second = ContextBuilder.systemPrompt(terminalText: "hello", attachments: attachments, maxChars: 400)
     #expect(first == second)
 }
 
-@Test func neverExceedsATinyBudget() {
+@Test @MainActor func neverExceedsATinyBudget() {
     let prompt = ContextBuilder.systemPrompt(
         terminalText: String(repeating: "t", count: 100),
         attachments: [ContextAttachment(name: "f", contents: "c")],

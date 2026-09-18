@@ -9,7 +9,7 @@ enum HostTrustDecision: Equatable {
 
 /// Trust-on-first-use evaluation for SSH host keys. Pure logic over the set of
 /// stored `KnownHostRecord`s so it can be unit-tested without a live server.
-struct KnownHostsStore {
+nonisolated struct KnownHostsStore {
     func evaluate(address: String, port: Int, keyType: String,
                   presentedFingerprint: String, against records: [KnownHostRecord]) -> HostTrustDecision {
         if let existing = records.first(where: {

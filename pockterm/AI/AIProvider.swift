@@ -1,7 +1,7 @@
 import Foundation
 
 /// An AI provider the assistant can talk to using the user's own API key.
-enum AIProvider: String, CaseIterable, Codable, Identifiable {
+nonisolated enum AIProvider: String, CaseIterable, Codable, Identifiable {
     case anthropic
     case openai
     case openRouter

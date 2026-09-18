@@ -26,8 +26,11 @@ struct AIClientError: LocalizedError {
 /// Streams a chat completion over URLSession, yielding text deltas and
 /// completed tool calls as they arrive.
 actor AIClient {
-    func stream(_ request: ChatRequest, provider: AIProvider,
-                apiKey: String) -> AsyncThrowingStream<AIStreamEvent, Error> {
+    /// nonisolated: this touches no actor state. It builds a URLRequest from
+    /// its arguments and hands back a stream, so isolating it to the actor only
+    /// served to make the escaping closure a cross-isolation send.
+    nonisolated func stream(_ request: ChatRequest, provider: AIProvider,
+                            apiKey: String) -> AsyncThrowingStream<AIStreamEvent, Error> {
         var urlRequest = URLRequest(url: provider.baseURL)
         urlRequest.httpMethod = "POST"
         for (field, value) in RequestEncoder.headers(for: provider, apiKey: apiKey) {
@@ -36,10 +39,13 @@ actor AIClient {
         urlRequest.httpBody = try? JSONSerialization.data(
             withJSONObject: RequestEncoder.body(for: request, provider: provider))
 
+        // Freeze it: the stream closure outlives this scope, and capturing a
+        // mutable var would leave it modifiable from here while the task reads it.
+        let builtRequest = urlRequest
         return AsyncThrowingStream { continuation in
             let task = Task {
                 do {
-                    let (bytes, response) = try await URLSession.shared.bytes(for: urlRequest)
+                    let (bytes, response) = try await URLSession.shared.bytes(for: builtRequest)
                     if let http = response as? HTTPURLResponse,
                        !(200..<300).contains(http.statusCode) {
                         var detail = ""

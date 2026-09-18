@@ -37,14 +37,12 @@ private struct Fixture {
     }
 }
 
-@MainActor
-@Test func terminalPresentedWhenSessionOpen() throws {
+@Test @MainActor func terminalPresentedWhenSessionOpen() throws {
     let f = try Fixture()
     #expect(f.manager.isTerminalPresented)
 }
 
-@MainActor
-@Test func minimizeHidesTerminalButKeepsSessionAlive() throws {
+@Test @MainActor func minimizeHidesTerminalButKeepsSessionAlive() throws {
     let f = try Fixture()
     f.manager.minimize()
     #expect(!f.manager.isTerminalPresented)
@@ -52,16 +50,14 @@ private struct Fixture {
     #expect(f.manager.activeID == f.session.id)
 }
 
-@MainActor
-@Test func revealRestoresMinimizedTerminal() throws {
+@Test @MainActor func revealRestoresMinimizedTerminal() throws {
     let f = try Fixture()
     f.manager.minimize()
     f.manager.reveal()
     #expect(f.manager.isTerminalPresented)
 }
 
-@MainActor
-@Test func minimizeWithNoSessionsIsNoOp() throws {
+@Test @MainActor func minimizeWithNoSessionsIsNoOp() throws {
     let f = try Fixture()
     f.manager.sessions = []
     f.manager.activeID = nil
@@ -70,8 +66,7 @@ private struct Fixture {
     #expect(!f.manager.isTerminalPresented)
 }
 
-@MainActor
-@Test func closeAllClearsMinimizedState() throws {
+@Test @MainActor func closeAllClearsMinimizedState() throws {
     let f = try Fixture()
     f.manager.minimize()
     f.manager.closeAll()
@@ -79,8 +74,7 @@ private struct Fixture {
     #expect(f.manager.sessions.isEmpty)
 }
 
-@MainActor
-@Test func sessionForHostFindsLiveSession() throws {
+@Test @MainActor func sessionForHostFindsLiveSession() throws {
     let f = try Fixture()
     #expect(f.manager.session(for: f.host)?.id == f.session.id)
 
@@ -88,8 +82,7 @@ private struct Fixture {
     #expect(f.manager.session(for: other) == nil)
 }
 
-@MainActor
-@Test func focusRevealsAndActivatesSession() throws {
+@Test @MainActor func focusRevealsAndActivatesSession() throws {
     let f = try Fixture()
     let second = TerminalSession(host: f.insertHost(label: "db", address: "10.0.0.2"),
                                  secretStore: f.manager.secretStore,

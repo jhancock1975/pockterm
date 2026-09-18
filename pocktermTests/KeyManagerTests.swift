@@ -3,7 +3,7 @@ import Foundation
 import SwiftData
 @testable import pockterm
 
-@Test func generatesEd25519OpenSSHPublicKey() {
+@Test @MainActor func generatesEd25519OpenSSHPublicKey() {
     let key = KeyManager.generateEd25519(comment: "john@pockterm")
     #expect(key.keyType == "ssh-ed25519")
     #expect(key.publicKeyOpenSSH.hasPrefix("ssh-ed25519 "))
@@ -17,7 +17,7 @@ import SwiftData
     #expect(algo == "ssh-ed25519")
 }
 
-@Test func privateKeyPEMRoundTripsToSeed() {
+@Test @MainActor func privateKeyPEMRoundTripsToSeed() {
     let key = KeyManager.generateEd25519(comment: "c")
     let body = key.privateKeyPEM
         .split(separator: "\n")
@@ -57,7 +57,7 @@ private func algorithmAndBlob(_ openSSHLine: String) -> String {
     openSSHLine.split(separator: " ").prefix(2).joined(separator: " ")
 }
 
-@Test func importsAnUnencryptedEd25519Key() throws {
+@Test @MainActor func importsAnUnencryptedEd25519Key() throws {
     guard let pem = fixture("ed_plain"), let expected = fixture("ed_plain.pub") else { return }
     let imported = try PrivateKeyImport.parse(pem, passphrase: nil, comment: "john@pockterm")
 
@@ -69,7 +69,7 @@ private func algorithmAndBlob(_ openSSHLine: String) -> String {
     #expect(imported.publicKeyOpenSSH.hasSuffix(" john@pockterm"))
 }
 
-@Test func importsAnUnencryptedRSAKey() throws {
+@Test @MainActor func importsAnUnencryptedRSAKey() throws {
     guard let pem = fixture("rsa_plain"), let expected = fixture("rsa_plain.pub") else { return }
     let imported = try PrivateKeyImport.parse(pem, passphrase: nil, comment: "john@pockterm")
 
@@ -77,7 +77,7 @@ private func algorithmAndBlob(_ openSSHLine: String) -> String {
     #expect(algorithmAndBlob(imported.publicKeyOpenSSH) == algorithmAndBlob(expected))
 }
 
-@Test func importsAPassphraseProtectedKey() throws {
+@Test @MainActor func importsAPassphraseProtectedKey() throws {
     guard let pem = fixture("ed_locked"), let expected = fixture("ed_locked.pub") else { return }
     #expect(PrivateKeyImport.isEncrypted(pem))
 
@@ -88,7 +88,7 @@ private func algorithmAndBlob(_ openSSHLine: String) -> String {
 
 /// Asking for the passphrase is a different outcome from failing, because the
 /// caller has to know to put a field on screen rather than show an error.
-@Test func asksForAPassphraseBeforeTryingToParse() throws {
+@Test @MainActor func asksForAPassphraseBeforeTryingToParse() throws {
     guard let pem = fixture("ed_locked") else { return }
     #expect(throws: PrivateKeyImportError.needsPassphrase) {
         try PrivateKeyImport.parse(pem, passphrase: nil, comment: "c")
@@ -98,7 +98,7 @@ private func algorithmAndBlob(_ openSSHLine: String) -> String {
     }
 }
 
-@Test func reportsAWrongPassphraseAsSuch() throws {
+@Test @MainActor func reportsAWrongPassphraseAsSuch() throws {
     guard let pem = fixture("ed_locked") else { return }
     #expect(throws: PrivateKeyImportError.wrongPassphrase) {
         try PrivateKeyImport.parse(pem, passphrase: "not-it", comment: "c")
@@ -108,14 +108,14 @@ private func algorithmAndBlob(_ openSSHLine: String) -> String {
 /// ssh-keygen wrote PKCS#1 by default before 7.8, so this is what a long-lived
 /// id_rsa often still looks like. Citadel cannot read it, so the message has to
 /// name the command that converts it rather than just refusing.
-@Test func namesTheFixForLegacyPEMKeys() throws {
+@Test @MainActor func namesTheFixForLegacyPEMKeys() throws {
     guard let pem = fixture("rsa_legacy") else { return }
     #expect(throws: PrivateKeyImportError.legacyPEMFormat) {
         try PrivateKeyImport.parse(pem, passphrase: nil, comment: "c")
     }
 }
 
-@Test func refusesThingsThatAreNotKeys() {
+@Test @MainActor func refusesThingsThatAreNotKeys() {
     #expect(throws: PrivateKeyImportError.notAPrivateKey) {
         try PrivateKeyImport.parse("hello", passphrase: nil, comment: "c")
     }
@@ -141,8 +141,7 @@ private func withKeyContext(_ body: (ModelContext, InMemorySecretStore) throws -
     try body(container.mainContext, InMemorySecretStore())
 }
 
-@MainActor
-@Test func importStoresTheKeyAndDescribesIt() throws {
+@Test @MainActor func importStoresTheKeyAndDescribesIt() throws {
     guard let pem = fixture("rsa_plain") else { return }
     try withKeyContext { ctx, store in
         let record = try PrivateKeyImport.store(pem, label: "work", passphrase: nil,
@@ -162,8 +161,7 @@ private func withKeyContext(_ body: (ModelContext, InMemorySecretStore) throws -
     }
 }
 
-@MainActor
-@Test func importKeepsThePassphraseWithTheKey() throws {
+@Test @MainActor func importKeepsThePassphraseWithTheKey() throws {
     guard let pem = fixture("ed_locked") else { return }
     try withKeyContext { ctx, store in
         let record = try PrivateKeyImport.store(pem, label: "locked", passphrase: "hunter2",
@@ -177,8 +175,7 @@ private func withKeyContext(_ body: (ModelContext, InMemorySecretStore) throws -
 
 /// A key that does not parse must leave nothing behind — a record with no
 /// usable key under it would look like a working identity and fail at connect.
-@MainActor
-@Test func aFailedImportStoresNothing() throws {
+@Test @MainActor func aFailedImportStoresNothing() throws {
     try withKeyContext { ctx, store in
         #expect(throws: PrivateKeyImportError.notAPrivateKey) {
             try PrivateKeyImport.store("nonsense", label: "bad", passphrase: nil,
@@ -190,8 +187,7 @@ private func withKeyContext(_ body: (ModelContext, InMemorySecretStore) throws -
 }
 
 /// An unlabelled import still gets a name, or the list shows a blank row.
-@MainActor
-@Test func importWithoutALabelGetsOne() throws {
+@Test @MainActor func importWithoutALabelGetsOne() throws {
     guard let pem = fixture("ed_plain") else { return }
     try withKeyContext { ctx, store in
         let record = try PrivateKeyImport.store(pem, label: "   ", passphrase: nil,

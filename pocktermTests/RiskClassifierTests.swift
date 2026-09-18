@@ -15,7 +15,7 @@ import Testing
     ("frobnicate --all", .mutating),           // unknown ⇒ risky
     ("find . -name '*.log' -delete", .mutating),
 ])
-func classifiesCommands(_ command: String, _ expected: CommandRisk) {
+@MainActor func classifiesCommands(_ command: String, _ expected: CommandRisk) {
     #expect(RiskClassifier.classify(command) == expected)
 }
 
@@ -36,6 +36,6 @@ func classifiesCommands(_ command: String, _ expected: CommandRisk) {
     "man ls",                                  // pager executes
     "less /etc/passwd",                        // less can shell out
 ])
-func treatsDisguisedExecutionAsMutating(_ command: String) {
+@MainActor func treatsDisguisedExecutionAsMutating(_ command: String) {
     #expect(RiskClassifier.classify(command) == .mutating)
 }

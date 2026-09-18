@@ -2,8 +2,7 @@ import Testing
 import Foundation
 @testable import pockterm
 
-@MainActor
-@Test func parsesProviderModelListJSON() {
+@Test @MainActor func parsesProviderModelListJSON() {
     let openAIShape = #"{"object":"list","data":[{"id":"gpt-4o","object":"model"},{"id":"gpt-4o-mini","object":"model"}]}"#
     #expect(ModelCatalog.parseModels(Data(openAIShape.utf8), provider: .openai) == ["gpt-4o", "gpt-4o-mini"])
 
@@ -11,8 +10,7 @@ import Foundation
     #expect(ModelCatalog.parseModels(Data(anthropicShape.utf8), provider: .anthropic) == ["claude-haiku-4-5", "claude-opus-4-8"])
 }
 
-@MainActor
-@Test func parseToleratesGarbage() {
+@Test @MainActor func parseToleratesGarbage() {
     #expect(ModelCatalog.parseModels(Data("not json".utf8), provider: .anthropic) == [])
     #expect(ModelCatalog.parseModels(Data(#"{"data":"nope"}"#.utf8), provider: .anthropic) == [])
     #expect(ModelCatalog.parseModels(Data(#"{"data":[{"name":"no id"}]}"#.utf8), provider: .anthropic) == [])
@@ -63,7 +61,7 @@ import Foundation
     #expect(catalog.visibleModels == [AIProvider.huggingFace.defaultModel])
 }
 
-@Test func keyStoreTrimsPastedWhitespace() throws {
+@Test @MainActor func keyStoreTrimsPastedWhitespace() throws {
     let store = AIKeyStore(secretStore: InMemorySecretStore())
     try store.setKey("sk-test-abc\n", for: .openai)
     #expect(try store.key(for: .openai) == "sk-test-abc")

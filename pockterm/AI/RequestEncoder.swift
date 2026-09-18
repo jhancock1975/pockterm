@@ -2,7 +2,7 @@ import Foundation
 
 /// Turns a provider-agnostic `ChatRequest` into each provider's HTTP body and
 /// headers. Pure so it can be unit-tested without networking.
-enum RequestEncoder {
+nonisolated enum RequestEncoder {
     static func body(for request: ChatRequest, provider: AIProvider) -> [String: Any] {
         switch provider {
         case .anthropic:
