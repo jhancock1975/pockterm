@@ -13,6 +13,7 @@ struct RemoteFileRow: View {
                 Text(subtitle)
                     .font(.system(.caption, design: .monospaced))
                     .foregroundStyle(.secondary)
+                    .lineLimit(1)
             }
             Spacer()
             if file.kind == .directory {
@@ -31,9 +32,12 @@ struct RemoteFileRow: View {
     }
 
     private var subtitle: String {
-        let perms = RemoteFile.permissionString(file.permissions)
-        if file.kind == .directory { return perms }
-        return "\(perms)  \(byteSize)"
+        var parts = [RemoteFile.permissionString(file.permissions)]
+        if file.kind != .directory { parts.append(byteSize) }
+        if let modified = file.modified {
+            parts.append(RemoteFile.modifiedString(modified))
+        }
+        return parts.joined(separator: "  ")
     }
 
     private var byteSize: String {

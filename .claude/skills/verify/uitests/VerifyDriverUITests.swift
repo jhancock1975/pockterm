@@ -605,6 +605,66 @@ final class VerifyDriverUITests: XCTestCase {
         // fact showing up as a test error.
     }
 
+    /// Screenshots the SFTP browser so the modification-date column can be
+    /// read in the real app. SFTP v3 carries no creation time, so this is
+    /// mtime — the same thing `ls -l` shows.
+    func testFileBrowserShowsDates() throws {
+        let app = XCUIApplication()
+        app.launch()
+        app.tabBars.buttons["Hosts"].tap()
+
+        let hostRow = app.buttons.matching(
+            NSPredicate(format: "label CONTAINS 'localhost' OR label CONTAINS 'mac'")).firstMatch
+        if !hostRow.waitForExistence(timeout: 2) { try createHost(app) }
+        XCTAssertTrue(hostRow.waitForExistence(timeout: 5), app.debugDescription)
+        hostRow.tap()
+
+        let hostKeyAlert = app.alerts["Verify Host Key"]
+        if hostKeyAlert.waitForExistence(timeout: 8) {
+            hostKeyAlert.buttons.matching(
+                NSPredicate(format: "label BEGINSWITH 'Accept'")).firstMatch.tap()
+        }
+        let spinner = app.activityIndicators.firstMatch
+        let deadline = Date().addingTimeInterval(20)
+        while Date() < deadline, spinner.exists { Thread.sleep(forTimeInterval: 0.5) }
+        Thread.sleep(forTimeInterval: 2)
+
+        let browse = app.buttons["Browse Files"]
+        XCTAssertTrue(browse.waitForExistence(timeout: 10), "no Browse Files button")
+        browse.tap()
+        Thread.sleep(forTimeInterval: 6)
+        attach(app, name: "files-with-dates")
+
+        // Directories show permissions + date. Navigate somewhere with real
+        // files so the widest case — permissions, size AND date on one line —
+        // is the thing actually looked at.
+        for dir in ["git", "adult"] {
+            let row = app.buttons.matching(
+                NSPredicate(format: "label BEGINSWITH %@", dir)).firstMatch
+            // The listing starts on dotfiles, so most targets are below the
+            // fold; XCUI will not tap what it cannot see.
+            var swipes = 0
+            while !(row.exists && row.isHittable) && swipes < 12 {
+                app.swipeUp()
+                swipes += 1
+            }
+            XCTAssertTrue(row.exists && row.isHittable,
+                          "never brought \(dir) into view after \(swipes) swipes")
+            row.tap()
+            Thread.sleep(forTimeInterval: 5)
+        }
+        attach(app, name: "files-with-sizes-and-dates")
+        for t in app.staticTexts.allElementsBoundByIndex.prefix(40) where t.label.contains("MB") || t.label.contains("KB") || t.label.contains("bytes") {
+            print("SIZEROW>>> \(t.label)")
+        }
+
+        // Dump a few subtitles so the date is checkable as text, not only
+        // by eye in the screenshot.
+        for t in app.staticTexts.allElementsBoundByIndex.prefix(30) where t.label.contains("-") {
+            print("FILEROW>>> \(t.label)")
+        }
+    }
+
     private func createHost(_ app: XCUIApplication) throws {
         app.navigationBars.buttons["Add"].tap()
         app.buttons["New Host"].tap()

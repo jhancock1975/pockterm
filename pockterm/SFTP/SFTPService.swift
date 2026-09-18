@@ -47,7 +47,8 @@ actor SFTPService {
                     name: component.filename,
                     kind: RemoteFile.kind(fromMode: mode),
                     size: component.attributes.size ?? 0,
-                    permissions: mode))
+                    permissions: mode,
+                    modified: component.attributes.accessModificationTime?.modificationTime))
             }
         }
         return files.sorted {

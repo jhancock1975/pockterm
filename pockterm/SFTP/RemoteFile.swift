@@ -16,6 +16,12 @@ struct RemoteFile: Identifiable, Equatable {
     let kind: FileKind
     let size: UInt64
     let permissions: UInt32
+    /// Last-modified time, when the server reported one.
+    ///
+    /// Not a creation date: Citadel speaks SFTP v3, whose ATTRS carry only
+    /// access and modification times. A creation timestamp needs SFTP v4+,
+    /// which the library does not implement — so there is nothing to show.
+    let modified: Date?
 
     var path: String { id }
 
@@ -41,6 +47,36 @@ struct RemoteFile: Identifiable, Equatable {
             }
         }
         return out
+    }
+
+    /// Formats an entry's timestamp for the browser subtitle: the time of day
+    /// for something touched today, day and month inside the current year, and
+    /// the year beyond that. Same progression as `ls -l` and Finder, so a long
+    /// listing stays scannable instead of repeating today's date on every row.
+    ///
+    /// Locale-formatted on purpose, unlike ports and status codes — see
+    /// `technicalDigits`. A date is read, not typed back into a server config,
+    /// so an Arabic reader should get Arabic-Indic digits here exactly as they
+    /// already do for the file size beside it.
+    static func modifiedString(_ date: Date,
+                               now: Date = .now,
+                               calendar: Calendar = .autoupdatingCurrent,
+                               locale: Locale = .autoupdatingCurrent) -> String {
+        var style: Date.FormatStyle
+        if calendar.isDate(date, inSameDayAs: now) {
+            style = .dateTime.hour().minute()
+        } else if calendar.component(.year, from: date) == calendar.component(.year, from: now) {
+            style = .dateTime.day().month(.abbreviated)
+        } else {
+            style = .dateTime.day().month(.abbreviated).year()
+        }
+        // Render through the same calendar the bucketing above used. Left
+        // alone, the style falls back to the current time zone, so an injected
+        // calendar would sort a date by one zone and print it in another.
+        style.locale = locale
+        style.calendar = calendar
+        style.timeZone = calendar.timeZone
+        return date.formatted(style)
     }
 
     /// Joins a directory and entry name into a clean absolute path.
