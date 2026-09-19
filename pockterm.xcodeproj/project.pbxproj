@@ -36,6 +36,7 @@
 		88AEA5E0ED1BC9B1AA62181B /* RemoteFileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBD116E7D1E4B4A08C019E1 /* RemoteFileTests.swift */; };
 		8FAC77FDC999C01893B2CD6D /* PortForwardModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C742E9BBFD4E8FEBD6685C8F /* PortForwardModelTests.swift */; };
 		903125D661DEEAF3EC524C03 /* ModelCatalogRefresherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8D18F88B5CFD7D085A51D4 /* ModelCatalogRefresherTests.swift */; };
+		917E7A56C50D498AB9D10446 /* MarginModeFilterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A0377838C7EA731D65D9BF8 /* MarginModeFilterTests.swift */; };
 		A610943DE139E0BA04064670 /* AIProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15B3DDBB7CBB60A227FBBE9 /* AIProviderTests.swift */; };
 		B6ACC803B266DCBCE1216C85 /* RiskClassifierTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C43BB4921DCF4B8124335C /* RiskClassifierTests.swift */; };
 		BC5771A2F3E69E5C90A64611 /* GroupModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7948693B1996CA7DBA0F67F6 /* GroupModelTests.swift */; };
@@ -70,6 +71,7 @@
 		2D3E4F5A6B7C8D9E0F1A2B3C /* EffectiveKeepAliveTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EffectiveKeepAliveTests.swift; sourceTree = "<group>"; };
 		2F3E4D5C6B7A8C9D0E1F2A3B /* KeepAliveTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = KeepAliveTests.swift; sourceTree = "<group>"; };
 		45F04BEA86184EFB2FA84445 /* ModelTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ModelTests.swift; sourceTree = "<group>"; };
+		4A0377838C7EA731D65D9BF8 /* MarginModeFilterTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MarginModeFilterTests.swift; sourceTree = "<group>"; };
 		52A0DDCC2FF01A30003F2522 /* pockterm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pockterm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		53305856679F3A11464DF689 /* SecretStoreTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SecretStoreTests.swift; sourceTree = "<group>"; };
 		562765E9CB7544E78699E906 /* TerminalFontTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TerminalFontTests.swift; sourceTree = "<group>"; };
@@ -199,6 +201,7 @@
 				C81907FC9D3BDEBDD36D885C /* TransferQueueTests.swift */,
 				8D488A191CE8B36543FAE6BB /* KeyBarConfigTests.swift */,
 				D317821CFD18B0C77032FC49 /* AssistantTranscriptTests.swift */,
+				4A0377838C7EA731D65D9BF8 /* MarginModeFilterTests.swift */,
 			);
 			path = pocktermTests;
 			sourceTree = "<group>";
@@ -377,6 +380,7 @@
 				D321B5E10C46726E886AE712 /* TransferQueueTests.swift in Sources */,
 				5D0F43CAFDFDE144A179D6F0 /* KeyBarConfigTests.swift in Sources */,
 				4F4FAF101DD45378FC119E27 /* AssistantTranscriptTests.swift in Sources */,
+				917E7A56C50D498AB9D10446 /* MarginModeFilterTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

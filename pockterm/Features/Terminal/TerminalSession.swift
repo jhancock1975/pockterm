@@ -46,6 +46,10 @@ final class TerminalSession: Identifiable, HostKeyDeciding {
     private var lastRows = 24
     private var keepAliveTimer: Timer?
     private var holdSeconds = 0
+    /// Declines DEC private mode 69 on the way in; see `MarginModeFilter` for
+    /// the SwiftTerm defect it works around. Stateful across reads, so it must
+    /// live as long as the session.
+    private var marginFilter = MarginModeFilter()
 
     /// This session's AI assistant, created on first use so the transcript
     /// survives closing and reopening the assistant sheet.
@@ -168,7 +172,7 @@ final class TerminalSession: Identifiable, HostKeyDeciding {
                         // Server output counts as activity: a streaming session
                         // (tail -f, top) is in use and must not be idle-disconnected.
                         self.lastActivityAt = .now
-                        self.terminalView.feed(byteArray: ArraySlice(bytes))
+                        self.terminalView.feed(byteArray: ArraySlice(self.marginFilter.filter(bytes)))
                     }
                 },
                 onClose: { [weak self] in

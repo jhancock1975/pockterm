@@ -63,6 +63,28 @@ Screenshots come out of the xcresult attachments (named `1-connected`,
 sqlite store (path above): `ZHOST`, `ZIDENTITY`, `ZSSHKEYRECORD`,
 `ZKNOWNHOSTRECORD`.
 
+## Terminal-emulation checks (tmux, emacs)
+
+`testTmuxEmacsModeLine` runs emacs inside tmux over the real SSH session and
+screenshots after each redraw-heavy action. Keystrokes are sent from the **Mac**
+with `tmux send-keys` (`tmux-drive.sh` beside the driver), because `C-x C-s`
+does not survive XCUITest's `typeText`. Ground truth comes from the tmux server
+itself:
+
+```bash
+tmux -L v capture-pane -p -t v
+```
+
+Any row where the app disagrees with that is an emulation defect. This is how
+the DECLRMM/Insert-Line corruption was confirmed and then shown fixed — see the
+resolved entry in `docs/backlog.md`.
+
+For emulation bugs, prefer a **headless** harness over the simulator: SwiftTerm's
+`HeadlessTerminal` + `LocalProcess` drive a real pty on the Mac, so the same
+comparison runs in seconds instead of minutes, and a captured byte stream can be
+replayed one byte at a time to find the exact sequence that breaks the screen.
+Use the simulator only to prove the wiring in the real app.
+
 ## Driving the AI assistant end to end
 
 The agent's `run_command` path (model → tool call → `SessionToolExecutor` →

@@ -146,43 +146,85 @@ other before treating them separately.
 
 ---
 
-## Emacs mode line gets corrupted inside tmux
+## ~~Emacs mode line gets corrupted inside tmux~~ — ROOT-CAUSED AND FIXED 2026-09-18
 
-**Recorded:** 2026-08-29. **Start after the next App Store release** — John's
-explicit sequencing, so it does not delay shipping what is already merged.
+**Recorded:** 2026-08-29. **Fixed:** 2026-09-18, after 1.7 shipped, which was
+John's sequencing for it.
 
-Running Emacs inside tmux in the terminal, the status/mode line becomes
-garbled after actions that redraw a lot: saving a file (`C-x C-s`), or moving
-around the buffer heavily. Reproduced by John on device; the mode line is the
-bottom row, which is also where tmux draws its own status line.
+### It was a SwiftTerm bug, not ours
 
-### Where to look
+`Terminal.swift` in SwiftTerm 1.20.0 corrupts the screen when Insert Line or
+Delete Line runs while **margin mode** (DECLRMM, `ESC [ ? 69 h`) is on. Both
+`cmdInsertLines` and `cmdDeleteLines` walk the buffer from the **cursor row**
+but count the **scroll region's full height**:
 
-This is a terminal-emulation defect, not a SwiftUI one, so it lives at the
-SwiftTerm boundary rather than in our views.
+```swift
+let rowCount = buffer.scrollBottom - buffer.scrollTop   // region height
+let src = buffer.lines [row+i+1]                        // row = cursor row
+```
 
-- **Scroll regions.** Emacs and tmux both set DECSTBM to protect the bottom
-  row(s) while scrolling the body. A redraw that resets or mis-tracks the
-  region will smear the mode line. This is the most likely cause.
-- **Two nested status lines.** tmux draws its own status row and reserves the
-  last line; Emacs draws a mode line just above it. Both repaint on save.
-- **Resize.** The window size is negotiated on connect
-  (`TerminalSession`/`SSHEngine`); check nothing re-sends a stale size after
-  the first draw, which would leave both programs disagreeing about the last
-  row.
-- **Alternate screen.** Emacs uses it; check the switch in and out restores
-  the scroll region rather than leaving the previous one set.
+With the cursor near the bottom that walks past the last line, and
+`CircularList`'s subscript wraps modulo its backing array, so the tail of the
+walk overwrites rows at the *top* of the screen. `cmdScrollUp`/`cmdScrollDown`
+use the same idiom but start at `scrollTop`, so they are correct — only IL and
+DL mismatch their start against their count. The fix is
+`buffer.scrollBottom - buffer.y` in both, plus the vertical-region guard that
+DL's margin branch is missing.
 
-### How to reproduce and verify
+### Why it was tmux-only
 
-The verify skill connects to the Mac's own sshd, so this is reproducible in the
-simulator without a remote box: connect, `tmux`, `emacs some-file`, save
-repeatedly and page around. Capture the terminal before and after. Worth
-checking against Terminal.app over the same SSH connection to confirm the
-server-side byte stream is fine and the defect is ours.
+Measured with the same harness, counting `ESC [ ? 69 h` in the byte stream:
 
-Check whether it also reproduces **without** tmux — that single answer splits
-the search in half.
+| program | sends DECLRMM |
+|---|---|
+| emacs alone | 0 |
+| vim alone | 0 |
+| **tmux** (even running a bare `sh`) | **6** |
+
+tmux enables margin mode at startup and never turns it off. That answers the
+triage question this entry used to ask — it does **not** reproduce without
+tmux, and now we know why rather than guessing.
+
+### How it was measured
+
+A headless harness ran SwiftTerm's emulator against a real pty running
+`tmux` + `emacs`, using `tmux capture-pane` as the ground-truth oracle: any row
+where the emulator disagrees with what tmux believes it drew is a defect. It is
+deterministic (two runs byte-identical) and takes seconds.
+
+* **Before:** 14 rows disagreed across a save/page scenario.
+* **After:** 0.
+* **Minimal case:** two byte streams differing only by `ESC [ ? 69 h` — margin
+  off correct, margin on destroyed.
+* **In the real app:** driven in the simulator over real SSH
+  (`.claude/skills/verify`, `testTmuxEmacsModeLine`). Without the fix the app
+  rendered a content line where the mode line belonged; with it, the screen
+  matches `capture-pane` row for row.
+
+### What shipped
+
+An interim filter, `MarginModeFilter`, strips DECLRMM from the inbound stream
+in `TerminalSession` so SwiftTerm never enters the broken path. tmux uses
+margins only as a redraw optimisation and falls back to full repaints, so
+declining the mode costs nothing visible — measured on the same live session.
+**Remove the filter once a SwiftTerm release carries the upstream fix.**
+
+### Still worth checking
+
+This is a strong candidate for the **key bar occlusion** report above. That one
+is also from inside tmux, also about losing the bottom row(s), and the
+2026-09-15 probe already showed it is not a layout bug in the simulator. Before
+spending anything more on it, re-test that report on a device against a build
+carrying this fix.
+
+### The original report, for the record
+
+Running Emacs inside tmux, the mode line became garbled after actions that
+redraw a lot: saving (`C-x C-s`) or moving around the buffer heavily.
+Reproduced by John on device. The suspects listed here were scroll regions,
+nested status lines, stale resize and the alternate screen; the actual cause
+was none of them, which is why it was worth measuring rather than reasoning
+about.
 
 ---
 

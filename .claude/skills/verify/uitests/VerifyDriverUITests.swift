@@ -665,6 +665,61 @@ final class VerifyDriverUITests: XCTestCase {
         }
     }
 
+    /// Runs emacs inside tmux over the real SSH session and screenshots the
+    /// screen after each redraw-heavy action. The keystrokes are sent from the
+    /// Mac with `tmux send-keys` (see `tmux-drive.sh` beside this file) rather than
+    /// through XCUITest, because C-x C-s does not survive `typeText`.
+    ///
+    /// What to look for: the emacs menu bar must stay on the top row, the mode
+    /// line must stay directly above tmux's status line, and no row may be
+    /// duplicated or shifted. Compare against `tmux -L v capture-pane -p -t v`
+    /// run on the Mac.
+    func testTmuxEmacsModeLine() throws {
+        let app = XCUIApplication()
+        app.launch()
+        app.tabBars.buttons["Hosts"].tap()
+
+        let hostRow = app.buttons.matching(
+            NSPredicate(format: "label CONTAINS 'localhost' OR label CONTAINS 'mac'")).firstMatch
+        if !hostRow.waitForExistence(timeout: 2) {
+            try createHost(app)
+        }
+        XCTAssertTrue(hostRow.waitForExistence(timeout: 5), app.debugDescription)
+        hostRow.tap()
+
+        let hostKeyAlert = app.alerts["Verify Host Key"]
+        if hostKeyAlert.waitForExistence(timeout: 8) {
+            hostKeyAlert.buttons.matching(
+                NSPredicate(format: "label BEGINSWITH 'Accept'")).firstMatch.tap()
+        }
+
+        let failed = app.staticTexts["Connection Failed"]
+        let spinner = app.activityIndicators.firstMatch
+        let deadline = Date().addingTimeInterval(20)
+        while Date() < deadline {
+            if failed.exists { XCTFail("connection failed: \(app.debugDescription)") }
+            if !spinner.exists { break }
+            Thread.sleep(forTimeInterval: 0.5)
+        }
+        Thread.sleep(forTimeInterval: 2)
+
+        app.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.4)).tap()
+        XCTAssertTrue(app.keyboards.firstMatch.waitForExistence(timeout: 5),
+                      "terminal keyboard never appeared")
+        Thread.sleep(forTimeInterval: 1.5)
+
+        app.typeText("$HOME/git/pockterm/.claude/skills/verify/tmux-drive.sh\n")
+
+        Thread.sleep(forTimeInterval: 8)
+        attach(app, name: "tmux-00-startup")
+        Thread.sleep(forTimeInterval: 8)
+        attach(app, name: "tmux-01-after-first-save")
+        Thread.sleep(forTimeInterval: 9)
+        attach(app, name: "tmux-02-after-paging")
+        Thread.sleep(forTimeInterval: 8)
+        attach(app, name: "tmux-03-after-repeated-saves")
+    }
+
     private func createHost(_ app: XCUIApplication) throws {
         app.navigationBars.buttons["Add"].tap()
         app.buttons["New Host"].tap()

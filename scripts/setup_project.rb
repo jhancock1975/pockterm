@@ -50,7 +50,11 @@ test_target.build_configurations.each do |c|
   c.build_settings['GENERATE_INFOPLIST_FILE'] = 'YES'
   c.build_settings['TEST_HOST'] = '$(BUILT_PRODUCTS_DIR)/pockterm.app/pockterm'
   c.build_settings['BUNDLE_LOADER'] = '$(TEST_HOST)'
-  c.build_settings['SWIFT_VERSION'] = '5.0'
+  # Must match the app target. This script has to be re-run whenever a test
+  # file is added, so a stale value here silently reverts the language mode —
+  # it downgraded the tests to Swift 5 the first time a file was added after
+  # the Swift 6 move in #81.
+  c.build_settings['SWIFT_VERSION'] = '6.0'
   c.build_settings['DEVELOPMENT_TEAM'] = '5H22F8M69N'
   c.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '26.5'
 end
