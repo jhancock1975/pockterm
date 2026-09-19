@@ -78,6 +78,26 @@ that decides whether the hold matters. Full costing in `docs/backlog.md`.
 Context and the measured detail are in `docs/backlog.md` under the resolved
 SwiftPM identity-conflict entry.
 
+## Drop the DEC margin-mode filter when SwiftTerm #707 ships
+
+`MarginModeFilter` strips DECLRMM (`ESC [ ? 69 h`) from the inbound stream
+because SwiftTerm 1.20.0's Insert/Delete Line corrupt the screen in margin
+mode — which is what garbled the emacs mode line inside tmux. It is a
+**stopgap**, not the repair.
+
+The repair is upstream as
+[migueldeicaza/SwiftTerm#707](https://github.com/migueldeicaza/SwiftTerm/pull/707).
+**Check it at every routine update**, next to Citadel #122:
+
+```bash
+gh pr view 707 --repo migueldeicaza/SwiftTerm --json state,mergedAt
+```
+
+Once a SwiftTerm release carries it: bump, delete `MarginModeFilter` and its
+tests, restore the plain `feed` in `TerminalSession`, and re-run
+`testTmuxEmacsModeLine` from the verify skill to confirm the screen still
+matches `tmux capture-pane`. Full detail in `docs/backlog.md`.
+
 ## Dependency rules that do not bend
 
 - **Never force a dependency past a constraint** by declaring it at the project

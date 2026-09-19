@@ -27,8 +27,9 @@ import Foundation
 /// mode costs nothing visible — the same live session renders identically to
 /// tmux's own `capture-pane` with this filter in place.
 ///
-/// **Remove this** once a SwiftTerm release carries the upstream fix; the
-/// filter is a stopgap, not the repair.
+/// **Remove this** once a SwiftTerm release carries the upstream fix —
+/// migueldeicaza/SwiftTerm#707, which corrects `rowCount` in both functions
+/// and adds the missing region guard. The filter is a stopgap, not the repair.
 struct MarginModeFilter {
     /// A partial `ESC [ ? … ` sequence, held back until its final byte arrives.
     /// SSH hands us arbitrary chunks, so the sequence can straddle two reads.

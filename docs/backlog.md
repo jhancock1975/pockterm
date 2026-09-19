@@ -207,7 +207,15 @@ An interim filter, `MarginModeFilter`, strips DECLRMM from the inbound stream
 in `TerminalSession` so SwiftTerm never enters the broken path. tmux uses
 margins only as a redraw optimisation and falls back to full repaints, so
 declining the mode costs nothing visible — measured on the same live session.
-**Remove the filter once a SwiftTerm release carries the upstream fix.**
+The repair itself went upstream as
+[migueldeicaza/SwiftTerm#707](https://github.com/migueldeicaza/SwiftTerm/pull/707)
+— two lines plus the missing guard, with four regression tests, three of which
+fail without it. **Remove the filter once a SwiftTerm release carries that.**
+Check it at the next routine update, alongside Citadel #122:
+
+```bash
+gh pr view 707 --repo migueldeicaza/SwiftTerm --json state,mergedAt
+```
 
 ### Still worth checking
 
