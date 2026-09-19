@@ -49,10 +49,21 @@ nonisolated struct RemoteFile: Identifiable, Equatable {
         return out
     }
 
-    /// Formats an entry's timestamp for the browser subtitle: the time of day
-    /// for something touched today, day and month inside the current year, and
-    /// the year beyond that. Same progression as `ls -l` and Finder, so a long
-    /// listing stays scannable instead of repeating today's date on every row.
+    /// Formats an entry's timestamp for the browser subtitle: day, month and
+    /// clock time, with the year added once the file is older than the current
+    /// one.
+    ///
+    /// `ls -l` drops the time on anything but today's files and drops the date
+    /// on today's; this keeps both on every row. A subtitle reading `09:50`
+    /// only means "today" if you already know what the other rows look like,
+    /// and a listing where some rows carry a time and some do not cannot be
+    /// scanned by age at all. The year is the one part still worth eliding —
+    /// it is implied for most of what anyone browses, and the line is tight.
+    ///
+    /// Date and time are formatted apart and joined with a space instead of
+    /// being asked for as one style, because a combined style splices in the
+    /// locale's connector word — `Sep 18 at 10:44 AM`, `18 sept. à 10:44` —
+    /// and that is three characters spent on nothing in a row that truncates.
     ///
     /// Locale-formatted on purpose, unlike ports and status codes — see
     /// `technicalDigits`. A date is read, not typed back into a server config,
@@ -62,21 +73,23 @@ nonisolated struct RemoteFile: Identifiable, Equatable {
                                now: Date = .now,
                                calendar: Calendar = .autoupdatingCurrent,
                                locale: Locale = .autoupdatingCurrent) -> String {
-        var style: Date.FormatStyle
-        if calendar.isDate(date, inSameDayAs: now) {
-            style = .dateTime.hour().minute()
-        } else if calendar.component(.year, from: date) == calendar.component(.year, from: now) {
-            style = .dateTime.day().month(.abbreviated)
-        } else {
-            style = .dateTime.day().month(.abbreviated).year()
-        }
-        // Render through the same calendar the bucketing above used. Left
-        // alone, the style falls back to the current time zone, so an injected
+        // Render through the same calendar the bucketing below uses. Left
+        // alone, a style falls back to the current time zone, so an injected
         // calendar would sort a date by one zone and print it in another.
-        style.locale = locale
-        style.calendar = calendar
-        style.timeZone = calendar.timeZone
-        return date.formatted(style)
+        func rendered(_ style: Date.FormatStyle) -> String {
+            var style = style
+            style.locale = locale
+            style.calendar = calendar
+            style.timeZone = calendar.timeZone
+            return date.formatted(style)
+        }
+
+        let thisYear = calendar.component(.year, from: date)
+            == calendar.component(.year, from: now)
+        let day: Date.FormatStyle = thisYear
+            ? .dateTime.day().month(.abbreviated)
+            : .dateTime.day().month(.abbreviated).year()
+        return rendered(day) + " " + rendered(.dateTime.hour().minute())
     }
 
     /// Joins a directory and entry name into a clean absolute path.

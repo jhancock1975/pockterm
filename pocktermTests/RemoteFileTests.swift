@@ -38,32 +38,36 @@ private func at(_ y: Int, _ mo: Int, _ d: Int, _ h: Int = 12, _ mi: Int = 0) -> 
     utc.date(from: DateComponents(year: y, month: mo, day: d, hour: h, minute: mi))!
 }
 
-@Test @MainActor func modifiedShowsTimeOfDayForToday() {
+@Test @MainActor func modifiedShowsDateAndTimeForToday() {
     let out = RemoteFile.modifiedString(at(2026, 9, 18, 6, 7),
                                         now: at(2026, 9, 18, 23, 30),
                                         calendar: utc, locale: posix)
-    // Today's entries give the clock time and drop the date entirely — the
-    // whole point, so a listing of files touched today stays readable.
+    // Today's entries carry the date too. A bare "06:07" is only legible
+    // next to other rows that do have a date, which is exactly the listing
+    // you cannot count on.
     #expect(out.contains("6:07") || out.contains("06:07"))
-    #expect(!out.contains("Sep"))
+    #expect(out.contains("Sep"))
+    #expect(out.contains("18"))
 }
 
-@Test @MainActor func modifiedShowsDayAndMonthWithinTheYear() {
-    let out = RemoteFile.modifiedString(at(2026, 3, 4),
+@Test @MainActor func modifiedShowsDayMonthAndTimeWithinTheYear() {
+    let out = RemoteFile.modifiedString(at(2026, 3, 4, 6, 7),
                                         now: at(2026, 9, 18),
                                         calendar: utc, locale: posix)
     #expect(out.contains("Mar"))
     #expect(out.contains("4"))
+    #expect(out.contains("6:07") || out.contains("06:07"))
     // The year is implied, so spending width on it would be waste.
     #expect(!out.contains("2026"))
 }
 
 @Test @MainActor func modifiedShowsYearOnceItIsAnOldFile() {
-    let out = RemoteFile.modifiedString(at(2024, 3, 4),
+    let out = RemoteFile.modifiedString(at(2024, 3, 4, 6, 7),
                                         now: at(2026, 9, 18),
                                         calendar: utc, locale: posix)
     #expect(out.contains("2024"))
     #expect(out.contains("Mar"))
+    #expect(out.contains("6:07") || out.contains("06:07"))
 }
 
 @Test @MainActor func modifiedTreatsYearBoundaryAsOld() {
@@ -72,4 +76,17 @@ private func at(_ y: Int, _ mo: Int, _ d: Int, _ h: Int = 12, _ mi: Int = 0) -> 
                                         now: at(2026, 1, 1, 0, 1),
                                         calendar: utc, locale: posix)
     #expect(out.contains("2025"))
+    #expect(out.contains("23:59") || out.contains("11:59"))
+}
+
+@Test @MainActor func modifiedJoinsDateAndTimeWithoutAConnectorWord() {
+    // A single combined format style renders "Sep 18 at 10:44 AM" in English
+    // and "18 sept. à 10:44" in French. The row is too tight to pay for that.
+    let out = RemoteFile.modifiedString(at(2026, 9, 18, 10, 44),
+                                        now: at(2026, 9, 18, 23, 30),
+                                        calendar: utc, locale: posix)
+    // Not an equality check: ICU separates the AM/PM marker with a narrow
+    // no-break space (U+202F), not the ASCII one this file can type.
+    #expect(out.hasPrefix("Sep 18 10:44"))
+    #expect(!out.contains(" at "))
 }

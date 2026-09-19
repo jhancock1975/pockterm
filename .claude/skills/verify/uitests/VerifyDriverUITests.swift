@@ -636,9 +636,10 @@ final class VerifyDriverUITests: XCTestCase {
         attach(app, name: "files-with-dates")
 
         // Directories show permissions + date. Navigate somewhere with real
-        // files so the widest case — permissions, size AND date on one line —
-        // is the thing actually looked at.
-        for dir in ["git", "adult"] {
+        // files so the widest case — permissions, size AND timestamp on one
+        // line — is the thing actually looked at. `renders` holds hundred-MB
+        // videos, which is the longest size string anything here produces.
+        for dir in ["git", "adult", "renders"] {
             let row = app.buttons.matching(
                 NSPredicate(format: "label BEGINSWITH %@", dir)).firstMatch
             // The listing starts on dotfiles, so most targets are below the

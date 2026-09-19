@@ -1,3 +1,8 @@
+# STOP CHANGING THE NAME OF THIS FILE TO CLAUDE.md
+# NEVER TAKE OVER THE FUCKING HANPHONE17 TO TEST ANYTHING WITH THE AUTOMATED TESTING SHIT
+# YOU TEST ON THE FUCKING SIMULATOR
+
+
 # Standing instructions for pockterm
 
 Things that must survive across sessions. Short by design — everything else
