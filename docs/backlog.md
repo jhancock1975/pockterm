@@ -138,6 +138,54 @@ The report predates 1.5, 1.6 and 1.7, which included keyboard-avoidance work, so
 "already fixed" is a live possibility alongside device- or tmux-specific. Do not
 close it on this evidence alone; do not re-derive the simulator half either.
 
+### Re-reported 2026-09-19 with a screenshot — and it is NOT the tmux defect
+
+John hit it again on device and sent a screenshot. Two things it settles:
+
+* **No tmux.** The screenshot is a plain zsh prompt after typing `emacs`. So
+  this is *not* the DECLRMM/Insert-Line bug fixed in #82, and the two reports
+  are unrelated. The guess that one fix might close both is dead — do not
+  revive it.
+* **It is genuine overlap, not clipping.** Terminal content is legible
+  *between and behind* the translucent key bar buttons, so the terminal is
+  drawn underneath the bar.
+
+**Measured again, and the simulator layout is exactly right.** New driver phase
+`testKeyBarOcclusionAtInitialLogin` reports the terminal's element frame against
+the key bar's, at initial login, before anything forces a re-layout. On iPhone
+17 Pro Max / iOS 26.5:
+
+| stage | terminal maxY | key bar top | overlap |
+|---|---|---|---|
+| keyboard just up | 590.0 | 590.0 | **0** |
+| keyboard settled | 590.0 | 590.0 | **0** |
+| after 60 lines of output | 590.0 | 590.0 | **0** |
+
+(The buttons sit at y=595 with the bar's 5 pt inset, so button minY 595 means
+bar top 590.) `keyboardLayoutGuide` **does** include the input accessory view,
+so suspect 1 from the list above is wrong, and suspect 3 (timing) does not
+appear either — the number is identical the instant the keyboard arrives.
+
+**Ruled out by measurement, so do not re-test these:**
+
+* Screen size — reproduces on neither iPhone 17 nor iPhone 17 Pro Max.
+* Initial login as a timing window — overlap is 0 at first paint.
+* A custom key bar making the bar taller — buttons use a fixed
+  `UIFont.systemFont(ofSize: 15)` and `intrinsicContentSize` is a hard 48, so
+  Dynamic Type cannot grow it.
+* SwiftTerm overdrawing past its frame — `AppleTerminalView.processSizeChange`
+  takes `Int(height / cellDimension.height)`, a floor, so rows never exceed
+  what fits.
+
+**The live lead: iOS version.** John's iPhone 17 Pro Max is on **26.6.2**; the
+only simulator runtime on this Mac is **26.5**, and Xcode's SDK is 27.0. Given
+the keyboard-frame defect already recorded for iOS 26, a point-release change in
+`keyboardLayoutGuide` is the best remaining explanation for a device-only
+overlap. Next step is to get onto 26.6 — either the matching simulator runtime
+(~8 GB) or the device itself. Note his terminal font is also well above the
+default (his output wraps at ~46 columns where a default-font Pro Max fits
+~62), which is worth setting before measuring.
+
 ### Related
 
 This is *occlusion*, distinct from the mode line **corruption** item below —

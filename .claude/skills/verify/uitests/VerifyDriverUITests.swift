@@ -720,6 +720,86 @@ final class VerifyDriverUITests: XCTestCase {
         attach(app, name: "tmux-03-after-repeated-saves")
     }
 
+    /// The occlusion report as filed: **at initial login**, before anything
+    /// forces a re-layout, with whatever key bar the user has saved.
+    ///
+    /// Measures the terminal's own element frame against the key bar buttons'.
+    /// Those are real view frames — it is only `app.keyboards.frame` that lies
+    /// on iOS 26 (it omits the predictive bar), so do not use that here.
+    /// If the terminal's maxY is below a key bar button's minY, the terminal
+    /// is drawn underneath the bar and the bottom rows are occluded.
+    func testKeyBarOcclusionAtInitialLogin() throws {
+        let app = XCUIApplication()
+        app.launch()
+        app.tabBars.buttons["Hosts"].tap()
+
+        let hostRow = app.buttons.matching(
+            NSPredicate(format: "label CONTAINS 'localhost' OR label CONTAINS 'mac'")).firstMatch
+        if !hostRow.waitForExistence(timeout: 2) {
+            try createHost(app)
+        }
+        XCTAssertTrue(hostRow.waitForExistence(timeout: 5), app.debugDescription)
+        hostRow.tap()
+
+        let hostKeyAlert = app.alerts["Verify Host Key"]
+        if hostKeyAlert.waitForExistence(timeout: 8) {
+            hostKeyAlert.buttons.matching(
+                NSPredicate(format: "label BEGINSWITH 'Accept'")).firstMatch.tap()
+        }
+        let failed = app.staticTexts["Connection Failed"]
+        let spinner = app.activityIndicators.firstMatch
+        let deadline = Date().addingTimeInterval(20)
+        while Date() < deadline {
+            if failed.exists { XCTFail("connection failed: \(app.debugDescription)") }
+            if !spinner.exists { break }
+            Thread.sleep(forTimeInterval: 0.5)
+        }
+        Thread.sleep(forTimeInterval: 2)
+        attach(app, name: "login-0-connected-no-keyboard")
+        report(app, "before keyboard")
+
+        // Raise the keyboard and measure immediately — no typing, nothing that
+        // would force the layout to settle a second time.
+        app.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.4)).tap()
+        XCTAssertTrue(app.keyboards.firstMatch.waitForExistence(timeout: 5),
+                      "terminal keyboard never appeared")
+        Thread.sleep(forTimeInterval: 1.0)
+        attach(app, name: "login-1-keyboard-just-up")
+        report(app, "keyboard just up")
+
+        // Give it longer in case this is a settling problem rather than a
+        // constant offset.
+        Thread.sleep(forTimeInterval: 3.0)
+        attach(app, name: "login-2-keyboard-settled")
+        report(app, "keyboard settled")
+
+        // Now fill the screen, which is what the earlier probe did first.
+        app.typeText("for i in $(seq 1 60); do echo \"LINE-$i\"; done\n")
+        Thread.sleep(forTimeInterval: 3)
+        attach(app, name: "login-3-after-output")
+        report(app, "after output")
+    }
+
+    /// Prints the terminal's frame against the key bar's, in window space.
+    private func report(_ app: XCUIApplication, _ stage: String) {
+        let window = app.windows.firstMatch.frame
+        let terminal = app.textViews.firstMatch
+        print("OCCL>>> [\(stage)] window=\(window)")
+        guard terminal.exists else { print("OCCL>>> [\(stage)] no terminal element"); return }
+        let t = terminal.frame
+        print("OCCL>>> [\(stage)] terminal=\(t) maxY=\(t.maxY)")
+        var barTop: CGFloat = .greatestFiniteMagnitude
+        for name in ["esc", "ctrl", "meta", "tab"] where app.buttons[name].exists {
+            let f = app.buttons[name].frame
+            print("OCCL>>> [\(stage)] keybar \(name)=\(f) minY=\(f.minY)")
+            barTop = min(barTop, f.minY)
+        }
+        if barTop < .greatestFiniteMagnitude {
+            let overlap = t.maxY - barTop
+            print("OCCL>>> [\(stage)] OVERLAP = \(overlap)  (positive means the terminal runs under the bar)")
+        }
+    }
+
     private func createHost(_ app: XCUIApplication) throws {
         app.navigationBars.buttons["Add"].tap()
         app.buttons["New Host"].tap()
