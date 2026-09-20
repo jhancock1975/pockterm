@@ -753,6 +753,76 @@ final class VerifyDriverUITests: XCTestCase {
         }
     }
 
+    /// Proves the caret stops blinking once the shell exits.
+    ///
+    /// A screenshot cannot show the absence of an animation, so this samples
+    /// the terminal repeatedly and counts how many distinct frames come back.
+    /// A blinking caret fades over 0.7s and autoreverses, so samples spread
+    /// across a couple of seconds must differ; a steady one must not. The
+    /// live session is measured first as a positive control — without it a
+    /// caret that had simply stopped being drawn would pass.
+    func testCaretStopsBlinkingWhenTheSessionDies() throws {
+        let app = XCUIApplication()
+        app.launch()
+        try connectToMac(app)
+
+        let terminal = app.textViews.firstMatch
+        XCTAssertTrue(terminal.waitForExistence(timeout: 10), app.debugDescription)
+        // The caret only animates while the terminal holds keyboard focus,
+        // which is also the state someone is in when their session dies.
+        terminal.tap()
+        Thread.sleep(forTimeInterval: 2)
+
+        let live = distinctFrames(of: terminal, samples: 8, gap: 0.25)
+        print("CARET>>> live session: \(live) distinct frames")
+        XCTAssertGreaterThan(live, 1,
+                             "control failed: the caret was not blinking even while connected, "
+                             + "so this phase cannot prove anything about the dead case")
+
+        terminal.typeText("exit\n")
+        let closed = app.staticTexts["Session Closed"]
+        XCTAssertTrue(closed.waitForExistence(timeout: 20),
+                      "shell never reported closed: " + app.debugDescription)
+        Thread.sleep(forTimeInterval: 2)
+        attach(app, name: "caret-after-session-died")
+
+        let dead = distinctFrames(of: terminal, samples: 8, gap: 0.25)
+        print("CARET>>> dead session: \(dead) distinct frames")
+        XCTAssertEqual(dead, 1, "the caret is still animating after the shell exited")
+    }
+
+    /// Samples an element's rendering and returns how many of the frames
+    /// differ. Anything still animating shows up as more than one.
+    private func distinctFrames(of element: XCUIElement, samples: Int, gap: TimeInterval) -> Int {
+        var seen = Set<Data>()
+        for _ in 0..<samples {
+            seen.insert(element.screenshot().pngRepresentation)
+            Thread.sleep(forTimeInterval: gap)
+        }
+        return seen.count
+    }
+
+    /// Connects to the Mac's sshd and waits for the shell, without opening the
+    /// file browser.
+    private func connectToMac(_ app: XCUIApplication) throws {
+        app.tabBars.buttons["Hosts"].tap()
+        let hostRow = app.buttons.matching(
+            NSPredicate(format: "label CONTAINS 'localhost' OR label CONTAINS 'mac'")).firstMatch
+        if !hostRow.waitForExistence(timeout: 2) { try createHost(app) }
+        XCTAssertTrue(hostRow.waitForExistence(timeout: 5), app.debugDescription)
+        hostRow.tap()
+
+        let hostKeyAlert = app.alerts["Verify Host Key"]
+        if hostKeyAlert.waitForExistence(timeout: 8) {
+            hostKeyAlert.buttons.matching(
+                NSPredicate(format: "label BEGINSWITH 'Accept'")).firstMatch.tap()
+        }
+        let spinner = app.activityIndicators.firstMatch
+        let deadline = Date().addingTimeInterval(20)
+        while Date() < deadline, spinner.exists { Thread.sleep(forTimeInterval: 0.5) }
+        Thread.sleep(forTimeInterval: 3)
+    }
+
     /// Runs emacs inside tmux over the real SSH session and screenshots the
     /// screen after each redraw-heavy action. The keystrokes are sent from the
     /// Mac with `tmux send-keys` (see `tmux-drive.sh` beside this file) rather than

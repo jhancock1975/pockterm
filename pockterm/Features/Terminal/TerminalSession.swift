@@ -32,7 +32,8 @@ final class TerminalSession: Identifiable, HostKeyDeciding {
     let baselineFontSize: Int
 
     var title: String
-    var status: Status = .connecting
+    /// Assign through `setStatus` — the caret has to be kept in step with it.
+    private(set) var status: Status = .connecting
     var pendingHostKey: PendingHostKey?
     /// Set by SessionManager.open so agent tools can open further sessions.
     weak var sessionManager: SessionManager?
@@ -84,6 +85,34 @@ final class TerminalSession: Identifiable, HostKeyDeciding {
         pinch.delegate = proxy
         proxy.onPinch = { [weak self] recognizer in self?.handlePinch(recognizer) }
         terminalView.addGestureRecognizer(pinch)
+    }
+
+    /// The one way session state changes, so the caret can follow it.
+    private func setStatus(_ new: Status) {
+        guard new != status else { return }
+        status = new
+        applyCaretLiveness()
+    }
+
+    /// Stops the caret blinking once the far end can no longer take a
+    /// keystroke, and starts it again if the session comes back.
+    ///
+    /// A blinking caret is the universal sign of a prompt waiting for input.
+    /// Left running over a shell that has exited, a connection that failed, or
+    /// an idle disconnect, it invites you to type into nothing and wonder why
+    /// the server is ignoring you — which is exactly the confusion this app
+    /// exists to avoid. The caret stays on screen, steady, so it still marks
+    /// where the output stopped.
+    ///
+    /// `cursorStyleChanged` restyles the caret view without touching
+    /// `options.cursorStyle`, so the emulator keeps its own idea of the shape
+    /// and a DECSCUSR the server sent earlier is not lost.
+    private func applyCaretLiveness() {
+        let terminal = terminalView.getTerminal()
+        let requested = terminal.options.cursorStyle
+        terminalView.cursorStyleChanged(
+            source: terminal,
+            newStyle: status.acceptsInput ? requested : requested.steady)
     }
 
     /// Resolves this host's effective appearance and applies it to the
@@ -145,7 +174,7 @@ final class TerminalSession: Identifiable, HostKeyDeciding {
         let creds: SSHCredentials
         switch HostConnection.credentials(for: host, secretStore: secretStore) {
         case .failure(let message):
-            status = .failed(message)
+            setStatus(.failed(message))
             return
         case .success(let resolved):
             creds = resolved
@@ -179,10 +208,10 @@ final class TerminalSession: Identifiable, HostKeyDeciding {
                     Task { @MainActor in
                         guard let self else { return }
                         self.keepAliveTimer?.invalidate(); self.keepAliveTimer = nil
-                        if self.status == .connected { self.status = .closed }
+                        if self.status == .connected { self.setStatus(.closed) }
                     }
                 })
-            status = .connected
+            setStatus(.connected)
             lastActivityAt = .now
             holdSeconds = EffectiveHostSettings.resolveKeepAlive(
                 host: host, globalDefault: ConnectionSettings.single(in: modelContext).defaultKeepAliveSeconds)
@@ -191,7 +220,7 @@ final class TerminalSession: Identifiable, HostKeyDeciding {
                 sendKeys(Array((startup + "\n").utf8))
             }
         } catch {
-            status = .failed(error.localizedDescription)
+            setStatus(.failed(error.localizedDescription))
         }
     }
 
@@ -214,7 +243,7 @@ final class TerminalSession: Identifiable, HostKeyDeciding {
         let idle = Int(Date().timeIntervalSince(lastActivityAt))
         if KeepAlive.shouldIdleDisconnect(idleSeconds: idle, holdSeconds: holdSeconds) {
             keepAliveTimer?.invalidate(); keepAliveTimer = nil
-            status = .idleDisconnected
+            setStatus(.idleDisconnected)
             Task { await engine.disconnect() }
             return
         }
