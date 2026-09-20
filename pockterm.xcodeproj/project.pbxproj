@@ -44,6 +44,7 @@
 		CD5F7FFA74943CF74F12447B /* Citadel in Frameworks */ = {isa = PBXBuildFile; productRef = 8931F71DF5C8B8E8AD2108FB /* Citadel */; };
 		D321B5E10C46726E886AE712 /* TransferQueueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81907FC9D3BDEBDD36D885C /* TransferQueueTests.swift */; };
 		D97291B755A14414B00C4D4F /* TerminalFontTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 562765E9CB7544E78699E906 /* TerminalFontTests.swift */; };
+		E1DBC09DF73847D0CD461B61 /* FileSortTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406CA7CA103381F3CE41E490 /* FileSortTests.swift */; };
 		E60327C3A9F95478424DD5BE /* TypedLineTrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF8CF71E17130090CEC2AB7 /* TypedLineTrackerTests.swift */; };
 		E77D0A70809A41FAAC8EBBDA /* TerminalThemeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C261179C05D450E8C92DC1C /* TerminalThemeTests.swift */; };
 		F0766092A11161CB69BFDFAB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28FABE07D2973397E786A537 /* Foundation.framework */; };
@@ -70,6 +71,7 @@
 		28FABE07D2973397E786A537 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		2D3E4F5A6B7C8D9E0F1A2B3C /* EffectiveKeepAliveTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EffectiveKeepAliveTests.swift; sourceTree = "<group>"; };
 		2F3E4D5C6B7A8C9D0E1F2A3B /* KeepAliveTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = KeepAliveTests.swift; sourceTree = "<group>"; };
+		406CA7CA103381F3CE41E490 /* FileSortTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FileSortTests.swift; sourceTree = "<group>"; };
 		45F04BEA86184EFB2FA84445 /* ModelTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ModelTests.swift; sourceTree = "<group>"; };
 		4A0377838C7EA731D65D9BF8 /* MarginModeFilterTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MarginModeFilterTests.swift; sourceTree = "<group>"; };
 		52A0DDCC2FF01A30003F2522 /* pockterm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pockterm.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -202,6 +204,7 @@
 				8D488A191CE8B36543FAE6BB /* KeyBarConfigTests.swift */,
 				D317821CFD18B0C77032FC49 /* AssistantTranscriptTests.swift */,
 				4A0377838C7EA731D65D9BF8 /* MarginModeFilterTests.swift */,
+				406CA7CA103381F3CE41E490 /* FileSortTests.swift */,
 			);
 			path = pocktermTests;
 			sourceTree = "<group>";
@@ -381,6 +384,7 @@
 				5D0F43CAFDFDE144A179D6F0 /* KeyBarConfigTests.swift in Sources */,
 				4F4FAF101DD45378FC119E27 /* AssistantTranscriptTests.swift in Sources */,
 				917E7A56C50D498AB9D10446 /* MarginModeFilterTests.swift in Sources */,
+				E1DBC09DF73847D0CD461B61 /* FileSortTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

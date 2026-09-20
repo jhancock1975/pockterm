@@ -2,6 +2,17 @@ import SwiftUI
 import SwiftData
 import UniformTypeIdentifiers
 
+/// Menu titles for the sort fields. They live here rather than on `FileSort`
+/// itself so the SFTP layer stays clear of SwiftUI.
+extension FileSort {
+    var label: LocalizedStringKey {
+        switch self {
+        case .name: return "Name"
+        case .date: return "Date"
+        }
+    }
+}
+
 struct FilesBrowserView: View {
     @State private var model: FilesBrowserModel
     @Environment(\.dismiss) private var dismiss
@@ -150,6 +161,30 @@ struct FilesBrowserView: View {
         } label: { Label("Delete", systemImage: "trash") }
     }
 
+    /// The active field carries the arrow, and choosing it again flips it.
+    /// A checkmark alone could not say whether Date meant newest or oldest
+    /// first, which is most of what anyone wants from a date sort.
+    private var sortMenu: some View {
+        Menu {
+            Section("Sort By") {
+                ForEach(FileSort.allCases) { field in
+                    Button { model.select(field) } label: {
+                        if field == model.sort.field {
+                            Label(field.label, systemImage: model.sort.ascending
+                                  ? "chevron.up" : "chevron.down")
+                        } else {
+                            Text(field.label)
+                        }
+                    }
+                }
+            }
+        } label: {
+            Image(systemName: "arrow.up.arrow.down")
+        }
+        .accessibilityLabel("Sort")
+        .disabled(model.status != .loaded)
+    }
+
     @ToolbarContentBuilder
     private var toolbarContent: some ToolbarContent {
         ToolbarItem(placement: .topBarTrailing) {
@@ -158,6 +193,9 @@ struct FilesBrowserView: View {
                 Button { showingUploader = true } label: { Label("Upload File", systemImage: "square.and.arrow.up") }
             } label: { Image(systemName: "plus") }
             .disabled(model.status != .loaded)
+        }
+        ToolbarItem(placement: .topBarTrailing) {
+            sortMenu
         }
         ToolbarItem(placement: .topBarTrailing) {
             Button { showingHelp = true } label: {

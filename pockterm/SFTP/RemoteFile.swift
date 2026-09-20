@@ -92,6 +92,52 @@ nonisolated struct RemoteFile: Identifiable, Equatable {
         return rendered(day) + " " + rendered(.dateTime.hour().minute())
     }
 
+    /// Orders a listing for display.
+    ///
+    /// By name, directories come first in both directions — that is what makes
+    /// a browser navigable, and reversing the order is meant to flip the
+    /// alphabet, not to bury the folders. By date they do not: the whole point
+    /// of date order is "what changed last", and a directory clump at the top
+    /// would hide the file you came for.
+    ///
+    /// Entries the server reported no timestamp for sort last whichever way
+    /// the arrow points, rather than winning the top of a newest-first list by
+    /// accident. Ties break on name, because `sorted(by:)` is not stable and a
+    /// directory of build output shares mtimes constantly — without this the
+    /// rows would reshuffle on every refresh.
+    static func sorted(_ files: [RemoteFile], by field: FileSort,
+                       ascending: Bool) -> [RemoteFile] {
+        files.sorted { a, b in
+            switch field {
+            case .name:
+                if (a.kind == .directory) != (b.kind == .directory) {
+                    return a.kind == .directory
+                }
+            case .date:
+                switch (a.modified, b.modified) {
+                case (nil, nil): break
+                case (nil, _): return false
+                case (_, nil): return true
+                case (let lhs?, let rhs?) where lhs != rhs:
+                    return ascending ? lhs < rhs : lhs > rhs
+                default: break
+                }
+            }
+            let order = a.name.localizedStandardCompare(b.name)
+            if order != .orderedSame {
+                let byName = order == .orderedAscending
+                // Only the name field reverses here; a date tie stays A–Z so
+                // the secondary order does not flip about under the user.
+                return field == .name && !ascending ? !byName : byName
+            }
+            // Two names a locale considers identical — different Unicode
+            // normalizations of the same letters, say. Falling through to
+            // `!byName` would claim a < b AND b < a, and `sorted(by:)` traps on
+            // a comparator that does that. The path is unique in a listing.
+            return a.id < b.id
+        }
+    }
+
     /// Joins a directory and entry name into a clean absolute path.
     static func joinPath(_ directory: String, _ name: String) -> String {
         if directory == "/" { return "/" + name }

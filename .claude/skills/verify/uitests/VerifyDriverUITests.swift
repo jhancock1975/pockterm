@@ -666,6 +666,93 @@ final class VerifyDriverUITests: XCTestCase {
         }
     }
 
+    /// Drives the sort menu in the SFTP browser: name order, then date
+    /// (newest first), then date reversed. Prints the visible subtitles at
+    /// each step so the order is checkable as text, and screenshots the open
+    /// menu so the toolbar crowding can be judged by eye.
+    func testFileBrowserSortsByDate() throws {
+        let app = XCUIApplication()
+        app.launch()
+        try openRendersDirectory(app)
+
+        attach(app, name: "sort-1-by-name")
+        dumpRows(app, stage: "NAME-ASC")
+
+        // The sort control is the only arrow.up.arrow.down button in the bar.
+        let sortButton = app.navigationBars.buttons["Sort"]
+        XCTAssertTrue(sortButton.waitForExistence(timeout: 5),
+                      "no Sort button in the toolbar: " + app.navigationBars.debugDescription)
+        sortButton.tap()
+        Thread.sleep(forTimeInterval: 1)
+        attach(app, name: "sort-2-menu-open")
+
+        let dateItem = app.buttons["Date"]
+        XCTAssertTrue(dateItem.waitForExistence(timeout: 5), app.debugDescription)
+        dateItem.tap()
+        Thread.sleep(forTimeInterval: 2)
+        attach(app, name: "sort-3-by-date-newest")
+        dumpRows(app, stage: "DATE-DESC")
+
+        // Choosing the active field again must flip to oldest-first.
+        sortButton.tap()
+        Thread.sleep(forTimeInterval: 1)
+        app.buttons["Date"].tap()
+        Thread.sleep(forTimeInterval: 2)
+        attach(app, name: "sort-4-by-date-oldest")
+        dumpRows(app, stage: "DATE-ASC")
+    }
+
+    /// Connects and walks down to the directory with real files in it — the
+    /// shared opening move for the two file-browser phases.
+    private func openRendersDirectory(_ app: XCUIApplication) throws {
+        app.tabBars.buttons["Hosts"].tap()
+
+        let hostRow = app.buttons.matching(
+            NSPredicate(format: "label CONTAINS 'localhost' OR label CONTAINS 'mac'")).firstMatch
+        if !hostRow.waitForExistence(timeout: 2) { try createHost(app) }
+        XCTAssertTrue(hostRow.waitForExistence(timeout: 5), app.debugDescription)
+        hostRow.tap()
+
+        let hostKeyAlert = app.alerts["Verify Host Key"]
+        if hostKeyAlert.waitForExistence(timeout: 8) {
+            hostKeyAlert.buttons.matching(
+                NSPredicate(format: "label BEGINSWITH 'Accept'")).firstMatch.tap()
+        }
+        let spinner = app.activityIndicators.firstMatch
+        let deadline = Date().addingTimeInterval(20)
+        while Date() < deadline, spinner.exists { Thread.sleep(forTimeInterval: 0.5) }
+        Thread.sleep(forTimeInterval: 2)
+
+        let browse = app.buttons["Browse Files"]
+        XCTAssertTrue(browse.waitForExistence(timeout: 10), "no Browse Files button")
+        browse.tap()
+        Thread.sleep(forTimeInterval: 6)
+
+        for dir in ["git", "adult", "renders"] {
+            let row = app.buttons.matching(
+                NSPredicate(format: "label BEGINSWITH %@", dir)).firstMatch
+            var swipes = 0
+            while !(row.exists && row.isHittable) && swipes < 12 {
+                app.swipeUp()
+                swipes += 1
+            }
+            XCTAssertTrue(row.exists && row.isHittable,
+                          "never brought \(dir) into view after \(swipes) swipes")
+            row.tap()
+            Thread.sleep(forTimeInterval: 5)
+        }
+    }
+
+    /// Prints each visible row as "name | subtitle" so the order can be
+    /// compared against `ls` on the Mac without reading a screenshot.
+    private func dumpRows(_ app: XCUIApplication, stage: String) {
+        for row in app.buttons.allElementsBoundByIndex.prefix(40) {
+            let label = row.label
+            guard label.contains("rw") || label.contains("rwx") else { continue }
+            print("SORTROW[\(stage)]>>> \(label.replacingOccurrences(of: "\n", with: " | "))")
+        }
+    }
+
     /// Runs emacs inside tmux over the real SSH session and screenshots the
     /// screen after each redraw-heavy action. The keystrokes are sent from the
     /// Mac with `tmux send-keys` (see `tmux-drive.sh` beside this file) rather than

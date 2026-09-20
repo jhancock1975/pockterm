@@ -24,10 +24,25 @@ final class FilesBrowserModel: HostKeyDeciding {
     var pendingHostKey: PendingHostKey?
     var actionError: String?
 
-    init(host: Host, secretStore: SecretStore, modelContext: ModelContext) {
+    /// What the visible listing is ordered by. Chosen once and remembered, so
+    /// a browser opened to hunt for this morning's render is still in date
+    /// order tomorrow morning.
+    private(set) var sort: FileSortOrder
+    private let defaults: UserDefaults
+
+    init(host: Host, secretStore: SecretStore, modelContext: ModelContext,
+         defaults: UserDefaults = .standard) {
         self.host = host
         self.secretStore = secretStore
         self.modelContext = modelContext
+        self.defaults = defaults
+        self.sort = FileSortOrder(reading: defaults)
+    }
+
+    func select(_ field: FileSort) {
+        sort.select(field)
+        sort.save(to: defaults)
+        files = sort.applied(to: files)
     }
 
     var canGoUp: Bool { path != "/" }
@@ -57,7 +72,7 @@ final class FilesBrowserModel: HostKeyDeciding {
         do {
             let listed = try await sftp.list(newPath)
             path = (try? await sftp.realPath(newPath)) ?? newPath
-            files = listed
+            files = sort.applied(to: listed)
             status = .loaded
         } catch {
             status = .error(error.localizedDescription)

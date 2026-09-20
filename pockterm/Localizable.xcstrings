@@ -7436,6 +7436,94 @@
         }
       }
     },
+    "Date": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "التاريخ"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ημερομηνία"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fecha"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Date"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "תאריך"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "तारीख़"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Data"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "日付"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "날짜"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Дата"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "తేదీ"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Дата"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "日期"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "日期"
+          }
+        }
+      }
+    },
     "Default (inherit)": {
       "localizations": {
         "ar": {
@@ -22399,6 +22487,182 @@
         }
       }
     },
+    "Sort": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ترتيب"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ταξινόμηση"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ordenar"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Trier"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "מיון"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "क्रमबद्ध करें"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ordina"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "並べ替え"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "정렬"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сортировка"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "క్రమబద్ధీకరించు"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сортування"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "排序"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "排序"
+          }
+        }
+      }
+    },
+    "Sort By": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ترتيب حسب"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ταξινόμηση κατά"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ordenar por"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Trier par"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "מיון לפי"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "क्रमबद्ध करें"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ordina per"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "並べ替え"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "정렬 기준"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сортировать по"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "దీని ప్రకారం క్రమబద్ధీకరించు"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сортувати за"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "排序方式"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "排序方式"
+          }
+        }
+      }
+    },
     "Star": {
       "localizations": {
         "ar": {
@@ -23979,6 +24243,94 @@
           "stringUnit": {
             "state": "translated",
             "value": "點一下**程式碼片段**按鈕，即可在工作階段中執行已儲存的指令。"
+          }
+        }
+      }
+    },
+    "Tap the **sort** button to order the listing by **Name** or **Date**. Tapping the one already chosen flips between newest and oldest first. Pockterm remembers the choice.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اضغط زر **الترتيب** لترتيب القائمة حسب **الاسم** أو **التاريخ**. اضغط الخيار المحدد بالفعل للتبديل بين الأحدث أولاً والأقدم أولاً. يتذكر Pockterm اختيارك."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Πατήστε το κουμπί **ταξινόμησης** για να ταξινομήσετε τη λίστα κατά **Όνομα** ή **Ημερομηνία**. Αν πατήσετε ξανά αυτό που είναι ήδη επιλεγμένο, εναλλάσσονται τα νεότερα και τα παλαιότερα πρώτα. Το Pockterm θυμάται την επιλογή."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Toca el botón de **ordenar** para ordenar la lista por **Nombre** o **Fecha**. Al tocar el que ya está seleccionado se alterna entre los más recientes y los más antiguos primero. Pockterm recuerda la elección."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Touchez le bouton **trier** pour classer la liste par **Nom** ou **Date**. Toucher celui déjà sélectionné alterne entre les plus récents et les plus anciens d'abord. Pockterm mémorise ce choix."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הקש על כפתור ה**מיון** כדי לסדר את הרשימה לפי **שם** או **תאריך**. הקשה על האפשרות שכבר נבחרה מחליפה בין החדשים ביותר לישנים ביותר תחילה. Pockterm זוכר את הבחירה."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सूची को **नाम** या **तारीख़** के अनुसार क्रमबद्ध करने के लिए **सॉर्ट** बटन पर टैप करें। पहले से चुने हुए पर टैप करने से नए-पहले और पुराने-पहले के बीच अदला-बदली होती है। Pockterm यह विकल्प याद रखता है।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tocca il pulsante **ordina** per ordinare l'elenco per **Nome** o **Data**. Toccando quello già scelto si alterna tra i più recenti e i più vecchi per primi. Pockterm ricorda la scelta."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**並べ替え**ボタンをタップすると、リストを**名前**または**日付**の順に並べ替えられます。選択中の項目をもう一度タップすると、新しい順と古い順が切り替わります。Pockterm はこの設定を記憶します。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**정렬** 버튼을 탭하여 목록을 **이름** 또는 **날짜** 순으로 정렬합니다. 이미 선택된 항목을 다시 탭하면 최신순과 오래된순이 전환됩니다. Pockterm이 선택을 기억합니다."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Нажмите кнопку **сортировки**, чтобы упорядочить список по **имени** или **дате**. Повторное нажатие на уже выбранный пункт переключает между «сначала новые» и «сначала старые». Pockterm запоминает выбор."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "జాబితాను **పేరు** లేదా **తేదీ** ప్రకారం క్రమబద్ధీకరించడానికి **క్రమబద్ధీకరణ** బటన్‌ను నొక్కండి. ఇప్పటికే ఎంచుకున్నదాన్ని మళ్లీ నొక్కితే కొత్తవి ముందు, పాతవి ముందు అనే వాటి మధ్య మారుతుంది. Pockterm ఈ ఎంపికను గుర్తుంచుకుంటుంది."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Натисніть кнопку **сортування**, щоб упорядкувати список за **іменем** або **датою**. Повторне натискання на вже вибраний пункт перемикає між «спочатку нові» та «спочатку старі». Pockterm запам'ятовує вибір."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "点按**排序**按钮，即可按**名称**或**日期**排列列表。再次点按已选中的项目，可在最新优先和最早优先之间切换。Pockterm 会记住你的选择。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "點一下**排序**按鈕，即可依**名稱**或**日期**排列列表。再次點一下已選取的項目，可在最新優先和最舊優先之間切換。Pockterm 會記住你的選擇。"
           }
         }
       }

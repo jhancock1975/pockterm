@@ -51,11 +51,11 @@ actor SFTPService {
                     modified: component.attributes.accessModificationTime?.modificationTime))
             }
         }
-        return files.sorted {
-            let lhs = ($0.kind == .directory ? 0 : 1, $0.name.lowercased())
-            let rhs = ($1.kind == .directory ? 0 : 1, $1.name.lowercased())
-            return lhs < rhs
-        }
+        // Name order is the listing's own default, not the browser's choice:
+        // the AI assistant lists directories through here too, and its output
+        // should not move about because someone re-sorted a screen. The
+        // browser re-sorts what it displays.
+        return RemoteFile.sorted(files, by: .name, ascending: true)
     }
 
     /// Bytes moved per round trip. Servers are free to return short reads, which

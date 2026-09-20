@@ -154,6 +154,7 @@ enum HelpContent {
                 "**Long-press** a file to Rename it, change its **Permissions**, or Delete it.",
                 "Tap **+** to create a folder. **Pull down** to refresh the listing.",
                 "Tap **..** at the top to go up a directory.",
+                "Tap the **sort** button to order the listing by **Name** or **Date**. Tapping the one already chosen flips between newest and oldest first. Pockterm remembers the choice.",
             ]),
             .paragraph("Transfers are streamed in chunks, so even a large file will not exhaust memory. While one runs, the path bar shows how much has transferred and the total size."),
         ])
