@@ -35,7 +35,10 @@ echo "==> archiving (neutral derived-data path: $DERIVED)"
 # see the note in scripts/test.sh.
 # Map the checkout root away so __FILE__ reads "swift-crypto/Sources/..." with
 # no absolute prefix at all. $(inherited) so targets keep their own flags.
-PREFIX_MAP="-ffile-prefix-map=$DERIVED/SourcePackages/checkouts/= -ffile-prefix-map=$PWD/="
+# Xcode 27 hands clang the resolved path, /private/tmp/..., so the /tmp form
+# alone matches nothing and 181 paths came back in 1.8. Map both spellings.
+CHECKOUTS="$DERIVED/SourcePackages/checkouts/"
+PREFIX_MAP="-ffile-prefix-map=$CHECKOUTS= -ffile-prefix-map=/private$CHECKOUTS= -ffile-prefix-map=$PWD/="
 xcodebuild -project pockterm.xcodeproj -scheme pockterm \
     -configuration Release -destination 'generic/platform=iOS' \
     -derivedDataPath "$DERIVED" -archivePath "$ARCHIVE" \
