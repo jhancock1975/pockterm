@@ -47,6 +47,24 @@ maintained.
 
 ---
 
+## Take swift-collections 1.7+ once #733 is fixed
+
+swift-collections is held at **1.6.0**. 1.7.0, built with Xcode 27, emits a
+reference to `_swift_initBorrow`, which the iOS 26.x Swift runtime does not
+export. dyld aborts the app before `main`, which is the whole iOS 26 install
+base, not a test quirk. Found 2026-09-24 while cutting 1.8: the objects that
+pull it in are `Optional+Extras.o` and `BorrowingIteratorProtocol+Extras.o`.
+Nothing in pockterm imports swift-collections; it arrives through swift-nio.
+
+Upstream: [apple/swift-collections#733](https://github.com/apple/swift-collections/issues/733).
+
+`scripts/routine-update --resolve` still re-resolves to 1.7.0, because it
+deletes `Package.resolved` and SwiftPM takes the newest release in range. The
+very next `scripts/test.sh --build` crashes at launch when that happens, so it
+cannot ship silently. Put the pin back to 1.6.0 (revision
+`a0cb0954ecb21e4e31b0070e6ed5674e8556685a`) until a release carries the fix,
+then drop the `CAPPED` entry in `scripts/routine_update.py`.
+
 ## Key bar covers the bottom lines of the terminal
 
 **Recorded:** 2026-08-29, reported from device with a screenshot.
