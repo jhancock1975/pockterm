@@ -120,6 +120,30 @@ state is the reliable signal that the save landed.
 That clears it from the simulator Keychain without erasing the simulator, which
 would also destroy the host and SSH key the harness depends on.
 
+## Before submitting: log in to the App Review demo host
+
+`DemoHostUITests.testReviewerLogin` does what a reviewer does after
+`scripts/provision-demo-host.sh`: new host, new password credentials, connect,
+accept the host key, hold the session. The credentials come from the
+environment, never from a file in the repo:
+
+```bash
+export TEST_RUNNER_DEMO_HOST=$(grep -m1 'Host:' ~/Documents/Apps/pockterm/demo-host.txt | awk '{print $2}')
+export TEST_RUNNER_DEMO_PASSWORD=$(grep -m1 'Password:' ~/Documents/Apps/pockterm/demo-host.txt | awk '{print $2}')
+xcodebuild test-without-building -project pockterm.xcodeproj -scheme pocktermUI \
+  -destination 'platform=iOS Simulator,name=iPhone 17' \
+  -only-testing:pocktermUITests/DemoHostUITests/testReviewerLogin
+```
+
+It prints `HOLDING>>>` once connected and holds for 25 s. Run `who` on the demo
+host in that window: the app's session is the one on a `pts`. A plain
+`ssh demo@host cmd` gets no pts, so it can't be mistaken for the app.
+
+**Don't check the host's password login with `expect` on this Mac.** It hangs
+after sending the password, right or wrong, and looks exactly like a broken
+host. Use `SSH_ASKPASS` with `SSH_ASKPASS_REQUIRE=force` and a script that
+prints the password. It answers in about 4 s.
+
 ## Gotchas
 
 - **Each UI action can stall ~60s**: XCUITest waits for app quiescence and the
