@@ -97,14 +97,16 @@ packages plus swift-nio-ssh — and SwiftTerm, Citadel and BigInt are MIT, which
 combines cleanly. Apache-2.0 also carries an explicit patent grant, which MIT
 does not.
 
-**The repo stays private for now** (decided 2026-08-29). The Apache-2.0 LICENSE
-and NOTICE still matter — they settle the third-party attribution the
-dependencies require — but nothing published should offer, imply, or link
-source. The drafts below are written accordingly.
+**The source is public** at `github.com/jhancock1975/pockterm` (opened
+2026-09-26, reversing the 2026-08-29 decision to keep it private). It was
+published as a fresh repo: the same 253 commits with attribution trailers
+stripped from the history. The original repo, with its PR threads and
+`gh-pages`, stays private as `jhancock1975/pockterm-archive`. The drafts below
+predate this and avoid mentioning source; they can link it now.
 
-If the question ever comes up in public, answer it plainly rather than dodging:
-the app is free, there is no backend and no telemetry, and the source is simply
-not published at the moment. A straight no reads better than a maybe.
+If the question comes up in public, the answer is simply yes: the app is free,
+there is no backend and no telemetry, and the code is on GitHub under
+Apache-2.0.
 
 ## STOP — BEFORE ANYTHING GOES ON REDDIT, GO EARN SOME KARMA
 

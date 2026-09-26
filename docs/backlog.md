@@ -461,9 +461,12 @@ Verified against the API and over HTTPS on 2026-08-29:
 - Marketing URL and Support URL are `https://pockterm.com` in all seven locales.
 - Privacy Policy URL is `https://pockterm.com/privacy.html` in all seven, and
   serves 200.
-- The repo is PRIVATE, and staying private — open-sourcing is off the plan as
-  of 2026-08-29. The old GitHub Pages privacy URL 404s, and nothing points at
-  it any more.
+- The repo went PRIVATE on 2026-08-29. The old GitHub Pages privacy URL 404s,
+  and nothing points at it any more.
+- **Superseded 2026-09-26: open-sourced.** Published as a fresh public repo,
+  `jhancock1975/pockterm`, with attribution trailers stripped from the history.
+  The original is kept private as `jhancock1975/pockterm-archive` (PR threads,
+  `gh-pages`). No App Store link depends on GitHub, so nothing there changed.
 
 The loose end below is closed: Hacker News was dropped altogether on
 2026-08-29, so the submission-URL question it posed no longer exists.
