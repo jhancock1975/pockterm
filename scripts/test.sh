@@ -3,6 +3,7 @@
 #
 #   scripts/test.sh --build   # recompile first (required after source changes)
 #   scripts/test.sh           # re-run tests against the last build (~1 min)
+#   TEST_DESTINATION=...      # a simulator other than iPhone 17 (see DEST below)
 #
 # Read the EXIT STATUS, not the output. `scripts/test.sh | tail -5` reports
 # tail's status, not the script's, so a failed run reads as a pass — that has
@@ -20,7 +21,9 @@
 set -uo pipefail
 cd "$(dirname "$0")/.."
 
-DEST='platform=iOS Simulator,name=iPhone 17'
+# Override when there is no simulator by that name, e.g.
+#   TEST_DESTINATION='platform=iOS Simulator,name=iPhone 16' scripts/test.sh --build
+DEST=${TEST_DESTINATION:-'platform=iOS Simulator,name=iPhone 17'}
 # SwiftTerm 1.19.0+ ships a build-tool plugin (SwiftTermBuildInfoPlugin) that
 # stamps its git branch/tag/commit into a generated Swift file. Xcode refuses to
 # run any package plugin non-interactively without a trust prompt, so a headless

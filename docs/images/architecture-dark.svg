@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="480" viewBox="0 0 920 480" role="img" aria-labelledby="t d">
+<title id="t">How Pockterm is put together</title>
+<desc id="d">Four feature columns — Terminal, Files, Port forwarding and the AI assistant — each run from a SwiftUI screen through a model to a service. The SSH services get credentials from HostConnection, which reads hosts from SwiftData and secrets from the iOS Keychain. Underneath are SwiftTerm, Citadel, swift-nio-ssh, SwiftNIO and swift-crypto.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#656c76"/></marker></defs>
+<text x="215.0" y="20" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="13" font-weight="600" fill="#f0f6fc" text-anchor="middle">Terminal</text>
+<text x="415.0" y="20" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="13" font-weight="600" fill="#f0f6fc" text-anchor="middle">Files</text>
+<text x="615.0" y="20" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="13" font-weight="600" fill="#f0f6fc" text-anchor="middle">Port forwarding</text>
+<text x="815.0" y="20" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="13" font-weight="600" fill="#f0f6fc" text-anchor="middle">AI assistant</text>
+<text x="4" y="62.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="11" font-weight="600" fill="#9198a1" text-anchor="start" letter-spacing="1">SCREENS</text>
+<rect x="120" y="32" width="190" height="52" rx="8" fill="#121d2f" stroke="#1f6feb" stroke-width="1.2"/>
+<text x="215.0" y="55.0" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace" font-size="13" font-weight="600" fill="#f0f6fc" text-anchor="middle">SessionTabsView</text>
+<text x="215.0" y="72.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="12" font-weight="normal" fill="#9198a1" text-anchor="middle">terminal tabs, key bar</text>
+<rect x="320" y="32" width="190" height="52" rx="8" fill="#121d2f" stroke="#1f6feb" stroke-width="1.2"/>
+<text x="415.0" y="55.0" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace" font-size="13" font-weight="600" fill="#f0f6fc" text-anchor="middle">FilesBrowserView</text>
+<text x="415.0" y="72.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="12" font-weight="normal" fill="#9198a1" text-anchor="middle">browse, upload, download</text>
+<rect x="520" y="32" width="190" height="52" rx="8" fill="#121d2f" stroke="#1f6feb" stroke-width="1.2"/>
+<text x="615.0" y="55.0" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace" font-size="13" font-weight="600" fill="#f0f6fc" text-anchor="middle">ForwardsListView</text>
+<text x="615.0" y="72.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="12" font-weight="normal" fill="#9198a1" text-anchor="middle">local, remote, dynamic</text>
+<rect x="720" y="32" width="190" height="52" rx="8" fill="#121d2f" stroke="#1f6feb" stroke-width="1.2"/>
+<text x="815.0" y="55.0" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace" font-size="13" font-weight="600" fill="#f0f6fc" text-anchor="middle">AssistantView</text>
+<text x="815.0" y="72.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="12" font-weight="normal" fill="#9198a1" text-anchor="middle">ask about the output</text>
+<text x="4" y="146.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="11" font-weight="600" fill="#9198a1" text-anchor="start" letter-spacing="1">MODELS</text>
+<rect x="120" y="116" width="190" height="52" rx="8" fill="#121d2f" stroke="#1f6feb" stroke-width="1.2"/>
+<text x="215.0" y="139.0" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace" font-size="13" font-weight="600" fill="#f0f6fc" text-anchor="middle">TerminalSession</text>
+<text x="215.0" y="156.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="12" font-weight="normal" fill="#9198a1" text-anchor="middle">one per tab, keep-alive</text>
+<rect x="320" y="116" width="190" height="52" rx="8" fill="#121d2f" stroke="#1f6feb" stroke-width="1.2"/>
+<text x="415.0" y="139.0" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace" font-size="13" font-weight="600" fill="#f0f6fc" text-anchor="middle">FilesBrowserModel</text>
+<text x="415.0" y="156.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="12" font-weight="normal" fill="#9198a1" text-anchor="middle">TransferQueue, chunked</text>
+<rect x="520" y="116" width="190" height="52" rx="8" fill="#121d2f" stroke="#1f6feb" stroke-width="1.2"/>
+<text x="615.0" y="139.0" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace" font-size="13" font-weight="600" fill="#f0f6fc" text-anchor="middle">ForwardRunner</text>
+<text x="615.0" y="156.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="12" font-weight="normal" fill="#9198a1" text-anchor="middle">starts and stops them</text>
+<rect x="720" y="116" width="190" height="52" rx="8" fill="#121d2f" stroke="#1f6feb" stroke-width="1.2"/>
+<text x="815.0" y="139.0" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace" font-size="13" font-weight="600" fill="#f0f6fc" text-anchor="middle">AssistantModel</text>
+<text x="815.0" y="156.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="12" font-weight="normal" fill="#9198a1" text-anchor="middle">context, AgentLoop</text>
+<text x="4" y="230.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="11" font-weight="600" fill="#9198a1" text-anchor="start" letter-spacing="1">SERVICES</text>
+<rect x="120" y="200" width="190" height="52" rx="8" fill="#121d2f" stroke="#1f6feb" stroke-width="1.2"/>
+<text x="215.0" y="223.0" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace" font-size="13" font-weight="600" fill="#f0f6fc" text-anchor="middle">SSHEngine</text>
+<text x="215.0" y="240.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="12" font-weight="normal" fill="#9198a1" text-anchor="middle">PTY shell, host-key check</text>
+<rect x="320" y="200" width="190" height="52" rx="8" fill="#121d2f" stroke="#1f6feb" stroke-width="1.2"/>
+<text x="415.0" y="223.0" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace" font-size="13" font-weight="600" fill="#f0f6fc" text-anchor="middle">SFTPService</text>
+<text x="415.0" y="240.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="12" font-weight="normal" fill="#9198a1" text-anchor="middle">Citadel&#x27;s SFTP client</text>
+<rect x="520" y="200" width="190" height="52" rx="8" fill="#121d2f" stroke="#1f6feb" stroke-width="1.2"/>
+<text x="615.0" y="223.0" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace" font-size="13" font-weight="600" fill="#f0f6fc" text-anchor="middle">PortForwardService</text>
+<text x="615.0" y="240.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="12" font-weight="normal" fill="#9198a1" text-anchor="middle">NIO channels, SOCKS5</text>
+<rect x="720" y="200" width="190" height="52" rx="8" fill="#121d2f" stroke="#1f6feb" stroke-width="1.2"/>
+<text x="815.0" y="223.0" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace" font-size="13" font-weight="600" fill="#f0f6fc" text-anchor="middle">AIClient</text>
+<text x="815.0" y="240.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="12" font-weight="normal" fill="#9198a1" text-anchor="middle">streaming HTTPS</text>
+<path d="M215.0,84 L215.0,116" fill="none" stroke="#656c76" stroke-width="1.5" marker-end="url(#arrow)"/>
+<path d="M215.0,168 L215.0,200" fill="none" stroke="#656c76" stroke-width="1.5" marker-end="url(#arrow)"/>
+<path d="M415.0,84 L415.0,116" fill="none" stroke="#656c76" stroke-width="1.5" marker-end="url(#arrow)"/>
+<path d="M415.0,168 L415.0,200" fill="none" stroke="#656c76" stroke-width="1.5" marker-end="url(#arrow)"/>
+<path d="M615.0,84 L615.0,116" fill="none" stroke="#656c76" stroke-width="1.5" marker-end="url(#arrow)"/>
+<path d="M615.0,168 L615.0,200" fill="none" stroke="#656c76" stroke-width="1.5" marker-end="url(#arrow)"/>
+<path d="M815.0,84 L815.0,116" fill="none" stroke="#656c76" stroke-width="1.5" marker-end="url(#arrow)"/>
+<path d="M815.0,168 L815.0,200" fill="none" stroke="#656c76" stroke-width="1.5" marker-end="url(#arrow)"/>
+<path d="M215.0,252 L215.0,268" fill="none" stroke="#656c76" stroke-width="1.5"/>
+<path d="M415.0,252 L415.0,268" fill="none" stroke="#656c76" stroke-width="1.5"/>
+<path d="M615.0,252 L615.0,268" fill="none" stroke="#656c76" stroke-width="1.5"/>
+<path d="M215.0,268 L615.0,268" fill="none" stroke="#656c76" stroke-width="1.5"/>
+<path d="M515,268 L515,296" fill="none" stroke="#656c76" stroke-width="1.5" marker-end="url(#arrow)"/>
+<path d="M815.0,252 L815.0,296" fill="none" stroke="#656c76" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="4" y="326" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="11" font-weight="600" fill="#9198a1" text-anchor="start" letter-spacing="1">DATA</text>
+<rect x="120" y="296" width="250" height="52" rx="8" fill="#12261e" stroke="#238636" stroke-width="1.2"/>
+<text x="245.0" y="319.0" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace" font-size="13" font-weight="600" fill="#f0f6fc" text-anchor="middle">SwiftData</text>
+<text x="245.0" y="336.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="12" font-weight="normal" fill="#9198a1" text-anchor="middle">hosts, groups, snippets, settings</text>
+<rect x="390" y="296" width="250" height="52" rx="8" fill="#121d2f" stroke="#1f6feb" stroke-width="1.2"/>
+<text x="515.0" y="319.0" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace" font-size="13" font-weight="600" fill="#f0f6fc" text-anchor="middle">HostConnection</text>
+<text x="515.0" y="336.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="12" font-weight="normal" fill="#9198a1" text-anchor="middle">credentials, inherited via groups</text>
+<rect x="660" y="296" width="250" height="52" rx="8" fill="#12261e" stroke="#238636" stroke-width="1.2"/>
+<text x="785.0" y="319.0" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace" font-size="13" font-weight="600" fill="#f0f6fc" text-anchor="middle">SecretStore → Keychain</text>
+<text x="785.0" y="336.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="12" font-weight="normal" fill="#9198a1" text-anchor="middle">passwords, private keys, API keys</text>
+<path d="M370,322 L390,322" fill="none" stroke="#656c76" stroke-width="1.5" marker-end="url(#arrow)"/>
+<path d="M660,322 L640,322" fill="none" stroke="#656c76" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="4" y="410" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="11" font-weight="600" fill="#9198a1" text-anchor="start" letter-spacing="1">LIBRARIES</text>
+<rect x="120" y="380" width="150" height="52" rx="8" fill="#272115" stroke="#9e6a03" stroke-width="1.2"/>
+<text x="195.0" y="403.0" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace" font-size="13" font-weight="600" fill="#f0f6fc" text-anchor="middle">SwiftTerm</text>
+<text x="195.0" y="420.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="12" font-weight="normal" fill="#9198a1" text-anchor="middle">terminal emulation</text>
+<rect x="280" y="380" width="150" height="52" rx="8" fill="#272115" stroke="#9e6a03" stroke-width="1.2"/>
+<text x="355.0" y="403.0" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace" font-size="13" font-weight="600" fill="#f0f6fc" text-anchor="middle">Citadel</text>
+<text x="355.0" y="420.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="12" font-weight="normal" fill="#9198a1" text-anchor="middle">SSH client, SFTP</text>
+<rect x="440" y="380" width="150" height="52" rx="8" fill="#272115" stroke="#9e6a03" stroke-width="1.2"/>
+<text x="515.0" y="403.0" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace" font-size="13" font-weight="600" fill="#f0f6fc" text-anchor="middle">swift-nio-ssh</text>
+<text x="515.0" y="420.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="12" font-weight="normal" fill="#9198a1" text-anchor="middle">SSH protocol</text>
+<rect x="600" y="380" width="150" height="52" rx="8" fill="#272115" stroke="#9e6a03" stroke-width="1.2"/>
+<text x="675.0" y="403.0" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace" font-size="13" font-weight="600" fill="#f0f6fc" text-anchor="middle">SwiftNIO</text>
+<text x="675.0" y="420.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="12" font-weight="normal" fill="#9198a1" text-anchor="middle">async networking</text>
+<rect x="760" y="380" width="150" height="52" rx="8" fill="#272115" stroke="#9e6a03" stroke-width="1.2"/>
+<text x="835.0" y="403.0" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace" font-size="13" font-weight="600" fill="#f0f6fc" text-anchor="middle">swift-crypto</text>
+<text x="835.0" y="420.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="12" font-weight="normal" fill="#9198a1" text-anchor="middle">keys and ciphers</text>
+<rect x="120" y="456" width="12" height="12" rx="3" fill="#121d2f" stroke="#1f6feb"/>
+<text x="138" y="466" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="12" font-weight="normal" fill="#9198a1" text-anchor="start">Pockterm&#x27;s own code</text>
+<rect x="290" y="456" width="12" height="12" rx="3" fill="#12261e" stroke="#238636"/>
+<text x="308" y="466" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="12" font-weight="normal" fill="#9198a1" text-anchor="start">stored on the device, nowhere else</text>
+<rect x="540" y="456" width="12" height="12" rx="3" fill="#272115" stroke="#9e6a03"/>
+<text x="558" y="466" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="12" font-weight="normal" fill="#9198a1" text-anchor="start">Swift packages, pinned in Package.resolved</text>
+</svg>

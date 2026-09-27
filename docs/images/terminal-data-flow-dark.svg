@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="372" viewBox="0 0 920 372" role="img" aria-labelledby="t d">
+<title id="t">What happens to a keystroke</title>
+<desc id="d">Connecting: HostConnection resolves credentials, SSHEngine connects through Citadel, the host key is checked, and a PTY shell opens at the terminal&#x27;s real size. After that, keystrokes go from SwiftTerm&#x27;s TerminalView through TerminalSession and SSHEngine to the server, and output comes back through SSHEngine and MarginModeFilter into TerminalView, which draws the screen.</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#656c76"/></marker></defs>
+<text x="10" y="20" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="13" font-weight="600" fill="#f0f6fc" text-anchor="start">Connecting</text>
+<rect x="10" y="32" width="205" height="48" rx="8" fill="#121d2f" stroke="#1f6feb" stroke-width="1.2"/>
+<text x="112.5" y="53.0" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace" font-size="13" font-weight="600" fill="#f0f6fc" text-anchor="middle">HostConnection</text>
+<text x="112.5" y="70.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="12" font-weight="normal" fill="#9198a1" text-anchor="middle">credentials for the host</text>
+<rect x="245" y="32" width="205" height="48" rx="8" fill="#121d2f" stroke="#1f6feb" stroke-width="1.2"/>
+<text x="347.5" y="53.0" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace" font-size="13" font-weight="600" fill="#f0f6fc" text-anchor="middle">SSHEngine.connect</text>
+<text x="347.5" y="70.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="12" font-weight="normal" fill="#9198a1" text-anchor="middle">Citadel opens the socket</text>
+<rect x="480" y="32" width="205" height="48" rx="8" fill="#121d2f" stroke="#1f6feb" stroke-width="1.2"/>
+<text x="582.5" y="53.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="13" font-weight="600" fill="#f0f6fc" text-anchor="middle">Host-key check</text>
+<text x="582.5" y="70.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="12" font-weight="normal" fill="#9198a1" text-anchor="middle">asks you if new or changed</text>
+<rect x="715" y="32" width="195" height="48" rx="8" fill="#121d2f" stroke="#1f6feb" stroke-width="1.2"/>
+<text x="812.5" y="53.0" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace" font-size="13" font-weight="600" fill="#f0f6fc" text-anchor="middle">openShell</text>
+<text x="812.5" y="70.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="12" font-weight="normal" fill="#9198a1" text-anchor="middle">PTY at the real size</text>
+<path d="M215,56 L245,56" fill="none" stroke="#656c76" stroke-width="1.5" marker-end="url(#arrow)"/>
+<path d="M450,56 L480,56" fill="none" stroke="#656c76" stroke-width="1.5" marker-end="url(#arrow)"/>
+<path d="M685,56 L715,56" fill="none" stroke="#656c76" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="10" y="114" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="13" font-weight="600" fill="#f0f6fc" text-anchor="start">Every byte after that</text>
+<rect x="10" y="128" width="140" height="180" rx="8" fill="#151b23" stroke="#3d444d" stroke-width="1.2"/>
+<text x="80.0" y="222.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="13" font-weight="600" fill="#f0f6fc" text-anchor="middle">You</text>
+<text x="80" y="166" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="12" font-weight="normal" fill="#9198a1" text-anchor="middle">keyboard, key bar</text>
+<text x="80" y="290" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="12" font-weight="normal" fill="#9198a1" text-anchor="middle">the screen</text>
+<rect x="770" y="128" width="140" height="180" rx="8" fill="#151b23" stroke="#3d444d" stroke-width="1.2"/>
+<text x="840.0" y="222.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="13" font-weight="600" fill="#f0f6fc" text-anchor="middle">Your server</text>
+<text x="840" y="166" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="12" font-weight="normal" fill="#9198a1" text-anchor="middle">sshd</text>
+<text x="840" y="290" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="12" font-weight="normal" fill="#9198a1" text-anchor="middle">shell, tmux, vim</text>
+<text x="180" y="130" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="11" font-weight="600" fill="#9198a1" text-anchor="start" letter-spacing="1">INPUT</text>
+<rect x="180" y="136" width="166" height="52" rx="8" fill="#121d2f" stroke="#1f6feb" stroke-width="1.2"/>
+<text x="263.0" y="159.0" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace" font-size="13" font-weight="600" fill="#f0f6fc" text-anchor="middle">TerminalView</text>
+<text x="263.0" y="176.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="12" font-weight="normal" fill="#9198a1" text-anchor="middle">SwiftTerm: keys → bytes</text>
+<rect x="376" y="136" width="166" height="52" rx="8" fill="#121d2f" stroke="#1f6feb" stroke-width="1.2"/>
+<text x="459.0" y="159.0" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace" font-size="13" font-weight="600" fill="#f0f6fc" text-anchor="middle">TerminalSession</text>
+<text x="459.0" y="176.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="12" font-weight="normal" fill="#9198a1" text-anchor="middle">handleInput, history</text>
+<rect x="572" y="136" width="166" height="52" rx="8" fill="#121d2f" stroke="#1f6feb" stroke-width="1.2"/>
+<text x="655.0" y="159.0" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace" font-size="13" font-weight="600" fill="#f0f6fc" text-anchor="middle">SSHEngine</text>
+<text x="655.0" y="176.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="12" font-weight="normal" fill="#9198a1" text-anchor="middle">send → PTY channel</text>
+<text x="180" y="240" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="11" font-weight="600" fill="#9198a1" text-anchor="start" letter-spacing="1">OUTPUT</text>
+<rect x="180" y="248" width="166" height="52" rx="8" fill="#121d2f" stroke="#1f6feb" stroke-width="1.2"/>
+<text x="263.0" y="271.0" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace" font-size="13" font-weight="600" fill="#f0f6fc" text-anchor="middle">TerminalView</text>
+<text x="263.0" y="288.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="12" font-weight="normal" fill="#9198a1" text-anchor="middle">feed → draws the grid</text>
+<rect x="376" y="248" width="166" height="52" rx="8" fill="#25171c" stroke="#da3633" stroke-width="1.2"/>
+<text x="459.0" y="271.0" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace" font-size="13" font-weight="600" fill="#f0f6fc" text-anchor="middle">MarginModeFilter</text>
+<text x="459.0" y="288.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="12" font-weight="normal" fill="#9198a1" text-anchor="middle">strips DECLRMM</text>
+<rect x="572" y="248" width="166" height="52" rx="8" fill="#121d2f" stroke="#1f6feb" stroke-width="1.2"/>
+<text x="655.0" y="271.0" font-family="ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace" font-size="13" font-weight="600" fill="#f0f6fc" text-anchor="middle">SSHEngine</text>
+<text x="655.0" y="288.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="12" font-weight="normal" fill="#9198a1" text-anchor="middle">onOutput ← PTY channel</text>
+<path d="M150,162 L180,162" fill="none" stroke="#656c76" stroke-width="1.5" marker-end="url(#arrow)"/>
+<path d="M180,274 L150,274" fill="none" stroke="#656c76" stroke-width="1.5" marker-end="url(#arrow)"/>
+<path d="M346,162 L376,162" fill="none" stroke="#656c76" stroke-width="1.5" marker-end="url(#arrow)"/>
+<path d="M376,274 L346,274" fill="none" stroke="#656c76" stroke-width="1.5" marker-end="url(#arrow)"/>
+<path d="M542,162 L572,162" fill="none" stroke="#656c76" stroke-width="1.5" marker-end="url(#arrow)"/>
+<path d="M572,274 L542,274" fill="none" stroke="#656c76" stroke-width="1.5" marker-end="url(#arrow)"/>
+<path d="M738,162 L770,162" fill="none" stroke="#656c76" stroke-width="1.5" marker-end="url(#arrow)"/>
+<path d="M770,274 L738,274" fill="none" stroke="#656c76" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="10" y="338" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="12" font-weight="normal" fill="#9198a1" text-anchor="start">Resize: SwiftTerm reports the new columns and rows, and SSHEngine.resize sends a window-change. The keep-alive timer re-sends that</text>
+<text x="10" y="356" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif" font-size="12" font-weight="normal" fill="#9198a1" text-anchor="start">same window-change so an idle session isn&#x27;t dropped. MarginModeFilter is a stopgap until SwiftTerm #707 ships — see docs/backlog.md.</text>
+</svg>
