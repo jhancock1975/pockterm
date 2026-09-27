@@ -19,7 +19,7 @@ that ships it. Upload with:
 
   aws s3 cp <file> s3://pockterm-site-071350569379/ \\
       --content-type "text/html; charset=utf-8" --cache-control "public, max-age=300"
-  aws cloudfront create-invalidation --distribution-id E28OSFYVGJMTML --paths "/*"
+  aws cloudfront create-invalidation --distribution-id EZUC486Q5M7TE --paths "/*"
 """
 import argparse
 import json
@@ -36,6 +36,7 @@ HAS_VIDEO = {"en", "es", "fr", "it", "el", "ru", "uk", "ar", "he",
              "hi", "te", "ja", "ko", "zh-Hans", "zh-Hant"}
 
 NODE = re.compile(r">([^<>]{1,300})<")
+UNSPACED = {"ja", "zh-Hans", "zh-Hant"}
 
 
 def page_name(code):
@@ -82,7 +83,18 @@ def build(code, template, data):
             return m.group(0)
         idx += 1
         if idx in varying and str(idx) in strings:
-            return ">" + strings[str(idx)] + "<"
+            # The copy is stored trimmed, so put back the template's spacing
+            # or "<b>Free.</b> No account" renders as "Free.No account" and
+            # the code words in the why-paragraph run together. Chinese and
+            # Japanese don't space between words, so they stay trimmed.
+            text = m.group(1)
+            lead = text[:len(text) - len(text.lstrip())]
+            trail = text[len(text.rstrip()):]
+            if code in UNSPACED:
+                lead = trail = ""
+            if strings[str(idx)].endswith("-"):
+                trail = ""  # Hebrew's ו- prefix joins the word after it
+            return ">" + lead + strings[str(idx)] + trail + "<"
         return m.group(0)
     body = NODE.sub(repl, body)
 
@@ -123,7 +135,8 @@ def main():
     out.mkdir(parents=True, exist_ok=True)
     for code in data["order"]:
         page = build(code, template, data)
-        left = [s for s in ("What it does", "Why it exists.", "Requires iOS 18")
+        left = [s for s in ("What it does", "Why it exists.", "Requires iOS 18",
+                            "Source code")
                 if code != "en" and s in page]
         (out / page_name(code)).write_text(page)
         print(f"  {page_name(code):<16} {len(page):>6} bytes"

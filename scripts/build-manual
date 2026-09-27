@@ -30,7 +30,7 @@ HELP = ROOT / "pockterm/Features/Help/HelpContent.swift"
 CATALOG = ROOT / "pockterm/Localizable.xcstrings"
 
 BUCKET = "s3://pockterm-site-071350569379/"
-DISTRIBUTION = "E28OSFYVGJMTML"
+DISTRIBUTION = "EZUC486Q5M7TE"
 APP_STORE = "https://apps.apple.com/app/id6789968094"
 
 # (code, endonym, direction) — order the language switcher shows them in,

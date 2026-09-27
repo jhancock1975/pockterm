@@ -23,7 +23,7 @@ a taller one underneath it in the source recording.
 Deploy (upload then invalidate):
   aws s3 cp <file> s3://pockterm-site-071350569379/ \\
       --content-type video/mp4 --cache-control "public, max-age=3600"
-  aws cloudfront create-invalidation --distribution-id E28OSFYVGJMTML --paths "/*"
+  aws cloudfront create-invalidation --distribution-id EZUC486Q5M7TE --paths "/*"
 """
 import argparse
 import json
