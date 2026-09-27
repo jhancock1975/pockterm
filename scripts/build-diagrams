@@ -1,0 +1,220 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""Draw the README diagrams as SVG, one light and one dark copy of each.
+
+  scripts/build-diagrams
+
+Writes docs/images/<name>-light.svg and <name>-dark.svg. The README picks
+between them with <picture> and prefers-color-scheme, which GitHub maps onto
+its own theme setting — a single SVG with an internal media query follows the
+OS instead, so it goes dark-on-dark for anyone who forced GitHub's theme.
+
+Both copies come from the one layout below, so edit here and re-run rather
+than touching the SVGs by hand. Stdlib only.
+"""
+import pathlib
+from html import escape
+
+ROOT = pathlib.Path(__file__).resolve().parent.parent
+OUT = ROOT / "docs/images"
+
+# GitHub's own Primer colours, so the diagrams sit naturally on its pages.
+THEMES = {
+    "light": dict(text="#1f2328", muted="#59636e", line="#8c959f",
+                  app="#ddf4ff", app_line="#54aeff",
+                  data="#dafbe1", data_line="#4ac26b",
+                  lib="#fff8c5", lib_line="#d4a72c",
+                  warn="#ffebe9", warn_line="#ff8182",
+                  end="#f6f8fa", end_line="#d1d9e0"),
+    "dark": dict(text="#f0f6fc", muted="#9198a1", line="#656c76",
+                 app="#121d2f", app_line="#1f6feb",
+                 data="#12261e", data_line="#238636",
+                 lib="#272115", lib_line="#9e6a03",
+                 warn="#25171c", warn_line="#da3633",
+                 end="#151b23", end_line="#3d444d"),
+}
+
+SANS = "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif"
+MONO = "ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace"
+
+
+class Canvas:
+    def __init__(self, width, height, title, desc, t):
+        self.w, self.h, self.t = width, height, t
+        self.parts = [
+            f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" '
+            f'viewBox="0 0 {width} {height}" role="img" aria-labelledby="t d">',
+            f'<title id="t">{escape(title)}</title>',
+            f'<desc id="d">{escape(desc)}</desc>',
+            '<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" '
+            'markerWidth="7" markerHeight="7" orient="auto-start-reverse">'
+            f'<path d="M0,0 L10,5 L0,10 z" fill="{t["line"]}"/></marker></defs>',
+        ]
+
+    def text(self, x, y, s, size=12, color="muted", anchor="middle",
+             weight="normal", font=SANS, spacing=None):
+        extra = f' letter-spacing="{spacing}"' if spacing else ""
+        self.parts.append(
+            f'<text x="{x}" y="{y}" font-family="{font}" font-size="{size}" '
+            f'font-weight="{weight}" fill="{self.t[color]}" '
+            f'text-anchor="{anchor}"{extra}>{escape(s)}</text>')
+
+    def box(self, x, y, w, h, kind, title, sub=None, title_font=MONO):
+        self.parts.append(
+            f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="8" '
+            f'fill="{self.t[kind]}" stroke="{self.t[kind + "_line"]}" stroke-width="1.2"/>')
+        cx, cy = x + w / 2, y + h / 2
+        if sub:
+            self.text(cx, cy - 3, title, size=13, color="text", weight="600", font=title_font)
+            self.text(cx, cy + 14, sub, size=12)
+        else:
+            self.text(cx, cy + 4.5, title, size=13, color="text", weight="600", font=title_font)
+
+    def arrow(self, *points, head=True):
+        d = "M" + " L".join(f"{x},{y}" for x, y in points)
+        end = ' marker-end="url(#arrow)"' if head else ""
+        self.parts.append(
+            f'<path d="{d}" fill="none" stroke="{self.t["line"]}" stroke-width="1.5"{end}/>')
+
+    def gutter(self, y, s):
+        self.text(4, y + 4, s, size=11, anchor="start", weight="600", spacing="1")
+
+    def swatch(self, x, y, kind, s):
+        self.parts.append(
+            f'<rect x="{x}" y="{y - 10}" width="12" height="12" rx="3" '
+            f'fill="{self.t[kind]}" stroke="{self.t[kind + "_line"]}"/>')
+        self.text(x + 18, y, s, anchor="start")
+
+    def svg(self):
+        return "\n".join(self.parts + ["</svg>"]) + "\n"
+
+
+def architecture(t):
+    c = Canvas(920, 480, "How Pockterm is put together",
+               "Four feature columns — Terminal, Files, Port forwarding and the AI "
+               "assistant — each run from a SwiftUI screen through a model to a "
+               "service. The SSH services get credentials from HostConnection, which "
+               "reads hosts from SwiftData and secrets from the iOS Keychain. "
+               "Underneath are SwiftTerm, Citadel, swift-nio-ssh, SwiftNIO and "
+               "swift-crypto.", t)
+    cols = [120, 320, 520, 720]
+    cw, h = 190, 52
+    rows = {"SCREENS": 32, "MODELS": 116, "SERVICES": 200}
+    heads = ["Terminal", "Files", "Port forwarding", "AI assistant"]
+    cells = [
+        [("SessionTabsView", "terminal tabs, key bar"),
+         ("FilesBrowserView", "browse, upload, download"),
+         ("ForwardsListView", "local, remote, dynamic"),
+         ("AssistantView", "ask about the output")],
+        [("TerminalSession", "one per tab, keep-alive"),
+         ("FilesBrowserModel", "TransferQueue, chunked"),
+         ("ForwardRunner", "starts and stops them"),
+         ("AssistantModel", "context, AgentLoop")],
+        [("SSHEngine", "PTY shell, host-key check"),
+         ("SFTPService", "Citadel's SFTP client"),
+         ("PortForwardService", "NIO channels, SOCKS5"),
+         ("AIClient", "streaming HTTPS")],
+    ]
+    for x, head in zip(cols, heads):
+        c.text(x + cw / 2, 20, head, size=13, color="text", weight="600")
+    for (label, y), row in zip(rows.items(), cells):
+        c.gutter(y + h / 2, label)
+        for x, (title, sub) in zip(cols, row):
+            c.box(x, y, cw, h, "app", title, sub)
+    for x in cols:
+        cx = x + cw / 2
+        c.arrow((cx, 32 + h), (cx, 116))
+        c.arrow((cx, 116 + h), (cx, 200))
+
+    # The three SSH services all get their credentials the same way.
+    bus = 268
+    for x in cols[:3]:
+        c.arrow((x + cw / 2, 200 + h), (x + cw / 2, bus), head=False)
+    c.arrow((cols[0] + cw / 2, bus), (cols[2] + cw / 2, bus), head=False)
+    c.arrow((515, bus), (515, 296))
+    c.arrow((cols[3] + cw / 2, 200 + h), (cols[3] + cw / 2, 296))
+
+    c.gutter(322, "DATA")
+    c.box(120, 296, 250, h, "data", "SwiftData", "hosts, groups, snippets, settings")
+    c.box(390, 296, 250, h, "app", "HostConnection", "credentials, inherited via groups")
+    c.box(660, 296, 250, h, "data", "SecretStore → Keychain", "passwords, private keys, API keys")
+    c.arrow((370, 322), (390, 322))
+    c.arrow((660, 322), (640, 322))
+
+    c.gutter(406, "LIBRARIES")
+    libs = [("SwiftTerm", "terminal emulation"), ("Citadel", "SSH client, SFTP"),
+            ("swift-nio-ssh", "SSH protocol"), ("SwiftNIO", "async networking"),
+            ("swift-crypto", "keys and ciphers")]
+    for i, (title, sub) in enumerate(libs):
+        c.box(120 + i * 160, 380, 150, h, "lib", title, sub)
+
+    c.swatch(120, 466, "app", "Pockterm's own code")
+    c.swatch(290, 466, "data", "stored on the device, nowhere else")
+    c.swatch(540, 466, "lib", "Swift packages, pinned in Package.resolved")
+    return c.svg()
+
+
+def terminal_flow(t):
+    c = Canvas(920, 372, "What happens to a keystroke",
+               "Connecting: HostConnection resolves credentials, SSHEngine connects "
+               "through Citadel, the host key is checked, and a PTY shell opens at the "
+               "terminal's real size. After that, keystrokes go from SwiftTerm's "
+               "TerminalView through TerminalSession and SSHEngine to the server, and "
+               "output comes back through SSHEngine and MarginModeFilter into "
+               "TerminalView, which draws the screen.", t)
+
+    c.text(10, 20, "Connecting", size=13, color="text", weight="600", anchor="start")
+    chips = [(10, 205, "HostConnection", "credentials for the host"),
+             (245, 205, "SSHEngine.connect", "Citadel opens the socket"),
+             (480, 205, "Host-key check", "asks you if new or changed"),
+             (715, 195, "openShell", "PTY at the real size")]
+    for x, w, title, sub in chips:
+        c.box(x, 32, w, 48, "app", title, sub, title_font=SANS if " " in title else MONO)
+    for (x, w, *_), (nx, *_) in zip(chips, chips[1:]):
+        c.arrow((x + w, 56), (nx, 56))
+
+    c.text(10, 114, "Every byte after that", size=13, color="text", weight="600", anchor="start")
+    # The two ends span both lanes.
+    c.box(10, 128, 140, 180, "end", "You", None, title_font=SANS)
+    c.text(80, 166, "keyboard, key bar")
+    c.text(80, 290, "the screen")
+    c.box(770, 128, 140, 180, "end", "Your server", None, title_font=SANS)
+    c.text(840, 166, "sshd")
+    c.text(840, 290, "shell, tmux, vim")
+
+    xs, w = [180, 376, 572], 166
+    c.text(180, 130, "INPUT", size=11, anchor="start", weight="600", spacing="1")
+    for x, (title, sub) in zip(xs, [("TerminalView", "SwiftTerm: keys → bytes"),
+                                    ("TerminalSession", "handleInput, history"),
+                                    ("SSHEngine", "send → PTY channel")]):
+        c.box(x, 136, w, 52, "app", title, sub)
+    c.text(180, 240, "OUTPUT", size=11, anchor="start", weight="600", spacing="1")
+    for x, kind, (title, sub) in zip(xs, ["app", "warn", "app"],
+                                     [("TerminalView", "feed → draws the grid"),
+                                      ("MarginModeFilter", "strips DECLRMM"),
+                                      ("SSHEngine", "onOutput ← PTY channel")]):
+        c.box(x, 248, w, 52, kind, title, sub)
+
+    stops = [150] + [p for x in xs for p in (x, x + w)] + [770]
+    for a, b in zip(stops[::2], stops[1::2]):
+        c.arrow((a, 162), (b, 162))
+        c.arrow((b, 274), (a, 274))
+
+    c.text(10, 338, "Resize: SwiftTerm reports the new columns and rows, and SSHEngine.resize "
+           "sends a window-change. The keep-alive timer re-sends that", anchor="start")
+    c.text(10, 356, "same window-change so an idle session isn't dropped. MarginModeFilter "
+           "is a stopgap until SwiftTerm #707 ships — see docs/backlog.md.", anchor="start")
+    return c.svg()
+
+
+def main():
+    OUT.mkdir(parents=True, exist_ok=True)
+    for name, draw in [("architecture", architecture), ("terminal-data-flow", terminal_flow)]:
+        for theme, colours in THEMES.items():
+            path = OUT / f"{name}-{theme}.svg"
+            path.write_text(draw(colours), encoding="utf-8")
+            print(f"  {path.relative_to(ROOT)}")
+
+
+if __name__ == "__main__":
+    main()
