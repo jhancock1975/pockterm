@@ -83,10 +83,12 @@ open pockterm.xcodeproj
 2. Pick any iPhone simulator from the destination menu at the top of the window.
 3. Press **⌘R**.
 
-The first build stops to ask you to trust **SwiftTermBuildInfoPlugin**. That's a
-build plugin inside [SwiftTerm](https://github.com/migueldeicaza/SwiftTerm), the
-terminal emulator. All it does is stamp SwiftTerm's own git tag and commit into a
-generated Swift file. Click **Trust & Enable** and build again.
+The first build fails with *Plugin "SwiftTermBuildInfoPlugin" from package
+"SwiftTerm" must be enabled before it can be used.* That's a build plugin inside
+[SwiftTerm](https://github.com/migueldeicaza/SwiftTerm), the terminal emulator.
+All it does is stamp SwiftTerm's own git tag and commit into a generated Swift
+file. Click the error in the Issue navigator, click **Trust & Enable** in the
+dialog that opens, and press **⌘R** again.
 
 ### Or build from the command line
 
