@@ -189,6 +189,326 @@
     "%@@%@:%@": {
       "shouldTranslate": false
     },
+    "%lld files already exist here": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ملفات موجودة هنا بالفعل: %lld"
+          }
+        },
+        "el": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld αρχείο υπάρχει ήδη εδώ"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld αρχεία υπάρχουν ήδη εδώ"
+                }
+              }
+            }
+          }
+        },
+        "es": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld archivo ya existe aquí"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld archivos ya existen aquí"
+                }
+              }
+            }
+          }
+        },
+        "fr": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld fichier existe déjà ici"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld fichiers existent déjà ici"
+                }
+              }
+            }
+          }
+        },
+        "he": {
+          "variations": {
+            "plural": {
+              "many": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld קבצים כבר קיימים כאן"
+                }
+              },
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "קובץ %lld כבר קיים כאן"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld קבצים כבר קיימים כאן"
+                }
+              },
+              "two": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld קבצים כבר קיימים כאן"
+                }
+              }
+            }
+          }
+        },
+        "hi": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld फ़ाइल यहाँ पहले से मौजूद है"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld फ़ाइलें यहाँ पहले से मौजूद हैं"
+                }
+              }
+            }
+          }
+        },
+        "it": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld file esiste già qui"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld file esistono già qui"
+                }
+              }
+            }
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld 個のファイルがすでにここにあります"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "파일 %lld개가 이미 여기에 있습니다"
+          }
+        },
+        "ru": {
+          "variations": {
+            "plural": {
+              "few": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld файла уже есть в этой папке"
+                }
+              },
+              "many": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld файлов уже есть в этой папке"
+                }
+              },
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld файл уже есть в этой папке"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld файла уже есть в этой папке"
+                }
+              }
+            }
+          }
+        },
+        "te": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld ఫైల్ ఇప్పటికే ఇక్కడ ఉంది"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld ఫైల్‌లు ఇప్పటికే ఇక్కడ ఉన్నాయి"
+                }
+              }
+            }
+          }
+        },
+        "uk": {
+          "variations": {
+            "plural": {
+              "few": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld файли вже є тут"
+                }
+              },
+              "many": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld файлів уже є тут"
+                }
+              },
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld файл уже є тут"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld файлу вже є тут"
+                }
+              }
+            }
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "此处已存在 %lld 个文件"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "此處已存在 %lld 個檔案"
+          }
+        }
+      }
+    },
+    "%lld of %lld": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld من %lld"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld από %lld"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld de %lld"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld sur %lld"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld מתוך %lld"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld/%lld"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld di %lld"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld/%lld"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld/%lld"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld из %lld"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld/%lld"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld з %lld"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld/%lld"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld/%lld"
+          }
+        }
+      }
+    },
     "%lld sessions": {
       "localizations": {
         "ar": {
@@ -745,6 +1065,94 @@
         }
       }
     },
+    "**Files…** opens the iPhone's own file picker, so you can upload straight from **iCloud Drive**, On My iPhone, or any other Files location. **Photos & Videos…** sends the originals from your photo library.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**الملفات…** يفتح منتقي الملفات الخاص بالآيفون، فيمكنك الرفع مباشرة من **iCloud Drive** أو «على الآيفون» أو أي موقع آخر في «الملفات». أما **الصور والفيديوهات…** فيرسل النسخ الأصلية من مكتبة الصور."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Το **Αρχεία…** ανοίγει τον επιλογέα αρχείων του ίδιου του iPhone, ώστε να ανεβάσετε απευθείας από το **iCloud Drive**, το «Στο iPhone μου» ή οποιαδήποτε άλλη τοποθεσία των Αρχείων. Το **Φωτογραφίες και βίντεο…** στέλνει τα πρωτότυπα από τη βιβλιοθήκη φωτογραφιών σας."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**Archivos…** abre el selector de archivos del propio iPhone, así que puedes subir directamente desde **iCloud Drive**, En mi iPhone o cualquier otra ubicación de Archivos. **Fotos y vídeos…** envía los originales de tu fototeca."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**Fichiers…** ouvre le sélecteur de fichiers de l'iPhone : vous pouvez donc envoyer directement depuis **iCloud Drive**, Sur mon iPhone ou tout autre emplacement de Fichiers. **Photos et vidéos…** envoie les originaux de votre photothèque."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**קבצים…** פותח את בורר הקבצים של האייפון עצמו, כך שאפשר להעלות ישירות מ-**iCloud Drive**, מ״באייפון שלי״ או מכל מיקום אחר באפליקציית קבצים. **תמונות וסרטונים…** שולח את המקוריים מספריית התמונות שלך."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**फ़ाइलें…** iPhone का अपना फ़ाइल चयनकर्ता खोलता है, इसलिए आप सीधे **iCloud Drive**, «मेरे iPhone पर», या फ़ाइलों की किसी भी जगह से अपलोड कर सकते हैं। **फ़ोटो और वीडियो…** आपकी फ़ोटो लाइब्रेरी से मूल फ़ाइलें भेजता है।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**File…** apre il selettore di file dell'iPhone, così puoi caricare direttamente da **iCloud Drive**, Su questo iPhone o qualsiasi altra posizione di File. **Foto e video…** invia gli originali dalla tua libreria foto."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**ファイル…**では iPhone のファイル選択画面が開くので、**iCloud Drive**、「この iPhone 内」、その他「ファイル」内のどの場所からでも直接アップロードできます。**写真とビデオ…**では写真ライブラリのオリジナルを送信します。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**파일…**을 선택하면 iPhone의 파일 선택기가 열리므로 **iCloud Drive**, 나의 iPhone 등 파일의 어떤 위치에서든 바로 업로드할 수 있습니다. **사진 및 비디오…**는 사진 보관함의 원본을 보냅니다."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**Файлы…** открывает системный выбор файлов iPhone, поэтому можно загружать прямо из **iCloud Drive**, «На iPhone» или любого другого места в «Файлах». **Фото и видео…** отправляет оригиналы из вашей медиатеки."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**ఫైల్‌లు…** iPhone సొంత ఫైల్ ఎంపికదారుని తెరుస్తుంది, కాబట్టి మీరు నేరుగా **iCloud Drive**, «నా iPhone లో», లేదా ఫైల్‌లలోని ఏ ఇతర ప్రదేశం నుండైనా అప్‌లోడ్ చేయవచ్చు. **ఫోటోలు & వీడియోలు…** మీ ఫోటో లైబ్రరీ నుండి అసలు ఫైల్‌లను పంపుతుంది."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**Файли…** відкриває власний вибір файлів iPhone, тож можна вивантажувати просто з **iCloud Drive**, «На iPhone» чи будь-якого іншого місця у «Файлах». **Фото й відео…** надсилає оригінали з вашої медіатеки."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**文件…**会打开 iPhone 自带的文件选择器，因此你可以直接从 **iCloud 云盘**、“我的 iPhone”或“文件”中的任何其他位置上传。**照片和视频…**会发送照片图库中的原始文件。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**檔案…**會打開 iPhone 內建的檔案選擇器，因此你可以直接從 **iCloud 雲碟**、「在我的 iPhone 上」或「檔案」中的任何其他位置上傳。**照片和影片…**會傳送照片圖庫中的原始檔案。"
+          }
+        }
+      }
+    },
     "**Local** — a port on your device forwards to a host the server can reach.": {
       "localizations": {
         "ar": {
@@ -917,182 +1325,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "**長按主機**並選擇**瀏覽檔案**。"
-          }
-        }
-      }
-    },
-    "**Long-press the file**, then choose **Download**.": {
-      "localizations": {
-        "ar": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "**اضغط مطوّلًا على الملف**، ثم اختر **تنزيل**."
-          }
-        },
-        "el": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "**Πατήστε παρατεταμένα το αρχείο** και μετά επιλέξτε **Λήψη**."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "**Mantén pulsado el archivo** y luego elige **Descargar**."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "**Appuyez longuement sur le fichier**, puis choisissez **Télécharger**."
-          }
-        },
-        "he": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "**לחץ לחיצה ארוכה על הקובץ** ואז בחר **הורד**."
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "**फ़ाइल को देर तक दबाएँ**, फिर **डाउनलोड करें** चुनें।"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "**Tieni premuto il file**, poi scegli **Scarica**."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "**ファイルを長押し**して、**ダウンロード**を選びます。"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "**파일을 길게 누른 다음** **다운로드**를 선택하십시오."
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "**Нажмите и удерживайте файл**, затем выберите **Скачать**."
-          }
-        },
-        "te": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "**ఫైల్‌ను నొక్కి పట్టుకుని**, ఆ తర్వాత **డౌన్‌లోడ్ చేయి** ఎంచుకోండి."
-          }
-        },
-        "uk": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "**Торкніться й утримуйте файл**, потім виберіть **Завантажити**."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "**长按文件**，然后选择**下载**。"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "**長按檔案**，然後選擇**下載**。"
-          }
-        }
-      }
-    },
-    "**Long-press** a file to Rename it, change its **Permissions**, or Delete it.": {
-      "localizations": {
-        "ar": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "**اضغط مطوّلًا** على ملف لإعادة تسميته أو تغيير **الأذونات** الخاصة به أو حذفه."
-          }
-        },
-        "el": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "**Πατήστε παρατεταμένα** ένα αρχείο για να το μετονομάσετε, να αλλάξετε τα **Δικαιώματά** του ή να το διαγράψετε."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "**Mantén pulsado** un archivo para renombrarlo, cambiar sus **Permisos** o eliminarlo."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "**Appuyez longuement** sur un fichier pour le renommer, modifier ses **Autorisations** ou le supprimer."
-          }
-        },
-        "he": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "**לחץ לחיצה ארוכה** על קובץ כדי לשנות את שמו, לשנות את **ההרשאות** שלו או למחוק אותו."
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "किसी फ़ाइल को **देर तक दबाएँ** ताकि उसका नाम बदलें, उसकी **अनुमतियाँ** बदलें, या उसे मिटाएँ।"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "**Tieni premuto** un file per rinominarlo, cambiarne i **Permessi** o eliminarlo."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "ファイルを**長押し**すると、名称変更、**アクセス権**の変更、削除ができます。"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "파일을 **길게 누르면** 이름을 변경하거나 **권한**을 바꾸거나 삭제할 수 있습니다."
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "**Нажмите и удерживайте** файл, чтобы переименовать его, изменить **Права** или удалить."
-          }
-        },
-        "te": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "ఒక ఫైల్‌ను **నొక్కి పట్టుకుంటే** దాని పేరు మార్చవచ్చు, **అనుమతులు** మార్చవచ్చు, లేదా తొలగించవచ్చు."
-          }
-        },
-        "uk": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "**Торкніться й утримуйте** файл, щоб перейменувати його, змінити його **Права** або видалити."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "**长按**文件可重命名、更改其**权限**或删除。"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "**長按**檔案可重新命名、更改其**權限**或刪除。"
           }
         }
       }
@@ -1533,6 +1765,94 @@
           "stringUnit": {
             "state": "translated",
             "value": "**點一下某一列**即可編輯。"
+          }
+        }
+      }
+    },
+    "**Tap the file**, then choose **Download**.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**اضغط على الملف**، ثم اختر **تنزيل**."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**Πατήστε το αρχείο** και μετά επιλέξτε **Λήψη**."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**Toca el archivo** y luego elige **Descargar**."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**Touchez le fichier**, puis choisissez **Télécharger**."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**הקש על הקובץ** ואז בחר **הורד**."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**फ़ाइल पर टैप करें**, फिर **डाउनलोड करें** चुनें।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**Tocca il file**, poi scegli **Scarica**."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**ファイルをタップ**して、**ダウンロード**を選びます。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**파일을 탭한 다음** **다운로드**를 선택하십시오."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**Нажмите на файл**, затем выберите **Скачать**."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**ఫైల్‌ను నొక్కి**, ఆ తర్వాత **డౌన్‌లోడ్ చేయి** ఎంచుకోండి."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**Торкніться файлу**, потім виберіть **Завантажити**."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**轻点文件**，然后选择**下载**。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**點一下檔案**，然後選擇**下載**。"
           }
         }
       }
@@ -2592,6 +2912,94 @@
           "stringUnit": {
             "state": "translated",
             "value": "只有在指紋與伺服器擁有者告知的相符時才接受。"
+          }
+        }
+      }
+    },
+    "Actions": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "إجراءات"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ενέργειες"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Acciones"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Actions"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "פעולות"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "कार्रवाइयाँ"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Azioni"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "アクション"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "동작"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Действия"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "చర్యలు"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Дії"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "操作"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "操作"
           }
         }
       }
@@ -6732,6 +7140,94 @@
         }
       }
     },
+    "Couldn't upload “%@”: %@": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تعذّر رفع «%@»: %@"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Δεν ήταν δυνατή η μεταφόρτωση του «%@»: %@"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se pudo subir «%@»: %@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impossible d'envoyer « %@ » : %@"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "לא ניתן היה להעלות את ״%@״: %@"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“%@” अपलोड नहीं हो सका: %@"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impossibile caricare «%@»: %@"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“%@”をアップロードできませんでした: %@"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "‘%@’을(를) 업로드할 수 없음: %@"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Не удалось загрузить «%@»: %@"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“%@” అప్‌లోడ్ కాలేదు: %@"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Не вдалося вивантажити «%@»: %@"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无法上传“%@”：%@"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "無法上傳「%@」：%@"
+          }
+        }
+      }
+    },
     "Create": {
       "localizations": {
         "ar": {
@@ -9548,6 +10044,94 @@
         }
       }
     },
+    "Files…": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "الملفات…"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Αρχεία…"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Archivos…"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fichiers…"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "קבצים…"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "फ़ाइलें…"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "File…"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ファイル…"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "파일…"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Файлы…"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ఫైల్‌లు…"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Файли…"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "文件…"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "檔案…"
+          }
+        }
+      }
+    },
     "Font": {
       "localizations": {
         "ar": {
@@ -11836,6 +12420,94 @@
         }
       }
     },
+    "If a file with the same name is already there, Pockterm asks whether to **Replace** it or **Keep Both**. Keep Both adds a number, as in `IMG_0001 2.HEIC`.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "إذا كان هناك ملف بالاسم نفسه، يسألك Pockterm هل تريد **استبدال** أم **الاحتفاظ بكليهما**. يضيف «الاحتفاظ بكليهما» رقمًا، كما في `IMG_0001 2.HEIC`."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Αν υπάρχει ήδη αρχείο με το ίδιο όνομα, το Pockterm ρωτά αν θέλετε **Αντικατάσταση** ή **Διατήρηση και των δύο**. Η Διατήρηση και των δύο προσθέτει έναν αριθμό, όπως στο `IMG_0001 2.HEIC`."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Si ya hay un archivo con el mismo nombre, Pockterm pregunta si quieres **Reemplazar** o **Conservar ambos**. Conservar ambos añade un número, como en `IMG_0001 2.HEIC`."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Si un fichier du même nom s'y trouve déjà, Pockterm demande s'il faut le **Remplacer** ou **Garder les deux**. Garder les deux ajoute un numéro, comme dans `IMG_0001 2.HEIC`."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "אם כבר יש שם קובץ באותו שם, Pockterm שואל אם **להחליף** אותו או **לשמור את שניהם**. ״שמור את שניהם״ מוסיף מספר, כמו ב-`IMG_0001 2.HEIC`."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अगर उसी नाम की फ़ाइल पहले से मौजूद है, तो Pockterm पूछता है कि उसे **प्रतिस्थापित करें** या **दोनों रखें**। «दोनों रखें» एक संख्या जोड़ता है, जैसे `IMG_0001 2.HEIC`।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Se c'è già un file con lo stesso nome, Pockterm chiede se **Sostituirlo** o **Mantenere entrambi**. Mantieni entrambi aggiunge un numero, come in `IMG_0001 2.HEIC`."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "同じ名前のファイルがすでにある場合、Pockterm は**置き換える**か**両方を残す**かを確認します。「両方を残す」を選ぶと、`IMG_0001 2.HEIC` のように番号が付きます。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "같은 이름의 파일이 이미 있으면 Pockterm이 **대치**할지 **모두 유지**할지 묻습니다. 모두 유지를 선택하면 `IMG_0001 2.HEIC`처럼 번호가 붙습니다."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Если файл с таким именем уже есть, Pockterm спросит, **Заменить** его или **Оставить оба**. «Оставить оба» добавляет номер, например `IMG_0001 2.HEIC`."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "అదే పేరుతో ఫైల్ ఇప్పటికే ఉంటే, దాన్ని **భర్తీ చేయాలా** లేదా **రెండూ ఉంచాలా** అని Pockterm అడుగుతుంది. «రెండూ ఉంచు» ఒక సంఖ్యను జోడిస్తుంది, `IMG_0001 2.HEIC` లాగా."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Якщо файл із такою назвою вже є, Pockterm спитає, чи **Замінити** його, чи **Залишити обидва**. «Залишити обидва» додає номер, як-от `IMG_0001 2.HEIC`."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "如果已有同名文件，Pockterm 会询问你要**替换**还是**保留两者**。选择保留两者会加上编号，例如 `IMG_0001 2.HEIC`。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "如果已有同名檔案，Pockterm 會詢問你要**取代**還是**兩者都保留**。選擇兩者都保留會加上編號，例如 `IMG_0001 2.HEIC`。"
+          }
+        }
+      }
+    },
     "If a server later presents a **different** key, Pockterm warns you before continuing — this can mean the server was rebuilt, or that something is wrong.": {
       "localizations": {
         "ar": {
@@ -13064,6 +13736,94 @@
           "stringUnit": {
             "state": "translated",
             "value": "它會在共享表單中打開，因此你可以傳送到任何地方 — 選擇**儲存到檔案**即可保存，也可存到 **iCloud 雲碟**。"
+          }
+        }
+      }
+    },
+    "Keep Both": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "الاحتفاظ بكليهما"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Διατήρηση και των δύο"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conservar ambos"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Garder les deux"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "שמור את שניהם"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "दोनों रखें"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mantieni entrambi"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "両方を残す"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "모두 유지"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Оставить оба"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "రెండూ ఉంచు"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Залишити обидва"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "保留两者"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "兩者都保留"
           }
         }
       }
@@ -18175,6 +18935,182 @@
         }
       }
     },
+    "Photos & Videos…": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "الصور والفيديوهات…"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Φωτογραφίες και βίντεο…"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fotos y vídeos…"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Photos et vidéos…"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "תמונות וסרטונים…"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "फ़ोटो और वीडियो…"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Foto e video…"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "写真とビデオ…"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "사진 및 비디오…"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Фото и видео…"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ఫోటోలు & వీడియోలు…"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Фото й відео…"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "照片和视频…"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "照片和影片…"
+          }
+        }
+      }
+    },
+    "Pick as many as you like. They land in the folder you are viewing, and the listing scrolls to show them.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اختر ما تشاء منها. تُحفظ في المجلد الذي تعرضه، وتنتقل القائمة لإظهارها."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Επιλέξτε όσα θέλετε. Τοποθετούνται στον φάκελο που βλέπετε και η λίστα μετακινείται για να τα δείξει."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elige tantos como quieras. Se guardan en la carpeta que estás viendo y el listado se desplaza para mostrarlos."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choisissez-en autant que vous voulez. Ils arrivent dans le dossier que vous consultez, et la liste défile pour les montrer."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "בחר כמה שתרצה. הם נשמרים בתיקייה שאתה צופה בה, והרשימה נגללת כדי להציג אותם."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "जितनी चाहें चुनें। वे उसी फ़ोल्डर में आती हैं जिसे आप देख रहे हैं, और सूची उन्हें दिखाने के लिए स्क्रॉल होती है।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Scegline quanti vuoi. Finiscono nella cartella che stai visualizzando e l'elenco scorre per mostrarli."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "いくつでも選べます。表示中のフォルダに置かれ、一覧がスクロールして表示されます。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "원하는 만큼 선택하십시오. 보고 있는 폴더에 놓이며, 목록이 스크롤되어 보여 줍니다."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Выбирайте сколько угодно. Они попадут в папку, которую вы просматриваете, и список прокрутится к ним."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "మీకు కావలసినన్ని ఎంచుకోండి. అవి మీరు చూస్తున్న ఫోల్డర్‌లో చేరతాయి, మరియు జాబితా వాటిని చూపించడానికి స్క్రోల్ అవుతుంది."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Вибирайте скільки завгодно. Вони потраплять до папки, яку ви переглядаєте, і список прокрутиться до них."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "想选多少就选多少。它们会存入你正在查看的文件夹，列表会滚动显示它们。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "想選多少就選多少。它們會存入你正在檢視的檔案夾，列表會捲動顯示它們。"
+          }
+        }
+      }
+    },
     "Pockterm creates an Ed25519 key pair and stores the private key in the iOS Keychain.": {
       "localizations": {
         "ar": {
@@ -19759,6 +20695,94 @@
         }
       }
     },
+    "Replace": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "استبدال"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Αντικατάσταση"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reemplazar"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Remplacer"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "החלף"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "प्रतिस्थापित करें"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sostituisci"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "置き換える"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "대치"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Заменить"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "భర్తీ చేయి"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Замінити"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "替换"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "取代"
+          }
+        }
+      }
+    },
     "Replace API key": {
       "localizations": {
         "ar": {
@@ -19843,6 +20867,94 @@
           "stringUnit": {
             "state": "translated",
             "value": "替換 API 金鑰"
+          }
+        }
+      }
+    },
+    "Replace overwrites what is already on the server.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "يستبدل «استبدال» ما هو موجود بالفعل على الخادم."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Η Αντικατάσταση αντικαθιστά ό,τι υπάρχει ήδη στον διακομιστή."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reemplazar sobrescribe lo que ya hay en el servidor."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Remplacer écrase ce qui se trouve déjà sur le serveur."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "החלפה דורסת את מה שכבר נמצא בשרת."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "प्रतिस्थापित करने से सर्वर पर पहले से मौजूद फ़ाइल ओवरराइट हो जाती है।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sostituisci sovrascrive ciò che è già sul server."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "置き換えると、サーバ上の既存のファイルが上書きされます。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "대치하면 서버에 이미 있는 파일을 덮어씁니다."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "При замене файл на сервере будет перезаписан."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "భర్తీ చేస్తే సర్వర్‌లో ఇప్పటికే ఉన్నది తిరిగి రాయబడుతుంది."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Заміна перезапише те, що вже є на сервері."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "替换会覆盖服务器上已有的内容。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "取代會覆寫伺服器上已有的內容。"
           }
         }
       }
@@ -22487,6 +23599,94 @@
         }
       }
     },
+    "Some items couldn't be read from your photo library.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تعذّرت قراءة بعض العناصر من مكتبة الصور."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ορισμένα στοιχεία δεν ήταν δυνατό να διαβαστούν από τη βιβλιοθήκη φωτογραφιών."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se pudieron leer algunos elementos de la fototeca."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Certains éléments de votre photothèque n'ont pas pu être lus."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "לא ניתן היה לקרוא חלק מהפריטים מספריית התמונות."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आपकी फ़ोटो लाइब्रेरी से कुछ आइटम पढ़े नहीं जा सके।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alcuni elementi della libreria foto non sono stati letti."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "写真ライブラリから読み込めなかった項目があります。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "사진 보관함에서 일부 항목을 읽을 수 없습니다."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Не удалось прочитать некоторые объекты из медиатеки."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "మీ ఫోటో లైబ్రరీ నుండి కొన్ని అంశాలను చదవలేకపోయాం."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Не вдалося прочитати деякі об'єкти з медіатеки."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无法从照片图库读取某些项目。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "無法從照片圖庫讀取部分項目。"
+          }
+        }
+      }
+    },
     "Sort": {
       "localizations": {
         "ar": {
@@ -23103,182 +24303,6 @@
         }
       }
     },
-    "Tap **+** to create a folder. **Pull down** to refresh the listing.": {
-      "localizations": {
-        "ar": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "اضغط **+** لإنشاء مجلد. و**اسحب لأسفل** لتحديث القائمة."
-          }
-        },
-        "el": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Πατήστε **+** για να δημιουργήσετε φάκελο. **Τραβήξτε προς τα κάτω** για ανανέωση της λίστας."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Toca **+** para crear una carpeta. **Desliza hacia abajo** para actualizar el listado."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Touchez **+** pour créer un dossier. **Tirez vers le bas** pour actualiser la liste."
-          }
-        },
-        "he": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "הקש **+** כדי ליצור תיקייה. **משוך מטה** כדי לרענן את הרשימה."
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "फ़ोल्डर बनाने के लिए **+** टैप करें। सूची ताज़ा करने के लिए **नीचे खींचें**।"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tocca **+** per creare una cartella. **Trascina verso il basso** per aggiornare l'elenco."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "**+** をタップしてフォルダを作成します。**下に引く**と一覧を更新します。"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "**+**를 탭하여 폴더를 생성하십시오. **아래로 당기면** 목록이 새로고침됩니다."
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Нажмите **+**, чтобы создать папку. **Потяните вниз**, чтобы обновить список."
-          }
-        },
-        "te": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "ఫోల్డర్ సృష్టించడానికి **+** నొక్కండి. జాబితాను రిఫ్రెష్ చేయడానికి **కిందికి లాగండి**."
-          }
-        },
-        "uk": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Торкніться **+**, щоб створити папку. **Потягніть донизу**, щоб оновити список."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "轻点 **+** 可新建文件夹。**下拉**可刷新列表。"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "點一下 **+** 可新增檔案夾。**下拉**可重新整理列表。"
-          }
-        }
-      }
-    },
-    "Tap **+**, then **Upload File**.": {
-      "localizations": {
-        "ar": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "اضغط **+**، ثم **رفع ملف**."
-          }
-        },
-        "el": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Πατήστε **+** και μετά **Μεταφόρτωση αρχείου**."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Toca **+** y luego **Subir un archivo**."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Touchez **+**, puis **Envoyer un fichier**."
-          }
-        },
-        "he": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "הקש **+** ואז **העלה קובץ**."
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "**+** टैप करें, फिर **फ़ाइल अपलोड करें**।"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tocca **+**, poi **Carica file**."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "**+** をタップして、**ファイルをアップロード**を選びます。"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "**+**를 탭한 다음 **파일 업로드**를 선택하십시오."
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Нажмите **+**, затем **Загрузить файл**."
-          }
-        },
-        "te": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "**+** నొక్కి, ఆ తర్వాత **ఫైల్ అప్‌లోడ్ చేయి** నొక్కండి."
-          }
-        },
-        "uk": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Торкніться **+**, потім **Вивантажити файл**."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "轻点 **+**，然后选择**上传文件**。"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "點一下 **+**，然後選擇**上傳檔案**。"
-          }
-        }
-      }
-    },
     "Tap **..** at the top to go up a directory.": {
       "localizations": {
         "ar": {
@@ -23451,6 +24475,94 @@
           "stringUnit": {
             "state": "translated",
             "value": "點一下**儲存**。"
+          }
+        }
+      }
+    },
+    "Tap **Upload** at the bottom of the browser, then choose **Files…** or **Photos & Videos…**.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اضغط **رفع** أسفل المتصفح، ثم اختر **الملفات…** أو **الصور والفيديوهات…**."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Πατήστε **Μεταφόρτωση** στο κάτω μέρος του προγράμματος περιήγησης και μετά επιλέξτε **Αρχεία…** ή **Φωτογραφίες και βίντεο…**."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Toca **Subir** en la parte inferior del explorador y luego elige **Archivos…** o **Fotos y vídeos…**."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Touchez **Envoyer** en bas du navigateur, puis choisissez **Fichiers…** ou **Photos et vidéos…**."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הקש **העלאה** בתחתית הדפדפן ואז בחר **קבצים…** או **תמונות וסרטונים…**."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ब्राउज़र में नीचे **अपलोड** टैप करें, फिर **फ़ाइलें…** या **फ़ोटो और वीडियो…** चुनें।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tocca **Carica** in fondo al browser, poi scegli **File…** o **Foto e video…**."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ブラウザ下部の**アップロード**をタップし、**ファイル…**または**写真とビデオ…**を選びます。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "브라우저 하단의 **업로드**를 탭한 다음 **파일…** 또는 **사진 및 비디오…**를 선택하십시오."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Нажмите **Загрузить** внизу браузера, затем выберите **Файлы…** или **Фото и видео…**."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "బ్రౌజర్ దిగువన **అప్‌లోడ్** నొక్కి, ఆ తర్వాత **ఫైల్‌లు…** లేదా **ఫోటోలు & వీడియోలు…** ఎంచుకోండి."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Торкніться **Вивантажити** внизу браузера, потім виберіть **Файли…** або **Фото й відео…**."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "轻点浏览器底部的**上传**，然后选择**文件…**或**照片和视频…**。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "點一下瀏覽器底部的**上傳**，然後選擇**檔案…**或**照片和影片…**。"
           }
         }
       }
@@ -24071,6 +25183,94 @@
         }
       }
     },
+    "Tap a file, or the **⋯** beside a folder, to Rename it, change its **Permissions**, or Delete it.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اضغط على ملف، أو على **⋯** بجانب مجلد، لإعادة تسميته أو تغيير **الأذونات** الخاصة به أو حذفه."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Πατήστε ένα αρχείο, ή το **⋯** δίπλα σε έναν φάκελο, για να το μετονομάσετε, να αλλάξετε τα **Δικαιώματά** του ή να το διαγράψετε."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Toca un archivo, o el **⋯** junto a una carpeta, para renombrarlo, cambiar sus **Permisos** o eliminarlo."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Touchez un fichier, ou le **⋯** à côté d'un dossier, pour le renommer, modifier ses **Autorisations** ou le supprimer."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הקש על קובץ, או על **⋯** ליד תיקייה, כדי לשנות את שמו, לשנות את **ההרשאות** שלו או למחוק אותו."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "किसी फ़ाइल पर, या किसी फ़ोल्डर के पास **⋯** पर टैप करें ताकि उसका नाम बदलें, उसकी **अनुमतियाँ** बदलें, या उसे मिटाएँ।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tocca un file, o il **⋯** accanto a una cartella, per rinominarlo, cambiarne i **Permessi** o eliminarlo."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ファイル、またはフォルダの横の**⋯**をタップすると、名称変更、**アクセス権**の変更、削除ができます。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "파일이나 폴더 옆의 **⋯**를 탭하면 이름을 변경하거나 **권한**을 바꾸거나 삭제할 수 있습니다."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Нажмите на файл или на **⋯** рядом с папкой, чтобы переименовать, изменить **Права** или удалить."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ఒక ఫైల్‌ను, లేదా ఫోల్డర్ పక్కన ఉన్న **⋯** ను నొక్కితే దాని పేరు మార్చవచ్చు, **అనుమతులు** మార్చవచ్చు, లేదా తొలగించవచ్చు."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Торкніться файлу або **⋯** поруч із папкою, щоб перейменувати, змінити **Права** або видалити."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "轻点文件，或文件夹旁的 **⋯**，可重命名、更改其**权限**或删除。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "點一下檔案，或檔案夾旁的 **⋯**，可重新命名、更改其**權限**或刪除。"
+          }
+        }
+      }
+    },
     "Tap a host to open a terminal session.": {
       "localizations": {
         "ar": {
@@ -24155,6 +25355,94 @@
           "stringUnit": {
             "state": "translated",
             "value": "點一下主機即可打開終端機工作階段。"
+          }
+        }
+      }
+    },
+    "Tap the **folder** button at the top to create a folder. **Pull down** to refresh the listing.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اضغط زر **المجلد** في الأعلى لإنشاء مجلد. و**اسحب لأسفل** لتحديث القائمة."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Πατήστε το κουμπί **φακέλου** στο πάνω μέρος για να δημιουργήσετε φάκελο. **Τραβήξτε προς τα κάτω** για ανανέωση της λίστας."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Toca el botón de **carpeta** de arriba para crear una carpeta. **Desliza hacia abajo** para actualizar el listado."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Touchez le bouton **dossier** en haut pour créer un dossier. **Tirez vers le bas** pour actualiser la liste."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הקש על כפתור **התיקייה** למעלה כדי ליצור תיקייה. **משוך מטה** כדי לרענן את הרשימה."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "फ़ोल्डर बनाने के लिए ऊपर **फ़ोल्डर** बटन टैप करें। सूची ताज़ा करने के लिए **नीचे खींचें**।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tocca il pulsante **cartella** in alto per creare una cartella. **Trascina verso il basso** per aggiornare l'elenco."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "上部の**フォルダ**ボタンをタップしてフォルダを作成します。**下に引く**と一覧を更新します。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "상단의 **폴더** 버튼을 탭하여 폴더를 생성하십시오. **아래로 당기면** 목록이 새로고침됩니다."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Нажмите кнопку с **папкой** вверху, чтобы создать папку. **Потяните вниз**, чтобы обновить список."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ఫోల్డర్ సృష్టించడానికి పైన ఉన్న **ఫోల్డర్** బటన్ నొక్కండి. జాబితాను రిఫ్రెష్ చేయడానికి **కిందికి లాగండి**."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Торкніться кнопки з **папкою** вгорі, щоб створити папку. **Потягніть донизу**, щоб оновити список."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "轻点顶部的**文件夹**按钮可新建文件夹。**下拉**可刷新列表。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "點一下頂部的**檔案夾**按鈕可新增檔案夾。**下拉**可重新整理列表。"
           }
         }
       }
@@ -24686,94 +25974,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "無法將該檔案作為文字讀取。"
-          }
-        }
-      }
-    },
-    "That opens the iPhone's own file picker, so you can upload straight from **iCloud Drive**, On My iPhone, or any other Files location.": {
-      "localizations": {
-        "ar": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "يفتح ذلك منتقي الملفات الخاص بالآيفون، فيمكنك الرفع مباشرة من **iCloud Drive** أو «على الآيفون» أو أي موقع آخر في «الملفات»."
-          }
-        },
-        "el": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ανοίγει ο επιλογέας αρχείων του ίδιου του iPhone, ώστε να ανεβάσετε απευθείας από το **iCloud Drive**, το «Στο iPhone μου» ή οποιαδήποτε άλλη τοποθεσία των Αρχείων."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Eso abre el selector de archivos del propio iPhone, así que puedes subir directamente desde **iCloud Drive**, En mi iPhone o cualquier otra ubicación de Archivos."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Cela ouvre le sélecteur de fichiers de l'iPhone : vous pouvez donc envoyer directement depuis **iCloud Drive**, Sur mon iPhone ou tout autre emplacement de Fichiers."
-          }
-        },
-        "he": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "זה פותח את בורר הקבצים של האייפון עצמו, כך שאפשר להעלות ישירות מ-**iCloud Drive**, מ״באייפון שלי״ או מכל מיקום אחר באפליקציית קבצים."
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "इससे iPhone का अपना फ़ाइल चयनकर्ता खुलता है, इसलिए आप सीधे **iCloud Drive**, «मेरे iPhone पर», या फ़ाइलों की किसी भी जगह से अपलोड कर सकते हैं।"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Si apre il selettore di file dell'iPhone, così puoi caricare direttamente da **iCloud Drive**, Su questo iPhone o qualsiasi altra posizione di File."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "iPhone のファイル選択画面が開くので、**iCloud Drive**、「この iPhone 内」、その他「ファイル」内のどの場所からでも直接アップロードできます。"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "iPhone의 파일 선택기가 열리므로 **iCloud Drive**, 나의 iPhone 등 파일의 어떤 위치에서든 바로 업로드할 수 있습니다."
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Откроется системный выбор файлов iPhone, поэтому вы можете загрузить файл прямо из **iCloud Drive**, «На iPhone» или любого другого места в «Файлах»."
-          }
-        },
-        "te": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "అది iPhone సొంత ఫైల్ ఎంపికదారుని తెరుస్తుంది, కాబట్టి మీరు నేరుగా **iCloud Drive**, «నా iPhone లో», లేదా ఫైల్‌లలోని ఏ ఇతర ప్రదేశం నుండైనా అప్‌లోడ్ చేయవచ్చు."
-          }
-        },
-        "uk": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Відкриється власний вибір файлів iPhone, тож ви можете вивантажити файл просто з **iCloud Drive**, «На iPhone» чи будь-якого іншого місця у «Файлах»."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "这会打开 iPhone 自带的文件选择器，因此你可以直接从 **iCloud 云盘**、“我的 iPhone”或“文件”中的任何其他位置上传。"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "這會打開 iPhone 內建的檔案選擇器，因此你可以直接從 **iCloud 雲碟**、「在我的 iPhone 上」或「檔案」中的任何其他位置上傳。"
           }
         }
       }
@@ -25390,94 +26590,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "所有主機的預設值。「關閉」會保持目前的行為。個別主機和群組可以覆寫此設定。"
-          }
-        }
-      }
-    },
-    "The file lands in the folder you are currently viewing.": {
-      "localizations": {
-        "ar": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "يُحفظ الملف في المجلد الذي تعرضه حاليًا."
-          }
-        },
-        "el": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Το αρχείο τοποθετείται στον φάκελο που βλέπετε αυτή τη στιγμή."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "El archivo se guarda en la carpeta que estás viendo en ese momento."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Le fichier arrive dans le dossier que vous consultez actuellement."
-          }
-        },
-        "he": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "הקובץ נשמר בתיקייה שאתה צופה בה כעת."
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "फ़ाइल उसी फ़ोल्डर में आती है जिसे आप अभी देख रहे हैं।"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Il file finisce nella cartella che stai visualizzando."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "ファイルは現在表示しているフォルダに置かれます。"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "파일은 현재 보고 있는 폴더에 놓입니다."
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Файл попадёт в папку, которую вы сейчас просматриваете."
-          }
-        },
-        "te": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "ఫైల్ మీరు ప్రస్తుతం చూస్తున్న ఫోల్డర్‌లో చేరుతుంది."
-          }
-        },
-        "uk": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Файл потрапить до папки, яку ви зараз переглядаєте."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "文件会存入你当前正在查看的文件夹。"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "檔案會存入你目前正在檢視的檔案夾。"
           }
         }
       }
@@ -27066,90 +28178,178 @@
         }
       }
     },
-    "Upload File": {
+    "Upload": {
       "localizations": {
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "رفع ملف"
+            "value": "رفع"
           }
         },
         "el": {
           "stringUnit": {
             "state": "translated",
-            "value": "Μεταφόρτωση αρχείου"
+            "value": "Μεταφόρτωση"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Subir un archivo"
+            "value": "Subir"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Envoyer un fichier"
+            "value": "Envoyer"
           }
         },
         "he": {
           "stringUnit": {
             "state": "translated",
-            "value": "העלה קובץ"
+            "value": "העלאה"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "फ़ाइल अपलोड करें"
+            "value": "अपलोड"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Carica file"
+            "value": "Carica"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "ファイルをアップロード"
+            "value": "アップロード"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "파일 업로드"
+            "value": "업로드"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Загрузить файл"
+            "value": "Загрузить"
           }
         },
         "te": {
           "stringUnit": {
             "state": "translated",
-            "value": "ఫైల్ అప్‌లోడ్ చేయి"
+            "value": "అప్‌లోడ్"
           }
         },
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Вивантажити файл"
+            "value": "Вивантажити"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "上传文件"
+            "value": "上传"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "上傳檔案"
+            "value": "上傳"
+          }
+        }
+      }
+    },
+    "Upload Failed": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "فشل الرفع"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Η μεταφόρτωση απέτυχε"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se pudo subir"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Échec de l'envoi"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ההעלאה נכשלה"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अपलोड विफल"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Caricamento non riuscito"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "アップロードに失敗しました"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "업로드하지 못함"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Не удалось загрузить"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "అప్‌లోడ్ విఫలమైంది"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Не вдалося вивантажити"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "上传失败"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "上傳失敗"
           }
         }
       }
@@ -27238,6 +28438,326 @@
           "stringUnit": {
             "state": "translated",
             "value": "上傳檔案"
+          }
+        }
+      }
+    },
+    "Uploaded %lld files": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "الملفات المرفوعة: %lld"
+          }
+        },
+        "el": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Μεταφορτώθηκε %lld αρχείο"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Μεταφορτώθηκαν %lld αρχεία"
+                }
+              }
+            }
+          }
+        },
+        "es": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Se subió %lld archivo"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Se subieron %lld archivos"
+                }
+              }
+            }
+          }
+        },
+        "fr": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld fichier envoyé"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld fichiers envoyés"
+                }
+              }
+            }
+          }
+        },
+        "he": {
+          "variations": {
+            "plural": {
+              "many": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "הועלו %lld קבצים"
+                }
+              },
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "הועלה קובץ %lld"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "הועלו %lld קבצים"
+                }
+              },
+              "two": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "הועלו %lld קבצים"
+                }
+              }
+            }
+          }
+        },
+        "hi": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld फ़ाइल अपलोड हुई"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld फ़ाइलें अपलोड हुईं"
+                }
+              }
+            }
+          }
+        },
+        "it": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld file caricato"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld file caricati"
+                }
+              }
+            }
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld 個のファイルをアップロードしました"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "파일 %lld개 업로드됨"
+          }
+        },
+        "ru": {
+          "variations": {
+            "plural": {
+              "few": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Загружено %lld файла"
+                }
+              },
+              "many": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Загружено %lld файлов"
+                }
+              },
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Загружен %lld файл"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Загружено %lld файла"
+                }
+              }
+            }
+          }
+        },
+        "te": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld ఫైల్ అప్‌లోడ్ అయింది"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld ఫైల్‌లు అప్‌లోడ్ అయ్యాయి"
+                }
+              }
+            }
+          }
+        },
+        "uk": {
+          "variations": {
+            "plural": {
+              "few": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Вивантажено %lld файли"
+                }
+              },
+              "many": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Вивантажено %lld файлів"
+                }
+              },
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Вивантажено %lld файл"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Вивантажено %lld файлу"
+                }
+              }
+            }
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已上传 %lld 个文件"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已上傳 %lld 個檔案"
+          }
+        }
+      }
+    },
+    "Uploaded “%@”": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تم رفع «%@»"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Μεταφορτώθηκε: «%@»"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Se subió «%@»"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "« %@ » envoyé"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "״%@״ הועלה"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“%@” अपलोड हुआ"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "«%@» caricato"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“%@”をアップロードしました"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "‘%@’ 업로드됨"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "«%@» загружен"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“%@” అప్‌లోడ్ అయింది"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "«%@» вивантажено"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已上传“%@”"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已上傳「%@」"
           }
         }
       }
@@ -28388,6 +29908,94 @@
     },
     "user@host:~$ ls": {
       "shouldTranslate": false
+    },
+    "“%@” already exists here": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "«%@» موجود هنا بالفعل"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Το «%@» υπάρχει ήδη εδώ"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "«%@» ya existe aquí"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "« %@ » existe déjà ici"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "״%@״ כבר קיים כאן"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“%@” यहाँ पहले से मौजूद है"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "«%@» esiste già qui"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“%@”はすでにここにあります"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "‘%@’이(가) 이미 여기에 있습니다"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "«%@» уже есть в этой папке"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“%@” ఇప్పటికే ఇక్కడ ఉంది"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "«%@» уже є тут"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“%@”已存在于此处"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "「%@」已存在於此處"
+          }
+        }
+      }
     },
     "•": {
       "shouldTranslate": false

@@ -1,3 +1,4 @@
+import PhotosUI
 import SwiftUI
 import SwiftData
 import UniformTypeIdentifiers
@@ -26,6 +27,13 @@ struct FilesBrowserView: View {
     @State private var chmodText = ""
     @State private var shareItem: ShareItem?
     @State private var showingHelp = false
+    @State private var showingPhotoPicker = false
+    @State private var pickedMedia: [PhotosPickerItem] = []
+    /// Copying picked photos out of the library before they can upload.
+    @State private var preparingMedia = false
+    /// A picked batch waiting on the Replace / Keep Both question.
+    @State private var pendingUpload: [UploadSource] = []
+    @State private var pendingConflicts: [String] = []
 
     init(host: Host, secretStore: SecretStore, modelContext: ModelContext) {
         _model = State(initialValue: FilesBrowserModel(host: host, secretStore: secretStore,
@@ -44,11 +52,21 @@ struct FilesBrowserView: View {
             .task { await model.start() }
             .onDisappear { Task { await model.disconnect() } }
             .fileImporter(isPresented: $showingUploader,
-                          allowedContentTypes: [.item], allowsMultipleSelection: false) { result in
-                if case .success(let urls) = result, let url = urls.first {
-                    Task { await model.upload(from: url) }
+                          allowedContentTypes: [.item], allowsMultipleSelection: true) { result in
+                if case .success(let urls) = result {
+                    beginUpload(urls.map { UploadSource(url: $0, isTemporary: false) })
                 }
             }
+            .photosPicker(isPresented: $showingPhotoPicker, selection: $pickedMedia,
+                          maxSelectionCount: nil, selectionBehavior: .ordered,
+                          matching: .any(of: [.images, .videos]),
+                          preferredItemEncoding: .current)
+            .onChange(of: pickedMedia) { _, items in
+                guard !items.isEmpty else { return }
+                pickedMedia = []
+                Task { await importMedia(items) }
+            }
+            .overlay(alignment: .bottom) { uploadConfirmation }
             .sheet(item: $shareItem) { item in ActivityView(url: item.url) }
             .sheet(isPresented: $showingHelp) {
                 NavigationStack {
@@ -67,7 +85,118 @@ struct FilesBrowserView: View {
                 showingNewFolder: $showingNewFolder, newFolderName: $newFolderName,
                 renameTarget: $renameTarget, renameText: $renameText,
                 chmodTarget: $chmodTarget, chmodText: $chmodText))
+            .alert(conflictTitle, isPresented: conflictPresented) {
+                Button("Replace", role: .destructive) { finishUpload(.replace) }
+                Button("Keep Both") { finishUpload(.keepBoth) }
+                Button("Cancel", role: .cancel) {
+                    model.discard(pendingUpload)
+                    pendingUpload = []; pendingConflicts = []
+                }
+            } message: {
+                Text("Replace overwrites what is already on the server.")
+            }
+            .alert("Upload Failed", isPresented: failuresPresented) {
+                Button("OK", role: .cancel) { model.uploadFailures = [] }
+            } message: {
+                Text(failureMessage)
+            }
         }
+    }
+
+    // MARK: Uploading
+
+    /// Uploads straight away, or first asks about any names already taken in
+    /// this folder. SFTP would otherwise overwrite them without a word.
+    private func beginUpload(_ sources: [UploadSource]) {
+        guard !sources.isEmpty else { return }
+        let clashes = model.conflicts(for: sources.map(\.name))
+        if clashes.isEmpty {
+            Task { await model.upload(sources, choice: .keepBoth) }
+        } else {
+            pendingUpload = sources
+            pendingConflicts = clashes
+        }
+    }
+
+    private func finishUpload(_ choice: UploadConflictChoice) {
+        let sources = pendingUpload
+        pendingUpload = []; pendingConflicts = []
+        Task { await model.upload(sources, choice: choice) }
+    }
+
+    /// Copies picked photos and videos out of the library, then uploads them
+    /// like any other files. An item the library can't hand over is reported
+    /// rather than dropped.
+    private func importMedia(_ items: [PhotosPickerItem]) async {
+        preparingMedia = true
+        var sources: [UploadSource] = []
+        var unreadable = false
+        for item in items {
+            if let media = try? await item.loadTransferable(type: PickedMedia.self) {
+                sources.append(UploadSource(url: media.url, isTemporary: true))
+            } else {
+                unreadable = true
+            }
+        }
+        preparingMedia = false
+        if unreadable {
+            model.actionError = String(localized: "Some items couldn't be read from your photo library.")
+        }
+        beginUpload(sources)
+    }
+
+    private var conflictTitle: String {
+        if pendingConflicts.count == 1, let name = pendingConflicts.first {
+            return String(localized: "“\(name)” already exists here")
+        }
+        return String(localized: "\(pendingConflicts.count) files already exist here")
+    }
+
+    private var conflictPresented: Binding<Bool> {
+        Binding(get: { !pendingConflicts.isEmpty },
+                set: { if !$0, !pendingConflicts.isEmpty {
+                    model.discard(pendingUpload)
+                    pendingUpload = []; pendingConflicts = []
+                } })
+    }
+
+    private var failuresPresented: Binding<Bool> {
+        Binding(get: { !model.uploadFailures.isEmpty && pendingConflicts.isEmpty },
+                set: { if !$0 { model.uploadFailures = [] } })
+    }
+
+    private var failureMessage: String {
+        model.uploadFailures
+            .map { String(localized: "Couldn't upload “\($0.name)”: \($0.message)") }
+            .joined(separator: "\n")
+    }
+
+    /// A brief "Uploaded …" pill over the bottom of the listing.
+    @ViewBuilder
+    private var uploadConfirmation: some View {
+        if let summary = model.uploadSummary {
+            Label(summaryText(summary), systemImage: "checkmark.circle.fill")
+                .font(.callout.weight(.medium))
+                .lineLimit(1)
+                .truncationMode(.middle)
+                .padding(.horizontal, 16)
+                .padding(.vertical, 10)
+                .background(.regularMaterial, in: Capsule())
+                .padding(.horizontal, 24)
+                .padding(.bottom, 12)
+                .transition(.move(edge: .bottom).combined(with: .opacity))
+                .task(id: summary) {
+                    try? await Task.sleep(for: .seconds(2.5))
+                    withAnimation { model.uploadSummary = nil }
+                }
+        }
+    }
+
+    private func summaryText(_ summary: UploadSummary) -> String {
+        if summary.names.count == 1, let name = summary.names.first {
+            return String(localized: "Uploaded “\(name)”")
+        }
+        return String(localized: "Uploaded \(summary.names.count) files")
     }
 
     @ViewBuilder
@@ -80,21 +209,69 @@ struct FilesBrowserView: View {
         case .error(let message):
             ContentUnavailableView("SFTP Error", systemImage: "xmark.octagon", description: Text(message))
         case .loaded:
-            List {
-                if model.canGoUp {
-                    Button { Task { await model.goUp() } } label: {
-                        Label("..", systemImage: "arrow.up.left").foregroundStyle(.primary)
+            ScrollViewReader { proxy in
+                List {
+                    if model.canGoUp {
+                        Button { Task { await model.goUp() } } label: {
+                            Label("..", systemImage: "arrow.up.left").foregroundStyle(.primary)
+                        }
+                    }
+                    ForEach(model.files) { file in
+                        row(file)
+                            .id(file.id)
+                            .listRowBackground(model.highlighted == file.id
+                                               ? Color.accentColor.opacity(0.2) : nil)
                     }
                 }
-                ForEach(model.files) { file in
-                    Button { Task { await model.open(file) } } label: {
-                        RemoteFileRow(file: file).foregroundStyle(.primary)
+                .listStyle(.plain)
+                .refreshable { await model.refresh() }
+                .onChange(of: model.highlighted, initial: true) { _, target in
+                    guard let target else { return }
+                    // A beat for the fresh listing to lay out before scrolling.
+                    Task {
+                        try? await Task.sleep(for: .milliseconds(150))
+                        withAnimation { proxy.scrollTo(target, anchor: .center) }
+                        try? await Task.sleep(for: .seconds(2.5))
+                        if model.highlighted == target {
+                            withAnimation { model.highlighted = nil }
+                        }
                     }
-                    .contextMenu { rowMenu(file) }
                 }
             }
-            .listStyle(.plain)
-            .refreshable { await model.refresh() }
+        }
+    }
+
+    /// Everything happens on a tap. A file's row opens its actions. A folder's
+    /// row opens the folder, and the ⋯ beside it holds the same actions.
+    @ViewBuilder
+    private func row(_ file: RemoteFile) -> some View {
+        if file.kind == .directory {
+            HStack(spacing: 4) {
+                Button { Task { await model.open(file) } } label: {
+                    RemoteFileRow(file: file).foregroundStyle(.primary).contentShape(.rect)
+                }
+                .buttonStyle(.plain)
+                Menu { rowMenu(file) } label: {
+                    Image(systemName: "ellipsis.circle")
+                        .foregroundStyle(.secondary)
+                        .frame(width: 36, height: 36)
+                        .contentShape(.rect)
+                }
+                .buttonStyle(.plain)
+                .accessibilityLabel("Actions")
+            }
+        } else {
+            Menu { rowMenu(file) } label: {
+                HStack(spacing: 4) {
+                    RemoteFileRow(file: file)
+                    Image(systemName: "ellipsis.circle")
+                        .foregroundStyle(.secondary)
+                        .frame(width: 36, height: 36)
+                }
+                .foregroundStyle(.primary)
+                .contentShape(.rect)
+            }
+            .buttonStyle(.plain)
         }
     }
 
@@ -104,7 +281,12 @@ struct FilesBrowserView: View {
                 Image(systemName: "folder")
                 Text(model.path).lineLimit(1).truncationMode(.head)
                 Spacer()
-                if model.transfers.hasActive { ProgressView().controlSize(.small) }
+                if let batch = model.batch {
+                    Text("\(batch.position) of \(batch.count)").monospacedDigit()
+                }
+                if model.transfers.hasActive || preparingMedia {
+                    ProgressView().controlSize(.small)
+                }
             }
             if let transfer = model.transfers.active {
                 transferProgress(transfer)
@@ -188,11 +370,26 @@ struct FilesBrowserView: View {
     @ToolbarContentBuilder
     private var toolbarContent: some ToolbarContent {
         ToolbarItem(placement: .topBarTrailing) {
-            Menu {
-                Button { showingNewFolder = true } label: { Label("New Folder", systemImage: "folder.badge.plus") }
-                Button { showingUploader = true } label: { Label("Upload File", systemImage: "square.and.arrow.up") }
-            } label: { Image(systemName: "plus") }
+            Button { showingNewFolder = true } label: {
+                Label("New Folder", systemImage: "folder.badge.plus")
+            }
             .disabled(model.status != .loaded)
+        }
+        // Labelled, and down where a thumb reaches. It used to be one of two
+        // items behind a bare + that gave no hint it could upload anything.
+        ToolbarItem(placement: .bottomBar) {
+            Menu {
+                Button { showingUploader = true } label: {
+                    Label("Files…", systemImage: "folder")
+                }
+                Button { showingPhotoPicker = true } label: {
+                    Label("Photos & Videos…", systemImage: "photo.on.rectangle")
+                }
+            } label: {
+                Label("Upload", systemImage: "square.and.arrow.up")
+                    .labelStyle(.titleAndIcon)
+            }
+            .disabled(model.status != .loaded || model.batch != nil || preparingMedia)
         }
         ToolbarItem(placement: .topBarTrailing) {
             sortMenu

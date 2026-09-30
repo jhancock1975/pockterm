@@ -24,6 +24,15 @@ final class FilesBrowserModel: HostKeyDeciding {
     var pendingHostKey: PendingHostKey?
     var actionError: String?
 
+    /// Where a multi-file upload has got to, for the path bar's "2 of 5".
+    private(set) var batch: UploadBatch?
+    /// The file the listing scrolls to and briefly highlights after an upload.
+    var highlighted: String?
+    /// What the last upload put on the server, for its confirmation.
+    var uploadSummary: UploadSummary?
+    /// Uploads that failed, each shown with the server's reason.
+    var uploadFailures: [UploadFailure] = []
+
     /// What the visible listing is ordered by. Chosen once and remembered, so
     /// a browser opened to hunt for this morning's render is still in date
     /// order tomorrow morning.
@@ -136,18 +145,49 @@ final class FilesBrowserModel: HostKeyDeciding {
         }
     }
 
-    func upload(from url: URL) async {
-        let name = url.lastPathComponent
-        let transfer = transfers.start(name: name, direction: .upload)
-        do {
-            let access = url.startAccessingSecurityScopedResource()
-            defer { if access { url.stopAccessingSecurityScopedResource() } }
-            try await sftp.upload(from: url, to: RemoteFile.joinPath(path, name),
-                                  progress: progressHandler(for: transfer))
-            transfers.finish(transfer, error: nil)
-            await refresh()
-        } catch {
-            transfers.finish(transfer, error: error)
+    /// Names in the current folder that uploading `names` would clash with.
+    func conflicts(for names: [String]) -> [String] {
+        UploadNaming.conflicts(names, existing: Set(files.map(\.name)))
+    }
+
+    /// Uploads files one after another into the current folder. A failure
+    /// doesn't stop the rest: each is reported afterwards, next to a summary
+    /// of what did land, and the listing scrolls to the last file uploaded.
+    func upload(_ sources: [UploadSource], choice: UploadConflictChoice) async {
+        let targets = UploadNaming.remoteNames(for: sources.map(\.name),
+                                               existing: Set(files.map(\.name)), choice: choice)
+        var uploaded: [String] = []
+        var failures: [UploadFailure] = []
+        for (index, (source, target)) in zip(sources, targets).enumerated() {
+            batch = UploadBatch(position: index + 1, count: sources.count)
+            let transfer = transfers.start(name: target, direction: .upload)
+            do {
+                // Files-picker URLs are security-scoped. A temporary copy of a
+                // photo isn't, and this is then a harmless no-op.
+                let access = source.url.startAccessingSecurityScopedResource()
+                defer { if access { source.url.stopAccessingSecurityScopedResource() } }
+                try await sftp.upload(from: source.url, to: RemoteFile.joinPath(path, target),
+                                      progress: progressHandler(for: transfer))
+                transfers.finish(transfer, error: nil)
+                uploaded.append(target)
+            } catch {
+                transfers.finish(transfer, error: error)
+                failures.append(UploadFailure(name: source.name, message: error.localizedDescription))
+            }
+        }
+        batch = nil
+        discard(sources)
+        await refresh()
+        if let last = uploaded.last { highlighted = RemoteFile.joinPath(path, last) }
+        uploadSummary = uploaded.isEmpty ? nil : UploadSummary(names: uploaded)
+        uploadFailures = failures
+    }
+
+    /// Deletes the temporary copies made for photo-library uploads, whether
+    /// they went up or the user cancelled.
+    func discard(_ sources: [UploadSource]) {
+        for source in sources where source.isTemporary {
+            try? FileManager.default.removeItem(at: source.url.deletingLastPathComponent())
         }
     }
 
