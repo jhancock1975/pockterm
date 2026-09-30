@@ -1008,6 +1008,180 @@ final class VerifyDriverUITests: XCTestCase {
             .withOffset(CGVector(dx: frame.midX, dy: frame.midY))
     }
 
+    /// SFTP upload and tap-to-act, end to end against the Mac. Needs the
+    /// fixture from SKILL.md ("SFTP upload"): ~/pockterm-upload-e2e on the Mac
+    /// and zz-upload-{a,b,c}.txt in the simulator's On My iPhone.
+    func testSFTPUpload() throws {
+        let app = XCUIApplication()
+        app.launch()
+        try connectToMac(app)
+        let browse = app.buttons["Browse Files"]
+        XCTAssertTrue(browse.waitForExistence(timeout: 10), app.debugDescription)
+        browse.tap()
+        XCTAssertTrue(app.navigationBars["mac"].waitForExistence(timeout: 15), app.debugDescription)
+        let folder = app.buttons.matching(
+            NSPredicate(format: "label BEGINSWITH 'pockterm-upload-e2e'")).firstMatch
+        scrollTo(folder, in: app)
+        folder.tap()
+        let upload = app.buttons["Upload"]
+        XCTAssertTrue(upload.waitForExistence(timeout: 10), "no Upload button: \(app.debugDescription)")
+        Thread.sleep(forTimeInterval: 1)
+        attach(app, name: "s1-folder")
+
+        // A tap on a file opens its actions.
+        let filler = app.buttons.matching(NSPredicate(format: "label BEGINSWITH 'filler-01.txt'")).firstMatch
+        XCTAssertTrue(filler.waitForExistence(timeout: 5), app.debugDescription)
+        filler.tap()
+        XCTAssertTrue(app.buttons["Rename"].waitForExistence(timeout: 5), "tap didn't open file actions")
+        XCTAssertTrue(app.buttons["Download"].exists)
+        attach(app, name: "s2-file-actions")
+        dismissMenu(app)
+
+        // A folder's ⋯ opens the same actions (minus Download).
+        app.buttons["Actions"].firstMatch.tap()
+        XCTAssertTrue(app.buttons["Rename"].waitForExistence(timeout: 5), "⋯ didn't open folder actions")
+        XCTAssertFalse(app.buttons["Download"].exists)
+        attach(app, name: "s3-folder-actions")
+        dismissMenu(app)
+
+        // What a long press does now, for the record.
+        app.buttons.matching(NSPredicate(format: "label BEGINSWITH 'filler-02.txt'")).firstMatch
+            .press(forDuration: 1.5)
+        Thread.sleep(forTimeInterval: 1)
+        print("LONG_PRESS_OPENS_MENU=\(app.buttons["Rename"].exists)")
+        attach(app, name: "s4-after-long-press")
+        dismissMenu(app)
+
+        // Two files, one clashing: Keep Both.
+        pickFiles(["zz-upload-a.txt", "zz-upload-b.txt"], in: app)
+        let clash = app.alerts["“zz-upload-a.txt” already exists here"]
+        XCTAssertTrue(clash.waitForExistence(timeout: 10), "no clash question: \(app.debugDescription)")
+        attach(app, name: "s5-clash")
+        clash.buttons["Keep Both"].tap()
+        XCTAssertTrue(app.staticTexts["Uploaded 2 files"].waitForExistence(timeout: 20),
+                      "no confirmation: \(app.debugDescription)")
+        attach(app, name: "s6-uploaded-keep-both")
+        Thread.sleep(forTimeInterval: 1)
+        XCTAssertTrue(app.buttons.matching(
+            NSPredicate(format: "label BEGINSWITH 'zz-upload-b.txt'")).firstMatch.isHittable,
+            "listing didn't scroll to the upload")
+    }
+
+    /// Stage 2 of the SFTP upload check: Replace, a photo from the library,
+    /// and an upload the server refuses (into the read-only folder "ro").
+    func testSFTPUploadReplacePhotoFailure() throws {
+        let app = XCUIApplication()
+        app.launch()
+        try connectToMac(app)
+        app.buttons["Browse Files"].tap()
+        XCTAssertTrue(app.navigationBars["mac"].waitForExistence(timeout: 15), app.debugDescription)
+        let folder = app.buttons.matching(
+            NSPredicate(format: "label BEGINSWITH 'pockterm-upload-e2e'")).firstMatch
+        scrollTo(folder, in: app)
+        folder.tap()
+        XCTAssertTrue(app.buttons["Upload"].waitForExistence(timeout: 10), app.debugDescription)
+
+        // Replace overwrites, and adds no " 2" copy.
+        pickFiles(["zz-upload-c.txt"], in: app)
+        let clash = app.alerts["“zz-upload-c.txt” already exists here"]
+        XCTAssertTrue(clash.waitForExistence(timeout: 10), "no clash question: \(app.debugDescription)")
+        clash.buttons["Replace"].tap()
+        XCTAssertTrue(app.staticTexts["Uploaded “zz-upload-c.txt”"].waitForExistence(timeout: 20),
+                      "no confirmation: \(app.debugDescription)")
+        attach(app, name: "t1-replaced")
+
+        // A photo from the library.
+        app.buttons["Upload"].tap()
+        let photos = app.buttons["Photos & Videos…"]
+        XCTAssertTrue(photos.waitForExistence(timeout: 5), app.debugDescription)
+        photos.tap()
+        Thread.sleep(forTimeInterval: 3)
+        attach(app, name: "t2-photo-picker")
+        let photo = app.images.matching(NSPredicate(format: "label BEGINSWITH 'Photo'")).firstMatch
+        // The picker runs out of process and reports its thumbnails as not
+        // hittable, so tap the thumbnail's centre by position.
+        if photo.waitForExistence(timeout: 5) {
+            photo.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5)).tap()
+        } else {
+            print("PHOTO_TREE>>>\(app.debugDescription)<<<PHOTO_TREE")
+            XCTFail("no photo in picker")
+        }
+        Thread.sleep(forTimeInterval: 1)
+        attach(app, name: "t3-photo-selected")
+        // The photo picker's confirm button: identifier "Add", label "Done".
+        let confirm = app.buttons.matching(
+            NSPredicate(format: "identifier == 'Add' AND label == 'Done'")).firstMatch
+        XCTAssertTrue(confirm.waitForExistence(timeout: 5), "no picker Done: \(app.debugDescription)")
+        confirm.tap()
+        let uploadedPhoto = app.staticTexts.matching(
+            NSPredicate(format: "label BEGINSWITH 'Uploaded'")).firstMatch
+        XCTAssertTrue(uploadedPhoto.waitForExistence(timeout: 30), "photo upload never confirmed: \(app.debugDescription)")
+        print("PHOTO_CONFIRMATION=\(uploadedPhoto.label)")
+        attach(app, name: "t4-photo-uploaded")
+
+        // The server refuses a write into the read-only folder.
+        let ro = app.buttons.matching(NSPredicate(format: "label BEGINSWITH 'ro,'")).firstMatch
+        scrollUpTo(ro, in: app)
+        ro.tap()
+        Thread.sleep(forTimeInterval: 2)
+        pickFiles(["zz-upload-b.txt"], in: app)
+        let failed = app.alerts["Upload Failed"]
+        XCTAssertTrue(failed.waitForExistence(timeout: 20), "no failure alert: \(app.debugDescription)")
+        attach(app, name: "t5-upload-failed")
+        print("FAILURE_TEXT=\(failed.staticTexts.allElementsBoundByIndex.map(\.label))")
+        failed.buttons["OK"].tap()
+    }
+
+    private func scrollUpTo(_ element: XCUIElement, in app: XCUIApplication) {
+        for _ in 0..<20 where !(element.exists && element.isHittable) {
+            app.swipeDown()
+        }
+        XCTAssertTrue(element.exists && element.isHittable, "never found \(element): \(app.debugDescription)")
+    }
+
+    /// Upload → Files… → On My iPhone → the named files → Open.
+    private func pickFiles(_ names: [String], in app: XCUIApplication) {
+        app.buttons["Upload"].tap()
+        let files = app.buttons["Files…"]
+        XCTAssertTrue(files.waitForExistence(timeout: 5), app.debugDescription)
+        files.tap()
+        Thread.sleep(forTimeInterval: 3)
+        // The picker shows names without their extensions.
+        let stems = names.map { ($0 as NSString).deletingPathExtension }
+        let first = app.cells.matching(NSPredicate(format: "label CONTAINS %@", stems[0])).firstMatch
+        let onMyPhone = app.cells["DOC.sidebar.item.On My iPhone"]
+        if !first.waitForExistence(timeout: 2) {
+            // The picker opens wherever it was last: Recents, a folder, or Browse.
+            let browseTab = app.tabBars.buttons["Browse"].firstMatch
+            if !onMyPhone.exists, browseTab.exists { browseTab.tap(); Thread.sleep(forTimeInterval: 1) }
+            let back = app.buttons["Back"]
+            if !onMyPhone.exists, back.exists { back.firstMatch.tap(); Thread.sleep(forTimeInterval: 1) }
+            XCTAssertTrue(onMyPhone.waitForExistence(timeout: 5), "no On My iPhone: \(app.debugDescription)")
+            onMyPhone.tap()
+        }
+        XCTAssertTrue(first.waitForExistence(timeout: 5), "file not in picker: \(app.debugDescription)")
+        attach(app, name: "picker-before-select")
+        for stem in stems {
+            app.cells.matching(NSPredicate(format: "label CONTAINS %@", stem)).firstMatch.tap()
+        }
+        attach(app, name: "picker-selected")
+        let open = app.buttons["Open"]
+        if open.waitForExistence(timeout: 3) { open.tap() }
+    }
+
+    private func scrollTo(_ element: XCUIElement, in app: XCUIApplication) {
+        for _ in 0..<20 where !(element.exists && element.isHittable) {
+            app.swipeUp()
+        }
+        XCTAssertTrue(element.exists && element.isHittable, "never found \(element): \(app.debugDescription)")
+    }
+
+    /// Closes an open menu by tapping the navigation bar's title area.
+    private func dismissMenu(_ app: XCUIApplication) {
+        app.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.08)).tap()
+        Thread.sleep(forTimeInterval: 0.7)
+    }
+
     private func attach(_ app: XCUIApplication, name: String) {
         let shot = XCTAttachment(screenshot: app.screenshot())
         shot.name = name

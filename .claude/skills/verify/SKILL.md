@@ -120,6 +120,39 @@ state is the reliable signal that the save landed.
 That clears it from the simulator Keychain without erasing the simulator, which
 would also destroy the host and SSH key the harness depends on.
 
+## SFTP upload and tap-to-act
+
+`testSFTPUpload` and `testSFTPUploadReplacePhotoFailure` check the file
+browser against the Mac: tapping a file or a folder's ⋯ opens its actions, a
+two-file upload with a name clash settled by Keep Both, Replace, a photo from
+the library, and a refused write into a read-only folder. They use the
+simulator that already has the `mac` host (iPhone 17 Pro Max, iOS 26.5, at the
+time of writing). Fixture:
+
+```bash
+U=<udid>; D=~/pockterm-upload-e2e
+mkdir -p "$D/ro"; for i in $(seq -w 1 40); do echo "filler $i" > "$D/filler-$i.txt"; done
+echo "OLD a" > "$D/zz-upload-a.txt"; echo "OLD c" > "$D/zz-upload-c.txt"; chmod 555 "$D/ro"
+L=$(ls -d ~/Library/Developer/CoreSimulator/Devices/$U/data/Containers/Shared/AppGroup/*/"File Provider Storage" \
+    | while read d; do plutil -extract MCMMetadataIdentifier raw "$d/../.com.apple.mobile_container_manager.metadata.plist" \
+    | grep -q LocalStorage && echo "$d"; done)
+for x in a b c; do echo "NEW $x" > "$L/zz-upload-$x.txt"; done   # On My iPhone
+xcrun simctl addmedia $U some.png                                 # one photo in the library
+```
+
+Afterwards the Mac should hold `zz-upload-a.txt` = OLD a, `zz-upload-a 2.txt` =
+NEW a, `zz-upload-b.txt` = NEW b, `zz-upload-c.txt` = NEW c, and the photo
+byte-identical under its own name. Remove the fixture with `chmod 755 "$D/ro";
+rm -rf "$D"`.
+
+Picker quirks the driver already handles: the Files picker opens wherever it
+was last (Recents, a folder, or Browse); it shows names **without extensions**;
+the photo picker reports its thumbnails as not hittable (tap by coordinate),
+and its confirm button has identifier `Add` but label `Done`. When a test fails,
+`xcodebuild` tends to hang after it, so cap the run (`perl -e 'alarm 300; exec
+@ARGV' xcodebuild …`). The result bundle is then lost, so print what you need
+to the log rather than relying on attachments.
+
 ## Before submitting: log in to the App Review demo host
 
 `DemoHostUITests.testReviewerLogin` does what a reviewer does after
