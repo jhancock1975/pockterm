@@ -66,7 +66,16 @@ struct FilesBrowserView: View {
                 pickedMedia = []
                 Task { await importMedia(items) }
             }
-            .overlay(alignment: .bottom) { uploadConfirmation }
+            // Not a toolbar item: iOS 26 draws those as bare icons, and a lone
+            // share-style glyph was barely better than the old +.
+            .safeAreaInset(edge: .bottom, spacing: 0) {
+                VStack(spacing: 10) {
+                    uploadConfirmation
+                    uploadButton
+                }
+                .padding(.bottom, 8)
+                .animation(.easeInOut(duration: 0.25), value: model.uploadSummary)
+            }
             .sheet(item: $shareItem) { item in ActivityView(url: item.url) }
             .sheet(isPresented: $showingHelp) {
                 NavigationStack {
@@ -171,6 +180,29 @@ struct FilesBrowserView: View {
             .joined(separator: "\n")
     }
 
+    /// Labelled, and down where a thumb reaches. Upload used to be one of two
+    /// items behind a bare + that gave no hint it could upload anything.
+    private var uploadButton: some View {
+        Menu {
+            Button { showingUploader = true } label: {
+                Label("Files…", systemImage: "folder")
+            }
+            Button { showingPhotoPicker = true } label: {
+                Label("Photos & Videos…", systemImage: "photo.on.rectangle")
+            }
+        } label: {
+            Label("Upload", systemImage: "square.and.arrow.up")
+                .font(.body.weight(.semibold))
+                .foregroundStyle(.white)
+                .padding(.horizontal, 24)
+                .padding(.vertical, 12)
+                .background(Color.accentColor, in: Capsule())
+                .shadow(color: .black.opacity(0.2), radius: 6, y: 2)
+        }
+        .disabled(model.status != .loaded || model.batch != nil || preparingMedia)
+        .opacity(model.status != .loaded || model.batch != nil || preparingMedia ? 0.5 : 1)
+    }
+
     /// A brief "Uploaded …" pill over the bottom of the listing.
     @ViewBuilder
     private var uploadConfirmation: some View {
@@ -183,7 +215,6 @@ struct FilesBrowserView: View {
                 .padding(.vertical, 10)
                 .background(.regularMaterial, in: Capsule())
                 .padding(.horizontal, 24)
-                .padding(.bottom, 12)
                 .transition(.move(edge: .bottom).combined(with: .opacity))
                 .task(id: summary) {
                     try? await Task.sleep(for: .seconds(2.5))
@@ -375,22 +406,7 @@ struct FilesBrowserView: View {
             }
             .disabled(model.status != .loaded)
         }
-        // Labelled, and down where a thumb reaches. It used to be one of two
-        // items behind a bare + that gave no hint it could upload anything.
-        ToolbarItem(placement: .bottomBar) {
-            Menu {
-                Button { showingUploader = true } label: {
-                    Label("Files…", systemImage: "folder")
-                }
-                Button { showingPhotoPicker = true } label: {
-                    Label("Photos & Videos…", systemImage: "photo.on.rectangle")
-                }
-            } label: {
-                Label("Upload", systemImage: "square.and.arrow.up")
-                    .labelStyle(.titleAndIcon)
-            }
-            .disabled(model.status != .loaded || model.batch != nil || preparingMedia)
-        }
+
         ToolbarItem(placement: .topBarTrailing) {
             sortMenu
         }

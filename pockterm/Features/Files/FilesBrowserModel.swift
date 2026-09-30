@@ -141,6 +141,8 @@ final class FilesBrowserModel: HostKeyDeciding {
             // Don't leave a truncated file behind for the share sheet to offer.
             try? FileManager.default.removeItem(at: url)
             transfers.finish(transfer, error: error)
+            // A failed download used to vanish with its progress row.
+            actionError = String(localized: "Couldn't download “\(file.name)”: \(SFTPErrorText.describe(error))")
             return nil
         }
     }
@@ -172,7 +174,7 @@ final class FilesBrowserModel: HostKeyDeciding {
                 uploaded.append(target)
             } catch {
                 transfers.finish(transfer, error: error)
-                failures.append(UploadFailure(name: source.name, message: error.localizedDescription))
+                failures.append(UploadFailure(name: source.name, message: SFTPErrorText.describe(error)))
             }
         }
         batch = nil
@@ -210,7 +212,7 @@ final class FilesBrowserModel: HostKeyDeciding {
             try await operation()
             await refresh()
         } catch {
-            actionError = error.localizedDescription
+            actionError = SFTPErrorText.describe(error)
         }
     }
 
