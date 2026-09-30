@@ -16,6 +16,8 @@
 - **Simulator only. Never drive Hanphone17** with XCUITest, devicectl or anything else (AGENTS.md).
 - Unit tests: `scripts/test.sh --build` after source changes. Trust its **exit status**, and never pipe it through `tail`.
 - Unit tests use Swift Testing (`import Testing`, `@Test @MainActor`). New tests must not walk SwiftData `@Model` relationships.
+- **New test files must be registered:** run `ruby scripts/setup_project.rb` after creating one, because the test target is not a synchronized folder (the app target is). Commit the resulting `pockterm.xcodeproj/project.pbxproj` change with the test. Without it, `scripts/test.sh` silently runs the old test count.
+- The verify harness (`add_uitest_target.rb`) hides the `pockterm` scheme. Run `.claude/skills/verify/cleanup.sh` before `scripts/test.sh` or `setup_project.rb`. After a failing UI test `xcodebuild` tends to hang, so cap it with `perl -e 'alarm 300; exec @ARGV' xcodebuild …`.
 - Every new user-visible string goes in `pockterm/Localizable.xcstrings` with all 14 translations (ar, el, es, fr, he, hi, it, ja, ko, ru, te, uk, zh-Hans, zh-Hant), and `scripts/i18n-status` must still report full coverage.
 - The terminal stays left-to-right in every language (`pinLeftToRightForTerminalContent`).
 - Keep pockterm's manual keyboard avoidance. Don't switch to SwiftUI's automatic avoidance: iOS 26 gets the keyboard frame wrong.
@@ -1434,7 +1436,7 @@ git commit -m "Forward the phone keyboard to a terminal drawn on another screen"
 
 **Files:**
 - Create: `pockterm/Features/Glasses/GlassesPhoneContent.swift`
-- Modify: `pockterm/Features/Files/FilesBrowserView.swift` (init, toolbar, text-entry callback)
+- Modify: `pockterm/Features/Files/FilesBrowserView.swift` (init, toolbar, text-entry callback). Since PR #5 the browser has a bottom Upload capsule in a `safeAreaInset`, and it opens file actions on a tap. In glasses mode that capsule sits above the keyboard padding and needs no change. Check it in the Step 6 smoke test.
 - Modify: `pockterm/Features/Terminal/SessionTabsView.swift` (state, content switch, top bar, unplug handoff)
 - Modify: `pockterm/Localizable.xcstrings` (5 new keys)
 
