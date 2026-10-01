@@ -6,7 +6,7 @@
 
 **Architecture:** An app-delegate adaptor hands the external-display scene role to a UIKit scene delegate, which hosts `GlassesRootView`. The session's single `TerminalView` moves into that window, and the pty follows its size through the existing `onSize` path. An `ExternalDisplay` registry flips `SessionManager.isGlassesMode`. In that mode `SessionTabsView` swaps the terminal for an embedded `FilesBrowserView` plus an invisible `TerminalKeyboardProxy`, which owns the phone keyboard and forwards all input to the terminal.
 
-**Tech Stack:** Swift 6, SwiftUI with UIKit scenes, SwiftTerm 1.20.0 (`TerminalView`, `UITextInput`), Swift Testing, XCUITest (the verify skill), Device Hub (Xcode 27's simulator app) for a virtual external display.
+**Tech Stack:** Swift 6, SwiftUI with UIKit scenes, SwiftTerm 1.20.0 (`TerminalView`, `UITextInput`), Swift Testing, XCUITest (the verify skill), a custom simulator device type with an external display attached from boot (`scripts/make-glasses-simulator`).
 
 **Spec:** `docs/superpowers/specs/2026-09-28-glasses-display-mode-design.md`
 
@@ -30,7 +30,7 @@ These are the things most likely to bite a real user that no unit test pins. Eac
 
 1. **Switching sessions in glasses mode:** the glasses show the newly chosen session's terminal (never blank or stale), typing goes to it, and the file browser switches server.
 2. **Closing the last session in glasses mode:** the glasses go to the idle screen, the phone returns to Hosts, the keyboard goes away, and nothing is left holding first responder.
-3. **Plugging or unplugging while a sheet or alert is up on the phone** (assistant, theme picker, a file-browser alert): the terminal lands on the right screen and nothing crashes.
+3. **Plugging or unplugging while a sheet or alert is up on the phone** (assistant, theme picker, a file-browser alert): the terminal lands on the right screen and nothing crashes. *Can't be simulated* (the display is attached from boot; see Task 1). It gets a careful code review of the handoff paths, and the PR lists it as untested on hardware.
 4. **A hardware keyboard in glasses mode:** arrows, ctrl and return reach the terminal through the proxy.
 5. **The shell ends in glasses mode** (`exit`): the phone shows "Session Closed" with its normal layout, and the glasses show the same status.
 
@@ -40,169 +40,14 @@ These are the things most likely to bite a real user that no unit test pins. Eac
 
 ---
 
-### Task 1: Throwaway probe — scene plumbing and "approach C"
+### Task 1: Throwaway probe (DONE 2026-10-01)
 
-This answers two questions before any product code is written:
-- Does the app-delegate adaptor get the external-display scene while SwiftUI keeps the main window working?
-- Can a view in the external scene become first responder and bring up the **phone** keyboard?
+Run in the scratch clone against a simulator from `scripts/make-glasses-simulator`, which is committed with this correction. Results:
 
-The code lives in the scratch clone, never in the repo.
-
-**Files (all in the scratch clone, thrown away afterwards):**
-- Scratch clone: `/private/tmp/claude-501/-Users-john-git-pockterm/dd4bbd43-707b-419a-8896-5ad8f7f6232e/scratchpad/fresh-clone` (already cloned. Run `git -C /private/tmp/claude-501/-Users-john-git-pockterm/dd4bbd43-707b-419a-8896-5ad8f7f6232e/scratchpad/fresh-clone pull --ff-only` first).
-- Create: `fresh-clone/pockterm/ProbeGlasses.swift`
-- Modify: `fresh-clone/pockterm/pocktermApp.swift` (add one adaptor line)
-
-**Interfaces:**
-- Consumes: nothing.
-- Produces: a written verdict, recorded in the plan's execution notes and in the memory file `pockterm-glasses-mode.md`:
-  - (a) `configurationForConnecting` is called for the external role, and the phone UI still works;
-  - (b) the external scene's window shows content;
-  - (c) `becomeFirstResponder` in the external scene does or doesn't raise the phone keyboard and receive keys.
-
-- [ ] **Step 1: Write the probe**
-
-`fresh-clone/pockterm/ProbeGlasses.swift`:
-
-```swift
-import SwiftUI
-import UIKit
-import os
-
-let probeLog = Logger(subsystem: "pockterm.probe", category: "glasses")
-
-final class ProbeAppDelegate: NSObject, UIApplicationDelegate {
-    func application(_ application: UIApplication,
-                     didFinishLaunchingWithOptions options: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
-        NotificationCenter.default.addObserver(forName: UIResponder.keyboardWillShowNotification,
-                                               object: nil, queue: .main) { note in
-            let frame = (note.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue ?? .zero
-            probeLog.log("PROBE keyboardWillShow frame=\(NSCoder.string(for: frame), privacy: .public)")
-        }
-        return true
-    }
-
-    func application(_ application: UIApplication,
-                     configurationForConnecting session: UISceneSession,
-                     options: UIScene.ConnectionOptions) -> UISceneConfiguration {
-        probeLog.log("PROBE configurationForConnecting role=\(session.role.rawValue, privacy: .public)")
-        let config = UISceneConfiguration(name: nil, sessionRole: session.role)
-        if session.role == .windowExternalDisplayNonInteractive {
-            config.delegateClass = ProbeExternalSceneDelegate.self
-        }
-        return config
-    }
-}
-
-final class ProbeKeyView: UIView, UIKeyInput {
-    private let label = UILabel()
-    private var typed = "" { didSet { label.text = "typed: \(typed)" } }
-
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        backgroundColor = .systemGreen
-        label.font = .monospacedSystemFont(ofSize: 48, weight: .bold)
-        label.text = "PROBE"
-        label.frame = bounds
-        label.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        addSubview(label)
-    }
-    required init?(coder: NSCoder) { fatalError() }
-
-    override var canBecomeFirstResponder: Bool { true }
-    var hasText: Bool { !typed.isEmpty }
-    func insertText(_ text: String) {
-        typed += text
-        probeLog.log("PROBE insertText \(text, privacy: .public)")
-    }
-    func deleteBackward() { _ = typed.popLast() }
-}
-
-final class ProbeExternalSceneDelegate: NSObject, UIWindowSceneDelegate {
-    var window: UIWindow?
-
-    func scene(_ scene: UIScene, willConnectTo session: UISceneSession,
-               options: UIScene.ConnectionOptions) {
-        guard let windowScene = scene as? UIWindowScene else { return }
-        let key = ProbeKeyView(frame: windowScene.coordinateSpace.bounds)
-        key.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        let controller = UIViewController()
-        controller.view = key
-        let window = UIWindow(windowScene: windowScene)
-        window.rootViewController = controller
-        window.isHidden = false
-        self.window = window
-        probeLog.log("PROBE external connected bounds=\(NSCoder.string(for: windowScene.coordinateSpace.bounds), privacy: .public)")
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            let ok = key.becomeFirstResponder()
-            probeLog.log("PROBE external becomeFirstResponder=\(ok) isFirstResponder=\(key.isFirstResponder)")
-        }
-    }
-
-    func sceneDidDisconnect(_ scene: UIScene) {
-        probeLog.log("PROBE external disconnected")
-    }
-}
-```
-
-In `fresh-clone/pockterm/pocktermApp.swift`, add inside `struct pocktermApp`, above `@State private var container`:
-
-```swift
-    @UIApplicationDelegateAdaptor(ProbeAppDelegate.self) private var probeDelegate
-```
-
-- [ ] **Step 2: Build, install and launch on the iPhone 18 Pro simulator** (never the phone)
-
-```bash
-S=/private/tmp/claude-501/-Users-john-git-pockterm/dd4bbd43-707b-419a-8896-5ad8f7f6232e/scratchpad
-U=76FBD4B7-A700-4593-898C-092BE400DE79   # iPhone 18 Pro, iOS 27.0 (xcrun simctl list devices)
-cd $S/fresh-clone
-xcodebuild build -project pockterm.xcodeproj -scheme pockterm \
-  -destination "platform=iOS Simulator,id=$U" -derivedDataPath $S/probe-dd \
-  -skipPackagePluginValidation > $S/probe-build.log 2>&1; echo "build exit $?"
-xcrun simctl boot $U 2>/dev/null; open -a DeviceHub
-xcrun simctl install $U $S/probe-dd/Build/Products/Debug-iphonesimulator/pockterm.app
-xcrun simctl spawn $U log stream --style compact \
-  --predicate 'subsystem == "pockterm.probe"' > $S/probe.log 2>&1 &
-xcrun simctl launch $U John-Hancock.pockterm
-```
-
-Expected: `build exit 0`, the app launches to Hosts, and `probe.log` shows `role=UIWindowSceneSessionRoleApplication`.
-
-- [ ] **Step 3: Attach a virtual external display with computer-use in Device Hub**
-
-Call `request_access` for `com.apple.dt.Devices` if it isn't already granted. The screen must be unlocked; if it's locked, stop and report that computer-use can't proceed. Find Device Hub's external-display control (in Xcode ≤ 26 Simulator it was I/O → External Displays → 1920×1080) and pick a 1920×1080 display. **Write down the exact menu path**, because Task 7 documents it in the verify skill. Then:
-
-```bash
-xcrun simctl io $U enumerate | grep -B2 -A12 "Display class: 1"   # find the attached external port
-cat $S/probe.log
-```
-
-Expected in the log: `role=UIWindowSceneSessionRoleExternalDisplayNonInteractive`, `external connected bounds={{0, 0}, {1920, 1080}}` (or similar), and a `becomeFirstResponder=` line two seconds later.
-
-- [ ] **Step 4: Capture both screens and judge approach C**
-
-```bash
-xcrun simctl io $U screenshot --display=internal $S/probe-phone.png
-xcrun simctl io $U screenshot --display=external $S/probe-glasses.png
-```
-
-Read both images. Approach C **works** only if all three hold:
-- the log says `becomeFirstResponder=true isFirstResponder=true`
-- `probe-phone.png` shows the software keyboard, and `keyboardWillShow` is logged
-- tapping a key on the phone keyboard in Device Hub (computer-use click) logs `PROBE insertText` and changes the green screen's text
-
-Otherwise, approach C fails, and Task 5 (the proxy) is required.
-
-- [ ] **Step 5: Record the verdict and clean up**
-
-Write the verdict and the Device Hub menu path into `~/.claude/projects/-Users-john-git-pockterm/memory/pockterm-glasses-mode.md` (new memory, plus a line in `MEMORY.md`). Then:
-
-```bash
-pkill -f "log stream --style compact" 2>/dev/null; git -C $S/fresh-clone checkout -- . && git -C $S/fresh-clone clean -fd pockterm
-```
-
-Detach the external display in Device Hub. **If approach C works:** drop Task 5, and in Task 6 replace `KeyboardProxyHost` with calling `session.terminalView.becomeFirstResponder()` on the glasses. Everything else stands.
+- **The simulator can have a real external display.** Device Hub has no menu for it, but every iPhone device type already defines a screen called `external-0`, switched off. The script copies the stock device type into `~/Library/Developer/CoreSimulator/Profiles/DeviceTypes` with that screen on at 1920×1080, then creates "iPhone 17 Pro (Glasses)" on iOS 26.5. `xcrun simctl io <udid> screenshot --display=external` captures it, headless. Device Hub isn't needed, and no host-side viewer has to be attached.
+- **iOS only offers the external scene when Info.plist declares it.** With `application(_:configurationForConnecting:)` alone, iOS never even asked. Once the built app's Info.plist had a `UISceneConfigurations` entry for `UIWindowSceneSessionRoleExternalDisplayNonInteractive` (delegate class `ProbeExternalSceneDelegate`), the scene connected at 1920×1080 and `UIScreen.screens.count` became 2. **Task 4 changes accordingly.**
+- **Approach C fails, so Task 5 stays.** The external view became first responder, but its window is never key (`externalWindowIsKey=false`), and no keyboard appeared. As a control, a text field on the phone raised the software keyboard immediately (`keyboardWillShow`, 335 pt tall), so this simulator does show a keyboard when something on the phone asks for one.
+- **Limitation:** the display is connected for the whole boot, so plugging and unplugging mid-session can't be simulated. The no-display behaviour is tested on an ordinary simulator.
 
 ---
 
@@ -847,6 +692,38 @@ with
                 } else {
 ```
 
+- [ ] **Step 4a: Declare the external-display scene in Info.plist** (Task 1 showed this is required)
+
+The project generates its Info.plist (`GENERATE_INFOPLIST_FILE = YES`, `INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES`), and the generated manifest has an empty `UISceneConfigurations`. Add a partial plist **outside** `pockterm/`, at `Config/pockterm-Info.plist`. Inside the synchronized folder it would be copied as a resource and clash with the generated Info.plist. Contents:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>UIApplicationSceneManifest</key>
+    <dict>
+        <key>UIApplicationSupportsMultipleScenes</key>
+        <true/>
+        <key>UISceneConfigurations</key>
+        <dict>
+            <key>UIWindowSceneSessionRoleExternalDisplayNonInteractive</key>
+            <array>
+                <dict>
+                    <key>UISceneConfigurationName</key>
+                    <string>External Display</string>
+                    <key>UISceneDelegateClassName</key>
+                    <string>$(PRODUCT_MODULE_NAME).ExternalDisplaySceneDelegate</string>
+                </dict>
+            </array>
+        </dict>
+    </dict>
+</dict>
+</plist>
+```
+
+In both app build configurations, set `INFOPLIST_FILE = Config/pockterm-Info.plist` and `INFOPLIST_KEY_UIApplicationSceneManifest_Generation = NO`, so the partial plist's manifest is the only one. Do it with a few lines of xcodeproj Ruby, the way `scripts/setup_project.rb` edits build settings. Then check the built app: `plutil -p <app>/Info.plist | grep -A8 UISceneConfigurations` must show the external role with a resolved class name. The app delegate in Step 4 may then turn out to be unnecessary, since iOS read the delegate class from the plist in the probe. Keep it only if the main window misbehaves without it.
+
 - [ ] **Step 4: The app delegate and the scene delegate**
 
 `pockterm/App/AppDelegate.swift`:
@@ -980,16 +857,16 @@ private struct GlassesIdleView: View {
 Run: `scripts/test.sh --build; echo "exit $?"`
 Expected: `exit 0`. Nothing new is unit-tested here, but the refactors must keep every test green.
 
-- [ ] **Step 7: Simulator smoke test with computer-use and simctl** (iPhone 18 Pro sim, never the phone)
+- [ ] **Step 7: Simulator smoke test with simctl and XCUITest** (the glasses simulator, never the phone)
 
 1. Build and install the app for the simulator, the same as in Task 1 Step 2 but from `/Users/john/git/pockterm` with its own `-derivedDataPath`. Launch it.
-2. Confirm the phone shows Hosts normally: `xcrun simctl io $U screenshot --display=internal`.
-3. Attach the 1920×1080 external display in Device Hub, using the path recorded in Task 1. Screenshot `--display=external` and confirm the idle screen shows ">_" and "Open a session on your phone".
-4. In Device Hub, create a host for `john@localhost:22`, reusing the verify skill's key if the app container already has one (see `.claude/skills/verify/SKILL.md`, phase 1). Add a snippet named `size` with the command `stty size > /tmp/pockterm-glasses-size`. Open the session and accept the host key.
+2. Use the simulator from `scripts/make-glasses-simulator` (`U=$(scripts/make-glasses-simulator)`), which boots with the external display attached. Confirm the phone shows Hosts normally: `xcrun simctl io $U screenshot --display=internal`.
+3. Screenshot `--display=external` and confirm the idle screen shows ">_" and "Open a session on your phone".
+4. Create the key, host and snippet with the verify skill's driver on this simulator: phase 1 for the key (authorize it on the Mac), then `createHost`, plus a snippet named `size` with the command `stty size > /tmp/pockterm-glasses-size`. Typing through computer-use doesn't reach Device Hub simulators; it arrives as "A". Open the session and accept the host key.
 5. Screenshot `--display=external`. Expected: the shell prompt full screen, with no tab bar and no buttons. The phone shows its top bar over black.
 6. Run the `size` snippet from the phone's snippet menu, then `cat /tmp/pockterm-glasses-size` on the Mac. Expected: rows and columns on the order of 50 and 178, far above the phone's (about 40 × 46).
 7. Minimize, and confirm the glasses show the idle screen. Restore, and confirm the terminal is back.
-8. Detach the display. The phone must show the terminal again. Run the snippet again, and `/tmp/pockterm-glasses-size` must now hold the phone's size.
+8. No-display regression check (hot-unplug can't be simulated; see Task 1): run the same build on an ordinary simulator. The phone must show the terminal exactly as before, and the `size` snippet must write the phone's size.
 
 Any failure goes back into this task's code before committing.
 
@@ -1722,14 +1599,14 @@ Expected: the diff touches only additions (about 350 lines), and `i18n-status` r
 Run: `scripts/test.sh --build; echo "exit $?"`
 Expected: `exit 0`.
 
-- [ ] **Step 6: Simulator smoke test** (iPhone 18 Pro sim, display attached in Device Hub)
+- [ ] **Step 6: Simulator smoke test** (the glasses simulator from `scripts/make-glasses-simulator`)
 
 1. Open the localhost session with the display attached. Phone screenshot: the top bar (without the Files button, with the text-size button), the file browser listing `~` in dark style, and the keyboard with the key bar below it. Glasses screenshot: the terminal.
-2. Tap keys on the phone keyboard in Device Hub (computer-use), e.g. `echo hi` then return. The glasses show `hi`.
+2. Type on the phone keyboard through XCUITest (`app.typeText("echo hi\n")`). The glasses show `hi`.
 3. The key bar's hide key hides the keyboard, and **Show Keyboard** appears in the top bar. Tapping it brings the keyboard back.
 4. Rename a file in the browser and cancel. The keyboard returns, still typing into the terminal (`echo back` shows on the glasses).
 5. Text size: open the menu, tap Larger twice, and the glasses text visibly grows. Check `stty size` through the snippet: fewer columns than before.
-6. Detach the display while the keyboard is up. The phone shows the terminal with the keyboard up, and typing goes straight in.
+6. Unplug handoff can't be exercised in the simulator, because the display is attached from boot. Confirm instead that, on an ordinary simulator, opening a session still raises the terminal's own keyboard. The unplug path (the `onChange(of: manager.isGlassesMode)` handoff) gets a code review and is listed as untested in the PR.
 
 - [ ] **Step 7: Commit**
 
@@ -1745,7 +1622,7 @@ git commit -m "In glasses mode, show files on the phone with the keyboard typing
 
 **Files:**
 - Modify: `.claude/skills/verify/uitests/VerifyDriverUITests.swift` (add `testGlassesMode` and a helper)
-- Modify: `.claude/skills/verify/SKILL.md` (a "Glasses mode" section: Device Hub display path, run order, host-side checks)
+- Modify: `.claude/skills/verify/SKILL.md` (a "Glasses mode" section: `scripts/make-glasses-simulator`, run order, host-side checks)
 
 **Interfaces:**
 - Consumes: the labels "Text Size on Glasses", "Larger Text on Glasses", "Show Keyboard", "Minimize", "New Session", "Close Session" and "Hide Keyboard" (the key bar's dismiss chip, `KeyBarKey.hideKeyboard.displayName`); the verify skill's `connectToMac`, `createHost` and `attach` helpers.
@@ -1756,12 +1633,12 @@ git commit -m "In glasses mode, show files on the phone with the keyboard typing
 Append inside `VerifyDriverUITests`, before the final `attach` helper:
 
 ```swift
-    /// Glasses mode. Run with a virtual external display ALREADY attached in
-    /// Device Hub; the test can't attach one. The host watches the glasses
-    /// with `simctl io … --display=external` and reads the size files this
-    /// writes on the Mac (the SSH target is the Mac itself). At
-    /// GLASSES_CHECKPOINT unplug, detach the display in Device Hub. The test
-    /// waits up to 90 s for the terminal to come back to the phone.
+    /// Glasses mode. Run on the simulator from scripts/make-glasses-simulator,
+    /// which has its external display attached from boot. The host watches
+    /// the glasses with `simctl io … --display=external` and reads the size
+    /// files this writes on the Mac (the SSH target is the Mac itself).
+    /// Unplugging can't be simulated; the no-display path is tested on an
+    /// ordinary simulator.
     func testGlassesMode() throws {
         let app = XCUIApplication()
         app.launch()
@@ -1823,15 +1700,12 @@ Append inside `VerifyDriverUITests`, before the final `attach` helper:
         XCTAssertTrue(sizeMenu.waitForExistence(timeout: 5), "didn't restore into glasses mode")
         glassesCheckpoint("restored")
 
-        // Unplug: the terminal returns to the phone and takes typing directly.
-        glassesCheckpoint("unplug")
-        let deadline = Date().addingTimeInterval(90)
-        while Date() < deadline, sizeMenu.exists { Thread.sleep(forTimeInterval: 1) }
-        XCTAssertFalse(sizeMenu.exists, "still in glasses mode after unplug")
-        XCTAssertTrue(app.buttons["Browse Files"].waitForExistence(timeout: 5), app.debugDescription)
-        app.typeText("stty size > /tmp/pockterm-phone-size\n")
-        Thread.sleep(forTimeInterval: 2)
-        attach(app, name: "g4-back-on-phone")
+        // Review Focus 4: hardware keys reach the terminal through the proxy.
+        app.typeText("echo HW-KEYS")
+        app.typeKey(.enter, modifierFlags: [])
+        app.typeKey(.upArrow, modifierFlags: [])
+        app.typeKey(.enter, modifierFlags: [])
+        glassesCheckpoint("hardware-keys")   // glasses show HW-KEYS printed twice
 
         // Review Focus 2: closing the last session leaves nothing behind.
         app.buttons["Close Session"].firstMatch.tap()
@@ -1849,7 +1723,7 @@ Append inside `VerifyDriverUITests`, before the final `attach` helper:
 
 - [ ] **Step 2: Install the driver and run the phase**
 
-Follow `.claude/skills/verify/SKILL.md`: `add_uitest_target.rb`, `add_scheme.rb`, build-for-testing with destination `platform=iOS Simulator,id=76FBD4B7-A700-4593-898C-092BE400DE79`, run phase 1 if the app has no key, and authorize the key. Attach the external display in Device Hub. Then:
+Follow `.claude/skills/verify/SKILL.md`: `add_uitest_target.rb`, `add_scheme.rb`, build-for-testing with destination `platform=iOS Simulator,id=$(scripts/make-glasses-simulator)`, run phase 1 if the app has no key, and authorize the key. The external display is already attached. Then:
 
 ```bash
 S=/private/tmp/claude-501/-Users-john-git-pockterm/dd4bbd43-707b-419a-8896-5ad8f7f6232e/scratchpad; U=76FBD4B7-A700-4593-898C-092BE400DE79
@@ -1862,30 +1736,28 @@ xcodebuild test-without-building -project pockterm.xcodeproj -scheme pocktermUI 
   -resultBundlePath $S/glasses.xcresult 2>&1 | tee $S/glasses-test.log | grep --line-buffered GLASSES_CHECKPOINT
 ```
 
-When `GLASSES_CHECKPOINT unplug` prints, detach the display in Device Hub with computer-use. Afterwards, stop the screenshot loop (`kill $(cat $S/shots.pid)`) and export the phone shots with `xcrun xcresulttool export attachments --path $S/glasses.xcresult --output-path $S/glasses-shots`.
+Afterwards, stop the screenshot loop (`kill $(cat $S/shots.pid)`) and export the phone shots with `xcrun xcresulttool export attachments --path $S/glasses.xcresult --output-path $S/glasses-shots`.
 
 - [ ] **Step 3: Check the evidence**
 
 - `xcodebuild` exits 0 and the test passed.
-- `/tmp/pockterm-glasses-size` holds glasses-scale numbers (rows and cols far above the phone's). `-larger` has fewer columns. `-second` matches the first file's size (same display, same font). `/tmp/pockterm-phone-size` has phone-scale numbers.
-- Glasses frames: the terminal full screen at "typed" and "larger" (visibly bigger text), `SECOND-SESSION` at "second-session", the Session Closed status at "closed", the idle screen at "minimized", and the terminal again at "restored".
-- Phone shots g1–g5 match the assertions. In g1 the file list sits above the keyboard and key bar, not behind them.
+- `/tmp/pockterm-glasses-size` holds glasses-scale numbers (rows and cols far above the phone's). `-larger` has fewer columns. `-second` matches the first file's size (same display, same font).
+- Glasses frames: the terminal full screen at "typed" and "larger" (visibly bigger text), `SECOND-SESSION` at "second-session", the Session Closed status at "closed", the idle screen at "minimized", the terminal again at "restored", and `HW-KEYS` printed twice at "hardware-keys".
+- Phone shots g1–g3 and g5 match the assertions. In g1 the file list sits above the keyboard and key bar, not behind them.
 
 - [ ] **Step 4: tmux on the glasses against `tmux capture-pane`**
 
 With the display attached, open a session and type `tmux -L g new -A -s g` on the phone keyboard. From the Mac, run `tmux -L g send-keys -t g 'top' Enter`, wait 3 s, and screenshot `--display=external`. Compare it row by row with `tmux -L g capture-pane -p -t g`. Every row must agree, and the status line must be on the last row. Then run `tmux -L g kill-server`.
 
-- [ ] **Step 5: Review Focus 3 and 4 by hand** (computer-use in Device Hub)
+- [ ] **Step 5: The no-display regression run**
 
-- Open the AI assistant sheet on the phone, then detach and re-attach the display. The app doesn't crash, the sheet is still up, and after dismissing it the terminal is on the glasses and typing works.
-- Turn on Device Hub's hardware keyboard setting and type `ls` followed by up-arrow and return on the Mac keyboard into the simulator window. The glasses show `ls` run, then recalled and run again.
+Run `testPhase2KeyboardFix` and `testPhase4MinimizeAndRestore` on an ordinary simulator, without an external display. Both must pass unchanged: the terminal and its keyboard behave exactly as before glasses mode existed. Review Focus 4 (hardware keys) is covered by the `typeKey` lines in `testGlassesMode`.
 
 - [ ] **Step 6: Tear the driver down and document it**
 
 Run `.claude/skills/verify/cleanup.sh` (it reverts the temporary target and scheme). Add a "Glasses mode" section to `.claude/skills/verify/SKILL.md` covering:
-- the Device Hub external-display path recorded in Task 1
-- that `testGlassesMode` needs the display attached first
-- the screenshot loop and the checkpoint/unplug protocol
+- `scripts/make-glasses-simulator`, and that `testGlassesMode` runs on that simulator
+- the screenshot loop and the checkpoint protocol
 - the host-side files it writes
 
 Confirm `git status` shows only `SKILL.md` and `VerifyDriverUITests.swift` changed under `.claude/`.
@@ -1922,7 +1794,7 @@ No Claude attribution anywhere in the PR. Expected: `git status` clean, and `mai
 - [ ] **Step 3: Record what future sessions need**
 
 Update `~/.claude/projects/-Users-john-git-pockterm/memory/pockterm-glasses-mode.md` with:
-- the approach-C verdict and the Device Hub path
+- the approach-C verdict and the glasses-simulator recipe
 - where the pieces live (`Features/Glasses/`)
 - the rule that the phone never hosts the terminal in glasses mode
 - anything that surprised us
