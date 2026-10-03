@@ -1186,6 +1186,104 @@ final class VerifyDriverUITests: XCTestCase {
         Thread.sleep(forTimeInterval: 0.7)
     }
 
+    /// Glasses mode. Run on the simulator from scripts/make-glasses-simulator,
+    /// which has its external display attached from boot. The host watches
+    /// the glasses with `simctl io … --display=external` and reads the size
+    /// files this writes on the Mac (the SSH target is the Mac itself).
+    /// Unplugging can't be simulated; the no-display path is tested on an
+    /// ordinary simulator.
+    func testGlassesMode() throws {
+        let app = XCUIApplication()
+        app.launch()
+        try connectToMac(app)
+
+        // Phone: files and keyboard, no terminal, no Files button.
+        let sizeMenu = app.buttons["Text Size on Glasses"]
+        XCTAssertTrue(sizeMenu.waitForExistence(timeout: 10), "not in glasses mode: \(app.debugDescription)")
+        XCTAssertFalse(app.buttons["Browse Files"].exists, "Files button shown in glasses mode")
+        XCTAssertTrue(app.keyboards.firstMatch.waitForExistence(timeout: 5), "no keyboard in glasses mode")
+        attach(app, name: "g1-phone-files-and-keyboard")
+
+        // Typing lands in the terminal on the glasses. stty prints "rows cols".
+        app.typeText("stty size > /tmp/pockterm-glasses-size\n")
+        glassesCheckpoint("typed")
+
+        // Larger glasses text means fewer columns.
+        sizeMenu.tap()
+        let larger = app.buttons["Larger Text on Glasses"]
+        XCTAssertTrue(larger.waitForExistence(timeout: 5), app.debugDescription)
+        larger.tap(); larger.tap(); larger.tap()
+        // Close the menu with a tap outside it, as a person would. It stays
+        // open between taps by design, and an open menu swallows the next
+        // keystrokes. The status bar doesn't reach the app; the far-left edge
+        // is outside the menu, and a first tap outside a menu only closes it.
+        app.coordinate(withNormalizedOffset: CGVector(dx: 0.03, dy: 0.5)).tap()
+        XCTAssertTrue(larger.waitForNonExistence(timeout: 5), "size menu didn't close")
+        app.typeText("stty size > /tmp/pockterm-glasses-size-larger\n")
+        glassesCheckpoint("larger")
+
+        // Hide the keyboard and bring it back from the top bar.
+        app.buttons["Hide Keyboard"].tap()
+        let show = app.buttons["Show Keyboard"]
+        XCTAssertTrue(show.waitForExistence(timeout: 5), "no Show Keyboard button: \(app.debugDescription)")
+        show.tap()
+        XCTAssertTrue(app.keyboards.firstMatch.waitForExistence(timeout: 5), "keyboard didn't come back")
+        attach(app, name: "g2-keyboard-back")
+
+        // Review Focus 1: a second session. The glasses follow the switch.
+        app.buttons["New Session"].tap()
+        let row = app.buttons.matching(NSPredicate(format: "label CONTAINS 'localhost'")).firstMatch
+        XCTAssertTrue(row.waitForExistence(timeout: 5), app.debugDescription)
+        row.tap()
+        Thread.sleep(forTimeInterval: 4)
+        app.typeText("echo SECOND-SESSION; stty size > /tmp/pockterm-glasses-second\n")
+        glassesCheckpoint("second-session")
+
+        // Review Focus 5: the shell ends. The phone shows Session Closed.
+        app.typeText("exit\n")
+        XCTAssertTrue(app.staticTexts["Session Closed"].waitForExistence(timeout: 10),
+                      "no Session Closed on the phone: \(app.debugDescription)")
+        attach(app, name: "g3-session-closed")
+        glassesCheckpoint("closed")
+        app.buttons["Close Session"].firstMatch.tap()
+
+        // Minimize: the glasses go idle. Restore: the terminal comes back.
+        let minimize = app.buttons["Minimize"]
+        XCTAssertTrue(minimize.waitForExistence(timeout: 5), app.debugDescription)
+        minimize.tap()
+        glassesCheckpoint("minimized")
+        let pill = app.buttons.matching(NSPredicate(format: "label BEGINSWITH 'Resume session'")).firstMatch
+        XCTAssertTrue(pill.waitForExistence(timeout: 5), app.debugDescription)
+        pill.tap()
+        XCTAssertTrue(sizeMenu.waitForExistence(timeout: 5), "didn't restore into glasses mode")
+        glassesCheckpoint("restored")
+
+        // Review Focus 4: hardware keys reach the terminal through the proxy.
+        // Lines are run with the soft keyboard's return: XCUITest's hardware
+        // Return (and its Control modifier) don't reach the terminal even in
+        // plain phone mode (measured), and .enter is keypad Enter, which
+        // sends ETX and cancels the line.
+        app.typeText("echo HW-KEYS\n")
+        app.typeKey(.upArrow, modifierFlags: [])
+        app.typeText("\n")
+        app.typeKey("l", modifierFlags: [])
+        app.typeKey("s", modifierFlags: [])
+        app.typeText(" /tmp\n")
+        glassesCheckpoint("hardware-keys")   // glasses: HW-KEYS twice, then a listing of /tmp
+
+        // Review Focus 2: closing the last session leaves nothing behind.
+        app.buttons["Close Session"].firstMatch.tap()
+        XCTAssertTrue(app.tabBars.buttons["Hosts"].waitForExistence(timeout: 5), app.debugDescription)
+        XCTAssertFalse(app.keyboards.firstMatch.exists, "keyboard left up with no session")
+        attach(app, name: "g5-all-closed")
+    }
+
+    /// Prints a marker for the host and gives it time to screenshot the glasses.
+    private func glassesCheckpoint(_ name: String) {
+        print("GLASSES_CHECKPOINT \(name)")
+        Thread.sleep(forTimeInterval: 4)
+    }
+
     private func attach(_ app: XCUIApplication, name: String) {
         let shot = XCTAttachment(screenshot: app.screenshot())
         shot.name = name

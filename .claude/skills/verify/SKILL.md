@@ -153,6 +153,46 @@ and its confirm button has identifier `Add` but label `Done`. When a test fails,
 @ARGV' xcodebuild …`). The result bundle is then lost, so print what you need
 to the log rather than relying on attachments.
 
+## Glasses mode (external display)
+
+`scripts/make-glasses-simulator --boot` creates (once) and boots "iPhone 17 Pro
+(Glasses)", an iPhone simulator with a 1920x1080 external display attached from
+boot, and prints its UDID. Device Hub has no external-display menu; the script
+switches on the TVOut display every iPhone device type already defines. Always
+boot it through the script: it restarts SpringBoard once the boot settles,
+because SpringBoard can drop the external display during boot and never take
+it back, and then no app gets an external scene. That looks exactly like an
+app bug.
+
+- Glasses screenshots: `xcrun simctl io <udid> screenshot --display=external out.png`.
+- `testGlassesMode` runs on that simulator. A new simulator needs phase 1 (key)
+  and the key authorized first. `createHost` makes the `mac` host on first connect.
+- The session's real pty size, from the Mac side:
+  `ps -ax -o command | grep "sshd-session: john@"` gives `john@ttysNNN`, then
+  `stty -f /dev/ttysNNN size`. Don't use "the newest /dev/ttys*": the test
+  runner opens ptys of its own, which read 0 0.
+- While the phone's keyboard proxy holds focus, every XCUITest action first
+  waits 60 s for "app to idle". The app is idle (0% CPU); the caret blink on
+  the glasses keeps XCUITest from deciding so. Budget for it: cap runs with
+  `perl -e 'alarm 1500; exec @ARGV' xcodebuild …`.
+- Close the glasses text-size menu with a tap outside it (the far-left edge).
+  It stays open between taps by design, and an open menu swallows the next
+  keystrokes; a status-bar tap never reaches the app.
+- Hardware keys: XCUITest's synthetic keyboard is only partly real. Arrows,
+  letters and Tab reach the terminal (glasses and phone alike). `.return` and
+  the `.control` modifier don't, even in plain phone mode: Ctrl-C arrives as a
+  plain `c` (measured 2026-10-03). `XCUIKeyboardKey.enter` is keypad Enter,
+  which sends ETX (0x03) and cancels the line. So run lines with the soft
+  keyboard's `\n`, and don't read a failed Return or Ctrl as an app bug
+  without the same keys on an ordinary simulator as a control.
+- tmux check: start `tmux -L g new -A -s g` in the glasses session, drive it
+  from the Mac with `tmux -L g send-keys`, and compare the glasses screenshot
+  with `tmux -L g capture-pane -p -t g`. Measured 2026-10-03: rows identical
+  at 110x30, status line on the last row.
+- Unplugging can't be simulated (the display is attached from boot). Test the
+  no-display path on an ordinary simulator (`testPhase2KeyboardFix`,
+  `testPhase4MinimizeAndRestore`).
+
 ## Before submitting: log in to the App Review demo host
 
 `DemoHostUITests.testReviewerLogin` does what a reviewer does after
