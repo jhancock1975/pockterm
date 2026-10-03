@@ -20,6 +20,16 @@ CJK, Greek and Cyrillic without naming a font per language. The caption box is
 drawn at the two-line height whatever the text, so a short caption still covers
 a taller one underneath it in the source recording.
 
+App Store previews are made from these cuts, but not at this size. Since
+October 2026 App Store Connect fails a 1320x2868 preview with a bare
+ASSET_FAILED (even the file it accepted for 1.8 in September). 886x1920 goes
+through. Audio must be stereo (MOV_RESAVE_STEREO otherwise), and leave
+previewFrameTimeCode unset, because setting it failed every upload too:
+
+  ffmpeg -i pockterm-demo-xx.mp4 -vf "scale=886:1920:flags=lanczos,setsar=1" \
+      -c:v libx264 -profile:v high -level 4.0 -crf 20 -pix_fmt yuv420p -r 30 \
+      -c:a aac -ac 2 -ar 48000 -b:a 256k -movflags +faststart preview-xx.mp4
+
 Deploy (upload then invalidate):
   aws s3 cp <file> s3://pockterm-site-071350569379/ \\
       --content-type video/mp4 --cache-control "public, max-age=3600"
