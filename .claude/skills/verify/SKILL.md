@@ -171,10 +171,21 @@ app bug.
   `ps -ax -o command | grep "sshd-session: john@"` gives `john@ttysNNN`, then
   `stty -f /dev/ttysNNN size`. Don't use "the newest /dev/ttys*": the test
   runner opens ptys of its own, which read 0 0.
+- `testGlassesMode` launches with `-glassesFontSize 18`. The glasses size is
+  remembered, and without that each run's Larger taps creep it toward the 32pt
+  maximum (it had reached 31 by 2026-10-03), so measured sizes stop meaning
+  anything.
+- It writes these on the Mac for the host to check afterwards:
+  `/tmp/pockterm-glasses-size` and `-size-larger` (`stty size` before and
+  after three Larger taps), `-pasted` (written by a command that arrived
+  through the Paste button), and `-tty-1`, `-tty-2`, `-tty-1b`. The first and
+  last must match, and differ from the second: typing went back to the first
+  session's shell after switching back by its chip.
 - While the phone's keyboard proxy holds focus, every XCUITest action first
-  waits 60 s for "app to idle". The app is idle (0% CPU); the caret blink on
-  the glasses keeps XCUITest from deciding so. Budget for it: cap runs with
-  `perl -e 'alarm 1500; exec @ARGV' xcodebuild …`.
+  waits 60 s for "app to idle". The app is idle (0% CPU); most likely the
+  caret blink on the glasses keeps XCUITest from deciding so. Budget for it:
+  the full test takes about an hour; cap runs with
+  `perl -e 'alarm 5400; exec @ARGV' xcodebuild …`.
 - Close the glasses text-size menu with a tap outside it (the far-left edge).
   It stays open between taps by design, and an open menu swallows the next
   keystrokes; a status-bar tap never reaches the app.
@@ -191,7 +202,8 @@ app bug.
   at 110x30, status line on the last row.
 - Unplugging can't be simulated (the display is attached from boot). Test the
   no-display path on an ordinary simulator (`testPhase2KeyboardFix`,
-  `testPhase4MinimizeAndRestore`).
+  `testPhase4MinimizeAndRestore`, and `testPhoneSessionSwitching`, which
+  writes `/tmp/pockterm-tab-1`, `-2` and `-1b` the same way).
 
 ## Before submitting: log in to the App Review demo host
 

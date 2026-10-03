@@ -1,4 +1,5 @@
 import XCTest
+import UIKit
 
 /// Scripted driver for manual-style verification of the assistant-sheet
 /// keyboard fix. Run phases individually with -only-testing.
@@ -1194,6 +1195,9 @@ final class VerifyDriverUITests: XCTestCase {
     /// ordinary simulator.
     func testGlassesMode() throws {
         let app = XCUIApplication()
+        // Start from the default glasses size every run. It's remembered, and
+        // each run's Larger taps would otherwise creep it up to the maximum.
+        app.launchArguments += ["-glassesFontSize", "18"]
         app.launch()
         try connectToMac(app)
 
@@ -1230,14 +1234,55 @@ final class VerifyDriverUITests: XCTestCase {
         XCTAssertTrue(app.keyboards.firstMatch.waitForExistence(timeout: 5), "keyboard didn't come back")
         attach(app, name: "g2-keyboard-back")
 
+        // Paste: the system Paste button in the top bar, since there's no
+        // terminal on the phone to long-press.
+        UIPasteboard.general.string = "echo PASTED-ON-GLASSES > /tmp/pockterm-glasses-pasted"
+        let paste = app.buttons["Paste"]
+        XCTAssertTrue(paste.waitForExistence(timeout: 5), "no Paste button: \(app.debugDescription)")
+        paste.tap()
+        app.typeText("\n")
+        glassesCheckpoint("pasted")
+
+        // Scrollback: the key bar's PgUp pages the terminal on the glasses.
+        app.typeText("seq 1 150\n")
+        glassesCheckpoint("seq")
+        let pgUp = app.buttons["PgUp"]
+        if !pgUp.isHittable { app.buttons["esc"].swipeLeft() }
+        pgUp.tap()
+        glassesCheckpoint("scrolled-back")   // glasses: lower numbers, no prompt
+        app.buttons["PgDn"].tap()
+        glassesCheckpoint("scrolled-forward")
+        app.typeText("tty > /tmp/pockterm-glasses-tty-1\n")
+
+        // This session's browser goes up a folder, to see it's kept. ".." is
+        // always the first row; a folder in the home directory can be far
+        // enough down the list that its row doesn't exist yet.
+        let up = app.staticTexts[".."]
+        XCTAssertTrue(up.waitForExistence(timeout: 5), app.debugDescription)
+        up.tap()
+        XCTAssertTrue(app.staticTexts["/Users"].waitForExistence(timeout: 10),
+                      "browser didn't go up: \(app.debugDescription)")
+
         // Review Focus 1: a second session. The glasses follow the switch.
         app.buttons["New Session"].tap()
         let row = app.buttons.matching(NSPredicate(format: "label CONTAINS 'localhost'")).firstMatch
         XCTAssertTrue(row.waitForExistence(timeout: 5), app.debugDescription)
         row.tap()
         Thread.sleep(forTimeInterval: 4)
-        app.typeText("echo SECOND-SESSION; stty size > /tmp/pockterm-glasses-second\n")
+        app.typeText("echo SECOND-SESSION; stty size > /tmp/pockterm-glasses-second; tty > /tmp/pockterm-glasses-tty-2\n")
         glassesCheckpoint("second-session")
+
+        // Back to the first by its chip: the glasses show it again, typing
+        // goes to its shell, and its browser is still in the folder, which
+        // means the browser (and any transfer in it) wasn't torn down.
+        tabChip(app, at: 0).tap()
+        XCTAssertTrue(app.staticTexts["/Users"].waitForExistence(timeout: 10),
+                      "first session's browser lost its folder: \(app.debugDescription)")
+        app.typeText("tty > /tmp/pockterm-glasses-tty-1b\n")
+        glassesCheckpoint("first-again")
+        attach(app, name: "g2b-first-session-again")
+        tabChip(app, at: 1).tap()
+        Thread.sleep(forTimeInterval: 2)
 
         // Review Focus 5: the shell ends. The phone shows Session Closed.
         app.typeText("exit\n")
@@ -1278,10 +1323,74 @@ final class VerifyDriverUITests: XCTestCase {
         attach(app, name: "g5-all-closed")
     }
 
+    /// The session chips under the top bar, left to right. Every session to
+    /// the Mac has the same title, so they're found by identifier.
+    private func tabChip(_ app: XCUIApplication, at index: Int) -> XCUIElement {
+        let chips = app.staticTexts.matching(identifier: "session-tab")
+            .allElementsBoundByIndex.sorted { $0.frame.minX < $1.frame.minX }
+        XCTAssertGreaterThan(chips.count, index, "no chip \(index): \(app.debugDescription)")
+        return chips[index]
+    }
+
+    /// Plain phone mode, no display: switching sessions by their chips shows
+    /// each session's own terminal and types into its own shell. The host
+    /// compares the ttys written to /tmp/pockterm-tab-*.
+    func testPhoneSessionSwitching() throws {
+        let app = XCUIApplication()
+        app.launch()
+        try connectToMac(app)
+        typeIntoTerminal(app, "tty > /tmp/pockterm-tab-1\n")
+
+        app.buttons["New Session"].tap()
+        let row = app.buttons.matching(NSPredicate(format: "label CONTAINS 'localhost'")).firstMatch
+        XCTAssertTrue(row.waitForExistence(timeout: 5), app.debugDescription)
+        row.tap()
+        Thread.sleep(forTimeInterval: 4)
+        typeIntoTerminal(app, "tty > /tmp/pockterm-tab-2\n")
+        attach(app, name: "t1-second-session")
+
+        tabChip(app, at: 0).tap()
+        Thread.sleep(forTimeInterval: 2)
+        print("PHONE_SWITCH keyboard up after switch: \(app.keyboards.firstMatch.exists)")
+        typeIntoTerminal(app, "tty > /tmp/pockterm-tab-1b\n")
+        attach(app, name: "t2-first-session-again")
+    }
+
+    /// Types into the phone's terminal, tapping it first if the keyboard is down.
+    private func typeIntoTerminal(_ app: XCUIApplication, _ text: String) {
+        if !app.keyboards.firstMatch.exists {
+            app.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.4)).tap()
+            XCTAssertTrue(app.keyboards.firstMatch.waitForExistence(timeout: 5), "no terminal keyboard")
+        }
+        app.typeText(text)
+    }
+
     /// Prints a marker for the host and gives it time to screenshot the glasses.
     private func glassesCheckpoint(_ name: String) {
         print("GLASSES_CHECKPOINT \(name)")
         Thread.sleep(forTimeInterval: 4)
+    }
+
+    /// Glasses mode: closing a second session whose shell has exited. This
+    /// hung the app (KeyboardProxyHost reloaded input views inside SwiftUI's
+    /// update, and the keyboard animation re-entered it). Run on the glasses
+    /// simulator.
+    func testGlassesCloseExitedSession() throws {
+        let app = XCUIApplication()
+        app.launch()
+        try connectToMac(app)
+        XCTAssertTrue(app.buttons["Text Size on Glasses"].waitForExistence(timeout: 10), app.debugDescription)
+        app.buttons["New Session"].tap()
+        let row = app.buttons.matching(NSPredicate(format: "label CONTAINS 'localhost'")).firstMatch
+        XCTAssertTrue(row.waitForExistence(timeout: 5), app.debugDescription)
+        row.tap()
+        Thread.sleep(forTimeInterval: 4)
+        app.typeText("exit\n")
+        XCTAssertTrue(app.staticTexts["Session Closed"].waitForExistence(timeout: 10), "no Session Closed")
+        app.buttons["Close Session"].firstMatch.tap()
+        XCTAssertTrue(app.buttons["Minimize"].waitForExistence(timeout: 60), "app stopped responding after the close")
+        XCTAssertEqual(app.staticTexts.matching(identifier: "session-tab").count, 0, "both sessions still open")
+        attach(app, name: "c1-after-close")
     }
 
     private func attach(_ app: XCUIApplication, name: String) {
