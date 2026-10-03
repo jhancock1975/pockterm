@@ -103,7 +103,7 @@
 - [ ] **Step 1:** `ForwardsListView` + `ForwardEditorView` (CRUD).
 - [ ] **Step 2:** `ForwardRunner` wiring start/stop + status + host-key alert.
 - [ ] **Step 3:** Replace the Port Forwarding placeholder tab.
-- [ ] **Step 4:** Build for simulator; run unit tests; build/install/launch on device `00008150-00117DD83C9A401C`.
+- [ ] **Step 4:** Build for simulator; run unit tests; build/install/launch on device `<DEVICE_UDID>`.
 - [ ] **Step 5: Commit** `"Add port forwarding UI"`.
 
 ---

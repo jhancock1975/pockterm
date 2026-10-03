@@ -15,7 +15,7 @@
 - Project is `pockterm.xcodeproj` (no `Package.swift`); app sources under `pockterm/`.
 - All secrets (passwords, private keys, passphrases) go through `SecretStore` — never persisted in SwiftData or plaintext.
 - New Swift files belong to the appropriate target; keep files focused (one responsibility each).
-- Build/verify on device id `00008150-00117DD83C9A401C` (Hanphone17) via the recipe in `memory/pockterm-run-via-package-swift.md`.
+- Build/verify on device id `<DEVICE_UDID>` (Hanphone17) via the recipe in `memory/pockterm-run-via-package-swift.md`.
 
 ---
 
@@ -1190,10 +1190,10 @@ Expected: all unit tests pass (Model, SecretStore, KeyManager, KnownHosts).
 
 ```bash
 xcodebuild -project pockterm.xcodeproj -scheme pockterm -configuration Debug \
-  -destination 'platform=iOS,id=00008150-00117DD83C9A401C' -allowProvisioningUpdates build
+  -destination 'platform=iOS,id=<DEVICE_UDID>' -allowProvisioningUpdates build
 APP=$(find ~/Library/Developer/Xcode/DerivedData/pockterm-*/Build/Products/Debug-iphoneos -name 'pockterm.app' | head -1)
-xcrun devicectl device install app --device 00008150-00117DD83C9A401C "$APP"
-xcrun devicectl device process launch --device 00008150-00117DD83C9A401C John-Hancock.pockterm
+xcrun devicectl device install app --device <DEVICE_UDID> "$APP"
+xcrun devicectl device process launch --device <DEVICE_UDID> John-Hancock.pockterm
 ```
 
 Expected: app launches; user can generate a key OR add a password identity, create a host, tap it, accept the host key, and reach an interactive shell.

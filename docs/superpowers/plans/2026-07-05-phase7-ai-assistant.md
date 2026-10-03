@@ -106,7 +106,7 @@
 - Chat transcript with streaming assistant text; an attachments row (add remote file via SFTP browser / local via `.fileImporter`; remove via a chip's ✕); send includes the active session's terminal text as context; a detected command suggestion offers "Insert into terminal" → `session.sendKeys`.
 - Privacy note stating terminal text + attachments are sent to the chosen provider.
 
-- [ ] Implement; build for simulator; run unit tests; build/install/launch on device `00008150-00117DD83C9A401C`.
+- [ ] Implement; build for simulator; run unit tests; build/install/launch on device `<DEVICE_UDID>`.
 - [ ] Commit `"Add AI assistant chat with terminal + file context"`.
 
 ---

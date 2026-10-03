@@ -99,7 +99,7 @@
 
 - [ ] **Step 1:** Build `SuggestionStrip`.
 - [ ] **Step 2:** Wire into `SessionTabsView`.
-- [ ] **Step 3:** Build for simulator; run unit tests; build/install/launch on device `00008150-00117DD83C9A401C`.
+- [ ] **Step 3:** Build for simulator; run unit tests; build/install/launch on device `<DEVICE_UDID>`.
 - [ ] **Step 4: Commit** `"Add command-suggestion strip to the terminal"`.
 
 ---
