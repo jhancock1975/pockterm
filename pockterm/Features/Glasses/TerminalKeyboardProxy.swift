@@ -250,7 +250,10 @@ struct KeyboardProxyHost: UIViewRepresentable {
     }
 
     func updateUIView(_ proxy: TerminalKeyboardProxy, context: Context) {
-        proxy.onFocusChange = onFocusChange
+        // Focus can change during this very update (requestFocus below, or the
+        // view joining its window), and SwiftUI state mustn't be written then.
+        let onFocusChange = onFocusChange
+        proxy.onFocusChange = { up in DispatchQueue.main.async { onFocusChange(up) } }
         proxy.target = terminalView
         if context.coordinator.handledRequest != focusRequest {
             context.coordinator.handledRequest = focusRequest

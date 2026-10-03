@@ -61,6 +61,8 @@ struct SessionTabsView: View {
     @State private var assistantSession: TerminalSession?
     @State private var themingSession: TerminalSession?
     @State private var filesSession: TerminalSession?
+    @State private var glassesKeyboardUp = false
+    @State private var glassesFocusRequest = 0
 
     var body: some View {
         ZStack {
@@ -69,7 +71,9 @@ struct SessionTabsView: View {
                 topBar
                 if let session = manager.active {
                     if manager.isGlassesMode {
-                        Color.black   // replaced by GlassesPhoneContent in Task 6
+                        GlassesPhoneContent(session: session, manager: manager,
+                                            focusRequest: glassesFocusRequest,
+                                            keyboardUp: $glassesKeyboardUp)
                     } else {
                         sessionContent(session)
                     }
@@ -80,6 +84,13 @@ struct SessionTabsView: View {
         }
         // Keyboard avoidance is handled in UIKit by TerminalHostView.
         .ignoresSafeArea(.keyboard)
+        // Unplugged while typing: the terminal is back on the phone, so it gets
+        // the keyboard directly rather than waiting for a tap.
+        .onChange(of: manager.isGlassesMode) { _, glasses in
+            guard !glasses, glassesKeyboardUp, let session = manager.active else { return }
+            glassesKeyboardUp = false
+            DispatchQueue.main.async { _ = session.terminalView.becomeFirstResponder() }
+        }
         .alert("Verify Host Key", isPresented: hostKeyPresented,
                presenting: manager.active?.pendingHostKey) { pending in
             Button(pending.storedFingerprint == nil ? "Accept" : "Accept Changed Key",
@@ -135,13 +146,25 @@ struct SessionTabsView: View {
                             // Drop the terminal's keyboard first: a sheet
                             // presented under an already-visible keyboard gets
                             // no keyboard notification, so its input bar would
-                            // lay out (covered) behind it.
-                            session.terminalView.resignFirstResponder()
+                            // lay out (covered) behind it. Whoever holds the
+                            // keyboard: the terminal, or in glasses mode the
+                            // phone's TerminalKeyboardProxy.
+                            UIApplication.shared.sendAction(
+                                #selector(UIResponder.resignFirstResponder),
+                                to: nil, from: nil, for: nil)
                             assistantSession = session
                         } label: {
                             Image(systemName: "sparkles")
                         }
                         .accessibilityLabel("AI Assistant")
+                    }
+                    // Leading rather than trailing: five glyphs on the right
+                    // ran into the centred session chip.
+                    if manager.isGlassesMode, !glassesKeyboardUp, manager.active != nil {
+                        Button { glassesFocusRequest &+= 1 } label: {
+                            Image(systemName: "keyboard")
+                        }
+                        .accessibilityLabel("Show Keyboard")
                     }
                     Spacer()
                     Button { showingHostPicker = true } label: {
@@ -158,11 +181,14 @@ struct SessionTabsView: View {
                         }
                         .disabled(session.status != .connected)
                     }
-                    if let session = manager.active {
+                    if let session = manager.active, !manager.isGlassesMode {
                         Button { filesSession = session } label: {
                             Image(systemName: "folder")
                         }
                         .accessibilityLabel("Browse Files")
+                    }
+                    if manager.isGlassesMode {
+                        glassesControls
                     }
                     if let session = manager.active {
                         Button { themingSession = session } label: {
@@ -192,6 +218,32 @@ struct SessionTabsView: View {
         .padding(.horizontal, 12)
         .padding(.vertical, 6)
         .background(.black)
+    }
+
+    /// Glasses mode's stand-in for pinch-zoom (there's no pinching the
+    /// glasses). The menu stays open between taps so it can step several sizes
+    /// at once. Its partner, Show Keyboard, sits on the leading edge.
+    private var glassesControls: some View {
+        Menu {
+            ControlGroup {
+                Button {
+                    manager.setGlassesFontSize(manager.glassesFontSize - 1)
+                } label: {
+                    Label("Smaller Text on Glasses", systemImage: "textformat.size.smaller")
+                }
+                .disabled(manager.glassesFontSize <= TerminalZoom.minSize)
+                Button {
+                    manager.setGlassesFontSize(manager.glassesFontSize + 1)
+                } label: {
+                    Label("Larger Text on Glasses", systemImage: "textformat.size.larger")
+                }
+                .disabled(manager.glassesFontSize >= TerminalZoom.maxSize)
+            }
+            .menuActionDismissBehavior(.disabled)
+        } label: {
+            Image(systemName: "textformat.size")
+        }
+        .accessibilityLabel("Text Size on Glasses")
     }
 
     /// The active session as a bordered pill: name plus the red close button
