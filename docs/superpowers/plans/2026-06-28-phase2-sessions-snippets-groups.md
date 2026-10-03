@@ -186,7 +186,7 @@ import SwiftData
 - [ ] **Step 1:** Extract `TerminalSession` (one engine + terminal + connect logic from Phase 1's view).
 - [ ] **Step 2:** `SessionManager` holding multiple sessions; tab strip UI; switching keeps background sessions alive.
 - [ ] **Step 3:** Host list "connect" adds a session and presents `SessionTabsView`.
-- [ ] **Step 4:** Build for simulator; run unit tests; build/install/launch on device id `00008150-00117DD83C9A401C`.
+- [ ] **Step 4:** Build for simulator; run unit tests; build/install/launch on device id `<DEVICE_UDID>`.
 - [ ] **Step 5: Commit** `"Add multi-session terminal with tabs"`.
 
 ---

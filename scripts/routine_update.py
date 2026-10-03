@@ -79,13 +79,6 @@ CAPPED = {
     "bigint": "held <6.0.0 by Citadel; 6.x is a WASI fix and test migration, no iOS benefit",
     "citadel": "held at 0.12.0; 0.12.1 declares a third-party swift-nio-ssh fork",
     "swift-nio-ssh": "held <0.4.0 by Citadel; declared at the root, not inherited",
-    # 1.7.0 built with Xcode 27 references _swift_initBorrow, which the iOS
-    # 26.x runtime does not have, so the app aborts in dyld before main — on
-    # every iOS 26 device, not just in the tests. Reported upstream as
-    # apple/swift-collections#733. --resolve still takes 1.7.0 (it re-resolves
-    # from scratch); the test run crashes at launch when it does, so put the
-    # pin back to 1.6.0 by hand until a fixed release is out.
-    "swift-collections": "held at 1.6.0; 1.7.0 aborts at launch on iOS 26 (apple/swift-collections#733)",
 }
 
 # ---------------------------------------------------------------- trust policy
