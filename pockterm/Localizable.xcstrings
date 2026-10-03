@@ -1329,6 +1329,94 @@
         }
       }
     },
+    "**PgUp** and **PgDn** on the key bar page back through what scrolled off the glasses.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "يتيح **PgUp** و**PgDn** في شريط المفاتيح تصفّح ما خرج من شاشة النظارة صفحةً صفحة."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Τα **PgUp** και **PgDn** στη μπάρα πλήκτρων σάς πάνε σελίδα-σελίδα πίσω σε ό,τι κύλησε έξω από τα γυαλιά."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**PgUp** y **PgDn** en la barra de teclas pasan páginas por lo que se salió de la pantalla de las gafas."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**PgUp** et **PgDn** dans la barre de touches font défiler, page par page, ce qui est sorti de l'écran des lunettes."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "בסרגל המקשים, **PgUp** ו-**PgDn** מדפדפים אחורה במה שגלל מחוץ למשקפיים."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "कुंजी पट्टी पर **PgUp** और **PgDn** से आप चश्मे से ऊपर निकल गई सामग्री को पेज-दर-पेज पीछे देख सकते हैं।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**PgUp** e **PgDn** sulla barra tasti scorrono pagina per pagina ciò che è uscito dallo schermo degli occhiali."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "キーバーの **PgUp** と **PgDn** で、メガネの画面から流れて消えた内容をページ単位でさかのぼれます。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "키 바의 **PgUp**과 **PgDn**으로 안경 화면에서 밀려난 내용을 한 페이지씩 거슬러 볼 수 있습니다."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**PgUp** и **PgDn** на панели клавиш листают постранично то, что ушло за край экрана очков."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "కీ బార్‌లోని **PgUp**, **PgDn** తో కళ్లద్దాల స్క్రీన్ నుంచి పైకి వెళ్లిపోయిన దాన్ని పేజీ పేజీగా వెనక్కి చూడవచ్చు."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**PgUp** і **PgDn** на панелі клавіш гортають посторінково те, що пішло за край екрана окулярів."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "按键栏上的 **PgUp** 和 **PgDn** 可以逐页往回查看从眼镜屏幕上滚走的内容。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "按鍵列上的 **PgUp** 和 **PgDn** 可以逐頁往回查看從眼鏡螢幕上捲走的內容。"
+          }
+        }
+      }
+    },
     "**Remote** — a port on the server forwards back to your device.": {
       "localizations": {
         "ar": {
@@ -6524,6 +6612,94 @@
         }
       }
     },
+    "Connect video glasses such as VITURE, or a monitor or TV, and the terminal moves to that screen, full size. The phone keeps the keyboard and key bar, and shows the session's files where the terminal was.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "صِل نظارة فيديو مثل VITURE، أو شاشة أو تلفازًا، فتنتقل الطرفية إلى تلك الشاشة بحجمها الكامل. يحتفظ الهاتف بلوحة المفاتيح وشريط المفاتيح، ويعرض ملفات الجلسة مكان الطرفية."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Συνδέστε γυαλιά βίντεο όπως τα VITURE, ή μια οθόνη ή τηλεόραση, και το τερματικό μεταφέρεται σε εκείνη την οθόνη, σε πλήρες μέγεθος. Το τηλέφωνο κρατά το πληκτρολόγιο και τη μπάρα πλήκτρων και δείχνει τα αρχεία της συνεδρίας εκεί όπου ήταν το τερματικό."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conecta unas gafas de vídeo como las VITURE, o un monitor o un televisor, y el terminal pasa a esa pantalla, a tamaño completo. El teléfono conserva el teclado y la barra de teclas, y muestra los archivos de la sesión donde estaba el terminal."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Branchez des lunettes vidéo comme les VITURE, ou un moniteur ou un téléviseur, et le terminal passe sur cet écran, en grand. Le téléphone garde le clavier et la barre de touches, et affiche les fichiers de la session à la place du terminal."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "חבר משקפי וידאו כמו VITURE, או מסך או טלוויזיה, והמסוף עובר למסך הזה בגודל מלא. הטלפון שומר על המקלדת ועל סרגל המקשים, ומציג את קובצי ההפעלה במקום שבו היה המסוף."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "VITURE जैसा वीडियो चश्मा, या कोई मॉनिटर या टीवी जोड़ें, और टर्मिनल पूरे आकार में उस स्क्रीन पर चला जाता है। फ़ोन पर कीबोर्ड और कुंजी पट्टी बनी रहती है, और जहाँ टर्मिनल था वहाँ सत्र की फ़ाइलें दिखती हैं।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Collega degli occhiali video come i VITURE, oppure un monitor o una TV, e il terminale passa su quello schermo, a dimensione piena. Il telefono mantiene la tastiera e la barra tasti, e mostra i file della sessione al posto del terminale."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "VITURE などのビデオグラスや、モニタ、テレビをつなぐと、ターミナルがその画面いっぱいに表示されます。iPhone にはキーボードとキーバーが残り、ターミナルがあった場所にセッションのファイルが表示されます。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "VITURE 같은 비디오 안경이나 모니터, TV를 연결하면 터미널이 그 화면에 꽉 차게 표시됩니다. iPhone에는 키보드와 키 바가 그대로 남고, 터미널이 있던 자리에 세션의 파일이 표시됩니다."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Подключите видеоочки, например VITURE, или монитор либо телевизор — и терминал переедет на этот экран целиком. На телефоне останутся клавиатура и панель клавиш, а на месте терминала появятся файлы сессии."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "VITURE వంటి వీడియో కళ్లద్దాలను, లేదా మానిటర్ లేదా టీవీని కనెక్ట్ చేయండి, టెర్మినల్ ఆ స్క్రీన్‌కు పూర్తి పరిమాణంలో మారుతుంది. ఫోన్‌లో కీబోర్డ్, కీ బార్ అలాగే ఉంటాయి, టెర్మినల్ ఉన్న చోట సెషన్ ఫైళ్లు కనిపిస్తాయి."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Під'єднайте відеоокуляри, наприклад VITURE, або монітор чи телевізор — і термінал переїде на цей екран повністю. На телефоні залишаться клавіатура й панель клавіш, а на місці термінала з'являться файли сесії."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "连接 VITURE 等视频眼镜，或显示器、电视，终端就会全尺寸显示在那块屏幕上。手机保留键盘和按键栏，原来显示终端的地方改为显示会话的文件。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "連接 VITURE 等影像眼鏡，或顯示器、電視，終端機就會以全尺寸顯示在那個螢幕上。手機保留鍵盤和按鍵列，原本顯示終端機的地方改為顯示工作階段的檔案。"
+          }
+        }
+      }
+    },
     "Connecting and working in a session": {
       "localizations": {
         "ar": {
@@ -8720,6 +8896,94 @@
           "stringUnit": {
             "state": "translated",
             "value": "拒絕"
+          }
+        }
+      }
+    },
+    "Disconnect the display and the terminal comes back to the phone.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "افصل الشاشة فتعود الطرفية إلى الهاتف."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Αποσυνδέστε την οθόνη και το τερματικό επιστρέφει στο τηλέφωνο."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Desconecta la pantalla y el terminal vuelve al teléfono."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Débranchez l'écran et le terminal revient sur le téléphone."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "נתק את המסך והמסוף חוזר לטלפון."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "डिस्प्ले हटाते ही टर्मिनल वापस फ़ोन पर आ जाता है।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Scollega lo schermo e il terminale torna sul telefono."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ディスプレイを外すと、ターミナルは iPhone に戻ります。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "디스플레이 연결을 끊으면 터미널이 iPhone으로 돌아옵니다."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Отключите экран — и терминал вернётся на телефон."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "డిస్‌ప్లేను డిస్‌కనెక్ట్ చేస్తే టెర్మినల్ తిరిగి ఫోన్‌కు వస్తుంది."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Від'єднайте екран — і термінал повернеться на телефон."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "断开显示器后，终端会回到手机上。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "中斷顯示器連線後，終端機會回到手機上。"
           }
         }
       }
@@ -11452,6 +11716,94 @@
         }
       }
     },
+    "Glasses & External Displays": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "النظارات والشاشات الخارجية"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Γυαλιά και εξωτερικές οθόνες"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gafas y pantallas externas"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lunettes et écrans externes"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "משקפיים ומסכים חיצוניים"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "चश्मा और बाहरी डिस्प्ले"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Occhiali e schermi esterni"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "メガネと外部ディスプレイ"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "안경과 외부 디스플레이"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Очки и внешние экраны"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "కళ్లద్దాలు & బాహ్య డిస్‌ప్లేలు"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Окуляри та зовнішні екрани"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "眼镜和外接显示器"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "眼鏡與外接顯示器"
+          }
+        }
+      }
+    },
     "Group": {
       "localizations": {
         "ar": {
@@ -12768,6 +13120,94 @@
           "stringUnit": {
             "state": "translated",
             "value": "如果金鑰設有密碼短語，Pockterm 只會詢問一次，並將其與金鑰一起儲存在鑰匙圈中。"
+          }
+        }
+      }
+    },
+    "If you hide the keyboard, tap the **keyboard** button at the top to bring it back.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "إذا أخفيت لوحة المفاتيح، فاضغط على زر **لوحة المفاتيح** في الأعلى لإعادتها."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Αν κρύψετε το πληκτρολόγιο, πατήστε το κουμπί **πληκτρολογίου** στο πάνω μέρος για να επανέλθει."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Si ocultas el teclado, toca el botón del **teclado** arriba para que vuelva."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Si vous masquez le clavier, touchez le bouton **clavier** en haut pour le faire revenir."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "אם הסתרת את המקלדת, הקש על כפתור **המקלדת** למעלה כדי להחזיר אותה."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अगर आप कीबोर्ड छिपा दें, तो उसे वापस लाने के लिए ऊपर **कीबोर्ड** बटन टैप करें।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Se nascondi la tastiera, tocca il pulsante della **tastiera** in alto per farla tornare."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "キーボードを隠したときは、上部の**キーボード**ボタンをタップすると戻ります。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "키보드를 가렸다면 위쪽의 **키보드** 버튼을 탭해 다시 표시하세요."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Если вы скрыли клавиатуру, нажмите кнопку **клавиатуры** вверху, чтобы вернуть её."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "మీరు కీబోర్డ్‌ను దాచితే, దాన్ని తిరిగి తేవడానికి పైన ఉన్న **కీబోర్డ్** బటన్ నొక్కండి."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Якщо ви сховали клавіатуру, торкніться кнопки **клавіатури** вгорі, щоб повернути її."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "如果隐藏了键盘，轻点顶部的**键盘**按钮即可让它重新出现。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "如果隱藏了鍵盤，點一下頂端的**鍵盤**按鈕即可讓它重新出現。"
           }
         }
       }
@@ -20431,6 +20871,94 @@
         }
       }
     },
+    "Put the terminal on a bigger screen": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اعرض الطرفية على شاشة أكبر"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Βάλτε το τερματικό σε μεγαλύτερη οθόνη"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lleva el terminal a una pantalla más grande"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Affichez le terminal sur un plus grand écran"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הצגת המסוף על מסך גדול יותר"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "टर्मिनल को बड़ी स्क्रीन पर ले जाएँ"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Porta il terminale su uno schermo più grande"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ターミナルを大きな画面に映す"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "터미널을 더 큰 화면에 띄우기"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Терминал на большом экране"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "టెర్మినల్‌ను పెద్ద స్క్రీన్‌పై చూపించండి"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Термінал на великому екрані"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "把终端放到更大的屏幕上"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "把終端機放到更大的螢幕上"
+          }
+        }
+      }
+    },
     "Rate limited by the provider. Try again shortly.": {
       "localizations": {
         "ar": {
@@ -24919,6 +25447,94 @@
         }
       }
     },
+    "Tap **AA** at the top to make the text on the glasses smaller or larger. Pockterm remembers the size, apart from the phone's pinch zoom.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اضغط على **AA** في الأعلى لتصغير النص على النظارة أو تكبيره. يتذكر Pockterm هذا الحجم بمعزل عن تكبير الهاتف بالقرص."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Πατήστε **AA** στο πάνω μέρος για να μικρύνετε ή να μεγαλώσετε το κείμενο στα γυαλιά. Το Pockterm θυμάται το μέγεθος, ξεχωριστά από το ζουμ με τσίμπημα στο τηλέφωνο."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Toca **AA** arriba para hacer el texto de las gafas más pequeño o más grande. Pockterm recuerda el tamaño, aparte del zoom con los dedos del teléfono."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Touchez **AA** en haut pour réduire ou agrandir le texte sur les lunettes. Pockterm retient la taille, indépendamment du zoom par pincement sur le téléphone."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הקש על **AA** למעלה כדי להקטין או להגדיל את הטקסט במשקפיים. Pockterm זוכר את הגודל, בנפרד מהגדלה בצביטה בטלפון."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "चश्मे पर टेक्स्ट छोटा या बड़ा करने के लिए ऊपर **AA** टैप करें। Pockterm यह आकार याद रखता है, फ़ोन के पिंच ज़ूम से अलग।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tocca **AA** in alto per rimpicciolire o ingrandire il testo sugli occhiali. Pockterm ricorda la dimensione, separatamente dallo zoom con pizzico del telefono."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "上部の **AA** をタップすると、メガネの文字を小さくしたり大きくしたりできます。このサイズは iPhone のピンチズームとは別に記憶されます。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "위쪽의 **AA**를 탭하면 안경의 글자를 작게 또는 크게 할 수 있습니다. 이 크기는 iPhone의 핀치 확대와 별도로 기억됩니다."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Нажмите **AA** вверху, чтобы уменьшить или увеличить текст на очках. Pockterm запомнит размер отдельно от масштаба щипком на телефоне."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "కళ్లద్దాలపై అక్షరాలను చిన్నవిగా లేదా పెద్దవిగా చేయడానికి పైన ఉన్న **AA** నొక్కండి. ఫోన్‌లోని పించ్ జూమ్‌తో సంబంధం లేకుండా Pockterm ఆ పరిమాణాన్ని గుర్తుంచుకుంటుంది."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Торкніться **AA** вгорі, щоб зменшити або збільшити текст в окулярах. Pockterm запам'ятає розмір окремо від масштабу щипком на телефоні."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "轻点顶部的 **AA**，可以缩小或放大眼镜上的文字。Pockterm 会记住这个大小，与手机上的双指缩放互不影响。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "點一下頂端的 **AA**，可以縮小或放大眼鏡上的文字。Pockterm 會記住這個大小，與手機上的雙指縮放互不影響。"
+          }
+        }
+      }
+    },
     "Tap **Save**.": {
       "localizations": {
         "ar": {
@@ -25883,6 +26499,94 @@
           "stringUnit": {
             "state": "translated",
             "value": "點一下主機即可打開終端機工作階段。"
+          }
+        }
+      }
+    },
+    "Tap the **clipboard** button at the top to paste into the terminal. On a keyboard, **⌘V** works too.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اضغط على زر **الحافظة** في الأعلى للّصق في الطرفية. ويعمل **⁦⌘V⁩** أيضًا على لوحة مفاتيح."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Πατήστε το κουμπί **πρόχειρου** στο πάνω μέρος για επικόλληση στο τερματικό. Σε πληκτρολόγιο λειτουργεί και το **⌘V**."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Toca el botón del **portapapeles** arriba para pegar en el terminal. Con un teclado, **⌘V** también funciona."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Touchez le bouton **presse-papiers** en haut pour coller dans le terminal. Avec un clavier, **⌘V** fonctionne aussi."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הקש על כפתור **הלוח** למעלה כדי להדביק במסוף. במקלדת, גם **⁦⌘V⁩** עובד."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "टर्मिनल में पेस्ट करने के लिए ऊपर **क्लिपबोर्ड** बटन टैप करें। कीबोर्ड पर **⌘V** भी काम करता है।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tocca il pulsante degli **appunti** in alto per incollare nel terminale. Con una tastiera funziona anche **⌘V**."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "上部の**クリップボード**ボタンをタップすると、ターミナルにペーストできます。キーボードでは **⌘V** も使えます。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "위쪽의 **클립보드** 버튼을 탭하면 터미널에 붙여넣을 수 있습니다. 키보드에서는 **⌘V**도 됩니다."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Нажмите кнопку **буфера обмена** вверху, чтобы вставить текст в терминал. С клавиатуры работает и **⌘V**."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "టెర్మినల్‌లో అతికించడానికి పైన ఉన్న **క్లిప్‌బోర్డ్** బటన్ నొక్కండి. కీబోర్డ్‌పై **⌘V** కూడా పనిచేస్తుంది."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Торкніться кнопки **буфера обміну** вгорі, щоб вставити текст у термінал. З клавіатури працює й **⌘V**."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "轻点顶部的**剪贴板**按钮即可粘贴到终端。使用键盘时，**⌘V** 也可以。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "點一下頂端的**剪貼板**按鈕即可貼到終端機。使用鍵盤時，**⌘V** 也可以。"
           }
         }
       }
@@ -27998,6 +28702,94 @@
           "stringUnit": {
             "state": "translated",
             "value": "沒有這樣的檔案或檔案夾。"
+          }
+        }
+      }
+    },
+    "There's nothing to turn on: connect the display and open a session.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "لا يوجد ما يلزم تفعيله: صِل الشاشة وافتح جلسة."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Δεν χρειάζεται να ενεργοποιήσετε τίποτα: συνδέστε την οθόνη και ανοίξτε μια συνεδρία."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No hay nada que activar: conecta la pantalla y abre una sesión."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rien à activer : branchez l'écran et ouvrez une session."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "אין מה להפעיל: חבר את המסך ופתח הפעלה."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "कुछ भी चालू करने की ज़रूरत नहीं: डिस्प्ले जोड़ें और एक सत्र खोलें।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Non c'è niente da attivare: collega lo schermo e apri una sessione."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "設定は不要です。ディスプレイをつないでセッションを開くだけです。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "따로 켤 것은 없습니다. 디스플레이를 연결하고 세션을 여세요."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ничего включать не нужно: подключите экран и откройте сессию."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ఏదీ ఆన్ చేయాల్సిన అవసరం లేదు: డిస్‌ప్లేను కనెక్ట్ చేసి ఒక సెషన్ తెరవండి."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Нічого вмикати не потрібно: під'єднайте екран і відкрийте сесію."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无需任何设置：连接显示器并打开一个会话即可。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "不需任何設定：連接顯示器並開啟一個工作階段即可。"
           }
         }
       }
@@ -30518,6 +31310,94 @@
           "stringUnit": {
             "state": "translated",
             "value": "連線期間，點一下終端機中的程式碼片段按鈕即可執行一個。"
+          }
+        }
+      }
+    },
+    "With no session open, or the session minimized, the glasses ask you to open one on your phone.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "إذا لم تكن هناك جلسة مفتوحة، أو كانت الجلسة مصغّرة، تطلب منك النظارة فتح جلسة على هاتفك."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Όταν δεν υπάρχει ανοιχτή συνεδρία ή η συνεδρία είναι ελαχιστοποιημένη, τα γυαλιά σάς ζητούν να ανοίξετε μία στο τηλέφωνό σας."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Si no hay ninguna sesión abierta, o está minimizada, las gafas te piden que abras una en el teléfono."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sans session ouverte, ou si la session est réduite, les lunettes vous invitent à en ouvrir une sur votre téléphone."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "כשאין הפעלה פתוחה, או שההפעלה ממוזערת, המשקפיים מבקשים לפתוח הפעלה בטלפון."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "जब कोई सत्र खुला न हो, या सत्र छोटा किया गया हो, तो चश्मा आपसे फ़ोन पर एक सत्र खोलने को कहता है।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Se non c'è una sessione aperta, o è ridotta, gli occhiali ti chiedono di aprirne una sul telefono."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "セッションが開いていないときや最小化しているときは、iPhone でセッションを開くよう案内が表示されます。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "열린 세션이 없거나 세션을 최소화하면, 안경에 iPhone에서 세션을 열라는 안내가 표시됩니다."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Если сессия не открыта или свёрнута, очки предложат открыть её на телефоне."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "సెషన్ ఏదీ తెరిచి లేనప్పుడు, లేదా సెషన్‌ను చిన్నదిగా చేసినప్పుడు, ఫోన్‌లో ఒక సెషన్ తెరవమని కళ్లద్దాలు అడుగుతాయి."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Якщо сесію не відкрито або згорнуто, окуляри запропонують відкрити її на телефоні."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "没有打开的会话或会话已最小化时，眼镜上会提示你在 iPhone 上打开一个会话。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "沒有開啟的工作階段或工作階段已縮到最小時，眼鏡上會提示你在 iPhone 上開啟一個工作階段。"
           }
         }
       }

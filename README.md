@@ -25,6 +25,14 @@ render properly instead of turning into garbled text.
 - Multiple live sessions; minimise one and pick it back up from the tab bar
 - Configurable keep-alive so idle sessions stay open
 
+**Big screen**
+- Plug in video glasses like VITURE, or a monitor or TV, and the terminal
+  fills that screen
+- The phone keeps the keyboard and key bar, and shows the session's files
+  where the terminal was
+- Its own text size for the glasses, a Paste button, and PgUp/PgDn through
+  the scrollback
+
 **Transfer**
 - Full SFTP browser for any saved host — no extra setup
 - Uploads and downloads stream in chunks, so large files don't exhaust memory
@@ -180,6 +188,7 @@ than editing the SVGs.
 | `pockterm/App` | App entry point, root tab bar, and `AppContainer`, which wires SwiftData and the Keychain together |
 | `pockterm/Features/` | One folder per screen: SwiftUI views and the models behind them |
 | `pockterm/Features/Terminal` | Sessions, the key bar, themes, zoom, keep-alive, and `MarginModeFilter` |
+| `pockterm/Features/Glasses` | Glasses mode: the external-display scene, what it shows, and the keyboard proxy that types into a terminal on another screen |
 | `pockterm/SSH` | `SSHEngine`, credential resolution, host-key checks |
 | `pockterm/SFTP` | `SFTPService` and the transfer queue |
 | `pockterm/Forwarding` | Local, remote and SOCKS5 forwarding on SwiftNIO |
