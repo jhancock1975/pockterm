@@ -75,8 +75,8 @@ final class SessionToolExecutor: AgentToolExecuting {
                                                                     secretStore: session.secretStore)
         else { throw SSHEngineError.notConnected }
         let service = SFTPService()
-        try await service.connect(creds) { [weak session] presented in
-            await session?.decideHostKey(presented) ?? false
+        try await session.connectCheckingHostKey { validate in
+            try await service.connect(creds, onHostKey: validate)
         }
         sftp = service
         return service

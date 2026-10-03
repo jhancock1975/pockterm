@@ -13,7 +13,11 @@ nonisolated struct PresentedHostKey: Sendable {
     let fingerprint: String?
 }
 
-enum HostKeyError: Error { case rejected }
+enum HostKeyError: LocalizedError {
+    case rejected
+
+    var errorDescription: String? { String(localized: "Host key rejected.") }
+}
 
 /// Bridges Citadel/NIOSSH host-key validation to an async accept/reject
 /// decision supplied by the app.

@@ -60,8 +60,8 @@ final class ForwardRunner: HostKeyDeciding {
                 creds = resolved
             }
             do {
-                try await service.connect(creds) { [weak self] info in
-                    await self?.decideHostKey(info) ?? false
+                try await connectCheckingHostKey { validate in
+                    try await service.connect(creds, onHostKey: validate)
                 }
                 switch type {
                 case .local:

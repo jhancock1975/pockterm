@@ -17,7 +17,7 @@ struct PendingHostKey: Identifiable {
 /// mean one connection path silently pinning host keys differently from
 /// another.
 @MainActor
-protocol HostKeyDeciding: AnyObject {
+protocol HostKeyDeciding: AnyObject, Sendable {
     var modelContext: ModelContext { get }
     var pendingHostKey: PendingHostKey? { get set }
 }
@@ -67,4 +67,52 @@ extension HostKeyDeciding {
             }
         }
     }
+}
+
+extension HostKeyDeciding {
+    /// Whether a presented key is already trusted for its host, without asking.
+    func hostKeyIsTrusted(_ info: PresentedHostKey) -> Bool {
+        guard let fingerprint = info.fingerprint else { return false }
+        let records = (try? modelContext.fetch(FetchDescriptor<KnownHostRecord>())) ?? []
+        return KnownHostsStore().evaluate(address: info.address, port: info.port,
+                                          keyType: info.keyType,
+                                          presentedFingerprint: fingerprint,
+                                          against: records) == .matches
+    }
+
+    /// Makes one SSH connection with host-key checking, and asks the user about
+    /// a new or changed key while no connection is open.
+    ///
+    /// Citadel gives a login ten seconds from TCP connect to authenticated, and
+    /// a prompt answered inside the handshake counts against them, so anyone who
+    /// stopped to read the fingerprint got "Connection Failed" as they tapped
+    /// Accept. Instead the attempt that meets an untrusted key refuses it at
+    /// once, the user is asked with nothing open, and if they accept, the key is
+    /// stored and a fresh attempt finds it trusted. `attempt` makes one
+    /// connection, handing `validate` to the SSH layer.
+    func connectCheckingHostKey<T>(
+        _ attempt: (_ validate: @escaping @Sendable (PresentedHostKey) async -> Bool) async throws -> T
+    ) async throws -> T {
+        let untrusted = UntrustedKey()
+        do {
+            return try await attempt { [weak self] presented in
+                guard let self else { return false }
+                if await self.hostKeyIsTrusted(presented) { return true }
+                await untrusted.set(presented)
+                return false
+            }
+        } catch {
+            guard let presented = await untrusted.key else { throw error }
+            guard await decideHostKey(presented) else { throw HostKeyError.rejected }
+            return try await attempt { [weak self] presented in
+                await self?.decideHostKey(presented) ?? false
+            }
+        }
+    }
+}
+
+/// The key a refused attempt met, carried out of the SSH layer's callback.
+private actor UntrustedKey {
+    private(set) var key: PresentedHostKey?
+    func set(_ key: PresentedHostKey) { self.key = key }
 }
