@@ -6,31 +6,48 @@ import SwiftTerm
 /// Keyboard avoidance is done in UIKit via `keyboardLayoutGuide`, which stays
 /// correct across rotations where SwiftUI's automatic avoidance leaves the
 /// terminal's bottom rows behind the accessory bar.
+///
+/// A view lives in one window at a time, and the same terminal moves between
+/// the phone and the glasses. So every update makes sure this container holds
+/// exactly the terminal it was given. That covers plugging in, unplugging and
+/// switching sessions, without either side knowing about the other.
 struct TerminalHostView: UIViewRepresentable {
     let terminalView: TerminalView
+    /// Off on the glasses, where there's no keyboard to make room for.
+    var avoidsKeyboard = true
 
     func makeUIView(context: Context) -> UIView {
         let container = UIView()
+        adopt(into: container)
+        return container
+    }
+
+    func updateUIView(_ uiView: UIView, context: Context) {
+        if terminalView.superview !== uiView { adopt(into: uiView) }
+        // Subviews SwiftTerm adds after makeUIView (its own scroller and
+        // accessory views) would otherwise inherit the mirrored default.
+        uiView.pinLeftToRightForTerminalContent()
+    }
+
+    private func adopt(into container: UIView) {
+        for case let stale as TerminalView in container.subviews where stale !== terminalView {
+            stale.removeFromSuperview()
+        }
+        terminalView.removeFromSuperview()
         terminalView.translatesAutoresizingMaskIntoConstraints = false
         container.addSubview(terminalView)
+        let bottom = avoidsKeyboard ? container.keyboardLayoutGuide.topAnchor : container.bottomAnchor
         NSLayoutConstraint.activate([
             terminalView.topAnchor.constraint(equalTo: container.topAnchor),
             terminalView.leadingAnchor.constraint(equalTo: container.leadingAnchor),
             terminalView.trailingAnchor.constraint(equalTo: container.trailingAnchor),
-            terminalView.bottomAnchor.constraint(equalTo: container.keyboardLayoutGuide.topAnchor),
+            terminalView.bottomAnchor.constraint(equalTo: bottom),
         ])
         // In Hebrew and Arabic the rest of the app mirrors, but the terminal
         // must not: the server addresses columns from the left. See
         // Localization/LeftToRight.swift. This also keeps the leading/trailing
         // constraints above resolving to left/right.
         container.pinLeftToRightForTerminalContent()
-        return container
-    }
-
-    func updateUIView(_ uiView: UIView, context: Context) {
-        // Subviews SwiftTerm adds after makeUIView (its own scroller and
-        // accessory views) would otherwise inherit the mirrored default.
-        uiView.pinLeftToRightForTerminalContent()
     }
 }
 
@@ -44,6 +61,8 @@ struct SessionTabsView: View {
     @State private var assistantSession: TerminalSession?
     @State private var themingSession: TerminalSession?
     @State private var filesSession: TerminalSession?
+    @State private var glassesKeyboardUp = false
+    @State private var glassesFocusRequest = 0
 
     var body: some View {
         ZStack {
@@ -51,7 +70,13 @@ struct SessionTabsView: View {
             VStack(spacing: 0) {
                 topBar
                 if let session = manager.active {
-                    sessionContent(session)
+                    if manager.isGlassesMode {
+                        GlassesPhoneContent(session: session, manager: manager,
+                                            focusRequest: glassesFocusRequest,
+                                            keyboardUp: $glassesKeyboardUp)
+                    } else {
+                        sessionContent(session)
+                    }
                 } else {
                     Spacer()
                 }
@@ -59,6 +84,13 @@ struct SessionTabsView: View {
         }
         // Keyboard avoidance is handled in UIKit by TerminalHostView.
         .ignoresSafeArea(.keyboard)
+        // Unplugged while typing: the terminal is back on the phone, so it gets
+        // the keyboard directly rather than waiting for a tap.
+        .onChange(of: manager.isGlassesMode) { _, glasses in
+            guard !glasses, glassesKeyboardUp, let session = manager.active else { return }
+            glassesKeyboardUp = false
+            DispatchQueue.main.async { _ = session.terminalView.becomeFirstResponder() }
+        }
         .alert("Verify Host Key", isPresented: hostKeyPresented,
                presenting: manager.active?.pendingHostKey) { pending in
             Button(pending.storedFingerprint == nil ? "Accept" : "Accept Changed Key",
@@ -114,13 +146,37 @@ struct SessionTabsView: View {
                             // Drop the terminal's keyboard first: a sheet
                             // presented under an already-visible keyboard gets
                             // no keyboard notification, so its input bar would
-                            // lay out (covered) behind it.
-                            session.terminalView.resignFirstResponder()
+                            // lay out (covered) behind it. Whoever holds the
+                            // keyboard: the terminal, or in glasses mode the
+                            // phone's TerminalKeyboardProxy.
+                            UIApplication.shared.sendAction(
+                                #selector(UIResponder.resignFirstResponder),
+                                to: nil, from: nil, for: nil)
                             assistantSession = session
                         } label: {
                             Image(systemName: "sparkles")
                         }
                         .accessibilityLabel("AI Assistant")
+                    }
+                    // Leading rather than trailing: five glyphs on the right
+                    // ran into the centred session chip.
+                    if manager.isGlassesMode, !glassesKeyboardUp, manager.active != nil {
+                        Button { glassesFocusRequest &+= 1 } label: {
+                            Image(systemName: "keyboard")
+                        }
+                        .accessibilityLabel("Show Keyboard")
+                    }
+                    // There's no terminal on the phone to long-press for
+                    // Paste. The system's button reads the clipboard without a
+                    // permission prompt each time.
+                    if manager.isGlassesMode, let session = manager.active {
+                        PasteButton(payloadType: String.self) { strings in
+                            guard let text = strings.first else { return }
+                            Task { @MainActor in session.terminalView.paste(text: text) }
+                        }
+                        .labelStyle(.iconOnly)
+                        .buttonBorderShape(.circle)
+                        .disabled(session.status != .connected)
                     }
                     Spacer()
                     Button { showingHostPicker = true } label: {
@@ -137,11 +193,14 @@ struct SessionTabsView: View {
                         }
                         .disabled(session.status != .connected)
                     }
-                    if let session = manager.active {
+                    if let session = manager.active, !manager.isGlassesMode {
                         Button { filesSession = session } label: {
                             Image(systemName: "folder")
                         }
                         .accessibilityLabel("Browse Files")
+                    }
+                    if manager.isGlassesMode {
+                        glassesControls
                     }
                     if let session = manager.active {
                         Button { themingSession = session } label: {
@@ -171,6 +230,32 @@ struct SessionTabsView: View {
         .padding(.horizontal, 12)
         .padding(.vertical, 6)
         .background(.black)
+    }
+
+    /// Glasses mode's stand-in for pinch-zoom (there's no pinching the
+    /// glasses). The menu stays open between taps so it can step several sizes
+    /// at once. Its partner, Show Keyboard, sits on the leading edge.
+    private var glassesControls: some View {
+        Menu {
+            ControlGroup {
+                Button {
+                    manager.setGlassesFontSize(manager.glassesFontSize - 1)
+                } label: {
+                    Label("Smaller Text on Glasses", systemImage: "textformat.size.smaller")
+                }
+                .disabled(manager.glassesFontSize <= TerminalZoom.minSize)
+                Button {
+                    manager.setGlassesFontSize(manager.glassesFontSize + 1)
+                } label: {
+                    Label("Larger Text on Glasses", systemImage: "textformat.size.larger")
+                }
+                .disabled(manager.glassesFontSize >= TerminalZoom.maxSize)
+            }
+            .menuActionDismissBehavior(.disabled)
+        } label: {
+            Image(systemName: "textformat.size")
+        }
+        .accessibilityLabel("Text Size on Glasses")
     }
 
     /// The active session as a bordered pill: name plus the red close button
@@ -213,6 +298,7 @@ struct SessionTabsView: View {
                 .font(.callout)
                 .lineLimit(1)
                 .truncationMode(.tail)
+                .accessibilityIdentifier("session-tab")
         }
         .foregroundStyle(.white)
         .padding(.horizontal, 10)
@@ -227,32 +313,7 @@ struct SessionTabsView: View {
     private func sessionContent(_ session: TerminalSession) -> some View {
         ZStack {
             TerminalHostView(terminalView: session.terminalView)
-            switch session.status {
-            case .connecting:
-                ProgressView("Connecting…").controlSize(.large).tint(.white)
-            case .failed(let message):
-                ContentUnavailableView("Connection Failed", systemImage: "xmark.octagon",
-                                       description: Text(message))
-                    .foregroundStyle(.white)
-            case .closed:
-                ContentUnavailableView("Session Closed", systemImage: "bolt.horizontal",
-                                       description: Text("The remote shell ended."))
-                    .foregroundStyle(.white)
-            case .idleDisconnected:
-                ContentUnavailableView {
-                    Label("Disconnected due to inactivity", systemImage: "moon.zzz")
-                } description: {
-                    Text("This session was closed after being idle. You can change how long sessions stay connected.")
-                } actions: {
-                    Button("Change how long sessions stay connected") {
-                        manager.requestOpenConnectionSettings = true
-                        manager.minimize()   // dismiss the full-screen terminal cover
-                    }
-                }
-                .foregroundStyle(.white)
-            case .connected:
-                EmptyView()
-            }
+            SessionStatusView(session: session, manager: manager)
             if session.status == .connected {
                 ZoomControlsView(session: session)
                     .id(session.id)

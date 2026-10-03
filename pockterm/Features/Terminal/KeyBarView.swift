@@ -6,6 +6,9 @@ import SwiftTerm
 /// a user-customizable layout (see `KeyBarConfig`).
 final class KeyBarView: UIInputView, UIInputViewAudioFeedback {
     private weak var terminalView: TerminalView?
+    /// Glasses mode: PgUp and PgDn scroll the terminal itself, since nothing
+    /// on the glasses can be swiped. See `KeyBarKey.localScroll`.
+    var scrollsLocally = false
     private let scrollView = UIScrollView()
     private let stack = UIStackView()
     /// Sits above the scroll view on the trailing edge so the keys pass beneath
@@ -191,10 +194,14 @@ final class KeyBarView: UIInputView, UIInputViewAudioFeedback {
     private func fire(_ key: KeyBarKey) {
         UIDevice.current.playInputClick()
         guard let terminalView else { return }
-        if let text = key.insertedText {
+        let applicationCursor = terminalView.getTerminal().applicationCursor
+        if let direction = key.localScroll(applicationCursor: applicationCursor,
+                                           scrollsLocally: scrollsLocally) {
+            if direction == .up { terminalView.pageUp() } else { terminalView.pageDown() }
+        } else if let text = key.insertedText {
             // Through insertText so a latched ctrl/meta applies to it.
             terminalView.insertText(text)
-        } else if let bytes = key.bytes(applicationCursor: terminalView.getTerminal().applicationCursor) {
+        } else if let bytes = key.bytes(applicationCursor: applicationCursor) {
             terminalView.send(bytes)
         }
     }
@@ -218,7 +225,10 @@ final class KeyBarView: UIInputView, UIInputViewAudioFeedback {
 
     @objc private func hideKeyboard() {
         UIDevice.current.playInputClick()
-        _ = terminalView?.resignFirstResponder()
+        // Whoever is showing this bar owns the keyboard: the terminal on the
+        // phone, or TerminalKeyboardProxy in glasses mode.
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder),
+                                        to: nil, from: nil, for: nil)
     }
 
     // MARK: Typematic

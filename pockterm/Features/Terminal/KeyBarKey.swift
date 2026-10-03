@@ -119,6 +119,24 @@ enum KeyBarKey: String, CaseIterable, Codable, Identifiable {
     }
 }
 
+extension KeyBarKey {
+    enum ScrollDirection { case up, down }
+
+    /// PgUp and PgDn page through the terminal's own scrollback, rather than
+    /// going to the server, when `scrollsLocally` (glasses mode) and the
+    /// program isn't in application cursor mode. less, vim and tmux switch
+    /// that on and get the keys. It's the rule SwiftTerm applies to a
+    /// hardware PgUp.
+    func localScroll(applicationCursor: Bool, scrollsLocally: Bool) -> ScrollDirection? {
+        guard scrollsLocally, !applicationCursor else { return nil }
+        switch self {
+        case .pageUp: return .up
+        case .pageDown: return .down
+        default: return nil
+        }
+    }
+}
+
 /// Persists the user's key bar layout in UserDefaults.
 enum KeyBarConfig {
     static let changedNotification = Notification.Name("pockterm.keyBarConfigChanged")

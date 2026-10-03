@@ -27,6 +27,13 @@ struct FilesBrowserView: View {
     @State private var chmodText = ""
     @State private var shareItem: ShareItem?
     @State private var showingHelp = false
+    /// Shown in place of the terminal in glasses mode rather than as a sheet.
+    /// There's nothing to go back to there, so Done is hidden.
+    private let embedded: Bool
+    /// Called when one of the browser's text boxes (new folder, rename,
+    /// permissions) closes, so glasses mode can give the keyboard back to the
+    /// terminal.
+    private let onTextEntryEnded: (() -> Void)?
     @State private var showingPhotoPicker = false
     @State private var pickedMedia: [PhotosPickerItem] = []
     /// Copying picked photos out of the library before they can upload.
@@ -36,8 +43,18 @@ struct FilesBrowserView: View {
     @State private var pendingConflicts: [String] = []
 
     init(host: Host, secretStore: SecretStore, modelContext: ModelContext) {
-        _model = State(initialValue: FilesBrowserModel(host: host, secretStore: secretStore,
-                                                       modelContext: modelContext))
+        self.init(model: FilesBrowserModel(host: host, secretStore: secretStore,
+                                           modelContext: modelContext))
+    }
+
+    /// `embedded`: the model belongs to the session (`TerminalSession.files`),
+    /// which disconnects it when the session closes. The view leaves it
+    /// connected when it goes, so a transfer survives a tab switch.
+    init(model: FilesBrowserModel, embedded: Bool = false,
+         onTextEntryEnded: (() -> Void)? = nil) {
+        _model = State(initialValue: model)
+        self.embedded = embedded
+        self.onTextEntryEnded = onTextEntryEnded
     }
 
     var body: some View {
@@ -49,8 +66,11 @@ struct FilesBrowserView: View {
             .navigationTitle(model.host.label)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar { toolbarContent }
-            .task { await model.start() }
-            .onDisappear { Task { await model.disconnect() } }
+            .task { await model.startIfNeeded() }
+            .onDisappear {
+                guard !embedded else { return }
+                Task { await model.disconnect() }
+            }
             .fileImporter(isPresented: $showingUploader,
                           allowedContentTypes: [.item], allowsMultipleSelection: true) { result in
                 if case .success(let urls) = result {
@@ -94,6 +114,9 @@ struct FilesBrowserView: View {
                 showingNewFolder: $showingNewFolder, newFolderName: $newFolderName,
                 renameTarget: $renameTarget, renameText: $renameText,
                 chmodTarget: $chmodTarget, chmodText: $chmodText))
+            .onChange(of: textEntryOpen) { _, open in
+                if !open { onTextEntryEnded?() }
+            }
             .alert(conflictTitle, isPresented: conflictPresented) {
                 Button("Replace", role: .destructive) { finishUpload(.replace) }
                 Button("Keep Both") { finishUpload(.keepBoth) }
@@ -110,6 +133,10 @@ struct FilesBrowserView: View {
                 Text(failureMessage)
             }
         }
+    }
+
+    private var textEntryOpen: Bool {
+        showingNewFolder || renameTarget != nil || chmodTarget != nil
     }
 
     // MARK: Uploading
@@ -416,8 +443,10 @@ struct FilesBrowserView: View {
             }
             .accessibilityLabel("SFTP Help")
         }
-        ToolbarItem(placement: .topBarLeading) {
-            Button("Done") { dismiss() }
+        if !embedded {
+            ToolbarItem(placement: .topBarLeading) {
+                Button("Done") { dismiss() }
+            }
         }
     }
 }

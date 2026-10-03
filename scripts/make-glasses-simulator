@@ -1,0 +1,114 @@
+#!/bin/bash
+# Creates an iPhone simulator with a 1920x1080 external display plugged in
+# from boot, for testing glasses mode without real glasses.
+#
+#   scripts/make-glasses-simulator            # prints the simulator's UDID
+#   scripts/make-glasses-simulator --boot     # ...and boots it, settled
+#
+# Xcode 27's Device Hub has no external-display menu, but every iPhone device
+# type already defines one: "external-0", a 720x480 TVOut screen with
+# powerState 0. This copies the stock device type into the per-user profile
+# folder with that screen switched on at the glasses' size, then creates a
+# simulator from it. Nothing inside Xcode is touched.
+#
+# iOS only hands an app the external screen if its Info.plist declares a scene
+# configuration for UIWindowSceneSessionRoleExternalDisplayNonInteractive.
+# Answering application(_:configurationForConnecting:) alone is not enough;
+# iOS never asks. Measured 2026-10-01 with a probe app.
+#
+# The display is connected for the whole boot. Unplugging mid-session can't be
+# simulated this way; use an ordinary simulator for the no-display case.
+#
+# --boot also restarts SpringBoard once the boot has settled. Measured
+# 2026-10-02: during boot SpringBoard can connect the display, see its
+# configuration change underneath it ("debouncing for raw configuration"),
+# drop it, and never connect it again. Every app then gets zero external
+# scenes, which looks exactly like an app bug. A SpringBoard restart after
+# boot enumerates the display again and keeps it.
+set -euo pipefail
+
+BOOT=0
+[[ "${1:-}" == "--boot" ]] && BOOT=1
+
+BASE="${BASE:-iPhone 17 Pro}"
+RUNTIME="${RUNTIME:-com.apple.CoreSimulator.SimRuntime.iOS-26-5}"
+NAME="${NAME:-iPhone 17 Pro (Glasses)}"
+TYPE_ID="com.pockterm.SimDeviceType.iPhone-17-Pro-External-Display"
+
+SRC="/Library/Developer/CoreSimulator/Profiles/DeviceTypes/$BASE.simdevicetype"
+DST_DIR="$HOME/Library/Developer/CoreSimulator/Profiles/DeviceTypes"
+DST="$DST_DIR/$BASE External Display.simdevicetype"
+
+[[ -d "$SRC" ]] || { echo "no device type at $SRC" >&2; exit 1; }
+
+if ! xcrun simctl list devicetypes | grep -q "$TYPE_ID"; then
+    mkdir -p "$DST_DIR"
+    rm -rf "$DST"
+    cp -R "$SRC" "$DST"
+    chmod -R u+w "$DST"
+    /usr/libexec/PlistBuddy \
+        -c "Set :CFBundleIdentifier $TYPE_ID" \
+        -c "Set :CFBundleName $BASE External Display" "$DST/Contents/Info.plist"
+    # Don't create one of these for every runtime on the machine.
+    /usr/libexec/PlistBuddy \
+        -c "Delete :createByDefaultForRuntimeVersions" \
+        -c "Delete :pairByDefaultForRuntimeVersions" \
+        "$DST/Contents/Resources/profile.plist" 2>/dev/null || true
+    python3 - "$DST/Contents/Resources/capabilities.plist" <<'EOF'
+import plistlib, sys
+path = sys.argv[1]
+raw = open(path, "rb").read()
+data = plistlib.loads(raw)
+
+def holder(node):
+    if isinstance(node, dict):
+        if "displays" in node:
+            return node
+        for value in node.values():
+            found = holder(value)
+            if found:
+                return found
+    elif isinstance(node, list):
+        for value in node:
+            found = holder(value)
+            if found:
+                return found
+
+external = next(d for d in holder(data)["displays"] if d.get("deviceName") == "external-0")
+external.update(powerState=1, width=1920, height=1080, displayName="External")
+fmt = plistlib.FMT_BINARY if raw.startswith(b"bplist") else plistlib.FMT_XML
+open(path, "wb").write(plistlib.dumps(data, fmt=fmt))
+EOF
+    # The edits invalidate Apple's signature; an ad-hoc one keeps it valid.
+    codesign --force --sign - --deep "$DST" >/dev/null 2>&1
+fi
+
+UDID=$(xcrun simctl list devices -j | python3 -c "
+import json, sys
+for runtime, devices in json.load(sys.stdin)['devices'].items():
+    for d in devices:
+        if d['name'] == sys.argv[1] and d.get('isAvailable', True):
+            print(d['udid']); break
+" "$NAME" | head -1)
+
+if [[ -z "$UDID" ]]; then
+    UDID=$(xcrun simctl create "$NAME" "$TYPE_ID" "$RUNTIME")
+fi
+
+if (( BOOT )); then
+    xcrun simctl boot "$UDID" 2>/dev/null || true
+    xcrun simctl bootstatus "$UDID" -b >/dev/null
+    RESTARTED_AT=$(date "+%Y-%m-%d %H:%M:%S")
+    xcrun simctl spawn "$UDID" launchctl kickstart -k user/foreground/com.apple.SpringBoard >/dev/null 2>&1 \
+        || xcrun simctl spawn "$UDID" launchctl kickstart -k system/com.apple.SpringBoard >/dev/null 2>&1
+    # Wait for SpringBoard to come back and take the display again.
+    for _ in $(seq 1 30); do
+        if xcrun simctl spawn "$UDID" log show --start "$RESTARTED_AT" --style compact \
+               --predicate 'process == "SpringBoard" AND eventMessage CONTAINS "AirPlay[2-1]+<com.apple.springboard.noninteractive> connected to display"' \
+               2>/dev/null | grep -q "connected to display"; then
+            break
+        fi
+        sleep 1
+    done
+fi
+echo "$UDID"

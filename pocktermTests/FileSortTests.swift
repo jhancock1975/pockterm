@@ -142,3 +142,19 @@ private func scratchDefaults() -> UserDefaults {
     defaults.set("kind", forKey: FileSortOrder.fieldKey)
     #expect(FileSortOrder(reading: defaults).field == .name)
 }
+
+// MARK: - Connecting once
+
+@Test @MainActor func theBrowserConnectsOnItsFirstAppearance() {
+    #expect(FilesBrowserModel.needsStart(started: false, status: .connecting))
+}
+
+@Test @MainActor func comingBackToTheBrowserDoesNotReconnect() {
+    // Reconnecting on every tab switch would cut a transfer in flight.
+    #expect(!FilesBrowserModel.needsStart(started: true, status: .loaded))
+    #expect(!FilesBrowserModel.needsStart(started: true, status: .connecting))
+}
+
+@Test @MainActor func comingBackAfterAFailureTriesAgain() {
+    #expect(FilesBrowserModel.needsStart(started: true, status: .error("Connection refused")))
+}
