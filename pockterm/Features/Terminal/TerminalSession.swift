@@ -31,6 +31,25 @@ final class TerminalSession: Identifiable, HostKeyDeciding {
     /// `currentFontSize`, it is session-only and never persisted.
     let baselineFontSize: Int
 
+    /// True while this session's terminal is on the glasses. The text size
+    /// then comes from `glassesFontSize` instead of the phone's zoom.
+    private(set) var isGlassesMode = false
+    private(set) var glassesFontSize = GlassesTextSize.defaultSize
+
+    /// The size the terminal is drawn at right now.
+    var displayedFontSize: Int { isGlassesMode ? glassesFontSize : currentFontSize }
+
+    /// Moves this session in or out of glasses mode, or changes the glasses
+    /// size. Leaving hands caret focus-tracking back to the terminal itself,
+    /// which TerminalKeyboardProxy turns off while it holds the keyboard.
+    func setGlassesMode(_ on: Bool, fontSize: Int) {
+        guard on != isGlassesMode || fontSize != glassesFontSize else { return }
+        isGlassesMode = on
+        glassesFontSize = fontSize
+        if !on { terminalView.caretViewTracksFocus = true }
+        applyAppearance()
+    }
+
     var title: String
     /// Assign through `setStatus` — the caret has to be kept in step with it.
     private(set) var status: Status = .connecting
@@ -121,7 +140,7 @@ final class TerminalSession: Identifiable, HostKeyDeciding {
         let s = EffectiveHostSettings.resolve(host: host)
         let theme = TerminalTheme.theme(id: s.themeID)
         let fontID = TerminalFont.font(id: s.fontID).id
-        let size = CGFloat(currentFontSize)
+        let size = CGFloat(displayedFontSize)
         terminalView.font = UIFont(name: fontID, size: size)
             ?? UIFont.monospacedSystemFont(ofSize: size, weight: .regular)
         if theme.ansi.count == 16 { terminalView.installColors(theme.ansi) }

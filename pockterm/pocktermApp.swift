@@ -3,7 +3,7 @@ import SwiftData
 
 @main
 struct pocktermApp: App {
-    @State private var container = AppContainer()
+    private let container = AppContainer.shared
     @Environment(\.scenePhase) private var scenePhase
 
     var body: some Scene {

@@ -16,10 +16,20 @@ final class SessionManager {
     var requestOpenConnectionSettings = false
     let secretStore: SecretStore
     let modelContext: ModelContext
+    /// True while an external display is attached: the terminal draws there,
+    /// and the phone shows files and the keyboard. Set from ExternalDisplay
+    /// by AppContainer.
+    private(set) var isGlassesMode = false
+    /// The terminal's text size on the glasses, shared by every session.
+    private(set) var glassesFontSize: Int
+    private let defaults: UserDefaults
 
-    init(secretStore: SecretStore, modelContext: ModelContext) {
+    init(secretStore: SecretStore, modelContext: ModelContext,
+         defaults: UserDefaults = .standard) {
         self.secretStore = secretStore
         self.modelContext = modelContext
+        self.defaults = defaults
+        self.glassesFontSize = GlassesTextSize.load(from: defaults)
     }
 
     var active: TerminalSession? {
@@ -40,6 +50,7 @@ final class SessionManager {
     func open(_ host: Host) {
         let session = TerminalSession(host: host, secretStore: secretStore, modelContext: modelContext)
         session.sessionManager = self
+        if isGlassesMode { session.setGlassesMode(true, fontSize: glassesFontSize) }
         sessions.append(session)
         activeID = session.id
         isMinimized = false
@@ -73,5 +84,19 @@ final class SessionManager {
         sessions.removeAll()
         activeID = nil
         isMinimized = false
+    }
+
+    func setGlassesMode(_ on: Bool) {
+        isGlassesMode = on
+        for session in sessions { session.setGlassesMode(on, fontSize: glassesFontSize) }
+    }
+
+    func setGlassesFontSize(_ size: Int) {
+        let clamped = GlassesTextSize.clamped(size)
+        guard clamped != glassesFontSize else { return }
+        glassesFontSize = clamped
+        GlassesTextSize.save(clamped, to: defaults)
+        guard isGlassesMode else { return }
+        for session in sessions { session.setGlassesMode(true, fontSize: clamped) }
     }
 }
