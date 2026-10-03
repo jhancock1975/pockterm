@@ -104,3 +104,19 @@ private func proxy(for view: TerminalView) -> TerminalKeyboardProxy {
 @Test @MainActor func withoutATargetTheProxyRefusesTheKeyboard() {
     #expect(!TerminalKeyboardProxy(frame: .zero).canBecomeFirstResponder)
 }
+
+// MARK: - Keyboard traits UIKit actually sees
+
+@Test @MainActor func uikitSeesTheTerminalsKeyboardTraits() {
+    // UIKit reads these through the Objective-C runtime. If it can't see them
+    // it falls back to its defaults: autocorrect, predictive text and a
+    // capital letter at the start of every line.
+    let (view, _) = terminal()
+    let proxy = proxy(for: view)
+    for name in ["autocorrectionType", "autocapitalizationType", "spellCheckingType",
+                 "smartQuotesType", "smartDashesType", "smartInsertDeleteType", "keyboardType"] {
+        #expect(proxy.responds(to: NSSelectorFromString(name)), "\(name) invisible to UIKit")
+    }
+    #expect((proxy.value(forKey: "autocorrectionType") as? Int) == UITextAutocorrectionType.no.rawValue)
+    #expect((proxy.value(forKey: "autocapitalizationType") as? Int) == UITextAutocapitalizationType.none.rawValue)
+}

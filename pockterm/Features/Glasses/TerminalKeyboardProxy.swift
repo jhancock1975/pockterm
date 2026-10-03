@@ -126,16 +126,21 @@ final class TerminalKeyboardProxy: UIView, UITextInput {
     }
 
     // MARK: UITextInputTraits: the terminal's own, so the keyboard is identical
+    //
+    // @objc because UIKit reads these through the Objective-C runtime, and
+    // these optional protocol properties aren't exposed to it otherwise. Without
+    // it UIKit saw none of them and used its defaults: autocorrect, predictive
+    // text, and a capital letter at the start of every line.
 
-    var keyboardType: UIKeyboardType { target?.keyboardType ?? .default }
-    var keyboardAppearance: UIKeyboardAppearance { target?.keyboardAppearance ?? .default }
-    var returnKeyType: UIReturnKeyType { target?.returnKeyType ?? .default }
-    var autocapitalizationType: UITextAutocapitalizationType { target?.autocapitalizationType ?? .none }
-    var autocorrectionType: UITextAutocorrectionType { target?.autocorrectionType ?? .no }
-    var spellCheckingType: UITextSpellCheckingType { target?.spellCheckingType ?? .no }
-    var smartQuotesType: UITextSmartQuotesType { target?.smartQuotesType ?? .no }
-    var smartDashesType: UITextSmartDashesType { target?.smartDashesType ?? .no }
-    var smartInsertDeleteType: UITextSmartInsertDeleteType { target?.smartInsertDeleteType ?? .no }
+    @objc var keyboardType: UIKeyboardType { target?.keyboardType ?? .default }
+    @objc var keyboardAppearance: UIKeyboardAppearance { target?.keyboardAppearance ?? .default }
+    @objc var returnKeyType: UIReturnKeyType { target?.returnKeyType ?? .default }
+    @objc var autocapitalizationType: UITextAutocapitalizationType { target?.autocapitalizationType ?? .none }
+    @objc var autocorrectionType: UITextAutocorrectionType { target?.autocorrectionType ?? .no }
+    @objc var spellCheckingType: UITextSpellCheckingType { target?.spellCheckingType ?? .no }
+    @objc var smartQuotesType: UITextSmartQuotesType { target?.smartQuotesType ?? .no }
+    @objc var smartDashesType: UITextSmartDashesType { target?.smartDashesType ?? .no }
+    @objc var smartInsertDeleteType: UITextSmartInsertDeleteType { target?.smartInsertDeleteType ?? .no }
 
     // MARK: UIKeyInput
 
