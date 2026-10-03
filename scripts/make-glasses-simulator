@@ -3,6 +3,7 @@
 # from boot, for testing glasses mode without real glasses.
 #
 #   scripts/make-glasses-simulator            # prints the simulator's UDID
+#   scripts/make-glasses-simulator --boot     # ...and boots it, settled
 #
 # Xcode 27's Device Hub has no external-display menu, but every iPhone device
 # type already defines one: "external-0", a 720x480 TVOut screen with
@@ -17,7 +18,17 @@
 #
 # The display is connected for the whole boot. Unplugging mid-session can't be
 # simulated this way; use an ordinary simulator for the no-display case.
+#
+# --boot also restarts SpringBoard once the boot has settled. Measured
+# 2026-10-02: during boot SpringBoard can connect the display, see its
+# configuration change underneath it ("debouncing for raw configuration"),
+# drop it, and never connect it again. Every app then gets zero external
+# scenes, which looks exactly like an app bug. A SpringBoard restart after
+# boot enumerates the display again and keeps it.
 set -euo pipefail
+
+BOOT=0
+[[ "${1:-}" == "--boot" ]] && BOOT=1
 
 BASE="${BASE:-iPhone 17 Pro}"
 RUNTIME="${RUNTIME:-com.apple.CoreSimulator.SimRuntime.iOS-26-5}"
@@ -82,5 +93,22 @@ for runtime, devices in json.load(sys.stdin)['devices'].items():
 
 if [[ -z "$UDID" ]]; then
     UDID=$(xcrun simctl create "$NAME" "$TYPE_ID" "$RUNTIME")
+fi
+
+if (( BOOT )); then
+    xcrun simctl boot "$UDID" 2>/dev/null || true
+    xcrun simctl bootstatus "$UDID" -b >/dev/null
+    RESTARTED_AT=$(date "+%Y-%m-%d %H:%M:%S")
+    xcrun simctl spawn "$UDID" launchctl kickstart -k user/foreground/com.apple.SpringBoard >/dev/null 2>&1 \
+        || xcrun simctl spawn "$UDID" launchctl kickstart -k system/com.apple.SpringBoard >/dev/null 2>&1
+    # Wait for SpringBoard to come back and take the display again.
+    for _ in $(seq 1 30); do
+        if xcrun simctl spawn "$UDID" log show --start "$RESTARTED_AT" --style compact \
+               --predicate 'process == "SpringBoard" AND eventMessage CONTAINS "AirPlay[2-1]+<com.apple.springboard.noninteractive> connected to display"' \
+               2>/dev/null | grep -q "connected to display"; then
+            break
+        fi
+        sleep 1
+    done
 fi
 echo "$UDID"

@@ -6,31 +6,48 @@ import SwiftTerm
 /// Keyboard avoidance is done in UIKit via `keyboardLayoutGuide`, which stays
 /// correct across rotations where SwiftUI's automatic avoidance leaves the
 /// terminal's bottom rows behind the accessory bar.
+///
+/// A view lives in one window at a time, and the same terminal moves between
+/// the phone and the glasses. So every update makes sure this container holds
+/// exactly the terminal it was given. That covers plugging in, unplugging and
+/// switching sessions, without either side knowing about the other.
 struct TerminalHostView: UIViewRepresentable {
     let terminalView: TerminalView
+    /// Off on the glasses, where there's no keyboard to make room for.
+    var avoidsKeyboard = true
 
     func makeUIView(context: Context) -> UIView {
         let container = UIView()
+        adopt(into: container)
+        return container
+    }
+
+    func updateUIView(_ uiView: UIView, context: Context) {
+        if terminalView.superview !== uiView { adopt(into: uiView) }
+        // Subviews SwiftTerm adds after makeUIView (its own scroller and
+        // accessory views) would otherwise inherit the mirrored default.
+        uiView.pinLeftToRightForTerminalContent()
+    }
+
+    private func adopt(into container: UIView) {
+        for case let stale as TerminalView in container.subviews where stale !== terminalView {
+            stale.removeFromSuperview()
+        }
+        terminalView.removeFromSuperview()
         terminalView.translatesAutoresizingMaskIntoConstraints = false
         container.addSubview(terminalView)
+        let bottom = avoidsKeyboard ? container.keyboardLayoutGuide.topAnchor : container.bottomAnchor
         NSLayoutConstraint.activate([
             terminalView.topAnchor.constraint(equalTo: container.topAnchor),
             terminalView.leadingAnchor.constraint(equalTo: container.leadingAnchor),
             terminalView.trailingAnchor.constraint(equalTo: container.trailingAnchor),
-            terminalView.bottomAnchor.constraint(equalTo: container.keyboardLayoutGuide.topAnchor),
+            terminalView.bottomAnchor.constraint(equalTo: bottom),
         ])
         // In Hebrew and Arabic the rest of the app mirrors, but the terminal
         // must not: the server addresses columns from the left. See
         // Localization/LeftToRight.swift. This also keeps the leading/trailing
         // constraints above resolving to left/right.
         container.pinLeftToRightForTerminalContent()
-        return container
-    }
-
-    func updateUIView(_ uiView: UIView, context: Context) {
-        // Subviews SwiftTerm adds after makeUIView (its own scroller and
-        // accessory views) would otherwise inherit the mirrored default.
-        uiView.pinLeftToRightForTerminalContent()
     }
 }
 
@@ -51,7 +68,11 @@ struct SessionTabsView: View {
             VStack(spacing: 0) {
                 topBar
                 if let session = manager.active {
-                    sessionContent(session)
+                    if manager.isGlassesMode {
+                        Color.black   // replaced by GlassesPhoneContent in Task 6
+                    } else {
+                        sessionContent(session)
+                    }
                 } else {
                     Spacer()
                 }
@@ -227,32 +248,7 @@ struct SessionTabsView: View {
     private func sessionContent(_ session: TerminalSession) -> some View {
         ZStack {
             TerminalHostView(terminalView: session.terminalView)
-            switch session.status {
-            case .connecting:
-                ProgressView("Connecting…").controlSize(.large).tint(.white)
-            case .failed(let message):
-                ContentUnavailableView("Connection Failed", systemImage: "xmark.octagon",
-                                       description: Text(message))
-                    .foregroundStyle(.white)
-            case .closed:
-                ContentUnavailableView("Session Closed", systemImage: "bolt.horizontal",
-                                       description: Text("The remote shell ended."))
-                    .foregroundStyle(.white)
-            case .idleDisconnected:
-                ContentUnavailableView {
-                    Label("Disconnected due to inactivity", systemImage: "moon.zzz")
-                } description: {
-                    Text("This session was closed after being idle. You can change how long sessions stay connected.")
-                } actions: {
-                    Button("Change how long sessions stay connected") {
-                        manager.requestOpenConnectionSettings = true
-                        manager.minimize()   // dismiss the full-screen terminal cover
-                    }
-                }
-                .foregroundStyle(.white)
-            case .connected:
-                EmptyView()
-            }
+            SessionStatusView(session: session, manager: manager)
             if session.status == .connected {
                 ZoomControlsView(session: session)
                     .id(session.id)
