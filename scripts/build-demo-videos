@@ -36,7 +36,10 @@ CAPTIONS = ROOT / "site/video-captions.json"
 RENDERER_SRC = ROOT / "scripts/caption-render.swift"
 BASE_URL = "s3://pockterm-site-071350569379/pockterm-demo.mp4"
 BAND_Y, BAND_H = 2440, 260
-WINDOWS = [(0, 4), (4, 8), (8, 12), (12, 16), (16, 20), (20, 24), (24, 99)]
+# Caption windows, in seconds. The sixth is the glasses scene (1.9), which took
+# the place of the Arabic-UI scene so the cut stays under the App Store's 30 s
+# preview limit; the fifth and seventh end where the picture actually cuts.
+WINDOWS = [(0, 4), (4, 8), (8, 12), (12, 16), (16, 21.7), (21.7, 26.3), (26.3, 99)]
 
 
 def out_name(lang):
@@ -47,6 +50,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", default="build/videos")
     ap.add_argument("--lang", nargs="*")
+    ap.add_argument("--base", help="a local base cut instead of the published one on S3")
     args = ap.parse_args()
 
     data = json.loads(CAPTIONS.read_text())
@@ -57,7 +61,7 @@ def main():
     renderer = work / "caption-render"
     subprocess.run(["swiftc", "-O", "-o", str(renderer), str(RENDERER_SRC)], check=True)
 
-    base = work / "base.mp4"
+    base = pathlib.Path(args.base) if args.base else work / "base.mp4"
     if not base.exists():
         subprocess.run(["aws", "s3", "cp", BASE_URL, str(base), "--quiet"], check=True)
 
