@@ -9,16 +9,20 @@ Pockterm — SSH & SFTP Client
 Terminal, keys & AI assistant
 
 ## Promotional text (max 170, editable anytime without review)
-A fast, native SSH and SFTP client for iPhone and iPad. Manage hosts and keys, forward ports,
-transfer files, and get help from an optional AI assistant using your own API key.
+New: plug in video glasses or a monitor and your terminal fills the big screen, while your phone keeps the keyboard and your files. Free and open source.
 
 ## Description (max 4000)
-Pockterm is a native SSH and SFTP client built for iPhone and iPad.
+Pockterm is a native SSH and SFTP client built for iPhone. Free and open source.
 
 CONNECT
 - SSH into your servers with passwords or Ed25519/RSA keys
 - Trusted host-key verification warns you if a server's key ever changes
 - Multiple live sessions; minimize one and pick it back up from the tab bar
+
+BIG SCREEN
+- Plug in video glasses like VITURE, or a monitor or TV, and the terminal fills that screen
+- Your phone keeps the keyboard and key bar, and shows the session's files where the terminal was
+- Its own text size for the glasses, a Paste button, and PgUp/PgDn through the scrollback
 
 MANAGE
 - Organize hosts into groups
@@ -28,10 +32,11 @@ MANAGE
 
 TRANSFER
 - Browse, upload, and download files over SFTP
+- Upload from Files, iCloud Drive or your photo library, several files at once
 
 AI ASSISTANT (optional)
 - Ask an AI assistant about terminal output and get suggested commands
-- Bring your own API key — Anthropic, OpenAI, OpenRouter, or Hugging Face
+- Bring your own API key: Anthropic, OpenAI, OpenRouter, or Hugging Face
 - Off by default; you're told which provider receives data before anything is sent
 
 PRIVACY
@@ -39,17 +44,20 @@ PRIVACY
 - Credentials and keys live in the iOS Keychain
 - Your connection data stays on your device
 
+OPEN SOURCE
+- The full source is on GitHub under the Apache 2.0 licence: github.com/jhancock1975/pockterm
+
 ## Keywords (max 100, comma-separated, no spaces)
 ssh,sftp,terminal,shell,console,server,port forward,tunnel,ssh client,devops,sysadmin,ai
 
 ## Support URL
-https://github.com/jhancock1975/pockterm   (or a dedicated support page)
+https://pockterm.com
 
 ## Marketing URL (optional)
-https://github.com/jhancock1975/pockterm
+https://pockterm.com
 
 ## Privacy Policy URL (required)
-https://jhancock1975.github.io/pockterm/privacy.html   (live — GitHub Pages, gh-pages branch)
+https://pockterm.com/privacy.html
 
 ## Category
 Primary: Developer Tools    Secondary: Utilities
@@ -70,11 +78,13 @@ connect to. A public demo SSH host is standing by:
     Password: <DEMO_HOST_PASSWORD>
 
 Steps: open the Hosts tab → tap + → enter the above → Connect. You'll get a live shell.
-New in 1.1: tap the palette icon in the terminal top bar to switch color themes live;
-pinch to zoom the terminal (a reset control appears while zoomed); Settings → Connection
-sets how long idle sessions stay connected. For SFTP, open the connected session's file
-browser. The AI Assistant (Settings → AI Assistant) is optional and requires the
-reviewer's own provider API key; it can be skipped for review.
+New in 1.9: with an external display connected (video glasses, or a USB-C monitor),
+the terminal moves to that screen and the phone shows the session's files with the
+keyboard typing into the terminal; without one, the app works exactly as before. The
+file browser (folder button in the terminal's top bar) now has an Upload button for
+Files and Photos, and tapping a file opens its actions. The AI Assistant (Settings → AI
+Assistant) is optional and requires the reviewer's own provider API key; it can be
+skipped for review.
 
 (Demo host is a throwaway AWS t4g.nano; torn down after approval via
 scripts/teardown-demo-host.sh. Re-provision and refresh the IP/password for each new

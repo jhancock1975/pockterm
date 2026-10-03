@@ -42,6 +42,30 @@ final class HelpShotUITests: XCTestCase {
         shoot("3-help-credentials-pem")
     }
 
+    /// The Glasses & External Displays topic, in the language the host asks
+    /// for. TEST_RUNNER_HELP_LANG, TEST_RUNNER_HELP_BUTTON and
+    /// TEST_RUNNER_HELP_TOPIC carry the language code and the localized Help
+    /// button and topic title (from Localizable.xcstrings), so one test covers
+    /// every language and the RTL and CJK layouts.
+    func testGlassesHelpTopic() {
+        let env = ProcessInfo.processInfo.environment
+        let lang = env["HELP_LANG"] ?? "en"
+        let app = XCUIApplication()
+        app.launchArguments += ["-AppleLanguages", "(\(lang))", "-AppleLocale", lang]
+        app.launch()
+
+        let help = app.buttons[env["HELP_BUTTON"] ?? "Help"]
+        XCTAssertTrue(help.waitForExistence(timeout: 30), "Help button never appeared")
+        help.tap()
+
+        let topic = app.staticTexts[env["HELP_TOPIC"] ?? "Glasses & External Displays"]
+        XCTAssertTrue(topic.waitForExistence(timeout: 15), "glasses topic not in the list: \(app.debugDescription)")
+        shoot("g\(lang)-0-list")
+        topic.tap()
+        Thread.sleep(forTimeInterval: 1)
+        shoot("g\(lang)-1-topic")
+    }
+
     private func shoot(_ name: String) {
         let a = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
         a.name = name

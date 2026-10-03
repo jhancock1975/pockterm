@@ -11,7 +11,7 @@ struct HelpSection: Identifiable {
 enum HelpContent {
     static let sections: [HelpSection] = [
         HelpSection(title: "Getting Started", topics: [welcome, addHost, keys]),
-        HelpSection(title: "Using Pockterm", topics: [terminal, snippets, organize, importConfig]),
+        HelpSection(title: "Using Pockterm", topics: [terminal, glasses, snippets, organize, importConfig]),
         HelpSection(title: "Files & Networking", topics: [sftp, forwarding]),
         HelpSection(title: "Security & Privacy", topics: [hostKeys, privacy]),
     ]
@@ -84,6 +84,23 @@ enum HelpContent {
                 "The bar above the keyboard has **esc**, **ctrl**, **tab**, arrow keys, and more.",
                 "Open several hosts at once — each session is a tab across the top. Tap its name to switch, or the red **✕** to close it.",
                 "Tap the **snippet** button to run a saved command in the session.",
+            ]),
+        ])
+
+    static let glasses = HelpTopic(
+        title: "Glasses & External Displays",
+        icon: "eyeglasses",
+        summary: "Put the terminal on a bigger screen",
+        blocks: [
+            .paragraph("Connect video glasses such as VITURE, or a monitor or TV, and the terminal moves to that screen, full size. The phone keeps the keyboard and key bar, and shows the session's files where the terminal was."),
+            .bullets([
+                "There's nothing to turn on: connect the display and open a session.",
+                "With no session open, or the session minimized, the glasses ask you to open one on your phone.",
+                "Tap **AA** at the top to make the text on the glasses smaller or larger. Pockterm remembers the size, apart from the phone's pinch zoom.",
+                "Tap the **clipboard** button at the top to paste into the terminal. On a keyboard, **⌘V** works too.",
+                "**PgUp** and **PgDn** on the key bar page back through what scrolled off the glasses.",
+                "If you hide the keyboard, tap the **keyboard** button at the top to bring it back.",
+                "Disconnect the display and the terminal comes back to the phone.",
             ]),
         ])
 
