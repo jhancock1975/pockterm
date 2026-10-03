@@ -42,10 +42,17 @@ struct FilesBrowserView: View {
     @State private var pendingUpload: [UploadSource] = []
     @State private var pendingConflicts: [String] = []
 
-    init(host: Host, secretStore: SecretStore, modelContext: ModelContext,
-         embedded: Bool = false, onTextEntryEnded: (() -> Void)? = nil) {
-        _model = State(initialValue: FilesBrowserModel(host: host, secretStore: secretStore,
-                                                       modelContext: modelContext))
+    init(host: Host, secretStore: SecretStore, modelContext: ModelContext) {
+        self.init(model: FilesBrowserModel(host: host, secretStore: secretStore,
+                                           modelContext: modelContext))
+    }
+
+    /// `embedded`: the model belongs to the session (`TerminalSession.files`),
+    /// which disconnects it when the session closes. The view leaves it
+    /// connected when it goes, so a transfer survives a tab switch.
+    init(model: FilesBrowserModel, embedded: Bool = false,
+         onTextEntryEnded: (() -> Void)? = nil) {
+        _model = State(initialValue: model)
         self.embedded = embedded
         self.onTextEntryEnded = onTextEntryEnded
     }
@@ -59,8 +66,11 @@ struct FilesBrowserView: View {
             .navigationTitle(model.host.label)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar { toolbarContent }
-            .task { await model.start() }
-            .onDisappear { Task { await model.disconnect() } }
+            .task { await model.startIfNeeded() }
+            .onDisappear {
+                guard !embedded else { return }
+                Task { await model.disconnect() }
+            }
             .fileImporter(isPresented: $showingUploader,
                           allowedContentTypes: [.item], allowsMultipleSelection: true) { result in
                 if case .success(let urls) = result {

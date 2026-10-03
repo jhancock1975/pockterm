@@ -20,7 +20,7 @@ enum GlassesContent: Equatable {
 
 /// The terminal's text size on the glasses. It's one app-wide value, kept
 /// apart from the phone's pinch zoom because the two screens want very
-/// different sizes. 18pt on a 1920×1080 display gives about 178×50.
+/// different sizes. 18pt on a 1920×1080 display gives 174×49 (measured).
 enum GlassesTextSize {
     static let defaultSize = 18
     static let key = "glassesFontSize"

@@ -38,6 +38,7 @@ final class FilesBrowserModel: HostKeyDeciding {
     /// order tomorrow morning.
     private(set) var sort: FileSortOrder
     private let defaults: UserDefaults
+    private var started = false
 
     init(host: Host, secretStore: SecretStore, modelContext: ModelContext,
          defaults: UserDefaults = .standard) {
@@ -55,6 +56,20 @@ final class FilesBrowserModel: HostKeyDeciding {
     }
 
     var canGoUp: Bool { path != "/" }
+
+    /// Whether the browser should connect as it appears: the first time,
+    /// and again after a failure. Glasses mode's browser reappears with every
+    /// tab switch, and reconnecting then would cut a transfer in flight.
+    static func needsStart(started: Bool, status: Status) -> Bool {
+        if case .error = status { return true }
+        return !started
+    }
+
+    func startIfNeeded() async {
+        guard Self.needsStart(started: started, status: status) else { return }
+        started = true
+        await start()
+    }
 
     func start() async {
         let creds: SSHCredentials

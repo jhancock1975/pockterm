@@ -22,7 +22,12 @@ final class TerminalKeyboardProxy: UIView, UITextInput {
             }
             target?.inputDelegate = relay
             if isFirstResponder, let target { claim(target) }
-            reloadInputViews()
+            // On the next turn, not now. This runs inside SwiftUI's view update
+            // (KeyboardProxyHost), and reloading input views animates the
+            // keyboard, whose tracking calls back into SwiftUI mid-update.
+            // Closing an exited session in glasses mode hung the app on the
+            // resulting AttributeGraph cycle.
+            DispatchQueue.main.async { [weak self] in self?.reloadInputViews() }
         }
     }
 
@@ -65,6 +70,14 @@ final class TerminalKeyboardProxy: UIView, UITextInput {
             transition.animate(alongsideTransition: nil) { [weak self] _ in self?.attemptFocus() }
             return
         }
+        // Something is up over the phone (the assistant, an alert, a sheet):
+        // leave its keyboard alone. Plugging the glasses in under the
+        // assistant used to take its keyboard, so the question being typed
+        // went into the live shell. Show Keyboard asks again once it's gone.
+        if let top, !isDescendant(of: top.view) {
+            wantsFocus = false
+            return
+        }
         if becomeFirstResponder() {
             wantsFocus = false
         } else if focusAttempts < 5 {
@@ -101,6 +114,18 @@ final class TerminalKeyboardProxy: UIView, UITextInput {
     private func release(_ terminal: TerminalView) {
         terminal.caretViewTracksFocus = true
         terminal.getTerminal().setTerminalFocus(false)
+    }
+
+    // MARK: Paste
+    //
+    // Cmd-V and the three-finger paste gesture go to the first responder,
+    // which in glasses mode is this view rather than the terminal.
+
+    override func paste(_ sender: Any?) { target?.paste(sender) }
+
+    override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
+        if action == #selector(paste(_:)) { return target != nil }
+        return super.canPerformAction(action, withSender: sender)
     }
 
     // MARK: Hardware keyboard

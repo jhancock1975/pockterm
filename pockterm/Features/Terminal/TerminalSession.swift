@@ -47,6 +47,7 @@ final class TerminalSession: Identifiable, HostKeyDeciding {
         isGlassesMode = on
         glassesFontSize = fontSize
         if !on { terminalView.caretViewTracksFocus = true }
+        (terminalView.inputAccessoryView as? KeyBarView)?.scrollsLocally = on
         applyAppearance()
     }
 
@@ -60,6 +61,7 @@ final class TerminalSession: Identifiable, HostKeyDeciding {
     private let proxy = TerminalDelegateProxy()
     private var lineTracker = TypedLineTracker()
     private var _assistant: AssistantModel?
+    private var _files: FilesBrowserModel?
     private var zoomStartSize: Int = 14
     private var lastActivityAt = Date()
     private var lastCols = 80
@@ -78,6 +80,18 @@ final class TerminalSession: Identifiable, HostKeyDeciding {
         let created = AssistantModel(session: self, secretStore: secretStore,
                                      modelContext: modelContext)
         _assistant = created
+        return created
+    }
+
+    /// This session's file browser for glasses mode, created on first use.
+    /// It lives with the session rather than the view: the view comes and goes
+    /// with every tab switch and minimise, and taking the SFTP connection down
+    /// with it cut off any upload or download in flight.
+    var files: FilesBrowserModel {
+        if let _files { return _files }
+        let created = FilesBrowserModel(host: host, secretStore: secretStore,
+                                        modelContext: modelContext)
+        _files = created
         return created
     }
 
@@ -246,6 +260,7 @@ final class TerminalSession: Identifiable, HostKeyDeciding {
     func disconnect() async {
         keepAliveTimer?.invalidate(); keepAliveTimer = nil
         await engine.disconnect()
+        await _files?.disconnect()
     }
 
     private func startKeepAliveTimer() {

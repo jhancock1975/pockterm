@@ -125,3 +125,21 @@ private struct GlassesFixture {
     f.manager.setGlassesFontSize(26)
     #expect(f.session.displayedFontSize == phoneSize)
 }
+
+@Test @MainActor func aSessionKeepsOneFilesBrowser() throws {
+    // The glasses-mode browser comes and goes with tab switches and
+    // minimising. Its model, and any transfer in it, belongs to the session.
+    let f = try GlassesFixture(); defer { f.tearDown() }
+    #expect(f.session.files === f.session.files)
+    #expect(f.session.files.host === f.session.host)
+}
+
+@Test @MainActor func glassesModeScrollsTheTerminalFromTheKeyBar() throws {
+    let f = try GlassesFixture(); defer { f.tearDown() }
+    let keyBar = try #require(f.session.terminalView.inputAccessoryView as? KeyBarView)
+    #expect(!keyBar.scrollsLocally)
+    f.manager.setGlassesMode(true)
+    #expect(keyBar.scrollsLocally)
+    f.manager.setGlassesMode(false)
+    #expect(!keyBar.scrollsLocally)
+}

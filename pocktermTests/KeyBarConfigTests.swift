@@ -197,3 +197,63 @@ private let layoutSavedBeforeBackspace = [
     #expect(KeyBarConfig.merging(saved: [.esc, .backspace], alreadyOffered: []) == [.esc, .backspace])
 }
 
+
+// MARK: - PgUp/PgDn in glasses mode
+
+@Test @MainActor func pageKeysScrollLocallyInGlassesMode() {
+    // Nothing on the glasses can be swiped, so these are the way back
+    // through scrollback, the way SwiftTerm treats a hardware PgUp.
+    #expect(KeyBarKey.pageUp.localScroll(applicationCursor: false, scrollsLocally: true) == .up)
+    #expect(KeyBarKey.pageDown.localScroll(applicationCursor: false, scrollsLocally: true) == .down)
+}
+
+@Test @MainActor func fullScreenAppsStillGetThePageKeys() {
+    // less, vim and tmux switch the terminal to application cursor mode.
+    #expect(KeyBarKey.pageUp.localScroll(applicationCursor: true, scrollsLocally: true) == nil)
+}
+
+@Test @MainActor func thePhoneKeepsSendingThePageKeys() {
+    #expect(KeyBarKey.pageUp.localScroll(applicationCursor: false, scrollsLocally: false) == nil)
+    #expect(KeyBarKey.up.localScroll(applicationCursor: false, scrollsLocally: true) == nil)
+}
+
+/// Collects what the terminal would send to the server.
+private final class SentBytes: NSObject, TerminalViewDelegate {
+    var bytes: [UInt8] = []
+    func send(source: TerminalView, data: ArraySlice<UInt8>) { bytes += data }
+    func sizeChanged(source: TerminalView, newCols: Int, newRows: Int) {}
+    func scrolled(source: TerminalView, position: Double) {}
+    func setTerminalTitle(source: TerminalView, title: String) {}
+    func hostCurrentDirectoryUpdate(source: TerminalView, directory: String?) {}
+    func requestOpenLink(source: TerminalView, link: String, params: [String: String]) {}
+    func bell(source: TerminalView) {}
+    func clipboardCopy(source: TerminalView, content: Data) {}
+    func iTermContent(source: TerminalView, content: ArraySlice<UInt8>) {}
+    func rangeChanged(source: TerminalView, startY: Int, endY: Int) {}
+}
+
+@MainActor
+private func button(_ label: String, in view: UIView) -> UIButton? {
+    if let button = view as? UIButton, button.accessibilityLabel == label { return button }
+    for sub in view.subviews { if let found = button(label, in: sub) { return found } }
+    return nil
+}
+
+@Test @MainActor func theKeyBarsPgUpPagesBackThroughScrollbackInGlassesMode() throws {
+    // The real button, the real terminal: a shell prompt below 200 lines of
+    // output, as after a long build.
+    let terminal = TerminalView(frame: CGRect(x: 0, y: 0, width: 393, height: 300))
+    let sent = SentBytes()
+    terminal.terminalDelegate = sent
+    terminal.feed(text: (1...200).map(String.init).joined(separator: "\r\n") + "\r\n% ")
+    let bar = KeyBarView(terminalView: terminal)
+    bar.scrollsLocally = true
+    let pgUp = try #require(button("PgUp", in: bar))
+    let bottom = terminal.scrollPosition
+
+    pgUp.sendActions(for: .touchDown)
+    pgUp.sendActions(for: .touchUpInside)
+
+    #expect(terminal.scrollPosition < bottom, "still at \(terminal.scrollPosition)")
+    #expect(sent.bytes.isEmpty, "PgUp went to the server instead")
+}

@@ -166,6 +166,18 @@ struct SessionTabsView: View {
                         }
                         .accessibilityLabel("Show Keyboard")
                     }
+                    // There's no terminal on the phone to long-press for
+                    // Paste. The system's button reads the clipboard without a
+                    // permission prompt each time.
+                    if manager.isGlassesMode, let session = manager.active {
+                        PasteButton(payloadType: String.self) { strings in
+                            guard let text = strings.first else { return }
+                            Task { @MainActor in session.terminalView.paste(text: text) }
+                        }
+                        .labelStyle(.iconOnly)
+                        .buttonBorderShape(.circle)
+                        .disabled(session.status != .connected)
+                    }
                     Spacer()
                     Button { showingHostPicker = true } label: {
                         Image(systemName: "plus")
@@ -286,6 +298,7 @@ struct SessionTabsView: View {
                 .font(.callout)
                 .lineLimit(1)
                 .truncationMode(.tail)
+                .accessibilityIdentifier("session-tab")
         }
         .foregroundStyle(.white)
         .padding(.horizontal, 10)

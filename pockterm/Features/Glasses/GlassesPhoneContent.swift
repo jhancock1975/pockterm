@@ -31,8 +31,7 @@ struct GlassesPhoneContent: View {
                 .allowsHitTesting(false)
                 .accessibilityHidden(true)
             if session.status == .connected {
-                FilesBrowserView(host: session.host, secretStore: session.secretStore,
-                                 modelContext: session.modelContext, embedded: true,
+                FilesBrowserView(model: session.files, embedded: true,
                                  onTextEntryEnded: { textEntryRefocus &+= 1 })
                     .id(session.id)
                     .environment(\.colorScheme, .dark)

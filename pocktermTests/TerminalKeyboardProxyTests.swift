@@ -120,3 +120,69 @@ private func proxy(for view: TerminalView) -> TerminalKeyboardProxy {
     #expect((proxy.value(forKey: "autocorrectionType") as? Int) == UITextAutocorrectionType.no.rawValue)
     #expect((proxy.value(forKey: "autocapitalizationType") as? Int) == UITextAutocapitalizationType.none.rawValue)
 }
+
+// MARK: - Paste
+
+@Test @MainActor func pasteReachesTheTerminal() {
+    // Cmd-V on a hardware keyboard and the three-finger paste gesture both
+    // send paste: to the first responder, which in glasses mode is the proxy.
+    let (view, capture) = terminal()
+    UIPasteboard.general.string = "echo pasted"
+    proxy(for: view).paste(nil)
+    #expect(capture.bytes == Array("echo pasted".utf8))
+}
+
+@Test @MainActor func theSystemOffersPasteOnlyWithATerminal() {
+    let paste = #selector(UIResponderStandardEditActions.paste(_:))
+    let (view, _) = terminal()
+    #expect(proxy(for: view).canPerformAction(paste, withSender: nil))
+    #expect(!TerminalKeyboardProxy(frame: .zero).canPerformAction(paste, withSender: nil))
+}
+
+@Test @MainActor func pastedTextIsPlainByDefault() {
+    let (view, capture) = terminal()
+    view.paste(text: "ls")
+    #expect(capture.bytes == Array("ls".utf8))
+}
+
+@Test @MainActor func pastedTextIsBracketedWhenTheAppAsks() {
+    let (view, capture) = terminal()
+    view.feed(text: "\u{1b}[?2004h")   // zsh, bash and vim turn this on
+    view.paste(text: "ls")
+    #expect(capture.bytes == Array("\u{1b}[200~ls\u{1b}[201~".utf8))
+}
+
+// MARK: - Not taking the keyboard from something over the phone
+
+/// Reports something presented over it, without the animation a real
+/// presentation needs.
+@MainActor
+private final class Covered: UIViewController {
+    var cover: UIViewController?
+    override var presentedViewController: UIViewController? { cover }
+}
+
+@Test @MainActor func aSheetOverThePhoneKeepsItsKeyboard() throws {
+    // Plugging the glasses in under the assistant used to hand its keyboard
+    // to the proxy, so the question being typed went into the live shell.
+    let scene = try #require(UIApplication.shared.connectedScenes
+        .compactMap { $0 as? UIWindowScene }.first)
+    let window = UIWindow(windowScene: scene)
+    let root = Covered()
+    window.rootViewController = root
+    window.makeKeyAndVisible()
+    defer { window.isHidden = true }
+    let (view, _) = terminal()
+    let proxy = proxy(for: view)
+    root.view.addSubview(proxy)
+    defer { _ = proxy.resignFirstResponder() }
+
+    root.cover = UIViewController()
+    proxy.requestFocus()
+    #expect(!proxy.isFirstResponder)
+
+    // Once it's gone, Show Keyboard brings the keyboard back.
+    root.cover = nil
+    proxy.requestFocus()
+    #expect(proxy.isFirstResponder)
+}
