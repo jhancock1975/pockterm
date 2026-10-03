@@ -215,8 +215,8 @@ final class TerminalSession: Identifiable, HostKeyDeciding {
         host.lastConnectedAt = .now
 
         do {
-            try await engine.connect(creds) { [weak self] presented in
-                await self?.decideHostKey(presented) ?? false
+            try await connectCheckingHostKey { [engine] validate in
+                try await engine.connect(creds, onHostKey: validate)
             }
             // The terminal's real size, not a guess. This used to open every
             // shell at a hard-coded 80x24: SwiftTerm reports its size through

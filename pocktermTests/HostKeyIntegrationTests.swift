@@ -1,5 +1,6 @@
 import Testing
 import Foundation
+import SwiftData
 @testable import pockterm
 
 /// Captures the fingerprint presented during a real connection.
@@ -105,6 +106,62 @@ actor FingerprintBox {
 private func keyFixture(_ name: String) -> String? {
     let documents = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
     return try? String(contentsOf: documents.appending(path: "testkeys/\(name)"), encoding: .utf8)
+}
+
+/// Answers the host-key prompt `delay` seconds after it appears, the way a
+/// person reading the fingerprint does.
+@MainActor
+private final class SlowToAnswer: HostKeyDeciding {
+    let container: ModelContainer
+    let modelContext: ModelContext
+    let delay: Duration
+    var pendingHostKey: PendingHostKey? {
+        didSet {
+            guard let pending = pendingHostKey else { return }
+            let delay = delay
+            Task { @MainActor in
+                try? await Task.sleep(for: delay)
+                self.pendingHostKey = nil
+                pending.resume(true)
+            }
+        }
+    }
+    init(delay: Duration) throws {
+        self.delay = delay
+        container = try ModelContainer(for: KnownHostRecord.self,
+                                       configurations: .init(isStoredInMemoryOnly: true))
+        modelContext = container.mainContext
+    }
+}
+
+/// Citadel gives a login ten seconds from TCP connect to authenticated
+/// (ClientHandshakeHandler's loginTimeout), and a host-key prompt answered
+/// inside the handshake counts against it. A first-time user who took eleven
+/// seconds to read the fingerprint got ChannelError.connectTimeout. Answered
+/// with nothing open, the connection goes on to authentication, which then
+/// fails here only because the password is wrong. Skips with no local sshd.
+@Test @MainActor func aSlowAnswerToTheHostKeyPromptDoesNotTimeOut() async throws {
+    guard sshReachable(host: "127.0.0.1", port: 22) else { return }
+
+    let owner = try SlowToAnswer(delay: .seconds(11))
+    let engine = SSHEngine()
+    let creds = SSHCredentials(host: "127.0.0.1", port: 22,
+                               username: "pockterm-test", auth: .password("definitely-wrong"))
+    var failure: (any Error)?
+    do {
+        try await owner.connectCheckingHostKey { validate in
+            try await engine.connect(creds, onHostKey: validate)
+        }
+    } catch {
+        failure = error
+    }
+    await engine.disconnect()
+
+    let described = String(describing: failure as Any)
+    print("SLOW_ANSWER outcome: \(described)")
+    #expect(failure != nil, "logged in with a wrong password?")
+    // NIO describes ChannelError.connectTimeout as "Connect timeout (10 s)".
+    #expect(!described.lowercased().contains("timeout"), "timed out: \(described)")
 }
 
 private func sshReachable(host: String, port: UInt16) -> Bool {

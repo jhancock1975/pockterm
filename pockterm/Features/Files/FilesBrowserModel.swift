@@ -81,8 +81,8 @@ final class FilesBrowserModel: HostKeyDeciding {
             creds = resolved
         }
         do {
-            try await sftp.connect(creds) { [weak self] presented in
-                await self?.decideHostKey(presented) ?? false
+            try await connectCheckingHostKey { [sftp] validate in
+                try await sftp.connect(creds, onHostKey: validate)
             }
             let home = try await sftp.homeDirectory()
             await navigate(to: home)

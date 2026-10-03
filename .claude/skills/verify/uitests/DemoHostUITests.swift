@@ -37,6 +37,10 @@ final class DemoHostUITests: XCTestCase {
         let hostKeyAlert = app.alerts["Verify Host Key"]
         if hostKeyAlert.waitForExistence(timeout: 15) {
             attach(app, name: "1-host-key")
+            // TEST_RUNNER_DEMO_ACCEPT_DELAY: read the fingerprint first, as a
+            // careful reviewer does. Citadel's ten-second login timer used to
+            // fail anyone who took longer than that.
+            if let delay = Double(env["DEMO_ACCEPT_DELAY"] ?? "") { Thread.sleep(forTimeInterval: delay) }
             hostKeyAlert.buttons.matching(
                 NSPredicate(format: "label BEGINSWITH 'Accept'")).firstMatch.tap()
         }
@@ -172,7 +176,8 @@ final class DemoHostUITests: XCTestCase {
             NSPredicate(format: "label BEGINSWITH 'Credentials'")).firstMatch
         XCTAssertTrue(idPicker.waitForExistence(timeout: 5), app.debugDescription)
         idPicker.tap()
-        let demoItem = app.buttons["demo"]
+        // Earlier runs leave credentials of the same name behind; any will do.
+        let demoItem = app.buttons["demo"].firstMatch
         XCTAssertTrue(demoItem.waitForExistence(timeout: 5), app.debugDescription)
         demoItem.tap()
         attach(app, name: "0-host-editor")
