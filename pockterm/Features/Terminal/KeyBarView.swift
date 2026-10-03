@@ -218,7 +218,10 @@ final class KeyBarView: UIInputView, UIInputViewAudioFeedback {
 
     @objc private func hideKeyboard() {
         UIDevice.current.playInputClick()
-        _ = terminalView?.resignFirstResponder()
+        // Whoever is showing this bar owns the keyboard: the terminal on the
+        // phone, or TerminalKeyboardProxy in glasses mode.
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder),
+                                        to: nil, from: nil, for: nil)
     }
 
     // MARK: Typematic
