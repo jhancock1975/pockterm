@@ -21,6 +21,9 @@ final class VerifyDriverUITests: XCTestCase {
             NSPredicate(format: "label BEGINSWITH 'ssh-ed25519'")).firstMatch
         if !existing.waitForExistence(timeout: 2) {
             app.navigationBars.buttons.firstMatch.tap() // the + button
+            // Since key import (1.7), + opens a menu: Generate… / Import….
+            let generate = app.buttons["Generate Ed25519 Key…"]
+            if generate.waitForExistence(timeout: 2) { generate.tap() }
             let alert = app.alerts["Generate Ed25519 Key"]
             XCTAssertTrue(alert.waitForExistence(timeout: 5), app.debugDescription)
             alert.textFields.firstMatch.tap()
@@ -970,8 +973,9 @@ final class VerifyDriverUITests: XCTestCase {
         addr.tap()
         addr.typeText("localhost")
 
-        // Create the identity (username + generated key).
-        app.buttons["New Identity"].tap()
+        // Create the credentials (username + generated key). The host editor
+        // called these "Identity" until the rename to "Credentials".
+        app.buttons["New Credentials"].tap()
         let idLabel = app.textFields["Label"]
         XCTAssertTrue(idLabel.waitForExistence(timeout: 5), app.debugDescription)
         idLabel.tap()
@@ -992,7 +996,7 @@ final class VerifyDriverUITests: XCTestCase {
 
         // Back in the host editor: pick the identity.
         let idPicker = app.buttons.matching(
-            NSPredicate(format: "(label CONTAINS 'Identity' OR label CONTAINS 'None') AND NOT label CONTAINS 'New'")).firstMatch
+            NSPredicate(format: "(label CONTAINS 'Credentials' OR label CONTAINS 'None') AND NOT label CONTAINS 'New'")).firstMatch
         XCTAssertTrue(idPicker.waitForExistence(timeout: 5), app.debugDescription)
         idPicker.tap()
         let johnItem = app.buttons["john"]
