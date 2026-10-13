@@ -11,6 +11,7 @@ struct pocktermApp: App {
             RootTabView(secretStore: container.secretStore, sessions: container.sessions,
                         forwards: container.forwards)
                 .modelContainer(container.modelContainer)
+                .background { GlassesSceneAccessory().accessibilityHidden(true) }
                 .onChange(of: scenePhase) { _, phase in
                     if phase == .active { container.modelRefresher.refreshStaleCatalogs() }
                 }
