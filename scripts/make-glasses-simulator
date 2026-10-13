@@ -16,8 +16,8 @@
 # Answering application(_:configurationForConnecting:) alone is not enough;
 # iOS never asks. Measured 2026-10-01 with a probe app.
 #
-# The display is connected for the whole boot. Unplugging mid-session can't be
-# simulated this way; use an ordinary simulator for the no-display case.
+# The display is connected from boot. To unplug it mid-session, see the
+# screenConfig commands below.
 #
 # --boot also restarts SpringBoard once the boot has settled. Measured
 # 2026-10-02: during boot SpringBoard can connect the display, see its
@@ -25,6 +25,16 @@
 # drop it, and never connect it again. Every app then gets zero external
 # scenes, which looks exactly like an app bug. A SpringBoard restart after
 # boot enumerates the display again and keeps it.
+#
+# On iOS 27 the restart isn't enough. A display attached from boot stays
+# "Unknown[2-1]" to SpringBoard and is never offered to any app, restart or
+# not (measured 2026-10-12). So --boot then unplugs the display and plugs it
+# back in with `simctl io <udid> screenConfig --display=2 power off|on`. It
+# comes back as AirPlay on iOS 27 and 26.5 alike. The same two commands
+# simulate unplugging the glasses mid-session.
+#
+#   RUNTIME=com.apple.CoreSimulator.SimRuntime.iOS-27-0 \
+#   NAME="iPhone 17 Pro (Glasses 27)" scripts/make-glasses-simulator --boot
 set -euo pipefail
 
 BOOT=0
@@ -95,20 +105,33 @@ if [[ -z "$UDID" ]]; then
     UDID=$(xcrun simctl create "$NAME" "$TYPE_ID" "$RUNTIME")
 fi
 
+# Waits up to 30 s for SpringBoard to log a display connecting after time $1
+# whose identity contains $2. iOS 26.5 logs "... connected to display", iOS 27
+# "Tracking connecting display ...".
+wait_for_display() {
+    for _ in $(seq 1 30); do
+        if xcrun simctl spawn "$UDID" log show --start "$1" --style compact \
+               --predicate "process == \"SpringBoard\" AND eventMessage CONTAINS \"$2\" AND (eventMessage CONTAINS \"connected to display\" OR eventMessage BEGINSWITH \"Tracking connecting display\")" \
+               2>/dev/null | grep -qF "$2"; then
+            return 0
+        fi
+        sleep 1
+    done
+    echo "warning: no display matching $2 connected within 30 s" >&2
+}
+
 if (( BOOT )); then
     xcrun simctl boot "$UDID" 2>/dev/null || true
     xcrun simctl bootstatus "$UDID" -b >/dev/null
     RESTARTED_AT=$(date "+%Y-%m-%d %H:%M:%S")
     xcrun simctl spawn "$UDID" launchctl kickstart -k user/foreground/com.apple.SpringBoard >/dev/null 2>&1 \
         || xcrun simctl spawn "$UDID" launchctl kickstart -k system/com.apple.SpringBoard >/dev/null 2>&1
-    # Wait for SpringBoard to come back and take the display again.
-    for _ in $(seq 1 30); do
-        if xcrun simctl spawn "$UDID" log show --start "$RESTARTED_AT" --style compact \
-               --predicate 'process == "SpringBoard" AND eventMessage CONTAINS "AirPlay[2-1]+<com.apple.springboard.noninteractive> connected to display"' \
-               2>/dev/null | grep -q "connected to display"; then
-            break
-        fi
-        sleep 1
-    done
+    wait_for_display "$RESTARTED_AT" '[2-1]'
+
+    xcrun simctl io "$UDID" screenConfig --display=2 power off >/dev/null
+    sleep 2
+    PLUGGED_AT=$(date "+%Y-%m-%d %H:%M:%S")
+    xcrun simctl io "$UDID" screenConfig --display=2 power on >/dev/null
+    wait_for_display "$PLUGGED_AT" 'AirPlay['
 fi
 echo "$UDID"

@@ -165,6 +165,18 @@ it back, and then no app gets an external scene. That looks exactly like an
 app bug.
 
 - Glasses screenshots: `xcrun simctl io <udid> screenshot --display=external out.png`.
+- **iOS 27**: apps built with the iOS 27 SDK get the glasses scene only from
+  the scene accessory `GlassesSceneAccessory` registers. The Info.plist entry
+  only serves iOS 26 and earlier. Make an iOS 27 glasses simulator with
+  `RUNTIME=com.apple.CoreSimulator.SimRuntime.iOS-27-0 NAME="iPhone 17 Pro
+  (Glasses 27)" scripts/make-glasses-simulator --boot`. `--boot` unplugs the
+  display and plugs it back in, because iOS 27 never offers a display
+  attached from boot to any app. Unplug and replug mid-session with
+  `xcrun simctl io <udid> screenConfig --display=2 power off` (then `on`).
+- `testGlassesSceneAccessory` is the short iOS 27 check: terminal on the
+  glasses under the full-screen cover, unplug (the phone takes the terminal
+  back), replug, minimize (glasses idle). It prints `GLASSES_UNPLUG` and
+  `GLASSES_PLUG` for the host to act on, and waits up to 120 s for each.
 - `testGlassesMode` runs on that simulator. A new simulator needs phase 1 (key)
   and the key authorized first. `createHost` makes the `mac` host on first connect.
 - The session's real pty size, from the Mac side:
@@ -200,8 +212,8 @@ app bug.
   from the Mac with `tmux -L g send-keys`, and compare the glasses screenshot
   with `tmux -L g capture-pane -p -t g`. Measured 2026-10-03: rows identical
   at 110x30, status line on the last row.
-- Unplugging can't be simulated (the display is attached from boot). Test the
-  no-display path on an ordinary simulator (`testPhase2KeyboardFix`,
+- Unplugging mid-session works with `screenConfig ... power off` (above). Also
+  test the never-plugged-in path on an ordinary simulator (`testPhase2KeyboardFix`,
   `testPhase4MinimizeAndRestore`, and `testPhoneSessionSwitching`, which
   writes `/tmp/pockterm-tab-1`, `-2` and `-1b` the same way).
 

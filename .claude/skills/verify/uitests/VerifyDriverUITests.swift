@@ -1323,6 +1323,42 @@ final class VerifyDriverUITests: XCTestCase {
         attach(app, name: "g5-all-closed")
     }
 
+    /// Glasses mode on iOS 27, where the glasses scene comes from the scene
+    /// accessory that GlassesSceneAccessory registers instead of the
+    /// Info.plist. Run it on an iOS 27 glasses simulator whose display was
+    /// plugged in after boot (`simctl io <udid> screenConfig --display=2 power
+    /// off`, then `on`). A display attached from boot ends up "Unknown" to
+    /// SpringBoard and never reaches any app. The host screenshots the glasses
+    /// at each checkpoint, and powers the display off at GLASSES_UNPLUG and
+    /// back on at GLASSES_PLUG.
+    func testGlassesSceneAccessory() throws {
+        let app = XCUIApplication()
+        app.launchArguments += ["-glassesFontSize", "18"]
+        app.launch()
+        try connectToMac(app)
+
+        // The terminal's cover is up, and the glasses still get the terminal.
+        let sizeMenu = app.buttons["Text Size on Glasses"]
+        XCTAssertTrue(sizeMenu.waitForExistence(timeout: 10), "not in glasses mode: \(app.debugDescription)")
+        app.typeText("stty size > /tmp/pockterm-glasses-size\n")
+        glassesCheckpoint("terminal")
+
+        // Unplugged: the phone takes the terminal back.
+        print("GLASSES_UNPLUG")
+        XCTAssertTrue(sizeMenu.waitForNonExistence(timeout: 120), "still in glasses mode after unplugging")
+        attach(app, name: "a1-unplugged")
+
+        // Plugged back in: glasses mode again.
+        print("GLASSES_PLUG")
+        XCTAssertTrue(sizeMenu.waitForExistence(timeout: 120), "glasses mode didn't come back")
+        glassesCheckpoint("replugged")
+
+        // Minimized: the cover goes, the glasses stay connected and go idle.
+        app.buttons["Minimize"].tap()
+        XCTAssertTrue(app.tabBars.buttons["Hosts"].waitForExistence(timeout: 10), app.debugDescription)
+        glassesCheckpoint("minimized")
+    }
+
     /// The session chips under the top bar, left to right. Every session to
     /// the Mac has the same title, so they're found by identifier.
     private func tabChip(_ app: XCUIApplication, at index: Int) -> XCUIElement {
