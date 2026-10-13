@@ -78,6 +78,8 @@ connect to. A public demo SSH host is standing by:
     Password: <DEMO_HOST_PASSWORD>
 
 Steps: open the Hosts tab → tap + → enter the above → Connect. You'll get a live shell.
+New in 1.9.1: one fix. On iOS 27, glasses mode only mirrored the phone onto an external
+display; it now gets its own screen, as on iOS 26.
 New in 1.9: with an external display connected (video glasses, or a USB-C monitor),
 the terminal moves to that screen and the phone shows the session's files with the
 keyboard typing into the terminal; without one, the app works exactly as before. The
