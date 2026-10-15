@@ -29005,19 +29005,19 @@
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "जब आप किसी सर्वर से पहली बार कनेक्ट करते हैं, तो Pockterm उसकी कुंजी का **फ़िंगरप्रिंट** दिखाता है और उसे स्वीकारने को कहता है। इसे trust on first use कहते हैं।"
+            "value": "जब आप किसी सर्वर से पहली बार कनेक्ट करते हैं, तो Pockterm उसकी कुंजी का **फ़िंगरप्रिंट** दिखाता है और उसे स्वीकारने को कहता है। इसे पहले उपयोग पर भरोसा (trust on first use) कहते हैं।"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "La prima volta che ti connetti a un server, Pockterm mostra il **fingerprint** della sua chiave e ti chiede di accettarlo. Questo si chiama trust on first use."
+            "value": "La prima volta che ti connetti a un server, Pockterm mostra il **fingerprint** della sua chiave e ti chiede di accettarlo. Questo si chiama fiducia al primo utilizzo (trust on first use)."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "サーバに初めて接続するとき、Pockterm はその鍵の**フィンガープリント**を表示し、受け入れるかどうかを尋ねます。これは trust on first use と呼ばれます。"
+            "value": "サーバに初めて接続するとき、Pockterm はその鍵の**フィンガープリント**を表示し、受け入れるかどうかを尋ねます。これは「初回利用時の信頼」（trust on first use）と呼ばれます。"
           }
         },
         "ko": {
@@ -29035,7 +29035,7 @@
         "te": {
           "stringUnit": {
             "state": "translated",
-            "value": "మీరు ఒక సర్వర్‌కు మొదటిసారి కనెక్ట్ అయినప్పుడు, Pockterm దాని కీ **వేలిముద్ర**ను చూపి, దాన్ని అంగీకరించమని అడుగుతుంది. దీన్ని trust on first use అంటారు."
+            "value": "మీరు ఒక సర్వర్‌కు మొదటిసారి కనెక్ట్ అయినప్పుడు, Pockterm దాని కీ **వేలిముద్ర**ను చూపి, దాన్ని అంగీకరించమని అడుగుతుంది. దీన్ని మొదటి వినియోగంలో నమ్మకం (trust on first use) అంటారు."
           }
         },
         "uk": {
