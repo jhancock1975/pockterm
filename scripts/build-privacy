@@ -1,0 +1,141 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""Build the pockterm.com privacy policy in every language the site ships.
+
+  scripts/build-privacy [--out DIR]
+
+site/privacy.html is the English policy and the template; site/privacy.json
+holds the translations, one entry per block of the template (the <title>, and
+each h1, h2, p and li), with the English HTML beside every language's.
+
+Blocks are matched on their English HTML, not their position. It is a privacy
+policy: when a sentence of the English changes, its old translations stop
+matching and the build stops, rather than putting a page up that still
+promises what the English no longer does. Retranslate the changed block in
+privacy.json, for every language, in the same commit. Blocks marked
+translate="no" (the providers' names) are copied as they are.
+
+The rest of the page is shared with the other generators: the language list
+and page names from scripts/site_langs.py, and the "Language", "User Guide"
+and "Source code" labels from the landing pages' site/content.json, so the
+three kinds of page use the same words.
+
+English stays at /privacy.html, which is the Privacy Policy URL App Store
+Connect has on file; the other languages are privacy-<code>.html, the way the
+manual is manual-<code>.html. Flat files, for the CloudFront reason given in
+scripts/build-site.
+
+Deploy is not automated, as with the landing pages. Upload with:
+
+  aws s3 cp <file> s3://pockterm-site-071350569379/ \\
+      --content-type "text/html; charset=utf-8" --cache-control "public, max-age=300"
+  aws cloudfront create-invalidation --distribution-id EZUC486Q5M7TE --paths "/*"
+"""
+import argparse
+import json
+import pathlib
+import re
+import sys
+
+from site_langs import (ORDER, RTL, SITE, SOURCE, alternates, home, html_attrs,
+                        langbar, manual, privacy)
+
+ROOT = pathlib.Path(__file__).resolve().parent.parent
+TEMPLATE = ROOT / "site/privacy.html"
+TRANSLATIONS = ROOT / "site/privacy.json"
+CONTENT = ROOT / "site/content.json"
+
+BLOCK = re.compile(r"<(title|h1|h2|p|li)(\s[^>]*)?>(.*?)</\1>", re.S)
+# Landing-page text nodes reused for the footer (see site/content.json).
+GUIDE, SOURCE_CODE = "46", "48"
+
+
+def page_name(code):
+    return privacy(code).lstrip("/")
+
+
+def sub_once(pattern, replacement, text):
+    """Replace exactly one match, so a changed template fails loudly."""
+    new, n = re.subn(pattern, lambda _: replacement, text, count=1, flags=re.S)
+    if n != 1:
+        sys.exit(f"privacy template has no match for {pattern!r}")
+    return new
+
+
+def units(template):
+    """The template's translatable blocks, as English HTML, in order."""
+    return [m.group(3) for m in BLOCK.finditer(template)
+            if 'translate="no"' not in (m.group(2) or "")]
+
+
+def build(code, template, table, content, missing):
+    def repl(m):
+        tag, attrs, inner = m.group(1), m.group(2) or "", m.group(3)
+        if code == "en" or 'translate="no"' in attrs:
+            return m.group(0)
+        text = table.get(inner, {}).get(code)
+        if not text:
+            missing.append((code, inner))
+            return m.group(0)
+        return f"<{tag}{attrs}>{text}</{tag}>"
+    page = BLOCK.sub(repl, template)
+
+    strings = content["strings"][code]
+    page = sub_once(r'<nav class="langbar".*?</nav>',
+                    langbar(code, content["switch_label"][code], privacy), page)
+    url = SITE + privacy(code)
+    page = sub_once(r'<link rel="canonical" href="[^"]*">',
+                    f'<link rel="canonical" href="{url}">', page)
+    page = sub_once(r'<link rel="alternate"[^>]*>(\s*<link rel="alternate"[^>]*>)*',
+                    "\n".join(alternates(privacy)), page)
+    # The home link points back the way the page reads.
+    arrow = "&rarr;" if code in RTL else "&larr;"
+    for old, new in (
+            ('<a class="home" href="/">&larr; Pockterm</a>',
+             f'<a class="home" href="{home(code)}">{arrow} Pockterm</a>'),
+            ('<a href="/">Pockterm</a>', f'<a href="{home(code)}">Pockterm</a>'),
+            ('<a href="/manual.html">User Guide</a>',
+             f'<a href="{manual(code)}">{strings[GUIDE]}</a>'),
+            (f'<a href="{SOURCE}">Source code</a>',
+             f'<a href="{SOURCE}">{strings[SOURCE_CODE]}</a>')):
+        page = sub_once(re.escape(old), new, page)
+    page = sub_once(r'<html[^>]*>', f'<html {html_attrs(code)}>', page)
+    return page
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--out", default="build/site")
+    args = ap.parse_args()
+    template = TEMPLATE.read_text(encoding="utf-8")
+    content = json.loads(CONTENT.read_text(encoding="utf-8"))
+    table = {b["en"]: b for b in
+             json.loads(TRANSLATIONS.read_text(encoding="utf-8"))["blocks"]}
+
+    english = units(template)
+    stale = [en for en in table if en not in english]
+    if stale:
+        print(f"{len(stale)} translated blocks no longer in the template "
+              "(delete them from site/privacy.json):")
+        for en in stale:
+            print(f"  {en[:90]}")
+
+    out = pathlib.Path(args.out)
+    out.mkdir(parents=True, exist_ok=True)
+    missing = []
+    for code in ORDER:
+        page = build(code, template, table, content, missing)
+        (out / page_name(code)).write_text(page, encoding="utf-8")
+        print(f"  {page_name(code):<20} {len(page):>6} chars")
+
+    if missing:
+        print(f"\n{len(missing)} blocks have no translation:")
+        for code, en in missing[:30]:
+            print(f"  {code:8} {en[:80]}")
+        sys.exit("refusing to leave English in a translated privacy policy; "
+                 "add the blocks to site/privacy.json")
+    print(f"\n{len(ORDER)} pages -> {out}")
+
+
+if __name__ == "__main__":
+    main()

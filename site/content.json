@@ -511,6 +511,68 @@
    "52": "© 2026 John Hancock. Pockterm — iPhone కోసం SSH మరియు SFTP."
   }
  },
+ "head": {
+  "en": {
+   "title": "Pockterm — SSH & SFTP for iPhone",
+   "description": "A native SSH and SFTP client for iPhone. Free, with no account, no subscription and no tracking."
+  },
+  "es": {
+   "title": "Pockterm — SSH y SFTP para iPhone",
+   "description": "Un cliente SSH y SFTP nativo para iPhone. Gratis, sin cuenta, sin suscripción y sin rastreo."
+  },
+  "fr": {
+   "title": "Pockterm — SSH et SFTP pour iPhone",
+   "description": "Un client SSH et SFTP natif pour iPhone. Gratuit, sans compte, sans abonnement et sans suivi."
+  },
+  "it": {
+   "title": "Pockterm — SSH e SFTP per iPhone",
+   "description": "Un client SSH e SFTP nativo per iPhone. Gratis, senza account, senza abbonamento e senza tracciamento."
+  },
+  "el": {
+   "title": "Pockterm — SSH και SFTP για iPhone",
+   "description": "Ένας εγγενής πελάτης SSH και SFTP για iPhone. Δωρεάν, χωρίς λογαριασμό, χωρίς συνδρομή και χωρίς παρακολούθηση."
+  },
+  "ru": {
+   "title": "Pockterm — SSH и SFTP для iPhone",
+   "description": "Нативный SSH- и SFTP-клиент для iPhone. Бесплатно, без учётной записи, без подписки и без отслеживания."
+  },
+  "uk": {
+   "title": "Pockterm — SSH і SFTP для iPhone",
+   "description": "Нативний SSH- і SFTP-клієнт для iPhone. Безкоштовно, без облікового запису, без підписки й без стеження."
+  },
+  "ar": {
+   "title": "Pockterm — SSH و SFTP لـ iPhone",
+   "description": "عميل SSH وSFTP أصلي لـ iPhone. مجاني، بلا حساب ولا اشتراك ولا تتبّع."
+  },
+  "he": {
+   "title": "Pockterm — SSH ו-SFTP ל-iPhone",
+   "description": "לקוח SSH ו-SFTP נייטיב ל-iPhone. חינם, בלי חשבון, בלי מנוי ובלי מעקב."
+  },
+  "hi": {
+   "title": "Pockterm — iPhone के लिए SSH और SFTP",
+   "description": "iPhone के लिए एक नेटिव SSH और SFTP क्लाइंट। मुफ़्त — कोई खाता नहीं, कोई सदस्यता नहीं और कोई ट्रैकिंग नहीं।"
+  },
+  "te": {
+   "title": "Pockterm — iPhone కోసం SSH మరియు SFTP",
+   "description": "iPhone కోసం నేటివ్ SSH మరియు SFTP క్లయింట్. ఉచితం — ఖాతా లేదు, సబ్‌స్క్రిప్షన్ లేదు, ట్రాకింగ్ లేదు."
+  },
+  "ja": {
+   "title": "Pockterm — iPhone のための SSH・SFTP",
+   "description": "iPhone 向けのネイティブな SSH・SFTP クライアント。無料で、アカウント不要、サブスクなし、トラッキングなし。"
+  },
+  "ko": {
+   "title": "Pockterm — iPhone을 위한 SSH·SFTP",
+   "description": "iPhone을 위한 네이티브 SSH·SFTP 클라이언트. 무료이며 계정, 구독, 추적이 없습니다."
+  },
+  "zh-Hans": {
+   "title": "Pockterm — 适用于 iPhone 的 SSH 与 SFTP",
+   "description": "适用于 iPhone 的原生 SSH 与 SFTP 客户端。免费，无需账户，没有订阅，没有追踪。"
+  },
+  "zh-Hant": {
+   "title": "Pockterm — 適用於 iPhone 的 SSH 與 SFTP",
+   "description": "適用於 iPhone 的原生 SSH 與 SFTP 用戶端。免費，免帳號，沒有訂閱，沒有追蹤。"
+  }
+ },
  "switch_label": {
   "en": "Language",
   "es": "Idioma",
@@ -527,26 +589,5 @@
   "ko": "언어",
   "hi": "भाषा",
   "te": "భాష"
- },
- "native": {
-  "en": "English",
-  "es": "Español",
-  "ar": "العربية",
-  "he": "עברית",
-  "zh-Hans": "简体中文",
-  "zh-Hant": "繁體中文",
-  "it": "Italiano",
-  "fr": "Français",
-  "el": "Ελληνικά",
-  "ru": "Русский",
-  "uk": "Українська",
-  "ja": "日本語",
-  "ko": "한국어",
-  "hi": "हिन्दी",
-  "te": "తెలుగు"
- },
- "rtl": [
-  "ar",
-  "he"
- ]
+ }
 }

@@ -25,101 +25,98 @@ import sys
 import tempfile
 from pathlib import Path
 
+# The languages, their switcher order and the page names are shared with the
+# landing pages and the privacy policy.
+from site_langs import (APP_STORE, LANGS, SITE, SOURCE, alternates, home,
+                        html_attrs, langbar, manual, privacy)
+
 ROOT = Path(__file__).resolve().parent.parent
 HELP = ROOT / "pockterm/Features/Help/HelpContent.swift"
 CATALOG = ROOT / "pockterm/Localizable.xcstrings"
 
 BUCKET = "s3://pockterm-site-071350569379/"
 DISTRIBUTION = "EZUC486Q5M7TE"
-APP_STORE = "https://apps.apple.com/app/id6789968094"
 
-# (code, endonym, direction) — order the language switcher shows them in,
-# matching the landing pages.
-LANGS = [
-    ("en", "English", "ltr"),
-    ("es", "Español", "ltr"),
-    ("ar", "العربية", "rtl"),
-    ("he", "עברית", "rtl"),
-    ("zh-Hans", "简体中文", "ltr"),
-    ("zh-Hant", "繁體中文", "ltr"),
-    ("it", "Italiano", "ltr"),
-    ("fr", "Français", "ltr"),
-    ("el", "Ελληνικά", "ltr"),
-    ("ru", "Русский", "ltr"),
-    ("uk", "Українська", "ltr"),
-    ("ja", "日本語", "ltr"),
-    ("ko", "한국어", "ltr"),
-    ("hi", "हिन्दी", "ltr"),
-    ("te", "తెలుగు", "ltr"),
-]
 
 def page(code):
-    return "manual.html" if code == "en" else f"manual-{code}.html"
-
-def home(code):
-    return "/" if code == "en" else f"/{code}.html"
+    return manual(code).lstrip("/")
 
 # Page chrome. The guide's own text comes from the catalog; only the wrapper
 # around it is written here. Footer strings match the landing pages verbatim.
 CHROME = {
     "en": dict(guide="User Guide", contents="Contents", lang="Language",
                sub="Everything in the app's built-in guide, on one page.",
+               source="Source code",
                privacy="Privacy", contact="Contact",
                foot="© 2026 John Hancock. Pockterm — SSH &amp; SFTP for iPhone."),
     "es": dict(guide="Guía del usuario", contents="Contenido", lang="Idioma",
                sub="Toda la guía integrada en la app, en una sola página.",
+               source="Código fuente",
                privacy="Privacidad", contact="Contacto",
                foot="© 2026 John Hancock. Pockterm — SSH y SFTP para iPhone."),
     "ar": dict(guide="دليل المستخدم", contents="المحتويات", lang="اللغة",
                sub="كل ما في دليل التطبيق المدمج، في صفحة واحدة.",
+               source="الشيفرة المصدرية",
                privacy="الخصوصية", contact="اتصل بنا",
                foot="© 2026 John Hancock. Pockterm — SSH و SFTP لـ iPhone."),
     "he": dict(guide="מדריך למשתמש", contents="תוכן העניינים", lang="שפה",
                sub="כל המדריך המובנה באפליקציה, בעמוד אחד.",
+               source="קוד מקור",
                privacy="פרטיות", contact="צור קשר",
                foot="© 2026 John Hancock. Pockterm — SSH ו-SFTP ל-iPhone."),
     "zh-Hans": dict(guide="用户指南", contents="目录", lang="语言",
                     sub="应用内置指南的全部内容，集中在一页。",
+                    source="源代码",
                     privacy="隐私", contact="联系",
                     foot="© 2026 John Hancock. Pockterm — 适用于 iPhone 的 SSH 与 SFTP。"),
     "zh-Hant": dict(guide="使用手冊", contents="目錄", lang="語言",
                     sub="App 內建說明的全部內容，集中在一頁。",
+                    source="原始碼",
                     privacy="隱私", contact="聯絡",
                     foot="© 2026 John Hancock. Pockterm — 適用於 iPhone 的 SSH 與 SFTP。"),
     "it": dict(guide="Guida utente", contents="Indice", lang="Lingua",
                sub="Tutta la guida integrata nell'app, in una sola pagina.",
+               source="Codice sorgente",
                privacy="Privacy", contact="Contatti",
                foot="© 2026 John Hancock. Pockterm — SSH e SFTP per iPhone."),
     "fr": dict(guide="Guide de l'utilisateur", contents="Sommaire", lang="Langue",
                sub="Tout le guide intégré à l'app, sur une seule page.",
+               source="Code source",
                privacy="Confidentialité", contact="Contact",
                foot="© 2026 John Hancock. Pockterm — SSH et SFTP pour iPhone."),
     "el": dict(guide="Οδηγός χρήσης", contents="Περιεχόμενα", lang="Γλώσσα",
                sub="Όλος ο ενσωματωμένος οδηγός της εφαρμογής, σε μία σελίδα.",
+               source="Πηγαίος κώδικας",
                privacy="Απόρρητο", contact="Επικοινωνία",
                foot="© 2026 John Hancock. Pockterm — SSH και SFTP για iPhone."),
     "ru": dict(guide="Руководство пользователя", contents="Содержание", lang="Язык",
                sub="Всё встроенное руководство приложения на одной странице.",
+               source="Исходный код",
                privacy="Конфиденциальность", contact="Связаться",
                foot="© 2026 John Hancock. Pockterm — SSH и SFTP для iPhone."),
     "uk": dict(guide="Посібник користувача", contents="Зміст", lang="Мова",
                sub="Увесь вбудований посібник застосунку на одній сторінці.",
+               source="Вихідний код",
                privacy="Приватність", contact="Зв'язатися",
                foot="© 2026 John Hancock. Pockterm — SSH і SFTP для iPhone."),
     "ja": dict(guide="ユーザガイド", contents="目次", lang="言語",
                sub="アプリ内蔵ガイドのすべてを 1 ページに。",
+               source="ソースコード",
                privacy="プライバシー", contact="お問い合わせ",
                foot="© 2026 John Hancock. Pockterm — iPhone のための SSH・SFTP。"),
     "ko": dict(guide="사용 설명서", contents="목차", lang="언어",
                sub="앱에 내장된 안내 전체를 한 페이지에.",
+               source="소스 코드",
                privacy="개인정보 보호", contact="문의",
                foot="© 2026 John Hancock. Pockterm — iPhone을 위한 SSH·SFTP."),
     "hi": dict(guide="उपयोगकर्ता गाइड", contents="विषय-सूची", lang="भाषा",
                sub="ऐप की अंतर्निर्मित गाइड पूरी, एक ही पृष्ठ पर।",
+               source="सोर्स कोड",
                privacy="निजता", contact="संपर्क",
                foot="© 2026 John Hancock. Pockterm — iPhone के लिए SSH और SFTP।"),
     "te": dict(guide="వినియోగదారు గైడ్", contents="విషయ సూచిక", lang="భాష",
                sub="యాప్‌లోని పూర్తి గైడ్, ఒకే పేజీలో.",
+               source="సోర్స్ కోడ్",
                privacy="గోప్యత", contact="సంప్రదించండి",
                foot="© 2026 John Hancock. Pockterm — iPhone కోసం SSH మరియు SFTP."),
 }
@@ -300,17 +297,6 @@ FAVICON = ("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='
            "<path d='M16.5 21h7' stroke='%2340d17f' stroke-width='2.5' stroke-linecap='round'/></svg>")
 
 
-def langbar(current, label):
-    items = []
-    for code, name, _ in LANGS:
-        if code == current:
-            items.append(f'<span aria-current="true" lang="{code}">{name}</span>')
-        else:
-            items.append(f'<a href="/{page(code)}" lang="{code}" hreflang="{code}">{name}</a>')
-    return (f'<nav class="langbar" aria-label="{label}">'
-            f'<span class="lb-label">{label}</span>' + "".join(items) + "</nav>")
-
-
 def build(code, direction, sections, catalog, missing):
     c = CHROME[code]
 
@@ -349,26 +335,22 @@ def build(code, direction, sections, catalog, missing):
                     body.append("    </ul>")
             body.append("  </article>")
 
-    alternates = "\n".join(
-        f'<link rel="alternate" hreflang="{c2}" href="https://pockterm.com/{page(c2)}">'
-        for c2, _, _ in LANGS)
+    links = "\n".join(alternates(manual))
     arrow = "&rarr;" if direction == "rtl" else "&larr;"
     title = f"{c['guide']} — Pockterm"
-    dir_attr = ' dir="rtl"' if direction == "rtl" else ""
 
     return f"""<!doctype html>
-<html lang="{code}"{dir_attr}>
+<html {html_attrs(code)}>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{title}</title>
 <meta name="description" content="{html.escape(c['sub'], quote=True)}">
-<link rel="canonical" href="https://pockterm.com/{page(code)}">
-{alternates}
-<link rel="alternate" hreflang="x-default" href="https://pockterm.com/manual.html">
+<link rel="canonical" href="{SITE}{manual(code)}">
+{links}
 <meta property="og:title" content="{title}">
 <meta property="og:description" content="{html.escape(c['sub'], quote=True)}">
-<meta property="og:url" content="https://pockterm.com/{page(code)}">
+<meta property="og:url" content="{SITE}{manual(code)}">
 <meta property="og:type" content="article">
 <meta name="twitter:card" content="summary">
 <link rel="icon" href="{FAVICON}">
@@ -387,7 +369,7 @@ def build(code, direction, sections, catalog, missing):
     <p class="tag">{c['sub']}</p>
   </header>
 
-  {langbar(code, c['lang'])}
+  {langbar(code, c['lang'], manual)}
 
   <nav class="toc" aria-label="{c['contents']}">
     <h2>{c['contents']}</h2>
@@ -398,7 +380,8 @@ def build(code, direction, sections, catalog, missing):
 
   <footer>
     <a href="{home(code)}">Pockterm</a>
-    <a href="/privacy.html">{c['privacy']}</a>
+    <a href="{SOURCE}">{c['source']}</a>
+    <a href="{privacy(code)}">{c['privacy']}</a>
     <a href="{APP_STORE}">App&nbsp;Store</a>
     <a href="mailto:jhancock1975@gmail.com">{c['contact']}</a>
     <p style="margin:1.2rem 0 0;">{c['foot']}</p>

@@ -9,6 +9,15 @@ translated copy, keyed by the index of each text node in that template. Both
 live in the repo on purpose: the first generator lived only in a session
 scratchpad and was lost, after which the deployed S3 objects were the sole copy.
 
+The <head> is not text nodes, so its copy is kept separately under "head" in
+content.json, as plain text (it is escaped here): the <title> and meta
+description, which og:title and og:description repeat. canonical and og:url
+are each page's own URL, not the home page's, or search engines fold every
+language into the English page.
+
+The language list, its order and the page names come from scripts/site_langs.py,
+shared with build-manual and build-privacy.
+
 Flat files (es.html rather than es/index.html) because CloudFront applies its
 default root object only at the root, so a directory URL 404s against an S3
 origin behind OAC — the same reason scripts/build-manual emits flat files.
@@ -27,13 +36,14 @@ import pathlib
 import re
 import sys
 
+from site_langs import ORDER, SITE, alternates, home, html_attrs, langbar, manual, privacy
+
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 TEMPLATE = ROOT / "site/index.html"
 CONTENT = ROOT / "site/content.json"
 # Every shipped language now has its own demo cut (scripts/build-demo-videos),
 # so no page falls back to the English one.
-HAS_VIDEO = {"en", "es", "fr", "it", "el", "ru", "uk", "ar", "he",
-             "hi", "te", "ja", "ko", "zh-Hans", "zh-Hant"}
+HAS_VIDEO = set(ORDER)
 
 NODE = re.compile(r">([^<>]{1,300})<")
 UNSPACED = {"ja", "zh-Hans", "zh-Hant"}
@@ -43,30 +53,23 @@ def page_name(code):
     return "index.html" if code == "en" else f"{code}.html"
 
 
-def home(code):
-    return "/" if code == "en" else f"/{code}.html"
-
-
-def manual(code):
-    return "/manual.html" if code == "en" else f"/manual-{code}.html"
-
-
 def video(code):
     return "/pockterm-demo.mp4" if code not in HAS_VIDEO or code == "en" \
         else f"/pockterm-demo-{code}.mp4"
 
 
-def switcher(code, data):
-    """The language row: current language as text, the others as links."""
-    parts = [f'<span class="lb-label">{data["switch_label"][code]}</span>']
-    for other in data["order"]:
-        name = data["native"][other]
-        if other == code:
-            parts.append(f'<span aria-current="true" lang="{other}">{name}</span>')
-        else:
-            parts.append(f'<a href="{home(other)}" lang="{other}" '
-                         f'hreflang="{other}">{name}</a>')
-    return "".join(parts)
+def attr(text):
+    """Plain text -> safe inside a double-quoted attribute or <title>."""
+    return (text.replace("&", "&amp;").replace("<", "&lt;")
+            .replace(">", "&gt;").replace('"', "&quot;"))
+
+
+def sub_once(pattern, replacement, text):
+    """Replace exactly one match, so a changed template fails loudly."""
+    new, n = re.subn(pattern, lambda _: replacement, text, count=1, flags=re.S)
+    if n != 1:
+        sys.exit(f"template has no match for {pattern!r}")
+    return new
 
 
 def build(code, template, data):
@@ -98,25 +101,35 @@ def build(code, template, data):
         return m.group(0)
     body = NODE.sub(repl, body)
 
-    # Replace the whole switcher region rather than its nodes: the number of
-    # languages differs from the template's.
-    body = re.sub(r'<span class="lb-label">.*?</a>(?=\s*</)',
-                  switcher(code, data), body, count=1, flags=re.S)
+    # Replace the whole switcher rather than its nodes: the number of
+    # languages differs from the template's, and its aria-label is copy too.
+    body = sub_once(r'<nav class="langbar".*?</nav>',
+                    langbar(code, data["switch_label"][code], home), body)
 
-    # Rewrite the head's hreflang alternates too, or search engines keep being
-    # told only the original six pages exist.
-    alts = "".join(
-        f'<link rel="alternate" hreflang="{c}" '
-        f'href="https://pockterm.com{home(c)}">' for c in data["order"])
-    alts += '<link rel="alternate" hreflang="x-default" href="https://pockterm.com/">'
-    head = re.sub(r'<link rel="alternate"[^>]*>(\s*<link rel="alternate"[^>]*>)*',
-                  alts, head, count=1)
+    # The head: copy, then this page's own URL, then the hreflang alternates
+    # (or search engines keep being told only the original six pages exist).
+    copy = data["head"][code]
+    title, description = attr(copy["title"]), attr(copy["description"])
+    url = SITE + home(code)
+    head = sub_once(r"<title>.*?</title>", f"<title>{title}</title>", head)
+    head = sub_once(r'<meta name="description" content="[^"]*">',
+                    f'<meta name="description" content="{description}">', head)
+    head = sub_once(r'<meta property="og:title" content="[^"]*">',
+                    f'<meta property="og:title" content="{title}">', head)
+    head = sub_once(r'<meta property="og:description" content="[^"]*">',
+                    f'<meta property="og:description" content="{description}">', head)
+    head = sub_once(r'<link rel="canonical" href="[^"]*">',
+                    f'<link rel="canonical" href="{url}">', head)
+    head = sub_once(r'<meta property="og:url" content="[^"]*">',
+                    f'<meta property="og:url" content="{url}">', head)
+    head = sub_once(r'<link rel="alternate"[^>]*>(\s*<link rel="alternate"[^>]*>)*',
+                    "".join(alternates(home)), head)
 
     page = head + body
     page = page.replace('href="/manual.html"', f'href="{manual(code)}"')
+    page = page.replace('href="/privacy.html"', f'href="{privacy(code)}"')
     page = page.replace('href="/pockterm-demo.mp4"', f'href="{video(code)}"')
-    direction = ' dir="rtl"' if code in data["rtl"] else ""
-    page = re.sub(r'<html[^>]*>', f'<html lang="{code}"{direction}>', page, count=1)
+    page = sub_once(r'<html[^>]*>', f'<html {html_attrs(code)}>', page)
     return page
 
 
@@ -125,23 +138,23 @@ def main():
     ap.add_argument("--out", default="build/site")
     args = ap.parse_args()
     data = json.loads(CONTENT.read_text())
-    data["order"] = ["en", "es", "fr", "it", "el", "ru", "uk", "ar", "he",
-                     "hi", "te", "ja", "ko", "zh-Hans", "zh-Hant"]
-    missing = [c for c in data["order"] if c not in data["strings"]]
+    missing = [c for c in ORDER
+               if c not in data["strings"] or c not in data["head"]]
     if missing:
         sys.exit(f"no copy for: {missing}")
     template = TEMPLATE.read_text()
     out = pathlib.Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
-    for code in data["order"]:
+    for code in ORDER:
         page = build(code, template, data)
         left = [s for s in ("What it does", "Why it exists.", "Requires iOS 18",
-                            "Source code")
+                            "Source code", "A native SSH and SFTP client",
+                            'aria-label="Language"')
                 if code != "en" and s in page]
         (out / page_name(code)).write_text(page)
         print(f"  {page_name(code):<16} {len(page):>6} bytes"
               f"{'  UNTRANSLATED: ' + ', '.join(left) if left else ''}")
-    print(f"\n{len(data['order'])} pages -> {out}")
+    print(f"\n{len(ORDER)} pages -> {out}")
 
 
 if __name__ == "__main__":
