@@ -4,6 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Pockterm Privacy Policy</title>
+<link rel="canonical" href="https://pockterm.com/privacy.html">
+<link rel="alternate" hreflang="en" href="https://pockterm.com/privacy.html">
+<link rel="alternate" hreflang="x-default" href="https://pockterm.com/privacy.html">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%230b1220'/><path d='M8 11l4.5 4.5L8 20' stroke='%2340d17f' stroke-width='2.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/><path d='M16.5 21h7' stroke='%2340d17f' stroke-width='2.5' stroke-linecap='round'/></svg>">
 <style>
   :root { color-scheme: light dark; }
   body {
@@ -14,20 +18,36 @@
   h2 { font-size: 1.2rem; margin-top: 2rem; }
   .updated { color: #6b6b70; font-size: .9rem; margin-top: 0; }
   a { color: #0a66c2; }
-  ul { padding-left: 1.25rem; }
+  ul { padding-inline-start: 1.25rem; }
   li { margin: .3rem 0; }
   code { background: rgba(127,127,127,.15); padding: .1em .35em; border-radius: 4px; }
+  .home { display: inline-block; margin: 0 0 1.5rem; font-size: .92rem;
+          text-decoration: none; color: #6b6b70; }
+  .home:hover { color: #0a66c2; }
+  .langbar { display: flex; flex-wrap: wrap; gap: .1rem .25rem; align-items: center;
+             padding: .55rem 0 0; margin: 1rem 0 0; border-top: 1px solid rgba(127,127,127,.25);
+             font-size: .9rem; }
+  .langbar .lb-label { color: #6b6b70; margin-inline-end: .45rem; font-size: .8rem;
+                       text-transform: uppercase; letter-spacing: .06em; }
+  .langbar a, .langbar span[aria-current] { padding: .15rem .45rem; border-radius: 6px; }
+  .langbar a { text-decoration: none; }
+  .langbar a:hover { text-decoration: underline; }
+  .langbar span[aria-current] { font-weight: 600; background: rgba(127,127,127,.15); }
   footer { margin-top: 3rem; font-size: .85rem; color: #6b6b70; }
+  footer a { margin-inline-end: 1.2rem; }
+  footer p { margin: 1rem 0 0; }
   @media (prefers-color-scheme: dark) {
     body { color: #e6e6ea; background: #1c1c1e; }
-    .updated, footer { color: #9a9aa0; }
-    a { color: #4aa3ff; }
+    .updated, footer, .home, .langbar .lb-label { color: #9a9aa0; }
+    a, .home:hover { color: #4aa3ff; }
   }
 </style>
 </head>
 <body>
+<a class="home" href="/">&larr; Pockterm</a>
 <h1>Pockterm Privacy Policy</h1>
 <p class="updated">Last updated: 11 July 2026</p>
+<nav class="langbar" aria-label="Language"><span class="lb-label">Language</span><span aria-current="true" lang="en">English</span></nav>
 
 <p>Pockterm is an SSH/SFTP terminal client for iPhone. This policy explains what data the app handles.</p>
 
@@ -51,10 +71,10 @@
 <p>The AI Assistant is optional and off until you configure it. When you use it, Pockterm sends the relevant terminal output and any files you attach to the model provider you have selected — <strong>Anthropic, OpenAI, OpenRouter, or Hugging Face</strong> — authenticated with the API key you provide. The app tells you which provider will receive the data before it is sent.</p>
 <p>Pockterm does not receive or store a copy of this data on any Pockterm server. How the provider handles it is governed by that provider's own privacy policy:</p>
 <ul>
-  <li><a href="https://www.anthropic.com/legal/privacy">Anthropic</a></li>
-  <li><a href="https://openai.com/policies/privacy-policy">OpenAI</a></li>
-  <li><a href="https://openrouter.ai/privacy">OpenRouter</a></li>
-  <li><a href="https://huggingface.co/privacy">Hugging Face</a></li>
+  <li translate="no"><a href="https://www.anthropic.com/legal/privacy">Anthropic</a></li>
+  <li translate="no"><a href="https://openai.com/policies/privacy-policy">OpenAI</a></li>
+  <li translate="no"><a href="https://openrouter.ai/privacy">OpenRouter</a></li>
+  <li translate="no"><a href="https://huggingface.co/privacy">Hugging Face</a></li>
 </ul>
 
 <h2>Analytics and tracking</h2>
@@ -66,6 +86,12 @@
 <h2>Contact</h2>
 <p>Questions about this policy: <a href="mailto:jhancock1975@gmail.com">jhancock1975@gmail.com</a></p>
 
-<footer>Pockterm — SSH &amp; SFTP client for iPhone.</footer>
+<footer>
+  <a href="/">Pockterm</a>
+  <a href="/manual.html">User Guide</a>
+  <a href="https://github.com/jhancock1975/pockterm">Source code</a>
+  <a href="https://apps.apple.com/app/id6789968094">App&nbsp;Store</a>
+  <p>Pockterm — SSH &amp; SFTP client for iPhone.</p>
+</footer>
 </body>
 </html>

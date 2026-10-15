@@ -96,11 +96,11 @@
   .card h3 { margin: 0 0 .4rem; font-size: 1.02rem; }
   .card p { margin: 0; color: var(--muted); font-size: .95rem; line-height: 1.55; }
 
-  .why { border-left: 3px solid var(--line); padding-left: 1.3rem; margin: 3.5rem 0; color: var(--muted); }
+  .why { border-inline-start: 3px solid var(--line); padding-inline-start: 1.3rem; margin: 3.5rem 0; color: var(--muted); }
   .why strong { color: var(--fg); }
 
   footer { border-top: 1px solid var(--line); margin-top: 4.5rem; padding: 2rem 0 3.5rem; color: var(--muted); font-size: .9rem; }
-  footer a { margin-right: 1.2rem; }
+  footer a { margin-inline-end: 1.2rem; }
   code { background: rgba(127,127,127,.15); padding: .1em .35em; border-radius: 4px; font-size: .92em; }
 
   .langbar {
@@ -145,7 +145,7 @@
 
   <nav class="langbar" aria-label="Language"><span class="lb-label">Language</span><span aria-current="true" lang="en">English</span><a href="/es.html" lang="es" hreflang="es">Español</a><a href="/ar.html" lang="ar" hreflang="ar">العربية</a><a href="/he.html" lang="he" hreflang="he">עברית</a><a href="/zh-Hans.html" lang="zh-Hans" hreflang="zh-Hans">简体中文</a><a href="/zh-Hant.html" lang="zh-Hant" hreflang="zh-Hant">繁體中文</a></nav>
 
-  <div class="term">
+  <div class="term" dir="ltr">
     <div class="term-bar"><i class="dot"></i><i class="dot"></i><i class="dot"></i></div>
 <pre><span class="g">john@homelab</span>:<span class="d">~</span>$ htop
 <span class="d">  1  [|||||||||       28.4%]   Tasks: 94, 212 thr
@@ -185,7 +185,7 @@
   </div>
 
   <div class="why">
-    <p><strong>Why it exists.</strong> None of the free iPhone terminals did what I wanted: <code>vim</code>, <code>htop</code> and <code>tmux</code> all came out garbled. Pockterm renders them properly, keeps your keys in the iOS Keychain, and asks nothing of you in return — no account to create, nothing to subscribe to.</p>
+    <p><strong>Why it exists.</strong> None of the free iPhone terminals did what I wanted: <code dir="ltr">vim</code>, <code dir="ltr">htop</code> and <code dir="ltr">tmux</code> all came out garbled. Pockterm renders them properly, keeps your keys in the iOS Keychain, and asks nothing of you in return — no account to create, nothing to subscribe to.</p>
   </div>
 
   <footer>
