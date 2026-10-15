@@ -79,6 +79,15 @@ CAPPED = {
     "bigint": "held <6.0.0 by Citadel; 6.x is a WASI fix and test migration, no iOS benefit",
     "citadel": "held at 0.12.0; 0.12.1 declares a third-party swift-nio-ssh fork",
     "swift-nio-ssh": "held <0.4.0 by Citadel; declared at the root, not inherited",
+    # SwiftTerm 1.99.0 is the 2.0 preview. It removes TerminalView.getTerminal(),
+    # which six of our call sites use, three of them with no public replacement
+    # yet (applicationCursor, setTerminalFocus, cursorStyleChanged's Terminal).
+    # It also resolves two unvetted packages, rarestype/h and
+    # tayloraswift/swift-png (not compiled for iOS, but still resolved). The
+    # requirement is a range below 1.99.0, so resolution cannot pick it up.
+    # It does carry #707, the margin-mode fix; MarginModeFilter covers that
+    # until we migrate. Measured 2026-10-15, see docs/backlog.md.
+    "swiftterm": "held <1.99.0; the 2.0 preview removes getTerminal() and adds unvetted packages",
 }
 
 # ---------------------------------------------------------------- trust policy

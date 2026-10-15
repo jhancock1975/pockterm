@@ -28,8 +28,10 @@ def add_pkg(project, app, url, requirement, product)
   app.frameworks_build_phase.files << bf
 end
 
+# Held below 1.99.0, the 2.0 preview, which removes getTerminal(); see the
+# SwiftTerm hold in docs/backlog.md.
 add_pkg(project, app, 'https://github.com/migueldeicaza/SwiftTerm.git',
-        { kind: 'upToNextMajorVersion', minimumVersion: '1.2.0' }, 'SwiftTerm')
+        { kind: 'versionRange', minimumVersion: '1.20.0', maximumVersion: '1.99.0' }, 'SwiftTerm')
 add_pkg(project, app, 'https://github.com/orlandos-nl/Citadel.git',
         { kind: 'upToNextMajorVersion', minimumVersion: '0.8.0' }, 'Citadel')
 # swift-crypto is pulled in transitively by Citadel, but SSHEngine needs to

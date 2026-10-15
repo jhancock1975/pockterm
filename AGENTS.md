@@ -91,17 +91,21 @@ mode — which is what garbled the emacs mode line inside tmux. It is a
 **stopgap**, not the repair.
 
 The repair is upstream as
-[migueldeicaza/SwiftTerm#707](https://github.com/migueldeicaza/SwiftTerm/pull/707).
-**Check it at every routine update**, next to Citadel #122:
+[migueldeicaza/SwiftTerm#707](https://github.com/migueldeicaza/SwiftTerm/pull/707),
+**merged 2026-09-19**. The only release carrying it is **1.99.0, the 2.0
+preview**, which removes `getTerminal()` and does not build here. SwiftTerm is
+held below 1.99.0 on purpose (measured 2026-10-15, see the SwiftTerm hold in
+`docs/backlog.md`). **At every routine update, check for a stable 2.0 or a
+1.x release that carries #707**, next to Citadel #122:
 
 ```bash
-gh pr view 707 --repo migueldeicaza/SwiftTerm --json state,mergedAt
+gh api repos/migueldeicaza/SwiftTerm/releases --jq '.[0:3][] | {tag_name, name, prerelease}'
 ```
 
-Once a SwiftTerm release carries it: bump, delete `MarginModeFilter` and its
-tests, restore the plain `feed` in `TerminalSession`, and re-run
-`testTmuxEmacsModeLine` from the verify skill to confirm the screen still
-matches `tmux capture-pane`. Full detail in `docs/backlog.md`.
+Once we are on a release that carries it (the 2.0 migration, most likely):
+delete `MarginModeFilter` and its tests, restore the plain `feed` in
+`TerminalSession`, and re-run `testTmuxEmacsModeLine` from the verify skill to
+confirm the screen still matches `tmux capture-pane`.
 
 ## Dependency rules that do not bend
 
