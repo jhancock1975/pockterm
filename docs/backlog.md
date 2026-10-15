@@ -4,6 +4,63 @@ Things worth doing, not yet scheduled. Newest first.
 
 ---
 
+## SwiftTerm is held below 1.99.0 until we migrate to the 2.0 API
+
+**Recorded:** 2026-10-15
+
+SwiftTerm 1.99.0 (2026-10-08) is titled *"Preview before 2.0"*: 250 commits
+and 300 files on top of 1.20.0, and in Miguel's words "you can no longer hold
+on to the underlying terminal". It is the only release that carries our #707
+margin-mode fix. The old `upToNextMajor from 1.2.0` requirement let resolution
+take it, so the requirement is now a range, `1.20.0 ..< 1.99.0`, and
+`routine_update.py` lists SwiftTerm in `CAPPED`.
+
+### What 1.99.0 breaks, measured by building against it
+
+`TerminalView.getTerminal()` is gone. The view's `terminal` and `withTerminal`
+are internal. That is the whole compile-level break: with these six call sites
+patched or stubbed, the app and the test target both build. The delegate
+protocol, `feed`, colours, fonts, caret colour, `pageUp`/`pageDown`, the
+modifiers and `caretViewTracksFocus` all still compile.
+
+| call site | uses | public replacement in 1.99.0 |
+|---|---|---|
+| `TerminalView+Paste.swift:13` | `bracketedPasteMode` | `terminalStateSnapshot().bracketedPasteMode` |
+| `AssistantModel.swift:259` | `getBufferAsData()` | `TerminalView.getBufferAsData()` |
+| `KeyBarView.swift:197` | `applicationCursor` | **none.** `sendKeyUp/Down/Home/End` encode it internally, but the PgUp/PgDn local-scroll decision needs the Bool |
+| `TerminalKeyboardProxy.swift:111, 116` | `setTerminalFocus` | **none.** Only `becomeFirstResponder`, which the glasses proxy deliberately does not use |
+| `TerminalSession.swift:144` | `options.cursorStyle` and `cursorStyleChanged(source: Terminal, …)` | the snapshot has `cursorStyle`, but there is no way to restyle the caret without a `Terminal` to pass |
+
+### It also brings two unvetted packages
+
+1.99.0 declares `tayloraswift/swift-png` (404 stars, since 2017), which pulls
+in `rarestype/h` (29 stars, since 2022). Both declare `ordo-one/dollup` too,
+but SwiftPM prunes it and never fetches it. SwiftTerm only links them on Linux,
+Windows, WASI and Android with the `PortableGraphics` trait. The iOS build
+compiles zero files from either (checked in the build log), but they are still
+resolved and pinned, so `routine-update` section 2 fails until they are vetted
+or upstream stops declaring them. Neither has build plugins or macros.
+
+The SwiftTerm build plugin changed too (+129/-9). It still only runs
+`/usr/bin/git` inside SwiftTerm's own checkout, and it now also reads the
+checked-in `swifterm-terminfo` to generate an XTGETTCAP table. No network.
+Re-read 2026-10-15.
+
+### What migrating to 2.0 would take
+
+1. Wait for 2.0 final. 1.99.0 is the release Miguel is using to collect what
+   embedders still need, which is exactly the three gaps above.
+2. Ask upstream for public read access to `applicationCursor`, a public way to
+   set terminal focus without first-responder, and a caret-style setter that
+   doesn't need a `Terminal`. Or check whether 2.0 already has them.
+3. Swap the three easy call sites.
+4. Vet `swift-png` and `h` per `docs/dependency-policy.md`, or confirm 2.0 no
+   longer resolves them.
+5. Then drop `MarginModeFilter` (see AGENTS.md) and re-run
+   `testTmuxEmacsModeLine`.
+
+---
+
 ## Try VoiceStudio for narration the next time the demo videos are rebuilt
 
 **Recorded:** 2026-09-03.
@@ -259,6 +316,8 @@ The repair itself went upstream as
 [migueldeicaza/SwiftTerm#707](https://github.com/migueldeicaza/SwiftTerm/pull/707)
 — two lines plus the missing guard, with four regression tests, three of which
 fail without it. **Remove the filter once a SwiftTerm release carries that.**
+(Merged 2026-09-19. So far only the 2.0 preview carries it, and we hold below
+that; see the SwiftTerm hold at the top.)
 Check it at the next routine update, alongside Citadel #122:
 
 ```bash
@@ -286,7 +345,8 @@ about.
 
 ## Get off the Citadel dependency bottleneck (watch #122, then act)
 
-**Recorded:** 2026-08-29 · **Reviewed:** 2026-09-06
+**Recorded:** 2026-08-29 · **Reviewed:** 2026-09-06 · **Checked:** 2026-10-15,
+still open with zero comments, untouched since 2026-01-08
 
 Four of twelve dependencies are held, and every one is held by Citadel — see
 the table in `CLAUDE.md`.
