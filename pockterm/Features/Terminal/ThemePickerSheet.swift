@@ -18,7 +18,10 @@ struct ThemePickerSheet: View {
                 Button {
                     session.setTheme(id: nil)
                 } label: {
-                    row(title: "Default (inherit)", checked: selected == nil, preview: nil)
+                    // Localized here: row(title:) takes a String, and
+                    // Text(String) does not localize.
+                    row(title: String(localized: "Default (inherit)"),
+                        checked: selected == nil, preview: nil)
                 }
                 .buttonStyle(.plain)
 

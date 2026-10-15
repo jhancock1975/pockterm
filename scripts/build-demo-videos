@@ -2,16 +2,32 @@
 # -*- coding: utf-8 -*-
 """Rebuild the pockterm.com demo videos, one per shipped language.
 
-  scripts/build-demo-videos [--out DIR] [--lang xx ...]
+  scripts/build-demo-videos --base-dir ~/Documents/Apps/pockterm/videos/base \\
+      [--out DIR] [--lang xx ...]
 
-Every language cut is the SAME screen recording with a different burned-in
-caption track; only English carries narration, the rest are silent. That is the
-shape of the original set and this reproduces it.
+Each language's cut is filmed in that language: the app's own UI, the
+assistant asked and answering in that language, the language's captions
+burned in, and no sound. English is the narrated original and is not
+re-filmed.
 
-The base recording is pulled from S3 on purpose. The source cuts for the first
-set lived only in a session scratchpad and were lost, leaving the deployed
-objects as the only copy — so this treats S3 as the master and never assumes a
-local original exists.
+The masters live outside the repo, in ~/Documents/Apps/pockterm/videos/:
+
+  base/base-<lang>.mp4   uncaptioned per-language cuts, 1320x2868, 30 fps,
+                         888 frames, no audio. Filmed and cut with the steps
+                         under "Filming the site demo video" in
+                         .claude/skills/verify/SKILL.md, ending in
+                         scripts/cut-demo-take. They follow the English
+                         master's scenes frame for frame, so the caption
+                         WINDOWS below fit every language.
+  base/base-en.mp4       the published English cut (narrated, its captions
+                         already burned in), which is also on S3.
+  site-2026-10/          the captioned cuts this built from them in October
+                         2026, as pockterm-demo-<lang>.mp4.
+
+Without --base-dir every language is built from one recording (--base, or
+the English cut on S3), which is how the first sets were made: the English
+picture under translated captions. A language missing from --base-dir is an
+error rather than a silent fall back to that.
 
 Captions live in site/video-captions.json. They are rendered to PNG by
 scripts/caption-render.swift, because the ffmpeg on this machine is built
@@ -61,6 +77,8 @@ def main():
     ap.add_argument("--out", default="build/videos")
     ap.add_argument("--lang", nargs="*")
     ap.add_argument("--base", help="a local base cut instead of the published one on S3")
+    ap.add_argument("--base-dir", type=pathlib.Path,
+                    help="per-language bases, base-<lang>.mp4 (see the docstring)")
     args = ap.parse_args()
 
     data = json.loads(CAPTIONS.read_text())
@@ -71,11 +89,23 @@ def main():
     renderer = work / "caption-render"
     subprocess.run(["swiftc", "-O", "-o", str(renderer), str(RENDERER_SRC)], check=True)
 
-    base = pathlib.Path(args.base) if args.base else work / "base.mp4"
-    if not base.exists():
-        subprocess.run(["aws", "s3", "cp", BASE_URL, str(base), "--quiet"], check=True)
+    def shared_base():
+        base = pathlib.Path(args.base) if args.base else work / "base.mp4"
+        if not base.exists():
+            subprocess.run(["aws", "s3", "cp", BASE_URL, str(base), "--quiet"], check=True)
+        return base
+
+    def base_for(lang):
+        if args.base_dir:
+            own = args.base_dir.expanduser() / f"base-{lang}.mp4"
+            if own.exists():
+                return own
+            if lang != "en":
+                sys.exit(f"no {own}; film and cut that language first")
+        return shared_base()
 
     for lang in (args.lang or list(caps)):
+        base = base_for(lang)
         pngs = []
         for i, text in enumerate(caps[lang]):
             p = work / f"{lang}-{i}.png"
