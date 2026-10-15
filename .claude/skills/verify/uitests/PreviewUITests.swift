@@ -6,8 +6,9 @@ import XCTest
 /// the terminal, so nothing is typed — synthesized keystrokes each cost a 60s
 /// quiescence timeout against the terminal's animating caret.
 ///
-/// Beats are printed as BEAT|<name>|<seconds-since-start> so the editing step
-/// can cut on real timings instead of guesses.
+/// Beats are printed as BEAT|<name>|<seconds-since-start>|<unix-time>, a
+/// record of the take. scripts/cut-demo-take cuts by what is on screen rather
+/// than by them, because simctl's recordings do not keep the Mac's clock.
 final class PreviewUITests: XCTestCase {
 
     private let env = ProcessInfo.processInfo.environment
@@ -18,7 +19,9 @@ final class PreviewUITests: XCTestCase {
 
     private var start = Date()
     private func beat(_ name: String) {
-        print("BEAT|\(name)|\(String(format: "%.2f", Date().timeIntervalSince(start)))")
+        let now = Date()
+        print("BEAT|\(name)|\(String(format: "%.2f", now.timeIntervalSince(start)))"
+              + "|\(String(format: "%.3f", now.timeIntervalSince1970))")
     }
 
     override func setUpWithError() throws { continueAfterFailure = false }
@@ -131,6 +134,15 @@ final class PreviewUITests: XCTestCase {
         print("BEAT|persistence-verified|0.00")
     }
 
+    /// The demo video's phone take, in whatever language SHOT_LANG names.
+    /// scripts/cut-demo-take cuts the site video's scenes out of the
+    /// recording, so each hold below is the length of a scene plus a margin:
+    /// hosts list 4.4 s, top 7.0 s, the theme switch 2.9 s, files 3.4 s, the
+    /// assistant's answer 4.0 s, zoomed top 3.3 s.
+    ///
+    /// Every label it taps comes in as an L_* variable read from
+    /// Localizable.xcstrings, and L_PROMPT is the question in that language,
+    /// so the assistant answers in it.
     func testRecordDemo() throws {
         let lang = label("SHOT_LANG", "en")
         let locale = label("SHOT_LOCALE", "en_US")
@@ -143,76 +155,84 @@ final class PreviewUITests: XCTestCase {
         start = Date()
         app.launch()
         beat("launch")
-        Thread.sleep(forTimeInterval: 2.5)
 
-        // --- connect; the startup snippet fills the terminal ---------------
+        // --- hosts list ------------------------------------------------------
         // Matches the host's label rather than its address: filming runs
-        // against the App Review demo box, not localhost.
+        // against a throwaway server, not localhost.
         let hostRow = app.buttons.matching(
             NSPredicate(format: "label CONTAINS %@", label("L_HOST", "mac"))).firstMatch
         XCTAssertTrue(hostRow.waitForExistence(timeout: 15), app.debugDescription)
+        Thread.sleep(forTimeInterval: 1)
         beat("host-list")
-        Thread.sleep(forTimeInterval: 1.5)
+        Thread.sleep(forTimeInterval: 6)
         hostRow.tap()
 
         let alert = app.alerts.firstMatch
         if alert.waitForExistence(timeout: 5) {
             alert.buttons.element(boundBy: alert.buttons.count - 1).tap()
         }
-        Thread.sleep(forTimeInterval: 13)          // connect + snippet output
+
+        // --- connect; the startup snippet fills the terminal ------------------
+        let themeButton = app.buttons[label("L_THEME", "Terminal Theme")]
+        XCTAssertTrue(themeButton.waitForExistence(timeout: 30), app.debugDescription)
+        beat("connected")
+        Thread.sleep(forTimeInterval: 4)           // top's first screen
         beat("terminal-filled")
+        Thread.sleep(forTimeInterval: 10)
+
+        // --- live theme switch ------------------------------------------------
+        themeButton.tap()
+        beat("theme-sheet")
         Thread.sleep(forTimeInterval: 3)
 
-        // --- live theme switch ---------------------------------------------
-        let themeButton = app.buttons[label("L_THEME", "Terminal Theme")]
-        if themeButton.waitForExistence(timeout: 8) {
-            themeButton.tap()
-            beat("theme-sheet")
-            Thread.sleep(forTimeInterval: 3)
-
-            // Two switches is enough to read as "live"; each interaction costs
-            // a ~2 minute XCUITest stall, so they are not free.
-            // Theme names are untranslated literals, so the same match works in
-            // every language. Falls back to staticTexts because the row is not
-            // always exposed as a button, and the English take found neither.
-            for name in ["Nord", "Solarized Light"] {
-                let predicate = NSPredicate(format: "label CONTAINS %@", name)
-                var row = app.buttons.matching(predicate).firstMatch
-                if !row.waitForExistence(timeout: 3) {
-                    row = app.staticTexts.matching(predicate).firstMatch
-                }
-                if row.exists && row.isHittable {
-                    row.tap()
-                    beat("theme-\(name)")
-                    Thread.sleep(forTimeInterval: 2.2)
-                } else {
-                    print("BEAT|theme-\(name)-MISSING|0.00")
-                }
+        // Theme names are proper names and not translated, so the same match
+        // works in every language. Falls back to staticTexts because the row
+        // is not always exposed as a button.
+        for (name, hold) in [("Nord", 4.5), ("Solarized Light", 2.5)] {
+            let predicate = NSPredicate(format: "label CONTAINS %@", name)
+            var row = app.buttons.matching(predicate).firstMatch
+            if !row.waitForExistence(timeout: 3) {
+                row = app.staticTexts.matching(predicate).firstMatch
             }
-            app.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.55))
-               .press(forDuration: 0.05,
-                      thenDragTo: app.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 1.0)))
-            Thread.sleep(forTimeInterval: 2.5)
-            beat("theme-done")
+            if row.exists && row.isHittable {
+                row.tap()
+                beat("theme-\(name)")
+                Thread.sleep(forTimeInterval: hold)
+            } else {
+                print("BEAT|theme-\(name)-MISSING|0.00|0")
+            }
         }
+        app.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.55))
+           .press(forDuration: 0.05,
+                  thenDragTo: app.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 1.0)))
+        Thread.sleep(forTimeInterval: 2.5)
+        beat("theme-done")
 
-        // --- pinch to zoom ---------------------------------------------------
+        // --- pinch to zoom ----------------------------------------------------
         app.otherElements.element(boundBy: 0).pinch(withScale: 2.0, velocity: 1.6)
         beat("zoom-in")
-        Thread.sleep(forTimeInterval: 3)
+        // The zoomed view shows reflowed old rows until top redraws, 8-10 s
+        // after the pinch in every take measured, so hold well past that.
+        Thread.sleep(forTimeInterval: 16)
 
-        // --- SFTP browser over the same connection --------------------------
+        // --- SFTP browser over the same connection ----------------------------
         let files = app.buttons[label("L_FILES", "Browse Files")]
         if files.waitForExistence(timeout: 5) {
             files.tap()
             beat("sftp")
-            Thread.sleep(forTimeInterval: 5)
-            let done = app.navigationBars.buttons.element(boundBy: 0)
+            // The filming host's home holds projects/, logs/, backups/…
+            if app.staticTexts["projects"].waitForExistence(timeout: 20) {
+                beat("sftp-listed")
+            }
+            Thread.sleep(forTimeInterval: 6)
+            beat("sftp-done")
+            // By label: the first nav-bar button is New Folder, not Done.
+            let done = app.buttons[label("L_DONE", "Done")].firstMatch
             if done.exists { done.tap() }
             Thread.sleep(forTimeInterval: 1.5)
         }
 
-        // --- the assistant, answering about what is on screen ----------------
+        // --- the assistant, answering about what is on screen -----------------
         // Skipped rather than failed when unconfigured: a missing key should
         // cost the AI scene, not the whole take.
         let assistant = app.buttons[label("L_ASSISTANT", "AI Assistant")]
@@ -241,20 +261,45 @@ final class PreviewUITests: XCTestCase {
                 beat("assistant-sent")
 
                 // The assistant ships defaulting to "Confirm everything", so
-                // it proposes a command and waits. Without this tap the scene
-                // is a permission card that never resolves — which is what the
-                // first take filmed. Tapping Run shows the approval AND the
-                // answer, which is the honest version of the feature.
-                let run = app.buttons[label("L_RUN", "Run")].firstMatch
-                if run.waitForExistence(timeout: 30) {
-                    Thread.sleep(forTimeInterval: 2.5)   // let it be readable
-                    run.tap()
-                    beat("assistant-approved")
+                // it proposes a command and waits. Tapping Run shows the
+                // approval AND the answer, which is the honest version of the
+                // feature. A model may ask more than once.
+                //
+                // Only the approval card's Run, the one beside Deny: a fenced
+                // command in a reply gets a Run chip with the same label,
+                // and that one types into the terminal and closes the sheet.
+                let runLabel = label("L_RUN", "Run")
+                let deny = app.buttons[label("L_DENY", "Deny")].firstMatch
+                let stop = app.buttons[label("L_STOP", "Stop generating")].firstMatch
+                let send = app.buttons[label("L_SEND", "Send")].firstMatch
+                var approvals = 0
+                let sentAt = Date()
+                let deadline = sentAt.addingTimeInterval(90)
+                Thread.sleep(forTimeInterval: 2)
+                while Date() < deadline {
+                    if deny.exists && deny.isHittable && approvals < 3 {
+                        Thread.sleep(forTimeInterval: 2.5)   // let it be readable
+                        let row = deny.frame.midY
+                        let run = app.buttons.matching(NSPredicate(format: "label == %@", runLabel))
+                            .allElementsBoundByIndex
+                            .filter { abs($0.frame.midY - row) < 30 }
+                            .first
+                        guard let run else { print("BEAT|assistant-no-run|0.00|0"); break }
+                        run.tap()
+                        approvals += 1
+                        beat("assistant-approved")
+                        Thread.sleep(forTimeInterval: 2)
+                        continue
+                    }
+                    let idle = !stop.exists && send.exists
+                    if idle && (approvals > 0 || Date() > sentAt.addingTimeInterval(20)) { break }
+                    Thread.sleep(forTimeInterval: 0.5)
                 }
-                // Long enough for the command to run and the answer to stream.
-                Thread.sleep(forTimeInterval: 22)
+                // The last words can still be laying out when streaming stops.
+                Thread.sleep(forTimeInterval: 1.5)
                 beat("assistant-answered")
-                Thread.sleep(forTimeInterval: 3)
+                Thread.sleep(forTimeInterval: 6)
+                beat("assistant-hold-end")
             }
 
             let done = app.buttons[label("L_DONE", "Done")].firstMatch
@@ -262,7 +307,7 @@ final class PreviewUITests: XCTestCase {
             Thread.sleep(forTimeInterval: 1.5)
         }
 
-        // --- settings, which is where the localization reads clearly --------
+        // --- settings, which is where the localization reads clearly ----------
         let minimize = app.buttons[label("L_MINIMIZE", "Minimize")]
         if minimize.waitForExistence(timeout: 5) { minimize.tap() }
         Thread.sleep(forTimeInterval: 2)

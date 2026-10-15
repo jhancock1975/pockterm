@@ -1,0 +1,288 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""Cut one language's filming take into an uncaptioned base for the site video.
+
+  scripts/cut-demo-take TAKE_DIR OUT.mp4
+
+The result is what scripts/build-demo-videos --base-dir burns captions onto:
+1320x2868, 30 fps, exactly 888 frames (29.6 s), no audio, with the scenes in
+the English master's order and cut at its frames, so the caption windows in
+build-demo-videos and site/video-captions.json line up in every language:
+
+    frames    seconds        scene
+    0-132     0.00-4.43      hosts list
+    133-343   4.43-11.47     top in Solarized Light
+    344-430   11.47-14.37    theme sheet, switching to Nord at ~11.97
+    431-531   14.37-17.73    file browser
+    532-650   17.73-21.70    the assistant's question and answer
+    651-788   21.70-26.30    glasses: external display on top, phone below
+    789-887   26.30-29.60    pinch-zoomed top
+
+TAKE_DIR holds one take, as the filming steps in the verify skill leave it:
+
+    phone.mp4        simctl recordVideo of PreviewUITests/testRecordDemo
+    phone.beats      the BEAT|name|seconds|unix-time lines that test printed
+                     (a record of the take; the cut does not need them)
+    glasses.mp4      simctl recordVideo --display=external of
+                     DemoHostUITests/testGlassesFootage on a glasses simulator
+    glasses.beats    the BEAT lines that test printed, which say when top
+                     was running, for picking the phone screenshots
+    phone-shots/     <unix time>.png screenshots of that simulator's phone,
+                     because simctl records one display at a time
+
+Every cut point is found in the picture, not taken from the clock:
+- simctl's recordings start at the first screen change rather than when
+  recording starts, and their timestamps can jump backwards mid-take (by 6 s
+  in one measured take) while the frames stay in order. So each recording is
+  first re-timed in decode order and resampled to 30 fps.
+- The phone take's scenes are told apart by colour in the band y=300-600:
+  Solarized Light's beige has red well above blue, the white sheets (files,
+  assistant) and the hosts list do not, and Nord is blue. Each scene ends a
+  few frames before the next one starts on screen.
+- Glasses mode stalls every XCUITest keystroke for two minutes, so the
+  glasses test types one line ("ls -la; sleep 1; top") once, and the scene is
+  placed by finding the ls listing and then top filling the external display.
+"""
+import argparse
+import glob
+import pathlib
+import subprocess
+import sys
+import tempfile
+
+W, H, FPS = 1320, 2868, 30
+SCENES = [("hosts", 133), ("top", 211), ("theme", 87), ("files", 101),
+          ("assistant", 119), ("glasses", 138), ("zoom", 99)]
+LEN = dict(SCENES)
+assert sum(LEN.values()) == 888
+
+# Glasses scene layout, measured off the English master: external display at
+# full width under a 2 px grey frame, the phone centred below it.
+EXT_BOX = (0, 148, 1320, 746)        # x, y, w, h including the frame
+PHONE_BOX = (327, 988, 666, 1444)
+FRAME = "0x373737"
+
+# Re-time in decode order: carry the correction so far (PREV_OUTPTS -
+# PREV_INPTS) forward, and when a frame's corrected stamp would go backwards,
+# put it one 60th of a second after the previous one instead.
+RETIME = ("setpts='if(isnan(PREV_OUTPTS),PTS,"
+          "if(lt(PTS+PREV_OUTPTS-PREV_INPTS,PREV_OUTPTS+1),PREV_OUTPTS+(1/60)/TB,"
+          "PTS+PREV_OUTPTS-PREV_INPTS))'")
+
+
+def normalize(src, dst):
+    subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", str(src), "-fps_mode", "passthrough",
+                    "-vf", f"{RETIME},fps={FPS}", "-c:v", "libx264", "-preset", "ultrafast",
+                    "-crf", "8", "-pix_fmt", "yuv420p", str(dst)], check=True)
+
+
+def signal(video, box=None):
+    """Per frame of a constant-rate video: (luma, red minus blue) of a box."""
+    crop = f"crop={box[2]}:{box[3]}:{box[0]}:{box[1]}," if box else ""
+    raw = subprocess.run(["ffmpeg", "-v", "error", "-i", str(video), "-vf",
+                          f"{crop}scale=32:8", "-f", "rawvideo", "-pix_fmt", "rgb24", "-"],
+                         capture_output=True, check=True).stdout
+    n, out = 32 * 8 * 3, []
+    for i in range(len(raw) // n):
+        px = raw[i * n:(i + 1) * n]
+        r, g, b = (sum(px[c::3]) / 256 for c in range(3))
+        out.append((0.299 * r + 0.587 * g + 0.114 * b, r - b))
+    return out
+
+
+def first(sig, start, test, hold=1):
+    """First frame >= start where test holds for `hold` frames in a row."""
+    run = 0
+    for i in range(max(0, start), len(sig)):
+        run = run + 1 if test(*sig[i]) else 0
+        if run >= hold:
+            return i - hold + 1
+    return None
+
+
+def phone_cuts(video):
+    """First frame of each phone scene in the re-timed phone video."""
+    s = signal(video, box=(0, 300, W, 300))
+    sec = FPS
+
+    def need(name, frame):
+        if frame is None:
+            sys.exit(f"phone take: could not find {name}; look at the recording")
+        return frame
+
+    hosts = need("the hosts list", first(s, 0, lambda y, d: y > 200 and abs(d) < 6, sec))
+    tap = need("the host tap", first(s, hosts, lambda y, d: d > 10, 5))
+    sheet = need("the theme sheet", first(s, tap + 3 * sec, lambda y, d: y < 190 and d > 8, 5))
+    nord = need("the Nord switch", first(s, sheet, lambda y, d: d < 0, 3))
+    back = need("the switch back", first(s, nord, lambda y, d: d > 8, 3))
+    # A white sheet is bright as well as neutral: zoomed top can bring its
+    # inverse-video header bar into the band, which is neutral but darker.
+    sheet_up = lambda y, d: d < 8 and y > 215
+    files = need("the file browser", first(s, back + 3 * sec, sheet_up, sec // 2))
+    closed = need("the file browser closing", first(s, files + 2 * sec, lambda y, d: d > 12, 10))
+    asst = need("the assistant", first(s, closed + sec // 2, sheet_up, sec // 2))
+    done = need("the assistant closing", first(s, asst + 5 * sec, lambda y, d: d > 10, 10))
+    print(f"  phone: hosts {hosts / sec:.2f}s, tap {tap / sec:.2f}s, theme sheet "
+          f"{sheet / sec:.2f}s, Nord {nord / sec:.2f}s, back {back / sec:.2f}s, files "
+          f"{files / sec:.2f}-{closed / sec:.2f}s, assistant {asst / sec:.2f}-{done / sec:.2f}s")
+
+    cuts = {
+        "hosts": tap - 12 - LEN["hosts"],
+        "top": sheet - 15 - LEN["top"],
+        "theme": nord - 15,
+        "zoom": files - 15 - LEN["zoom"],
+        "files": closed - 12 - LEN["files"],
+        "assistant": done - 12 - LEN["assistant"],
+    }
+    # Each scene must sit wholly inside its stretch of the take.
+    checks = [("hosts", hosts + 15), ("top", tap + 4 * sec), ("theme", sheet),
+              ("zoom", back + 4 * sec), ("files", files + 2 * sec), ("assistant", asst + 5 * sec)]
+    for name, earliest in checks:
+        if cuts[name] < earliest:
+            sys.exit(f"phone take: the {name} scene would start {(earliest - cuts[name]) / sec:.2f}s "
+                     "too early; the take's holds are too short")
+    if cuts["theme"] + LEN["theme"] > back - 10:
+        sys.exit("phone take: Nord was not held long enough")
+    # After the pinch the terminal shows reflowed old rows until top redraws,
+    # 8-10 s later in every take measured. That redraw is the last big change
+    # before the file browser opens; the zoom scene has to start after it.
+    redraw = max((i for i in range(back + 2 * sec, files - sec)
+                  if abs(s[i][0] - s[i - 3][0]) > 4), default=None)
+    if redraw is None or cuts["zoom"] < redraw + 6:
+        sys.exit("phone take: top had not redrawn when the zoom scene starts; "
+                 "hold longer after the pinch")
+    print(f"  phone: zoomed top redrawn at {redraw / sec:.2f}s")
+    # The file list and the assistant's answer must be complete for their
+    # whole scene: nothing on the screen may still be changing.
+    full = signal(video)
+    for name in ("files", "assistant"):
+        ys = [y for y, _ in full[cuts[name]:cuts[name] + LEN[name]]]
+        if max(ys) - min(ys) > 1.0:
+            sys.exit(f"phone take: the screen is still changing during the {name} scene")
+    return cuts
+
+
+def glasses_cut(video):
+    """The glasses scene as [(first frame, frame count)] in the re-timed
+    external display video: the prompt, the line being typed and the ls
+    listing, then top filling the display. When top took a while to start
+    (7 s in one take), the still screen in between is left out."""
+    s = signal(video)
+    # The display can open on the last frame of the previous run, so look for
+    # top only after the bare prompt has been up for a second.
+    quiet = first(s, 0, lambda y, d: y < 0.5, FPS)
+    if quiet is None:
+        sys.exit("glasses take: the external display never showed a bare prompt")
+    peak = max(y for y, _ in s[quiet:])
+    top = first(s, quiet, lambda y, d: y >= 0.7 * peak, 3)
+    if top is None or peak < 3:
+        sys.exit("glasses take: top never filled the external display")
+    base = s[quiet][0]
+    ls = first(s, quiet, lambda y, d: y > base + 0.6, FPS // 2)
+    if ls is None or ls >= top:
+        sys.exit("glasses take: no ls listing before top")
+    print(f"  glasses: listing at {ls / FPS:.2f}s, top at {top / FPS:.2f}s")
+    n = LEN["glasses"]
+    lead, listing, before_top = 36, 24, 6      # 1.2 s, 0.8 s, 0.2 s
+    if top - before_top <= ls + listing:
+        return [(ls - lead, n)]
+    first_part = lead + listing
+    return [(ls - lead, first_part), (top - before_top, n - first_part)]
+
+
+def beats(path):
+    out = {}
+    for line in pathlib.Path(path).read_text().splitlines():
+        parts = line.strip().split("|")
+        if len(parts) >= 4 and parts[0] == "BEAT" and parts[3] not in ("", "0"):
+            out.setdefault(parts[1], float(parts[3]))
+    return out
+
+
+def phone_shots(take):
+    """Screenshots of the phone while top runs on the glasses."""
+    b = beats(take / "glasses.beats")
+    lo, hi = b.get("glasses-typed"), b.get("glasses-end")
+    if lo is None or hi is None:
+        sys.exit("glasses.beats lacks glasses-typed / glasses-end")
+    shots = sorted(glob.glob(str(take / "phone-shots" / "*.png")),
+                   key=lambda p: float(pathlib.Path(p).stem))
+    shots = [p for p in shots if lo <= float(pathlib.Path(p).stem) <= hi]
+    if not shots:
+        sys.exit("no phone screenshots while top was running")
+    return shots
+
+
+def main():
+    ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
+    ap.add_argument("take", type=pathlib.Path)
+    ap.add_argument("out", type=pathlib.Path)
+    args = ap.parse_args()
+    take = args.take
+
+    with tempfile.TemporaryDirectory() as tmp:
+        tmp = pathlib.Path(tmp)
+        phone, ext = tmp / "phone30.mp4", tmp / "glasses30.mp4"
+        normalize(take / "phone.mp4", phone)
+        normalize(take / "glasses.mp4", ext)
+        cuts = phone_cuts(phone)
+        g = glasses_cut(ext)
+        shots = phone_shots(take)
+        for name, n in SCENES:
+            parts = g if name == "glasses" else [(cuts[name], n)]
+            print(f"  {name:<10} " + ", ".join(f"from {a / FPS:7.2f}s for {k / FPS:.2f}s"
+                                              for a, k in parts))
+
+        # The phone in the glasses scene: its screenshots at their real
+        # spacing, the last one held to the end of the scene.
+        stamps = [float(pathlib.Path(p).stem) for p in shots]
+        lines, total = ["ffconcat version 1.0"], 0.0
+        for i, p in enumerate(shots):
+            d = max((stamps[i + 1] - stamps[i]) if i + 1 < len(shots) else 5.0, 1 / FPS)
+            lines += [f"file '{p}'", f"duration {d:.3f}"]
+            total += d
+            if total > LEN["glasses"] / FPS + 0.5:
+                break
+        lines.append(f"file '{shots[min(len(shots) - 1, i)]}'")
+        (tmp / "shots.ffconcat").write_text("\n".join(lines) + "\n")
+
+        names = [n for n, _ in SCENES if n != "glasses"]
+        f = [f"[0:v]split={len(names)}" + "".join(f"[p{i}]" for i in range(len(names)))]
+        for i, name in enumerate(names):
+            a = cuts[name]
+            f.append(f"[p{i}]trim=start_frame={a}:end_frame={a + LEN[name]},"
+                     f"setpts=PTS-STARTPTS,scale={W}:{H},setsar=1[{name}]")
+        ex, ey, ew, eh = EXT_BOX
+        px, py, pw, ph = PHONE_BOX
+        n = LEN["glasses"]
+        f.append(f"[1:v]split={len(g)}" + "".join(f"[e{i}]" for i in range(len(g))))
+        for i, (a, k) in enumerate(g):
+            f.append(f"[e{i}]trim=start_frame={a}:end_frame={a + k},setpts=PTS-STARTPTS[eo{i}]")
+        f += ["".join(f"[eo{i}]" for i in range(len(g))) + f"concat=n={len(g)}:v=1:a=0,"
+              f"scale={ew - 4}:{eh - 4},pad={ew}:{eh}:2:2:color={FRAME}[ext]",
+              f"[2:v]fps={FPS},setpts=PTS-STARTPTS,"
+              f"scale={pw - 4}:{ph - 4},pad={pw}:{ph}:2:2:color={FRAME}[ph]",
+              f"color=c=black:s={W}x{H}:r={FPS}[bg]",
+              f"[bg][ext]overlay={ex}:{ey}:eof_action=repeat[g1]",
+              f"[g1][ph]overlay={px}:{py}:eof_action=repeat,trim=end_frame={n},"
+              f"setpts=PTS-STARTPTS,setsar=1[glasses]",
+              "".join(f"[{n}]" for n, _ in SCENES)
+              + f"concat=n={len(SCENES)}:v=1:a=0,format=yuv420p[out]"]
+        args.out.parent.mkdir(parents=True, exist_ok=True)
+        subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", str(phone), "-i", str(ext),
+                        "-f", "concat", "-safe", "0", "-i", str(tmp / "shots.ffconcat"),
+                        "-filter_complex", ";".join(f), "-map", "[out]", "-an",
+                        "-r", str(FPS), "-c:v", "libx264", "-preset", "slow", "-crf", "16",
+                        "-movflags", "+faststart", str(args.out)], check=True)
+
+    got = subprocess.check_output(
+        ["ffprobe", "-v", "error", "-count_frames", "-select_streams", "v:0",
+         "-show_entries", "stream=width,height,nb_read_frames", "-of", "csv=p=0",
+         str(args.out)]).decode().strip()
+    print(f"  -> {args.out} ({got})")
+    if got != f"{W},{H},888":
+        sys.exit("expected 1320x2868 and 888 frames")
+
+
+if __name__ == "__main__":
+    main()

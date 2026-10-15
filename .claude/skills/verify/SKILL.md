@@ -235,6 +235,83 @@ app bug.
   `testPhase4MinimizeAndRestore`, and `testPhoneSessionSwitching`, which
   writes `/tmp/pockterm-tab-1`, `-2` and `-1b` the same way).
 
+## Filming the site demo video
+
+Every language's cut of the pockterm.com video is filmed in that language,
+following the English master's scenes frame for frame (the table is in
+`scripts/cut-demo-take`). Masters and where they live: the
+`scripts/build-demo-videos` docstring.
+
+**Server.** Never the Mac's own sshd: that films its processes and hostname.
+Use a throwaway host (`scripts/provision-demo-host.sh`) with a `.hushlogin`
+and neutral files in its home (`projects/`, `logs/`, `backups/`, `photos/`,
+`notes.txt`). The file-browser scene waits for `projects`. Its address and
+password go in `TEST_RUNNER_DEMO_HOST` / `TEST_RUNNER_DEMO_PASSWORD`, read
+from the host's notes file at run time, never from the repo.
+
+**Simulators.** Make dedicated ones and delete them afterwards, because the
+assistant's API key ends up in the phone one's Keychain:
+
+```bash
+xcrun simctl create "iPhone 17 Pro Max (Filming)" \
+    com.apple.CoreSimulator.SimDeviceType.iPhone-17-Pro-Max \
+    com.apple.CoreSimulator.SimRuntime.iOS-26-5          # 1320x2868
+NAME="iPhone 17 Pro (Glasses Filming)" scripts/make-glasses-simulator --boot
+```
+
+`film-demo-take.py` sets both up before every take: 9:41 in the status bar,
+the phone light and the glasses phone dark (as the English cut), keyboard
+autocorrection and prediction off (or the English dictionary rewrites a French
+or Spanish question as it is typed), and `MultilingualKeyboardTip` marked seen
+in `com.apple.keyboard.preferences`. Without that last one the Hindi keyboard
+covers the keyboard area the first time it comes up with an English "Type
+both languages on the same keyboard … Continue" card.
+
+**Once per simulator**, in English, with `TEST_RUNNER_DEMO_LABEL=demo`:
+`DemoHostUITests/testReviewerLogin` makes the `demo` host with password
+credentials and accepts its key. On the phone simulator also set the host's
+startup snippet to `top` (`UPDATE ZHOST SET ZSTARTUPSNIPPET='top'`), insert
+the assistant's settings row (`ZAISETTINGS`: provider `openRouter`, model
+`openai/gpt-4o`, approval `always`; bump `Z_PRIMARYKEY.Z_MAX` for entity 1),
+and store the key with `PreviewUITests/testConfigureAssistant`, passing it as
+an exported `TEST_RUNNER_POCKTERM_AI_KEY`. XCUITest logs the start of typed
+text, so delete that run's log and result bundle afterwards.
+
+**Each language** (any order; the two kinds can run at the same time on the
+two simulators):
+
+```bash
+F=.claude/skills/verify/film-demo-take.py
+$F phone   fr --udid <phone>   --out takes/fr --derived-data <dd>
+$F glasses fr --udid <glasses> --out takes/fr --derived-data <dd>
+scripts/cut-demo-take takes/fr ~/Documents/Apps/pockterm/videos/base/base-fr.mp4
+scripts/build-demo-videos --base-dir ~/Documents/Apps/pockterm/videos/base --lang fr
+```
+
+The phone take is about 3.5 minutes, the glasses take about 2. The cutter
+refuses a take it cannot place (a hold too short, a scene it cannot find), so
+re-film rather than force it. Then look at a contact sheet of every cut
+(`ffmpeg -i x.mp4 -vf fps=1,scale=220:-1,tile=10x3 -frames:v 1 sheet.png`):
+UI and answer in the language, captions right, nothing personal on screen.
+
+Traps measured while filming the October 2026 set:
+- `simctl io recordVideo` starts its video at the first screen change, and
+  its timestamps can jump back by seconds mid-take while the frames stay in
+  order (a 6 s jump in one take, with the other simulator busy). Cut by
+  what is on screen, never by the clock; `cut-demo-take` re-times first.
+- `ffmpeg -ss` before `-i` lands on the wrong frames in those files. Select
+  by timestamp instead (`-vf "select='gte(t,12)'"`).
+- In glasses mode `typeText` waits a minute for idle before typing and
+  another after, even with quiescence waiting switched off, which is why the
+  glasses test types its one line once.
+- After a pinch the terminal shows reflowed old rows until `top` redraws,
+  8-10 s later, so the test holds 16 s after it.
+- The app's `-AppleLanguages` also picks the keyboard (Spanish with ñ,
+  Japanese kana, …). `typeText` still delivers plain ASCII through all of
+  them, so the glasses command line arrives intact.
+- `top` can take seconds to start after `ls` on a small instance; the cutter
+  leaves out the still screen in between.
+
 ## Before submitting: log in to the App Review demo host
 
 `DemoHostUITests.testReviewerLogin` does what a reviewer does after
