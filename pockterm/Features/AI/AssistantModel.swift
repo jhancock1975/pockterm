@@ -113,7 +113,7 @@ final class AssistantModel {
 
         let provider = settings.activeProvider
         guard let apiKey = (try? keyStore.key(for: provider)) ?? nil, !apiKey.isEmpty else {
-            errorMessage = "No API key for \(provider.displayName). Add one in Settings → AI Assistant."
+            errorMessage = String(localized: "No API key for \(provider.displayName). Add one in Settings → AI Assistant.")
             return
         }
 
@@ -219,7 +219,7 @@ final class AssistantModel {
             entry.denied = true
             messages.append(entry)
         case .hitIterationCap:
-            errorMessage = "Stopped after \(AgentLoop.maxIterations) agent steps."
+            errorMessage = String(localized: "Stopped after \(AgentLoop.maxIterations) agent steps.")
         }
     }
 

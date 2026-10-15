@@ -39,7 +39,7 @@ final class ForwardRunner: HostKeyDeciding {
 
     func start(_ forward: PortForward) {
         guard let host = forward.host else {
-            statuses[forward.id] = .failed("This forward has no host.")
+            statuses[forward.id] = .failed(String(localized: "This forward has no host."))
             return
         }
         statuses[forward.id] = .connecting

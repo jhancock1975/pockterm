@@ -9,7 +9,7 @@ struct TerminalFont: Identifiable {
     let name: String
 
     static let all: [TerminalFont] = [
-        TerminalFont(id: "system", name: "System"),
+        TerminalFont(id: "system", name: String(localized: "System")),
         TerminalFont(id: "Menlo-Regular", name: "Menlo"),
         TerminalFont(id: "SFMono-Regular", name: "SF Mono"),
         TerminalFont(id: "CourierNewPSMT", name: "Courier New"),

@@ -335,13 +335,13 @@ struct SessionTabsView: View {
     private func hostKeyMessage(_ pending: PendingHostKey) -> String {
         var lines: [String] = []
         if let stored = pending.storedFingerprint {
-            lines.append("⚠️ This key is DIFFERENT from the one you previously trusted:")
-            lines.append("was \(stored)")
-            lines.append("Only accept if you expected this change.")
+            lines.append(String(localized: "⚠️ This key is DIFFERENT from the one you previously trusted:"))
+            lines.append(String(localized: "was \(stored)"))
+            lines.append(String(localized: "Only accept if you expected this change."))
             lines.append("")
         }
         lines.append("\(pending.info.address):\(pending.info.port)  (\(pending.info.keyType))")
-        lines.append(pending.info.fingerprint ?? "Fingerprint unavailable for this key type")
+        lines.append(pending.info.fingerprint ?? String(localized: "Fingerprint unavailable for this key type"))
         return lines.joined(separator: "\n")
     }
 
