@@ -153,6 +153,24 @@ and its confirm button has identifier `Add` but label `Done`. When a test fails,
 @ARGV' xcodebuild …`). The result bundle is then lost, so print what you need
 to the log rather than relying on attachments.
 
+## Strings in another language
+
+`LocalizedMessagesUITests.testThemeAndFontNamesAreLocalized` opens a new
+host's editor in one language and checks the theme and font names. The labels
+come from the catalogue on the Mac, so the same test runs in any language:
+
+```bash
+L=fr; export TEST_RUNNER_L_LANG=$L TEST_RUNNER_L_JSON=$(python3 -c "
+import json; c=json.load(open('pockterm/Localizable.xcstrings'))['strings']
+keys=['Hosts','New Host','Label','Address','Theme','Font','Default','Light','System']
+print(json.dumps({k: c[k]['localizations']['$L']['stringUnit']['value'] for k in keys}, ensure_ascii=False))")
+xcodebuild test-without-building ... -only-testing:pocktermUITests/LocalizedMessagesUITests
+```
+
+Messages the UI can't easily reach (a host with no credentials can't be saved,
+for one) are checked in the built app instead: every `<lang>.lproj/Localizable.strings`
+is a plist, so `plistlib` can confirm a key ships with the expected value.
+
 ## Glasses mode (external display)
 
 `scripts/make-glasses-simulator --boot` creates (once) and boots "iPhone 17 Pro

@@ -148,7 +148,7 @@ private struct AISettingsForm: View {
             keychainError = nil
             keyInput = ""
         } catch {
-            keychainError = "Couldn't save to the Keychain: \(error.localizedDescription)"
+            keychainError = String(localized: "Couldn't save to the Keychain: \(error.localizedDescription)")
         }
         testState = .idle
         refreshKeyState()

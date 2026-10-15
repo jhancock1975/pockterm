@@ -44,7 +44,7 @@ struct ForwardsListView: View {
                 }
                 Button("Reject", role: .cancel) { pending.resume(false); runner.pendingHostKey = nil }
             } message: { pending in
-                Text(pending.info.fingerprint ?? "Fingerprint unavailable")
+                Text(pending.info.fingerprint ?? String(localized: "Fingerprint unavailable"))
             }
         }
     }

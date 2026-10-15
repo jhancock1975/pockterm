@@ -516,7 +516,7 @@ private struct FilesBrowserAlerts: ViewModifier {
                 }
                 Button("Reject", role: .cancel) { pending.resume(false); model.pendingHostKey = nil }
             } message: { pending in
-                Text(pending.info.fingerprint ?? "Fingerprint unavailable")
+                Text(pending.info.fingerprint ?? String(localized: "Fingerprint unavailable"))
             }
             .alert("Operation Failed", isPresented: errorPresented) {
                 Button("OK", role: .cancel) { model.actionError = nil }

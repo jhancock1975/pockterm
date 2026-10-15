@@ -127,8 +127,15 @@ struct AssistantView: View {
         VStack(alignment: .leading, spacing: 8) {
             Text("Ask about what's on screen, or ask for a command.")
                 .font(.callout)
-            Text("The terminal output\(model.attachments.isEmpty ? "" : " and attached files") will be sent to \(model.settings.activeProvider.displayName).")
-                .font(.footnote).foregroundStyle(.secondary)
+            // Two whole sentences, not an English fragment spliced into one.
+            Group {
+                if model.attachments.isEmpty {
+                    Text("The terminal output will be sent to \(model.settings.activeProvider.displayName).")
+                } else {
+                    Text("The terminal output and attached files will be sent to \(model.settings.activeProvider.displayName).")
+                }
+            }
+            .font(.footnote).foregroundStyle(.secondary)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
     }

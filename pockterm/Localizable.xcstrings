@@ -7404,6 +7404,94 @@
         }
       }
     },
+    "Couldn't save to the Keychain: %@": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تعذّر الحفظ في سلسلة المفاتيح: %@"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Δεν ήταν δυνατή η αποθήκευση στο Μπρελόκ: %@"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se pudo guardar en el Llavero: %@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impossible d'enregistrer dans le trousseau : %@"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "לא ניתן היה לשמור במחזיק המפתחות: %@"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "कीचेन में सहेजा नहीं जा सका: %@"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impossibile salvare nel Portachiavi: %@"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "キーチェーンに保存できませんでした: %@"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "키체인에 저장할 수 없습니다: %@"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Не удалось сохранить в связку ключей: %@"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "కీచెయిన్‌లో సేవ్ చేయడం సాధ్యం కాలేదు: %@"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Не вдалося зберегти у зв'язку ключів: %@"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无法存储到钥匙串：%@"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "無法儲存至鑰匙圈：%@"
+          }
+        }
+      }
+    },
     "Couldn't upload “%@”: %@": {
       "localizations": {
         "ar": {
@@ -8280,6 +8368,94 @@
           "stringUnit": {
             "state": "translated",
             "value": "日期"
+          }
+        }
+      }
+    },
+    "Default": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "افتراضي"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Προεπιλογή"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Predeterminado"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Par défaut"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ברירת מחדל"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "डिफ़ॉल्ट"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Predefinito"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "デフォルト"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "기본값"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "По умолчанию"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "డిఫాల్ట్"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Типова"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "默认"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "預設"
           }
         }
       }
@@ -10480,6 +10656,182 @@
           "stringUnit": {
             "state": "translated",
             "value": "檔案…"
+          }
+        }
+      }
+    },
+    "Fingerprint unavailable": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "البصمة غير متاحة"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Το αποτύπωμα δεν είναι διαθέσιμο"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Huella no disponible"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Empreinte indisponible"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "טביעת האצבע אינה זמינה"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "फ़िंगरप्रिंट उपलब्ध नहीं"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fingerprint non disponibile"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "フィンガープリントを取得できません"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "지문을 사용할 수 없음"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Отпечаток недоступен"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "వేలిముద్ర అందుబాటులో లేదు"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Відбиток недоступний"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "指纹不可用"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "無法取得指紋"
+          }
+        }
+      }
+    },
+    "Fingerprint unavailable for this key type": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "البصمة غير متاحة لهذا النوع من المفاتيح"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Το αποτύπωμα δεν είναι διαθέσιμο για αυτόν τον τύπο κλειδιού"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Huella no disponible para este tipo de clave"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Empreinte indisponible pour ce type de clé"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "טביעת האצבע אינה זמינה לסוג מפתח זה"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "इस प्रकार की कुंजी के लिए फ़िंगरप्रिंट उपलब्ध नहीं"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fingerprint non disponibile per questo tipo di chiave"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "この種類の鍵ではフィンガープリントを取得できません"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "이 키 유형에서는 지문을 사용할 수 없음"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Отпечаток недоступен для этого типа ключа"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ఈ రకం కీకి వేలిముద్ర అందుబాటులో లేదు"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Відбиток недоступний для цього типу ключа"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "此密钥类型无法提供指纹"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "此金鑰類型無法提供指紋"
           }
         }
       }
@@ -15324,6 +15676,94 @@
         }
       }
     },
+    "Light": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "فاتح"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ανοιχτόχρωμο"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Claro"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clair"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "בהיר"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "हल्का"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chiaro"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ライト"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "라이트"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Светлая"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "లేత"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Світла"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "浅色"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "淺色"
+          }
+        }
+      }
+    },
     "Loading models…": {
       "localizations": {
         "ar": {
@@ -16820,6 +17260,94 @@
         }
       }
     },
+    "No API key for %@. Add one in Settings → AI Assistant.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "لا يوجد مفتاح API لـ %@. أضف مفتاحًا في الإعدادات ← مساعد الذكاء الاصطناعي."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Δεν υπάρχει κλειδί API για %@. Προσθέστε ένα στις Ρυθμίσεις → Βοηθός AI."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No hay clave API para %@. Añade una en Ajustes → Asistente de IA."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aucune clé API pour %@. Ajoutez-en une dans Réglages → Assistant IA."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "אין מפתח API עבור %@. הוסף מפתח בהגדרות ← עוזר AI."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ के लिए कोई API कुंजी नहीं है। सेटिंग → AI सहायक में एक जोड़ें।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nessuna chiave API per %@. Aggiungine una in Impostazioni → Assistente AI."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ の API キーがありません。「設定」→「AIアシスタント」で追加してください。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@의 API 키가 없습니다. 설정 → AI 어시스턴트에서 추가하십시오."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Нет ключа API для %@. Добавьте его в разделе «Настройки» → «ИИ-ассистент»."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ కోసం API కీ లేదు. సెట్టింగ్‌లు → AI సహాయకుడులో ఒకటి జోడించండి."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Немає ключа API для %@. Додайте його в розділі «Налаштування» → «ШІ-асистент»."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "没有 %@ 的 API 密钥。请在“设置”→“AI 助手”中添加。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "沒有 %@ 的 API 金鑰。請在「設定」→「AI 助理」中加入。"
+          }
+        }
+      }
+    },
     "No Groups": {
       "localizations": {
         "ar": {
@@ -18139,6 +18667,94 @@
           "stringUnit": {
             "state": "translated",
             "value": "一旦接受，該金鑰就會被記住，不會再次詢問你。"
+          }
+        }
+      }
+    },
+    "Only accept if you expected this change.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "لا توافق إلا إذا كنت تتوقع هذا التغيير."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Αποδεχτείτε μόνο αν περιμένατε αυτή την αλλαγή."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Acepta solo si esperabas este cambio."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "N'acceptez que si vous attendiez ce changement."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "אשר רק אם ציפית לשינוי הזה."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "केवल तभी स्वीकारें जब आपको इस बदलाव की उम्मीद थी।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Accetta solo se ti aspettavi questa modifica."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "この変更に心当たりがある場合にのみ受け入れてください。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "이 변경을 예상한 경우에만 수락하십시오."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Принимайте, только если ожидали это изменение."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ఈ మార్పును మీరు ఊహించినట్లయితే మాత్రమే అంగీకరించండి."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Приймайте, лише якщо очікували цю зміну."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "只有在你预料到此更改时才接受。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "只有在你預期此變更時才接受。"
           }
         }
       }
@@ -25271,6 +25887,94 @@
         }
       }
     },
+    "Stopped after %lld agent steps.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "توقف بعد بلوغ الحد الأقصى لخطوات الوكيل (%lld)."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Διακόπηκε μετά από %lld βήματα του βοηθού."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Se detuvo tras %lld pasos del agente."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Arrêt après %lld étapes de l'agent."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "נעצר אחרי %lld צעדים של הסוכן."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "एजेंट के %lld चरणों के बाद रोका गया।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Interrotto dopo %lld passaggi dell'agente."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "エージェントのステップが %lld 回に達したため停止しました。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "에이전트 단계 %lld회 후 중지되었습니다."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Остановлено: достигнут предел шагов агента (%lld)."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ఏజెంట్ %lld దశల తర్వాత ఆపివేయబడింది."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Зупинено: досягнуто межі кроків агента (%lld)."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "智能体执行 %lld 步后已停止。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "代理程式執行 %lld 步後已停止。"
+          }
+        }
+      }
+    },
     "Stored in the Keychain alongside the key.": {
       "localizations": {
         "ar": {
@@ -25355,6 +26059,94 @@
           "stringUnit": {
             "state": "translated",
             "value": "與金鑰一同儲存在鑰匙圈中。"
+          }
+        }
+      }
+    },
+    "System": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "النظام"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Σύστημα"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sistema"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Système"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "מערכת"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सिस्टम"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sistema"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "システム"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "시스템"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Системный"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "సిస్టమ్"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Системний"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "系统"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "系統"
           }
         }
       }
@@ -26147,94 +26939,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "點一下 + 產生 Ed25519 金鑰，或輸入你已有的金鑰。"
-          }
-        }
-      }
-    },
-    "Tap + to generate an Ed25519 key.": {
-      "localizations": {
-        "ar": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "اضغط + لتوليد مفتاح Ed25519."
-          }
-        },
-        "el": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Πατήστε + για να παραγάγετε ένα κλειδί Ed25519."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Toca + para generar una clave Ed25519."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Touchez + pour générer une clé Ed25519."
-          }
-        },
-        "he": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "הקש + כדי ליצור מפתח Ed25519."
-          }
-        },
-        "hi": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ed25519 कुंजी जनरेट करने के लिए + टैप करें।"
-          }
-        },
-        "it": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Tocca + per generare una chiave Ed25519."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "+ をタップして Ed25519 鍵を生成します。"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "+를 탭하여 Ed25519 키를 만드십시오."
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Нажмите +, чтобы сгенерировать ключ Ed25519."
-          }
-        },
-        "te": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ed25519 కీని రూపొందించడానికి + నొక్కండి."
-          }
-        },
-        "uk": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Торкніться +, щоб згенерувати ключ Ed25519."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "轻点 + 生成 Ed25519 密钥。"
-          }
-        },
-        "zh-Hant": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "點一下 + 以產生 Ed25519 金鑰。"
           }
         }
       }
@@ -27650,6 +28354,182 @@
         }
       }
     },
+    "The SSH key for these credentials could not be read.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تعذّرت قراءة مفتاح SSH الخاص ببيانات الاعتماد هذه."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Δεν ήταν δυνατή η ανάγνωση του κλειδιού SSH για αυτά τα διαπιστευτήρια."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se pudo leer la clave SSH de estas credenciales."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impossible de lire la clé SSH de ces identifiants."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "לא ניתן היה לקרוא את מפתח ה-SSH של אישורי הגישה האלה."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "इन क्रेडेंशियल की SSH कुंजी पढ़ी नहीं जा सकी।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impossibile leggere la chiave SSH di queste credenziali."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "この認証情報の SSH 鍵を読み込めませんでした。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "이 인증 정보의 SSH 키를 읽을 수 없습니다."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Не удалось прочитать ключ SSH для этих учётных данных."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ఈ ఆధారాల SSH కీని చదవడం సాధ్యం కాలేదు."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Не вдалося прочитати ключ SSH для цих облікових даних."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无法读取这些凭证的 SSH 密钥。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "無法讀取這些憑證的 SSH 金鑰。"
+          }
+        }
+      }
+    },
+    "The SSH key for these credentials is missing.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "مفتاح SSH الخاص ببيانات الاعتماد هذه مفقود."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Το κλειδί SSH για αυτά τα διαπιστευτήρια λείπει."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Falta la clave SSH de estas credenciales."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La clé SSH de ces identifiants est introuvable."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "מפתח ה-SSH של אישורי הגישה האלה חסר."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "इन क्रेडेंशियल की SSH कुंजी मौजूद नहीं है।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Manca la chiave SSH di queste credenziali."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "この認証情報の SSH 鍵が見つかりません。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "이 인증 정보의 SSH 키가 없습니다."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ключ SSH для этих учётных данных отсутствует."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ఈ ఆధారాల SSH కీ కనబడలేదు."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ключ SSH для цих облікових даних відсутній."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "这些凭证的 SSH 密钥丢失。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "找不到這些憑證的 SSH 金鑰。"
+          }
+        }
+      }
+    },
     "The Terminal": {
       "localizations": {
         "ar": {
@@ -28530,90 +29410,178 @@
         }
       }
     },
-    "The terminal output%@ will be sent to %@.": {
+    "The terminal output and attached files will be sent to %@.": {
       "localizations": {
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "سيُرسل مخرج الطرفية%@ إلى %@."
+            "value": "سيُرسل مخرج الطرفية والملفات المرفقة إلى %@."
           }
         },
         "el": {
           "stringUnit": {
             "state": "translated",
-            "value": "Η έξοδος του τερματικού%@ θα σταλεί στο %@."
+            "value": "Η έξοδος του τερματικού και τα συνημμένα αρχεία θα σταλούν στο %@."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "La salida del terminal%@ se enviará a %@."
+            "value": "La salida del terminal y los archivos adjuntos se enviarán a %@."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "La sortie du terminal%@ sera envoyée à %@."
+            "value": "La sortie du terminal et les fichiers joints seront envoyés à %@."
           }
         },
         "he": {
           "stringUnit": {
             "state": "translated",
-            "value": "פלט המסוף%@ יישלח אל %@."
+            "value": "פלט המסוף והקבצים המצורפים יישלחו אל %@."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "टर्मिनल का आउटपुट%@ %@ को भेजा जाएगा।"
+            "value": "टर्मिनल का आउटपुट और संलग्न फ़ाइलें %@ को भेजी जाएँगी।"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "L'output del terminale%@ sarà inviato a %@."
+            "value": "L'output del terminale e i file allegati saranno inviati a %@."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "ターミナルの出力%@ が %@ に送信されます。"
+            "value": "ターミナルの出力と添付ファイルが %@ に送信されます。"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "터미널 출력%@이(가) %@에 전송됩니다."
+            "value": "터미널 출력과 첨부 파일이 %@에 전송됩니다."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Вывод терминала%@ будет отправлен в %@."
+            "value": "Вывод терминала и прикреплённые файлы будут отправлены в %@."
           }
         },
         "te": {
           "stringUnit": {
             "state": "translated",
-            "value": "టెర్మినల్ అవుట్‌పుట్%@ %@ కు పంపబడుతుంది."
+            "value": "టెర్మినల్ అవుట్‌పుట్ మరియు జతచేసిన ఫైల్‌లు %@ కు పంపబడతాయి."
           }
         },
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Вивід термінала%@ буде надіслано до %@."
+            "value": "Вивід термінала і прикріплені файли буде надіслано до %@."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "终端输出%@将发送给 %@。"
+            "value": "终端输出和附加的文件将发送给 %@。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "終端機輸出%@將傳送給 %@。"
+            "value": "終端機輸出和附加的檔案將傳送給 %@。"
+          }
+        }
+      }
+    },
+    "The terminal output will be sent to %@.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "سيُرسل مخرج الطرفية إلى %@."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Η έξοδος του τερματικού θα σταλεί στο %@."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La salida del terminal se enviará a %@."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La sortie du terminal sera envoyée à %@."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "פלט המסוף יישלח אל %@."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "टर्मिनल का आउटपुट %@ को भेजा जाएगा।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "L'output del terminale sarà inviato a %@."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ターミナルの出力が %@ に送信されます。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "터미널 출력이 %@에 전송됩니다."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Вывод терминала будет отправлен в %@."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "టెర్మినల్ అవుట్‌పుట్ %@ కు పంపబడుతుంది."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Вивід термінала буде надіслано до %@."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "终端输出将发送给 %@。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "終端機輸出將傳送給 %@。"
           }
         }
       }
@@ -28878,6 +29846,182 @@
           "stringUnit": {
             "state": "translated",
             "value": "不需任何設定：連接顯示器並開啟一個工作階段即可。"
+          }
+        }
+      }
+    },
+    "This forward has no host.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "لا يوجد مضيف لهذا التوجيه."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Αυτή η προώθηση δεν έχει διακομιστή."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esta redirección no tiene host."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cette redirection n'a pas d'hôte."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "לניתוב הזה אין מארח."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "इस फ़ॉरवर्ड का कोई होस्ट नहीं है।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Questo inoltro non ha un host."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "この転送にはホストがありません。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "이 포워딩에는 호스트가 없습니다."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "У этого перенаправления нет хоста."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ఈ ఫార్వర్డ్‌కు హోస్ట్ లేదు."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Це переспрямування не має хоста."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "此转发没有主机。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "此轉送沒有主機。"
+          }
+        }
+      }
+    },
+    "This host has no credentials. Edit the host and choose one.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "لا توجد بيانات اعتماد لهذا المضيف. عدّل المضيف واختر بيانات اعتماد."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Αυτός ο διακομιστής δεν έχει διαπιστευτήρια. Επεξεργαστείτε τον διακομιστή και επιλέξτε κάποια."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Este host no tiene credenciales. Edita el host y elige unas."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cet hôte n'a pas d'identifiants. Modifiez l'hôte et choisissez-en."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "למארח הזה אין אישורי גישה. ערוך את המארח ובחר אישורי גישה."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "इस होस्ट के कोई क्रेडेंशियल नहीं हैं। होस्ट संपादित करें और एक चुनें।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Questo host non ha credenziali. Modifica l'host e scegline una."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "このホストには認証情報がありません。ホストを編集して選択してください。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "이 호스트에는 인증 정보가 없습니다. 호스트를 편집하여 인증 정보를 선택하십시오."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "У этого хоста нет учётных данных. Измените хост и выберите их."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ఈ హోస్ట్‌కు ఆధారాలు లేవు. హోస్ట్‌ను సవరించి ఒకదాన్ని ఎంచుకోండి."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Цей хост не має облікових даних. Відредагуйте хост і виберіть їх."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "此主机没有凭证。请编辑主机并选择一个凭证。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "此主機沒有憑證。請編輯主機並選擇一個憑證。"
           }
         }
       }
@@ -31757,6 +32901,94 @@
     "user@host:~$ ls": {
       "shouldTranslate": false
     },
+    "was %@": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "سابقًا: %@"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Πριν: %@"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Antes: %@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Auparavant : %@"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "קודם: %@"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पहले: %@"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prima: %@"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "以前: %@"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "이전: %@"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Было: %@"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "గతంలో: %@"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Було: %@"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "之前：%@"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "之前：%@"
+          }
+        }
+      }
+    },
     "“%@” already exists here": {
       "localizations": {
         "ar": {
@@ -32196,6 +33428,94 @@
           "stringUnit": {
             "state": "translated",
             "value": "↓ 下"
+          }
+        }
+      }
+    },
+    "⚠️ This key is DIFFERENT from the one you previously trusted:": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⚠️ هذا المفتاح مختلف عن المفتاح الذي وثقت به سابقًا:"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⚠️ Αυτό το κλειδί είναι ΔΙΑΦΟΡΕΤΙΚΟ από αυτό που είχατε εμπιστευτεί:"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⚠️ Esta clave es DISTINTA de la que aceptaste anteriormente:"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⚠️ Cette clé est DIFFÉRENTE de celle que vous aviez acceptée :"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⚠️ המפתח הזה שונה מהמפתח שסמכת עליו בעבר:"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⚠️ यह कुंजी उस कुंजी से अलग है जिस पर आपने पहले भरोसा किया था:"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⚠️ Questa chiave è DIVERSA da quella di cui ti fidavi:"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⚠️ この鍵は以前に信頼した鍵と異なります:"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⚠️ 이 키는 이전에 신뢰한 키와 다릅니다:"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⚠️ Этот ключ ОТЛИЧАЕТСЯ от того, которому вы доверяли раньше:"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⚠️ ఈ కీ మీరు గతంలో నమ్మిన కీకి భిన్నంగా ఉంది:"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⚠️ Цей ключ ВІДРІЗНЯЄТЬСЯ від того, якому ви довіряли раніше:"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⚠️ 此密钥与你之前信任的密钥不同："
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⚠️ 此金鑰與你之前信任的金鑰不同："
           }
         }
       }

@@ -17,5 +17,8 @@ struct ThemePreviewRow: View {
             .padding(8)
             .background(Color(TerminalTheme.uiColor(theme.background)))
             .clipShape(RoundedRectangle(cornerRadius: 6))
+            // A sample of terminal content, so it sits left-to-right like the
+            // terminal itself, even in Arabic and Hebrew.
+            .forcesLeftToRight()
     }
 }
