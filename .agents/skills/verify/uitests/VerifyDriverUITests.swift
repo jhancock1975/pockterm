@@ -870,7 +870,7 @@ final class VerifyDriverUITests: XCTestCase {
                       "terminal keyboard never appeared")
         Thread.sleep(forTimeInterval: 1.5)
 
-        app.typeText("$HOME/git/pockterm/.claude/skills/verify/tmux-drive.sh\n")
+        app.typeText("$HOME/git/pockterm/.agents/skills/verify/tmux-drive.sh\n")
 
         Thread.sleep(forTimeInterval: 8)
         attach(app, name: "tmux-00-startup")

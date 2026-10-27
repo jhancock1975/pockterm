@@ -15,7 +15,7 @@ The masters live outside the repo, in ~/Documents/Apps/pockterm/videos/:
   base/base-<lang>.mp4   uncaptioned per-language cuts, 1320x2868, 30 fps,
                          888 frames, no audio. Filmed and cut with the steps
                          under "Filming the site demo video" in
-                         .claude/skills/verify/SKILL.md, ending in
+                         .agents/skills/verify/SKILL.md, ending in
                          scripts/cut-demo-take. They follow the English
                          master's scenes frame for frame, so the caption
                          WINDOWS below fit every language.

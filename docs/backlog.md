@@ -302,7 +302,7 @@ deterministic (two runs byte-identical) and takes seconds.
 * **Minimal case:** two byte streams differing only by `ESC [ ? 69 h` — margin
   off correct, margin on destroyed.
 * **In the real app:** driven in the simulator over real SSH
-  (`.claude/skills/verify`, `testTmuxEmacsModeLine`). Without the fix the app
+  (`.agents/skills/verify`, `testTmuxEmacsModeLine`). Without the fix the app
   rendered a content line where the mode line belonged; with it, the screen
   matches `capture-pane` row for row.
 

@@ -23,13 +23,13 @@ open -a Simulator
 ## Set up the driver (temporary — revert when done)
 
 ```bash
-ruby .claude/skills/verify/add_uitest_target.rb   # adds pocktermUITests target
-ruby .claude/skills/verify/add_scheme.rb          # adds shared pocktermUI scheme
+ruby .agents/skills/verify/add_uitest_target.rb   # adds pocktermUITests target
+ruby .agents/skills/verify/add_scheme.rb          # adds shared pocktermUI scheme
 xcodebuild build-for-testing -project pockterm.xcodeproj -scheme pocktermUI \
   -destination 'platform=iOS Simulator,name=iPhone 17' -skipPackagePluginValidation
 ```
 
-The driver tests live in `.claude/skills/verify/uitests/VerifyDriverUITests.swift`
+The driver tests live in `.agents/skills/verify/uitests/VerifyDriverUITests.swift`
 (referenced by absolute path — no repo source changes). Phases:
 
 1. **testPhase1GenerateKey** — generates an Ed25519 key ("verify") in the app.
@@ -281,7 +281,7 @@ text, so delete that run's log and result bundle afterwards.
 two simulators):
 
 ```bash
-F=.claude/skills/verify/film-demo-take.py
+F=.agents/skills/verify/film-demo-take.py
 $F phone   fr --udid <phone>   --out takes/fr --derived-data <dd>
 $F glasses fr --udid <glasses> --out takes/fr --derived-data <dd>
 scripts/cut-demo-take takes/fr ~/Documents/Apps/pockterm/videos/base/base-fr.mp4
@@ -359,7 +359,7 @@ prints the password. It answers in about 4 s.
 ## Cleanup
 
 ```bash
-.claude/skills/verify/cleanup.sh
+.agents/skills/verify/cleanup.sh
 ```
 
 **Do not hand-roll this with git.** `Package.resolved` is tracked *inside* the
