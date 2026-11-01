@@ -78,6 +78,8 @@ connect to. A public demo SSH host is standing by:
     Password: <DEMO_HOST_PASSWORD>
 
 Steps: open the Hosts tab → tap + → enter the above → Connect. You'll get a live shell.
+New in 1.9.3: one fix. The Hide Keyboard button at the end of the key bar above the keyboard
+did nothing; it now puts the keyboard away. Tap the terminal to bring it back.
 New in 1.9.2: no new features. Messages that still appeared in English in every language
 (the host-key prompt, login and assistant errors, theme and font names) are now translated,
 and the bundled libraries are updated.
