@@ -9,6 +9,9 @@ final class KeyBarView: UIInputView, UIInputViewAudioFeedback {
     /// Glasses mode: PgUp and PgDn scroll the terminal itself, since nothing
     /// on the glasses can be swiped. See `KeyBarKey.localScroll`.
     var scrollsLocally = false
+    /// Whoever is showing this bar, when it isn't the terminal: in glasses
+    /// mode, the phone's TerminalKeyboardProxy. Set and cleared by the proxy.
+    weak var keyboardOwner: UIResponder?
     private let scrollView = UIScrollView()
     private let stack = UIStackView()
     /// Sits above the scroll view on the trailing edge so the keys pass beneath
@@ -225,10 +228,21 @@ final class KeyBarView: UIInputView, UIInputViewAudioFeedback {
 
     @objc private func hideKeyboard() {
         UIDevice.current.playInputClick()
-        // Whoever is showing this bar owns the keyboard: the terminal on the
-        // phone, or TerminalKeyboardProxy in glasses mode.
-        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder),
-                                        to: nil, from: nil, for: nil)
+        dismissKeyboard()
+    }
+
+    /// Takes the keyboard down by resigning whoever holds it: the terminal on
+    /// the phone, or TerminalKeyboardProxy in glasses mode. Not a nil-targeted
+    /// `sendAction(resignFirstResponder)`: that lands on some other UIView in
+    /// the responder chain, which "handles" it (every responder implements
+    /// resignFirstResponder) and leaves the terminal focused, so the button
+    /// did nothing at all.
+    func dismissKeyboard() {
+        if let keyboardOwner, keyboardOwner.isFirstResponder {
+            _ = keyboardOwner.resignFirstResponder()
+        } else {
+            _ = terminalView?.resignFirstResponder()
+        }
     }
 
     // MARK: Typematic
