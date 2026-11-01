@@ -149,9 +149,8 @@ struct SessionTabsView: View {
                             // lay out (covered) behind it. Whoever holds the
                             // keyboard: the terminal, or in glasses mode the
                             // phone's TerminalKeyboardProxy.
-                            UIApplication.shared.sendAction(
-                                #selector(UIResponder.resignFirstResponder),
-                                to: nil, from: nil, for: nil)
+                            (session.terminalView.inputAccessoryView as? KeyBarView)?
+                                .dismissKeyboard()
                             assistantSession = session
                         } label: {
                             Image(systemName: "sparkles")

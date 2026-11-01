@@ -109,11 +109,16 @@ final class TerminalKeyboardProxy: UIView, UITextInput {
     private func claim(_ terminal: TerminalView) {
         terminal.caretViewTracksFocus = false
         terminal.getTerminal().setTerminalFocus(true)
+        // The key bar's Hide Keyboard has to resign this view, not the terminal.
+        (terminal.inputAccessoryView as? KeyBarView)?.keyboardOwner = self
     }
 
     private func release(_ terminal: TerminalView) {
         terminal.caretViewTracksFocus = true
         terminal.getTerminal().setTerminalFocus(false)
+        if let bar = terminal.inputAccessoryView as? KeyBarView, bar.keyboardOwner === self {
+            bar.keyboardOwner = nil
+        }
     }
 
     // MARK: Paste

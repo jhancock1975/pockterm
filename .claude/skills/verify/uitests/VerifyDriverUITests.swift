@@ -1392,6 +1392,28 @@ final class VerifyDriverUITests: XCTestCase {
         attach(app, name: "t2-first-session-again")
     }
 
+    /// The key bar's pinned Hide Keyboard chip must take the software
+    /// keyboard down, and a tap on the terminal must bring it back.
+    func testHideKeyboardButton() throws {
+        let app = XCUIApplication()
+        app.launch()
+        try connectToMac(app)
+        typeIntoTerminal(app, "echo up\n")
+        Thread.sleep(forTimeInterval: 1)
+        attach(app, name: "hk1-keyboard-up")
+        let hide = app.buttons["Hide Keyboard"]
+        XCTAssertTrue(hide.waitForExistence(timeout: 5), "no Hide Keyboard chip: \(app.debugDescription)")
+        print("HIDEKB>>> chip frame=\(hide.frame) hittable=\(hide.isHittable)")
+        hide.tap()
+        Thread.sleep(forTimeInterval: 2)
+        attach(app, name: "hk2-after-hide")
+        print("HIDEKB>>> keyboard after tap: \(app.keyboards.firstMatch.exists)")
+        XCTAssertFalse(app.keyboards.firstMatch.exists, "keyboard still up after Hide Keyboard")
+        app.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.4)).tap()
+        XCTAssertTrue(app.keyboards.firstMatch.waitForExistence(timeout: 5), "keyboard didn't come back")
+        attach(app, name: "hk3-back")
+    }
+
     /// Types into the phone's terminal, tapping it first if the keyboard is down.
     private func typeIntoTerminal(_ app: XCUIApplication, _ text: String) {
         if !app.keyboards.firstMatch.exists {
