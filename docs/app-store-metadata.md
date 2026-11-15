@@ -78,6 +78,9 @@ connect to. A public demo SSH host is standing by:
     Password: <DEMO_HOST_PASSWORD>
 
 Steps: open the Hosts tab → tap + → enter the above → Connect. You'll get a live shell.
+New in 1.10: in the Keychain tab, tap a key to open it. The key screen shows the whole public
+key with Copy Public Key and Share Public Key buttons, for adding it to a server's
+authorized_keys. Code in Arabic and Hebrew help text now reads in the right order.
 New in 1.9.3: one fix. The Hide Keyboard button at the end of the key bar above the keyboard
 did nothing; it now puts the keyboard away. Tap the terminal to bring it back.
 New in 1.9.2: no new features. Messages that still appeared in English in every language

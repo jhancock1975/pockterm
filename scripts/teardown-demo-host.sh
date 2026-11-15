@@ -1,6 +1,6 @@
 #!/bin/bash
 # Tears down the Pockterm App Review demo SSH host. Run AFTER the app is approved.
-# Written by scripts/provision-demo-host.sh on 2026-11-01.
+# Written by scripts/provision-demo-host.sh on 2026-11-15.
 #
 # NEVER put AWS credentials in this file. It authenticates from the ambient AWS
 # CLI config (~/.aws/credentials, outside the repo) — no keys, no --profile, no
@@ -9,8 +9,8 @@
 set -e
 export AWS_PAGER=""
 REGION=us-east-1
-aws ec2 terminate-instances --region $REGION --instance-ids i-0025218e509059b86
-aws ec2 wait instance-terminated --region $REGION --instance-ids i-0025218e509059b86
-aws ec2 release-address --region $REGION --allocation-id eipalloc-0df96571d82374ceb
-aws ec2 delete-security-group --region $REGION --group-id sg-025fe5c21b47e07fd 2>/dev/null || true
+aws ec2 terminate-instances --region $REGION --instance-ids i-0ad3fc1a3b11f2613
+aws ec2 wait instance-terminated --region $REGION --instance-ids i-0ad3fc1a3b11f2613
+aws ec2 release-address --region $REGION --allocation-id eipalloc-0d910ff949b21ffa8
+aws ec2 delete-security-group --region $REGION --group-id sg-06df591a56df071de 2>/dev/null || true
 echo "demo host torn down."
