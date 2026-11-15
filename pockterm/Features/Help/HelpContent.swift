@@ -56,7 +56,7 @@ enum HelpContent {
             .bullets([
                 "On the **Keychain** tab, tap **+**, choose **Generate Ed25519 Key…**, and give the key a label.",
                 "Pockterm creates an Ed25519 key pair and stores the private key in the iOS Keychain.",
-                "Add the shown public-key line to the server's `~/.ssh/authorized_keys` file.",
+                "Tap the key to open it, then tap **Copy Public Key** or **Share Public Key** and add that line to the server's `~/.ssh/authorized_keys` file.",
             ]),
             .heading("Import a key you already have"),
             .bullets([

@@ -18,13 +18,17 @@ struct KeysListView: View {
                 } else {
                     List {
                         ForEach(keys) { key in
-                            VStack(alignment: .leading, spacing: 2) {
-                                Text(key.label).font(.headline)
-                                Text(key.keyType).font(.caption).foregroundStyle(.secondary)
-                                Text(key.publicKeyOpenSSH)
-                                    .font(.system(.caption2, design: .monospaced))
-                                    .lineLimit(1).truncationMode(.middle)
-                                    .foregroundStyle(.tertiary)
+                            NavigationLink {
+                                KeyDetailView(key: key)
+                            } label: {
+                                VStack(alignment: .leading, spacing: 2) {
+                                    Text(key.label).font(.headline)
+                                    Text(key.keyType).font(.caption).foregroundStyle(.secondary)
+                                    Text(key.publicKeyOpenSSH)
+                                        .font(.system(.caption2, design: .monospaced))
+                                        .lineLimit(1).truncationMode(.middle)
+                                        .foregroundStyle(.tertiary)
+                                }
                             }
                         }
                         .onDelete(perform: delete)
