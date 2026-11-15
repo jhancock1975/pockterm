@@ -38,6 +38,47 @@ final class VerifyDriverUITests: XCTestCase {
         print("PUBKEY_BEGIN>>>\(pub.label)<<<PUBKEY_END")
     }
 
+    /// Issue #22: a generated key must open, show its whole public key, and
+    /// copy and share it from visible buttons. The host then checks the
+    /// simulator pasteboard (`xcrun simctl pbpaste`) against the printed key.
+    func testKeyDetailCopyAndShare() throws {
+        let app = XCUIApplication()
+        app.launch()
+        app.tabBars.buttons["Keychain"].tap()
+
+        let label = "issue22-\(Int(Date().timeIntervalSince1970))"
+        app.navigationBars.buttons.firstMatch.tap() // the + button
+        let generate = app.buttons["Generate Ed25519 Key…"]
+        if generate.waitForExistence(timeout: 2) { generate.tap() }
+        let alert = app.alerts["Generate Ed25519 Key"]
+        XCTAssertTrue(alert.waitForExistence(timeout: 5), app.debugDescription)
+        alert.textFields.firstMatch.tap()
+        alert.textFields.firstMatch.typeText(label)
+        alert.buttons["Generate"].tap()
+
+        let row = app.staticTexts[label]
+        XCTAssertTrue(row.waitForExistence(timeout: 5), app.debugDescription)
+        attach(app, name: "k22-1-list")
+        row.tap()
+
+        let pub = app.textViews["publicKeyText"]
+        XCTAssertTrue(pub.waitForExistence(timeout: 5), app.debugDescription)
+        let shown = pub.value as? String ?? ""
+        XCTAssertTrue(shown.hasPrefix("ssh-ed25519 "), shown)
+        XCTAssertTrue(shown.hasSuffix("\(label)@pockterm"), shown)
+        print("K22_PUBKEY>>>\(shown)<<<")
+        attach(app, name: "k22-2-detail")
+
+        app.buttons["Copy Public Key"].tap()
+        XCTAssertTrue(app.buttons["Copied"].waitForExistence(timeout: 3), app.debugDescription)
+        attach(app, name: "k22-3-copied")
+
+        app.buttons["Share Public Key"].tap()
+        let sheet = app.otherElements["ActivityListView"]
+        XCTAssertTrue(sheet.waitForExistence(timeout: 5), app.debugDescription)
+        attach(app, name: "k22-4-share")
+    }
+
     /// Phase 2: create identity + host for the Mac's sshd, connect, raise the
     /// terminal keyboard, open the assistant sheet, and check the input bar
     /// sits above the keyboard with focus.

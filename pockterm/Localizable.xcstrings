@@ -700,12 +700,6 @@
         "ru": {
           "variations": {
             "plural": {
-              "one": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "%lld сессия"
-                }
-              },
               "few": {
                 "stringUnit": {
                   "state": "translated",
@@ -716,6 +710,12 @@
                 "stringUnit": {
                   "state": "translated",
                   "value": "%lld сессий"
+                }
+              },
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld сессия"
                 }
               },
               "other": {
@@ -748,12 +748,6 @@
         "uk": {
           "variations": {
             "plural": {
-              "one": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "%lld сесія"
-                }
-              },
               "few": {
                 "stringUnit": {
                   "state": "translated",
@@ -764,6 +758,12 @@
                 "stringUnit": {
                   "state": "translated",
                   "value": "%lld сесій"
+                }
+              },
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld сесія"
                 }
               },
               "other": {
@@ -3356,90 +3356,90 @@
         }
       }
     },
-    "Add the shown public-key line to the server's `~/.ssh/authorized_keys` file.": {
+    "Add this line to the server's `~/.ssh/authorized_keys` file.": {
       "localizations": {
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "أضف سطر المفتاح العام المعروض إلى ملف `~/.ssh/authorized_keys` على الخادم."
+            "value": "أضف هذا السطر إلى ملف `~/.ssh/authorized_keys` على الخادم."
           }
         },
         "el": {
           "stringUnit": {
             "state": "translated",
-            "value": "Προσθέστε τη γραμμή δημόσιου κλειδιού που εμφανίζεται στο αρχείο `~/.ssh/authorized_keys` του διακομιστή."
+            "value": "Προσθέστε αυτή τη γραμμή στο αρχείο `~/.ssh/authorized_keys` του διακομιστή."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Añade la línea de clave pública que se muestra al archivo `~/.ssh/authorized_keys` del servidor."
+            "value": "Añade esta línea al archivo `~/.ssh/authorized_keys` del servidor."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ajoutez la ligne de clé publique affichée au fichier `~/.ssh/authorized_keys` du serveur."
+            "value": "Ajoutez cette ligne au fichier `~/.ssh/authorized_keys` du serveur."
           }
         },
         "he": {
           "stringUnit": {
             "state": "translated",
-            "value": "הוסף את שורת המפתח הציבורי המוצגת לקובץ `~/.ssh/authorized_keys` בשרת."
+            "value": "הוסף שורה זו לקובץ `~/.ssh/authorized_keys` בשרת."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "दिखाई गई सार्वजनिक-कुंजी पंक्ति को सर्वर की `~/.ssh/authorized_keys` फ़ाइल में जोड़ें।"
+            "value": "इस पंक्ति को सर्वर की `~/.ssh/authorized_keys` फ़ाइल में जोड़ें।"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Aggiungi la riga di chiave pubblica mostrata al file `~/.ssh/authorized_keys` del server."
+            "value": "Aggiungi questa riga al file `~/.ssh/authorized_keys` del server."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "表示された公開鍵の行を、サーバの `~/.ssh/authorized_keys` ファイルに追加します。"
+            "value": "この行をサーバの `~/.ssh/authorized_keys` ファイルに追加します。"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "표시된 공개 키 줄을 서버의 `~/.ssh/authorized_keys` 파일에 추가하십시오."
+            "value": "이 줄을 서버의 `~/.ssh/authorized_keys` 파일에 추가하십시오."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Добавьте показанную строку открытого ключа в файл `~/.ssh/authorized_keys` на сервере."
+            "value": "Добавьте эту строку в файл `~/.ssh/authorized_keys` на сервере."
           }
         },
         "te": {
           "stringUnit": {
             "state": "translated",
-            "value": "చూపిన పబ్లిక్-కీ పంక్తిని సర్వర్‌లోని `~/.ssh/authorized_keys` ఫైల్‌కు జోడించండి."
+            "value": "ఈ పంక్తిని సర్వర్‌లోని `~/.ssh/authorized_keys` ఫైల్‌కు జోడించండి."
           }
         },
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Додайте показаний рядок відкритого ключа до файлу `~/.ssh/authorized_keys` на сервері."
+            "value": "Додайте цей рядок до файлу `~/.ssh/authorized_keys` на сервері."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "把显示的公钥这一行添加到服务器的 `~/.ssh/authorized_keys` 文件中。"
+            "value": "将这一行添加到服务器的 `~/.ssh/authorized_keys` 文件中。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "將顯示的公開金鑰那一行加入伺服器的 `~/.ssh/authorized_keys` 檔案。"
+            "value": "將這一行加入伺服器的 `~/.ssh/authorized_keys` 檔案中。"
           }
         }
       }
@@ -7136,6 +7136,182 @@
           "stringUnit": {
             "state": "translated",
             "value": "控制助理在你的伺服器上執行指令或編輯檔案前是否先詢問。"
+          }
+        }
+      }
+    },
+    "Copied": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تم النسخ"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Αντιγράφηκε"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copiada"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copiée"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הועתק"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "कॉपी हो गई"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copiata"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "コピーしました"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "복사됨"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Скопировано"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "కాపీ అయింది"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Скопійовано"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已拷贝"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已拷貝"
+          }
+        }
+      }
+    },
+    "Copy Public Key": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "نسخ المفتاح العام"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Αντιγραφή δημόσιου κλειδιού"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copiar clave pública"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copier la clé publique"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "העתק מפתח ציבורי"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सार्वजनिक कुंजी कॉपी करें"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copia chiave pubblica"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "公開鍵をコピー"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "공개 키 복사"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Скопировать открытый ключ"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "పబ్లిక్ కీని కాపీ చేయి"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Скопіювати відкритий ключ"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "拷贝公钥"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "拷貝公開金鑰"
           }
         }
       }
@@ -21487,6 +21663,94 @@
         }
       }
     },
+    "Public Key": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "المفتاح العام"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Δημόσιο κλειδί"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clave pública"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clé publique"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "מפתח ציבורי"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सार्वजनिक कुंजी"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chiave pubblica"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "公開鍵"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "공개 키"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Открытый ключ"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "పబ్లిక్ కీ"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Відкритий ключ"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "公钥"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "公開金鑰"
+          }
+        }
+      }
+    },
     "Pull down to **search** by label or address. Hosts you've used recently appear under Recents.": {
       "localizations": {
         "ar": {
@@ -24743,6 +25007,94 @@
         }
       }
     },
+    "Share Public Key": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "مشاركة المفتاح العام"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Κοινοποίηση δημόσιου κλειδιού"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Compartir clave pública"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Partager la clé publique"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "שתף מפתח ציבורי"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सार्वजनिक कुंजी साझा करें"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Condividi chiave pubblica"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "公開鍵を共有"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "공개 키 공유"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Поделиться открытым ключом"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "పబ్లిక్ కీని షేర్ చేయి"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Поділитися відкритим ключем"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "共享公钥"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "分享公開金鑰"
+          }
+        }
+      }
+    },
     "Show Keyboard": {
       "localizations": {
         "ar": {
@@ -27643,6 +27995,94 @@
           "stringUnit": {
             "state": "translated",
             "value": "點一下**排序**按鈕，即可依**名稱**或**日期**排列列表。再次點一下已選取的項目，可在最新優先和最舊優先之間切換。Pockterm 會記住你的選擇。"
+          }
+        }
+      }
+    },
+    "Tap the key to open it, then tap **Copy Public Key** or **Share Public Key** and add that line to the server's `~/.ssh/authorized_keys` file.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اضغط على المفتاح لفتحه، ثم اضغط على **نسخ المفتاح العام** أو **مشاركة المفتاح العام** وأضف ذلك السطر إلى ملف `~/.ssh/authorized_keys` على الخادم."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Πατήστε το κλειδί για να το ανοίξετε, έπειτα πατήστε **Αντιγραφή δημόσιου κλειδιού** ή **Κοινοποίηση δημόσιου κλειδιού** και προσθέστε τη γραμμή στο αρχείο `~/.ssh/authorized_keys` του διακομιστή."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Toca la clave para abrirla, luego toca **Copiar clave pública** o **Compartir clave pública** y añade esa línea al archivo `~/.ssh/authorized_keys` del servidor."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Touchez la clé pour l’ouvrir, puis touchez **Copier la clé publique** ou **Partager la clé publique** et ajoutez cette ligne au fichier `~/.ssh/authorized_keys` du serveur."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הקש על המפתח כדי לפתוח אותו, ואז הקש על **העתק מפתח ציבורי** או **שתף מפתח ציבורי** והוסף את השורה לקובץ `~/.ssh/authorized_keys` בשרת."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "कुंजी खोलने के लिए उस पर टैप करें, फिर **सार्वजनिक कुंजी कॉपी करें** या **सार्वजनिक कुंजी साझा करें** पर टैप करें और उस पंक्ति को सर्वर की `~/.ssh/authorized_keys` फ़ाइल में जोड़ें।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tocca la chiave per aprirla, poi tocca **Copia chiave pubblica** o **Condividi chiave pubblica** e aggiungi quella riga al file `~/.ssh/authorized_keys` del server."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "鍵をタップして開き、**公開鍵をコピー** または **公開鍵を共有** をタップして、その行をサーバの `~/.ssh/authorized_keys` ファイルに追加します。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "키를 탭하여 열고 **공개 키 복사** 또는 **공개 키 공유**를 탭한 다음 해당 줄을 서버의 `~/.ssh/authorized_keys` 파일에 추가하십시오."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Коснитесь ключа, чтобы открыть его, затем коснитесь **Скопировать открытый ключ** или **Поделиться открытым ключом** и добавьте эту строку в файл `~/.ssh/authorized_keys` на сервере."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "కీని తెరవడానికి దానిపై నొక్కండి, ఆపై **పబ్లిక్ కీని కాపీ చేయి** లేదా **పబ్లిక్ కీని షేర్ చేయి** నొక్కి, ఆ పంక్తిని సర్వర్‌లోని `~/.ssh/authorized_keys` ఫైల్‌కు జోడించండి."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Торкніться ключа, щоб відкрити його, потім торкніться **Скопіювати відкритий ключ** або **Поділитися відкритим ключем** і додайте цей рядок до файлу `~/.ssh/authorized_keys` на сервері."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "轻点密钥将其打开，然后轻点**拷贝公钥**或**共享公钥**，并将该行添加到服务器的 `~/.ssh/authorized_keys` 文件中。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "點一下金鑰以開啟，然後點一下**拷貝公開金鑰**或**分享公開金鑰**，並將該行加入伺服器的 `~/.ssh/authorized_keys` 檔案中。"
           }
         }
       }
