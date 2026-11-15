@@ -1414,6 +1414,63 @@ final class VerifyDriverUITests: XCTestCase {
         attach(app, name: "hk3-back")
     }
 
+    /// Cmd-V from a hardware keyboard must paste into the terminal, in glasses
+    /// mode and on the phone alike. The host checks /tmp/pockterm-cmdv.
+    func testCmdVPaste() throws {
+        let app = XCUIApplication()
+        app.launch()
+        try connectToMac(app)
+        let glasses = app.buttons["Text Size on Glasses"].waitForExistence(timeout: 5)
+        print("CMDV>>> glasses mode: \(glasses)")
+        if !glasses { typeIntoTerminal(app, "\n") }
+        UIPasteboard.general.string = "echo CMDV-PASTED > /tmp/pockterm-cmdv"
+        app.typeKey("v", modifierFlags: .command)
+        Thread.sleep(forTimeInterval: 1)
+        app.typeText("\n")
+        Thread.sleep(forTimeInterval: 2)
+        attach(app, name: "cmdv-after")
+    }
+
+    /// Which hardware keys reach the app in glasses mode.
+    func testGlassesHardwareKeys() throws {
+        let app = XCUIApplication()
+        app.launch()
+        try connectToMac(app)
+        XCTAssertTrue(app.buttons["Text Size on Glasses"].waitForExistence(timeout: 10), app.debugDescription)
+        print("KEYS>>> letter"); app.typeKey("x", modifierFlags: []); Thread.sleep(forTimeInterval: 1)
+        print("KEYS>>> arrow"); app.typeKey(.leftArrow, modifierFlags: []); Thread.sleep(forTimeInterval: 1)
+        UIPasteboard.general.string = "PASTED"
+        print("KEYS>>> cmdv"); app.typeKey("v", modifierFlags: .command); Thread.sleep(forTimeInterval: 1)
+        print("KEYS>>> cmda"); app.typeKey("a", modifierFlags: .command); Thread.sleep(forTimeInterval: 1)
+    }
+
+    /// Glasses mode, Cmd-V after the phone has been touched elsewhere: a tap
+    /// in the file list, then with the keyboard hidden.
+    func testCmdVPasteAfterFocusMoves() throws {
+        let app = XCUIApplication()
+        app.launch()
+        try connectToMac(app)
+        XCTAssertTrue(app.buttons["Text Size on Glasses"].waitForExistence(timeout: 10), app.debugDescription)
+        // cat takes the pastes as plain lines, with no bracketed-paste markers.
+        app.typeText("cat > /tmp/pockterm-cmdv-raw\n")
+        Thread.sleep(forTimeInterval: 1)
+        app.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.35)).tap()
+        Thread.sleep(forTimeInterval: 1)
+        print("CMDV>>> after list tap keyboard=\(app.keyboards.firstMatch.exists)")
+        attach(app, name: "cmdv-list-tap")
+        UIPasteboard.general.string = "AFTER-TAP\n"
+        app.typeKey("v", modifierFlags: .command)
+        Thread.sleep(forTimeInterval: 2)
+        let hide = app.buttons["Hide Keyboard"]
+        if hide.exists { hide.firstMatch.tap() }
+        Thread.sleep(forTimeInterval: 1)
+        print("CMDV>>> after hide keyboard=\(app.keyboards.firstMatch.exists)")
+        attach(app, name: "cmdv-hidden")
+        UIPasteboard.general.string = "AFTER-HIDE\n"
+        app.typeKey("v", modifierFlags: .command)
+        Thread.sleep(forTimeInterval: 2)
+    }
+
     /// Types into the phone's terminal, tapping it first if the keyboard is down.
     private func typeIntoTerminal(_ app: XCUIApplication, _ text: String) {
         if !app.keyboards.firstMatch.exists {
