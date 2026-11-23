@@ -38,7 +38,7 @@ to your server.
 
 The AI Assistant is optional and off until you configure it. When you use it, Pockterm sends
 the relevant terminal output and any files you attach to the model provider you have selected —
-**Anthropic, OpenAI, OpenRouter, or Hugging Face** — authenticated with the API key you
+**Anthropic, OpenAI, OpenRouter, Hugging Face, or Meta** — authenticated with the API key you
 provide. The app tells you which provider will receive the data before it is sent.
 
 Pockterm does not receive or store a copy of this data on any Pockterm server. How the
@@ -48,6 +48,7 @@ provider handles it is governed by that provider's own privacy policy:
 - OpenAI: https://openai.com/policies/privacy-policy
 - OpenRouter: https://openrouter.ai/privacy
 - Hugging Face: https://huggingface.co/privacy
+- Meta: https://www.meta.com/legal/privacy-policy/
 
 ## Analytics and tracking
 

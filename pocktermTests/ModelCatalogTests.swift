@@ -38,10 +38,11 @@ import Foundation
     #expect(ModelCatalog.parseModels(json, provider: .openai) == ["gpt-4o", "gpt-5"])
 }
 
-@Test @MainActor func anthropicAndHFPassThrough() {
+@Test @MainActor func anthropicHFAndMetaPassThrough() {
     let json = #"{"data":[{"id":"m2"},{"id":"m1"}]}"#.data(using: .utf8)!
     #expect(ModelCatalog.parseModels(json, provider: .anthropic) == ["m1", "m2"])
     #expect(ModelCatalog.parseModels(json, provider: .huggingFace) == ["m1", "m2"])
+    #expect(ModelCatalog.parseModels(json, provider: .meta) == ["m1", "m2"])
 }
 
 @Test @MainActor func storeIgnoresEmptyListAndStampsTime() {

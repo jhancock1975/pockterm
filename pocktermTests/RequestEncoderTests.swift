@@ -112,4 +112,15 @@ private let toolSample: ChatRequest = {
     #expect(RequestEncoder.headers(for: .anthropic, apiKey: "K")["anthropic-version"] == "2023-06-01")
     #expect(RequestEncoder.headers(for: .openai, apiKey: "K")["Authorization"] == "Bearer K")
     #expect(RequestEncoder.headers(for: .openRouter, apiKey: "K")["Authorization"] == "Bearer K")
+    #expect(RequestEncoder.headers(for: .meta, apiKey: "K")["Authorization"] == "Bearer K")
+}
+
+@Test @MainActor func metaUsesOpenAIWireFormatWithMaxTokens() {
+    // Meta's Chat Completions surface is OpenAI-compatible and takes
+    // max_tokens (assumption — unverified against the live API, see PR).
+    let body = RequestEncoder.body(for: sample, provider: .meta)
+    #expect(body["max_tokens"] as? Int == 100)
+    #expect(body["max_completion_tokens"] == nil)
+    let messages = body["messages"] as? [[String: Any]]
+    #expect(messages?.first?["role"] as? String == "system")
 }
