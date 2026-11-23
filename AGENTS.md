@@ -116,3 +116,6 @@ confirm the screen still matches `tmux capture-pane`.
   `scripts/routine-update` section 2. Full policy in `docs/dependency-policy.md`.
 - **Do not bump Citadel to 0.12.1+** without re-reading the backlog entry. It
   reintroduces the fork.
+
+# other agents
+You may see pull requests from other agents in the pockterm github repo, so check for those
