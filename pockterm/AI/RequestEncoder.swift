@@ -20,7 +20,7 @@ nonisolated enum RequestEncoder {
                 }
             }
             return body
-        case .openai, .openRouter, .huggingFace:
+        case .openai, .openRouter, .huggingFace, .meta:
             // Chat Completions carries the system prompt as a leading message.
             var messages: [[String: Any]] = []
             if let system = request.system {
@@ -107,6 +107,8 @@ nonisolated enum RequestEncoder {
             headers["HTTP-Referer"] = "https://pockterm.com"
             headers["X-Title"] = "Pockterm"
         case .huggingFace:
+            headers["Authorization"] = "Bearer \(apiKey)"
+        case .meta:
             headers["Authorization"] = "Bearer \(apiKey)"
         }
         return headers

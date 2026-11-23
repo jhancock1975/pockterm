@@ -15,3 +15,8 @@ import Foundation
 @Test @MainActor func anthropicDefaultsToOpus() {
     #expect(AIProvider.anthropic.defaultModel == "claude-opus-4-8")
 }
+
+@Test @MainActor func metaDefaultsToMuseSpark() {
+    #expect(AIProvider.meta.defaultModel == "muse-spark-1.3")
+    #expect(AIProvider.meta.displayName == "Meta (Muse)")
+}

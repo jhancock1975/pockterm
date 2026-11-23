@@ -36,7 +36,7 @@ TRANSFER
 
 AI ASSISTANT (optional)
 - Ask an AI assistant about terminal output and get suggested commands
-- Bring your own API key: Anthropic, OpenAI, OpenRouter, or Hugging Face
+- Bring your own API key: Anthropic, OpenAI, OpenRouter, Hugging Face, or Meta (Muse)
 - Off by default; you're told which provider receives data before anything is sent
 
 PRIVACY

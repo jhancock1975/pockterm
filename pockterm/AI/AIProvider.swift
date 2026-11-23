@@ -6,6 +6,7 @@ nonisolated enum AIProvider: String, CaseIterable, Codable, Identifiable {
     case openai
     case openRouter
     case huggingFace
+    case meta
 
     var id: String { rawValue }
 
@@ -15,6 +16,7 @@ nonisolated enum AIProvider: String, CaseIterable, Codable, Identifiable {
         case .openai: return "OpenAI"
         case .openRouter: return "OpenRouter"
         case .huggingFace: return "Hugging Face"
+        case .meta: return "Meta (Muse)"
         }
     }
 
@@ -25,6 +27,7 @@ nonisolated enum AIProvider: String, CaseIterable, Codable, Identifiable {
         case .openai: return "gpt-4o"
         case .openRouter: return "openai/gpt-4o"
         case .huggingFace: return "openai/gpt-oss-120b"
+        case .meta: return "muse-spark-1.3"
         }
     }
 
@@ -34,6 +37,7 @@ nonisolated enum AIProvider: String, CaseIterable, Codable, Identifiable {
         case .openai: return URL(string: "https://api.openai.com/v1/chat/completions")!
         case .openRouter: return URL(string: "https://openrouter.ai/api/v1/chat/completions")!
         case .huggingFace: return URL(string: "https://router.huggingface.co/v1/chat/completions")!
+        case .meta: return URL(string: "https://api.meta.ai/v1/chat/completions")!
         }
     }
 
@@ -44,6 +48,7 @@ nonisolated enum AIProvider: String, CaseIterable, Codable, Identifiable {
         case .openai: return URL(string: "https://api.openai.com/v1/models")!
         case .openRouter: return URL(string: "https://openrouter.ai/api/v1/models")!
         case .huggingFace: return URL(string: "https://router.huggingface.co/v1/models")!
+        case .meta: return URL(string: "https://api.meta.ai/v1/models")!
         }
     }
 

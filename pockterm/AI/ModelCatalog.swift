@@ -81,7 +81,7 @@ final class ModelCatalog {
             case .anthropic:
                 request.setValue(apiKey, forHTTPHeaderField: "x-api-key")
                 request.setValue("2023-06-01", forHTTPHeaderField: "anthropic-version")
-            case .openai, .openRouter, .huggingFace:
+            case .openai, .openRouter, .huggingFace, .meta:
                 request.setValue("Bearer \(apiKey)", forHTTPHeaderField: "Authorization")
             }
         }
@@ -93,10 +93,10 @@ final class ModelCatalog {
         return parseModels(data, provider: provider)
     }
 
-    /// All four providers return `{"data": [{"id": "..."}]}`. Text-first policy:
+    /// All five providers return `{"data": [{"id": "..."}]}`. Text-first policy:
     /// OpenRouter is filtered by declared output modality, OpenAI by id family
-    /// (its list mixes audio/image/embedding models); Anthropic and the HF
-    /// router already list only chat models.
+    /// (its list mixes audio/image/embedding models); Anthropic, the HF
+    /// router and Meta already list only chat models.
     static func parseModels(_ data: Data, provider: AIProvider) -> [String] {
         guard let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
               let entries = json["data"] as? [[String: Any]]
@@ -116,7 +116,7 @@ final class ModelCatalog {
                            "realtime", "audio", "image", "transcribe", "davinci", "babbage"]
             ids = entries.compactMap { $0["id"] as? String }
                 .filter { id in !nonChat.contains { id.contains($0) } }
-        case .anthropic, .huggingFace:
+        case .anthropic, .huggingFace, .meta:
             ids = entries.compactMap { $0["id"] as? String }
         }
         return ids.sorted()
