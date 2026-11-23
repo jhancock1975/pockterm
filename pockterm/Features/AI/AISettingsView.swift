@@ -83,6 +83,9 @@ private struct AISettingsForm: View {
                     .focused($keyFieldFocused)
                 Button("Save Key") { saveKey() }
                     .disabled(keyInput.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+                Link(destination: settings.activeProvider.apiKeyHelpURL) {
+                    Label("Get an API key", systemImage: "arrow.up.right.square")
+                }
                 if let keychainError {
                     Text(keychainError).font(.footnote).foregroundStyle(.red)
                 }

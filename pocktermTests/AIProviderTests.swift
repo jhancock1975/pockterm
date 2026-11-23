@@ -8,6 +8,7 @@ import Foundation
         #expect(!provider.defaultModel.isEmpty)
         #expect(!provider.displayName.isEmpty)
         #expect(provider.baseURL.scheme == "https")
+        #expect(provider.apiKeyHelpURL.scheme == "https")
         #expect(keyIDs.insert(provider.keychainKeyID).inserted)   // unique per provider
     }
 }
