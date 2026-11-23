@@ -52,6 +52,17 @@ nonisolated enum AIProvider: String, CaseIterable, Codable, Identifiable {
         }
     }
 
+    /// Where the user creates an API key for this provider.
+    var apiKeyHelpURL: URL {
+        switch self {
+        case .anthropic: return URL(string: "https://console.anthropic.com/settings/keys")!
+        case .openai: return URL(string: "https://platform.openai.com/api-keys")!
+        case .openRouter: return URL(string: "https://openrouter.ai/settings/keys")!
+        case .huggingFace: return URL(string: "https://huggingface.co/settings/tokens")!
+        case .meta: return URL(string: "https://dev.meta.ai")!
+        }
+    }
+
     /// Stable identifier used as the SecretStore key for this provider's API key.
     var keychainKeyID: String { "ai.key.\(rawValue)" }
 }
