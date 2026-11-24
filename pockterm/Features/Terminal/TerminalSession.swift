@@ -13,6 +13,12 @@ final class TerminalSession: Identifiable, HostKeyDeciding {
         case failed(String)
         case closed
         case idleDisconnected
+        /// The connection dropped and Pockterm is getting it back. `attempt`
+        /// counts from 1.
+        case reconnecting(attempt: Int)
+        /// The connection dropped and is not coming back on its own: either
+        /// reconnecting is off for this host or every attempt failed.
+        case connectionLost
     }
 
     let id = UUID()
@@ -72,6 +78,15 @@ final class TerminalSession: Identifiable, HostKeyDeciding {
     /// the SwiftTerm defect it works around. Stateful across reads, so it must
     /// live as long as the session.
     private var marginFilter = MarginModeFilter()
+    /// Set by `disconnect()`. A session the user closed never reconnects.
+    private var userDisconnected = false
+    private var reconnectTask: Task<Void, Never>?
+    /// Bumped for every shell opened, so the close of a shell that has
+    /// already been replaced by a reconnect is not taken for the new one's.
+    private var shellGeneration = 0
+    /// Set once tmux has turned out to be missing, so the notice is shown
+    /// once per session rather than on every reconnect.
+    private var tmuxUnavailable = false
 
     /// This session's AI assistant, created on first use so the transcript
     /// survives closing and reopening the assistant sheet.
@@ -204,60 +219,171 @@ final class TerminalSession: Identifiable, HostKeyDeciding {
     }
 
     func start() async {
-        let creds: SSHCredentials
-        switch HostConnection.credentials(for: host, secretStore: secretStore) {
-        case .failure(let message):
-            setStatus(.failed(message))
-            return
-        case .success(let resolved):
-            creds = resolved
-        }
-        host.lastConnectedAt = .now
-
+        userDisconnected = false
         do {
-            try await connectCheckingHostKey { [engine] validate in
-                try await engine.connect(creds, onHostKey: validate)
-            }
-            // The terminal's real size, not a guess. This used to open every
-            // shell at a hard-coded 80x24: SwiftTerm reports its size through
-            // proxy.onSize during layout, which is before the shell exists, so
-            // nothing ever corrected it and the server kept formatting for 80
-            // columns. Anything full-screen — top, vim, htop — then wrapped
-            // every line on a display that is nearer 46 columns, which is the
-            // exact garbling this app exists to avoid. The keep-alive tick did
-            // eventually send the true size, but minutes later.
-            try await engine.openShell(
-                cols: lastCols, rows: lastRows,
-                onOutput: { [weak self] bytes in
-                    Task { @MainActor in
-                        guard let self else { return }
-                        // Server output counts as activity: a streaming session
-                        // (tail -f, top) is in use and must not be idle-disconnected.
-                        self.lastActivityAt = .now
-                        self.terminalView.feed(byteArray: ArraySlice(self.marginFilter.filter(bytes)))
-                    }
-                },
-                onClose: { [weak self] in
-                    Task { @MainActor in
-                        guard let self else { return }
-                        self.keepAliveTimer?.invalidate(); self.keepAliveTimer = nil
-                        if self.status == .connected { self.setStatus(.closed) }
-                    }
-                })
-            setStatus(.connected)
-            lastActivityAt = .now
-            holdSeconds = EffectiveHostSettings.resolveKeepAlive(
-                host: host, globalDefault: ConnectionSettings.single(in: modelContext).defaultKeepAliveSeconds)
-            startKeepAliveTimer()
-            if let startup = host.startupSnippet, !startup.isEmpty {
-                sendKeys(Array((startup + "\n").utf8))
-            }
+            try await connectAndOpenShell(isReconnect: false)
         } catch {
             setStatus(.failed(error.localizedDescription))
         }
     }
 
+    /// Connects, opens the shell, and sets the session up as live. Shared by
+    /// the first connection and every reconnect.
+    private func connectAndOpenShell(isReconnect: Bool) async throws {
+        let creds: SSHCredentials
+        switch HostConnection.credentials(for: host, secretStore: secretStore) {
+        case .failure(let message):
+            throw CredentialsError(message: message)
+        case .success(let resolved):
+            creds = resolved
+        }
+        host.lastConnectedAt = .now
+
+        try await connectCheckingHostKey { [engine] validate in
+            try await engine.connect(creds, onHostKey: validate)
+        }
+        shellGeneration += 1
+        let generation = shellGeneration
+        // The terminal's real size, not a guess. This used to open every
+        // shell at a hard-coded 80x24: SwiftTerm reports its size through
+        // proxy.onSize during layout, which is before the shell exists, so
+        // nothing ever corrected it and the server kept formatting for 80
+        // columns. Anything full-screen — top, vim, htop — then wrapped
+        // every line on a display that is nearer 46 columns, which is the
+        // exact garbling this app exists to avoid. The keep-alive tick did
+        // eventually send the true size, but minutes later.
+        try await engine.openShell(
+            cols: lastCols, rows: lastRows,
+            onOutput: { [weak self] bytes in
+                Task { @MainActor in
+                    guard let self else { return }
+                    // Server output counts as activity: a streaming session
+                    // (tail -f, top) is in use and must not be idle-disconnected.
+                    self.lastActivityAt = .now
+                    self.terminalView.feed(byteArray: ArraySlice(self.marginFilter.filter(bytes)))
+                }
+            },
+            onClose: { [weak self] end in
+                Task { @MainActor in
+                    guard let self, generation == self.shellGeneration else { return }
+                    self.shellEnded(end)
+                }
+            })
+        if isReconnect { markReconnected() }
+        setStatus(.connected)
+        lastActivityAt = .now
+        let settings = ConnectionSettings.single(in: modelContext)
+        holdSeconds = EffectiveHostSettings.resolveKeepAlive(
+            host: host, globalDefault: settings.defaultKeepAliveSeconds)
+        startKeepAliveTimer()
+        let inTmux = await attachTmuxIfWanted(
+            EffectiveHostSettings.resolveReconnect(host: host, settings: settings).tmuxAttach)
+        // Back inside tmux the startup snippet has already run; a plain shell
+        // after a reconnect is a fresh login and gets it again.
+        if let startup = host.startupSnippet, !startup.isEmpty, !(isReconnect && inTmux) {
+            sendKeys(Array((startup + "\n").utf8))
+        }
+    }
+
+    private var autoReconnect: Bool {
+        EffectiveHostSettings.resolveReconnect(
+            host: host, settings: ConnectionSettings.single(in: modelContext)).autoReconnect
+    }
+
+    private func shellEnded(_ end: ShellEnd) {
+        keepAliveTimer?.invalidate(); keepAliveTimer = nil
+        switch Reconnect.response(to: end, wasConnected: status == .connected,
+                                  userDisconnected: userDisconnected,
+                                  autoReconnect: autoReconnect) {
+        case .reconnect: beginReconnecting()
+        case .showConnectionLost: setStatus(.connectionLost)
+        case .showClosed: setStatus(.closed)
+        case .ignore: break
+        }
+    }
+
+    /// Starts reconnecting from the first attempt. Also what the Reconnect
+    /// button does once the automatic attempts have run out.
+    func beginReconnecting() {
+        reconnectTask?.cancel()
+        userDisconnected = false
+        keepAliveTimer?.invalidate(); keepAliveTimer = nil
+        setStatus(.reconnecting(attempt: 1))
+        reconnectTask = Task { [weak self] in await self?.reconnectLoop() }
+    }
+
+    private func reconnectLoop() async {
+        var attempt = 1
+        while let delay = Reconnect.delay(beforeAttempt: attempt) {
+            setStatus(.reconnecting(attempt: attempt))
+            try? await Task.sleep(for: delay)
+            guard !Task.isCancelled, !userDisconnected else { return }
+            // Let go of whatever is left of the dead connection first.
+            await engine.disconnect()
+            guard !Task.isCancelled, !userDisconnected else { return }
+            do {
+                try await connectAndOpenShell(isReconnect: true)
+                return
+            } catch let error as CredentialsError {
+                setStatus(.failed(error.message))
+                return
+            } catch HostKeyError.rejected {
+                // The user turned the server's key down; trying again would
+                // only ask again.
+                setStatus(.failed(HostKeyError.rejected.localizedDescription))
+                return
+            } catch {
+                attempt += 1
+            }
+        }
+        setStatus(.connectionLost)
+    }
+
+    /// Checks a session that may have died quietly: after the app comes back
+    /// to the foreground, or when the network changes under it. A connection
+    /// can be dead with neither end having noticed, so a session that still
+    /// says `connected` is asked whether it answers.
+    func checkConnection() async {
+        switch status {
+        case .connected:
+            guard !(await engine.isResponsive()) else { return }
+            guard status == .connected, !userDisconnected else { return }
+            if autoReconnect { beginReconnecting() } else { setStatus(.connectionLost) }
+        case .connectionLost:
+            if autoReconnect { beginReconnecting() }
+        default:
+            break
+        }
+    }
+
+    /// Puts the screen back in a state a fresh shell can draw on, and marks
+    /// where the old session ended. A drop can come in the middle of vim or
+    /// htop, which leaves the alternate screen, mouse reporting and the like
+    /// switched on, so this is a soft reset (DECSTR) and a return to the main
+    /// screen. Scrollback is kept.
+    private func markReconnected() {
+        let note = String(localized: "Reconnected")
+        terminalView.feed(text: "\u{1B}[!p\u{1B}[?1049l\r\n\u{1B}[2m[\(note)]\u{1B}[0m\r\n")
+    }
+
+    /// Types the tmux command into the new shell when the host asks for it
+    /// and tmux is there. Returns whether the shell is now inside tmux.
+    private func attachTmuxIfWanted(_ wanted: Bool) async -> Bool {
+        guard wanted, !tmuxUnavailable else { return false }
+        let output = (try? await engine.exec(Reconnect.tmuxProbeCommand)) ?? ""
+        guard Reconnect.tmuxAvailable(probeOutput: output) else {
+            tmuxUnavailable = true
+            let note = String(localized: "tmux isn't installed on this host, so this is a plain shell.")
+            terminalView.feed(text: "\r\n\u{1B}[2m[\(note)]\u{1B}[0m\r\n")
+            return false
+        }
+        sendKeys(Array((Reconnect.tmuxCommand + "\n").utf8))
+        return true
+    }
+
     func disconnect() async {
+        userDisconnected = true
+        reconnectTask?.cancel(); reconnectTask = nil
         keepAliveTimer?.invalidate(); keepAliveTimer = nil
         await engine.disconnect()
         await _files?.disconnect()
@@ -314,6 +440,12 @@ final class TerminalSession: Identifiable, HostKeyDeciding {
         currentFontSize = baselineFontSize
         applyAppearance()
     }
+}
+
+/// Credentials that could not be resolved. Retrying will not fix them.
+private struct CredentialsError: LocalizedError {
+    let message: String
+    var errorDescription: String? { message }
 }
 
 /// NSObject delegate bridge so the `@MainActor` session can receive SwiftTerm

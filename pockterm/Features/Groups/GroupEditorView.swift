@@ -40,6 +40,16 @@ struct GroupEditorView: View {
                             Text(opt.label).tag(Int?.some(opt.seconds))
                         }
                     }
+                    Picker("Reconnect Automatically", selection: $group.defaultAutoReconnect) {
+                        Text("None").tag(Bool?.none)
+                        Text("On").tag(Bool?.some(true))
+                        Text("Off").tag(Bool?.some(false))
+                    }
+                    Picker("Reopen in tmux", selection: $group.defaultTmuxAttach) {
+                        Text("None").tag(Bool?.none)
+                        Text("On").tag(Bool?.some(true))
+                        Text("Off").tag(Bool?.some(false))
+                    }
                 }
                 Section("Appearance Defaults") {
                     Picker("Theme", selection: $group.defaultThemeID) {

@@ -49,10 +49,10 @@ actor SSHEngine {
     }
 
     /// Opens an interactive shell. `onOutput` is called with raw terminal bytes
-    /// as they arrive; `onClose` fires when the remote shell ends.
+    /// as they arrive; `onClose` fires when the remote shell ends, saying how.
     func openShell(cols: Int, rows: Int,
                    onOutput: @escaping @Sendable ([UInt8]) -> Void,
-                   onClose: @escaping @Sendable () -> Void) async throws {
+                   onClose: @escaping @Sendable (ShellEnd) -> Void) async throws {
         guard let client else { throw SSHEngineError.notConnected }
 
         let (inputStream, continuation) = AsyncStream<Input>.makeStream()
@@ -113,7 +113,11 @@ actor SSHEngine {
             } catch {
                 // Connection or shell error: fall through to close notification.
             }
-            onClose()
+            // Citadel throws out of withPTY on a clean `exit` as well as on a
+            // dropped connection (measured against a real sshd), so the error
+            // says nothing. What does: after `exit` the SSH connection is
+            // still up; when the server side dies it is not.
+            onClose(unsafeClient.isConnected ? .exited : .connectionLost)
         }
     }
 
@@ -169,6 +173,32 @@ actor SSHEngine {
         return text
     }
 
+    /// Whether the connection still answers, checked by running `true` on a
+    /// fresh exec channel. Used after the app comes back to the foreground or
+    /// the network changes, when the socket may be dead without either side
+    /// having noticed yet.
+    ///
+    /// A command that fails with the connection still up — a server that
+    /// refuses exec channels — counts as alive; only silence past `timeout`,
+    /// or a connection that is down, counts as dead. The probe is raced
+    /// against the timer rather than awaited, because a write into a dead
+    /// socket can sit unanswered far longer than the timeout.
+    func isResponsive(timeout: Duration = .seconds(4)) async -> Bool {
+        guard isConnected else { return false }
+        let gate = FirstAnswer()
+        let probe = Task { [weak self] in
+            _ = try? await self?.exec("true")
+            gate.answer(true)
+        }
+        let timer = Task {
+            try? await Task.sleep(for: timeout)
+            gate.answer(false)
+        }
+        let answered = await gate.value
+        probe.cancel(); timer.cancel()
+        return answered && isConnected
+    }
+
     func send(_ bytes: [UInt8]) {
         inputContinuation?.yield(.bytes(bytes))
     }
@@ -187,6 +217,46 @@ actor SSHEngine {
         client = nil
         inputContinuation = nil
     }
+}
+
+/// Holds the first of several racing answers and hands it to one waiter.
+nonisolated final class FirstAnswer: @unchecked Sendable {
+    private let lock = NSLock()
+    private var stored: Bool?
+    private var waiter: CheckedContinuation<Bool, Never>?
+
+    func answer(_ value: Bool) {
+        lock.lock()
+        guard stored == nil else { lock.unlock(); return }
+        stored = value
+        let waiting = waiter
+        waiter = nil
+        lock.unlock()
+        waiting?.resume(returning: value)
+    }
+
+    var value: Bool {
+        get async {
+            await withCheckedContinuation { continuation in
+                lock.lock()
+                if let stored {
+                    lock.unlock()
+                    continuation.resume(returning: stored)
+                } else {
+                    waiter = continuation
+                    lock.unlock()
+                }
+            }
+        }
+    }
+}
+
+/// How an interactive shell came to an end.
+enum ShellEnd: Sendable, Equatable {
+    /// The remote shell ended (`exit`, logout) with the connection still up.
+    case exited
+    /// The connection itself went away under the shell.
+    case connectionLost
 }
 
 /// Carries a non-Sendable value into exactly one child task.

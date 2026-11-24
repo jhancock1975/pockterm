@@ -48,6 +48,31 @@ struct EffectiveHostSettings {
         return globalDefault != 0 ? globalDefault : 0
     }
 
+    /// Pure on/off inheritance: a host value wins, else the nearest ancestor
+    /// group that sets one, else the global default. `nil` = inherit.
+    static func resolveFlag(hostValue: Bool?, chain: [Bool?], globalDefault: Bool) -> Bool {
+        hostValue ?? chain.compactMap { $0 }.first ?? globalDefault
+    }
+
+    /// Whether this host reconnects on its own, and whether its shells open
+    /// inside tmux, after inheritance.
+    @MainActor
+    static func resolveReconnect(host: Host, settings: ConnectionSettings)
+        -> (autoReconnect: Bool, tmuxAttach: Bool) {
+        var reconnectChain: [Bool?] = []
+        var tmuxChain: [Bool?] = []
+        var group = host.group
+        while let g = group {
+            reconnectChain.append(g.defaultAutoReconnect)
+            tmuxChain.append(g.defaultTmuxAttach)
+            group = g.parent
+        }
+        return (resolveFlag(hostValue: host.autoReconnect, chain: reconnectChain,
+                            globalDefault: settings.autoReconnect),
+                resolveFlag(hostValue: host.tmuxAttach, chain: tmuxChain,
+                            globalDefault: settings.tmuxAttach))
+    }
+
     @MainActor
     static func resolve(host: Host) -> EffectiveHostSettings {
         var portIdentityChain: [(port: Int?, identity: Identity?)] = []

@@ -85,6 +85,36 @@ comparison runs in seconds instead of minutes, and a captured byte stream can be
 replayed one byte at a time to find the exact sequence that breaks the screen.
 Use the simulator only to prove the wiring in the real app.
 
+## Auto-reconnect into tmux
+
+`testAutoReconnectIntoTmux` drops a live session from the server side and
+checks the app comes back into the same tmux shell. Never point it at the
+Mac's own sshd: dropping a session there means killing `sshd-session`
+processes, and one of them may be John's. Use the throwaway sshd instead:
+
+```bash
+scripts/reconnect-test-sshd start                 # port 2223, own tmux server
+CONT=$(xcrun simctl get_app_container booted John-Hancock.pockterm data)
+sqlite3 "$CONT/Library/Application Support/default.store" \
+  "UPDATE ZHOST SET ZPORT=2223, ZTMUXATTACH=1 WHERE ZLABEL='mac';"
+# the drop: once the app has written its shell pid, kill only that sshd's children
+SSHD=$(cat /tmp/pockterm-reconnect-sshd/sshd.pid)
+( until [ -s /tmp/pockterm-rc-pid1 ]; do sleep 1; done; sleep 2; kill -9 $(pgrep -P $SSHD) ) &
+xcodebuild test-without-building ... -only-testing:pocktermUITests/VerifyDriverUITests/testAutoReconnectIntoTmux
+```
+
+It passes when the shell pid before and after the drop is the same, which
+means the app re-attached rather than opening a fresh shell. Measured
+2026-11-24: about 8.5 minutes, nearly all of it XCUITest idle waits. Put the
+host back with `ZPORT=22, ZTMUXATTACH=NULL` afterwards. The app's key must be
+in `/tmp/pockterm-reconnect-sshd/authorized_keys` (`reconnect-test-sshd
+authorize`).
+
+**Never run a bare `tmux kill-server` here**, even with `TMUX_TMPDIR` set.
+These commands run inside John's tmux, where `$TMUX` beats `TMUX_TMPDIR`, so
+the kill lands on his server. That happened on 2026-11-24. Always pass `-S`
+or `-L`.
+
 ## Driving the AI assistant end to end
 
 The agent's `run_command` path (model → tool call → `SessionToolExecutor` →

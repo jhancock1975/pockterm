@@ -15,10 +15,13 @@ import SwiftData
     var defaultFontID: String?
     var defaultFontSize: Int?
     var defaultKeepAliveSeconds: Int?
+    var defaultAutoReconnect: Bool?
+    var defaultTmuxAttach: Bool?
     init(id: UUID = UUID(), name: String, parent: HostGroup? = nil,
          defaultIdentity: Identity? = nil, defaultPort: Int? = nil,
          defaultThemeID: String? = nil, defaultFontID: String? = nil,
-         defaultFontSize: Int? = nil, defaultKeepAliveSeconds: Int? = nil) {
+         defaultFontSize: Int? = nil, defaultKeepAliveSeconds: Int? = nil,
+         defaultAutoReconnect: Bool? = nil, defaultTmuxAttach: Bool? = nil) {
         self.id = id
         self.name = name
         self.parent = parent
@@ -28,5 +31,7 @@ import SwiftData
         self.defaultFontID = defaultFontID
         self.defaultFontSize = defaultFontSize
         self.defaultKeepAliveSeconds = defaultKeepAliveSeconds
+        self.defaultAutoReconnect = defaultAutoReconnect
+        self.defaultTmuxAttach = defaultTmuxAttach
     }
 }

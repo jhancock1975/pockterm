@@ -13,7 +13,10 @@ struct pocktermApp: App {
                 .modelContainer(container.modelContainer)
                 .background { GlassesSceneAccessory().accessibilityHidden(true) }
                 .onChange(of: scenePhase) { _, phase in
-                    if phase == .active { container.modelRefresher.refreshStaleCatalogs() }
+                    if phase == .active {
+                        container.modelRefresher.refreshStaleCatalogs()
+                        container.sessions.checkConnections()
+                    }
                 }
         }
     }

@@ -46,6 +46,10 @@ enum HostProtocol: String, CaseIterable, Identifiable {
     // Inline default required: SwiftData lightweight migration crashes existing stores without it.
     // Stored raw so an unknown future value degrades to .ssh instead of failing to load.
     var protocolRaw: String = HostProtocol.ssh.rawValue
+    /// Reconnect on its own when the connection drops. nil = inherit.
+    var autoReconnect: Bool?
+    /// Open every shell inside the tmux session `pockterm`. nil = inherit.
+    var tmuxAttach: Bool?
 
     var hostProtocol: HostProtocol {
         get { HostProtocol(rawValue: protocolRaw) ?? .ssh }
@@ -56,7 +60,8 @@ enum HostProtocol: String, CaseIterable, Identifiable {
          identity: Identity? = nil, startupSnippet: String? = nil,
          group: HostGroup? = nil, isFavorite: Bool = false, lastConnectedAt: Date? = nil,
          themeID: String? = nil, fontID: String? = nil, fontSize: Int = 0,
-         keepAliveSeconds: Int = 0, hostProtocol: HostProtocol = .ssh) {
+         keepAliveSeconds: Int = 0, hostProtocol: HostProtocol = .ssh,
+         autoReconnect: Bool? = nil, tmuxAttach: Bool? = nil) {
         self.id = id
         self.label = label
         self.address = address
@@ -71,5 +76,7 @@ enum HostProtocol: String, CaseIterable, Identifiable {
         self.fontSize = fontSize
         self.keepAliveSeconds = keepAliveSeconds
         self.protocolRaw = hostProtocol.rawValue
+        self.autoReconnect = autoReconnect
+        self.tmuxAttach = tmuxAttach
     }
 }
