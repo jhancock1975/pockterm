@@ -81,6 +81,8 @@ Steps: open the Hosts tab → tap + → enter the above → Connect. You'll get 
 New in 1.11: the optional AI Assistant can use Meta (Muse) as a fifth bring-your-own-key
 provider, alongside Anthropic, OpenAI, OpenRouter and Hugging Face. AI Assistant settings now
 have a Get an API key link that opens the selected provider's key page.
+The key bar above the keyboard now ends with a Customize key that opens Key Bar settings
+(reorder, remove or add keys); Done returns to the terminal.
 New in 1.10: in the Keychain tab, tap a key to open it. The key screen shows the whole public
 key with Copy Public Key and Share Public Key buttons, for adding it to a server's
 authorized_keys. Code in Arabic and Hebrew help text now reads in the right order.
