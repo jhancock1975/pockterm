@@ -257,3 +257,21 @@ private func button(_ label: String, in view: UIView) -> UIButton? {
     #expect(terminal.scrollPosition < bottom, "still at \(terminal.scrollPosition)")
     #expect(sent.bytes.isEmpty, "PgUp went to the server instead")
 }
+
+// MARK: Customize key
+
+/// The way into Key Bar settings from the terminal (issue #39). It sits after
+/// the user's keys and isn't part of the saved layout, so no layout can lose it.
+@Test(arguments: [false, true]) @MainActor
+func customizeKeyIsAlwaysLast(minimalLayout: Bool) {
+    KeyBarConfig.save(minimalLayout ? [.esc] : KeyBarConfig.defaultKeys)
+    defer { KeyBarConfig.save(KeyBarConfig.defaultKeys) }
+    let bar = laidOutKeyBar()
+    let scroll = try! #require(bar.subviews.compactMap { $0 as? UIScrollView }.first)
+    let stack = try! #require(scroll.subviews.compactMap { $0 as? UIStackView }.first)
+
+    // load(), not layout: saved layouts pick up keys added in later versions.
+    let keys = KeyBarConfig.load().filter { $0 != .hideKeyboard }
+    #expect(stack.arrangedSubviews.count == keys.count + 1)
+    #expect(stack.arrangedSubviews.last?.accessibilityLabel == String(localized: "Customize Key Bar"))
+}

@@ -1455,6 +1455,37 @@ final class VerifyDriverUITests: XCTestCase {
         attach(app, name: "hk3-back")
     }
 
+    /// Issue #39: the Customize key at the end of the key bar opens Key Bar
+    /// settings over the terminal, and Done goes back to the session.
+    func testKeyBarCustomizeKey() throws {
+        let app = XCUIApplication()
+        app.launch()
+        try connectToMac(app)
+        typeIntoTerminal(app, "echo up\n")
+        Thread.sleep(forTimeInterval: 1)
+        let customize = app.buttons["Customize Key Bar"]
+        XCTAssertTrue(customize.waitForExistence(timeout: 5), "no Customize key: \(app.debugDescription)")
+        // It is the last key, so swipe the bar to the end the way a user would.
+        let esc = app.buttons["esc"]
+        for _ in 0..<4 where !customize.isHittable {
+            esc.swipeLeft()
+            Thread.sleep(forTimeInterval: 0.5)
+        }
+        // Hittable can mean half under the Hide Keyboard chip; finish the scroll.
+        app.buttons["F1"].swipeLeft()
+        Thread.sleep(forTimeInterval: 1)
+        attach(app, name: "kc1-customize-visible")
+        print("CUSTOMIZE>>> frame=\(customize.frame) hittable=\(customize.isHittable)")
+        customize.tap()
+        XCTAssertTrue(app.navigationBars["Key Bar"].waitForExistence(timeout: 5),
+                      "Key Bar settings didn't open: \(app.debugDescription)")
+        XCTAssertTrue(app.staticTexts["On the Key Bar"].exists, app.debugDescription)
+        attach(app, name: "kc2-settings")
+        app.buttons["Done"].tap()
+        XCTAssertTrue(app.navigationBars["Key Bar"].waitForNonExistence(timeout: 5))
+        attach(app, name: "kc3-back")
+    }
+
     /// Cmd-V from a hardware keyboard must paste into the terminal, in glasses
     /// mode and on the phone alike. The host checks /tmp/pockterm-cmdv.
     func testCmdVPaste() throws {

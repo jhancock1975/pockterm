@@ -54,3 +54,20 @@ struct KeyBarSettingsView: View {
         .onChange(of: keys) { KeyBarConfig.save(keys) }
     }
 }
+
+/// Key Bar settings opened from the key bar's Customize key, with a Done
+/// button to get back to the terminal.
+struct KeyBarSettingsSheet: View {
+    @Environment(\.dismiss) private var dismiss
+
+    var body: some View {
+        NavigationStack {
+            KeyBarSettingsView()
+                .toolbar {
+                    ToolbarItem(placement: .confirmationAction) {
+                        Button("Done") { dismiss() }
+                    }
+                }
+        }
+    }
+}
