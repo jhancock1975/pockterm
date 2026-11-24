@@ -30,7 +30,9 @@ enum HostConnection {
             // Generated keys are stored as a bare seed in pockterm's own
             // wrapper; imported ones keep the OpenSSH container they arrived
             // in, with any passphrase alongside them.
-            if let seed = KeyManager.seed(fromPEM: pem) {
+            if let blob = EnclaveKey.blob(fromPEM: pem) {
+                auth = .secureEnclaveP256(blob)
+            } else if let seed = KeyManager.seed(fromPEM: pem) {
                 auth = .ed25519Seed(seed)
             } else if pem.hasPrefix(PrivateKeyImport.openSSHBegin) {
                 let passphrase = (try? secretStore.getString(PrivateKeyImport.passphraseKey(for: keyId))) ?? nil

@@ -1,0 +1,101 @@
+{
+  "sourceLanguage": "en",
+  "strings": {
+    "NSFaceIDUsageDescription": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "يستخدم Pockterm ميزة Face ID لفتح قفل مفاتيح SSH المخزّنة في Secure Enclave."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Το Pockterm χρησιμοποιεί το Face ID για το ξεκλείδωμα κλειδιών SSH που φυλάσσονται στο Secure Enclave."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pockterm uses Face ID to unlock SSH keys kept in the Secure Enclave."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pockterm usa Face ID para desbloquear las claves SSH guardadas en el Secure Enclave."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pockterm utilise Face ID pour déverrouiller les clés SSH conservées dans le Secure Enclave."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pockterm משתמש ב-Face ID כדי לבטל נעילה של מפתחות SSH השמורים ב-Secure Enclave."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pockterm, Secure Enclave में रखी SSH कुंजियों को अनलॉक करने के लिए Face ID का उपयोग करता है।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pockterm usa Face ID per sbloccare le chiavi SSH conservate nel Secure Enclave."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pockterm は、Secure Enclave に保管された SSH 鍵のロックを解除するために Face ID を使用します。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pockterm은 Secure Enclave에 보관된 SSH 키의 잠금을 해제하기 위해 Face ID를 사용합니다."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pockterm использует Face ID для разблокировки ключей SSH, хранящихся в Secure Enclave."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Secure Enclave లో ఉంచిన SSH కీలను అన్‌లాక్ చేయడానికి Pockterm Face ID ని ఉపయోగిస్తుంది."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pockterm використовує Face ID для розблокування ключів SSH, що зберігаються в Secure Enclave."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pockterm 使用 Face ID 解锁存储在 Secure Enclave 中的 SSH 密钥。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pockterm 使用 Face ID 解鎖儲存在 Secure Enclave 中的 SSH 金鑰。"
+          }
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}

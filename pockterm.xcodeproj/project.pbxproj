@@ -16,6 +16,7 @@
 		2688A6EDE5C2905829E6D8FC /* KeyManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CC17F2AF1DC22FBB595ADF /* KeyManagerTests.swift */; };
 		2E286BE151022704117C8332 /* SessionManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D8FC038179DE3F367473341 /* SessionManagerTests.swift */; };
 		2FE3769B7B4264677F1063C1 /* AISettingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC83DF8560A2D3E865F9D47E /* AISettingsTests.swift */; };
+		31A44B3EF323A1A8D35BEA0C /* EnclaveKeyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427315EDFA91F9E4CE70604B /* EnclaveKeyTests.swift */; };
 		31A6CFFB7C9D5DCC2F6BE51C /* PlaceholderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F506163220C8FBDCD103A3 /* PlaceholderTests.swift */; };
 		37DB105098B38CD8FF507F7F /* ToolSpecTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134AD88C7A6161F15A01D9BC /* ToolSpecTests.swift */; };
 		3C4D5E6F7A8B9C0D1E2F3A4B /* EffectiveKeepAliveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D3E4F5A6B7C8D9E0F1A2B3C /* EffectiveKeepAliveTests.swift */; };
@@ -82,6 +83,7 @@
 		2F3E4D5C6B7A8C9D0E1F2A3B /* KeepAliveTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = KeepAliveTests.swift; sourceTree = "<group>"; };
 		30F307AEA43B565780F25F31 /* TerminalKeyboardProxyTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TerminalKeyboardProxyTests.swift; sourceTree = "<group>"; };
 		406CA7CA103381F3CE41E490 /* FileSortTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FileSortTests.swift; sourceTree = "<group>"; };
+		427315EDFA91F9E4CE70604B /* EnclaveKeyTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EnclaveKeyTests.swift; sourceTree = "<group>"; };
 		45F04BEA86184EFB2FA84445 /* ModelTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ModelTests.swift; sourceTree = "<group>"; };
 		4A0377838C7EA731D65D9BF8 /* MarginModeFilterTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MarginModeFilterTests.swift; sourceTree = "<group>"; };
 		4F4DAD39E3AE0B96C102D0E8 /* ShellEndIntegrationTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ShellEndIntegrationTests.swift; sourceTree = "<group>"; };
@@ -229,6 +231,7 @@
 				30F307AEA43B565780F25F31 /* TerminalKeyboardProxyTests.swift */,
 				4F4DAD39E3AE0B96C102D0E8 /* ShellEndIntegrationTests.swift */,
 				0AF6DE313C314954293819DC /* ReconnectTests.swift */,
+				427315EDFA91F9E4CE70604B /* EnclaveKeyTests.swift */,
 			);
 			path = pocktermTests;
 			sourceTree = "<group>";
@@ -417,6 +420,7 @@
 				63A0F43BF93667E798B11E0A /* TerminalKeyboardProxyTests.swift in Sources */,
 				D0616C0A02F365F4A3F6306D /* ShellEndIntegrationTests.swift in Sources */,
 				633F2E7854CD6FDC6A37B357 /* ReconnectTests.swift in Sources */,
+				31A44B3EF323A1A8D35BEA0C /* EnclaveKeyTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

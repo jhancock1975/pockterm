@@ -14,7 +14,7 @@ actor PortForwardService {
 
     func connect(_ creds: SSHCredentials,
                  onHostKey: @escaping @Sendable (PresentedHostKey) async -> Bool) async throws {
-        let method = try creds.authenticationMethod()
+        let method = try await creds.authenticationMethod()
         let validator = CallbackHostKeyValidator(address: creds.host, port: creds.port, decide: onHostKey)
         client = try await SSHClient.connect(
             host: creds.host, port: creds.port,

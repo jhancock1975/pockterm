@@ -327,6 +327,11 @@ final class TerminalSession: Identifiable, HostKeyDeciding {
             } catch let error as CredentialsError {
                 setStatus(.failed(error.message))
                 return
+            } catch let error as EnclaveKeyError {
+                // Face ID cancelled or the key invalidated: another attempt
+                // would only put the same prompt up again.
+                setStatus(.failed(error.localizedDescription))
+                return
             } catch HostKeyError.rejected {
                 // The user turned the server's key down; trying again would
                 // only ask again.

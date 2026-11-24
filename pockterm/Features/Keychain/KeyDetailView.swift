@@ -12,6 +12,10 @@ struct KeyDetailView: View {
             Section {
                 LabeledContent("Label", value: key.label)
                 LabeledContent("Type", value: key.keyType)
+            } footer: {
+                if key.isSecureEnclave {
+                    Text("Made in this iPhone's Secure Enclave. The private key can't be copied or exported, even by Pockterm, and every connection asks for Face ID.")
+                }
             }
             Section {
                 PublicKeyText(text: key.publicKeyOpenSSH)
