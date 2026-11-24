@@ -46,6 +46,22 @@ struct HostEditorView: View {
                     }
                 }
                 Section {
+                    Picker("Reconnect Automatically", selection: $host.autoReconnect) {
+                        Text("Default (inherit)").tag(Bool?.none)
+                        Text("On").tag(Bool?.some(true))
+                        Text("Off").tag(Bool?.some(false))
+                    }
+                    Picker("Reopen in tmux", selection: $host.tmuxAttach) {
+                        Text("Default (inherit)").tag(Bool?.none)
+                        Text("On").tag(Bool?.some(true))
+                        Text("Off").tag(Bool?.some(false))
+                    }
+                } header: {
+                    Text("Reconnect")
+                } footer: {
+                    Text("Reopen in tmux starts every session inside the tmux session \"pockterm\", so a reconnect lands you back where you were.")
+                }
+                Section {
                     Picker("Credentials", selection: $host.identity) {
                         Text("None").tag(Identity?.none)
                         ForEach(identities) { id in

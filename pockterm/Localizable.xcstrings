@@ -7052,6 +7052,94 @@
         }
       }
     },
+    "Connection Lost": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "انقطع الاتصال"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Η σύνδεση χάθηκε"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conexión perdida"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connexion perdue"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "החיבור אבד"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "कनेक्शन टूट गया"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connessione persa"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "接続が切れました"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "연결이 끊어짐"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Соединение потеряно"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "కనెక్షన్ తెగిపోయింది"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "З’єднання втрачено"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "连接已断开"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "連線已中斷"
+          }
+        }
+      }
+    },
     "Controls whether the assistant asks before running commands or editing files on your server.": {
       "localizations": {
         "ar": {
@@ -18583,6 +18671,94 @@
         }
       }
     },
+    "On": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تشغيل"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ενεργό"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Activado"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Activé"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "פועל"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "चालू"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "On"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "オン"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "켬"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Вкл."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ఆన్"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Увімк."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "开启"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "開啟"
+          }
+        }
+      }
+    },
     "On the **Hosts** tab, tap **+**, then **New Host**.": {
       "localizations": {
         "ar": {
@@ -22455,6 +22631,358 @@
         }
       }
     },
+    "Reconnect": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "إعادة الاتصال"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Επανασύνδεση"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reconectar"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Se reconnecter"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "התחברות מחדש"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "फिर से कनेक्ट करें"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Riconnetti"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "再接続"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "다시 연결"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Подключиться снова"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "మళ్లీ కనెక్ట్ చేయి"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Підключитися знову"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "重新连接"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "重新連線"
+          }
+        }
+      }
+    },
+    "Reconnect Automatically": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "إعادة الاتصال تلقائيًا"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Αυτόματη επανασύνδεση"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reconectar automáticamente"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reconnexion automatique"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "התחברות מחדש אוטומטית"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अपने-आप फिर से कनेक्ट करें"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Riconnetti automaticamente"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "自動で再接続"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "자동으로 다시 연결"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Переподключаться автоматически"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ఆటోమేటిక్‌గా మళ్లీ కనెక్ట్ చేయి"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Перепідключатися автоматично"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "自动重新连接"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "自動重新連線"
+          }
+        }
+      }
+    },
+    "Reconnected": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "أُعيد الاتصال"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Επανασυνδέθηκε"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reconectado"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reconnecté"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "התחבר מחדש"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "फिर से कनेक्ट हुआ"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Riconnesso"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "再接続しました"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "다시 연결됨"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Подключено снова"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "మళ్లీ కనెక్ట్ అయింది"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Підключено знову"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已重新连接"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已重新連線"
+          }
+        }
+      }
+    },
+    "Reconnecting…": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "جارٍ إعادة الاتصال…"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Επανασύνδεση…"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reconectando…"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reconnexion…"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "מתחבר מחדש…"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "फिर से कनेक्ट हो रहा है…"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Riconnessione…"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "再接続中…"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "다시 연결하는 중…"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Повторное подключение…"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "మళ్లీ కనెక్ట్ అవుతోంది…"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Повторне підключення…"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在重新连接…"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在重新連線…"
+          }
+        }
+      }
+    },
     "Reject": {
       "localizations": {
         "ar": {
@@ -22891,6 +23419,182 @@
           "stringUnit": {
             "state": "translated",
             "value": "重新命名"
+          }
+        }
+      }
+    },
+    "Reopen in tmux": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "إعادة الفتح في tmux"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Επανάνοιγμα στο tmux"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reabrir en tmux"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rouvrir dans tmux"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "פתיחה מחדש ב-tmux"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "tmux में फिर खोलें"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Riapri in tmux"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "tmux で開き直す"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "tmux에서 다시 열기"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Открывать заново в tmux"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "tmuxలో మళ్లీ తెరువు"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Відкривати знову в tmux"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在 tmux 中重新打开"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在 tmux 中重新開啟"
+          }
+        }
+      }
+    },
+    "Reopen in tmux starts every session inside the tmux session \"pockterm\", so a reconnect lands you back where you were.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "يبدأ «إعادة الفتح في tmux» كل جلسة داخل جلسة tmux «pockterm»، فتعود عند إعادة الاتصال إلى حيث كنت."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Η επιλογή «Επανάνοιγμα στο tmux» ξεκινά κάθε συνεδρία μέσα στη συνεδρία tmux «pockterm», ώστε μετά την επανασύνδεση να επιστρέφετε εκεί που ήσασταν."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "«Reabrir en tmux» inicia cada sesión dentro de la sesión de tmux «pockterm», de modo que al reconectar vuelves a donde estabas."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "« Rouvrir dans tmux » démarre chaque session dans la session tmux « pockterm », de sorte qu’une reconnexion vous ramène là où vous étiez."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "\"פתיחה מחדש ב-tmux\" מפעיל כל הפעלה בתוך הפעלת ה-tmux בשם \"pockterm\", כך שחיבור מחדש מחזיר אותך למקום שבו היית."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“tmux में फिर खोलें” हर सत्र को tmux सत्र “pockterm” के अंदर शुरू करता है, ताकि फिर से कनेक्ट होने पर आप वहीं लौट आएँ जहाँ थे।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "«Riapri in tmux» avvia ogni sessione all’interno della sessione tmux «pockterm», così una riconnessione ti riporta dove eri."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "「tmux で開き直す」をオンにすると、すべてのセッションが tmux セッション「pockterm」の中で始まるため、再接続すると元の場所に戻れます。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“tmux에서 다시 열기”는 모든 세션을 tmux 세션 “pockterm” 안에서 시작하므로, 다시 연결하면 하던 곳으로 돌아갑니다."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "«Открывать заново в tmux» запускает каждую сессию внутри сессии tmux «pockterm», поэтому после переподключения вы окажетесь там же, где были."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“tmuxలో మళ్లీ తెరువు” ప్రతి సెషన్‌ను tmux సెషన్ “pockterm” లోపల ప్రారంభిస్తుంది, కాబట్టి మళ్లీ కనెక్ట్ అయినప్పుడు మీరు ఉన్న చోటికే తిరిగి వస్తారు."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "«Відкривати знову в tmux» запускає кожну сесію всередині сесії tmux «pockterm», тож після повторного підключення ви опинитеся там, де були."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“在 tmux 中重新打开”会让每个会话都在名为“pockterm”的 tmux 会话中启动，这样重新连接后你就能回到原来的位置。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "「在 tmux 中重新開啟」會讓每個工作階段都在名為「pockterm」的 tmux 工作階段中啟動，這樣重新連線後你就能回到原來的位置。"
           }
         }
       }
@@ -29674,6 +30378,94 @@
         }
       }
     },
+    "The connection to the server dropped.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "انقطع الاتصال بالخادم."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Η σύνδεση με τον διακομιστή διακόπηκε."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Se interrumpió la conexión con el servidor."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La connexion au serveur a été interrompue."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "החיבור לשרת נותק."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सर्वर से कनेक्शन टूट गया।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La connessione al server si è interrotta."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "サーバとの接続が切れました。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "서버와의 연결이 끊어졌습니다."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Соединение с сервером прервано."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "సర్వర్‌తో కనెక్షన్ తెగిపోయింది."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "З’єднання із сервером розірвано."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "与服务器的连接已断开。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "與伺服器的連線已中斷。"
+          }
+        }
+      }
+    },
     "The connection to the server was lost.": {
       "localizations": {
         "ar": {
@@ -33250,6 +34042,94 @@
         }
       }
     },
+    "When the connection drops, Pockterm reconnects and reopens the shell on its own. Reopen in tmux starts every session inside the tmux session \"pockterm\", so a reconnect lands you back where you were. Individual hosts and groups can override these.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "عند انقطاع الاتصال، يعيد Pockterm الاتصال ويفتح الصدفة من جديد تلقائيًا. يبدأ «إعادة الفتح في tmux» كل جلسة داخل جلسة tmux «pockterm»، فتعود عند إعادة الاتصال إلى حيث كنت. ويمكن للمضيفين والمجموعات فرادى تجاوز هذه الإعدادات."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Όταν η σύνδεση διακοπεί, το Pockterm επανασυνδέεται και ανοίγει ξανά το shell από μόνο του. Η επιλογή «Επανάνοιγμα στο tmux» ξεκινά κάθε συνεδρία μέσα στη συνεδρία tmux «pockterm», ώστε μετά την επανασύνδεση να επιστρέφετε εκεί που ήσασταν. Οι μεμονωμένοι διακομιστές και οι ομάδες μπορούν να τα παρακάμψουν."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cuando se interrumpe la conexión, Pockterm se reconecta y vuelve a abrir el shell por sí solo. «Reabrir en tmux» inicia cada sesión dentro de la sesión de tmux «pockterm», de modo que al reconectar vuelves a donde estabas. Los hosts y grupos individuales pueden anular estos ajustes."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lorsque la connexion est interrompue, Pockterm se reconnecte et rouvre le shell automatiquement. « Rouvrir dans tmux » démarre chaque session dans la session tmux « pockterm », de sorte qu’une reconnexion vous ramène là où vous étiez. Les hôtes et groupes individuels peuvent les remplacer."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "כשהחיבור נופל, Pockterm מתחבר מחדש ופותח את ה-shell מחדש באופן אוטומטי. \"פתיחה מחדש ב-tmux\" מפעיל כל הפעלה בתוך הפעלת ה-tmux בשם \"pockterm\", כך שחיבור מחדש מחזיר אותך למקום שבו היית. מארחים וקבוצות בודדים יכולים לעקוף הגדרות אלה."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "कनेक्शन टूटने पर Pockterm अपने-आप फिर से कनेक्ट होकर शेल दोबारा खोल देता है। “tmux में फिर खोलें” हर सत्र को tmux सत्र “pockterm” के अंदर शुरू करता है, ताकि फिर से कनेक्ट होने पर आप वहीं लौट आएँ जहाँ थे। अलग-अलग होस्ट और समूह इन्हें ओवरराइड कर सकते हैं।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quando la connessione si interrompe, Pockterm si riconnette e riapre la shell da solo. «Riapri in tmux» avvia ogni sessione all’interno della sessione tmux «pockterm», così una riconnessione ti riporta dove eri. I singoli host e gruppi possono sostituirle."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "接続が切れると、Pockterm が自動で再接続し、シェルを開き直します。「tmux で開き直す」をオンにすると、すべてのセッションが tmux セッション「pockterm」の中で始まるため、再接続すると元の場所に戻れます。個々のホストやグループで上書きできます。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "연결이 끊어지면 Pockterm이 스스로 다시 연결하고 셸을 다시 엽니다. “tmux에서 다시 열기”는 모든 세션을 tmux 세션 “pockterm” 안에서 시작하므로, 다시 연결하면 하던 곳으로 돌아갑니다. 개별 호스트와 그룹에서 이를 재정의할 수 있습니다."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Когда соединение прерывается, Pockterm сам переподключается и заново открывает оболочку. «Открывать заново в tmux» запускает каждую сессию внутри сессии tmux «pockterm», поэтому после переподключения вы окажетесь там же, где были. Отдельные хосты и группы могут переопределить эти настройки."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "కనెక్షన్ తెగినప్పుడు, Pockterm తనంతట తానే మళ్లీ కనెక్ట్ అయి షెల్‌ను మళ్లీ తెరుస్తుంది. “tmuxలో మళ్లీ తెరువు” ప్రతి సెషన్‌ను tmux సెషన్ “pockterm” లోపల ప్రారంభిస్తుంది, కాబట్టి మళ్లీ కనెక్ట్ అయినప్పుడు మీరు ఉన్న చోటికే తిరిగి వస్తారు. వ్యక్తిగత హోస్ట్‌లు, గ్రూప్‌లు వీటిని ఓవర్‌రైడ్ చేయగలవు."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Коли з’єднання розривається, Pockterm сам перепідключається й знову відкриває оболонку. «Відкривати знову в tmux» запускає кожну сесію всередині сесії tmux «pockterm», тож після повторного підключення ви опинитеся там, де були. Окремі хости й групи можуть перевизначити ці налаштування."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "连接断开时，Pockterm 会自动重新连接并重新打开 shell。“在 tmux 中重新打开”会让每个会话都在名为“pockterm”的 tmux 会话中启动，这样重新连接后你就能回到原来的位置。各个主机和群组可以覆盖这些设置。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "連線中斷時，Pockterm 會自動重新連線並重新開啟 shell。「在 tmux 中重新開啟」會讓每個工作階段都在名為「pockterm」的 tmux 工作階段中啟動，這樣重新連線後你就能回到原來的位置。個別主機和群組可以覆寫這些設定。"
+          }
+        }
+      }
+    },
     "Where everything is stored": {
       "localizations": {
         "ar": {
@@ -33862,6 +34742,94 @@
           "stringUnit": {
             "state": "translated",
             "value": "位於 %@"
+          }
+        }
+      }
+    },
+    "tmux isn't installed on this host, so this is a plain shell.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "tmux غير مثبّت على هذا المضيف، لذا هذه جلسة شل عادية."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Το tmux δεν είναι εγκατεστημένο σε αυτόν τον διακομιστή, οπότε πρόκειται για απλό shell."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "tmux no está instalado en este host, así que esto es un shell normal."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "tmux n’est pas installé sur cet hôte, il s’agit donc d’un shell simple."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "tmux אינו מותקן במארח הזה, ולכן זהו shell רגיל."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "इस होस्ट पर tmux इंस्टॉल नहीं है, इसलिए यह सामान्य शेल है।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "tmux non è installato su questo host, quindi questa è una shell semplice."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "このホストには tmux がインストールされていないため、通常のシェルです。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "이 호스트에는 tmux가 설치되어 있지 않아 일반 셸로 열렸습니다."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "На этом хосте не установлен tmux, поэтому это обычная оболочка."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ఈ హోస్ట్‌లో tmux ఇన్‌స్టాల్ చేసి లేదు, కాబట్టి ఇది సాధారణ షెల్."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "На цьому хості не встановлено tmux, тож це звичайна оболонка."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "此主机上未安装 tmux，因此这是普通 shell。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "此主機上未安裝 tmux，因此這是一般 shell。"
           }
         }
       }

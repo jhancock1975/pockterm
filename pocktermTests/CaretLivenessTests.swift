@@ -28,4 +28,6 @@ import SwiftTerm
     #expect(!TerminalSession.Status.closed.acceptsInput)
     #expect(!TerminalSession.Status.idleDisconnected.acceptsInput)
     #expect(!TerminalSession.Status.failed("nope").acceptsInput)
+    #expect(!TerminalSession.Status.reconnecting(attempt: 1).acceptsInput)
+    #expect(!TerminalSession.Status.connectionLost.acceptsInput)
 }

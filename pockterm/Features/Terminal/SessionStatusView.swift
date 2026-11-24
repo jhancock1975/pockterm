@@ -1,7 +1,7 @@
 import SwiftUI
 
 /// What a session shows when it isn't simply connected: connecting, failed,
-/// closed, or dropped for inactivity. It sits over the terminal on the phone
+/// closed, dropped for inactivity, reconnecting, or lost. It sits over the terminal on the phone
 /// and on the glasses, and replaces the file browser in glasses mode.
 struct SessionStatusView: View {
     let session: TerminalSession
@@ -29,6 +29,19 @@ struct SessionStatusView: View {
                     manager.requestOpenConnectionSettings = true
                     manager.minimize()   // dismiss the full-screen terminal cover
                 }
+            }
+            .foregroundStyle(.white)
+        case .reconnecting:
+            ProgressView("Reconnecting…").controlSize(.large).tint(.white)
+                .foregroundStyle(.white)
+        case .connectionLost:
+            ContentUnavailableView {
+                Label("Connection Lost", systemImage: "wifi.exclamationmark")
+            } description: {
+                Text("The connection to the server dropped.")
+            } actions: {
+                Button("Reconnect") { session.beginReconnecting() }
+                    .buttonStyle(.borderedProminent)
             }
             .foregroundStyle(.white)
         case .connected:

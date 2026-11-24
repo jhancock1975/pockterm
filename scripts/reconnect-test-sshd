@@ -1,0 +1,61 @@
+#!/bin/bash
+# A throwaway sshd, run as you (no root), for testing auto-reconnect.
+#
+#   scripts/reconnect-test-sshd start [port ...]   # default port 2223
+#   scripts/reconnect-test-sshd authorize "<ssh public key line>"
+#   scripts/reconnect-test-sshd stop
+#
+# Everything lives in /tmp/pockterm-reconnect-sshd: its own host key, its own
+# authorized_keys, and a client key that ShellEndIntegrationTests signs in
+# with. Your ~/.ssh is not touched.
+#
+# Shells it starts get TMUX_TMPDIR pointed into that directory, so the tmux
+# session "pockterm" that Reopen in tmux creates lives on a separate tmux
+# server and never lands in one you are already running.
+#
+# To drop a session from the server side, the way a reboot or a dead network
+# does, kill its sshd process: from inside the session, `kill -9 $PPID`.
+set -euo pipefail
+DIR=/tmp/pockterm-reconnect-sshd
+
+case "${1:-}" in
+start)
+    shift
+    ports=("${@:-2223}")
+    mkdir -p "$DIR"
+    [[ -f $DIR/host_ed25519 ]] || ssh-keygen -q -t ed25519 -f "$DIR/host_ed25519" -N ""
+    [[ -f $DIR/client_ed25519 ]] || ssh-keygen -q -t ed25519 -f "$DIR/client_ed25519" -N "" -C reconnect-test
+    grep -qF "$(cut -d' ' -f2 "$DIR/client_ed25519.pub")" "$DIR/authorized_keys" 2>/dev/null \
+        || cat "$DIR/client_ed25519.pub" >> "$DIR/authorized_keys"
+    chmod 600 "$DIR/authorized_keys"
+    {
+        for p in "${ports[@]}"; do echo "Port $p"; done
+        echo "ListenAddress 127.0.0.1"
+        echo "ListenAddress ::1"
+        echo "HostKey $DIR/host_ed25519"
+        echo "AuthorizedKeysFile $DIR/authorized_keys"
+        echo "PasswordAuthentication no"
+        echo "KbdInteractiveAuthentication no"
+        echo "UsePAM no"
+        echo "StrictModes no"
+        echo "SetEnv TMUX_TMPDIR=$DIR"
+        echo "PidFile $DIR/sshd.pid"
+    } > "$DIR/sshd_config"
+    "$0" stop >/dev/null 2>&1 || true
+    /usr/sbin/sshd -f "$DIR/sshd_config" -E "$DIR/sshd.log"
+    echo "sshd on ${ports[*]} (pid $(sleep 0.5; cat "$DIR/sshd.pid")), log $DIR/sshd.log"
+    ;;
+authorize)
+    line=${2:?public key line}
+    grep -qF "$(echo "$line" | cut -d' ' -f2)" "$DIR/authorized_keys" 2>/dev/null \
+        || echo "$line" >> "$DIR/authorized_keys"
+    ;;
+stop)
+    [[ -f $DIR/sshd.pid ]] && kill "$(cat "$DIR/sshd.pid")" && rm -f "$DIR/sshd.pid"
+    # -S, not TMUX_TMPDIR: when this runs inside tmux, $TMUX wins over
+    # TMUX_TMPDIR and kill-server would take down the caller's own server.
+    tmux -S "$DIR/tmux-$(id -u)/default" kill-server 2>/dev/null || true
+    ;;
+*)
+    sed -n 2,17p "$0"; exit 2 ;;
+esac

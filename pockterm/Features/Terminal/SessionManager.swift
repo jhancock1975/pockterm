@@ -86,6 +86,12 @@ final class SessionManager {
         isMinimized = false
     }
 
+    /// Asks every session whether its connection survived: called when the
+    /// app comes back to the foreground and when the network changes.
+    func checkConnections() {
+        for session in sessions { Task { await session.checkConnection() } }
+    }
+
     func setGlassesMode(_ on: Bool) {
         isGlassesMode = on
         for session in sessions { session.setGlassesMode(on, fontSize: glassesFontSize) }

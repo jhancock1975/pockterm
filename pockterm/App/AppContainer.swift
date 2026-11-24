@@ -15,6 +15,7 @@ final class AppContainer {
     let forwards: ForwardRunner
     let modelRefresher: ModelCatalogRefresher
     let display = ExternalDisplay()
+    private let network = NetworkChangeMonitor()
 
     private init() {
         let container = try! ModelContainer(
@@ -30,5 +31,7 @@ final class AppContainer {
         display.onConnectionChange = { [sessions] connected in
             sessions.setGlassesMode(connected)
         }
+        network.onChange = { [sessions] in sessions.checkConnections() }
+        network.start()
     }
 }

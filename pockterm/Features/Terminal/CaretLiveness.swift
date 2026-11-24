@@ -24,7 +24,7 @@ extension TerminalSession.Status {
     var acceptsInput: Bool {
         switch self {
         case .connecting, .connected: return true
-        case .failed, .closed, .idleDisconnected: return false
+        case .failed, .closed, .idleDisconnected, .reconnecting, .connectionLost: return false
         }
     }
 }

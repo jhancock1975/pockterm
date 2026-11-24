@@ -164,7 +164,7 @@ private final class SlowToAnswer: HostKeyDeciding {
     #expect(!described.lowercased().contains("timeout"), "timed out: \(described)")
 }
 
-private func sshReachable(host: String, port: UInt16) -> Bool {
+func sshReachable(host: String, port: UInt16) -> Bool {
     let fd = socket(AF_INET, SOCK_STREAM, 0)
     guard fd >= 0 else { return false }
     defer { close(fd) }
