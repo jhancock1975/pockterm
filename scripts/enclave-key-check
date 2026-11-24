@@ -1,0 +1,86 @@
+#!/bin/bash
+# Logs in to a real sshd with a real Secure Enclave key, using the app's own
+# pockterm/Crypto/EnclaveKey.swift. The simulator has no enclave, so this runs
+# on the Mac, whose enclave CryptoKit drives the same way.
+#
+#   scripts/enclave-key-check
+#
+# Builds a throwaway Swift package around EnclaveKey.swift, pinned to the app's
+# Package.resolved, and starts scripts/reconnect-test-sshd on 2223. Then:
+#   1. ssh-keygen must accept the public key line the app would show,
+#   2. an authorized enclave key must log in and run a command,
+#   3. an enclave key that is NOT authorized must be refused (so 2 proves the
+#      server checked the key, not that it let anyone in),
+#   4. the stored blob must not load as a plain P-256 private key.
+# The Mac keys are made without the biometry flag, so no one has to touch the
+# sensor; the app always sets it.
+set -euo pipefail
+cd "$(dirname "$0")/.."
+REPO=$PWD
+WORK=${TMPDIR:-/tmp}/pockterm-enclave-check
+mkdir -p "$WORK/Sources/check"
+cp pockterm/Crypto/EnclaveKey.swift pockterm/Crypto/KeyManager.swift "$WORK/Sources/check/"
+cp pockterm.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved "$WORK/"
+CITADEL=$(python3 -c "import json;print([p['state']['version'] for p in json.load(open('$WORK/Package.resolved'))['pins'] if p['identity']=='citadel'][0])")
+
+cat > "$WORK/Package.swift" <<EOF
+// swift-tools-version:6.0
+import PackageDescription
+let package = Package(
+    name: "check", platforms: [.macOS(.v14)],
+    dependencies: [.package(url: "https://github.com/orlandos-nl/Citadel.git", exact: "$CITADEL")],
+    targets: [.executableTarget(name: "check", dependencies: [.product(name: "Citadel", package: "Citadel")])])
+EOF
+
+cat > "$WORK/Sources/check/main.swift" <<'EOF'
+import Foundation
+import CryptoKit
+import Citadel
+
+let args = CommandLine.arguments
+switch args[1] {
+case "gen":   // gen <out-prefix>: writes <prefix>.pem and <prefix>.pub
+    let key = try EnclaveKey.generate(comment: "enclave-check@pockterm", requireBiometry: false)
+    try key.privateKeyPEM.write(toFile: args[2] + ".pem", atomically: true, encoding: .utf8)
+    try (key.publicKeyOpenSSH + "\n").write(toFile: args[2] + ".pub", atomically: true, encoding: .utf8)
+case "export":   // export <pem>: the blob must not be a usable private key
+    let blob = EnclaveKey.blob(fromPEM: try String(contentsOfFile: args[2], encoding: .utf8))!
+    let raw = try? P256.Signing.PrivateKey(rawRepresentation: blob)
+    let x963 = try? P256.Signing.PrivateKey(x963Representation: blob)
+    print(raw == nil && x963 == nil ? "EXPORT_REFUSED" : "EXPORTED")
+case "login":   // login <pem> <port>: prints the remote output or the error
+    let blob = EnclaveKey.blob(fromPEM: try String(contentsOfFile: args[2], encoding: .utf8))!
+    let key = try SecureEnclave.P256.Signing.PrivateKey(dataRepresentation: blob)
+    do {
+        let client = try await SSHClient.connect(
+            host: "127.0.0.1", port: Int(args[3])!,
+            authenticationMethod: .custom(EnclaveKeyAuthentication(username: NSUserName(), key: key)),
+            hostKeyValidator: .acceptAnything(), reconnect: .never)
+        let out = try await client.executeCommand("echo enclave-login-ok")
+        print(String(buffer: out).trimmingCharacters(in: .whitespacesAndNewlines))
+        try await client.close()
+    } catch {
+        print("LOGIN_FAILED \(error)")
+    }
+default:
+    fatalError("unknown mode")
+}
+EOF
+
+echo "building (first run fetches the pinned packages)..."
+(cd "$WORK" && swift build -c debug 2>&1 | grep -E "error|warning: unre|Compiling check|Build complete" | tail -5)
+BIN="$WORK/.build/debug/check"
+
+"$REPO/scripts/reconnect-test-sshd" start 2223 >/dev/null
+trap '"$REPO/scripts/reconnect-test-sshd" stop >/dev/null 2>&1' EXIT
+"$BIN" gen "$WORK/good"
+"$BIN" gen "$WORK/stranger"
+"$REPO/scripts/reconnect-test-sshd" authorize "$(cat "$WORK/good.pub")"
+
+fail=0
+check() { if [[ "$2" == *"$3"* ]]; then echo "PASS  $1"; else echo "FAIL  $1: $2"; fail=1; fi; }
+check "ssh-keygen reads the public key" "$(ssh-keygen -l -f "$WORK/good.pub" 2>&1)" "(ECDSA)"
+check "authorized enclave key logs in" "$("$BIN" login "$WORK/good.pem" 2223)" "enclave-login-ok"
+check "unauthorized enclave key is refused" "$("$BIN" login "$WORK/stranger.pem" 2223)" "LOGIN_FAILED"
+check "the stored blob is not an exportable key" "$("$BIN" export "$WORK/good.pem")" "EXPORT_REFUSED"
+exit $fail

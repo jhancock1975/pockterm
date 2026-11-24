@@ -177,6 +177,94 @@
         }
       }
     },
+    "%@ · Secure Enclave": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ · Secure Enclave"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ · Secure Enclave"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ · Secure Enclave"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ · Secure Enclave"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ · Secure Enclave"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ · Secure Enclave"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ · Secure Enclave"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ · Secure Enclave"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ · Secure Enclave"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ · Secure Enclave"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ · Secure Enclave"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ · Secure Enclave"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ · Secure Enclave"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ · Secure Enclave"
+          }
+        }
+      }
+    },
     "%@: %@": {
       "shouldTranslate": false
     },
@@ -6524,6 +6612,94 @@
         }
       }
     },
+    "Confirm it's you to finish making the key.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "أكّد أنك أنت لإنهاء إنشاء المفتاح."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Επιβεβαιώστε ότι είστε εσείς για να ολοκληρωθεί η δημιουργία του κλειδιού."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Confirma que eres tú para terminar de crear la clave."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Confirmez qu’il s’agit bien de vous pour terminer la création de la clé."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "אשר שזה אתה כדי לסיים את יצירת המפתח."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "कुंजी बनाना पूरा करने के लिए पुष्टि करें कि यह आप ही हैं।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conferma che sei tu per completare la creazione della chiave."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "本人であることを確認して、鍵の作成を完了します。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "본인임을 확인하여 키 만들기를 완료하세요."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Подтвердите, что это вы, чтобы завершить создание ключа."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "కీ తయారీని పూర్తి చేయడానికి ఇది మీరేనని నిర్ధారించండి."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Підтвердьте, що це ви, щоб завершити створення ключа."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "确认是你本人，以完成密钥生成。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "確認是你本人，以完成金鑰產生。"
+          }
+        }
+      }
+    },
     "Confirm risky only": {
       "localizations": {
         "ar": {
@@ -7488,6 +7664,94 @@
           "stringUnit": {
             "state": "translated",
             "value": "無法附加檔案"
+          }
+        }
+      }
+    },
+    "Couldn't Make the Key": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تعذّر إنشاء المفتاح"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Αδυναμία δημιουργίας του κλειδιού"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se pudo crear la clave"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impossible de créer la clé"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "לא ניתן היה ליצור את המפתח"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "कुंजी नहीं बनाई जा सकी"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impossibile creare la chiave"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "鍵を作成できませんでした"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "키를 만들 수 없음"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Не удалось создать ключ"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "కీని తయారు చేయలేకపోయాం"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Не вдалося створити ключ"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无法生成密钥"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "無法產生金鑰"
           }
         }
       }
@@ -10748,6 +11012,94 @@
         }
       }
     },
+    "Face ID was cancelled, so the key wasn't used.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "أُلغي Face ID، لذا لم يُستخدم المفتاح."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Το Face ID ακυρώθηκε, οπότε το κλειδί δεν χρησιμοποιήθηκε."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Se canceló Face ID, así que no se usó la clave."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Face ID a été annulé ; la clé n’a donc pas été utilisée."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Face ID בוטל, ולכן לא נעשה שימוש במפתח."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Face ID रद्द कर दिया गया, इसलिए कुंजी का उपयोग नहीं हुआ।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Face ID è stato annullato, quindi la chiave non è stata usata."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Face ID がキャンセルされたため、鍵は使用されませんでした。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Face ID가 취소되어 키가 사용되지 않았습니다."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Face ID отменён, поэтому ключ не использовался."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Face ID రద్దు చేయబడింది, కాబట్టి కీని ఉపయోగించలేదు."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Face ID скасовано, тому ключ не використано."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Face ID 已取消，因此未使用该密钥。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Face ID 已取消，因此未使用該金鑰。"
+          }
+        }
+      }
+    },
     "Favorite": {
       "localizations": {
         "ar": {
@@ -12328,6 +12680,182 @@
           "stringUnit": {
             "state": "translated",
             "value": "產生 Ed25519 金鑰…"
+          }
+        }
+      }
+    },
+    "Generate Secure Enclave Key": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "توليد مفتاح Secure Enclave"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Παραγωγή κλειδιού Secure Enclave"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Generar clave de Secure Enclave"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Générer une clé Secure Enclave"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "צור מפתח Secure Enclave"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Secure Enclave कुंजी जनरेट करें"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Genera chiave Secure Enclave"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Secure Enclave 鍵を生成"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Secure Enclave 키 만들기"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сгенерировать ключ Secure Enclave"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Secure Enclave కీని రూపొందించు"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Згенерувати ключ Secure Enclave"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "生成 Secure Enclave 密钥"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "產生 Secure Enclave 金鑰"
+          }
+        }
+      }
+    },
+    "Generate Secure Enclave Key…": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "توليد مفتاح Secure Enclave…"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Παραγωγή κλειδιού Secure Enclave…"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Generar clave de Secure Enclave…"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Générer une clé Secure Enclave…"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "צור מפתח Secure Enclave…"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Secure Enclave कुंजी जनरेट करें…"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Genera chiave Secure Enclave…"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Secure Enclave 鍵を生成…"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Secure Enclave 키 만들기…"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сгенерировать ключ Secure Enclave…"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Secure Enclave కీని రూపొందించు…"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Згенерувати ключ Secure Enclave…"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "生成 Secure Enclave 密钥…"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "產生 Secure Enclave 金鑰…"
           }
         }
       }
@@ -16552,6 +17080,94 @@
           "stringUnit": {
             "state": "translated",
             "value": "本機"
+          }
+        }
+      }
+    },
+    "Made in this iPhone's Secure Enclave. The private key can't be copied or exported, even by Pockterm, and every connection asks for Face ID.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "أُنشئ داخل Secure Enclave في هذا الـ iPhone. لا يمكن نسخ المفتاح الخاص أو تصديره، حتى بواسطة Pockterm، ويطلب كل اتصال Face ID."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Δημιουργήθηκε στο Secure Enclave αυτού του iPhone. Το ιδιωτικό κλειδί δεν μπορεί να αντιγραφεί ή να εξαχθεί, ούτε από το Pockterm, και κάθε σύνδεση ζητά Face ID."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Creada en el Secure Enclave de este iPhone. La clave privada no se puede copiar ni exportar, ni siquiera con Pockterm, y cada conexión pide Face ID."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Créée dans le Secure Enclave de cet iPhone. La clé privée ne peut être ni copiée ni exportée, même par Pockterm, et chaque connexion demande Face ID."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "נוצר ב-Secure Enclave של ה-iPhone הזה. אי אפשר להעתיק או לייצא את המפתח הפרטי, גם לא באמצעות Pockterm, וכל חיבור מבקש Face ID."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "इस iPhone के Secure Enclave में बनाई गई। निजी कुंजी को कॉपी या एक्सपोर्ट नहीं किया जा सकता, Pockterm द्वारा भी नहीं, और हर कनेक्शन Face ID माँगता है।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Creata nel Secure Enclave di questo iPhone. La chiave privata non può essere copiata né esportata, nemmeno da Pockterm, e ogni connessione richiede Face ID."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "この iPhone の Secure Enclave 内で作成されました。秘密鍵は Pockterm でもコピーや書き出しができず、接続のたびに Face ID が求められます。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "이 iPhone의 Secure Enclave에서 만들어졌습니다. 개인 키는 Pockterm에서도 복사하거나 내보낼 수 없으며, 연결할 때마다 Face ID가 필요합니다."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Создан в Secure Enclave этого iPhone. Закрытый ключ нельзя скопировать или экспортировать, даже в Pockterm, а каждое подключение запрашивает Face ID."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ఈ iPhone లోని Secure Enclave లో తయారైంది. ప్రైవేట్ కీని కాపీ చేయలేరు, ఎక్స్‌పోర్ట్ చేయలేరు — Pockterm కూడా చేయలేదు — మరియు ప్రతి కనెక్షన్ Face ID అడుగుతుంది."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Створено в Secure Enclave цього iPhone. Закритий ключ не можна скопіювати або експортувати, навіть у Pockterm, а кожне підключення запитує Face ID."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在这台 iPhone 的 Secure Enclave 中生成。私钥无法复制或导出，Pockterm 也不例外，且每次连接都会要求使用 Face ID。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在這部 iPhone 的 Secure Enclave 中產生。私密金鑰無法拷貝或匯出，Pockterm 也不例外，且每次連線都會要求使用 Face ID。"
           }
         }
       }
@@ -25535,6 +26151,94 @@
         }
       }
     },
+    "Secure Enclave keys need Face ID or Touch ID. Set it up in Settings first.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تتطلب مفاتيح Secure Enclave وجود Face ID أو Touch ID. أعدّه في الإعدادات أولًا."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Τα κλειδιά Secure Enclave απαιτούν Face ID ή Touch ID. Ρυθμίστε το πρώτα στις Ρυθμίσεις."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Las claves del Secure Enclave necesitan Face ID o Touch ID. Configúralo primero en Ajustes."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Les clés Secure Enclave nécessitent Face ID ou Touch ID. Configurez-le d’abord dans Réglages."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "מפתחות Secure Enclave דורשים Face ID או Touch ID. הגדר זאת קודם בהגדרות."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Secure Enclave कुंजियों के लिए Face ID या Touch ID ज़रूरी है। पहले इसे सेटिंग में सेट करें।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le chiavi Secure Enclave richiedono Face ID o Touch ID. Configuralo prima in Impostazioni."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Secure Enclave 鍵には Face ID または Touch ID が必要です。先に「設定」で設定してください。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Secure Enclave 키에는 Face ID 또는 Touch ID가 필요합니다. 먼저 설정에서 설정하세요."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Для ключей Secure Enclave нужен Face ID или Touch ID. Сначала настройте его в Настройках."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Secure Enclave కీలకు Face ID లేదా Touch ID అవసరం. ముందుగా సెట్టింగ్‌లలో దాన్ని సెటప్ చేయండి."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Для ключів Secure Enclave потрібен Face ID або Touch ID. Спочатку налаштуйте його в Налаштуваннях."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Secure Enclave 密钥需要 Face ID 或 Touch ID。请先在“设置”中进行设置。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Secure Enclave 金鑰需要 Face ID 或 Touch ID。請先在「設定」中進行設定。"
+          }
+        }
+      }
+    },
     "Security & Privacy": {
       "localizations": {
         "ar": {
@@ -30818,6 +31522,94 @@
         }
       }
     },
+    "The private key is made inside this iPhone's Secure Enclave and can never leave it. Every connection asks for Face ID.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "يُنشأ المفتاح الخاص داخل Secure Enclave في هذا الـ iPhone ولا يمكن أن يغادره أبدًا. يطلب كل اتصال Face ID."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Το ιδιωτικό κλειδί δημιουργείται μέσα στο Secure Enclave αυτού του iPhone και δεν μπορεί ποτέ να το εγκαταλείψει. Κάθε σύνδεση ζητά Face ID."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La clave privada se crea dentro del Secure Enclave de este iPhone y nunca puede salir de él. Cada conexión pide Face ID."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La clé privée est créée dans le Secure Enclave de cet iPhone et ne peut jamais en sortir. Chaque connexion demande Face ID."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "המפתח הפרטי נוצר בתוך ה-Secure Enclave של ה-iPhone הזה ולעולם אינו יכול לצאת ממנו. כל חיבור מבקש Face ID."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "निजी कुंजी इस iPhone के Secure Enclave के अंदर बनती है और कभी उससे बाहर नहीं जा सकती। हर कनेक्शन Face ID माँगता है।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La chiave privata viene creata nel Secure Enclave di questo iPhone e non può mai uscirne. Ogni connessione richiede Face ID."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "秘密鍵はこの iPhone の Secure Enclave 内で作成され、外に出ることはありません。接続のたびに Face ID が求められます。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "개인 키는 이 iPhone의 Secure Enclave 안에서 만들어지며 밖으로 나갈 수 없습니다. 연결할 때마다 Face ID가 필요합니다."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Закрытый ключ создаётся внутри Secure Enclave этого iPhone и никогда не может его покинуть. Каждое подключение запрашивает Face ID."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ప్రైవేట్ కీ ఈ iPhone లోని Secure Enclave లోపల తయారవుతుంది, అది ఎప్పటికీ బయటకు వెళ్లదు. ప్రతి కనెక్షన్ Face ID అడుగుతుంది."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Закритий ключ створюється всередині Secure Enclave цього iPhone і ніколи не може його залишити. Кожне підключення запитує Face ID."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "私钥在这台 iPhone 的 Secure Enclave 内生成，永远无法离开。每次连接都会要求使用 Face ID。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "私密金鑰會在這部 iPhone 的 Secure Enclave 內產生，永遠無法離開。每次連線都會要求使用 Face ID。"
+          }
+        }
+      }
+    },
     "The provider is overloaded. Try again shortly.": {
       "localizations": {
         "ar": {
@@ -31518,6 +32310,94 @@
           "stringUnit": {
             "state": "translated",
             "value": "不需任何設定：連接顯示器並開啟一個工作階段即可。"
+          }
+        }
+      }
+    },
+    "This Secure Enclave key can't be used any more. It is tied to this iPhone and to the Face ID set up when it was made, and one of them has changed. Generate a new key and add it to the server.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "لم يعد بالإمكان استخدام مفتاح Secure Enclave هذا. فهو مرتبط بهذا الـ iPhone وبـ Face ID الذي أُعدّ عند إنشائه، وقد تغيّر أحدهما. أنشئ مفتاحًا جديدًا وأضفه إلى الخادم."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Αυτό το κλειδί Secure Enclave δεν μπορεί πλέον να χρησιμοποιηθεί. Είναι συνδεδεμένο με αυτό το iPhone και με το Face ID που ρυθμίστηκε όταν δημιουργήθηκε, και κάποιο από τα δύο έχει αλλάξει. Παράγετε ένα νέο κλειδί και προσθέστε το στον διακομιστή."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esta clave del Secure Enclave ya no se puede usar. Está ligada a este iPhone y al Face ID configurado cuando se creó, y uno de los dos ha cambiado. Genera una clave nueva y añádela al servidor."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cette clé Secure Enclave ne peut plus être utilisée. Elle est liée à cet iPhone et au Face ID configuré lors de sa création, et l’un des deux a changé. Générez une nouvelle clé et ajoutez-la au serveur."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "לא ניתן להשתמש יותר במפתח Secure Enclave הזה. הוא קשור ל-iPhone הזה ול-Face ID שהוגדר בעת יצירתו, ואחד מהם השתנה. צור מפתח חדש והוסף אותו לשרת."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "इस Secure Enclave कुंजी का अब उपयोग नहीं किया जा सकता। यह इस iPhone और इसे बनाते समय सेट किए गए Face ID से जुड़ी है, और इनमें से कोई एक बदल गया है। नई कुंजी जनरेट करें और उसे सर्वर में जोड़ें।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Questa chiave Secure Enclave non può più essere usata. È legata a questo iPhone e al Face ID configurato al momento della creazione, e uno dei due è cambiato. Genera una nuova chiave e aggiungila al server."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "この Secure Enclave 鍵は使用できなくなりました。この鍵はこの iPhone と、作成時に設定された Face ID に結び付けられており、そのどちらかが変更されています。新しい鍵を生成して、サーバに追加してください。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "이 Secure Enclave 키는 더 이상 사용할 수 없습니다. 이 키는 이 iPhone 및 만들 때 설정된 Face ID에 묶여 있으며, 둘 중 하나가 변경되었습니다. 새 키를 만들어 서버에 추가하세요."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Этот ключ Secure Enclave больше нельзя использовать. Он привязан к этому iPhone и к Face ID, настроенному при его создании, и одно из них изменилось. Сгенерируйте новый ключ и добавьте его на сервер."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ఈ Secure Enclave కీని ఇకపై ఉపయోగించలేరు. ఇది ఈ iPhone కు, అది తయారైనప్పుడు సెటప్ చేసిన Face ID కు ముడిపడి ఉంది, మరియు వాటిలో ఒకటి మారింది. కొత్త కీని రూపొందించి సర్వర్‌కు జోడించండి."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Цей ключ Secure Enclave більше не можна використовувати. Він прив’язаний до цього iPhone і до Face ID, налаштованого під час його створення, і одне з них змінилося. Згенеруйте новий ключ і додайте його на сервер."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "此 Secure Enclave 密钥已无法使用。它与这台 iPhone 以及生成时设置的 Face ID 绑定，而其中之一已更改。请生成新密钥并将其添加到服务器。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "此 Secure Enclave 金鑰已無法使用。它與這部 iPhone 以及產生時設定的 Face ID 綁定，而其中之一已變更。請產生新金鑰並將其加入伺服器。"
           }
         }
       }
@@ -32662,6 +33542,94 @@
           "stringUnit": {
             "state": "translated",
             "value": "未知模型。請在「AI 設定」中檢查模型名稱。"
+          }
+        }
+      }
+    },
+    "Unlock your SSH key to connect.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "افتح قفل مفتاح SSH للاتصال."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ξεκλειδώστε το κλειδί SSH για να συνδεθείτε."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Desbloquea tu clave SSH para conectarte."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Déverrouillez votre clé SSH pour vous connecter."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "בטל את הנעילה של מפתח ה-SSH כדי להתחבר."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "कनेक्ट करने के लिए अपनी SSH कुंजी अनलॉक करें।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sblocca la chiave SSH per connetterti."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SSH 鍵のロックを解除して接続します。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SSH 키의 잠금을 해제하여 연결하세요."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Разблокируйте ключ SSH для подключения."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "కనెక్ట్ కావడానికి మీ SSH కీని అన్‌లాక్ చేయండి."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Розблокуйте ключ SSH, щоб підключитися."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "解锁 SSH 密钥以连接。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "解鎖 SSH 金鑰以連線。"
           }
         }
       }

@@ -12,6 +12,8 @@ nonisolated enum SSHAuth {
     /// write one, so re-encoding would mean writing a serialiser to hold a key
     /// we can already read.
     case openSSHKey(pem: String, passphrase: String?)
+    /// A Secure Enclave key's blob (see `EnclaveKey`). Using it asks for Face ID.
+    case secureEnclaveP256(Data)
 }
 
 nonisolated struct SSHCredentials {
@@ -24,8 +26,9 @@ nonisolated struct SSHCredentials {
 nonisolated extension SSHCredentials {
     /// The Citadel authentication method these credentials describe. Shared by
     /// every connection owner (shell, SFTP, port forwards) so they cannot
-    /// disagree about how a stored secret becomes an auth method.
-    func authenticationMethod() throws -> SSHAuthenticationMethod {
+    /// disagree about how a stored secret becomes an auth method. Async
+    /// because an enclave key asks for Face ID before it can sign.
+    func authenticationMethod() async throws -> SSHAuthenticationMethod {
         switch auth {
         case .password(let password):
             return .passwordBased(username: username, password: password)
@@ -53,6 +56,10 @@ nonisolated extension SSHCredentials {
             default:
                 throw SSHEngineError.invalidKey
             }
+        case .secureEnclaveP256(let blob):
+            let key = try await EnclaveKey.unlock(
+                blob: blob, reason: String(localized: "Unlock your SSH key to connect."))
+            return .custom(EnclaveKeyAuthentication(username: username, key: key))
         }
     }
 }
