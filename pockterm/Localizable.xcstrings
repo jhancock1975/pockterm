@@ -8460,6 +8460,270 @@
         }
       }
     },
+    "Customize": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تخصيص"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Προσαρμογή"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Personalizar"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Personnaliser"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "התאמה אישית"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अनुकूलित करें"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Personalizza"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "カスタマイズ"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "사용자화"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Настроить"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "అనుకూలీకరించు"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Налаштувати"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "自定义"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "自訂"
+          }
+        }
+      }
+    },
+    "Customize Key Bar": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تخصيص شريط المفاتيح"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Προσαρμογή μπάρας πλήκτρων"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Personalizar barra de teclas"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Personnaliser la barre de touches"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "התאמה אישית של סרגל המקשים"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "कुंजी पट्टी अनुकूलित करें"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Personalizza barra tasti"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "キーバーをカスタマイズ"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "키 바 사용자화"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Настроить панель клавиш"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "కీ బార్‌ను అనుకూలీకరించు"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Налаштувати панель клавіш"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "自定义按键栏"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "自訂按鍵列"
+          }
+        }
+      }
+    },
+    "Customize the key bar": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تخصيص شريط المفاتيح"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Προσαρμογή της μπάρας πλήκτρων"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Personalizar la barra de teclas"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Personnaliser la barre de touches"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "התאמה אישית של סרגל המקשים"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "कुंजी पट्टी को अनुकूलित करें"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Personalizzare la barra tasti"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "キーバーをカスタマイズする"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "키 바 사용자화하기"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Настройка панели клавиш"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "కీ బార్‌ను అనుకూలీకరించడం"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Налаштування панелі клавіш"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "自定义按键栏"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "自訂按鍵列"
+          }
+        }
+      }
+    },
     "Date": {
       "localizations": {
         "ar": {
@@ -24391,6 +24655,94 @@
         }
       }
     },
+    "Scroll the key bar to the end and tap **Customize** to reorder keys, remove them, or add more.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "مرّر شريط المفاتيح إلى نهايته واضغط **تخصيص** لإعادة ترتيب المفاتيح أو إزالتها أو إضافة المزيد."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Κυλήστε τη μπάρα πλήκτρων ως το τέλος και πατήστε **Προσαρμογή** για να αλλάξετε τη σειρά των πλήκτρων, να τα αφαιρέσετε ή να προσθέσετε κι άλλα."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Desplaza la barra de teclas hasta el final y toca **Personalizar** para reordenar teclas, quitarlas o añadir más."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Faites défiler la barre de touches jusqu'au bout et touchez **Personnaliser** pour réordonner les touches, en retirer ou en ajouter."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "גלול את סרגל המקשים עד הסוף והקש על **התאמה אישית** כדי לסדר מחדש מקשים, להסיר אותם או להוסיף עוד."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "कुंजी पट्टी को अंत तक स्क्रॉल करें और कुंजियों का क्रम बदलने, उन्हें हटाने या और जोड़ने के लिए **अनुकूलित करें** टैप करें।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Scorri la barra tasti fino in fondo e tocca **Personalizza** per riordinare i tasti, rimuoverli o aggiungerne altri."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "キーバーを端までスクロールして**カスタマイズ**をタップすると、キーの並べ替え、削除、追加ができます。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "키 바를 끝까지 스크롤한 뒤 **사용자화**를 탭하면 키 순서를 바꾸거나, 키를 제거하거나, 더 추가할 수 있습니다."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Прокрутите панель клавиш до конца и нажмите **Настроить**, чтобы изменить порядок клавиш, убрать их или добавить новые."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "కీ బార్‌ను చివరి వరకు స్క్రోల్ చేసి **అనుకూలీకరించు** నొక్కండి — కీల క్రమం మార్చవచ్చు, వాటిని తీసివేయవచ్చు, లేదా మరిన్ని జోడించవచ్చు."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Прокрутіть панель клавіш до кінця й торкніться **Налаштувати**, щоб змінити порядок клавіш, прибрати їх або додати нові."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "将按键栏滚动到最后，轻点**自定义**，即可重新排列、移除或添加按键。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "將按鍵列捲動到最後，點一下**自訂**，即可重新排列、移除或加入按鍵。"
+          }
+        }
+      }
+    },
     "Search hosts": {
       "localizations": {
         "ar": {
@@ -33158,6 +33510,94 @@
           "stringUnit": {
             "state": "translated",
             "value": "沒有開啟的工作階段或工作階段已縮到最小時，眼鏡上會提示你在 iPhone 上開啟一個工作階段。"
+          }
+        }
+      }
+    },
+    "You can also open it from **Settings → Key Bar**.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "يمكنك أيضًا فتحه من **الإعدادات ← شريط المفاتيح**."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Μπορείτε επίσης να το ανοίξετε από **Ρυθμίσεις → Μπάρα πλήκτρων**."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "También puedes abrirlo desde **Ajustes → Barra de teclas**."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vous pouvez aussi y accéder depuis **Réglages → Barre de touches**."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "אפשר לפתוח את זה גם מ**הגדרות ← סרגל מקשים**."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "आप इसे **सेटिंग → कुंजी पट्टी** से भी खोल सकते हैं।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Puoi aprirla anche da **Impostazioni → Barra tasti**."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**設定 → キーバー** からも開けます。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**설정 → 키 바**에서도 열 수 있습니다."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Её также можно открыть в разделе **Настройки → Панель клавиш**."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "దీన్ని **సెట్టింగ్‌లు → కీ బార్** నుండి కూడా తెరవవచ్చు."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Її також можна відкрити в розділі **Налаштування → Панель клавіш**."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "也可以在**设置 → 按键栏**中打开。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "也可以在**設定 → 按鍵列**中開啟。"
           }
         }
       }

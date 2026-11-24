@@ -1,3 +1,4 @@
+import SwiftUI
 import UIKit
 import SwiftTerm
 
@@ -112,6 +113,43 @@ final class KeyBarView: UIInputView, UIInputViewAudioFeedback {
                 stack.setCustomSpacing(10, after: button)
             }
         }
+        // Always last and not part of the saved layout, so it can't be removed
+        // and the way back into Key Bar settings is never lost. A labelled key,
+        // not a long-press: hidden gestures read as missing features.
+        stack.addArrangedSubview(makeCustomizeButton())
+    }
+
+    private func makeCustomizeButton() -> UIButton {
+        let button = UIButton(type: .system)
+        var config = UIButton.Configuration.gray()
+        config.baseForegroundColor = .label
+        config.background.backgroundColor = UIColor(white: 0.28, alpha: 1)
+        config.cornerStyle = .medium
+        config.image = UIImage(systemName: "slider.horizontal.3",
+                               withConfiguration: UIImage.SymbolConfiguration(pointSize: 14))
+        config.imagePadding = 6
+        config.attributedTitle = AttributedString(
+            String(localized: "Customize"),
+            attributes: AttributeContainer([.font: UIFont.systemFont(ofSize: 15)]))
+        config.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 10, bottom: 8, trailing: 10)
+        // One line. A wrappable title leaves the button's width free, and Auto
+        // Layout spent the slack on esc and ctrl, pushing the arrows off-screen.
+        config.titleLineBreakMode = .byClipping
+        button.configuration = config
+        button.accessibilityLabel = String(localized: "Customize Key Bar")
+        button.addTarget(self, action: #selector(openKeyBarSettings), for: .touchUpInside)
+        return button
+    }
+
+    /// Presents Key Bar settings over whichever screen holds the keyboard: the
+    /// terminal's on the phone, or the phone's proxy in glasses mode (the
+    /// terminal itself is then on the glasses).
+    @objc private func openKeyBarSettings() {
+        let window = (keyboardOwner as? UIView)?.window ?? terminalView?.window
+        guard var presenter = window?.rootViewController else { return }
+        while let next = presenter.presentedViewController { presenter = next }
+        dismissKeyboard()
+        presenter.present(UIHostingController(rootView: KeyBarSettingsSheet()), animated: true)
     }
 
     override func layoutSubviews() {

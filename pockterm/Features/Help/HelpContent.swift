@@ -85,6 +85,11 @@ enum HelpContent {
                 "Open several hosts at once — each session is a tab across the top. Tap its name to switch, or the red **✕** to close it.",
                 "Tap the **snippet** button to run a saved command in the session.",
             ]),
+            .heading("Customize the key bar"),
+            .bullets([
+                "Scroll the key bar to the end and tap **Customize** to reorder keys, remove them, or add more.",
+                "You can also open it from **Settings → Key Bar**.",
+            ]),
         ])
 
     static let glasses = HelpTopic(
