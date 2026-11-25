@@ -39,6 +39,8 @@ start)
         echo "UsePAM no"
         echo "StrictModes no"
         echo "SetEnv TMUX_TMPDIR=$DIR"
+        # What macOS's own sshd accepts, so the app's LC_POCKTERM tag arrives.
+        echo "AcceptEnv LANG LC_*"
         echo "PidFile $DIR/sshd.pid"
     } > "$DIR/sshd_config"
     "$0" stop >/dev/null 2>&1 || true

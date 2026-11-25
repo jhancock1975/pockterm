@@ -25,10 +25,55 @@ enum Reconnect {
     /// in a login profile, such as Homebrew's /opt/homebrew/bin on a Mac.
     static let tmuxProbeCommand = #""${SHELL:-sh}" -lc 'command -v tmux'"#
 
-    /// Whether the probe's output says tmux is installed. `SSHEngine.exec`
+    /// Where the probe found tmux, or nil if it isn't installed. `SSHEngine.exec`
     /// appends `[exit status N]` when the command fails.
-    static func tmuxAvailable(probeOutput: String) -> Bool {
-        !probeOutput.contains("[exit status") && probeOutput.contains("tmux")
+    static func tmuxPath(probeOutput: String) -> String? {
+        guard !probeOutput.contains("[exit status") else { return nil }
+        return probeOutput.split(separator: "\n")
+            .map { $0.trimmingCharacters(in: .whitespaces) }
+            .first { $0.hasPrefix("/") && $0.hasSuffix("tmux") }
+    }
+
+    /// The environment variable every shell is opened with, carrying the
+    /// session's own id. Anything started in that shell inherits it, a tmux
+    /// client included, which is how the app tells which tmux session it was
+    /// in, even one the user attached to by hand. `LC_*` because that is what
+    /// sshd accepts by default (macOS, Debian, Ubuntu); a server that refuses
+    /// it just loses the follow-me reattach.
+    static let tagName = "LC_POCKTERM"
+
+    /// Prints the tmux session holding the client started from the shell
+    /// tagged `tag`, or nothing. Reads each client's environment from /proc
+    /// on Linux and from `ps -E` on macOS and the BSDs. Run through /bin/sh,
+    /// whatever the user's login shell is.
+    static func trackCommand(tmuxPath: String, tag: String) -> String {
+        let want = shellQuote("\(tagName)=\(tag)")
+        let script = """
+        \(shellQuote(tmuxPath)) list-clients -F '#{client_pid} #{session_name}' 2>/dev/null | \
+        while read -r pid name; do \
+        if [ -r "/proc/$pid/environ" ]; then tr '\\0' '\\n' < "/proc/$pid/environ" | grep -qxF \(want); \
+        else ps -Eww -p "$pid" -o command= 2>/dev/null | tr ' ' '\\n' | grep -qxF \(want); fi \
+        && { printf '%s\\n' "$name"; break; }; done
+        """
+        return "/bin/sh -c \(shellQuote(script))"
+    }
+
+    /// The session name in the track command's output, or nil when the shell
+    /// is not inside tmux.
+    static func trackedSession(output: String) -> String? {
+        guard !output.contains("[exit status") else { return nil }
+        let name = output.split(separator: "\n").first.map(String.init) ?? ""
+        return name.isEmpty ? nil : name
+    }
+
+    /// Typed into the new shell after a reconnect to go back to `session`.
+    /// `=` makes tmux match the name exactly rather than as a prefix.
+    static func attachCommand(session: String) -> String {
+        "tmux attach -t \(shellQuote("=" + session))"
+    }
+
+    static func shellQuote(_ s: String) -> String {
+        "'" + s.replacingOccurrences(of: "'", with: #"'\''"#) + "'"
     }
 
     /// What to do once the shell has ended.

@@ -44,13 +44,13 @@ func aSessionAlreadyGoingDownIsLeftAlone(end: ShellEnd) {
 }
 
 @Test func tmuxIsFoundFromItsPath() {
-    #expect(Reconnect.tmuxAvailable(probeOutput: "/usr/bin/tmux\n"))
-    #expect(Reconnect.tmuxAvailable(probeOutput: "/opt/homebrew/bin/tmux\n"))
+    #expect(Reconnect.tmuxPath(probeOutput: "/usr/bin/tmux\n") == "/usr/bin/tmux")
+    #expect(Reconnect.tmuxPath(probeOutput: "Last login: x\n/opt/homebrew/bin/tmux\n") == "/opt/homebrew/bin/tmux")
 }
 
 @Test func tmuxIsMissingWhenTheProbeFails() {
-    #expect(!Reconnect.tmuxAvailable(probeOutput: "\n[exit status 1]"))
-    #expect(!Reconnect.tmuxAvailable(probeOutput: ""))
+    #expect(Reconnect.tmuxPath(probeOutput: "\n[exit status 1]") == nil)
+    #expect(Reconnect.tmuxPath(probeOutput: "") == nil)
 }
 
 @Test func tmuxCommandAttachesOrCreatesTheSameSession() {
@@ -70,4 +70,16 @@ func aSessionAlreadyGoingDownIsLeftAlone(end: ShellEnd) {
     let settings = ConnectionSettings()
     #expect(settings.autoReconnect)
     #expect(!settings.tmuxAttach)
+}
+
+@Test func trackedSessionIsTheFirstLineOrNothing() {
+    #expect(Reconnect.trackedSession(output: "0\n") == "0")
+    #expect(Reconnect.trackedSession(output: "my work\n") == "my work")
+    #expect(Reconnect.trackedSession(output: "") == nil)
+    #expect(Reconnect.trackedSession(output: "\n[exit status 1]") == nil)
+}
+
+@Test func attachCommandMatchesTheNameExactlyAndQuotesIt() {
+    #expect(Reconnect.attachCommand(session: "0") == "tmux attach -t '=0'")
+    #expect(Reconnect.attachCommand(session: "it's mine") == #"tmux attach -t '=it'\''s mine'"#)
 }

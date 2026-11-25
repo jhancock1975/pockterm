@@ -54,3 +54,35 @@ private func runShell(sending command: String) async throws -> (ShellEnd?, Strin
     let (end, output) = try await runShell(sending: "kill -9 $PPID\n")
     #expect(end == .connectionLost, "output: \(output.suffix(80).debugDescription)")
 }
+
+/// The follow-me reattach: a shell opened with the app's tag, tmux started in
+/// it by hand under a name of the user's choosing, and the track command must
+/// name that session, and only for this shell's tag.
+@Test func trackCommandFindsTheTmuxSessionAttachedByHand() async throws {
+    guard sshReachable(host: "127.0.0.1", port: 2223), let creds = testCredentials() else { return }
+    let engine = SSHEngine()
+    let box = ShellEndBox()
+    let tag = UUID().uuidString
+    try await engine.connect(creds) { _ in true }
+    try await engine.openShell(cols: 80, rows: 24, environment: [Reconnect.tagName: tag],
+                               onOutput: { bytes in Task { await box.append(bytes) } },
+                               onClose: { end in Task { await box.set(end) } })
+    let path = try #require(Reconnect.tmuxPath(probeOutput: try await engine.exec(Reconnect.tmuxProbeCommand)))
+    let name = "it's mine \(Int.random(in: 1000...9999))"
+    try await Task.sleep(for: .milliseconds(800))
+    await engine.send(Array("tmux new -A -s \(Reconnect.shellQuote(name))\n".utf8))
+
+    var found: String?
+    for _ in 0..<30 where found == nil {
+        try await Task.sleep(for: .milliseconds(300))
+        found = Reconnect.trackedSession(output: try await engine.exec(
+            Reconnect.trackCommand(tmuxPath: path, tag: tag)))
+    }
+    let stranger = Reconnect.trackedSession(output: try await engine.exec(
+        Reconnect.trackCommand(tmuxPath: path, tag: UUID().uuidString)))
+    _ = try? await engine.exec("\(Reconnect.shellQuote(path)) kill-session -t \(Reconnect.shellQuote("=" + name))")
+    await engine.disconnect()
+    let output = await box.output
+    #expect(found == name, "output: \(output.suffix(200).debugDescription)")
+    #expect(stranger == nil)
+}

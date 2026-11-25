@@ -875,6 +875,47 @@ final class VerifyDriverUITests: XCTestCase {
         XCTAssertEqual(pid1, pid2, "came back to a different shell, not the same tmux session")
     }
 
+    /// The follow-me reattach: Reopen in tmux OFF for the host, the user
+    /// starts tmux by hand under their own name, the connection drops, and
+    /// the app must come back into that session. Same setup as
+    /// testAutoReconnectIntoTmux but with `ZTMUXATTACH=0`; the drop watcher
+    /// must wait for `/tmp/pockterm-rc-pid1` plus ~15 s so the app's tracker
+    /// (every 10 s) has seen the session.
+    func testReconnectFollowsTmuxStartedByHand() throws {
+        for f in ["pid1", "pid2", "tmux2"] { try? FileManager.default.removeItem(atPath: "/tmp/pockterm-rc-\(f)") }
+        let app = XCUIApplication()
+        app.launch()
+        try connectToMac(app)
+        let terminal = app.textViews.firstMatch
+        XCTAssertTrue(terminal.waitForExistence(timeout: 10), app.debugDescription)
+        Thread.sleep(forTimeInterval: 3)
+        terminal.tap()
+        terminal.typeText("tmux new -A -s handmade\n")
+        Thread.sleep(forTimeInterval: 3)
+        terminal.typeText("echo $$ > /tmp/pockterm-rc-pid1\n")
+        attach(app, name: "hand-1-before-drop")
+        print("RC>>> waiting for the drop")
+
+        let reconnecting = app.descendants(matching: .any).matching(NSPredicate(format: "label == %@", "Reconnecting…")).firstMatch
+        if reconnecting.waitForExistence(timeout: 90) {
+            attach(app, name: "hand-2-reconnecting")
+            print("RC>>> saw Reconnecting…")
+        }
+        let deadline = Date().addingTimeInterval(90)
+        while Date() < deadline, reconnecting.exists { Thread.sleep(forTimeInterval: 0.5) }
+        XCTAssertFalse(app.staticTexts["Connection Lost"].exists, app.debugDescription)
+        Thread.sleep(forTimeInterval: 4)
+        terminal.tap()
+        terminal.typeText("echo $$ > /tmp/pockterm-rc-pid2; tmux display -p '#S' > /tmp/pockterm-rc-tmux2\n")
+        Thread.sleep(forTimeInterval: 3)
+        attach(app, name: "hand-3-after-reconnect")
+        let read = { (f: String) in ((try? String(contentsOfFile: "/tmp/pockterm-rc-\(f)", encoding: .utf8)) ?? "nil").trimmingCharacters(in: .whitespacesAndNewlines) }
+        print("RC>>> pid1=\(read("pid1")) pid2=\(read("pid2")) session=\(read("tmux2"))")
+        XCTAssertNotEqual(read("pid2"), "nil", "no command ran after the reconnect")
+        XCTAssertEqual(read("pid1"), read("pid2"), "came back to a different shell, not the tmux session")
+        XCTAssertEqual(read("tmux2"), "handmade")
+    }
+
     /// Samples an element's rendering and returns how many of the frames
     /// differ. Anything still animating shows up as more than one.
     private func distinctFrames(of element: XCUIElement, samples: Int, gap: TimeInterval) -> Int {

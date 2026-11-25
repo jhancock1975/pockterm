@@ -50,7 +50,9 @@ actor SSHEngine {
 
     /// Opens an interactive shell. `onOutput` is called with raw terminal bytes
     /// as they arrive; `onClose` fires when the remote shell ends, saying how.
-    func openShell(cols: Int, rows: Int,
+    /// `environment` is sent without asking for a reply, so a server that
+    /// refuses a variable still opens the shell.
+    func openShell(cols: Int, rows: Int, environment: [String: String] = [:],
                    onOutput: @escaping @Sendable ([UInt8]) -> Void,
                    onClose: @escaping @Sendable (ShellEnd) -> Void) async throws {
         guard let client else { throw SSHEngineError.notConnected }
@@ -70,10 +72,13 @@ actor SSHEngine {
         // Same upstream gap as PortForwardService: Citadel's SSHClient is not
         // Sendable, though SSHClientSession beside it is. Scoped to the capture
         // so the assumption is visible rather than asserted for the type.
+        let env = environment.map {
+            SSHChannelRequestEvent.EnvironmentRequest(wantReply: false, name: $0.key, value: $0.value)
+        }
         nonisolated(unsafe) let unsafeClient = client
         shellTask = Task {
             do {
-                try await unsafeClient.withPTY(request) { inbound, outbound in
+                try await unsafeClient.withPTY(request, environment: env) { inbound, outbound in
                     // inbound/outbound are Citadel's PTY halves and are not
                     // Sendable, but the two task-group children below use one
                     // each and never the same one — reads on inbound, writes on

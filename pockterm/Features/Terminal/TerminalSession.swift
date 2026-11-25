@@ -84,9 +84,16 @@ final class TerminalSession: Identifiable, HostKeyDeciding {
     /// Bumped for every shell opened, so the close of a shell that has
     /// already been replaced by a reconnect is not taken for the new one's.
     private var shellGeneration = 0
-    /// Set once tmux has turned out to be missing, so the notice is shown
-    /// once per session rather than on every reconnect.
-    private var tmuxUnavailable = false
+    /// Where tmux is on the host, once a probe has found it.
+    private var tmuxPath: String?
+    /// Set once the "tmux isn't installed" notice has been shown, so it is
+    /// shown once per session rather than on every reconnect.
+    private var tmuxNoticeShown = false
+    /// The tmux session this session's shell was last seen inside, whoever
+    /// started it: the app (Reopen in tmux) or the user typing `tmux attach`.
+    /// A reconnect goes back to it.
+    private var lastTmuxSession: String?
+    private var tmuxTrackTask: Task<Void, Never>?
 
     /// This session's AI assistant, created on first use so the transcript
     /// survives closing and reopening the assistant sheet.
@@ -254,6 +261,7 @@ final class TerminalSession: Identifiable, HostKeyDeciding {
         // eventually send the true size, but minutes later.
         try await engine.openShell(
             cols: lastCols, rows: lastRows,
+            environment: [Reconnect.tagName: id.uuidString],
             onOutput: { [weak self] bytes in
                 Task { @MainActor in
                     guard let self else { return }
@@ -276,8 +284,9 @@ final class TerminalSession: Identifiable, HostKeyDeciding {
         holdSeconds = EffectiveHostSettings.resolveKeepAlive(
             host: host, globalDefault: settings.defaultKeepAliveSeconds)
         startKeepAliveTimer()
-        let inTmux = await attachTmuxIfWanted(
-            EffectiveHostSettings.resolveReconnect(host: host, settings: settings).tmuxAttach)
+        let inTmux = await enterTmux(
+            wanted: EffectiveHostSettings.resolveReconnect(host: host, settings: settings).tmuxAttach,
+            isReconnect: isReconnect, generation: generation)
         // Back inside tmux the startup snippet has already run; a plain shell
         // after a reconnect is a fresh login and gets it again.
         if let startup = host.startupSnippet, !startup.isEmpty, !(isReconnect && inTmux) {
@@ -292,6 +301,7 @@ final class TerminalSession: Identifiable, HostKeyDeciding {
 
     private func shellEnded(_ end: ShellEnd) {
         keepAliveTimer?.invalidate(); keepAliveTimer = nil
+        tmuxTrackTask?.cancel(); tmuxTrackTask = nil
         switch Reconnect.response(to: end, wasConnected: status == .connected,
                                   userDisconnected: userDisconnected,
                                   autoReconnect: autoReconnect) {
@@ -371,24 +381,63 @@ final class TerminalSession: Identifiable, HostKeyDeciding {
         terminalView.feed(text: "\u{1B}[!p\u{1B}[?1049l\r\n\u{1B}[2m[\(note)]\u{1B}[0m\r\n")
     }
 
-    /// Types the tmux command into the new shell when the host asks for it
-    /// and tmux is there. Returns whether the shell is now inside tmux.
-    private func attachTmuxIfWanted(_ wanted: Bool) async -> Bool {
-        guard wanted, !tmuxUnavailable else { return false }
-        let output = (try? await engine.exec(Reconnect.tmuxProbeCommand)) ?? ""
-        guard Reconnect.tmuxAvailable(probeOutput: output) else {
-            tmuxUnavailable = true
-            let note = String(localized: "tmux isn't installed on this host, so this is a plain shell.")
-            terminalView.feed(text: "\r\n\u{1B}[2m[\(note)]\u{1B}[0m\r\n")
-            return false
+    /// Puts the new shell into tmux where that is wanted, and returns whether
+    /// it did. After a reconnect that is the tmux session the shell was last
+    /// in, if any; otherwise the `pockterm` session when Reopen in tmux is on.
+    /// Then keeps watch on which tmux session the shell is in.
+    private func enterTmux(wanted: Bool, isReconnect: Bool, generation: Int) async -> Bool {
+        if tmuxPath == nil {
+            // Thrown means the probe never got an answer; that says nothing
+            // about tmux, so it is asked again on the next connect.
+            if let output = try? await engine.exec(Reconnect.tmuxProbeCommand) {
+                tmuxPath = Reconnect.tmuxPath(probeOutput: output)
+                if tmuxPath == nil, wanted, !tmuxNoticeShown {
+                    tmuxNoticeShown = true
+                    let note = String(localized: "tmux isn't installed on this host, so this is a plain shell.")
+                    terminalView.feed(text: "\r\n\u{1B}[2m[\(note)]\u{1B}[0m\r\n")
+                }
+            }
         }
-        sendKeys(Array((Reconnect.tmuxCommand + "\n").utf8))
-        return true
+        guard let path = tmuxPath, generation == shellGeneration else { return false }
+        var inTmux = false
+        if isReconnect, let session = lastTmuxSession {
+            sendKeys(Array((Reconnect.attachCommand(session: session) + "\n").utf8))
+            inTmux = true
+        } else if wanted {
+            sendKeys(Array((Reconnect.tmuxCommand + "\n").utf8))
+            inTmux = true
+        }
+        trackTmux(path: path, generation: generation)
+        return inTmux
+    }
+
+    /// Asks the host every few seconds which tmux session holds this shell's
+    /// client, so a drop at any moment knows where to go back to. A failed
+    /// ask changes nothing: it is most likely the connection going down,
+    /// which is exactly when the last answer must survive.
+    private func trackTmux(path: String, generation: Int) {
+        tmuxTrackTask?.cancel()
+        let command = Reconnect.trackCommand(tmuxPath: path, tag: id.uuidString)
+        tmuxTrackTask = Task { [weak self] in
+            // Give a typed tmux command time to attach before the first look.
+            try? await Task.sleep(for: .seconds(3))
+            while !Task.isCancelled {
+                guard let self, generation == self.shellGeneration,
+                      self.status == .connected else { return }
+                if let output = try? await self.engine.exec(command),
+                   !Task.isCancelled, generation == self.shellGeneration,
+                   self.status == .connected {
+                    self.lastTmuxSession = Reconnect.trackedSession(output: output)
+                }
+                try? await Task.sleep(for: .seconds(10))
+            }
+        }
     }
 
     func disconnect() async {
         userDisconnected = true
         reconnectTask?.cancel(); reconnectTask = nil
+        tmuxTrackTask?.cancel(); tmuxTrackTask = nil
         keepAliveTimer?.invalidate(); keepAliveTimer = nil
         await engine.disconnect()
         await _files?.disconnect()

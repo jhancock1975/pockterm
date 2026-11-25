@@ -110,6 +110,12 @@ host back with `ZPORT=22, ZTMUXATTACH=NULL` afterwards. The app's key must be
 in `/tmp/pockterm-reconnect-sshd/authorized_keys` (`reconnect-test-sshd
 authorize`).
 
+`testReconnectFollowsTmuxStartedByHand` is the same drop with
+`ZTMUXATTACH=0`: the test types `tmux new -A -s handmade` itself, and after the
+reconnect the shell must be back in `handmade`. The app finds that session by
+polling every 10 s, so the drop watcher sleeps ~18 s after `pid1` appears
+instead of 2.
+
 **Never run a bare `tmux kill-server` here**, even with `TMUX_TMPDIR` set.
 These commands run inside John's tmux, where `$TMUX` beats `TMUX_TMPDIR`, so
 the kill lands on his server. That happened on 2026-11-24. Always pass `-S`
