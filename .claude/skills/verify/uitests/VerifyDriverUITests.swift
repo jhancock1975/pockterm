@@ -916,6 +916,40 @@ final class VerifyDriverUITests: XCTestCase {
         XCTAssertEqual(read("tmux2"), "handmade")
     }
 
+    /// The tmux session the shell was in is gone by the time the app
+    /// reconnects (a server reboot): no attach to a dead name, and the host's
+    /// startup snippet runs again. Host snippet must be
+    /// `echo x >> /tmp/pockterm-rc-snip`; the Mac kills `handmade` on the test
+    /// server, then drops the connection, once pid1 appears plus ~18 s.
+    func testReconnectRunsSnippetWhenTmuxSessionIsGone() throws {
+        for f in ["pid1", "pid2", "tmux2", "snip"] { try? FileManager.default.removeItem(atPath: "/tmp/pockterm-rc-\(f)") }
+        let app = XCUIApplication()
+        app.launch()
+        try connectToMac(app)
+        let terminal = app.textViews.firstMatch
+        XCTAssertTrue(terminal.waitForExistence(timeout: 10), app.debugDescription)
+        Thread.sleep(forTimeInterval: 3)
+        terminal.tap()
+        terminal.typeText("tmux new -A -s handmade\n")
+        Thread.sleep(forTimeInterval: 3)
+        terminal.typeText("echo $$ > /tmp/pockterm-rc-pid1\n")
+        let reconnecting = app.descendants(matching: .any).matching(NSPredicate(format: "label == %@", "Reconnecting…")).firstMatch
+        _ = reconnecting.waitForExistence(timeout: 90)
+        let deadline = Date().addingTimeInterval(90)
+        while Date() < deadline, reconnecting.exists { Thread.sleep(forTimeInterval: 0.5) }
+        Thread.sleep(forTimeInterval: 4)
+        terminal.tap()
+        terminal.typeText("echo $$ > /tmp/pockterm-rc-pid2; echo \"${TMUX:-none}\" > /tmp/pockterm-rc-tmux2\n")
+        Thread.sleep(forTimeInterval: 3)
+        attach(app, name: "gone-after-reconnect")
+        let read = { (f: String) in ((try? String(contentsOfFile: "/tmp/pockterm-rc-\(f)", encoding: .utf8)) ?? "nil").trimmingCharacters(in: .whitespacesAndNewlines) }
+        let snips = read("snip").split(separator: "\n").count
+        print("RC>>> pid1=\(read("pid1")) pid2=\(read("pid2")) tmux=\(read("tmux2")) snippetRuns=\(snips)")
+        XCTAssertNotEqual(read("pid2"), "nil", "no command ran after the reconnect")
+        XCTAssertEqual(read("tmux2"), "none", "should be a plain shell, the session is gone")
+        XCTAssertEqual(snips, 2, "startup snippet should run on connect and again after the reconnect")
+    }
+
     /// Samples an element's rendering and returns how many of the frames
     /// differ. Anything still animating shows up as more than one.
     private func distinctFrames(of element: XCUIElement, samples: Int, gap: TimeInterval) -> Int {
