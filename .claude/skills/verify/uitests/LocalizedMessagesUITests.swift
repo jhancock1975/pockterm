@@ -14,6 +14,32 @@ final class LocalizedMessagesUITests: XCTestCase {
 
     override func setUpWithError() throws { continueAfterFailure = true }
 
+    /// App Store screenshot 4 in one language: Settings → Connection, with the
+    /// tab bar showing. Run on the iPhone 17 Pro Max simulator (1320x2868).
+    func testCaptureConnectionScreen() throws {
+        let lang = env["L_LANG"] ?? ""
+        let json = env["L_JSON"] ?? ""
+        try XCTSkipIf(lang.isEmpty || json.isEmpty, "L_LANG / L_JSON not set")
+        let l = try JSONDecoder().decode([String: String].self, from: Data(json.utf8))
+        func t(_ key: String) -> String { l[key] ?? key }
+
+        let app = XCUIApplication()
+        app.launchArguments += ["-AppleLanguages", "(\(lang))", "-AppleLocale", lang]
+        app.launch()
+        app.tabBars.buttons[t("Settings")].tap()
+        // Inside the Settings list: the Connections tab's label contains the
+        // word too in most languages.
+        let row = app.collectionViews.buttons.matching(NSPredicate(format: "label CONTAINS %@", t("Connection"))).firstMatch
+        XCTAssertTrue(row.waitForExistence(timeout: 5), app.debugDescription)
+        row.tap()
+        XCTAssertTrue(app.switches.firstMatch.waitForExistence(timeout: 5), app.debugDescription)
+        Thread.sleep(forTimeInterval: 1)
+        let shot = XCTAttachment(screenshot: XCUIScreen.main.screenshot())
+        shot.name = "conn-\(lang)"
+        shot.lifetime = .keepAlways
+        add(shot)
+    }
+
     func testThemeAndFontNamesAreLocalized() throws {
         let lang = env["L_LANG"] ?? ""
         let json = env["L_JSON"] ?? ""

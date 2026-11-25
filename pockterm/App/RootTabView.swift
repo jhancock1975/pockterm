@@ -99,7 +99,15 @@ private extension View {
     /// available, and falls back to a bottom safe-area inset on iOS < 26.
     @ViewBuilder
     func minimizedSessionAccessory(sessions: SessionManager) -> some View {
-        if #available(iOS 26.0, *) {
+        if #available(iOS 26.1, *) {
+            // Enabled only while a session is minimized. Always installed, the
+            // slot drew an empty glass capsule above the tab bar.
+            self.tabViewBottomAccessory(isEnabled: sessions.isMinimized && sessions.active != nil) {
+                if sessions.isMinimized, let active = sessions.active {
+                    MinimizedSessionBar(manager: sessions, active: active)
+                }
+            }
+        } else if #available(iOS 26.0, *) {
             self.tabViewBottomAccessory {
                 if sessions.isMinimized, let active = sessions.active {
                     MinimizedSessionBar(manager: sessions, active: active)

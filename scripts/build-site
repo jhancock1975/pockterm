@@ -58,6 +58,15 @@ def video(code):
         else f"/pockterm-demo-{code}.mp4"
 
 
+# App Store screenshots, one set per store language. Telugu has no App Store
+# listing, so no screenshots of its own; its page shows the English set.
+SHOTS = set(ORDER) - {"te"}
+
+
+def shots(code):
+    return "/shots/en/" if code not in SHOTS else f"/shots/{code}/"
+
+
 def attr(text):
     """Plain text -> safe inside a double-quoted attribute or <title>."""
     return (text.replace("&", "&amp;").replace("<", "&lt;")
@@ -129,6 +138,7 @@ def build(code, template, data):
     page = page.replace('href="/manual.html"', f'href="{manual(code)}"')
     page = page.replace('href="/privacy.html"', f'href="{privacy(code)}"')
     page = page.replace('href="/pockterm-demo.mp4"', f'href="{video(code)}"')
+    page = page.replace('src="/shots/en/', f'src="{shots(code)}')
     page = sub_once(r'<html[^>]*>', f'<html {html_attrs(code)}>', page)
     return page
 

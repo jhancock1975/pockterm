@@ -91,6 +91,8 @@
   .d { color: var(--term-dim); }
 
   h2 { font-size: 1.05rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); font-weight: 600; margin: 3.5rem 0 1.2rem; }
+  .shots { display: flex; gap: .8rem; overflow-x: auto; scroll-snap-type: x mandatory; margin: 1.6rem 0 .4rem; padding-bottom: .5rem; }
+  .shots img { flex: none; height: 420px; width: auto; aspect-ratio: 1320 / 2868; border-radius: 16px; border: 1px solid var(--line); scroll-snap-align: start; }
   .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; }
   .card { background: var(--card); border: 1px solid var(--line); border-radius: 11px; padding: 1.15rem 1.25rem; }
   .card h3 { margin: 0 0 .4rem; font-size: 1.02rem; }
@@ -159,6 +161,8 @@
   <p style="color:var(--muted); font-size:.92rem; margin:.2rem 0 0;">
     Full-screen console apps render properly — not as garbled text.
   </p>
+
+  <div class="shots" dir="ltr"><img src="/shots/en/1.jpg" alt="" loading="lazy" width="193" height="420"><img src="/shots/en/2.jpg" alt="" loading="lazy" width="193" height="420"><img src="/shots/en/3.jpg" alt="" loading="lazy" width="193" height="420"><img src="/shots/en/4.jpg" alt="" loading="lazy" width="193" height="420"><img src="/shots/en/glasses.jpg" alt="" loading="lazy" width="193" height="420"></div>
 
   <h2>What it does</h2>
   <div class="grid">
