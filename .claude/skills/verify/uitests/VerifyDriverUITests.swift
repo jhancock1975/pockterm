@@ -86,7 +86,7 @@ final class VerifyDriverUITests: XCTestCase {
         let app = XCUIApplication()
         app.launch()
 
-        app.tabBars.buttons["Hosts"].tap()
+        app.tabBars.buttons["Connections"].tap()
 
         // Only build the host once; reruns reuse it.
         let hostRow = app.buttons.matching(
@@ -267,7 +267,7 @@ final class VerifyDriverUITests: XCTestCase {
         app.launch()
 
         // 1. Hosts list (seed the host if this is a clean install).
-        app.tabBars.buttons["Hosts"].tap()
+        app.tabBars.buttons["Connections"].tap()
         let hostRow = app.buttons.matching(
             NSPredicate(format: "label CONTAINS 'localhost' OR label CONTAINS 'mac'")).firstMatch
         if !hostRow.waitForExistence(timeout: 2) {
@@ -356,7 +356,7 @@ final class VerifyDriverUITests: XCTestCase {
         app.launch()
 
         // Connect (seed the host on a clean install).
-        app.tabBars.buttons["Hosts"].tap()
+        app.tabBars.buttons["Connections"].tap()
         let hostRow = app.buttons.matching(
             NSPredicate(format: "label CONTAINS 'localhost' OR label CONTAINS 'mac'")).firstMatch
         if !hostRow.waitForExistence(timeout: 2) { try createHost(app) }
@@ -498,7 +498,7 @@ final class VerifyDriverUITests: XCTestCase {
         let app = XCUIApplication()
         app.launch()
 
-        app.tabBars.buttons["Hosts"].tap()
+        app.tabBars.buttons["Connections"].tap()
         let hostRow = app.buttons.matching(
             NSPredicate(format: "label CONTAINS 'localhost'")).firstMatch
         if !hostRow.waitForExistence(timeout: 2) {
@@ -577,7 +577,7 @@ final class VerifyDriverUITests: XCTestCase {
     func testKeyBarOcclusionGeometry() throws {
         let app = XCUIApplication()
         app.launch()
-        app.tabBars.buttons["Hosts"].tap()
+        app.tabBars.buttons["Connections"].tap()
 
         let hostRow = app.buttons.matching(
             NSPredicate(format: "label CONTAINS 'localhost' OR label CONTAINS 'mac'")).firstMatch
@@ -656,7 +656,7 @@ final class VerifyDriverUITests: XCTestCase {
     func testFileBrowserShowsDates() throws {
         let app = XCUIApplication()
         app.launch()
-        app.tabBars.buttons["Hosts"].tap()
+        app.tabBars.buttons["Connections"].tap()
 
         let hostRow = app.buttons.matching(
             NSPredicate(format: "label CONTAINS 'localhost' OR label CONTAINS 'mac'")).firstMatch
@@ -750,7 +750,7 @@ final class VerifyDriverUITests: XCTestCase {
     /// Connects and walks down to the directory with real files in it — the
     /// shared opening move for the two file-browser phases.
     private func openRendersDirectory(_ app: XCUIApplication) throws {
-        app.tabBars.buttons["Hosts"].tap()
+        app.tabBars.buttons["Connections"].tap()
 
         let hostRow = app.buttons.matching(
             NSPredicate(format: "label CONTAINS 'localhost' OR label CONTAINS 'mac'")).firstMatch
@@ -964,7 +964,7 @@ final class VerifyDriverUITests: XCTestCase {
     /// Connects to the Mac's sshd and waits for the shell, without opening the
     /// file browser.
     private func connectToMac(_ app: XCUIApplication) throws {
-        app.tabBars.buttons["Hosts"].tap()
+        app.tabBars.buttons["Connections"].tap()
         let hostRow = app.buttons.matching(
             NSPredicate(format: "label CONTAINS 'localhost' OR label CONTAINS 'mac'")).firstMatch
         if !hostRow.waitForExistence(timeout: 2) { try createHost(app) }
@@ -994,7 +994,7 @@ final class VerifyDriverUITests: XCTestCase {
     func testTmuxEmacsModeLine() throws {
         let app = XCUIApplication()
         app.launch()
-        app.tabBars.buttons["Hosts"].tap()
+        app.tabBars.buttons["Connections"].tap()
 
         let hostRow = app.buttons.matching(
             NSPredicate(format: "label CONTAINS 'localhost' OR label CONTAINS 'mac'")).firstMatch
@@ -1048,7 +1048,7 @@ final class VerifyDriverUITests: XCTestCase {
     func testKeyBarOcclusionAtInitialLogin() throws {
         let app = XCUIApplication()
         app.launch()
-        app.tabBars.buttons["Hosts"].tap()
+        app.tabBars.buttons["Connections"].tap()
 
         let hostRow = app.buttons.matching(
             NSPredicate(format: "label CONTAINS 'localhost' OR label CONTAINS 'mac'")).firstMatch
@@ -1473,7 +1473,7 @@ final class VerifyDriverUITests: XCTestCase {
 
         // Review Focus 2: closing the last session leaves nothing behind.
         app.buttons["Close Session"].firstMatch.tap()
-        XCTAssertTrue(app.tabBars.buttons["Hosts"].waitForExistence(timeout: 5), app.debugDescription)
+        XCTAssertTrue(app.tabBars.buttons["Connections"].waitForExistence(timeout: 5), app.debugDescription)
         XCTAssertFalse(app.keyboards.firstMatch.exists, "keyboard left up with no session")
         attach(app, name: "g5-all-closed")
     }
@@ -1510,7 +1510,7 @@ final class VerifyDriverUITests: XCTestCase {
 
         // Minimized: the cover goes, the glasses stay connected and go idle.
         app.buttons["Minimize"].tap()
-        XCTAssertTrue(app.tabBars.buttons["Hosts"].waitForExistence(timeout: 10), app.debugDescription)
+        XCTAssertTrue(app.tabBars.buttons["Connections"].waitForExistence(timeout: 10), app.debugDescription)
         glassesCheckpoint("minimized")
     }
 
@@ -1545,6 +1545,88 @@ final class VerifyDriverUITests: XCTestCase {
         print("PHONE_SWITCH keyboard up after switch: \(app.keyboards.firstMatch.exists)")
         typeIntoTerminal(app, "tty > /tmp/pockterm-tab-1b\n")
         attach(app, name: "t2-first-session-again")
+    }
+
+    /// The Credentials pane under Connections: list, edit a username, add a
+    /// password credential, and delete it after the confirmation. The host
+    /// checks the store afterwards.
+    func testCredentialsPane() throws {
+        let app = XCUIApplication()
+        app.launch()
+        app.tabBars.buttons["Connections"].tap()
+        attach(app, name: "cred-0-hosts")
+        app.segmentedControls.buttons["Credentials"].tap()
+        let row = app.buttons.matching(NSPredicate(format: "label BEGINSWITH 'john'")).firstMatch
+        XCTAssertTrue(row.waitForExistence(timeout: 5), app.debugDescription)
+        attach(app, name: "cred-1-list")
+
+        // Edit: the username changes, nothing else does.
+        row.tap()
+        let username = app.textFields["Username"]
+        XCTAssertTrue(username.waitForExistence(timeout: 5), app.debugDescription)
+        attach(app, name: "cred-2-edit")
+        username.tap()
+        username.press(forDuration: 1.2)
+        if app.menuItems["Select All"].waitForExistence(timeout: 2) { app.menuItems["Select All"].tap() }
+        username.typeText("johnny")
+        app.buttons["Save"].tap()
+        XCTAssertTrue(app.buttons.matching(NSPredicate(format: "label CONTAINS 'johnny'")).firstMatch
+            .waitForExistence(timeout: 5), app.debugDescription)
+        attach(app, name: "cred-3-edited")
+
+        // Add a password credential with the + button.
+        app.navigationBars.buttons["New Credentials"].tap()
+        app.textFields["Label"].tap(); app.textFields["Label"].typeText("temp")
+        app.textFields["Username"].tap(); app.textFields["Username"].typeText("tmpuser")
+        app.secureTextFields["Password"].tap(); app.secureTextFields["Password"].typeText("pw123")
+        app.buttons["Save"].tap()
+        // iOS offers to save the password to iCloud Keychain; that is the
+        // system's, not ours.
+        let notNow = app.buttons["Not Now"]
+        if notNow.waitForExistence(timeout: 4) { notNow.tap() }
+        let temp = app.buttons.matching(NSPredicate(format: "label BEGINSWITH 'temp'")).firstMatch
+        XCTAssertTrue(temp.waitForExistence(timeout: 5), app.debugDescription)
+        attach(app, name: "cred-4-added")
+
+        // Delete it by swipe, then confirm.
+        temp.swipeLeft()
+        app.buttons["Delete"].firstMatch.tap()
+        let confirm = app.sheets.buttons["Delete"].firstMatch
+        if confirm.waitForExistence(timeout: 3) { confirm.tap() } else { app.buttons["Delete"].firstMatch.tap() }
+        Thread.sleep(forTimeInterval: 1)
+        XCTAssertFalse(temp.exists, app.debugDescription)
+        attach(app, name: "cred-5-deleted")
+        print("CRED>>> done")
+    }
+
+    /// Two live sessions left idle long enough for the background tmux
+    /// tracker to run in both, then typed into in turn. Each typed line
+    /// writes a timestamp on the host, so a stall shows up as a gap.
+    func testTwoSessionsStayResponsive() throws {
+        let app = XCUIApplication()
+        app.launch()
+        try connectToMac(app)
+        Thread.sleep(forTimeInterval: 4)
+        typeIntoTerminal(app, "date +%s > /tmp/pockterm-two-1\n")
+        app.buttons["New Session"].tap()
+        let row = app.buttons.matching(NSPredicate(format: "label CONTAINS 'localhost'")).firstMatch
+        XCTAssertTrue(row.waitForExistence(timeout: 5), app.debugDescription)
+        row.tap()
+        Thread.sleep(forTimeInterval: 6)
+        attach(app, name: "two-1-second-open")
+        typeIntoTerminal(app, "date +%s > /tmp/pockterm-two-2\n")
+        print("TWO>>> idle 40s")
+        Thread.sleep(forTimeInterval: 40)
+        attach(app, name: "two-2-after-idle")
+        tabChip(app, at: 0).tap()
+        Thread.sleep(forTimeInterval: 2)
+        typeIntoTerminal(app, "date +%s > /tmp/pockterm-two-3\n")
+        tabChip(app, at: 1).tap()
+        Thread.sleep(forTimeInterval: 2)
+        typeIntoTerminal(app, "date +%s > /tmp/pockterm-two-4\n")
+        Thread.sleep(forTimeInterval: 3)
+        attach(app, name: "two-3-end")
+        print("TWO>>> done")
     }
 
     /// The key bar's pinned Hide Keyboard chip must take the software

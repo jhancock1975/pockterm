@@ -7,7 +7,7 @@ import XCTest
 /// The labels to tap and expect come from the host, read from
 /// Localizable.xcstrings, so one test covers every language:
 ///
-///   TEST_RUNNER_L_LANG=fr TEST_RUNNER_L_JSON='{"Hosts":"Hôtes",…}' xcodebuild test-without-building …
+///   TEST_RUNNER_L_LANG=fr TEST_RUNNER_L_JSON='{"Connections":"Connexions",…}' xcodebuild test-without-building …
 final class LocalizedMessagesUITests: XCTestCase {
 
     private let env = ProcessInfo.processInfo.environment
@@ -24,7 +24,7 @@ final class LocalizedMessagesUITests: XCTestCase {
         let app = XCUIApplication()
         app.launchArguments += ["-AppleLanguages", "(\(lang))", "-AppleLocale", lang]
         app.launch()
-        app.tabBars.buttons[t("Hosts")].tap()
+        app.tabBars.buttons[t("Connections")].tap()
 
         app.navigationBars.buttons.element(boundBy: app.navigationBars.buttons.count - 1).tap()
         app.buttons[t("New Host")].tap()

@@ -12,6 +12,11 @@ struct HostsListView: View {
     @State private var filesHost: Host?
     @State private var showingHelp = false
     @State private var searchText = ""
+    @State private var pane: Pane = .hosts
+    @State private var newCredentials = false
+
+    /// The Hosts tab holds hosts and the credentials they sign in with.
+    enum Pane: Hashable { case hosts, credentials }
 
     private var filtered: [Host] {
         guard !searchText.isEmpty else { return hosts }
@@ -53,7 +58,9 @@ struct HostsListView: View {
     var body: some View {
         NavigationStack {
             Group {
-                if hosts.isEmpty {
+                if pane == .credentials {
+                    CredentialsListView(secretStore: secretStore, searchText: searchText)
+                } else if hosts.isEmpty {
                     ContentUnavailableView("No Hosts", systemImage: "server.rack",
                                            description: Text("Tap + to add a host."))
                 } else {
@@ -76,8 +83,19 @@ struct HostsListView: View {
                     }
                 }
             }
-            .searchable(text: $searchText, prompt: "Search hosts")
-            .navigationTitle("Hosts")
+            .safeAreaInset(edge: .top) {
+                Picker("Show", selection: $pane) {
+                    Text("Hosts").tag(Pane.hosts)
+                    Text("Credentials").tag(Pane.credentials)
+                }
+                .pickerStyle(.segmented)
+                .padding(.horizontal)
+                .padding(.bottom, 6)
+                .accessibilityIdentifier("hosts-pane")
+            }
+            .searchable(text: $searchText,
+                        prompt: pane == .hosts ? "Search hosts" : "Search credentials")
+            .navigationTitle(pane == .hosts ? "Hosts" : "Credentials")
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Button { showingHelp = true } label: {
@@ -86,18 +104,23 @@ struct HostsListView: View {
                     .accessibilityLabel("Help")
                 }
                 ToolbarItem(placement: .topBarTrailing) {
-                    Menu {
-                        Button { editing = Host(label: "", address: "") } label: {
-                            Label("New Host", systemImage: "plus")
+                    if pane == .credentials {
+                        Button { newCredentials = true } label: { Image(systemName: "plus") }
+                            .accessibilityLabel("New Credentials")
+                    } else {
+                        Menu {
+                            Button { editing = Host(label: "", address: "") } label: {
+                                Label("New Host", systemImage: "plus")
+                            }
+                            Button { managingGroups = true } label: {
+                                Label("Manage Groups", systemImage: "folder")
+                            }
+                            Button { importing = true } label: {
+                                Label("Import from ssh_config", systemImage: "square.and.arrow.down")
+                            }
+                        } label: {
+                            Image(systemName: "plus")
                         }
-                        Button { managingGroups = true } label: {
-                            Label("Manage Groups", systemImage: "folder")
-                        }
-                        Button { importing = true } label: {
-                            Label("Import from ssh_config", systemImage: "square.and.arrow.down")
-                        }
-                    } label: {
-                        Image(systemName: "plus")
                     }
                 }
             }
@@ -106,6 +129,9 @@ struct HostsListView: View {
             }
             .sheet(item: $editing) { host in
                 HostEditorView(secretStore: secretStore, host: host)
+            }
+            .sheet(isPresented: $newCredentials) {
+                NavigationStack { IdentityEditorView(secretStore: secretStore, showsCancel: true) }
             }
             .sheet(isPresented: $importing) {
                 ImportConfigView(secretStore: secretStore)

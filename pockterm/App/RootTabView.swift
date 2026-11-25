@@ -18,7 +18,7 @@ struct RootTabView: View {
     var body: some View {
         TabView(selection: $selectedTab) {
             HostsListView(secretStore: secretStore, sessions: sessions)
-                .tabItem { Label("Hosts", systemImage: "server.rack") }
+                .tabItem { Label("Connections", systemImage: "server.rack") }
                 .tag(0)
 
             SnippetsListView()

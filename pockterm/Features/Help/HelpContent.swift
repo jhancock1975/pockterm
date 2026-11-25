@@ -22,7 +22,7 @@ enum HelpContent {
         summary: "What Pockterm is and how it's organized",
         blocks: [
             .paragraph("Pockterm is a full-featured SSH client for iPhone. You can connect to servers, run an interactive terminal, transfer files over SFTP, and set up port-forwarding tunnels."),
-            .paragraph("Use the tabs along the bottom to move between **Hosts**, **Snippets**, **Keychain**, and **Port Forwarding**."),
+            .paragraph("Use the tabs along the bottom to move between **Connections**, **Snippets**, **Keychain**, and **Port Forwarding**."),
             .paragraph("Everything stays on your device — see **Your Data & Privacy** for details."),
         ])
 
@@ -33,10 +33,11 @@ enum HelpContent {
         blocks: [
             .heading("Create a host"),
             .bullets([
-                "On the **Hosts** tab, tap **+**, then **New Host**.",
+                "On the **Connections** tab, tap **+**, then **New Host**.",
                 "Enter a **Label**, the **Address** (hostname or IP), and the **Port** (22 by default).",
                 "Choose **Credentials** so Pockterm knows how to sign in. If you don't have any yet, tap **New Credentials**.",
                 "Tap **Save**.",
+                "Switch to **Credentials** at the top of the **Connections** tab to edit or delete saved usernames, passwords and keys.",
             ]),
             .heading("Host actions"),
             .bullets([

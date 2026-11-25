@@ -402,7 +402,7 @@ private struct NewSessionPicker: View {
             Group {
                 if hosts.isEmpty {
                     ContentUnavailableView("No Hosts", systemImage: "server.rack",
-                                           description: Text("Add a host on the Hosts tab first."))
+                                           description: Text("Add a host on the Connections tab first."))
                 } else {
                     List(hosts) { host in
                         Button {

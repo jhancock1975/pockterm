@@ -123,6 +123,21 @@ gone by the time of the reconnect (a server reboot). Set the host's
 and drop the connection half a second later. It passes when the snippet has run
 twice and the new shell isn't in tmux. Put `ZSTARTUPSNIPPET=NULL` back afterwards.
 
+`testTwoSessionsStayResponsive` opens a second session to the same host,
+leaves both idle for 40 s so the tmux tracker runs in each, then types into
+both by their chips. Each line writes `date +%s` to `/tmp/pockterm-two-1`…`-4`.
+Measured 2026-11-25 against the 2223 sshd: all four arrived, and `sample` on
+the app showed its main thread idle the whole time, so a freeze seen on the
+phone with two sessions did not reproduce here. The run takes about 14
+minutes, nearly all XCUITest idle waits. With Reopen in tmux on, both sessions
+join the same tmux session `pockterm` and mirror each other.
+
+`testCredentialsPane` drives Connections → Credentials: edit a username, add a
+password credential, delete it by swipe and confirmation. After saving a
+password iOS offers "Save Password?" for iCloud Keychain; the test taps Not
+Now. It edits the `verify` key's credentials to `johnny`, so put the username
+back afterwards (`UPDATE ZIDENTITY SET ZUSERNAME='john'`).
+
 **Never run a bare `tmux kill-server` here**, even with `TMUX_TMPDIR` set.
 These commands run inside John's tmux, where `$TMUX` beats `TMUX_TMPDIR`, so
 the kill lands on his server. That happened on 2026-11-24. Always pass `-S`
@@ -205,7 +220,7 @@ come from the catalogue on the Mac, so the same test runs in any language:
 ```bash
 L=fr; export TEST_RUNNER_L_LANG=$L TEST_RUNNER_L_JSON=$(python3 -c "
 import json; c=json.load(open('pockterm/Localizable.xcstrings'))['strings']
-keys=['Hosts','New Host','Label','Address','Theme','Font','Default','Light','System']
+keys=['Connections','New Host','Label','Address','Theme','Font','Default','Light','System']
 print(json.dumps({k: c[k]['localizations']['$L']['stringUnit']['value'] for k in keys}, ensure_ascii=False))")
 xcodebuild test-without-building ... -only-testing:pocktermUITests/LocalizedMessagesUITests
 ```
