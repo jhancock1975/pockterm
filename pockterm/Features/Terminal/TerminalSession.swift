@@ -284,12 +284,14 @@ final class TerminalSession: Identifiable, HostKeyDeciding {
         holdSeconds = EffectiveHostSettings.resolveKeepAlive(
             host: host, globalDefault: settings.defaultKeepAliveSeconds)
         startKeepAliveTimer()
-        let inTmux = await enterTmux(
+        let resumed = await enterTmux(
             wanted: EffectiveHostSettings.resolveReconnect(host: host, settings: settings).tmuxAttach,
             isReconnect: isReconnect, generation: generation)
-        // Back inside tmux the startup snippet has already run; a plain shell
-        // after a reconnect is a fresh login and gets it again.
-        if let startup = host.startupSnippet, !startup.isEmpty, !(isReconnect && inTmux) {
+        // Back inside a tmux session that was already running, the startup
+        // snippet has already run there. Anything else — a plain shell, or a
+        // tmux session that had to be made afresh because the old one is
+        // gone (a server reboot) — is a fresh start and gets it again.
+        if let startup = host.startupSnippet, !startup.isEmpty, !resumed {
             sendKeys(Array((startup + "\n").utf8))
         }
     }
@@ -381,10 +383,13 @@ final class TerminalSession: Identifiable, HostKeyDeciding {
         terminalView.feed(text: "\u{1B}[!p\u{1B}[?1049l\r\n\u{1B}[2m[\(note)]\u{1B}[0m\r\n")
     }
 
-    /// Puts the new shell into tmux where that is wanted, and returns whether
-    /// it did. After a reconnect that is the tmux session the shell was last
-    /// in, if any; otherwise the `pockterm` session when Reopen in tmux is on.
-    /// Then keeps watch on which tmux session the shell is in.
+    /// Puts the new shell into tmux where that is wanted. After a reconnect
+    /// that is the tmux session the shell was last in, if it still exists;
+    /// otherwise the `pockterm` session when Reopen in tmux is on. Then keeps
+    /// watch on which tmux session the shell is in.
+    ///
+    /// Returns whether a reconnect went back into a tmux session that was
+    /// still running, which is when the startup snippet must not run again.
     private func enterTmux(wanted: Bool, isReconnect: Bool, generation: Int) async -> Bool {
         if tmuxPath == nil {
             // Thrown means the probe never got an answer; that says nothing
@@ -399,16 +404,26 @@ final class TerminalSession: Identifiable, HostKeyDeciding {
             }
         }
         guard let path = tmuxPath, generation == shellGeneration else { return false }
-        var inTmux = false
-        if isReconnect, let session = lastTmuxSession {
+        var resumed = false
+        if isReconnect, let session = lastTmuxSession,
+           await tmuxSessionExists(session, path: path) {
             sendKeys(Array((Reconnect.attachCommand(session: session) + "\n").utf8))
-            inTmux = true
+            resumed = true
         } else if wanted {
+            resumed = isReconnect ? await tmuxSessionExists("pockterm", path: path) : false
             sendKeys(Array((Reconnect.tmuxCommand + "\n").utf8))
-            inTmux = true
         }
+        if !resumed { lastTmuxSession = nil }
         trackTmux(path: path, generation: generation)
-        return inTmux
+        return resumed
+    }
+
+    /// Asks tmux whether `session` is still there. No answer counts as yes,
+    /// so a slow server still gets the reattach it would have had before.
+    private func tmuxSessionExists(_ session: String, path: String) async -> Bool {
+        guard let output = try? await engine.exec(
+            Reconnect.hasSessionCommand(tmuxPath: path, session: session)) else { return true }
+        return Reconnect.sessionExists(hasSessionOutput: output)
     }
 
     /// Asks the host every few seconds which tmux session holds this shell's

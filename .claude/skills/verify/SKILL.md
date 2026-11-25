@@ -116,6 +116,13 @@ reconnect the shell must be back in `handmade`. The app finds that session by
 polling every 10 s, so the drop watcher sleeps ~18 s after `pid1` appears
 instead of 2.
 
+`testReconnectRunsSnippetWhenTmuxSessionIsGone` covers a tmux session that's
+gone by the time of the reconnect (a server reboot). Set the host's
+`ZSTARTUPSNIPPET='echo x >> /tmp/pockterm-rc-snip'`, then have the watcher run
+`tmux -S /tmp/pockterm-reconnect-sshd/tmux-$(id -u)/default kill-session -t =handmade`
+and drop the connection half a second later. It passes when the snippet has run
+twice and the new shell isn't in tmux. Put `ZSTARTUPSNIPPET=NULL` back afterwards.
+
 **Never run a bare `tmux kill-server` here**, even with `TMUX_TMPDIR` set.
 These commands run inside John's tmux, where `$TMUX` beats `TMUX_TMPDIR`, so
 the kill lands on his server. That happened on 2026-11-24. Always pass `-S`

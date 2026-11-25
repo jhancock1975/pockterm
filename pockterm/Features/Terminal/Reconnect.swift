@@ -72,6 +72,16 @@ enum Reconnect {
         "tmux attach -t \(shellQuote("=" + session))"
     }
 
+    /// Exits 0 only if `session` exists (exact name). Read-only.
+    static func hasSessionCommand(tmuxPath: String, session: String) -> String {
+        "\(shellQuote(tmuxPath)) has-session -t \(shellQuote("=" + session))"
+    }
+
+    /// Whether the session is there, from `hasSessionCommand`'s output.
+    static func sessionExists(hasSessionOutput: String) -> Bool {
+        !hasSessionOutput.contains("[exit status")
+    }
+
     static func shellQuote(_ s: String) -> String {
         "'" + s.replacingOccurrences(of: "'", with: #"'\''"#) + "'"
     }

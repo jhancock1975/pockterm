@@ -80,8 +80,15 @@ private func runShell(sending command: String) async throws -> (ShellEnd?, Strin
     }
     let stranger = Reconnect.trackedSession(output: try await engine.exec(
         Reconnect.trackCommand(tmuxPath: path, tag: UUID().uuidString)))
+    let has = { (session: String) in Reconnect.sessionExists(hasSessionOutput: try await engine.exec(
+        Reconnect.hasSessionCommand(tmuxPath: path, session: session))) }
+    let existedBefore = try await has(name)
     _ = try? await engine.exec("\(Reconnect.shellQuote(path)) kill-session -t \(Reconnect.shellQuote("=" + name))")
+    let existedAfter = try await has(name)
+    // Exact match: a prefix of a live session's name is not that session.
+    let prefixMatched = try await has(String(name.prefix(4)))
     await engine.disconnect()
+    #expect(existedBefore && !existedAfter && !prefixMatched)
     let output = await box.output
     #expect(found == name, "output: \(output.suffix(200).debugDescription)")
     #expect(stranger == nil)

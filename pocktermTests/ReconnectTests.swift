@@ -83,3 +83,10 @@ func aSessionAlreadyGoingDownIsLeftAlone(end: ShellEnd) {
     #expect(Reconnect.attachCommand(session: "0") == "tmux attach -t '=0'")
     #expect(Reconnect.attachCommand(session: "it's mine") == #"tmux attach -t '=it'\''s mine'"#)
 }
+
+@Test func hasSessionAsksForTheExactName() {
+    #expect(Reconnect.hasSessionCommand(tmuxPath: "/usr/bin/tmux", session: "0")
+            == "'/usr/bin/tmux' has-session -t '=0'")
+    #expect(Reconnect.sessionExists(hasSessionOutput: ""))
+    #expect(!Reconnect.sessionExists(hasSessionOutput: "can't find session: 0\n[exit status 1]"))
+}
