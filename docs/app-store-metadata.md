@@ -77,7 +77,11 @@ connect to. A public demo SSH host is standing by:
     Username: demo
     Password: <DEMO_HOST_PASSWORD>
 
-Steps: open the Hosts tab → tap + → enter the above → Connect. You'll get a live shell.
+Steps: open the Connections tab → tap + → New Host → enter the above → Connect. You'll get a live shell.
+New in 1.12: a dropped connection reconnects on its own and, if the shell was in tmux, goes back
+into that tmux session. SSH keys can be made in the Secure Enclave and are unlocked with Face ID.
+The Hosts tab is now called Connections, with a Credentials switch at the top for editing and
+deleting saved usernames, passwords and keys.
 New in 1.11: the optional AI Assistant can use Meta (Muse) as a fifth bring-your-own-key
 provider, alongside Anthropic, OpenAI, OpenRouter and Hugging Face. AI Assistant settings now
 have a Get an API key link that opens the selected provider's key page.
