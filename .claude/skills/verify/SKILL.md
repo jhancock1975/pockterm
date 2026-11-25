@@ -225,6 +225,13 @@ print(json.dumps({k: c[k]['localizations']['$L']['stringUnit']['value'] for k in
 xcodebuild test-without-building ... -only-testing:pocktermUITests/LocalizedMessagesUITests
 ```
 
+`LocalizedMessagesUITests.testCaptureConnectionScreen` takes App Store
+screenshot 4 (Settings → Connection, tab bar showing) in one language, with
+`Settings` and `Connection` in `TEST_RUNNER_L_JSON`. Run it on the iPhone 17
+Pro Max simulator (1320x2868) with `simctl status_bar … override --time 9:41`.
+It finds the row inside the Settings list because the Connections tab's label
+also contains "Connection" in most languages.
+
 Messages the UI can't easily reach (a host with no credentials can't be saved,
 for one) are checked in the built app instead: every `<lang>.lproj/Localizable.strings`
 is a plist, so `plistlib` can confirm a key ships with the expected value.
