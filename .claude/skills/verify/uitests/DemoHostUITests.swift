@@ -24,7 +24,7 @@ final class DemoHostUITests: XCTestCase {
 
         let app = XCUIApplication()
         app.launch()
-        app.tabBars.buttons["Hosts"].tap()
+        app.tabBars.buttons["Connections"].tap()
 
         let hostRow = app.buttons.matching(
             NSPredicate(format: "label CONTAINS %@", host)).firstMatch
@@ -74,7 +74,7 @@ final class DemoHostUITests: XCTestCase {
 
         let app = XCUIApplication()
         app.launch()
-        app.tabBars.buttons["Hosts"].tap()
+        app.tabBars.buttons["Connections"].tap()
         let hostRow = app.buttons.matching(
             NSPredicate(format: "label CONTAINS %@", host)).firstMatch
         if !hostRow.waitForExistence(timeout: 2) {

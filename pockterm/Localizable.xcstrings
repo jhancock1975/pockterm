@@ -177,6 +177,182 @@
         }
       }
     },
+    "%@ · Key: %@": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ · مفتاح: %2$@"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ · Κλειδί: %2$@"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ · Clave: %2$@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ · Clé : %2$@"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ · מפתח: %2$@"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ · कुंजी: %2$@"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ · Chiave: %2$@"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ · 鍵: %2$@"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ · 키: %2$@"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ · Ключ: %2$@"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ · కీ: %2$@"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ · Ключ: %2$@"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ · 密钥：%2$@"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ · 金鑰：%2$@"
+          }
+        }
+      }
+    },
+    "%@ · Password": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ · كلمة مرور"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ · Κωδικός"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ · Contraseña"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ · Mot de passe"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ · סיסמה"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ · पासवर्ड"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ · Password"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ · パスワード"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ · 암호"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ · Пароль"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ · పాస్‌వర్డ్"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ · Пароль"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ · 密码"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ · 密碼"
+          }
+        }
+      }
+    },
     "%@ · Secure Enclave": {
       "localizations": {
         "ar": {
@@ -3356,90 +3532,90 @@
         }
       }
     },
-    "Add a host on the Hosts tab first.": {
+    "Add a host on the Connections tab first.": {
       "localizations": {
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "أضف مضيفًا من علامة التبويب «المضيفون» أولًا."
+            "value": "أضف مضيفًا من علامة التبويب «الاتصالات» أولًا."
           }
         },
         "el": {
           "stringUnit": {
             "state": "translated",
-            "value": "Προσθέστε πρώτα έναν διακομιστή στην καρτέλα Διακομιστές."
+            "value": "Προσθέστε πρώτα έναν διακομιστή στην καρτέλα Συνδέσεις."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Primero añade un host en la pestaña Hosts."
+            "value": "Primero añade un host en la pestaña Conexiones."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Ajoutez d'abord un hôte dans l'onglet Hôtes."
+            "value": "Ajoutez d'abord un hôte dans l'onglet Connexions."
           }
         },
         "he": {
           "stringUnit": {
             "state": "translated",
-            "value": "תחילה הוסף מארח בלשונית המארחים."
+            "value": "תחילה הוסף מארח בלשונית החיבורים."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "पहले होस्ट टैब में एक होस्ट जोड़ें।"
+            "value": "पहले कनेक्शन टैब में एक होस्ट जोड़ें।"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Aggiungi prima un host nella scheda Host."
+            "value": "Aggiungi prima un host nella scheda Connessioni."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "先に「ホスト」タブでホストを追加してください。"
+            "value": "先に「接続」タブでホストを追加してください。"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "먼저 호스트 탭에서 호스트를 추가하십시오."
+            "value": "먼저 연결 탭에서 호스트를 추가하십시오."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Сначала добавьте хост на вкладке «Хосты»."
+            "value": "Сначала добавьте хост на вкладке «Подключения»."
           }
         },
         "te": {
           "stringUnit": {
             "state": "translated",
-            "value": "ముందుగా హోస్ట్‌లు ట్యాబ్‌లో ఒక హోస్ట్‌ను జోడించండి."
+            "value": "ముందుగా కనెక్షన్‌లు ట్యాబ్‌లో ఒక హోస్ట్‌ను జోడించండి."
           }
         },
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Спершу додайте хост на вкладці «Хости»."
+            "value": "Спершу додайте хост на вкладці «Підключення»."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "请先在“主机”标签页中添加主机。"
+            "value": "请先在“连接”标签页中添加主机。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "請先在「主機」標籤頁中加入主機。"
+            "value": "請先在「連線」標籤頁中加入主機。"
           }
         }
       }
@@ -7316,6 +7492,94 @@
         }
       }
     },
+    "Connections": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "الاتصالات"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Συνδέσεις"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conexiones"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connexions"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "חיבורים"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "कनेक्शन"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connessioni"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "接続"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "연결"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Подключения"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "కనెక్షన్‌లు"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Підключення"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "连接"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "連線"
+          }
+        }
+      }
+    },
     "Controls whether the assistant asks before running commands or editing files on your server.": {
       "localizations": {
         "ar": {
@@ -9692,6 +9956,94 @@
         }
       }
     },
+    "Delete “%@”?": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "حذف ”%@“؟"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Διαγραφή «%@»;"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Eliminar “%@”?"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Supprimer « %@ » ?"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "למחוק את ”%@“?"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“%@” हटाएँ?"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eliminare “%@”?"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“%@”を削除しますか？"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“%@”을(를) 삭제할까요?"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Удалить «%@»?"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "“%@” తొలగించాలా?"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Видалити «%@»?"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "删除“%@”？"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "刪除「%@」？"
+          }
+        }
+      }
+    },
     "Denied": {
       "localizations": {
         "ar": {
@@ -10656,6 +11008,94 @@
           "stringUnit": {
             "state": "translated",
             "value": "編輯"
+          }
+        }
+      }
+    },
+    "Edit Credentials": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "تعديل بيانات الاعتماد"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Επεξεργασία διαπιστευτηρίων"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Editar credenciales"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modifier les identifiants"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "עריכת פרטי התחברות"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "क्रेडेंशियल संपादित करें"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modifica credenziali"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "認証情報を編集"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "자격 증명 편집"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Изменить учётные данные"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ఆధారాలను సవరించండి"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Змінити облікові дані"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "编辑凭据"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "編輯憑證"
           }
         }
       }
@@ -18580,6 +19020,94 @@
         }
       }
     },
+    "No Credentials": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "لا توجد بيانات اعتماد"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Χωρίς διαπιστευτήρια"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sin credenciales"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aucun identifiant"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "אין פרטי התחברות"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "कोई क्रेडेंशियल नहीं"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nessuna credenziale"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "認証情報なし"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "자격 증명 없음"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Нет учётных данных"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ఆధారాలు లేవు"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Немає облікових даних"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无凭据"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "無憑證"
+          }
+        }
+      }
+    },
     "No Groups": {
       "localizations": {
         "ar": {
@@ -19375,90 +19903,90 @@
         }
       }
     },
-    "On the **Hosts** tab, tap **+**, then **New Host**.": {
+    "On the **Connections** tab, tap **+**, then **New Host**.": {
       "localizations": {
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "من علامة التبويب **المضيفون**، اضغط **+** ثم **مضيف جديد**."
+            "value": "من علامة التبويب **الاتصالات**، اضغط **+** ثم **مضيف جديد**."
           }
         },
         "el": {
           "stringUnit": {
             "state": "translated",
-            "value": "Στην καρτέλα **Διακομιστές**, πατήστε **+** και μετά **Νέος διακομιστής**."
+            "value": "Στην καρτέλα **Συνδέσεις**, πατήστε **+** και μετά **Νέος διακομιστής**."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "En la pestaña **Hosts**, toca **+** y luego **Host nuevo**."
+            "value": "En la pestaña **Conexiones**, toca **+** y luego **Host nuevo**."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dans l'onglet **Hôtes**, touchez **+**, puis **Nouvel hôte**."
+            "value": "Dans l'onglet **Connexions**, touchez **+**, puis **Nouvel hôte**."
           }
         },
         "he": {
           "stringUnit": {
             "state": "translated",
-            "value": "בלשונית **מארחים**, הקש **+** ואז **מארח חדש**."
+            "value": "בלשונית **חיבורים**, הקש **+** ואז **מארח חדש**."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "**होस्ट** टैब में **+** टैप करें, फिर **नया होस्ट**।"
+            "value": "**कनेक्शन** टैब में **+** टैप करें, फिर **नया होस्ट**।"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Nella scheda **Host**, tocca **+**, poi **Nuovo host**."
+            "value": "Nella scheda **Connessioni**, tocca **+**, poi **Nuovo host**."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "**ホスト**タブで **+** をタップし、**新規ホスト**を選びます。"
+            "value": "**接続**タブで **+** をタップし、**新規ホスト**を選びます。"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "**호스트** 탭에서 **+**를 탭한 다음 **새로운 호스트**를 선택하십시오."
+            "value": "**연결** 탭에서 **+**를 탭한 다음 **새로운 호스트**를 선택하십시오."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "На вкладке **Хосты** нажмите **+**, затем **Новый хост**."
+            "value": "На вкладке **Подключения** нажмите **+**, затем **Новый хост**."
           }
         },
         "te": {
           "stringUnit": {
             "state": "translated",
-            "value": "**హోస్ట్‌లు** ట్యాబ్‌లో **+** నొక్కి, ఆ తర్వాత **కొత్త హోస్ట్** నొక్కండి."
+            "value": "**కనెక్షన్‌లు** ట్యాబ్‌లో **+** నొక్కి, ఆ తర్వాత **కొత్త హోస్ట్** నొక్కండి."
           }
         },
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "На вкладці **Хости** торкніться **+**, потім **Новий хост**."
+            "value": "На вкладці **Підключення** торкніться **+**, потім **Новий хост**."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "在**主机**标签页中，轻点 **+**，然后选择**新建主机**。"
+            "value": "在**连接**标签页中，轻点 **+**，然后选择**新建主机**。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "在**主機**標籤頁中，點一下 **+**，然後選擇**新增主機**。"
+            "value": "在**連線**標籤頁中，點一下 **+**，然後選擇**新增主機**。"
           }
         }
       }
@@ -26063,6 +26591,94 @@
         }
       }
     },
+    "Search credentials": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "البحث في بيانات الاعتماد"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Αναζήτηση διαπιστευτηρίων"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buscar credenciales"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rechercher des identifiants"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "חיפוש פרטי התחברות"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "क्रेडेंशियल खोजें"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cerca credenziali"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "認証情報を検索"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "자격 증명 검색"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Поиск учётных данных"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ఆధారాలను వెతకండి"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Пошук облікових даних"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "搜索凭据"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "搜尋憑證"
+          }
+        }
+      }
+    },
     "Search hosts": {
       "localizations": {
         "ar": {
@@ -26939,6 +27555,94 @@
           "stringUnit": {
             "state": "translated",
             "value": "分享公開金鑰"
+          }
+        }
+      }
+    },
+    "Show": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "عرض"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Εμφάνιση"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Afficher"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הצג"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "दिखाएँ"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostra"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "表示"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "보기"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Показать"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "చూపించు"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Показати"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "显示"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "顯示"
           }
         }
       }
@@ -28263,6 +28967,94 @@
         }
       }
     },
+    "Switch to **Credentials** at the top of the **Connections** tab to edit or delete saved usernames, passwords and keys.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "انتقل إلى **بيانات الاعتماد** أعلى علامة التبويب **الاتصالات** لتعديل أسماء المستخدمين وكلمات المرور والمفاتيح المحفوظة أو حذفها."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Μεταβείτε στα **Διαπιστευτήρια** στο πάνω μέρος της καρτέλας **Συνδέσεις** για να επεξεργαστείτε ή να διαγράψετε αποθηκευμένα ονόματα χρήστη, κωδικούς και κλειδιά."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cambia a **Credenciales** en la parte superior de la pestaña **Conexiones** para editar o eliminar nombres de usuario, contraseñas y claves guardados."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Passez à **Identifiants** en haut de l'onglet **Connexions** pour modifier ou supprimer les noms d'utilisateur, mots de passe et clés enregistrés."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "עברו ל**פרטי התחברות** בראש הלשונית **חיבורים** כדי לערוך או למחוק שמות משתמש, סיסמאות ומפתחות שמורים."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सहेजे गए यूज़रनेम, पासवर्ड और कुंजियाँ संपादित करने या हटाने के लिए **कनेक्शन** टैब के ऊपर **क्रेडेंशियल** पर जाएँ।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Passa a **Credenziali** in cima alla scheda **Connessioni** per modificare o eliminare nomi utente, password e chiavi salvati."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**接続**タブ上部の**認証情報**に切り替えると、保存したユーザー名、パスワード、鍵を編集・削除できます。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "**연결** 탭 상단의 **자격 증명**으로 전환하여 저장된 사용자 이름, 암호, 키를 편집하거나 삭제하세요."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Переключитесь на **Учётные данные** вверху вкладки **Подключения**, чтобы изменить или удалить сохранённые имена пользователей, пароли и ключи."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "సేవ్ చేసిన యూజర్‌నేమ్‌లు, పాస్‌వర్డ్‌లు మరియు కీలను సవరించడానికి లేదా తొలగించడానికి **కనెక్షన్‌లు** ట్యాబ్ పైభాగంలో **ఆధారాలు**కు మారండి."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Перейдіть до **Облікових даних** угорі вкладки **Підключення**, щоб змінити або видалити збережені імена користувачів, паролі та ключі."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "切换到**连接**标签页顶部的**凭据**，即可编辑或删除已保存的用户名、密码和密钥。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "切換到**連線**標籤頁頂部的**憑證**，即可編輯或刪除已儲存的使用者名稱、密碼和金鑰。"
+          }
+        }
+      }
+    },
     "System": {
       "localizations": {
         "ar": {
@@ -29051,6 +29843,94 @@
           "stringUnit": {
             "state": "translated",
             "value": "點一下 + 以加入通道。"
+          }
+        }
+      }
+    },
+    "Tap + to add a username with a password or a key.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اضغط + لإضافة اسم مستخدم مع كلمة مرور أو مفتاح."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Πατήστε + για να προσθέσετε όνομα χρήστη με κωδικό ή κλειδί."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Toca + para añadir un nombre de usuario con contraseña o clave."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Touchez + pour ajouter un nom d'utilisateur avec un mot de passe ou une clé."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הקישו + כדי להוסיף שם משתמש עם סיסמה או מפתח."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "पासवर्ड या कुंजी के साथ यूज़रनेम जोड़ने के लिए + टैप करें।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tocca + per aggiungere un nome utente con password o chiave."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "+ をタップして、パスワードまたは鍵付きのユーザー名を追加します。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "+를 탭하여 암호 또는 키가 있는 사용자 이름을 추가하세요."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Нажмите +, чтобы добавить имя пользователя с паролем или ключом."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "పాస్‌వర్డ్ లేదా కీతో యూజర్‌నేమ్‌ను జోడించడానికి + నొక్కండి."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Торкніться +, щоб додати ім'я користувача з паролем або ключем."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "轻点 + 添加带密码或密钥的用户名。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "點一下 + 加入含密碼或金鑰的使用者名稱。"
           }
         }
       }
@@ -31786,6 +32666,270 @@
         }
       }
     },
+    "The server didn't accept this login. Check the identity's username, and that its key is in the server's authorized_keys file or its password is right.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "لم يقبل الخادم تسجيل الدخول هذا. تحقق من اسم المستخدم في الهوية، ومن أن مفتاحها موجود في ملف authorized_keys على الخادم أو أن كلمة المرور صحيحة."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ο διακομιστής δεν δέχτηκε αυτή τη σύνδεση. Ελέγξτε το όνομα χρήστη της ταυτότητας και ότι το κλειδί της βρίσκεται στο αρχείο authorized_keys του διακομιστή ή ότι ο κωδικός είναι σωστός."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El servidor no aceptó este inicio de sesión. Comprueba el nombre de usuario de la identidad y que su clave esté en el archivo authorized_keys del servidor, o que la contraseña sea correcta."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le serveur n'a pas accepté cette connexion. Vérifiez le nom d'utilisateur de l'identité, et que sa clé figure dans le fichier authorized_keys du serveur ou que son mot de passe est correct."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "השרת לא קיבל את ההתחברות הזו. בדקו את שם המשתמש של הזהות, ושהמפתח שלה נמצא בקובץ authorized_keys בשרת או שהסיסמה נכונה."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सर्वर ने यह लॉगिन स्वीकार नहीं किया। पहचान का यूज़रनेम जाँचें, और यह कि उसकी कुंजी सर्वर की authorized_keys फ़ाइल में है या उसका पासवर्ड सही है।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Il server non ha accettato questo accesso. Controlla il nome utente dell'identità e che la sua chiave sia nel file authorized_keys del server, oppure che la password sia corretta."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "サーバーがこのログインを受け付けませんでした。ID のユーザー名と、その鍵がサーバーの authorized_keys ファイルにあるか、パスワードが正しいかを確認してください。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "서버가 이 로그인을 받아들이지 않았습니다. ID의 사용자 이름과, 해당 키가 서버의 authorized_keys 파일에 있는지 또는 암호가 맞는지 확인하세요."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сервер не принял этот вход. Проверьте имя пользователя в профиле и что его ключ есть в файле authorized_keys на сервере или что пароль верный."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "సర్వర్ ఈ లాగిన్‌ను అంగీకరించలేదు. గుర్తింపు యొక్క యూజర్‌నేమ్‌ను, దాని కీ సర్వర్ యొక్క authorized_keys ఫైల్‌లో ఉందో లేదా దాని పాస్‌వర్డ్ సరైనదో తనిఖీ చేయండి."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сервер не прийняв цей вхід. Перевірте ім'я користувача в профілі та що його ключ є у файлі authorized_keys на сервері або що пароль правильний."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "服务器不接受此次登录。请检查身份的用户名，以及其密钥是否在服务器的 authorized_keys 文件中，或密码是否正确。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "伺服器不接受此次登入。請檢查身分的使用者名稱，以及其金鑰是否在伺服器的 authorized_keys 檔案中，或密碼是否正確。"
+          }
+        }
+      }
+    },
+    "The server doesn't accept passwords. Use a key instead.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "لا يقبل الخادم كلمات المرور. استخدم مفتاحًا بدلًا من ذلك."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ο διακομιστής δεν δέχεται κωδικούς. Χρησιμοποιήστε κλειδί."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El servidor no acepta contraseñas. Usa una clave."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le serveur n'accepte pas les mots de passe. Utilisez une clé."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "השרת לא מקבל סיסמאות. השתמשו במפתח במקום."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सर्वर पासवर्ड स्वीकार नहीं करता। इसके बजाय कुंजी का उपयोग करें।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Il server non accetta password. Usa una chiave."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "サーバーはパスワードを受け付けません。代わりに鍵を使ってください。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "서버가 암호를 받지 않습니다. 대신 키를 사용하세요."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сервер не принимает пароли. Используйте ключ."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "సర్వర్ పాస్‌వర్డ్‌లను అంగీకరించదు. బదులుగా కీని ఉపయోగించండి."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сервер не приймає паролі. Використовуйте ключ."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "服务器不接受密码。请改用密钥。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "伺服器不接受密碼。請改用金鑰。"
+          }
+        }
+      }
+    },
+    "The server doesn't accept this kind of login.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "لا يقبل الخادم هذا النوع من تسجيل الدخول."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ο διακομιστής δεν δέχεται αυτό το είδος σύνδεσης."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El servidor no acepta este tipo de inicio de sesión."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le serveur n'accepte pas ce type de connexion."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "השרת לא מקבל סוג התחברות זה."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सर्वर इस प्रकार का लॉगिन स्वीकार नहीं करता।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Il server non accetta questo tipo di accesso."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "サーバーはこの種類のログインを受け付けません。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "서버가 이 종류의 로그인을 받지 않습니다."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сервер не принимает такой способ входа."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "సర్వర్ ఈ రకమైన లాగిన్‌ను అంగీకరించదు."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сервер не приймає такий спосіб входу."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "服务器不接受这种登录方式。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "伺服器不接受這種登入方式。"
+          }
+        }
+      }
+    },
     "The server refused the request.": {
       "localizations": {
         "ar": {
@@ -31870,6 +33014,94 @@
           "stringUnit": {
             "state": "translated",
             "value": "伺服器拒絕了要求。"
+          }
+        }
+      }
+    },
+    "The server refused to open a session.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "رفض الخادم فتح جلسة."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ο διακομιστής αρνήθηκε να ανοίξει συνεδρία."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El servidor se negó a abrir una sesión."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le serveur a refusé d'ouvrir une session."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "השרת סירב לפתוח הפעלה."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सर्वर ने सत्र खोलने से इनकार कर दिया।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Il server ha rifiutato di aprire una sessione."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "サーバーがセッションを開くのを拒否しました。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "서버가 세션 열기를 거부했습니다."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сервер отказался открыть сеанс."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "సర్వర్ సెషన్‌ను తెరవడానికి నిరాకరించింది."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сервер відмовився відкрити сеанс."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "服务器拒绝打开会话。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "伺服器拒絕開啟工作階段。"
           }
         }
       }
@@ -33370,6 +34602,94 @@
         }
       }
     },
+    "Unchanged": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "دون تغيير"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Αμετάβλητο"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sin cambios"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inchangé"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ללא שינוי"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "अपरिवर्तित"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Invariata"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "変更なし"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "변경 안 함"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Без изменений"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "మార్పు లేదు"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Без змін"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "不更改"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "不變更"
+          }
+        }
+      }
+    },
     "Ungrouped": {
       "localizations": {
         "ar": {
@@ -34394,90 +35714,266 @@
         }
       }
     },
-    "Use the tabs along the bottom to move between **Hosts**, **Snippets**, **Keychain**, and **Port Forwarding**.": {
+    "Use the tabs along the bottom to move between **Connections**, **Snippets**, **Keychain**, and **Port Forwarding**.": {
       "localizations": {
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "استخدم علامات التبويب في الأسفل للتنقل بين **المضيفون** و**المقتطفات** و**سلسلة المفاتيح** و**توجيه المنافذ**."
+            "value": "استخدم علامات التبويب في الأسفل للتنقل بين **الاتصالات** و**المقتطفات** و**سلسلة المفاتيح** و**توجيه المنافذ**."
           }
         },
         "el": {
           "stringUnit": {
             "state": "translated",
-            "value": "Χρησιμοποιήστε τις καρτέλες στο κάτω μέρος για να μετακινηθείτε ανάμεσα σε **Διακομιστές**, **Αποσπάσματα**, **Μπρελόκ** και **Προώθηση θυρών**."
+            "value": "Χρησιμοποιήστε τις καρτέλες στο κάτω μέρος για να μετακινηθείτε ανάμεσα σε **Συνδέσεις**, **Αποσπάσματα**, **Μπρελόκ** και **Προώθηση θυρών**."
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Usa las pestañas de la parte inferior para moverte entre **Hosts**, **Fragmentos**, **Llavero** y **Redirección de puertos**."
+            "value": "Usa las pestañas de la parte inferior para moverte entre **Conexiones**, **Fragmentos**, **Llavero** y **Redirección de puertos**."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Utilisez les onglets en bas pour passer de **Hôtes** à **Extraits**, **Trousseau** et **Redirection de ports**."
+            "value": "Utilisez les onglets en bas pour passer de **Connexions** à **Extraits**, **Trousseau** et **Redirection de ports**."
           }
         },
         "he": {
           "stringUnit": {
             "state": "translated",
-            "value": "השתמש בלשוניות שבתחתית כדי לעבור בין **מארחים**, **קטעים**, **מחזיק מפתחות** ו**ניתוב יציאות**."
+            "value": "השתמש בלשוניות שבתחתית כדי לעבור בין **חיבורים**, **קטעים**, **מחזיק מפתחות** ו**ניתוב יציאות**."
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "**होस्ट**, **स्निपेट**, **कीचेन** और **पोर्ट फ़ॉरवर्डिंग** के बीच जाने के लिए नीचे के टैब का उपयोग करें।"
+            "value": "**कनेक्शन**, **स्निपेट**, **कीचेन** और **पोर्ट फ़ॉरवर्डिंग** के बीच जाने के लिए नीचे के टैब का उपयोग करें।"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Usa le schede in basso per spostarti tra **Host**, **Snippet**, **Portachiavi** e **Inoltro porte**."
+            "value": "Usa le schede in basso per spostarti tra **Connessioni**, **Snippet**, **Portachiavi** e **Inoltro porte**."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "下部のタブを使って、**ホスト**、**スニペット**、**キーチェーン**、**ポート転送**を切り替えます。"
+            "value": "下部のタブを使って、**接続**、**スニペット**、**キーチェーン**、**ポート転送**を切り替えます。"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "하단의 탭을 사용하여 **호스트**, **스니펫**, **키체인**, **포트 포워딩** 사이를 이동하십시오."
+            "value": "하단의 탭을 사용하여 **연결**, **스니펫**, **키체인**, **포트 포워딩** 사이를 이동하십시오."
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Используйте вкладки внизу для перехода между разделами **Хосты**, **Сниппеты**, **Ключи** и **Порты**."
+            "value": "Используйте вкладки внизу для перехода между разделами **Подключения**, **Сниппеты**, **Ключи** и **Порты**."
           }
         },
         "te": {
           "stringUnit": {
             "state": "translated",
-            "value": "**హోస్ట్‌లు**, **స్నిప్పెట్‌లు**, **కీచెయిన్**, మరియు **పోర్ట్ ఫార్వర్డింగ్** మధ్య మారడానికి కింద ఉన్న ట్యాబ్‌లను ఉపయోగించండి."
+            "value": "**కనెక్షన్‌లు**, **స్నిప్పెట్‌లు**, **కీచెయిన్**, మరియు **పోర్ట్ ఫార్వర్డింగ్** మధ్య మారడానికి కింద ఉన్న ట్యాబ్‌లను ఉపయోగించండి."
           }
         },
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Використовуйте вкладки внизу, щоб переходити між розділами **Хости**, **Сніпети**, **Ключі** і **Порти**."
+            "value": "Використовуйте вкладки внизу, щоб переходити між розділами **Підключення**, **Сніпети**, **Ключі** і **Порти**."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "使用底部的标签在**主机**、**代码片段**、**钥匙串**和**端口转发**之间切换。"
+            "value": "使用底部的标签在**连接**、**代码片段**、**钥匙串**和**端口转发**之间切换。"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "使用底部的標籤在**主機**、**程式碼片段**、**鑰匙圈**與**埠轉送**之間切換。"
+            "value": "使用底部的標籤在**連線**、**程式碼片段**、**鑰匙圈**與**埠轉送**之間切換。"
+          }
+        }
+      }
+    },
+    "Used by %@": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "مستخدمة في %@"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Χρησιμοποιείται από %@"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usada por %@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Utilisé par %@"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "בשימוש על ידי %@"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ द्वारा उपयोग किया गया"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usata da %@"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "使用中: %@"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "사용 중: %@"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Используется: %@"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ ఉపయోగిస్తోంది"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Використовується: %@"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "使用者：%@"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "使用者：%@"
+          }
+        }
+      }
+    },
+    "Used by %@. They will have no credentials until you choose others.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "مستخدمة في %@. لن تكون لها بيانات اعتماد حتى تختار غيرها."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Χρησιμοποιείται από %@. Θα μείνουν χωρίς διαπιστευτήρια μέχρι να επιλέξετε άλλα."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usada por %@. Se quedarán sin credenciales hasta que elijas otras."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Utilisé par %@. Ils n'auront plus d'identifiants tant que vous n'en choisirez pas d'autres."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "בשימוש על ידי %@. לא יהיו להם פרטי התחברות עד שתבחרו אחרים."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ द्वारा उपयोग किया गया। जब तक आप दूसरे नहीं चुनते, उनके पास कोई क्रेडेंशियल नहीं होगा।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usata da %@. Resteranno senza credenziali finché non ne scegli altre."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "使用中: %@。別の認証情報を選ぶまで、認証情報なしになります。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "사용 중: %@. 다른 자격 증명을 선택할 때까지 자격 증명이 없게 됩니다."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Используется: %@. У них не будет учётных данных, пока вы не выберете другие."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ ఉపయోగిస్తోంది. మీరు వేరేవి ఎంచుకునే వరకు వాటికి ఆధారాలు ఉండవు."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Використовується: %@. Вони не матимуть облікових даних, доки ви не виберете інші."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "使用者：%@。在你选择其他凭据之前，它们将没有凭据。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "使用者：%@。在你選擇其他憑證之前，它們將沒有憑證。"
           }
         }
       }
@@ -35710,6 +37206,94 @@
           "stringUnit": {
             "state": "translated",
             "value": "位於 %@"
+          }
+        }
+      }
+    },
+    "missing key": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "مفتاح مفقود"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "κλειδί που λείπει"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "clave que falta"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "clé manquante"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "מפתח חסר"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "कुंजी गायब"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "chiave mancante"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "鍵がありません"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "키 없음"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ключ отсутствует"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "కీ లేదు"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ключ відсутній"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "密钥缺失"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "金鑰遺失"
           }
         }
       }
