@@ -25,6 +25,7 @@
 		477DE86D405EA317944941A0 /* AgentLoopTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633EFF636DEFEBD3B08916AC /* AgentLoopTests.swift */; };
 		48802C0C5DF54ED611CEC84F /* SecretStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53305856679F3A11464DF689 /* SecretStoreTests.swift */; };
 		49667823C877517A287DAE78 /* SOCKS5Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A809901C46C17B1D062972 /* SOCKS5Tests.swift */; };
+		4B96A61D9B8E3FAB2991FA0B /* CustomServerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28FE881ADC3444725142147 /* CustomServerTests.swift */; };
 		4D02A1A726327C4902EC758D /* StreamDecoderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56741099B230DBC5D66D4BE6 /* StreamDecoderTests.swift */; };
 		4F4FAF101DD45378FC119E27 /* AssistantTranscriptTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D317821CFD18B0C77032FC49 /* AssistantTranscriptTests.swift */; };
 		56E2086F73C4F5316D0951A8 /* GlassesModeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C20C3850FBA15711B72EDC /* GlassesModeTests.swift */; };
@@ -123,6 +124,7 @@
 		E5ED310AE280278C98D8F50F /* ContextBuilderTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ContextBuilderTests.swift; sourceTree = "<group>"; };
 		E6F506163220C8FBDCD103A3 /* PlaceholderTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PlaceholderTests.swift; sourceTree = "<group>"; };
 		ECA036038EE00E63BE543278 /* RequestEncoderTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RequestEncoderTests.swift; sourceTree = "<group>"; };
+		F28FE881ADC3444725142147 /* CustomServerTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CustomServerTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -235,6 +237,7 @@
 				0AF6DE313C314954293819DC /* ReconnectTests.swift */,
 				427315EDFA91F9E4CE70604B /* EnclaveKeyTests.swift */,
 				5C69775EE885E87C11ED7DB2 /* SSHClientErrorTextTests.swift */,
+				F28FE881ADC3444725142147 /* CustomServerTests.swift */,
 			);
 			path = pocktermTests;
 			sourceTree = "<group>";
@@ -425,6 +428,7 @@
 				633F2E7854CD6FDC6A37B357 /* ReconnectTests.swift in Sources */,
 				31A44B3EF323A1A8D35BEA0C /* EnclaveKeyTests.swift in Sources */,
 				D8C6F5669DCA667BA606872A /* SSHClientErrorTextTests.swift in Sources */,
+				4B96A61D9B8E3FAB2991FA0B /* CustomServerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

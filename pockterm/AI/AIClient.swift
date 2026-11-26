@@ -31,7 +31,10 @@ actor AIClient {
     /// served to make the escaping closure a cross-isolation send.
     nonisolated func stream(_ request: ChatRequest, provider: AIProvider,
                             apiKey: String) -> AsyncThrowingStream<AIStreamEvent, Error> {
-        var urlRequest = URLRequest(url: provider.baseURL)
+        guard let url = provider.baseURL else {
+            return AsyncThrowingStream { $0.finish(throwing: MissingServerAddressError()) }
+        }
+        var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = "POST"
         for (field, value) in RequestEncoder.headers(for: provider, apiKey: apiKey) {
             urlRequest.setValue(value, forHTTPHeaderField: field)

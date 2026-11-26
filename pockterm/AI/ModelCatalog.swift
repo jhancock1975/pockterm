@@ -29,7 +29,7 @@ final class ModelCatalog {
         self.apiKey = apiKey
         let cached = Self.cachedModels(for: provider)
         self.seeded = cached.isEmpty
-        self.visibleModels = cached.isEmpty ? [provider.defaultModel] : cached
+        self.visibleModels = cached.isEmpty ? [provider.defaultModel].filter { !$0.isEmpty } : cached
     }
 
     func startRefresh() {
@@ -75,13 +75,14 @@ final class ModelCatalog {
     // MARK: Fetch + parse
 
     static func fetchModels(provider: AIProvider, apiKey: String?) async throws -> [String] {
-        var request = URLRequest(url: provider.modelsURL)
+        guard let url = provider.modelsURL else { throw MissingServerAddressError() }
+        var request = URLRequest(url: url)
         if let apiKey, !apiKey.isEmpty {
             switch provider {
             case .anthropic:
                 request.setValue(apiKey, forHTTPHeaderField: "x-api-key")
                 request.setValue("2023-06-01", forHTTPHeaderField: "anthropic-version")
-            case .openai, .openRouter, .huggingFace, .meta:
+            case .openai, .openRouter, .huggingFace, .meta, .custom:
                 request.setValue("Bearer \(apiKey)", forHTTPHeaderField: "Authorization")
             }
         }
@@ -93,7 +94,7 @@ final class ModelCatalog {
         return parseModels(data, provider: provider)
     }
 
-    /// All five providers return `{"data": [{"id": "..."}]}`. Text-first policy:
+    /// Every provider returns `{"data": [{"id": "..."}]}`. Text-first policy:
     /// OpenRouter is filtered by declared output modality, OpenAI by id family
     /// (its list mixes audio/image/embedding models); Anthropic, the HF
     /// router and Meta already list only chat models.
@@ -118,6 +119,10 @@ final class ModelCatalog {
                 .filter { id in !nonChat.contains { id.contains($0) } }
         case .anthropic, .huggingFace, .meta:
             ids = entries.compactMap { $0["id"] as? String }
+        case .custom:
+            // Ollama lists its embedding models too, and they can't chat.
+            ids = entries.compactMap { $0["id"] as? String }
+                .filter { !$0.lowercased().contains("embed") }
         }
         return ids.sorted()
     }
@@ -138,6 +143,12 @@ final class ModelCatalog {
 
     static func lastRefreshed(for provider: AIProvider) -> Date? {
         UserDefaults.standard.object(forKey: stampKey(for: provider)) as? Date
+    }
+
+    /// Forgets a provider's list, for when it now means a different server.
+    static func clearCache(for provider: AIProvider) {
+        UserDefaults.standard.removeObject(forKey: cacheKey(for: provider))
+        UserDefaults.standard.removeObject(forKey: stampKey(for: provider))
     }
 
     static func storeModels(_ models: [String], for provider: AIProvider) {
