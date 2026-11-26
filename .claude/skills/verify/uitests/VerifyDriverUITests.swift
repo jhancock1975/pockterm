@@ -1550,6 +1550,75 @@ final class VerifyDriverUITests: XCTestCase {
     /// The Credentials pane under Connections: list, edit a username, add a
     /// password credential, and delete it after the confirmation. The host
     /// checks the store afterwards.
+    /// The assistant on a self-hosted model server (issue #51). Needs
+    /// TEST_RUNNER_SELF_HOSTED_ADDRESS (e.g. the Mac's LAN address with Ollama
+    /// on it, started with OLLAMA_HOST=0.0.0.0:<port>) and
+    /// TEST_RUNNER_SELF_HOSTED_MODEL. The model is asked to run a command over
+    /// the real SSH session; the host checks /tmp/pockterm-local-llm afterwards.
+    func testSelfHostedAssistant() throws {
+        let env = ProcessInfo.processInfo.environment
+        let address = try XCTUnwrap(env["SELF_HOSTED_ADDRESS"], "set TEST_RUNNER_SELF_HOSTED_ADDRESS")
+        let model = try XCTUnwrap(env["SELF_HOSTED_MODEL"], "set TEST_RUNNER_SELF_HOSTED_MODEL")
+        let app = XCUIApplication()
+        app.launch()
+
+        app.tabBars.buttons["Settings"].tap()
+        app.collectionViews.buttons.matching(NSPredicate(format: "label CONTAINS 'AI Assistant'")).firstMatch.tap()
+        let provider = app.buttons.matching(NSPredicate(format: "label BEGINSWITH 'Provider'")).firstMatch
+        XCTAssertTrue(provider.waitForExistence(timeout: 10), app.debugDescription)
+        provider.tap()
+        let selfHosted = app.buttons["Self-Hosted"]
+        XCTAssertTrue(selfHosted.waitForExistence(timeout: 5), app.debugDescription)
+        selfHosted.tap()
+
+        let field = app.textFields["Server address"]
+        XCTAssertTrue(field.waitForExistence(timeout: 5), app.debugDescription)
+        field.tap()
+        if let old = field.value as? String, !old.isEmpty, old != "http://192.168.1.20:11434" {
+            field.typeText(String(repeating: XCUIKeyboardKey.delete.rawValue, count: old.count))
+        }
+        field.typeText(address)
+        app.buttons["Save and Find Models"].tap()
+        let found = app.staticTexts.matching(NSPredicate(format: "label BEGINSWITH 'Connected.'")).firstMatch
+        let ok = found.waitForExistence(timeout: 60)
+        attach(app, name: "selfhosted-1-server")
+        XCTAssertTrue(ok, "no models found: \(app.debugDescription)")
+        print("SELFHOSTED_FOUND>>>\(found.label)<<<")
+
+        app.buttons.matching(NSPredicate(format: "label BEGINSWITH 'Model'")).firstMatch.tap()
+        let row = app.buttons[model]
+        XCTAssertTrue(row.waitForExistence(timeout: 10), app.debugDescription)
+        row.tap()
+
+        let approval = app.buttons.matching(NSPredicate(format: "label BEGINSWITH 'Approval'")).firstMatch
+        XCTAssertTrue(approval.waitForExistence(timeout: 5))
+        approval.tap()
+        app.buttons["Auto-run"].tap()
+        attach(app, name: "selfhosted-2-settings")
+
+        try connectToMac(app)
+        app.buttons["AI Assistant"].tap()
+        let prompt = app.textFields["Ask the assistant…"]
+        XCTAssertTrue(prompt.waitForExistence(timeout: 10), app.debugDescription)
+        prompt.tap()
+        prompt.typeText("/no_think Use the run_command tool to run exactly this command: echo LOCAL-LLM-OK > /tmp/pockterm-local-llm")
+        // The field takes several lines, so a typed newline doesn't send.
+        app.buttons["Send"].tap()
+
+        // The Mac's own file is visible to the simulator's test runner.
+        let deadline = Date().addingTimeInterval(240)
+        var content = ""
+        while Date() < deadline {
+            content = (try? String(contentsOfFile: "/tmp/pockterm-local-llm", encoding: .utf8)) ?? ""
+            if content.contains("LOCAL-LLM-OK") { break }
+            Thread.sleep(forTimeInterval: 3)
+        }
+        Thread.sleep(forTimeInterval: 8)
+        attach(app, name: "selfhosted-3-assistant")
+        print("SELFHOSTED_FILE>>>\(content)<<<")
+        XCTAssertTrue(content.contains("LOCAL-LLM-OK"), "the command never ran")
+    }
+
     func testCredentialsPane() throws {
         let app = XCUIApplication()
         app.launch()

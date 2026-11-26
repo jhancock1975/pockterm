@@ -95,6 +95,101 @@
           }
         }
       }
+    },
+    "NSLocalNetworkUsageDescription": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "يتصل Pockterm بالخوادم ونماذج الذكاء الاصطناعي على شبكتك المحلية."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Το Pockterm συνδέεται σε διακομιστές και μοντέλα AI στο τοπικό σας δίκτυο."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pockterm connects to servers and AI models on your local network."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pockterm se conecta a servidores y modelos de IA de tu red local."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pockterm se connecte aux serveurs et aux modèles d'IA de votre réseau local."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pockterm מתחבר לשרתים ולמודלי AI ברשת המקומית שלך."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pockterm आपके स्थानीय नेटवर्क के सर्वर और AI मॉडल से जुड़ता है।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pockterm si collega ai server e ai modelli di IA della tua rete locale."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pockterm はローカルネットワーク上のサーバや AI モデルに接続します。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pockterm은 로컬 네트워크의 서버와 AI 모델에 연결합니다."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pockterm подключается к серверам и моделям ИИ в вашей локальной сети."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pockterm మీ స్థానిక నెట్‌వర్క్‌లోని సర్వర్‌లు మరియు AI మోడల్‌లకు కనెక్ట్ అవుతుంది."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pockterm під'єднується до серверів і моделей ШІ у вашій локальній мережі."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pockterm 会连接到你本地网络上的服务器和 AI 模型。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pockterm 會連線到你區域網路上的伺服器和 AI 模型。"
+          }
+        }
+      }
     }
   },
   "version": "1.0"

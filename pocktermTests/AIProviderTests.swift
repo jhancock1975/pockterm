@@ -5,11 +5,13 @@ import Foundation
 @Test @MainActor func everyProviderHasValidMetadata() {
     var keyIDs = Set<String>()
     for provider in AIProvider.allCases {
-        #expect(!provider.defaultModel.isEmpty)
         #expect(!provider.displayName.isEmpty)
-        #expect(provider.baseURL.scheme == "https")
-        #expect(provider.apiKeyHelpURL.scheme == "https")
         #expect(keyIDs.insert(provider.keychainKeyID).inserted)   // unique per provider
+        // A self-hosted server's address, model and key are the user's own.
+        guard provider.requiresAPIKey else { continue }
+        #expect(!provider.defaultModel.isEmpty)
+        #expect(provider.baseURL?.scheme == "https")
+        #expect(provider.apiKeyHelpURL?.scheme == "https")
     }
 }
 

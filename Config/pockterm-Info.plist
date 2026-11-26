@@ -2,6 +2,13 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+    <key>NSAppTransportSecurity</key>
+    <dict>
+        <key>NSAllowsLocalNetworking</key>
+        <true/>
+    </dict>
+    <key>NSLocalNetworkUsageDescription</key>
+    <string>Pockterm connects to servers and AI models on your local network.</string>
     <key>NSFaceIDUsageDescription</key>
     <string>Pockterm uses Face ID to unlock SSH keys kept in the Secure Enclave.</string>
     <key>UIApplicationSceneManifest</key>

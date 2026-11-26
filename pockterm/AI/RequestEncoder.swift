@@ -20,7 +20,7 @@ nonisolated enum RequestEncoder {
                 }
             }
             return body
-        case .openai, .openRouter, .huggingFace, .meta:
+        case .openai, .openRouter, .huggingFace, .meta, .custom:
             // Chat Completions carries the system prompt as a leading message.
             var messages: [[String: Any]] = []
             if let system = request.system {
@@ -110,6 +110,10 @@ nonisolated enum RequestEncoder {
             headers["Authorization"] = "Bearer \(apiKey)"
         case .meta:
             headers["Authorization"] = "Bearer \(apiKey)"
+        case .custom:
+            // An empty Bearer header makes some servers (LM Studio with auth
+            // off, for one) reject a request they would otherwise take.
+            if !apiKey.isEmpty { headers["Authorization"] = "Bearer \(apiKey)" }
         }
         return headers
     }

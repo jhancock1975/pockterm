@@ -112,8 +112,17 @@ final class AssistantModel {
         errorMessage = nil
 
         let provider = settings.activeProvider
-        guard let apiKey = (try? keyStore.key(for: provider)) ?? nil, !apiKey.isEmpty else {
+        let apiKey = ((try? keyStore.key(for: provider)) ?? nil) ?? ""
+        if provider.requiresAPIKey && apiKey.isEmpty {
             errorMessage = String(localized: "No API key for \(provider.displayName). Add one in Settings → AI Assistant.")
+            return
+        }
+        if provider.baseURL == nil {
+            errorMessage = MissingServerAddressError().errorDescription
+            return
+        }
+        if settings.model.isEmpty {
+            errorMessage = String(localized: "Choose a model in Settings → AI Assistant.")
             return
         }
 

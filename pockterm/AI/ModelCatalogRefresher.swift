@@ -3,7 +3,7 @@ import Foundation
 /// Refreshes providers' model lists at most once per day, triggered when the
 /// app launches or returns to the foreground (no timers, no BGTaskScheduler —
 /// this is the reliable low-frequency pattern on iOS). Only providers with a
-/// stored API key are fetched; failures wait for the next foreground pass.
+/// stored API key (or, for a self-hosted server, an address) are fetched; failures wait for the next foreground pass.
 @MainActor
 final class ModelCatalogRefresher {
     static let staleAfter: TimeInterval = 24 * 60 * 60
@@ -26,7 +26,9 @@ final class ModelCatalogRefresher {
     func refreshStaleCatalogs() {
         guard !running else { return }
         let keyed = AIProvider.allCases.filter {
-            ((try? keyStore.key(for: $0)) ?? nil)?.isEmpty == false
+            $0.requiresAPIKey
+                ? ((try? keyStore.key(for: $0)) ?? nil)?.isEmpty == false
+                : $0.baseURL != nil
         }
         let due = Self.due(keyed: keyed, now: .now,
                            lastRefreshed: ModelCatalog.lastRefreshed(for:))

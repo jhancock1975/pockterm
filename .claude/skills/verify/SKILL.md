@@ -178,6 +178,27 @@ state is the reliable signal that the save landed.
 That clears it from the simulator Keychain without erasing the simulator, which
 would also destroy the host and SSH key the harness depends on.
 
+## A self-hosted model server
+
+`testSelfHostedAssistant` switches the assistant to **Self-Hosted**, saves the
+server's address (which lists its models), picks one, and asks it to run
+`echo LOCAL-LLM-OK > /tmp/pockterm-local-llm` over the real SSH session. The
+test passes when that file appears on the Mac. Use a second Ollama on its own
+port, listening on the network, so the address goes over the LAN like a
+user's would (that is the path App Transport Security and the local-network
+prompt apply to):
+
+```bash
+OLLAMA_HOST=0.0.0.0:11435 ollama serve &          # stop it afterwards
+export TEST_RUNNER_SELF_HOSTED_ADDRESS=$(ipconfig getifaddr en0):11435
+export TEST_RUNNER_SELF_HOSTED_MODEL=qwen3:8b     # one that can call tools
+xcodebuild test-without-building ... -only-testing:pocktermUITests/VerifyDriverUITests/testSelfHostedAssistant
+```
+
+The prompt starts with `/no_think` so qwen3 answers in about 15 s. The
+assistant's input takes several lines, so a typed newline doesn't send:
+tap **Send**.
+
 ## SFTP upload and tap-to-act
 
 `testSFTPUpload` and `testSFTPUploadReplacePhotoFailure` check the file

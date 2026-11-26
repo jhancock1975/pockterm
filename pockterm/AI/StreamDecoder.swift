@@ -28,7 +28,7 @@ nonisolated final class StreamDecoder {
 
         switch provider {
         case .anthropic: return anthropicEvents(json)
-        case .openai, .openRouter, .huggingFace, .meta: return openAIEvents(json)
+        case .openai, .openRouter, .huggingFace, .meta, .custom: return openAIEvents(json)
         }
     }
 

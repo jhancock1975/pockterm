@@ -3004,6 +3004,94 @@
         }
       }
     },
+    "API Key (Optional)": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "مفتاح API (اختياري)"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Κλειδί API (προαιρετικό)"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clave API (opcional)"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clé API (facultative)"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "מפתח API (אופציונלי)"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "API कुंजी (वैकल्पिक)"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chiave API (facoltativa)"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "API キー（任意）"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "API 키(선택 사항)"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ключ API (необязательно)"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "API కీ (ఐచ్ఛికం)"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ключ API (необов'язково)"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "API 密钥（可选）"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "API 金鑰（選用）"
+          }
+        }
+      }
+    },
     "Accept": {
       "localizations": {
         "ar": {
@@ -4584,6 +4672,94 @@
           "stringUnit": {
             "state": "translated",
             "value": "詢問助理…"
+          }
+        }
+      }
+    },
+    "Asking the server for its models…": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "جارٍ سؤال الخادم عن نماذجه…"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ερώτηση του διακομιστή για τα μοντέλα του…"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preguntando al servidor por sus modelos…"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Demande des modèles au serveur…"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "מבקש מהשרת את רשימת הדגמים…"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सर्वर से उसके मॉडल पूछे जा रहे हैं…"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Richiesta dei modelli al server…"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "サーバにモデルを問い合わせています…"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "서버에 모델 목록을 요청하는 중…"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Запрашиваем модели у сервера…"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "సర్వర్ నుండి మోడల్‌లను అడుగుతోంది…"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Запитуємо моделі в сервера…"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在向服务器获取模型…"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在向伺服器取得模型…"
           }
         }
       }
@@ -6436,6 +6612,94 @@
         }
       }
     },
+    "Choose a model in Settings → AI Assistant.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "اختر نموذجًا في الإعدادات ← مساعد الذكاء الاصطناعي."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Επιλέξτε μοντέλο στις Ρυθμίσεις → Βοηθός AI."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elige un modelo en Ajustes → Asistente de IA."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choisissez un modèle dans Réglages → Assistant IA."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "בחר דגם בהגדרות ← עוזר AI."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सेटिंग → AI सहायक में एक मॉडल चुनें।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Scegli un modello in Impostazioni → Assistente AI."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "「設定」→「AIアシスタント」でモデルを選んでください。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "설정 → AI 어시스턴트에서 모델을 선택하십시오."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Выберите модель в разделе «Настройки» → «ИИ-ассистент»."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "సెట్టింగ్‌లు → AI సహాయకుడులో ఒక మోడల్‌ను ఎంచుకోండి."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Виберіть модель у розділі «Налаштування» → «ШІ-асистент»."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "请在“设置”→“AI 助手”中选择模型。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "請在「設定」→「AI 助理」中選擇模型。"
+          }
+        }
+      }
+    },
     "Clear Conversation": {
       "localizations": {
         "ar": {
@@ -7048,6 +7312,94 @@
           "stringUnit": {
             "state": "translated",
             "value": "連接 VITURE 等影像眼鏡，或顯示器、電視，終端機就會以全尺寸顯示在那個螢幕上。手機保留鍵盤和按鍵列，原本顯示終端機的地方改為顯示工作階段的檔案。"
+          }
+        }
+      }
+    },
+    "Connected. Models found: %lld": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "متصل. النماذج التي عُثر عليها: %lld"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Συνδέθηκε. Μοντέλα που βρέθηκαν: %lld"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conectado. Modelos encontrados: %lld"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connecté. Modèles trouvés : %lld"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "מחובר. דגמים שנמצאו: %lld"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "कनेक्ट हो गया। मिले मॉडल: %lld"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connesso. Modelli trovati: %lld"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "接続しました。見つかったモデル: %lld"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "연결되었습니다. 찾은 모델: %lld"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Подключено. Найдено моделей: %lld"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "కనెక్ట్ అయింది. కనుగొన్న మోడల్‌లు: %lld"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Під'єднано. Знайдено моделей: %lld"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已连接。找到的模型：%lld"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已連線。找到的模型：%lld"
           }
         }
       }
@@ -11272,6 +11624,94 @@
           "stringUnit": {
             "state": "translated",
             "value": "輸入使用者名稱，並選擇**密碼**或**金鑰**。"
+          }
+        }
+      }
+    },
+    "Enter your server's address in Settings → AI Assistant.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "أدخل عنوان خادمك في الإعدادات ← مساعد الذكاء الاصطناعي."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Εισαγάγετε τη διεύθυνση του διακομιστή σας στις Ρυθμίσεις → Βοηθός AI."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Introduce la dirección de tu servidor en Ajustes → Asistente de IA."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saisissez l'adresse de votre serveur dans Réglages → Assistant IA."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "הזן את כתובת השרת שלך בהגדרות ← עוזר AI."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सेटिंग → AI सहायक में अपने सर्वर का पता डालें।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inserisci l'indirizzo del tuo server in Impostazioni → Assistente AI."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "「設定」→「AIアシスタント」でサーバのアドレスを入力してください。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "설정 → AI 어시스턴트에서 서버 주소를 입력하십시오."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Укажите адрес сервера в разделе «Настройки» → «ИИ-ассистент»."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "సెట్టింగ్‌లు → AI సహాయకుడులో మీ సర్వర్ చిరునామాను నమోదు చేయండి."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Вкажіть адресу сервера в розділі «Налаштування» → «ШІ-асистент»."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "请在“设置”→“AI 助手”中输入服务器地址。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "請在「設定」→「AI 助理」中輸入伺服器位址。"
           }
         }
       }
@@ -20607,6 +21047,94 @@
         }
       }
     },
+    "Only needed if your server was set up to ask for one. Kept in the iOS Keychain and sent only to your server.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "لا يلزم إلا إذا كان خادمك مُعدًّا لطلبه. يُحفظ في سلسلة مفاتيح iOS ولا يُرسل إلا إلى خادمك."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Χρειάζεται μόνο αν ο διακομιστής σας έχει ρυθμιστεί να το ζητά. Φυλάσσεται στην Κλειδοθήκη του iOS και αποστέλλεται μόνο στον διακομιστή σας."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Solo hace falta si tu servidor está configurado para pedirla. Se guarda en el llavero de iOS y solo se envía a tu servidor."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nécessaire seulement si votre serveur est configuré pour en demander une. Conservée dans le trousseau iOS et envoyée uniquement à votre serveur."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "נדרש רק אם השרת שלך הוגדר לבקש מפתח. נשמר במחזיק המפתחות של iOS ונשלח רק לשרת שלך."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "केवल तभी चाहिए जब आपका सर्वर इसे माँगने के लिए सेट किया गया हो। iOS कीचेन में रखी जाती है और केवल आपके सर्वर को भेजी जाती है।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Serve solo se il server è configurato per richiederla. Conservata nel portachiavi di iOS e inviata solo al tuo server."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "サーバがキーを要求する設定の場合にのみ必要です。iOS のキーチェーンに保存され、あなたのサーバにのみ送信されます。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "서버가 키를 요구하도록 설정된 경우에만 필요합니다. iOS 키체인에 보관되며 사용자의 서버로만 전송됩니다."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Нужен, только если сервер настроен его требовать. Хранится в связке ключей iOS и отправляется только на ваш сервер."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "మీ సర్వర్ కీని అడిగేలా సెటప్ చేయబడితే మాత్రమే అవసరం. iOS కీచైన్‌లో ఉంచబడుతుంది, మీ సర్వర్‌కు మాత్రమే పంపబడుతుంది."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Потрібен, лише якщо сервер налаштовано його вимагати. Зберігається в зв'язці ключів iOS і надсилається лише на ваш сервер."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "仅当你的服务器设置为需要密钥时才需要。保存在 iOS 钥匙串中，只发送到你的服务器。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "只有在你的伺服器設定為需要金鑰時才需要。儲存在 iOS 鑰匙圈中，只會傳送到你的伺服器。"
+          }
+        }
+      }
+    },
     "Open Terminal": {
       "localizations": {
         "ar": {
@@ -26415,6 +26943,94 @@
         }
       }
     },
+    "Save and Find Models": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "حفظ والبحث عن النماذج"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Αποθήκευση και εύρεση μοντέλων"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Guardar y buscar modelos"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enregistrer et chercher les modèles"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "שמור וחפש דגמים"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सहेजें और मॉडल खोजें"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Salva e cerca i modelli"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "保存してモデルを検索"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "저장하고 모델 찾기"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сохранить и найти модели"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "సేవ్ చేసి మోడల్‌లను కనుగొను"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Зберегти й знайти моделі"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "保存并查找模型"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "儲存並尋找模型"
+          }
+        }
+      }
+    },
     "Save and run reusable commands": {
       "localizations": {
         "ar": {
@@ -26943,6 +27559,94 @@
         }
       }
     },
+    "Self-Hosted": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "خادم ذاتي"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ιδιόκτητος διακομιστής"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Servidor propio"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Auto-hébergé"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "שרת עצמי"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "स्व-होस्टेड"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Server personale"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "セルフホスト"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "자체 호스팅"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Свой сервер"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "స్వీయ-హోస్ట్"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Власний сервер"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "自托管"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "自架"
+          }
+        }
+      }
+    },
     "Send": {
       "localizations": {
         "ar": {
@@ -27115,6 +27819,182 @@
           "stringUnit": {
             "state": "translated",
             "value": "傳送僅含一個 token 的請求，以驗證金鑰與模型。"
+          }
+        }
+      }
+    },
+    "Server": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "الخادم"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Διακομιστής"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Servidor"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Serveur"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "שרת"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सर्वर"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Server"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "サーバ"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "서버"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сервер"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "సర్వర్"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сервер"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "服务器"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "伺服器"
+          }
+        }
+      }
+    },
+    "Server address": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "عنوان الخادم"
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Διεύθυνση διακομιστή"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dirección del servidor"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Adresse du serveur"
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "כתובת השרת"
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सर्वर का पता"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Indirizzo del server"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "サーバのアドレス"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "서버 주소"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Адрес сервера"
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "సర్వర్ చిరునామా"
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Адреса сервера"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "服务器地址"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "伺服器位址"
           }
         }
       }
@@ -32666,6 +33546,94 @@
         }
       }
     },
+    "The server answered but has no models. Download one first, for example with ollama pull.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "استجاب الخادم لكن لا توجد عليه نماذج. نزّل نموذجًا أولًا، مثلًا باستخدام ollama pull."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ο διακομιστής απάντησε αλλά δεν έχει μοντέλα. Κατεβάστε πρώτα ένα, για παράδειγμα με ollama pull."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El servidor respondió pero no tiene modelos. Descarga uno primero, por ejemplo con ollama pull."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le serveur a répondu mais n'a aucun modèle. Téléchargez-en un d'abord, par exemple avec ollama pull."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "השרת ענה אך אין בו דגמים. הורד דגם קודם, למשל עם ollama pull."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "सर्वर ने जवाब दिया पर उसमें कोई मॉडल नहीं है। पहले एक डाउनलोड करें, जैसे ollama pull से।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Il server ha risposto ma non ha modelli. Scaricane prima uno, per esempio con ollama pull."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "サーバは応答しましたがモデルがありません。まず ollama pull などでダウンロードしてください。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "서버가 응답했지만 모델이 없습니다. 먼저 ollama pull 등으로 모델을 내려받으십시오."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сервер ответил, но моделей на нём нет. Сначала скачайте модель, например через ollama pull."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "సర్వర్ స్పందించింది కానీ మోడల్‌లు లేవు. ముందుగా ఒకదాన్ని డౌన్‌లోడ్ చేయండి, ఉదాహరణకు ollama pull తో."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сервер відповів, але моделей на ньому немає. Спершу завантажте модель, наприклад через ollama pull."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "服务器已响应，但没有任何模型。请先下载一个，例如使用 ollama pull。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "伺服器已回應，但沒有任何模型。請先下載一個，例如使用 ollama pull。"
+          }
+        }
+      }
+    },
     "The server didn't accept this login. Check the identity's username, and that its key is in the server's authorized_keys file or its password is right.": {
       "localizations": {
         "ar": {
@@ -36854,6 +37822,94 @@
           "stringUnit": {
             "state": "translated",
             "value": "沒有開啟的工作階段或工作階段已縮到最小時，眼鏡上會提示你在 iPhone 上開啟一個工作階段。"
+          }
+        }
+      }
+    },
+    "Works with Ollama (port 11434), llama.cpp's llama-server (port 8080), LM Studio and other servers with an OpenAI-compatible API. Start the server so other devices can reach it: OLLAMA_HOST=0.0.0.0 for Ollama, --host 0.0.0.0 for llama-server. Away from home, use a VPN such as Tailscale.": {
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "يعمل مع Ollama (المنفذ 11434) وllama-server من llama.cpp (المنفذ 8080) وLM Studio وغيرها من الخوادم ذات واجهة API متوافقة مع OpenAI. شغّل الخادم بحيث تصل إليه الأجهزة الأخرى: OLLAMA_HOST=0.0.0.0 لـ Ollama، و--host 0.0.0.0 لـ llama-server. خارج المنزل، استخدم VPN مثل Tailscale."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Λειτουργεί με Ollama (θύρα 11434), llama-server του llama.cpp (θύρα 8080), LM Studio και άλλους διακομιστές με API συμβατό με OpenAI. Ξεκινήστε τον διακομιστή ώστε να είναι προσβάσιμος από άλλες συσκευές: OLLAMA_HOST=0.0.0.0 για το Ollama, --host 0.0.0.0 για το llama-server. Εκτός σπιτιού, χρησιμοποιήστε VPN όπως το Tailscale."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Funciona con Ollama (puerto 11434), llama-server de llama.cpp (puerto 8080), LM Studio y otros servidores con una API compatible con OpenAI. Inicia el servidor para que otros dispositivos lleguen a él: OLLAMA_HOST=0.0.0.0 para Ollama, --host 0.0.0.0 para llama-server. Fuera de casa, usa una VPN como Tailscale."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fonctionne avec Ollama (port 11434), llama-server de llama.cpp (port 8080), LM Studio et d'autres serveurs dotés d'une API compatible OpenAI. Lancez le serveur pour que les autres appareils puissent l'atteindre : OLLAMA_HOST=0.0.0.0 pour Ollama, --host 0.0.0.0 pour llama-server. Hors de chez vous, utilisez un VPN comme Tailscale."
+          }
+        },
+        "he": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "עובד עם Ollama (פורט 11434), llama-server של llama.cpp (פורט 8080), LM Studio ושרתים אחרים עם API תואם OpenAI. הפעל את השרת כך שמכשירים אחרים יוכלו להגיע אליו: OLLAMA_HOST=0.0.0.0 עבור Ollama, ‏--host 0.0.0.0 עבור llama-server. מחוץ לבית, השתמש ב-VPN כמו Tailscale."
+          }
+        },
+        "hi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ollama (पोर्ट 11434), llama.cpp के llama-server (पोर्ट 8080), LM Studio और OpenAI-संगत API वाले अन्य सर्वर के साथ काम करता है। सर्वर को ऐसे चलाएँ कि दूसरे डिवाइस उस तक पहुँच सकें: Ollama के लिए OLLAMA_HOST=0.0.0.0, llama-server के लिए --host 0.0.0.0। घर से बाहर, Tailscale जैसा VPN इस्तेमाल करें।"
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Funziona con Ollama (porta 11434), llama-server di llama.cpp (porta 8080), LM Studio e altri server con un'API compatibile con OpenAI. Avvia il server in modo che gli altri dispositivi lo raggiungano: OLLAMA_HOST=0.0.0.0 per Ollama, --host 0.0.0.0 per llama-server. Fuori casa, usa una VPN come Tailscale."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ollama（ポート 11434）、llama.cpp の llama-server（ポート 8080）、LM Studio など、OpenAI 互換 API を持つサーバで使えます。ほかのデバイスから接続できるようにサーバを起動してください：Ollama は OLLAMA_HOST=0.0.0.0、llama-server は --host 0.0.0.0。外出先では Tailscale などの VPN を使います。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ollama(포트 11434), llama.cpp의 llama-server(포트 8080), LM Studio 및 OpenAI 호환 API를 제공하는 다른 서버와 함께 사용할 수 있습니다. 다른 기기에서 접속할 수 있도록 서버를 시작하십시오: Ollama는 OLLAMA_HOST=0.0.0.0, llama-server는 --host 0.0.0.0. 외부에서는 Tailscale 같은 VPN을 사용하십시오."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Работает с Ollama (порт 11434), llama-server из llama.cpp (порт 8080), LM Studio и другими серверами с API, совместимым с OpenAI. Запустите сервер так, чтобы к нему могли подключаться другие устройства: OLLAMA_HOST=0.0.0.0 для Ollama, --host 0.0.0.0 для llama-server. Вне дома используйте VPN, например Tailscale."
+          }
+        },
+        "te": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ollama (పోర్ట్ 11434), llama.cpp యొక్క llama-server (పోర్ట్ 8080), LM Studio మరియు OpenAI-అనుకూల API ఉన్న ఇతర సర్వర్‌లతో పని చేస్తుంది. ఇతర పరికరాలు చేరుకునేలా సర్వర్‌ను ప్రారంభించండి: Ollama కోసం OLLAMA_HOST=0.0.0.0, llama-server కోసం --host 0.0.0.0. ఇంటి బయట, Tailscale వంటి VPN ఉపయోగించండి."
+          }
+        },
+        "uk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Працює з Ollama (порт 11434), llama-server з llama.cpp (порт 8080), LM Studio та іншими серверами з API, сумісним з OpenAI. Запустіть сервер так, щоб до нього могли під'єднуватися інші пристрої: OLLAMA_HOST=0.0.0.0 для Ollama, --host 0.0.0.0 для llama-server. Поза домом використовуйте VPN, наприклад Tailscale."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "适用于 Ollama（端口 11434）、llama.cpp 的 llama-server（端口 8080）、LM Studio 以及其他提供 OpenAI 兼容 API 的服务器。启动服务器时要让其他设备能访问：Ollama 用 OLLAMA_HOST=0.0.0.0，llama-server 用 --host 0.0.0.0。在外面时，请使用 Tailscale 等 VPN。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "適用於 Ollama（連接埠 11434）、llama.cpp 的 llama-server（連接埠 8080）、LM Studio 以及其他提供 OpenAI 相容 API 的伺服器。啟動伺服器時要讓其他裝置能連線：Ollama 用 OLLAMA_HOST=0.0.0.0，llama-server 用 --host 0.0.0.0。在外面時，請使用 Tailscale 等 VPN。"
           }
         }
       }
