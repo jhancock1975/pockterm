@@ -18,6 +18,7 @@
 		2FE3769B7B4264677F1063C1 /* AISettingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC83DF8560A2D3E865F9D47E /* AISettingsTests.swift */; };
 		31A44B3EF323A1A8D35BEA0C /* EnclaveKeyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427315EDFA91F9E4CE70604B /* EnclaveKeyTests.swift */; };
 		31A6CFFB7C9D5DCC2F6BE51C /* PlaceholderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F506163220C8FBDCD103A3 /* PlaceholderTests.swift */; };
+		33519DBE92B6F2847F30C75E /* MoshWireTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB56B3BC89A23F4C4CBC3D73 /* MoshWireTests.swift */; };
 		37DB105098B38CD8FF507F7F /* ToolSpecTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134AD88C7A6161F15A01D9BC /* ToolSpecTests.swift */; };
 		3C4D5E6F7A8B9C0D1E2F3A4B /* EffectiveKeepAliveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D3E4F5A6B7C8D9E0F1A2B3C /* EffectiveKeepAliveTests.swift */; };
 		3F1632B9C4083082DB032D69 /* ContextBuilderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5ED310AE280278C98D8F50F /* ContextBuilderTests.swift */; };
@@ -125,6 +126,7 @@
 		E6F506163220C8FBDCD103A3 /* PlaceholderTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PlaceholderTests.swift; sourceTree = "<group>"; };
 		ECA036038EE00E63BE543278 /* RequestEncoderTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RequestEncoderTests.swift; sourceTree = "<group>"; };
 		F28FE881ADC3444725142147 /* CustomServerTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CustomServerTests.swift; sourceTree = "<group>"; };
+		FB56B3BC89A23F4C4CBC3D73 /* MoshWireTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MoshWireTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -238,6 +240,7 @@
 				427315EDFA91F9E4CE70604B /* EnclaveKeyTests.swift */,
 				5C69775EE885E87C11ED7DB2 /* SSHClientErrorTextTests.swift */,
 				F28FE881ADC3444725142147 /* CustomServerTests.swift */,
+				FB56B3BC89A23F4C4CBC3D73 /* MoshWireTests.swift */,
 			);
 			path = pocktermTests;
 			sourceTree = "<group>";
@@ -429,6 +432,7 @@
 				31A44B3EF323A1A8D35BEA0C /* EnclaveKeyTests.swift in Sources */,
 				D8C6F5669DCA667BA606872A /* SSHClientErrorTextTests.swift in Sources */,
 				4B96A61D9B8E3FAB2991FA0B /* CustomServerTests.swift in Sources */,
+				33519DBE92B6F2847F30C75E /* MoshWireTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
